@@ -20,13 +20,16 @@ HEADERS = {
 MAX_FREE_POSTS = 10
 MAX_PAID_POSTS = 10
 
-PAGE_WINDOW_SIZE = 20
-MAX_PAGE_LIMIT = 100
+PAGE_WINDOW_SIZE = 10
+MAX_PAGE_LIMIT = 50
 
-REQUEST_DELAY_SECONDS = 0.5
-REPOST_COOLDOWN_DAYS = 45
+REQUEST_DELAY_SECONDS = 1.2
+REPOST_COOLDOWN_DAYS = 30
 MIN_SCORE_TO_POST_FREE = 8
 MIN_SCORE_TO_POST_PAID = 4
+
+MAX_FETCH_RETRIES = 3
+BACKOFF_SECONDS = 4
 
 STEAM_FREE_SEARCH_URL = "https://store.steampowered.com/search/?maxprice=free&page={}"
 STEAM_DEMO_SEARCH_URL = "https://store.steampowered.com/search/?category1=10&page={}"
@@ -172,10 +175,8 @@ def load_page_state() -> int:
             data = json.load(f)
 
         start_page = int(data.get("start_page", 1))
-        if start_page < 1 or start_page > MAX_PAGE_LIMIT:
-            return 1
-
         valid_starts = set(range(1, MAX_PAGE_LIMIT + 1, PAGE_WINDOW_SIZE))
+
         if start_page not in valid_starts:
             return 1
 
@@ -243,11 +244,22 @@ def fetch_html(url: str) -> str:
 
 
 def safe_fetch_html(url: str) -> Optional[str]:
-    try:
-        return fetch_html(url)
-    except Exception as e:
-        print(f"FETCH FAILED: {url} | error={e}")
-        return None
+    for attempt in range(1, MAX_FETCH_RETRIES + 1):
+        try:
+            return fetch_html(url)
+        except requests.HTTPError as e:
+            status_code = e.response.status_code if e.response is not None else None
+            if status_code == 429 and attempt < MAX_FETCH_RETRIES:
+                wait_time = BACKOFF_SECONDS * attempt
+                print(f"FETCH RETRY {attempt}/{MAX_FETCH_RETRIES}: {url} | 429 received, waiting {wait_time}s")
+                time.sleep(wait_time)
+                continue
+
+            print(f"FETCH FAILED: {url} | error={e}")
+            return None
+        except Exception as e:
+            print(f"FETCH FAILED: {url} | error={e}")
+            return None
 
 
 def sleep_briefly():
