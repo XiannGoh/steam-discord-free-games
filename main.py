@@ -26,7 +26,7 @@ STEAM_PAID_PAGES = 20
 REQUEST_DELAY_SECONDS = 0.5
 REPOST_COOLDOWN_DAYS = 45
 MIN_SCORE_TO_POST_FREE = 8
-MIN_SCORE_TO_POST_PAID = 6
+MIN_SCORE_TO_POST_PAID = 4
 
 STEAM_FREE_SEARCH_URL = "https://store.steampowered.com/search/?maxprice=free&page={}"
 STEAM_DEMO_SEARCH_URL = "https://store.steampowered.com/search/?category1=10&page={}"
@@ -467,16 +467,11 @@ def inspect_game(source: str, app_id: str) -> Optional[dict]:
     has_multiplayer_signal = multiplayer_score > 0
     has_3plus_signal = player_score > 0
 
-    # Free remains strict. Paid is more forgiving:
-    # either clear 3+ evidence OR strong multiplayer evidence + enough score.
     if item_type == "paid_under_20":
         keep = (
             has_multiplayer_signal and
             not rejected and
-            (
-                has_3plus_signal or
-                (multiplayer_score >= 5 and total_score >= MIN_SCORE_TO_POST_PAID)
-            )
+            total_score >= MIN_SCORE_TO_POST_PAID
         )
     else:
         keep = (
@@ -563,6 +558,11 @@ def post_to_discord(message: str) -> None:
 def main():
     state = load_state()
     candidates = collect_all_candidates()
+
+    total_candidates = len(candidates)
+    paid_candidates = sum(1 for source, _ in candidates if source == "paid_under_20")
+    print(f"Total candidates collected: {total_candidates}")
+    print(f"Paid candidates collected: {paid_candidates}")
 
     inspected_items = []
 
