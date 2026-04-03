@@ -25,7 +25,8 @@ STEAM_PAID_PAGES = 20
 
 REQUEST_DELAY_SECONDS = 0.5
 REPOST_COOLDOWN_DAYS = 45
-MIN_SCORE_TO_POST = 8
+MIN_SCORE_TO_POST_FREE = 8
+MIN_SCORE_TO_POST_PAID = 6
 
 STEAM_FREE_SEARCH_URL = "https://store.steampowered.com/search/?maxprice=free&page={}"
 STEAM_DEMO_SEARCH_URL = "https://store.steampowered.com/search/?category1=10&page={}"
@@ -121,8 +122,6 @@ REJECT_PATTERNS = [
 ]
 
 
-# ---------- STATE HELPERS ----------
-
 def utc_now_iso() -> str:
     return datetime.now(timezone.utc).isoformat()
 
@@ -192,8 +191,6 @@ def update_state_for_post(app_id: str, item_type: str, state: Dict[str, dict]) -
     }
 
 
-# ---------- NETWORK HELPERS ----------
-
 def fetch_html(url: str) -> str:
     response = requests.get(url, headers=HEADERS, timeout=30)
     response.raise_for_status()
@@ -210,8 +207,6 @@ def safe_fetch_html(url: str) -> Optional[str]:
 def sleep_briefly():
     time.sleep(REQUEST_DELAY_SECONDS)
 
-
-# ---------- CANDIDATE COLLECTION ----------
 
 def extract_appids_from_html(html: str) -> List[str]:
     ids = re.findall(r"/app/(\d+)", html)
@@ -311,8 +306,6 @@ def collect_all_candidates() -> List[Tuple[str, str]]:
 
     return combined
 
-
-# ---------- PARSING / SCORING ----------
 
 def clean_text(s: str) -> str:
     return " ".join(s.split())
@@ -474,12 +467,24 @@ def inspect_game(source: str, app_id: str) -> Optional[dict]:
     has_multiplayer_signal = multiplayer_score > 0
     has_3plus_signal = player_score > 0
 
-    keep = (
-        has_multiplayer_signal and
-        has_3plus_signal and
-        not rejected and
-        total_score >= MIN_SCORE_TO_POST
-    )
+    # Free remains strict. Paid is more forgiving:
+    # either clear 3+ evidence OR strong multiplayer evidence + enough score.
+    if item_type == "paid_under_20":
+        keep = (
+            has_multiplayer_signal and
+            not rejected and
+            (
+                has_3plus_signal or
+                (multiplayer_score >= 5 and total_score >= MIN_SCORE_TO_POST_PAID)
+            )
+        )
+    else:
+        keep = (
+            has_multiplayer_signal and
+            has_3plus_signal and
+            not rejected and
+            total_score >= MIN_SCORE_TO_POST_FREE
+        )
 
     return {
         "id": app_id,
@@ -619,6 +624,8 @@ def main():
 
     total = len(free_items) + len(paid_items)
     print(f"Posted {total} item(s) to Discord.")
+    print(f"Free items selected: {len(free_items)}")
+    print(f"Paid items selected: {len(paid_items)}")
 
     for item in free_items:
         print(
