@@ -508,34 +508,36 @@ def type_label(item_type: str) -> str:
     return "Free Game"
 
 
-def build_discord_message(free_items: List[dict], paid_items: List[dict]) -> str:
+def build_free_message(free_items: List[dict]) -> str:
     lines = []
+    lines.append("🎮 **Best Free 3+ Player Multiplayer / Co-op Games & Demos Today**")
+    lines.append("")
 
-    if free_items:
-        lines.append("🎮 **Best Free 3+ Player Multiplayer / Co-op Games & Demos Today**")
+    for idx, item in enumerate(free_items, start=1):
+        lines.append(f"**{idx}. {item['title']}**")
+        lines.append(f"Type: {type_label(item['type'])}")
+        lines.append(f"Score: {item['score']}")
+        if item["description"]:
+            lines.append(item["description"][:180])
+        lines.append(item["url"])
         lines.append("")
 
-        for idx, item in enumerate(free_items, start=1):
-            lines.append(f"**{idx}. {item['title']}**")
-            lines.append(f"Type: {type_label(item['type'])}")
-            lines.append(f"Score: {item['score']}")
-            if item["description"]:
-                lines.append(item["description"][:180])
-            lines.append(item["url"])
-            lines.append("")
+    return "\n".join(lines)[:1900]
 
-    if paid_items:
-        lines.append("💸 **Best Multiplayer / Co-op Games Under $20 Today**")
+
+def build_paid_message(paid_items: List[dict]) -> str:
+    lines = []
+    lines.append("💸 **Best Multiplayer / Co-op Games Under $20 Today**")
+    lines.append("")
+
+    for idx, item in enumerate(paid_items, start=1):
+        lines.append(f"**{idx}. {item['title']}**")
+        lines.append("Type: Paid Under $20")
+        lines.append(f"Score: {item['score']}")
+        if item["description"]:
+            lines.append(item["description"][:180])
+        lines.append(item["url"])
         lines.append("")
-
-        for idx, item in enumerate(paid_items, start=1):
-            lines.append(f"**{idx}. {item['title']}**")
-            lines.append("Type: Paid Under $20")
-            lines.append(f"Score: {item['score']}")
-            if item["description"]:
-                lines.append(item["description"][:180])
-            lines.append(item["url"])
-            lines.append("")
 
     return "\n".join(lines)[:1900]
 
@@ -602,8 +604,13 @@ def main():
         print("No qualifying games found.")
         return
 
-    message = build_discord_message(free_items, paid_items)
-    post_to_discord(message)
+    if free_items:
+        free_message = build_free_message(free_items)
+        post_to_discord(free_message)
+
+    if paid_items:
+        paid_message = build_paid_message(paid_items)
+        post_to_discord(paid_message)
 
     for item in free_items + paid_items:
         update_state_for_post(item["id"], item["type"], state)
