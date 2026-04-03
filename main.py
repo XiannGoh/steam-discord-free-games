@@ -19,10 +19,9 @@ HEADERS = {
 MAX_FREE_POSTS = 10
 MAX_PAID_POSTS = 10
 
-# Reduced to 5 pages each for faster debugging
-STEAM_FREE_PAGES = 5
-STEAM_DEMO_PAGES = 5
-STEAM_PAID_PAGES = 5
+STEAM_FREE_PAGES = 20
+STEAM_DEMO_PAGES = 20
+STEAM_PAID_PAGES = 20
 
 REQUEST_DELAY_SECONDS = 0.5
 REPOST_COOLDOWN_DAYS = 45
@@ -357,11 +356,6 @@ def extract_price_usd(text: str) -> Optional[float]:
 
 
 def get_price_info(app_id: str) -> Tuple[Optional[float], bool]:
-    """
-    Returns:
-    - price in USD if available
-    - whether game is free
-    """
     try:
         url = (
             f"https://store.steampowered.com/api/appdetails"
