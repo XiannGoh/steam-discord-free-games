@@ -151,7 +151,7 @@ for app_id in candidates:
         new_games.append(game)
         seen.add(app_id)
 
-    if len(new_games) >= 20:
+    if len(new_games) >= 10:
         break
 
 save_seen(seen)
