@@ -28,7 +28,7 @@ REPOST_COOLDOWN_DAYS = 30
 MIN_SCORE_TO_POST_FREE = 8
 MIN_SCORE_TO_POST_PAID = 4
 
-MAX_FETCH_RETRIES = 3
+MAX_FETCH_RETRIES = 5
 BACKOFF_SECONDS = 4
 
 STEAM_FREE_SEARCH_URL = "https://store.steampowered.com/search/?maxprice=free&page={}"
