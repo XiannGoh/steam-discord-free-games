@@ -10,6 +10,7 @@ from bs4 import BeautifulSoup
 
 WEBHOOK_URL = os.getenv("DISCORD_WEBHOOK_URL")
 STATE_FILE = "seen_ids.json"
+PAGE_STATE_FILE = "page_state.json"
 
 HEADERS = {
     "User-Agent": "Mozilla/5.0"
@@ -19,9 +20,8 @@ HEADERS = {
 MAX_FREE_POSTS = 10
 MAX_PAID_POSTS = 10
 
-STEAM_FREE_PAGES = 20
-STEAM_DEMO_PAGES = 20
-STEAM_PAID_PAGES = 20
+PAGE_WINDOW_SIZE = 20
+MAX_PAGE_LIMIT = 100
 
 REQUEST_DELAY_SECONDS = 0.5
 REPOST_COOLDOWN_DAYS = 45
@@ -163,6 +163,49 @@ def save_state(state: Dict[str, dict]) -> None:
         json.dump(state, f, indent=2, sort_keys=True)
 
 
+def load_page_state() -> int:
+    if not os.path.exists(PAGE_STATE_FILE):
+        return 1
+
+    try:
+        with open(PAGE_STATE_FILE, "r", encoding="utf-8") as f:
+            data = json.load(f)
+
+        start_page = int(data.get("start_page", 1))
+        if start_page < 1 or start_page > MAX_PAGE_LIMIT:
+            return 1
+
+        valid_starts = set(range(1, MAX_PAGE_LIMIT + 1, PAGE_WINDOW_SIZE))
+        if start_page not in valid_starts:
+            return 1
+
+        return start_page
+    except Exception:
+        return 1
+
+
+def save_page_state(start_page: int) -> None:
+    payload = {
+        "start_page": start_page,
+        "updated_at": utc_now_iso(),
+    }
+    with open(PAGE_STATE_FILE, "w", encoding="utf-8") as f:
+        json.dump(payload, f, indent=2, sort_keys=True)
+
+
+def get_page_window() -> Tuple[int, int]:
+    start_page = load_page_state()
+    end_page = min(start_page + PAGE_WINDOW_SIZE - 1, MAX_PAGE_LIMIT)
+    return start_page, end_page
+
+
+def get_next_start_page(current_start: int) -> int:
+    next_start = current_start + PAGE_WINDOW_SIZE
+    if next_start > MAX_PAGE_LIMIT:
+        return 1
+    return next_start
+
+
 def can_repost(app_id: str, item_type: str, state: Dict[str, dict]) -> bool:
     if app_id not in state:
         return True
@@ -202,7 +245,8 @@ def fetch_html(url: str) -> str:
 def safe_fetch_html(url: str) -> Optional[str]:
     try:
         return fetch_html(url)
-    except Exception:
+    except Exception as e:
+        print(f"FETCH FAILED: {url} | error={e}")
         return None
 
 
@@ -221,16 +265,20 @@ def extract_appids_from_html(html: str) -> List[str]:
     return result
 
 
-def collect_steam_free_candidates() -> List[Tuple[str, str]]:
+def collect_steam_free_candidates(start_page: int, end_page: int) -> List[Tuple[str, str]]:
     results = []
     seen = set()
 
-    for page in range(1, STEAM_FREE_PAGES + 1):
-        html = safe_fetch_html(STEAM_FREE_SEARCH_URL.format(page))
+    for page in range(start_page, end_page + 1):
+        url = STEAM_FREE_SEARCH_URL.format(page)
+        html = safe_fetch_html(url)
         if not html:
             continue
 
-        for app_id in extract_appids_from_html(html):
+        page_ids = extract_appids_from_html(html)
+        print(f"FREE PAGE {page}: extracted {len(page_ids)} app ids")
+
+        for app_id in page_ids:
             key = ("steam_free", app_id)
             if key not in seen:
                 seen.add(key)
@@ -241,16 +289,20 @@ def collect_steam_free_candidates() -> List[Tuple[str, str]]:
     return results
 
 
-def collect_steam_demo_candidates() -> List[Tuple[str, str]]:
+def collect_steam_demo_candidates(start_page: int, end_page: int) -> List[Tuple[str, str]]:
     results = []
     seen = set()
 
-    for page in range(1, STEAM_DEMO_PAGES + 1):
-        html = safe_fetch_html(STEAM_DEMO_SEARCH_URL.format(page))
+    for page in range(start_page, end_page + 1):
+        url = STEAM_DEMO_SEARCH_URL.format(page)
+        html = safe_fetch_html(url)
         if not html:
             continue
 
-        for app_id in extract_appids_from_html(html):
+        page_ids = extract_appids_from_html(html)
+        print(f"DEMO PAGE {page}: extracted {len(page_ids)} app ids")
+
+        for app_id in page_ids:
             key = ("steam_demo", app_id)
             if key not in seen:
                 seen.add(key)
@@ -261,16 +313,20 @@ def collect_steam_demo_candidates() -> List[Tuple[str, str]]:
     return results
 
 
-def collect_paid_candidates() -> List[Tuple[str, str]]:
+def collect_paid_candidates(start_page: int, end_page: int) -> List[Tuple[str, str]]:
     results = []
     seen = set()
 
-    for page in range(1, STEAM_PAID_PAGES + 1):
-        html = safe_fetch_html(STEAM_TOPSELLERS_URL.format(page))
+    for page in range(start_page, end_page + 1):
+        url = STEAM_TOPSELLERS_URL.format(page)
+        html = safe_fetch_html(url)
         if not html:
             continue
 
-        for app_id in extract_appids_from_html(html):
+        page_ids = extract_appids_from_html(html)
+        print(f"PAID PAGE {page}: extracted {len(page_ids)} app ids")
+
+        for app_id in page_ids:
             key = ("paid_candidate", app_id)
             if key not in seen:
                 seen.add(key)
@@ -287,26 +343,8 @@ def collect_steamdb_promo_candidates() -> List[Tuple[str, str]]:
         return []
 
     ids = extract_appids_from_html(html)
+    print(f"STEAMDB PROMO: extracted {len(ids)} app ids")
     return [("steamdb_promo", app_id) for app_id in ids]
-
-
-def collect_all_candidates() -> List[Tuple[str, str]]:
-    combined = []
-    seen_app_ids = set()
-
-    sources = (
-        collect_steam_free_candidates() +
-        collect_steam_demo_candidates() +
-        collect_steamdb_promo_candidates() +
-        collect_paid_candidates()
-    )
-
-    for source, app_id in sources:
-        if app_id not in seen_app_ids:
-            seen_app_ids.add(app_id)
-            combined.append((source, app_id))
-
-    return combined
 
 
 def clean_text(s: str) -> str:
@@ -337,24 +375,6 @@ def parse_description(soup: BeautifulSoup) -> str:
     return ""
 
 
-def extract_price_usd(text: str) -> Optional[float]:
-    matches = re.findall(r"\$([0-9]+(?:\.[0-9]{2})?)", text)
-    if not matches:
-        return None
-
-    values = []
-    for m in matches:
-        try:
-            values.append(float(m))
-        except Exception:
-            pass
-
-    if not values:
-        return None
-
-    return min(values)
-
-
 def get_price_info(app_id: str) -> Tuple[Optional[float], bool]:
     try:
         url = (
@@ -383,7 +403,8 @@ def get_price_info(app_id: str) -> Tuple[Optional[float], bool]:
             return None, False
 
         return round(final_price_cents / 100.0, 2), False
-    except Exception:
+    except Exception as e:
+        print(f"PRICE API FAILED: app_id={app_id} | error={e}")
         return None, False
 
 
@@ -401,7 +422,7 @@ def detect_item_type(source: str, app_id: str, title: str, text: str) -> str:
         price, is_free = get_price_info(app_id)
 
         if is_free:
-            return "free_game"
+            return "ignore"
 
         if price is not None and 0 < price <= 20:
             return "paid_under_20"
@@ -453,8 +474,8 @@ def score_genres_and_description(title: str, description: str, text: str) -> Tup
     hits = []
 
     combined = f"{title} {description} {text}"
-
     lower_combined = combined.lower()
+
     for term, points in GOOD_GENRE_TERMS.items():
         if term.lower() in lower_combined:
             score += points
@@ -627,37 +648,67 @@ def post_message_chunks(chunks: List[str]) -> None:
         sleep_briefly()
 
 
+def dedupe_by_app_id(items: List[Tuple[str, str]]) -> List[Tuple[str, str]]:
+    seen = set()
+    output = []
+    for source, app_id in items:
+        if app_id not in seen:
+            seen.add(app_id)
+            output.append((source, app_id))
+    return output
+
+
 def main():
     state = load_state()
-    candidates = collect_all_candidates()
 
-    total_candidates = len(candidates)
-    paid_candidates = sum(1 for source, _ in candidates if source == "paid_candidate")
-    print(f"Total candidates collected: {total_candidates}")
-    print(f"Paid candidates collected: {paid_candidates}")
+    start_page, end_page = get_page_window()
+    print(f"Current rotating page window: {start_page}-{end_page}")
 
-    inspected_items = []
+    free_candidates = (
+        collect_steam_free_candidates(start_page, end_page) +
+        collect_steam_demo_candidates(start_page, end_page) +
+        collect_steamdb_promo_candidates()
+    )
+    free_candidates = dedupe_by_app_id(free_candidates)
 
-    for source, app_id in candidates:
+    paid_candidates = collect_paid_candidates(start_page, end_page)
+    paid_candidates = dedupe_by_app_id(paid_candidates)
+
+    print(f"Free candidates collected: {len(free_candidates)}")
+    print(f"Paid candidates collected: {len(paid_candidates)}")
+
+    qualified_free = []
+    qualified_paid = []
+
+    for source, app_id in free_candidates:
         item = inspect_game(source, app_id)
         sleep_briefly()
 
         if not item:
             continue
-
         if not item["keep"]:
             continue
-
         if not can_repost(app_id, item["type"], state):
             continue
 
-        inspected_items.append(item)
+        qualified_free.append(item)
 
-    if not inspected_items:
-        print("No new qualifying games found. Nothing will be posted to Discord.")
-        return
+    for source, app_id in paid_candidates:
+        item = inspect_game(source, app_id)
+        sleep_briefly()
 
-    inspected_items.sort(
+        if not item:
+            continue
+        if item["type"] != "paid_under_20":
+            continue
+        if not item["keep"]:
+            continue
+        if not can_repost(app_id, item["type"], state):
+            continue
+
+        qualified_paid.append(item)
+
+    qualified_free.sort(
         key=lambda x: (
             x["score"],
             x.get("review_score", 0),
@@ -667,62 +718,65 @@ def main():
         reverse=True
     )
 
-    free_pool = [
-        item for item in inspected_items
-        if item["type"] in ["free_game", "demo", "temporarily_free"]
-    ]
-    paid_pool = [
-        item for item in inspected_items
-        if item["type"] == "paid_under_20"
-    ]
+    qualified_paid.sort(
+        key=lambda x: (
+            x["score"],
+            x.get("review_score", 0),
+        ),
+        reverse=True
+    )
 
-    free_items = free_pool[:MAX_FREE_POSTS]
-    paid_items = paid_pool[:MAX_PAID_POSTS]
+    free_items = qualified_free[:MAX_FREE_POSTS]
+    paid_items = qualified_paid[:MAX_PAID_POSTS]
 
-    print(f"Qualified free items before cap: {len(free_pool)}")
-    print(f"Qualified paid items before cap: {len(paid_pool)}")
+    print(f"Qualified free items before cap: {len(qualified_free)}")
+    print(f"Qualified paid items before cap: {len(qualified_paid)}")
 
     if not free_items and not paid_items:
-        print("No qualifying games found.")
-        return
+        print("No qualifying games found. Nothing will be posted to Discord.")
+    else:
+        if free_items:
+            free_chunks = build_message_chunks(
+                "🎮 **Best Free 3+ Player Multiplayer / Co-op Games & Demos Today**",
+                free_items,
+                paid=False
+            )
+            post_message_chunks(free_chunks)
 
-    if free_items:
-        free_chunks = build_message_chunks(
-            "🎮 **Best Free 3+ Player Multiplayer / Co-op Games & Demos Today**",
-            free_items,
-            paid=False
-        )
-        post_message_chunks(free_chunks)
+        if paid_items:
+            paid_chunks = build_message_chunks(
+                "💸 **Best Multiplayer / Co-op Games Under $20 Today**",
+                paid_items,
+                paid=True
+            )
+            post_message_chunks(paid_chunks)
 
-    if paid_items:
-        paid_chunks = build_message_chunks(
-            "💸 **Best Multiplayer / Co-op Games Under $20 Today**",
-            paid_items,
-            paid=True
-        )
-        post_message_chunks(paid_chunks)
+        for item in free_items + paid_items:
+            update_state_for_post(item["id"], item["type"], state)
 
-    for item in free_items + paid_items:
-        update_state_for_post(item["id"], item["type"], state)
+        save_state(state)
 
-    save_state(state)
+        total = len(free_items) + len(paid_items)
+        print(f"Posted {total} item(s) to Discord.")
+        print(f"Free items selected: {len(free_items)}")
+        print(f"Paid items selected: {len(paid_items)}")
 
-    total = len(free_items) + len(paid_items)
-    print(f"Posted {total} item(s) to Discord.")
-    print(f"Free items selected: {len(free_items)}")
-    print(f"Paid items selected: {len(paid_items)}")
+        for item in free_items:
+            print(
+                f"FREE: {item['title']} ({item['type']}) "
+                f"score={item['score']} review_score={item.get('review_score', 0)}"
+            )
 
-    for item in free_items:
-        print(
-            f"FREE: {item['title']} ({item['type']}) "
-            f"score={item['score']} review_score={item.get('review_score', 0)}"
-        )
+        for item in paid_items:
+            print(
+                f"PAID: {item['title']} ({item['type']}) "
+                f"score={item['score']} review_score={item.get('review_score', 0)}"
+            )
 
-    for item in paid_items:
-        print(
-            f"PAID: {item['title']} ({item['type']}) "
-            f"score={item['score']} review_score={item.get('review_score', 0)}"
-        )
+    next_start_page = get_next_start_page(start_page)
+    save_page_state(next_start_page)
+    next_end_page = min(next_start_page + PAGE_WINDOW_SIZE - 1, MAX_PAGE_LIMIT)
+    print(f"Next rotating page window saved: {next_start_page}-{next_end_page}")
 
 
 if __name__ == "__main__":
