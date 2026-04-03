@@ -19,9 +19,10 @@ HEADERS = {
 MAX_FREE_POSTS = 10
 MAX_PAID_POSTS = 10
 
-STEAM_FREE_PAGES = 20
-STEAM_DEMO_PAGES = 20
-STEAM_PAID_PAGES = 20
+# Reduced to 5 pages each for faster debugging
+STEAM_FREE_PAGES = 5
+STEAM_DEMO_PAGES = 5
+STEAM_PAID_PAGES = 5
 
 REQUEST_DELAY_SECONDS = 0.5
 REPOST_COOLDOWN_DAYS = 45
@@ -32,6 +33,8 @@ STEAM_FREE_SEARCH_URL = "https://store.steampowered.com/search/?maxprice=free&pa
 STEAM_DEMO_SEARCH_URL = "https://store.steampowered.com/search/?category1=10&page={}"
 STEAM_TOPSELLERS_URL = "https://store.steampowered.com/search/?filter=topsellers&page={}"
 STEAMDB_FREE_PROMO_URL = "https://steamdb.info/upcoming/free/"
+
+DISCORD_CHAR_LIMIT = 1900
 
 MULTIPLAYER_TERMS = {
     "Massively Multiplayer": 6,
@@ -336,7 +339,6 @@ def parse_description(soup: BeautifulSoup) -> str:
 
 
 def extract_price_usd(text: str) -> Optional[float]:
-    # Common Steam price forms like $19.99
     matches = re.findall(r"\$([0-9]+(?:\.[0-9]{2})?)", text)
     if not matches:
         return None
@@ -354,7 +356,44 @@ def extract_price_usd(text: str) -> Optional[float]:
     return min(values)
 
 
-def detect_item_type(source: str, title: str, text: str) -> str:
+def get_price_info(app_id: str) -> Tuple[Optional[float], bool]:
+    """
+    Returns:
+    - price in USD if available
+    - whether game is free
+    """
+    try:
+        url = (
+            f"https://store.steampowered.com/api/appdetails"
+            f"?appids={app_id}&cc=us&filters=price_overview,is_free"
+        )
+        response = requests.get(url, headers=HEADERS, timeout=30)
+        response.raise_for_status()
+        data = response.json()
+
+        app_data = data.get(str(app_id), {})
+        if not app_data.get("success"):
+            return None, False
+
+        info = app_data.get("data", {})
+
+        if info.get("is_free") is True:
+            return 0.0, True
+
+        price_info = info.get("price_overview")
+        if not price_info:
+            return None, False
+
+        final_price_cents = price_info.get("final")
+        if final_price_cents is None:
+            return None, False
+
+        return round(final_price_cents / 100.0, 2), False
+    except Exception:
+        return None, False
+
+
+def detect_item_type(source: str, app_id: str, title: str, text: str) -> str:
     lower_title = title.lower()
     lower_text = text.lower()
 
@@ -365,9 +404,15 @@ def detect_item_type(source: str, title: str, text: str) -> str:
         return "demo"
 
     if source == "paid_candidate":
-        price = extract_price_usd(text)
+        price, is_free = get_price_info(app_id)
+
+        if is_free:
+            return "free_game"
+
         if price is not None and 0 < price <= 20:
             return "paid_under_20"
+
+        return "ignore"
 
     return "free_game"
 
@@ -376,8 +421,9 @@ def score_multiplayer(text: str) -> Tuple[int, List[str]]:
     score = 0
     hits = []
 
+    lower_text = text.lower()
     for term, points in MULTIPLAYER_TERMS.items():
-        if term.lower() in text.lower():
+        if term.lower() in lower_text:
             score += points
             hits.append(term)
 
@@ -414,18 +460,19 @@ def score_genres_and_description(title: str, description: str, text: str) -> Tup
 
     combined = f"{title} {description} {text}"
 
+    lower_combined = combined.lower()
     for term, points in GOOD_GENRE_TERMS.items():
-        if term.lower() in combined.lower():
+        if term.lower() in lower_combined:
             score += points
             hits.append(term)
 
     for term, points in GOOD_DESCRIPTION_TERMS.items():
-        if term.lower() in combined.lower():
+        if term.lower() in lower_combined:
             score += points
             hits.append(term)
 
     for term, points in BAD_TERMS.items():
-        if term.lower() in combined.lower():
+        if term.lower() in lower_combined:
             score += points
             hits.append(term)
 
@@ -433,7 +480,6 @@ def score_genres_and_description(title: str, description: str, text: str) -> Tup
 
 
 def extract_review_score(soup: BeautifulSoup) -> int:
-    # Keep neutral if parsing fails
     page_text = soup.get_text(" ", strip=True)
 
     if "Overwhelmingly Positive" in page_text:
@@ -472,7 +518,14 @@ def inspect_game(source: str, app_id: str) -> Optional[dict]:
     description = parse_description(soup)
     page_text = clean_text(soup.get_text(" ", strip=True))
 
-    item_type = detect_item_type(source, title, page_text)
+    item_type = detect_item_type(source, app_id, title, page_text)
+
+    if source == "paid_candidate":
+        price, is_free = get_price_info(app_id)
+        print(f"PAID CHECK: {title} | price={price} | is_free={is_free} | type={item_type}")
+
+    if item_type == "ignore":
+        return None
 
     multiplayer_score, multiplayer_hits = score_multiplayer(page_text)
     player_score, player_hits, rejected = score_player_count(page_text)
@@ -527,38 +580,38 @@ def type_label(item_type: str) -> str:
     return "Free Game"
 
 
-def build_free_message(free_items: List[dict]) -> str:
+def format_item_block(item: dict, idx: int, paid: bool = False) -> str:
     lines = []
-    lines.append("🎮 **Best Free 3+ Player Multiplayer / Co-op Games & Demos Today**")
+    lines.append(f"**{idx}. {item['title']}**")
+    lines.append(f"Type: {'Paid Under $20' if paid else type_label(item['type'])}")
+    lines.append(f"Score: {item['score']}")
+    if item["description"]:
+        lines.append(item["description"][:180])
+    lines.append(item["url"])
     lines.append("")
-
-    for idx, item in enumerate(free_items, start=1):
-        lines.append(f"**{idx}. {item['title']}**")
-        lines.append(f"Type: {type_label(item['type'])}")
-        lines.append(f"Score: {item['score']}")
-        if item["description"]:
-            lines.append(item["description"][:180])
-        lines.append(item["url"])
-        lines.append("")
-
-    return "\n".join(lines)[:1900]
+    return "\n".join(lines)
 
 
-def build_paid_message(paid_items: List[dict]) -> str:
-    lines = []
-    lines.append("💸 **Best Multiplayer / Co-op Games Under $20 Today**")
-    lines.append("")
+def build_message_chunks(title_line: str, items: List[dict], paid: bool = False) -> List[str]:
+    if not items:
+        return []
 
-    for idx, item in enumerate(paid_items, start=1):
-        lines.append(f"**{idx}. {item['title']}**")
-        lines.append("Type: Paid Under $20")
-        lines.append(f"Score: {item['score']}")
-        if item["description"]:
-            lines.append(item["description"][:180])
-        lines.append(item["url"])
-        lines.append("")
+    chunks = []
+    current = f"{title_line}\n\n"
 
-    return "\n".join(lines)[:1900]
+    for idx, item in enumerate(items, start=1):
+        block = format_item_block(item, idx, paid=paid)
+
+        if len(current) + len(block) > DISCORD_CHAR_LIMIT:
+            chunks.append(current.rstrip())
+            current = block
+        else:
+            current += block
+
+    if current.strip():
+        chunks.append(current.rstrip())
+
+    return chunks
 
 
 def post_to_discord(message: str) -> None:
@@ -572,6 +625,12 @@ def post_to_discord(message: str) -> None:
         timeout=30,
     )
     response.raise_for_status()
+
+
+def post_message_chunks(chunks: List[str]) -> None:
+    for chunk in chunks:
+        post_to_discord(chunk)
+        sleep_briefly()
 
 
 def main():
@@ -614,27 +673,40 @@ def main():
         reverse=True
     )
 
-    free_items = [
+    free_pool = [
         item for item in inspected_items
         if item["type"] in ["free_game", "demo", "temporarily_free"]
-    ][:MAX_FREE_POSTS]
-
-    paid_items = [
+    ]
+    paid_pool = [
         item for item in inspected_items
         if item["type"] == "paid_under_20"
-    ][:MAX_PAID_POSTS]
+    ]
+
+    free_items = free_pool[:MAX_FREE_POSTS]
+    paid_items = paid_pool[:MAX_PAID_POSTS]
+
+    print(f"Qualified free items before cap: {len(free_pool)}")
+    print(f"Qualified paid items before cap: {len(paid_pool)}")
 
     if not free_items and not paid_items:
         print("No qualifying games found.")
         return
 
     if free_items:
-        free_message = build_free_message(free_items)
-        post_to_discord(free_message)
+        free_chunks = build_message_chunks(
+            "🎮 **Best Free 3+ Player Multiplayer / Co-op Games & Demos Today**",
+            free_items,
+            paid=False
+        )
+        post_message_chunks(free_chunks)
 
     if paid_items:
-        paid_message = build_paid_message(paid_items)
-        post_to_discord(paid_message)
+        paid_chunks = build_message_chunks(
+            "💸 **Best Multiplayer / Co-op Games Under $20 Today**",
+            paid_items,
+            paid=True
+        )
+        post_message_chunks(paid_chunks)
 
     for item in free_items + paid_items:
         update_state_for_post(item["id"], item["type"], state)
