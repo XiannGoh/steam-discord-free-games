@@ -19,11 +19,11 @@ HEADERS = {
 MAX_FREE_POSTS = 10
 MAX_PAID_POSTS = 10
 
-STEAM_FREE_PAGES = 8
-STEAM_DEMO_PAGES = 5
-STEAM_PAID_PAGES = 8
+STEAM_FREE_PAGES = 20
+STEAM_DEMO_PAGES = 20
+STEAM_PAID_PAGES = 20
 
-REQUEST_DELAY_SECONDS = 1.0
+REQUEST_DELAY_SECONDS = 0.5
 REPOST_COOLDOWN_DAYS = 45
 MIN_SCORE_TO_POST = 8
 
@@ -418,6 +418,36 @@ def score_genres_and_description(title: str, description: str, text: str) -> Tup
     return score, hits
 
 
+def extract_review_score(soup: BeautifulSoup) -> int:
+    review_element = soup.select_one(".user_reviews_summary_row")
+    if not review_element:
+        return 0
+
+    tooltip = review_element.get("data-tooltip-html", "")
+    text = BeautifulSoup(tooltip, "html.parser").get_text(" ", strip=True)
+
+    if "Overwhelmingly Positive" in text:
+        return 6
+    if "Very Positive" in text:
+        return 5
+    if "Positive" in text:
+        return 4
+    if "Mostly Positive" in text:
+        return 3
+    if "Mixed" in text:
+        return 0
+    if "Mostly Negative" in text:
+        return -3
+    if "Negative" in text:
+        return -4
+    if "Very Negative" in text:
+        return -5
+    if "Overwhelmingly Negative" in text:
+        return -6
+
+    return 0
+
+
 def inspect_game(source: str, app_id: str) -> Optional[dict]:
     url = f"https://store.steampowered.com/app/{app_id}/"
     html = safe_fetch_html(url)
@@ -437,8 +467,9 @@ def inspect_game(source: str, app_id: str) -> Optional[dict]:
     multiplayer_score, multiplayer_hits = score_multiplayer(page_text)
     player_score, player_hits, rejected = score_player_count(page_text)
     flavor_score, flavor_hits = score_genres_and_description(title, description, page_text)
+    review_score = extract_review_score(soup)
 
-    total_score = multiplayer_score + player_score + flavor_score
+    total_score = multiplayer_score + player_score + flavor_score + review_score
 
     has_multiplayer_signal = multiplayer_score > 0
     has_3plus_signal = player_score > 0
@@ -463,10 +494,9 @@ def inspect_game(source: str, app_id: str) -> Optional[dict]:
         "multiplayer_hits": multiplayer_hits,
         "player_hits": player_hits,
         "flavor_hits": flavor_hits,
+        "review_score": review_score,
     }
 
-
-# ---------- OUTPUT ----------
 
 def type_label(item_type: str) -> str:
     if item_type == "demo":
@@ -523,8 +553,6 @@ def post_to_discord(message: str) -> None:
     response.raise_for_status()
 
 
-# ---------- MAIN ----------
-
 def main():
     state = load_state()
     candidates = collect_all_candidates()
@@ -553,6 +581,7 @@ def main():
     inspected_items.sort(
         key=lambda x: (
             x["score"],
+            x.get("review_score", 0),
             1 if x["type"] == "temporarily_free" else 0,
             1 if x["type"] == "demo" else 0,
         ),
@@ -585,10 +614,16 @@ def main():
     print(f"Posted {total} item(s) to Discord.")
 
     for item in free_items:
-        print(f"FREE: {item['title']} ({item['type']}) score={item['score']}")
+        print(
+            f"FREE: {item['title']} ({item['type']}) "
+            f"score={item['score']} review_score={item.get('review_score', 0)}"
+        )
 
     for item in paid_items:
-        print(f"PAID: {item['title']} ({item['type']}) score={item['score']}")
+        print(
+            f"PAID: {item['title']} ({item['type']}) "
+            f"score={item['score']} review_score={item.get('review_score', 0)}"
+        )
 
 
 if __name__ == "__main__":
