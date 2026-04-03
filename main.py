@@ -30,7 +30,7 @@ MIN_SCORE_TO_POST_PAID = 4
 
 STEAM_FREE_SEARCH_URL = "https://store.steampowered.com/search/?maxprice=free&page={}"
 STEAM_DEMO_SEARCH_URL = "https://store.steampowered.com/search/?category1=10&page={}"
-STEAM_PAID_SEARCH_URL = "https://store.steampowered.com/search/?maxprice=20&page={}"
+STEAM_TOPSELLERS_URL = "https://store.steampowered.com/search/?filter=topsellers&page={}"
 STEAMDB_FREE_PROMO_URL = "https://steamdb.info/upcoming/free/"
 
 MULTIPLAYER_TERMS = {
@@ -264,15 +264,15 @@ def collect_paid_candidates() -> List[Tuple[str, str]]:
     seen = set()
 
     for page in range(1, STEAM_PAID_PAGES + 1):
-        html = safe_fetch_html(STEAM_PAID_SEARCH_URL.format(page))
+        html = safe_fetch_html(STEAM_TOPSELLERS_URL.format(page))
         if not html:
             continue
 
         for app_id in extract_appids_from_html(html):
-            key = ("paid_under_20", app_id)
+            key = ("paid_candidate", app_id)
             if key not in seen:
                 seen.add(key)
-                results.append(("paid_under_20", app_id))
+                results.append(("paid_candidate", app_id))
 
         sleep_briefly()
 
@@ -335,18 +335,39 @@ def parse_description(soup: BeautifulSoup) -> str:
     return ""
 
 
+def extract_price_usd(text: str) -> Optional[float]:
+    # Common Steam price forms like $19.99
+    matches = re.findall(r"\$([0-9]+(?:\.[0-9]{2})?)", text)
+    if not matches:
+        return None
+
+    values = []
+    for m in matches:
+        try:
+            values.append(float(m))
+        except Exception:
+            pass
+
+    if not values:
+        return None
+
+    return min(values)
+
+
 def detect_item_type(source: str, title: str, text: str) -> str:
     lower_title = title.lower()
     lower_text = text.lower()
-
-    if source == "paid_under_20":
-        return "paid_under_20"
 
     if source == "steamdb_promo" or "free to keep" in lower_text or "100% off" in lower_text:
         return "temporarily_free"
 
     if source == "steam_demo" or "demo" in lower_title or "demo" in lower_text:
         return "demo"
+
+    if source == "paid_candidate":
+        price = extract_price_usd(text)
+        if price is not None and 0 < price <= 20:
+            return "paid_under_20"
 
     return "free_game"
 
@@ -412,31 +433,27 @@ def score_genres_and_description(title: str, description: str, text: str) -> Tup
 
 
 def extract_review_score(soup: BeautifulSoup) -> int:
-    review_element = soup.select_one(".user_reviews_summary_row")
-    if not review_element:
-        return 0
+    # Keep neutral if parsing fails
+    page_text = soup.get_text(" ", strip=True)
 
-    tooltip = review_element.get("data-tooltip-html", "")
-    text = BeautifulSoup(tooltip, "html.parser").get_text(" ", strip=True)
-
-    if "Overwhelmingly Positive" in text:
+    if "Overwhelmingly Positive" in page_text:
         return 6
-    if "Very Positive" in text:
+    if "Very Positive" in page_text:
         return 5
-    if "Positive" in text:
-        return 4
-    if "Mostly Positive" in text:
+    if "Mostly Positive" in page_text:
         return 3
-    if "Mixed" in text:
+    if "Positive" in page_text:
+        return 4
+    if "Mixed" in page_text:
         return 0
-    if "Mostly Negative" in text:
+    if "Mostly Negative" in page_text:
         return -3
-    if "Negative" in text:
-        return -4
-    if "Very Negative" in text:
+    if "Very Negative" in page_text:
         return -5
-    if "Overwhelmingly Negative" in text:
+    if "Overwhelmingly Negative" in page_text:
         return -6
+    if "Negative" in page_text:
+        return -4
 
     return 0
 
@@ -473,13 +490,15 @@ def inspect_game(source: str, app_id: str) -> Optional[dict]:
             not rejected and
             total_score >= MIN_SCORE_TO_POST_PAID
         )
-    else:
+    elif item_type in ["free_game", "demo", "temporarily_free"]:
         keep = (
             has_multiplayer_signal and
             has_3plus_signal and
             not rejected and
             total_score >= MIN_SCORE_TO_POST_FREE
         )
+    else:
+        keep = False
 
     return {
         "id": app_id,
@@ -560,7 +579,7 @@ def main():
     candidates = collect_all_candidates()
 
     total_candidates = len(candidates)
-    paid_candidates = sum(1 for source, _ in candidates if source == "paid_under_20")
+    paid_candidates = sum(1 for source, _ in candidates if source == "paid_candidate")
     print(f"Total candidates collected: {total_candidates}")
     print(f"Paid candidates collected: {paid_candidates}")
 
