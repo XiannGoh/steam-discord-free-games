@@ -848,7 +848,7 @@ def main():
                 paid=True
             )
             post_message_chunks(paid_chunks)
-               instagram_posts = fetch_instagram_posts()
+        instagram_posts = fetch_instagram_posts()
 
         if instagram_posts:
             instagram_lines = ["📸 **New Instagram Creator Picks**", ""]
