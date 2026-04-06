@@ -718,7 +718,7 @@ def fetch_instagram_posts():
         save_metadata=False,
         quiet=True,
     )
-        instagram_username = os.getenv("INSTAGRAM_USERNAME")
+    instagram_username = os.getenv("INSTAGRAM_USERNAME")
     instagram_password = os.getenv("INSTAGRAM_PASSWORD")
 
     if instagram_username and instagram_password:
