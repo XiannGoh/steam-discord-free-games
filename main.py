@@ -848,6 +848,18 @@ def main():
                 paid=True
             )
             post_message_chunks(paid_chunks)
+        instagram_posts = fetch_instagram_posts()
+
+        if instagram_posts:
+            instagram_lines = ["📸 **New Instagram Creator Picks**", ""]
+
+                    for idx, post in enumerate(instagram_posts, start=1):
+                instagram_lines.append(
+                    f"{idx}. @{post['username']} — {post['caption']}"
+                )
+                instagram_lines.append(post["url"])
+                instagram_lines.append("")
+                    post_message_chunks(["\n".join(instagram_lines)])
 
         for item in free_items + paid_items:
             update_state_for_post(item["id"], item["type"], state)
@@ -875,20 +887,5 @@ def main():
     save_page_state(next_start_page)
     next_end_page = min(next_start_page + PAGE_WINDOW_SIZE - 1, MAX_PAGE_LIMIT)
     print(f"Next rotating page window saved: {next_start_page}-{next_end_page}")
-
-
-if __name__ == "__main__":
+    if __name__ == "__main__":
     main()
-            instagram_posts = fetch_instagram_posts()
-
-        if instagram_posts:
-            instagram_lines = ["📸 **New Instagram Creator Picks**", ""]
-
-            for idx, post in enumerate(instagram_posts, start=1):
-                instagram_lines.append(
-                    f"{idx}. @{post['username']} — {post['caption']}"
-                )
-                instagram_lines.append(post["url"])
-                instagram_lines.append("")
-
-            post_message_chunks(["\n".join(instagram_lines)])
