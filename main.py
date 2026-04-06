@@ -718,6 +718,19 @@ def fetch_instagram_posts():
         save_metadata=False,
         quiet=True,
     )
+        instagram_username = os.getenv("INSTAGRAM_USERNAME")
+    instagram_password = os.getenv("INSTAGRAM_PASSWORD")
+
+    if instagram_username and instagram_password:
+        try:
+            loader.login(instagram_username, instagram_password)
+            print(f"Logged into Instagram as {instagram_username}")
+        except Exception as e:
+            print(f"Instagram login failed: {e}")
+            return []
+    else:
+        print("Instagram credentials missing; skipping Instagram login")
+        return []
 
     for username in INSTAGRAM_CREATORS:
         try:
