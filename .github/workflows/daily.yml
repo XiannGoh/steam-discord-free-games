@@ -3,6 +3,8 @@ name: Steam Free Games
 on:
   workflow_dispatch:
   schedule:
+    - cron: "15 10 * * *"
+      timezone: "America/New_York"
     - cron: "45 17 * * *"
       timezone: "America/New_York"
 
@@ -35,5 +37,5 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add seen_ids.json page_state.json
-          git diff --cached --quiet || git commit -m "Update seen IDs and page state"
+          git diff --cached --quiet || git commit -m "Update bot state"
           git push
