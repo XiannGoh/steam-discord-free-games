@@ -3,7 +3,7 @@ name: Steam Free Games
 on:
   workflow_dispatch:
   schedule:
-    - cron: "15 10 * * *"
+    - cron: "20 10 * * *"
       timezone: "America/New_York"
     - cron: "45 17 * * *"
       timezone: "America/New_York"
