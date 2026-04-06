@@ -847,7 +847,7 @@ def main():
                 paid_items,
                 paid=True
             )
-            post_message_chunks(paid_chunks)
+        post_message_chunks(paid_chunks)
         instagram_posts = fetch_instagram_posts()
 
         if instagram_posts:
