@@ -24,6 +24,7 @@ INSTAGRAM_CREATORS = [
     "sharedxp_official",
     "wilfratgaming",
     "indiegamespotlights",
+    "biffmatictv",
 ]
 
 MAX_INSTAGRAM_POSTS_PER_ACCOUNT = 2
