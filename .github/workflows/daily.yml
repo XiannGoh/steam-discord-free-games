@@ -36,6 +36,6 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add seen_ids.json page_state.json
+          git add seen_ids.json page_state.json instagram_seen.json
           git diff --cached --quiet || git commit -m "Update bot state"
           git push
