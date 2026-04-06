@@ -757,6 +757,7 @@ def fetch_instagram_posts():
     save_instagram_seen(seen)
     return all_new_posts
     
+    
 def main():
     state = load_state()
 
