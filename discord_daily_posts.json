@@ -1,1 +1,285 @@
-{}
+{
+  "2026-04-07": {
+    "items": [
+      {
+        "channel_id": "592534544708796474",
+        "message_id": "1491140466907938836",
+        "posted_at": "2026-04-07T18:19:51.884947+00:00",
+        "section": "free",
+        "source_type": "steam_free",
+        "title": "Kings Call",
+        "url": "https://store.steampowered.com/app/2674290/"
+      },
+      {
+        "channel_id": "592534544708796474",
+        "message_id": "1491140474856149112",
+        "posted_at": "2026-04-07T18:19:53.929565+00:00",
+        "section": "free",
+        "source_type": "steam_free",
+        "title": "Dragon Traveler",
+        "url": "https://store.steampowered.com/app/4104440/"
+      },
+      {
+        "channel_id": "592534544708796474",
+        "message_id": "1491140483232174264",
+        "posted_at": "2026-04-07T18:19:55.783641+00:00",
+        "section": "free",
+        "source_type": "steam_free",
+        "title": "theHunter Classic",
+        "url": "https://store.steampowered.com/app/253710/"
+      },
+      {
+        "channel_id": "592534544708796474",
+        "message_id": "1491140491096363288",
+        "posted_at": "2026-04-07T18:19:57.767797+00:00",
+        "section": "free",
+        "source_type": "steam_free",
+        "title": "World of Warships",
+        "url": "https://store.steampowered.com/app/552990/"
+      },
+      {
+        "channel_id": "592534544708796474",
+        "message_id": "1491140499346817196",
+        "posted_at": "2026-04-07T18:19:59.547891+00:00",
+        "section": "free",
+        "source_type": "steam_free",
+        "title": "Guild Wars 2\u00ae",
+        "url": "https://store.steampowered.com/app/1284210/"
+      },
+      {
+        "channel_id": "592534544708796474",
+        "message_id": "1491140506875465728",
+        "posted_at": "2026-04-07T18:20:01.322761+00:00",
+        "section": "free",
+        "source_type": "steam_free",
+        "title": "Sky: Children of the Light",
+        "url": "https://store.steampowered.com/app/2325290/"
+      },
+      {
+        "channel_id": "592534544708796474",
+        "message_id": "1491140514752368814",
+        "posted_at": "2026-04-07T18:20:04.748827+00:00",
+        "section": "free",
+        "source_type": "steam_free",
+        "title": "Realm of the Mad God Exalt",
+        "url": "https://store.steampowered.com/app/200210/"
+      },
+      {
+        "channel_id": "592534544708796474",
+        "message_id": "1491140528702492783",
+        "posted_at": "2026-04-07T18:20:06.559359+00:00",
+        "section": "free",
+        "source_type": "steam_free",
+        "title": "Toram Online",
+        "url": "https://store.steampowered.com/app/1827180/"
+      },
+      {
+        "channel_id": "592534544708796474",
+        "message_id": "1491140536327868506",
+        "posted_at": "2026-04-07T18:20:08.461073+00:00",
+        "section": "free",
+        "source_type": "steam_free",
+        "title": "War Robots: Frontiers",
+        "url": "https://store.steampowered.com/app/1491000/"
+      },
+      {
+        "channel_id": "592534544708796474",
+        "message_id": "1491140544766804109",
+        "posted_at": "2026-04-07T18:20:10.516462+00:00",
+        "section": "free",
+        "source_type": "steam_free",
+        "title": "Dragonheir: Silent Gods",
+        "url": "https://store.steampowered.com/app/2203070/"
+      },
+      {
+        "channel_id": "592534544708796474",
+        "message_id": "1491140559702589540",
+        "posted_at": "2026-04-07T18:20:14.040007+00:00",
+        "section": "paid",
+        "source_type": "paid_under_20",
+        "title": "Plague Inc: Aliens & Anti-Vaxxers",
+        "url": "https://store.steampowered.com/app/4508320/"
+      },
+      {
+        "channel_id": "592534544708796474",
+        "message_id": "1491140567638212638",
+        "posted_at": "2026-04-07T18:20:15.889370+00:00",
+        "section": "paid",
+        "source_type": "paid_under_20",
+        "title": "Call of Cthulhu\u00ae",
+        "url": "https://store.steampowered.com/app/399810/"
+      },
+      {
+        "channel_id": "592534544708796474",
+        "message_id": "1491140575557058710",
+        "posted_at": "2026-04-07T18:20:18.020678+00:00",
+        "section": "paid",
+        "source_type": "paid_under_20",
+        "title": "Plague Inc: Evolved",
+        "url": "https://store.steampowered.com/app/246620/"
+      },
+      {
+        "channel_id": "592534544708796474",
+        "message_id": "1491140584705101926",
+        "posted_at": "2026-04-07T18:20:19.954575+00:00",
+        "section": "paid",
+        "source_type": "paid_under_20",
+        "title": "The Long Dark",
+        "url": "https://store.steampowered.com/app/305620/"
+      },
+      {
+        "channel_id": "592534544708796474",
+        "message_id": "1491140592611365065",
+        "posted_at": "2026-04-07T18:20:22.041181+00:00",
+        "section": "paid",
+        "source_type": "paid_under_20",
+        "title": "The Planet Crafter - Toxicity",
+        "url": "https://store.steampowered.com/app/4078590/"
+      },
+      {
+        "channel_id": "592534544708796474",
+        "message_id": "1491140609354891434",
+        "posted_at": "2026-04-07T18:20:25.881549+00:00",
+        "section": "instagram",
+        "source_type": "instagram",
+        "title": "@gemgamingnetwork",
+        "url": "https://www.instagram.com/p/DRxhGu7jAfg/"
+      },
+      {
+        "channel_id": "592534544708796474",
+        "message_id": "1491140617835909160",
+        "posted_at": "2026-04-07T18:20:27.807598+00:00",
+        "section": "instagram",
+        "source_type": "instagram",
+        "title": "@gemgamingnetwork",
+        "url": "https://www.instagram.com/p/DW1h2B1Bauc/"
+      },
+      {
+        "channel_id": "592534544708796474",
+        "message_id": "1491140625247113238",
+        "posted_at": "2026-04-07T18:20:29.979793+00:00",
+        "section": "instagram",
+        "source_type": "instagram",
+        "title": "@cloudual",
+        "url": "https://www.instagram.com/p/DW1UP51GV2H/"
+      },
+      {
+        "channel_id": "592534544708796474",
+        "message_id": "1491140634839482408",
+        "posted_at": "2026-04-07T18:20:32.298467+00:00",
+        "section": "instagram",
+        "source_type": "instagram",
+        "title": "@cloudual",
+        "url": "https://www.instagram.com/p/DWyvdmsjO56/"
+      },
+      {
+        "channel_id": "592534544708796474",
+        "message_id": "1491140644339585186",
+        "posted_at": "2026-04-07T18:20:34.153147+00:00",
+        "section": "instagram",
+        "source_type": "instagram",
+        "title": "@mildsoss_official",
+        "url": "https://www.instagram.com/p/DW1sNoEIN39/"
+      },
+      {
+        "channel_id": "592534544708796474",
+        "message_id": "1491140652157767823",
+        "posted_at": "2026-04-07T18:20:36.225650+00:00",
+        "section": "instagram",
+        "source_type": "instagram",
+        "title": "@mildsoss_official",
+        "url": "https://www.instagram.com/p/DWzQnqFogi9/"
+      },
+      {
+        "channel_id": "592534544708796474",
+        "message_id": "1491140660886110490",
+        "posted_at": "2026-04-07T18:20:38.235241+00:00",
+        "section": "instagram",
+        "source_type": "instagram",
+        "title": "@sharedxp_official",
+        "url": "https://www.instagram.com/p/DW1mE_tjOsS/"
+      },
+      {
+        "channel_id": "592534544708796474",
+        "message_id": "1491140669216133122",
+        "posted_at": "2026-04-07T18:20:40.218419+00:00",
+        "section": "instagram",
+        "source_type": "instagram",
+        "title": "@sharedxp_official",
+        "url": "https://www.instagram.com/p/DWwcJrnjH_D/"
+      },
+      {
+        "channel_id": "592534544708796474",
+        "message_id": "1491140677298556980",
+        "posted_at": "2026-04-07T18:20:41.945515+00:00",
+        "section": "instagram",
+        "source_type": "instagram",
+        "title": "@wilfratgaming",
+        "url": "https://www.instagram.com/p/DW1aFieibhN/"
+      },
+      {
+        "channel_id": "592534544708796474",
+        "message_id": "1491140684672008382",
+        "posted_at": "2026-04-07T18:20:43.806242+00:00",
+        "section": "instagram",
+        "source_type": "instagram",
+        "title": "@wilfratgaming",
+        "url": "https://www.instagram.com/p/DWwtZDGjJhi/"
+      },
+      {
+        "channel_id": "592534544708796474",
+        "message_id": "1491140692154781717",
+        "posted_at": "2026-04-07T18:20:45.511171+00:00",
+        "section": "instagram",
+        "source_type": "instagram",
+        "title": "@indiegamespotlights",
+        "url": "https://www.instagram.com/p/DW1q5HyDw9y/"
+      },
+      {
+        "channel_id": "592534544708796474",
+        "message_id": "1491140701021405336",
+        "posted_at": "2026-04-07T18:20:48.010693+00:00",
+        "section": "instagram",
+        "source_type": "instagram",
+        "title": "@indiegamespotlights",
+        "url": "https://www.instagram.com/p/DW1qV3UDyu-/"
+      },
+      {
+        "channel_id": "592534544708796474",
+        "message_id": "1491140710450200587",
+        "posted_at": "2026-04-07T18:20:50.082800+00:00",
+        "section": "instagram",
+        "source_type": "instagram",
+        "title": "@biffmatictv",
+        "url": "https://www.instagram.com/p/DWnQrciCKC5/"
+      },
+      {
+        "channel_id": "592534544708796474",
+        "message_id": "1491140719417622719",
+        "posted_at": "2026-04-07T18:20:52.129293+00:00",
+        "section": "instagram",
+        "source_type": "instagram",
+        "title": "@biffmatictv",
+        "url": "https://www.instagram.com/p/DWjs3IyDTOy/"
+      },
+      {
+        "channel_id": "592534544708796474",
+        "message_id": "1491140728032727062",
+        "posted_at": "2026-04-07T18:20:54.074460+00:00",
+        "section": "instagram",
+        "source_type": "instagram",
+        "title": "@itzjaysasa",
+        "url": "https://www.instagram.com/p/DW1mbpOjWAT/"
+      },
+      {
+        "channel_id": "592534544708796474",
+        "message_id": "1491140735792316416",
+        "posted_at": "2026-04-07T18:20:55.976642+00:00",
+        "section": "instagram",
+        "source_type": "instagram",
+        "title": "@itzjaysasa",
+        "url": "https://www.instagram.com/p/DWpuEGCjSmU/"
+      }
+    ]
+  }
+}
