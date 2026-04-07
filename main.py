@@ -637,6 +637,30 @@ def format_item_block(item: dict, idx: int, paid: bool = False) -> str:
     return "\n".join(lines)
 
 
+def format_steam_item_message(item: dict, idx: int, paid: bool = False) -> str:
+    emoji = "💸" if paid else "🎮"
+    label = "Paid Pick" if paid else "Free Pick"
+    lines = [
+        f"{emoji} {label} #{idx}",
+        item["title"],
+        f"Score: {item['score']}",
+    ]
+
+    if item.get("description"):
+        lines.append(item["description"][:180])
+
+    lines.append(item["url"])
+    return "\n".join(lines)
+
+
+def format_instagram_item_message(post: dict, idx: int) -> str:
+    return (
+        f"📸 Creator Pick #{idx}\n"
+        f"@{post['username']} — {post['caption']}\n"
+        f"{post['url']}"
+    )
+
+
 def build_message_chunks(title_line: str, items: List[dict], paid: bool = False) -> List[str]:
     if not items:
         return []
@@ -697,6 +721,35 @@ def post_message_chunks(chunks: List[str]) -> None:
     for chunk in chunks:
         post_to_discord(chunk)
         sleep_briefly()
+
+
+def post_daily_pick_messages(free_items: List[dict], paid_items: List[dict], instagram_posts: List[dict]) -> None:
+    if not (free_items or paid_items or instagram_posts):
+        return
+
+    post_to_discord("🎯 Daily Picks — vote with 👍 on your favorites")
+    sleep_briefly()
+
+    if free_items:
+        post_to_discord("🎮 Free Picks")
+        sleep_briefly()
+        for idx, item in enumerate(free_items, start=1):
+            post_to_discord(format_steam_item_message(item, idx, paid=False))
+            sleep_briefly()
+
+    if paid_items:
+        post_to_discord("💸 Paid Under $20")
+        sleep_briefly()
+        for idx, item in enumerate(paid_items, start=1):
+            post_to_discord(format_steam_item_message(item, idx, paid=True))
+            sleep_briefly()
+
+    if instagram_posts:
+        post_to_discord("📸 Instagram Creator Picks")
+        sleep_briefly()
+        for idx, post in enumerate(instagram_posts, start=1):
+            post_to_discord(format_instagram_item_message(post, idx))
+            sleep_briefly()
 
 
 def dedupe_by_app_id(items: List[Tuple[str, str]]) -> List[Tuple[str, str]]:
@@ -872,30 +925,11 @@ def main():
     print(f"Qualified free items before cap: {len(qualified_free)}")
     print(f"Qualified paid items before cap: {len(qualified_paid)}")
 
+    instagram_posts = fetch_instagram_posts()
+    post_daily_pick_messages(free_items, paid_items, instagram_posts)
+
     if not free_items and not paid_items:
         print("No qualifying games found from Steam.")
-    else:
-        if free_items:
-            free_chunks = build_message_chunks(
-                "🎮 **Best Free 3+ Player Multiplayer / Co-op Games & Demos Today**",
-                free_items,
-                paid=False
-            )
-            post_message_chunks(free_chunks)
-
-        if paid_items:
-            paid_chunks = build_message_chunks(
-                "💸 **Best Multiplayer / Co-op Games Under $20 Today**",
-                paid_items,
-                paid=True
-            )
-            post_message_chunks(paid_chunks)
-
-    instagram_posts = fetch_instagram_posts()
-
-    if instagram_posts:
-        instagram_chunks = build_instagram_chunks(instagram_posts)
-        post_message_chunks(instagram_chunks)
 
     for item in free_items + paid_items:
         update_state_for_post(item["id"], item["type"], state)
