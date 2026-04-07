@@ -28,11 +28,15 @@ jobs:
       - name: Install packages
         run: pip install -r requirements.txt
 
+      - name: Restore Instagram session
+        shell: bash
+        run: |
+          echo "${{ secrets.INSTAGRAM_SESSION_B64 }}" | base64 -d > instaloader.session
+
       - name: Run Steam script
         env:
           DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
           INSTAGRAM_USERNAME: ${{ secrets.INSTAGRAM_USERNAME }}
-          INSTAGRAM_PASSWORD: ${{ secrets.INSTAGRAM_PASSWORD }}
         run: python main.py
 
       - name: Save updated state files

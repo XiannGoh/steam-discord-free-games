@@ -659,6 +659,29 @@ def build_message_chunks(title_line: str, items: List[dict], paid: bool = False)
     return chunks
 
 
+def build_instagram_chunks(posts: List[dict]) -> List[str]:
+    title = "📸 **New Instagram Creator Picks**"
+    chunks = []
+    current = title + "\n\n"
+
+    for idx, post in enumerate(posts, start=1):
+        block = (
+            f"{idx}. @{post['username']} — {post['caption']}\n"
+            f"{post['url']}\n\n"
+        )
+
+        if len(current) + len(block) > DISCORD_CHAR_LIMIT:
+            chunks.append(current.rstrip())
+            current = title + "\n\n" + block
+        else:
+            current += block
+
+    if current.strip():
+        chunks.append(current.rstrip())
+
+    return chunks
+
+
 def post_to_discord(message: str) -> None:
     if not WEBHOOK_URL:
         raise RuntimeError("DISCORD_WEBHOOK_URL is not set.")
@@ -720,17 +743,21 @@ def fetch_instagram_posts():
         quiet=True,
     )
     instagram_username = os.getenv("INSTAGRAM_USERNAME")
-    instagram_password = os.getenv("INSTAGRAM_PASSWORD")
+    session_file = "instaloader.session"
 
-    if instagram_username and instagram_password:
-        try:
-            loader.login(instagram_username, instagram_password)
-            print(f"Logged into Instagram as {instagram_username}")
-        except Exception as e:
-            print(f"Instagram login failed: {e}")
-            return []
-    else:
-        print("Instagram credentials missing; skipping Instagram login")
+    if not instagram_username:
+        print("INSTAGRAM_USERNAME missing; skipping Instagram")
+        return []
+
+    if not os.path.exists(session_file):
+        print("instaloader.session missing; skipping Instagram")
+        return []
+
+    try:
+        loader.load_session_from_file(instagram_username, session_file)
+        print(f"Loaded Instagram session for {instagram_username}")
+    except Exception as e:
+        print(f"Instagram session load failed: {e}")
         return []
 
     for username in INSTAGRAM_CREATORS:
@@ -770,6 +797,7 @@ def fetch_instagram_posts():
             continue
 
     save_instagram_seen(seen)
+    print(f"Instagram posts found this run: {len(all_new_posts)}")
     return all_new_posts
     
 def main():
@@ -847,7 +875,7 @@ def main():
     print(f"Qualified paid items before cap: {len(qualified_paid)}")
 
     if not free_items and not paid_items:
-        print("No qualifying games found. Nothing will be posted to Discord.")
+        print("No qualifying games found from Steam.")
     else:
         if free_items:
             free_chunks = build_message_chunks(
@@ -865,41 +893,33 @@ def main():
             )
             post_message_chunks(paid_chunks)
 
-        instagram_posts = fetch_instagram_posts()
+    instagram_posts = fetch_instagram_posts()
 
-        if instagram_posts:
-            instagram_lines = ["📸 **New Instagram Creator Picks**", ""]
+    if instagram_posts:
+        instagram_chunks = build_instagram_chunks(instagram_posts)
+        post_message_chunks(instagram_chunks)
 
-            for idx, post in enumerate(instagram_posts, start=1):
-                instagram_lines.append(
-                    f"{idx}. @{post['username']} — {post['caption']}"
-                )
-                instagram_lines.append(post["url"])
-                instagram_lines.append("")
+    for item in free_items + paid_items:
+        update_state_for_post(item["id"], item["type"], state)
 
-            post_message_chunks(["\n".join(instagram_lines)])
+    save_state(state)
 
-        for item in free_items + paid_items:
-            update_state_for_post(item["id"], item["type"], state)
+    total = len(free_items) + len(paid_items)
+    print(f"Posted {total} Steam item(s) to Discord.")
+    print(f"Free items selected: {len(free_items)}")
+    print(f"Paid items selected: {len(paid_items)}")
 
-        save_state(state)
+    for item in free_items:
+        print(
+            f"FREE: {item['title']} ({item['type']}) "
+            f"score={item['score']} review_score={item.get('review_score', 0)}"
+        )
 
-        total = len(free_items) + len(paid_items)
-        print(f"Posted {total} item(s) to Discord.")
-        print(f"Free items selected: {len(free_items)}")
-        print(f"Paid items selected: {len(paid_items)}")
-
-        for item in free_items:
-            print(
-                f"FREE: {item['title']} ({item['type']}) "
-                f"score={item['score']} review_score={item.get('review_score', 0)}"
-            )
-
-        for item in paid_items:
-            print(
-                f"PAID: {item['title']} ({item['type']}) "
-                f"score={item['score']} review_score={item.get('review_score', 0)}"
-            )
+    for item in paid_items:
+        print(
+            f"PAID: {item['title']} ({item['type']}) "
+            f"score={item['score']} review_score={item.get('review_score', 0)}"
+        )
 
     next_start_page = get_next_start_page(start_page)
     save_page_state(next_start_page)
