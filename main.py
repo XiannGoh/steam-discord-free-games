@@ -893,9 +893,9 @@ def main():
 
     instagram_posts = fetch_instagram_posts()
 
-if instagram_posts:
-    instagram_chunks = build_instagram_chunks(instagram_posts)
-    post_message_chunks(instagram_chunks)
+    if instagram_posts:
+        instagram_chunks = build_instagram_chunks(instagram_posts)
+        post_message_chunks(instagram_chunks)
 
     for item in free_items + paid_items:
         update_state_for_post(item["id"], item["type"], state)
@@ -923,5 +923,6 @@ if instagram_posts:
     save_page_state(next_start_page)
     next_end_page = min(next_start_page + PAGE_WINDOW_SIZE - 1, MAX_PAGE_LIMIT)
     print(f"Next rotating page window saved: {next_start_page}-{next_end_page}")
+
 if __name__ == "__main__":
     main()
