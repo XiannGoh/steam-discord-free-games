@@ -893,17 +893,9 @@ def main():
 
     instagram_posts = fetch_instagram_posts()
 
-    if instagram_posts:
-        instagram_lines = ["📸 **New Instagram Creator Picks**", ""]
-
-        for idx, post in enumerate(instagram_posts, start=1):
-            instagram_lines.append(
-                f"{idx}. @{post['username']} — {post['caption']}"
-            )
-            instagram_lines.append(post["url"])
-            instagram_lines.append("")
-
-        post_message_chunks(["\n".join(instagram_lines)])
+if instagram_posts:
+    instagram_chunks = build_instagram_chunks(instagram_posts)
+    post_message_chunks(instagram_chunks)
 
     for item in free_items + paid_items:
         update_state_for_post(item["id"], item["type"], state)
