@@ -875,7 +875,7 @@ def main():
     print(f"Qualified paid items before cap: {len(qualified_paid)}")
 
     if not free_items and not paid_items:
-        print("No qualifying games found from Steam.")
+        print("No qualifying games found. Nothing will be posted to Discord.")
     else:
         if free_items:
             free_chunks = build_message_chunks(
@@ -893,33 +893,33 @@ def main():
             )
             post_message_chunks(paid_chunks)
 
+        for item in free_items + paid_items:
+            update_state_for_post(item["id"], item["type"], state)
+
+        save_state(state)
+
+        total = len(free_items) + len(paid_items)
+        print(f"Posted {total} item(s) to Discord.")
+        print(f"Free items selected: {len(free_items)}")
+        print(f"Paid items selected: {len(paid_items)}")
+
+        for item in free_items:
+            print(
+                f"FREE: {item['title']} ({item['type']}) "
+                f"score={item['score']} review_score={item.get('review_score', 0)}"
+            )
+
+        for item in paid_items:
+            print(
+                f"PAID: {item['title']} ({item['type']}) "
+                f"score={item['score']} review_score={item.get('review_score', 0)}"
+            )
+
     instagram_posts = fetch_instagram_posts()
 
     if instagram_posts:
         instagram_chunks = build_instagram_chunks(instagram_posts)
         post_message_chunks(instagram_chunks)
-
-    for item in free_items + paid_items:
-        update_state_for_post(item["id"], item["type"], state)
-
-    save_state(state)
-
-    total = len(free_items) + len(paid_items)
-    print(f"Posted {total} Steam item(s) to Discord.")
-    print(f"Free items selected: {len(free_items)}")
-    print(f"Paid items selected: {len(paid_items)}")
-
-    for item in free_items:
-        print(
-            f"FREE: {item['title']} ({item['type']}) "
-            f"score={item['score']} review_score={item.get('review_score', 0)}"
-        )
-
-    for item in paid_items:
-        print(
-            f"PAID: {item['title']} ({item['type']}) "
-            f"score={item['score']} review_score={item.get('review_score', 0)}"
-        )
 
     next_start_page = get_next_start_page(start_page)
     save_page_state(next_start_page)
