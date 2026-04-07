@@ -1,9 +1,10 @@
-"""Post a weekly availability prompt to a Discord scheduling thread and add reactions."""
+"""Post weekly availability prompts to a Discord scheduling thread and add reactions."""
 
 import os
 import sys
 import time
 import urllib.parse
+from datetime import date, timedelta
 from typing import Any
 
 import requests
@@ -13,38 +14,36 @@ DISCORD_API_BASE = "https://discord.com/api/v10"
 REQUEST_TIMEOUT_SECONDS = 30
 USER_AGENT = "steam-discord-free-games/weekly-scheduling-bot"
 
-MESSAGE_CONTENT = """🗓️ Weekly Availability — react for next week
+INTRO_MESSAGE_TEMPLATE = """🗓️ Weekly Availability — react below for next week
+Week of {date_range}
 
-Days:
-🇲 Monday
-🇹 Tuesday
-🇼 Wednesday
-🇷 Thursday
-🇫 Friday
-🇸 Saturday
-🇺 Sunday
+React on each day message with your availability.
+Use 📝 only if you want to reply with a custom time.
 
 Availability:
-✅ Free all day
-🌅 Morning
-☀️ Afternoon
-🌙 Evening
-❌ Not free
-📝 Other / custom time
+- ✅ Free all day (alpha chad)
+- 🌅 Morning
+- ☀️ Afternoon
+- 🌙 Evening
+- ❌ Not free (I'm a gayboi)
+- 📝 Other / custom time
 
-If needed, reply in-thread only for custom availability, for example:
+If needed, reply under a day message for custom availability, for example:
 Tue 7–9 PM
 Wed after 6
 Sat 1–4 PM"""
 
-REACTIONS: list[str] = [
-    "🇲",
-    "🇹",
-    "🇼",
-    "🇷",
-    "🇫",
-    "🇸",
-    "🇺",
+DAY_MESSAGES: list[tuple[str, str]] = [
+    ("Monday", "🇲 Monday"),
+    ("Tuesday", "🇹 Tuesday"),
+    ("Wednesday", "🇼 Wednesday"),
+    ("Thursday", "🇷 Thursday"),
+    ("Friday", "🇫 Friday"),
+    ("Saturday", "🇸 Saturday"),
+    ("Sunday", "🇺 Sunday"),
+]
+
+AVAILABILITY_REACTIONS: list[str] = [
     "✅",
     "🌅",
     "☀️",
@@ -91,11 +90,33 @@ def build_reaction_url(thread_id: str, message_id: str, emoji: str) -> str:
     )
 
 
+def get_next_week_date_range(today: date | None = None) -> str:
+    """Return next week's Monday-Sunday range, formatted for the intro message."""
+    current_date = today or date.today()
+
+    days_until_next_monday = (7 - current_date.weekday()) % 7
+    if days_until_next_monday == 0:
+        days_until_next_monday = 7
+
+    next_monday = current_date + timedelta(days=days_until_next_monday)
+    next_sunday = next_monday + timedelta(days=6)
+
+    if next_monday.year == next_sunday.year:
+        if next_monday.month == next_sunday.month:
+            return f"{next_monday:%b} {next_monday.day}–{next_sunday:%b} {next_sunday.day}, {next_monday.year}"
+        return f"{next_monday:%b} {next_monday.day}–{next_sunday:%b} {next_sunday.day}, {next_monday.year}"
+
+    return (
+        f"{next_monday:%b} {next_monday.day}, {next_monday.year}"
+        f"–{next_sunday:%b} {next_sunday.day}, {next_sunday.year}"
+    )
+
+
 def post_message(session: requests.Session, thread_id: str, content: str) -> str:
-    """Post the weekly message and return the created Discord message ID."""
+    """Post a message and return the created Discord message ID."""
     url = build_message_url(thread_id)
     response = session.post(url, json={"content": content}, timeout=REQUEST_TIMEOUT_SECONDS)
-    check_response(response, "Failed to post weekly availability message")
+    check_response(response, "Failed to post Discord message")
 
     try:
         payload: dict[str, Any] = response.json()
@@ -112,7 +133,7 @@ def post_message(session: requests.Session, thread_id: str, content: str) -> str
 def add_reaction(
     session: requests.Session, thread_id: str, message_id: str, emoji: str
 ) -> None:
-    """Add a single emoji reaction to the posted weekly availability message."""
+    """Add a single emoji reaction to a posted Discord message."""
     url = build_reaction_url(thread_id, message_id, emoji)
 
     for attempt in range(1, 4):
@@ -146,7 +167,7 @@ def add_reaction(
 
 
 def main() -> None:
-    """Run the weekly availability post flow and seed the required reactions."""
+    """Run the weekly availability post flow and seed day-specific reactions."""
     token = require_env("DISCORD_SCHEDULING_BOT_TOKEN")
     thread_id = require_env("DISCORD_SCHEDULING_THREAD_ID")
 
@@ -161,14 +182,21 @@ def main() -> None:
             }
         )
 
-        message_id = post_message(session, thread_id, MESSAGE_CONTENT)
-        print(f"Posted weekly availability message (message_id={message_id})")
+        date_range = get_next_week_date_range()
+        intro_message = INTRO_MESSAGE_TEMPLATE.format(date_range=date_range)
 
-        for emoji in REACTIONS:
-            add_reaction(session, thread_id, message_id, emoji)
-            print(f"Added reaction: {emoji}")
+        intro_message_id = post_message(session, thread_id, intro_message)
+        print(f"Posted intro message (message_id={intro_message_id})")
 
-    print(f"Finished successfully ({len(REACTIONS)} reactions added)")
+        for day_name, day_message in DAY_MESSAGES:
+            day_message_id = post_message(session, thread_id, day_message)
+            print(f"Posted day message: {day_name} (message_id={day_message_id})")
+
+            for reaction in AVAILABILITY_REACTIONS:
+                add_reaction(session, thread_id, day_message_id, reaction)
+                print(f"Added reaction {reaction} to {day_name}")
+
+    print("Finished successfully")
 
 
 if __name__ == "__main__":
