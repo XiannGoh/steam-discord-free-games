@@ -13,9 +13,11 @@ except ImportError:
     instaloader = None
 
 WEBHOOK_URL = os.getenv("DISCORD_WEBHOOK_URL")
+DISCORD_BOT_TOKEN = os.getenv("DISCORD_BOT_TOKEN")
 STATE_FILE = "seen_ids.json"
 PAGE_STATE_FILE = "page_state.json"
 INSTAGRAM_STATE_FILE = "instagram_seen.json"
+DISCORD_DAILY_POSTS_FILE = "discord_daily_posts.json"
 
 INSTAGRAM_CREATORS = [
     "gemgamingnetwork",
@@ -717,6 +719,112 @@ def post_to_discord(message: str) -> None:
     response.raise_for_status()
 
 
+def post_to_discord_with_metadata(message: str, capture_metadata: bool = False) -> Optional[dict]:
+    if not WEBHOOK_URL:
+        raise RuntimeError("DISCORD_WEBHOOK_URL is not set.")
+
+    webhook_url = WEBHOOK_URL
+    if capture_metadata:
+        separator = "&" if "?" in WEBHOOK_URL else "?"
+        webhook_url = f"{WEBHOOK_URL}{separator}wait=true"
+
+    response = requests.post(
+        webhook_url,
+        json={"content": message},
+        headers={"Content-Type": "application/json"},
+        timeout=30,
+    )
+    response.raise_for_status()
+
+    if not capture_metadata:
+        return None
+
+    try:
+        payload = response.json()
+    except Exception as e:
+        print(f"DISCORD METADATA PARSE FAILED: error={e}")
+        return None
+
+    message_id = payload.get("id")
+    channel_id = payload.get("channel_id")
+    if not message_id:
+        return None
+
+    return {
+        "message_id": str(message_id),
+        "channel_id": str(channel_id) if channel_id else None,
+    }
+
+
+def load_discord_daily_posts() -> Dict[str, dict]:
+    if not os.path.exists(DISCORD_DAILY_POSTS_FILE):
+        return {}
+
+    try:
+        with open(DISCORD_DAILY_POSTS_FILE, "r", encoding="utf-8") as f:
+            data = json.load(f)
+        return data if isinstance(data, dict) else {}
+    except Exception as e:
+        print(f"LOAD DISCORD DAILY POSTS FAILED: error={e}")
+        return {}
+
+
+def save_discord_daily_posts(data: Dict[str, dict]) -> None:
+    with open(DISCORD_DAILY_POSTS_FILE, "w", encoding="utf-8") as f:
+        json.dump(data, f, indent=2, sort_keys=True)
+
+
+def add_thumbs_up_reaction(channel_id: str, message_id: str) -> None:
+    if not DISCORD_BOT_TOKEN:
+        raise RuntimeError("DISCORD_BOT_TOKEN is not set.")
+
+    reaction_url = (
+        f"https://discord.com/api/v10/channels/{channel_id}/messages/{message_id}/"
+        "reactions/%F0%9F%91%8D/@me"
+    )
+    response = requests.put(
+        reaction_url,
+        headers={
+            "Authorization": f"Bot {DISCORD_BOT_TOKEN}",
+            "Content-Type": "application/json",
+        },
+        timeout=30,
+    )
+    response.raise_for_status()
+
+
+def record_posted_item(
+    daily_posts: Dict[str, dict],
+    day_key: str,
+    section: str,
+    title: str,
+    url: str,
+    source_type: str,
+    message_id: str,
+    channel_id: Optional[str],
+) -> None:
+    try:
+        day_entry = daily_posts.setdefault(day_key, {"items": []})
+        items = day_entry.get("items")
+        if not isinstance(items, list):
+            day_entry["items"] = []
+            items = day_entry["items"]
+
+        item_record = {
+            "section": section,
+            "title": title,
+            "url": url,
+            "message_id": message_id,
+            "channel_id": channel_id,
+            "source_type": source_type,
+            "posted_at": utc_now_iso(),
+        }
+        items.append(item_record)
+        save_discord_daily_posts(daily_posts)
+    except Exception as e:
+        print(f"RECORD DAILY DISCORD ITEM FAILED: title={title} | error={e}")
+
+
 def post_message_chunks(chunks: List[str]) -> None:
     for chunk in chunks:
         post_to_discord(chunk)
@@ -727,6 +835,13 @@ def post_daily_pick_messages(free_items: List[dict], paid_items: List[dict], ins
     if not (free_items or paid_items or instagram_posts):
         return
 
+    token_available = bool(DISCORD_BOT_TOKEN)
+    daily_posts = load_discord_daily_posts() if token_available else {}
+    day_key = datetime.now(timezone.utc).date().isoformat()
+
+    if not token_available:
+        print("DISCORD_BOT_TOKEN missing; skipping auto-reactions and message-ID tracking.")
+
     post_to_discord("🎯 Daily Picks — vote with 👍 on your favorites")
     sleep_briefly()
 
@@ -734,21 +849,84 @@ def post_daily_pick_messages(free_items: List[dict], paid_items: List[dict], ins
         post_to_discord("🎮 Free Picks")
         sleep_briefly()
         for idx, item in enumerate(free_items, start=1):
-            post_to_discord(format_steam_item_message(item, idx, paid=False))
+            metadata = post_to_discord_with_metadata(
+                format_steam_item_message(item, idx, paid=False),
+                capture_metadata=token_available,
+            )
+            if token_available:
+                if metadata and metadata.get("message_id") and metadata.get("channel_id"):
+                    try:
+                        add_thumbs_up_reaction(metadata["channel_id"], metadata["message_id"])
+                    except Exception as e:
+                        print(f"ADD REACTION FAILED: title={item['title']} | error={e}")
+                    record_posted_item(
+                        daily_posts=daily_posts,
+                        day_key=day_key,
+                        section="free",
+                        title=item["title"],
+                        url=item["url"],
+                        source_type="steam_free",
+                        message_id=metadata["message_id"],
+                        channel_id=metadata["channel_id"],
+                    )
+                else:
+                    print(f"DISCORD MESSAGE METADATA MISSING: title={item['title']}")
             sleep_briefly()
 
     if paid_items:
         post_to_discord("💸 Paid Under $20")
         sleep_briefly()
         for idx, item in enumerate(paid_items, start=1):
-            post_to_discord(format_steam_item_message(item, idx, paid=True))
+            metadata = post_to_discord_with_metadata(
+                format_steam_item_message(item, idx, paid=True),
+                capture_metadata=token_available,
+            )
+            if token_available:
+                if metadata and metadata.get("message_id") and metadata.get("channel_id"):
+                    try:
+                        add_thumbs_up_reaction(metadata["channel_id"], metadata["message_id"])
+                    except Exception as e:
+                        print(f"ADD REACTION FAILED: title={item['title']} | error={e}")
+                    record_posted_item(
+                        daily_posts=daily_posts,
+                        day_key=day_key,
+                        section="paid",
+                        title=item["title"],
+                        url=item["url"],
+                        source_type="paid_under_20",
+                        message_id=metadata["message_id"],
+                        channel_id=metadata["channel_id"],
+                    )
+                else:
+                    print(f"DISCORD MESSAGE METADATA MISSING: title={item['title']}")
             sleep_briefly()
 
     if instagram_posts:
         post_to_discord("📸 Instagram Creator Picks")
         sleep_briefly()
         for idx, post in enumerate(instagram_posts, start=1):
-            post_to_discord(format_instagram_item_message(post, idx))
+            metadata = post_to_discord_with_metadata(
+                format_instagram_item_message(post, idx),
+                capture_metadata=token_available,
+            )
+            if token_available:
+                if metadata and metadata.get("message_id") and metadata.get("channel_id"):
+                    try:
+                        add_thumbs_up_reaction(metadata["channel_id"], metadata["message_id"])
+                    except Exception as e:
+                        print(f"ADD REACTION FAILED: username={post['username']} | error={e}")
+                    record_posted_item(
+                        daily_posts=daily_posts,
+                        day_key=day_key,
+                        section="instagram",
+                        title=f"@{post['username']}",
+                        url=post["url"],
+                        source_type="instagram",
+                        message_id=metadata["message_id"],
+                        channel_id=metadata["channel_id"],
+                    )
+                else:
+                    print(f"DISCORD MESSAGE METADATA MISSING: username={post['username']}")
             sleep_briefly()
 
 
