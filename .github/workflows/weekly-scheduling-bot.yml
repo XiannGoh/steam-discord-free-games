@@ -1,0 +1,28 @@
+name: Weekly Scheduling Bot
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '0 13 * * 6'
+
+jobs:
+  post-weekly-availability:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'
+
+      - name: Install dependencies
+        run: pip install requests
+
+      - name: Post weekly availability
+        env:
+          DISCORD_SCHEDULING_BOT_TOKEN: ${{ secrets.DISCORD_SCHEDULING_BOT_TOKEN }}
+          DISCORD_SCHEDULING_THREAD_ID: ${{ secrets.DISCORD_SCHEDULING_THREAD_ID }}
+        run: python scripts/post_weekly_availability.py
