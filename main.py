@@ -657,7 +657,28 @@ def build_message_chunks(title_line: str, items: List[dict], paid: bool = False)
         chunks.append(current.rstrip())
 
     return chunks
+    
+def build_instagram_chunks(posts: List[dict]) -> List[str]:
+    title = "📸 **New Instagram Creator Picks**"
+    chunks = []
+    current = title + "\n\n"
 
+    for idx, post in enumerate(posts, start=1):
+        block = (
+            f"{idx}. @{post['username']} — {post['caption']}\n"
+            f"{post['url']}\n\n"
+        )
+
+        if len(current) + len(block) > DISCORD_CHAR_LIMIT:
+            chunks.append(current.rstrip())
+            current = title + "\n\n" + block
+        else:
+            current += block
+
+    if current.strip():
+        chunks.append(current.rstrip())
+
+    return chunks
 
 def post_to_discord(message: str) -> None:
     if not WEBHOOK_URL:
