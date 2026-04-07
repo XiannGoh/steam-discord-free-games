@@ -1,0 +1,32 @@
+name: Daily Game Picks Winners
+
+on:
+  workflow_dispatch:
+  schedule:
+    # ~7:00 PM New York during EDT (UTC-4)
+    - cron: "0 23 * * *"
+
+permissions:
+  contents: read
+
+jobs:
+  run-evening-winners:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Download repository
+        uses: actions/checkout@v5
+
+      - name: Install Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: "3.11"
+
+      - name: Install packages
+        run: pip install -r requirements.txt
+
+      - name: Run evening winners script
+        env:
+          DISCORD_BOT_TOKEN: ${{ secrets.DISCORD_BOT_TOKEN }}
+          DISCORD_WINNERS_THREAD_ID: ${{ secrets.DISCORD_WINNERS_THREAD_ID }}
+        run: python evening_winners.py
