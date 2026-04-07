@@ -2,6 +2,7 @@
 
 import os
 import sys
+import time
 import urllib.parse
 from typing import Any
 
@@ -113,7 +114,34 @@ def add_reaction(
 ) -> None:
     """Add a single emoji reaction to the posted weekly availability message."""
     url = build_reaction_url(thread_id, message_id, emoji)
-    response = session.put(url, timeout=REQUEST_TIMEOUT_SECONDS)
+
+    for attempt in range(1, 4):
+        response = session.put(url, timeout=REQUEST_TIMEOUT_SECONDS)
+        if response.status_code != 429:
+            check_response(response, f"Failed to add reaction: {emoji}")
+            return
+
+        retry_after_seconds = 1.0
+        try:
+            payload: dict[str, Any] = response.json()
+            retry_after_value = payload.get("retry_after")
+            if isinstance(retry_after_value, (int, float)):
+                retry_after_seconds = float(retry_after_value)
+            elif isinstance(retry_after_value, str):
+                retry_after_seconds = float(retry_after_value)
+        except (ValueError, TypeError):
+            retry_after_seconds = 1.0
+
+        if retry_after_seconds < 0:
+            retry_after_seconds = 1.0
+
+        if attempt < 3:
+            print(
+                f"Rate limited adding reaction {emoji}, "
+                f"sleeping {retry_after_seconds} seconds before retry"
+            )
+            time.sleep(retry_after_seconds)
+
     check_response(response, f"Failed to add reaction: {emoji}")
 
 
