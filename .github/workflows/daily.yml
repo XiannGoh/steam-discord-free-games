@@ -36,6 +36,7 @@ jobs:
       - name: Run Steam script
         env:
           DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
+          DISCORD_BOT_TOKEN: ${{ secrets.DISCORD_BOT_TOKEN }}
           INSTAGRAM_USERNAME: ${{ secrets.INSTAGRAM_USERNAME }}
         run: python main.py
 
@@ -45,6 +46,7 @@ jobs:
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
 
           git add seen_ids.json page_state.json instagram_seen.json
+          if [ -f discord_daily_posts.json ]; then git add discord_daily_posts.json; fi
 
           git diff --cached --quiet || git commit -m "Update bot state"
           git push
