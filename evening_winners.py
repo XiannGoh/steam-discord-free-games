@@ -14,7 +14,7 @@ BASE_BACKOFF_SECONDS = 2
 REQUEST_TIMEOUT_SECONDS = 30
 
 DISCORD_BOT_TOKEN = os.getenv("DISCORD_BOT_TOKEN")
-DISCORD_WINNERS_THREAD_ID = os.getenv("DISCORD_WINNERS_THREAD_ID")
+DISCORD_WINNERS_CHANNEL_ID = os.getenv("DISCORD_WINNERS_CHANNEL_ID")
 
 
 SECTION_CONFIG = {
@@ -123,16 +123,16 @@ def build_winners_message(winners_by_section: Dict[str, List[dict]]) -> str:
     return "\n".join(lines).strip()
 
 
-def post_winners_message(thread_id: str, headers: Dict[str, str], message: str) -> None:
-    url = f"{DISCORD_API_BASE}/channels/{thread_id}/messages"
+def post_winners_message(channel_id: str, headers: Dict[str, str], message: str) -> None:
+    url = f"{DISCORD_API_BASE}/channels/{channel_id}/messages"
     request_with_retry("POST", url, headers, json_payload={"content": message})
 
 
 def main() -> None:
     if not DISCORD_BOT_TOKEN:
         raise RuntimeError("DISCORD_BOT_TOKEN is not set.")
-    if not DISCORD_WINNERS_THREAD_ID:
-        raise RuntimeError("DISCORD_WINNERS_THREAD_ID is not set.")
+    if not DISCORD_WINNERS_CHANNEL_ID:
+        raise RuntimeError("DISCORD_WINNERS_CHANNEL_ID is not set.")
 
     daily_posts = load_discord_daily_posts()
     day_key = datetime.now(timezone.utc).date().isoformat()
@@ -172,7 +172,7 @@ def main() -> None:
         )
 
     message = build_winners_message(winners_by_section)
-    post_winners_message(DISCORD_WINNERS_THREAD_ID, headers, message)
+    post_winners_message(DISCORD_WINNERS_CHANNEL_ID, headers, message)
 
 
 if __name__ == "__main__":

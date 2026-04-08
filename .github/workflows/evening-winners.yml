@@ -25,5 +25,5 @@ jobs:
       - name: Run evening winners script
         env:
           DISCORD_BOT_TOKEN: ${{ secrets.DISCORD_BOT_TOKEN }}
-          DISCORD_WINNERS_THREAD_ID: ${{ secrets.DISCORD_WINNERS_THREAD_ID }}
+          DISCORD_WINNERS_CHANNEL_ID: ${{ secrets.DISCORD_WINNERS_CHANNEL_ID }}
         run: python evening_winners.py
