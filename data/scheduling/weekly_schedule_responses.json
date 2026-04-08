@@ -15,14 +15,18 @@
           "Wednesday": [
             "🌙"
           ],
-          "Thursday": [],
+          "Thursday": [
+            "☀️"
+          ],
           "Friday": [
             "🌙"
           ],
           "Saturday": [
             "🌙"
           ],
-          "Sunday": []
+          "Sunday": [
+            "☀️"
+          ]
         }
       }
     }
