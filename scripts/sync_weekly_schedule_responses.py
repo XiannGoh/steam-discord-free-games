@@ -218,6 +218,11 @@ def build_create_message_url(channel_id: str) -> str:
     return f"{DISCORD_API_BASE}/channels/{channel_id}/messages"
 
 
+def build_edit_message_url(channel_id: str, message_id: str) -> str:
+    """Build the Discord API URL for editing an existing channel message."""
+    return f"{DISCORD_API_BASE}/channels/{channel_id}/messages/{message_id}"
+
+
 def fetch_channel_messages(session: requests.Session, channel_id: str) -> list[dict[str, Any]]:
     """Fetch all messages in a channel, handling pagination."""
     all_messages: list[dict[str, Any]] = []
@@ -534,6 +539,21 @@ def post_channel_message(session: requests.Session, channel_id: str, content: st
     return str(message_id)
 
 
+def edit_channel_message(
+    session: requests.Session, channel_id: str, message_id: str, content: str
+) -> None:
+    """Edit an existing Discord channel message in place."""
+    response = session.patch(
+        build_edit_message_url(channel_id, message_id),
+        json={"content": content},
+        timeout=REQUEST_TIMEOUT_SECONDS,
+    )
+    check_response(
+        response,
+        f"Failed to edit channel message for channel_id={channel_id}, message_id={message_id}",
+    )
+
+
 def main() -> None:
     """Fetch and persist reaction responses for recorded scheduled weeks."""
     token = require_env("DISCORD_SCHEDULING_BOT_TOKEN")
@@ -679,12 +699,28 @@ def main() -> None:
             }
         )
 
-        if week_outputs.get("summary_posted") is not True:
-            summary_message = format_summary_message(date_range, latest_week_summary)
+        summary_message = format_summary_message(date_range, latest_week_summary)
+        previous_summary_message_id = week_outputs.get("summary_message_id")
+        summary_message_id = (
+            str(previous_summary_message_id)
+            if isinstance(previous_summary_message_id, str) and previous_summary_message_id
+            else None
+        )
+        previous_summary_message_content = week_outputs.get("summary_message_content")
+
+        if summary_message_id is None:
             summary_message_id = post_channel_message(posting_session, channel_id, summary_message)
             week_outputs["summary_posted"] = True
             week_outputs["summary_message_id"] = summary_message_id
+            week_outputs["summary_message_content"] = summary_message
             print(f"Posted summary for week {latest_week_key} (message_id={summary_message_id})")
+        elif previous_summary_message_content != summary_message:
+            edit_channel_message(posting_session, channel_id, summary_message_id, summary_message)
+            week_outputs["summary_posted"] = True
+            week_outputs["summary_message_content"] = summary_message
+            print(f"Edited summary for week {latest_week_key} (message_id={summary_message_id})")
+        else:
+            print(f"Summary unchanged for week {latest_week_key}; skipping summary edit")
 
         previous_missing_users = week_outputs.get("reminder_missing_users")
         if not isinstance(previous_missing_users, list):
