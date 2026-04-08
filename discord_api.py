@@ -61,6 +61,31 @@ class DiscordClient:
         response = self.request("GET", f"{DISCORD_API_BASE}/channels/{channel_id}/messages/{message_id}", context=context)
         return self._parse_json_object(response, f"{context} JSON")
 
+    def get_current_user(self, *, context: str) -> dict[str, Any]:
+        response = self.request("GET", f"{DISCORD_API_BASE}/users/@me", context=context)
+        return self._parse_json_object(response, f"{context} JSON")
+
+    def get_reaction_users(
+        self,
+        channel_id: str,
+        message_id: str,
+        encoded_emoji: str,
+        *,
+        context: str,
+        limit: int = 100,
+        after: str | None = None,
+    ) -> list[dict[str, Any]]:
+        params: dict[str, Any] = {"limit": limit}
+        if after:
+            params["after"] = after
+        response = self.request(
+            "GET",
+            f"{DISCORD_API_BASE}/channels/{channel_id}/messages/{message_id}/reactions/{encoded_emoji}",
+            context=context,
+            params=params,
+        )
+        return self._parse_json_array(response, f"{context} JSON")
+
     def post_message(self, channel_id: str, content: str, *, context: str) -> dict[str, Any]:
         response = self.request("POST", f"{DISCORD_API_BASE}/channels/{channel_id}/messages", context=context, json_payload={"content": content})
         return self._parse_json_object(response, f"{context} JSON")
@@ -81,6 +106,20 @@ class DiscordClient:
         if not isinstance(payload, dict):
             raise DiscordApiError(f"{context} did not return an object")
         return payload
+
+    @staticmethod
+    def _parse_json_array(response: requests.Response, context: str) -> list[dict[str, Any]]:
+        try:
+            payload = response.json()
+        except ValueError as error:
+            raise DiscordApiError(f"{context} was not valid JSON") from error
+        if not isinstance(payload, list):
+            raise DiscordApiError(f"{context} did not return an array")
+        parsed: list[dict[str, Any]] = []
+        for item in payload:
+            if isinstance(item, dict):
+                parsed.append(item)
+        return parsed
 
     @staticmethod
     def _get_retry_after_seconds(response: requests.Response, attempt: int) -> float:
