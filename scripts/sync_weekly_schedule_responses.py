@@ -30,6 +30,7 @@ DAY_NAMES: list[str] = [
 
 AVAILABILITY_REACTIONS: list[str] = ["✅", "🌅", "☀️", "🌙", "❌", "📝"]
 SUMMARY_SLOT_ORDER: list[str] = ["✅", "🌅", "☀️", "🌙", "📝"]
+SUMMARY_DISPLAY_ORDER: list[str] = ["✅", "🌅", "☀️", "🌙", "📝", "❌"]
 
 
 def fail(message: str) -> None:
@@ -346,10 +347,6 @@ def build_weekly_summary(weekly_responses: dict[str, Any]) -> dict[str, Any]:
                     if slot in reaction_set:
                         slot_counts[day_name][slot] += 1
 
-        most_available_day = max(
-            DAY_NAMES,
-            key=lambda day_name: (day_counts[day_name], -DAY_NAMES.index(day_name)),
-        )
         best_overlap_day, best_overlap_slot = max(
             [(day_name, slot) for day_name in DAY_NAMES for slot in SUMMARY_SLOT_ORDER],
             key=lambda item: (
@@ -364,7 +361,6 @@ def build_weekly_summary(weekly_responses: dict[str, Any]) -> dict[str, Any]:
             "summary": {
                 "day_counts": day_counts,
                 "slot_counts": slot_counts,
-                "most_available_day": most_available_day,
                 "best_overlap": {
                     "day": best_overlap_day,
                     "slot": best_overlap_slot,
@@ -428,26 +424,9 @@ def compute_missing_user_ids_for_week(
     return missing_user_ids
 
 
-def get_display_name_for_roster_user(roster_user: dict[str, Any]) -> str:
-    """Return global_name when available, then username, then a fallback."""
-    return (
-        normalize_optional_text(roster_user.get("global_name"))
-        or normalize_optional_text(roster_user.get("username"))
-        or "Unknown User"
-    )
-
-
-def format_reminder_message(
-    date_range: str, missing_user_ids: list[str], roster: dict[str, Any]
-) -> str:
+def format_reminder_message(date_range: str, missing_user_ids: list[str]) -> str:
     """Build a deterministic reminder message for users missing availability reactions."""
-    users = roster.get("users", {})
-    display_lines: list[str] = []
-    for user_id in missing_user_ids:
-        roster_user = users.get(user_id)
-        if not isinstance(roster_user, dict):
-            continue
-        display_lines.append(f"- {get_display_name_for_roster_user(roster_user)}")
+    display_lines = [f"- <@{user_id}>" for user_id in missing_user_ids]
 
     lines = [
         f"⏰ Still waiting on availability for {date_range}",
@@ -459,9 +438,7 @@ def format_reminder_message(
     return "\n".join(lines)
 
 
-def format_summary_message(
-    date_range: str, week_summary: dict[str, Any], week_responses: dict[str, Any]
-) -> str:
+def format_summary_message(date_range: str, week_summary: dict[str, Any]) -> str:
     """Build a concise deterministic summary message from weekly summary data."""
     summary = week_summary.get("summary")
     if not isinstance(summary, dict):
@@ -469,67 +446,52 @@ def format_summary_message(
 
     day_counts = summary.get("day_counts")
     best_overlap = summary.get("best_overlap")
-    most_available_day = summary.get("most_available_day")
+    slot_counts = summary.get("slot_counts")
 
     if not isinstance(day_counts, dict):
         fail("Missing or invalid day_counts in current week summary")
     if not isinstance(best_overlap, dict):
         fail("Missing or invalid best_overlap in current week summary")
-    if not isinstance(most_available_day, str):
-        fail("Missing or invalid most_available_day in current week summary")
+    if not isinstance(slot_counts, dict):
+        fail("Missing or invalid slot_counts in current week summary")
 
     best_day = best_overlap.get("day")
-    best_slot = best_overlap.get("slot")
-    best_count = best_overlap.get("count")
-    if not isinstance(best_day, str) or not isinstance(best_slot, str) or not isinstance(best_count, int):
+    if not isinstance(best_day, str):
         fail("Missing or invalid best_overlap fields in current week summary")
 
     ranked_days = sorted(
         DAY_NAMES,
         key=lambda day_name: (-int(day_counts.get(day_name, 0)), DAY_NAMES.index(day_name)),
-    )[:3]
-    top_day_lines = [
-        f"{index + 1}. {day_name} — {int(day_counts.get(day_name, 0))} available"
+    )
+
+    def format_day_slot_counts(day_name: str) -> str:
+        raw_day_slot_counts = slot_counts.get(day_name)
+        if not isinstance(raw_day_slot_counts, dict):
+            raw_day_slot_counts = {}
+
+        ordered_parts: list[str] = []
+        for slot in SUMMARY_DISPLAY_ORDER:
+            slot_count = int(raw_day_slot_counts.get(slot, 0))
+            if slot_count > 0:
+                ordered_parts.append(f"{slot} {slot_count}")
+        if ordered_parts:
+            return ", ".join(ordered_parts)
+        return "No responses"
+
+    ranked_day_lines = [
+        f"{index + 1}. {day_name} — {format_day_slot_counts(day_name)}"
         for index, day_name in enumerate(ranked_days)
     ]
-
-    custom_note_lines: list[str] = []
-    users = week_responses.get("users")
-    if isinstance(users, dict):
-        for user_id in sorted(users, key=lambda value: int(value)):
-            user_data = users.get(user_id)
-            if not isinstance(user_data, dict):
-                continue
-            days = user_data.get("days")
-            if not isinstance(days, dict):
-                continue
-            best_day_entry = days.get(best_day)
-            if not isinstance(best_day_entry, dict):
-                continue
-            custom_reply = normalize_optional_text(best_day_entry.get("custom_reply"))
-            if custom_reply is None:
-                continue
-            display_name = (
-                normalize_optional_text(user_data.get("global_name"))
-                or normalize_optional_text(user_data.get("username"))
-                or user_id
-            )
-            custom_note_lines.append(f"- {display_name}: {custom_reply}")
 
     lines = [
         f"📊 Availability Summary — {date_range}",
         "",
-        "Most available day:",
-        most_available_day,
-        "",
         "Best overlap:",
-        f"{best_day} {best_slot} ({best_count} people)",
+        f"{best_day} — {format_day_slot_counts(best_day)}",
         "",
-        "Top days:",
-        *top_day_lines,
+        "All days ranked:",
+        *ranked_day_lines,
     ]
-    if custom_note_lines:
-        lines.extend(["", "Custom notes:", *custom_note_lines])
 
     return "\n".join(lines)
 
@@ -703,7 +665,7 @@ def main() -> None:
         )
 
         if week_outputs.get("summary_posted") is not True:
-            summary_message = format_summary_message(date_range, latest_week_summary, latest_week_responses)
+            summary_message = format_summary_message(date_range, latest_week_summary)
             summary_message_id = post_thread_message(posting_session, thread_id, summary_message)
             week_outputs["summary_posted"] = True
             week_outputs["summary_message_id"] = summary_message_id
@@ -716,7 +678,7 @@ def main() -> None:
 
         if missing_user_ids:
             if missing_user_ids != previous_missing_users:
-                reminder_message = format_reminder_message(date_range, missing_user_ids, roster)
+                reminder_message = format_reminder_message(date_range, missing_user_ids)
                 reminder_message_id = post_thread_message(posting_session, thread_id, reminder_message)
                 week_outputs["reminder_message_id"] = reminder_message_id
                 week_outputs["reminder_missing_users"] = missing_user_ids
