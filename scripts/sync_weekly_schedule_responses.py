@@ -203,20 +203,13 @@ def fetch_reaction_users(
     return all_users
 
 
-def get_user_label(user: dict[str, Any]) -> str:
-    """Return display label for a Discord user."""
-    global_name = user.get("global_name")
-    username = user.get("username")
-
-    if isinstance(global_name, str) and global_name.strip():
-        return global_name.strip()
-    if isinstance(username, str) and username.strip():
-        return username.strip()
-
-    user_id = user.get("id")
-    if not user_id:
-        fail("Discord reaction user object missing id")
-    return str(user_id)
+def normalize_optional_text(value: Any) -> str | None:
+    """Return a stripped string value when present, otherwise None."""
+    if isinstance(value, str):
+        stripped = value.strip()
+        if stripped:
+            return stripped
+    return None
 
 
 def main() -> None:
@@ -261,7 +254,7 @@ def main() -> None:
             if not isinstance(days, dict):
                 fail(f"Missing or invalid days mapping for {week_key} in {WEEKLY_SCHEDULE_MESSAGES_FILE}")
 
-            users_map: dict[str, dict[str, list[str]]] = {}
+            users_map: dict[str, dict[str, Any]] = {}
             for day_name in DAY_NAMES:
                 day_message_id = days.get(day_name)
                 if not day_message_id:
@@ -282,16 +275,32 @@ def main() -> None:
                         if bool(user.get("bot")):
                             continue
 
-                        user_label = get_user_label(user)
-                        if user_label not in users_map:
-                            users_map[user_label] = {day: [] for day in DAY_NAMES}
+                        if user_id not in users_map:
+                            users_map[user_id] = {
+                                "username": normalize_optional_text(user.get("username")),
+                                "global_name": normalize_optional_text(user.get("global_name")),
+                                "days": {day: [] for day in DAY_NAMES},
+                            }
+                        else:
+                            if users_map[user_id]["username"] is None:
+                                users_map[user_id]["username"] = normalize_optional_text(
+                                    user.get("username")
+                                )
+                            if users_map[user_id]["global_name"] is None:
+                                users_map[user_id]["global_name"] = normalize_optional_text(
+                                    user.get("global_name")
+                                )
 
-                        if reaction not in users_map[user_label][day_name]:
-                            users_map[user_label][day_name].append(reaction)
+                        if reaction not in users_map[user_id]["days"][day_name]:
+                            users_map[user_id]["days"][day_name].append(reaction)
 
+            stable_users_map = {
+                user_id: users_map[user_id]
+                for user_id in sorted(users_map, key=lambda value: int(value))
+            }
             weekly_responses[week_key] = {
                 "date_range": date_range,
-                "users": users_map,
+                "users": stable_users_map,
             }
             print(f"Synced week {week_key}")
 
