@@ -3,7 +3,8 @@ name: Steam Free Games
 on:
   workflow_dispatch:
   schedule:
-    # 9:00 AM New York (EST) = 14:00 UTC; 9:00 AM New York (EDT) = 13:00 UTC
+    # GitHub Actions cron uses UTC only (no timezone/DST support).
+    # This runs at 13:00 UTC year-round: 9:00 AM in New York during EDT, 8:00 AM during EST.
     - cron: "0 13 * * *"
 
 permissions:
