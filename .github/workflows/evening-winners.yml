@@ -2,6 +2,11 @@ name: Daily Game Picks Winners
 
 on:
   workflow_dispatch:
+    inputs:
+      winners_date_utc:
+        description: "Optional UTC date key (YYYY-MM-DD) for manual winners rerun"
+        required: false
+        type: string
   schedule:
     # GitHub Actions cron uses UTC only (no timezone/DST support).
     # This runs at 23:00 UTC year-round: 7:00 PM in New York during EDT, 6:00 PM during EST.
@@ -30,4 +35,5 @@ jobs:
         env:
           DISCORD_BOT_TOKEN: ${{ secrets.DISCORD_BOT_TOKEN }}
           DISCORD_WINNERS_CHANNEL_ID: ${{ secrets.DISCORD_WINNERS_CHANNEL_ID }}
+          WINNERS_DATE_UTC: ${{ inputs.winners_date_utc }}
         run: python evening_winners.py

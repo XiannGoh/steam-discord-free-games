@@ -2,6 +2,11 @@ name: Weekly Scheduling Bot
 
 on:
   workflow_dispatch:
+    inputs:
+      schedule_week_start:
+        description: 'Optional Monday date (YYYY-MM-DD) to target instead of next week'
+        required: false
+        type: string
   schedule:
     - cron: '0 13 * * 6'
 
@@ -28,6 +33,7 @@ jobs:
         env:
           DISCORD_SCHEDULING_BOT_TOKEN: ${{ secrets.DISCORD_SCHEDULING_BOT_TOKEN }}
           DISCORD_SCHEDULING_CHANNEL_ID: ${{ secrets.DISCORD_SCHEDULING_CHANNEL_ID }}
+          SCHEDULE_WEEK_START: ${{ inputs.schedule_week_start }}
         run: python scripts/post_weekly_availability.py
 
       - name: Commit weekly schedule state
