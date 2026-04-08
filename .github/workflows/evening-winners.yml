@@ -48,14 +48,13 @@ jobs:
           RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
           WINNERS_DATE_UTC: ${{ inputs.winners_date_utc || '' }}
         run: |
-          python - <<'PY'
+          payload="$(python - <<'PY'
           import json
           import os
-          import urllib.request
 
           target = os.environ.get("WINNERS_DATE_UTC")
           details = f"winners_date_utc={target}" if target else "winners_date_utc=(default)"
-          payload = {
+          print(json.dumps({
               "content": (
                   "🔴 XiannGPT Bot Failure\n\n"
                   f"Workflow: {os.environ['WORKFLOW_NAME']}\n"
@@ -64,12 +63,29 @@ jobs:
                   f"Context: {details}\n"
                   f"Run: {os.environ['RUN_URL']}"
               )
-          }
-          request = urllib.request.Request(
-              os.environ["DISCORD_HEALTH_MONITOR_WEBHOOK_URL"],
-              data=json.dumps(payload).encode("utf-8"),
-              headers={"Content-Type": "application/json"},
-              method="POST",
-          )
-          urllib.request.urlopen(request).read()
+          }))
           PY
+          )"
+
+          response_file="$(mktemp)"
+          http_status="$(curl --silent --show-error \
+            --output "${response_file}" \
+            --write-out "%{http_code}" \
+            --header "Content-Type: application/json" \
+            --header "User-Agent: steam-discord-free-games-health-monitor/1.0" \
+            --data "${payload}" \
+            --request POST \
+            "${DISCORD_HEALTH_MONITOR_WEBHOOK_URL}")"
+
+          if [[ "${http_status}" =~ ^2[0-9][0-9]$ ]]; then
+            echo "Discord webhook POST succeeded: HTTP ${http_status}"
+          else
+            echo "Discord webhook POST failed: HTTP ${http_status}" >&2
+            if [[ -s "${response_file}" ]]; then
+              cat "${response_file}" >&2
+            fi
+            rm -f "${response_file}"
+            exit 1
+          fi
+
+          rm -f "${response_file}"
