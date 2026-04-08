@@ -43,7 +43,7 @@
         "posted_at": "2026-04-07T18:19:59.547891+00:00",
         "section": "free",
         "source_type": "steam_free",
-        "title": "Guild Wars 2\u00ae",
+        "title": "Guild Wars 2®",
         "url": "https://store.steampowered.com/app/1284210/"
       },
       {
@@ -106,7 +106,7 @@
         "posted_at": "2026-04-07T18:20:15.889370+00:00",
         "section": "paid",
         "source_type": "paid_under_20",
-        "title": "Call of Cthulhu\u00ae",
+        "title": "Call of Cthulhu®",
         "url": "https://store.steampowered.com/app/399810/"
       },
       {
@@ -931,7 +931,394 @@
         "source_type": "instagram",
         "title": "@itzjaysasa",
         "url": "https://www.instagram.com/p/DWr0txEks7l/"
+      },
+      {
+        "item_key": "772f5edfb1b368ed",
+        "section": "free",
+        "title": "Box Zombies",
+        "url": "https://store.steampowered.com/app/2892230/",
+        "message_id": "1491586223347601488",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-04-08T23:51:08.348312+00:00"
+      },
+      {
+        "item_key": "79f742eff268c2b5",
+        "section": "free",
+        "title": "Dangerous FightCIA",
+        "url": "https://store.steampowered.com/app/2684310/",
+        "message_id": "1491586230432039034",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-04-08T23:51:10.145467+00:00"
+      },
+      {
+        "item_key": "03f0b795595e2796",
+        "section": "free",
+        "title": "飄流幻境M",
+        "url": "https://store.steampowered.com/app/1481340/",
+        "message_id": "1491586238078124264",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-04-08T23:51:13.995179+00:00"
+      },
+      {
+        "item_key": "7d63948d5d96ecb4",
+        "section": "free",
+        "title": "Vegas Craps by Pokerist",
+        "url": "https://store.steampowered.com/app/3601450/",
+        "message_id": "1491586254779973642",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-04-08T23:51:16.148828+00:00"
+      },
+      {
+        "item_key": "73627b02f3840f9a",
+        "section": "free",
+        "title": "CornField",
+        "url": "https://store.steampowered.com/app/3127480/",
+        "message_id": "1491586263067791432",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-04-08T23:51:17.905720+00:00"
+      },
+      {
+        "item_key": "d1b5dffa890acbf5",
+        "section": "free",
+        "title": "Dimraeth Demo",
+        "url": "https://store.steampowered.com/app/2405840/",
+        "message_id": "1491586270453829794",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-04-08T23:51:19.463132+00:00"
+      },
+      {
+        "item_key": "8b1e7c45a2c5866c",
+        "section": "free",
+        "title": "Romans: Age of Caesar",
+        "url": "https://store.steampowered.com/app/872570/",
+        "message_id": "1491586277089480895",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-04-08T23:51:21.125469+00:00"
+      },
+      {
+        "item_key": "6b6d671cd1578673",
+        "section": "free",
+        "title": "Drag Racing 3D: Streets 2",
+        "url": "https://store.steampowered.com/app/2249600/",
+        "message_id": "1491586284148232333",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-04-08T23:51:22.948565+00:00"
+      },
+      {
+        "item_key": "8b6acd0c9521f33a",
+        "section": "free",
+        "title": "SpecFreq",
+        "url": "https://store.steampowered.com/app/2723080/",
+        "message_id": "1491586293103202386",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-04-08T23:51:28.776532+00:00"
+      },
+      {
+        "item_key": "41ee53ad2d4579da",
+        "section": "free",
+        "title": "Mitos.is: The Game",
+        "url": "https://store.steampowered.com/app/389570/",
+        "message_id": "1491586316364939355",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-04-08T23:51:30.742619+00:00"
+      },
+      {
+        "item_key": "0db83be099bc8c66",
+        "section": "paid",
+        "title": "Night Shippers",
+        "url": "https://store.steampowered.com/app/3761880/",
+        "message_id": "1491586333897003202",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-04-08T23:51:34.888272+00:00"
+      },
+      {
+        "item_key": "87961c7356af09f8",
+        "section": "paid",
+        "title": "Granvir",
+        "url": "https://store.steampowered.com/app/2743460/",
+        "message_id": "1491586341862113400",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-04-08T23:51:36.651240+00:00"
+      },
+      {
+        "item_key": "15fc71445de754d7",
+        "section": "paid",
+        "title": "Hero Siege - Gates of Valhalla Collector's Edition (Expansion Set)",
+        "url": "https://store.steampowered.com/app/1574601/",
+        "message_id": "1491586349462065375",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-04-08T23:51:38.573312+00:00"
+      },
+      {
+        "item_key": "a7a29c6286a060ca",
+        "section": "paid",
+        "title": "Clue/Cluedo",
+        "url": "https://store.steampowered.com/app/2506480/",
+        "message_id": "1491586356797767711",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-04-08T23:51:40.199910+00:00"
+      },
+      {
+        "item_key": "0b34691bc9c9f4eb",
+        "section": "paid",
+        "title": "House Flipper 2 - Scooby-Doo DLC",
+        "url": "https://store.steampowered.com/app/3672960/",
+        "message_id": "1491586363710115982",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-04-08T23:51:42.267267+00:00"
+      },
+      {
+        "item_key": "45ba75600171735a",
+        "section": "paid",
+        "title": "ROUNDS",
+        "url": "https://store.steampowered.com/app/1557740/",
+        "message_id": "1491586372644110439",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-04-08T23:51:43.839728+00:00"
+      },
+      {
+        "item_key": "b3e97c09eba0dbf6",
+        "section": "paid",
+        "title": "American Truck Simulator - Nebraska",
+        "url": "https://store.steampowered.com/app/2543810/",
+        "message_id": "1491586379551998043",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-04-08T23:51:45.706092+00:00"
+      },
+      {
+        "item_key": "1e545a0f9f250837",
+        "section": "paid",
+        "title": "American Truck Simulator - Kansas",
+        "url": "https://store.steampowered.com/app/2298430/",
+        "message_id": "1491586387408060436",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-04-08T23:51:47.705779+00:00"
+      },
+      {
+        "item_key": "daea5b74f1199092",
+        "section": "paid",
+        "title": "Project: Gorgon VIP Membership",
+        "url": "https://store.steampowered.com/app/1476200/",
+        "message_id": "1491586396035481800",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-04-08T23:51:49.560260+00:00"
+      },
+      {
+        "item_key": "87520c3f28063632",
+        "section": "paid",
+        "title": "Crosshair X",
+        "url": "https://store.steampowered.com/app/1366800/",
+        "message_id": "1491586403014803497",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-04-08T23:51:51.292185+00:00"
+      },
+      {
+        "item_key": "65640c12c39e762c",
+        "section": "instagram",
+        "title": "@gemgamingnetwork",
+        "url": "https://www.instagram.com/p/DW4v0YqBl-C/",
+        "message_id": "1491586417288282133",
+        "channel_id": "592534544708796474",
+        "source_type": "instagram",
+        "posted_at": "2026-04-08T23:51:54.677058+00:00"
+      },
+      {
+        "item_key": "f7cf727d35e92bb2",
+        "section": "instagram",
+        "title": "@gemgamingnetwork",
+        "url": "https://www.instagram.com/p/DW1h2B1Bauc/",
+        "message_id": "1491586424971985169",
+        "channel_id": "592534544708796474",
+        "source_type": "instagram",
+        "posted_at": "2026-04-08T23:51:56.345885+00:00"
+      },
+      {
+        "item_key": "121e5a9b911d1748",
+        "section": "instagram",
+        "title": "@cloudual",
+        "url": "https://www.instagram.com/p/DW4xycnjRSh/",
+        "message_id": "1491586431741726862",
+        "channel_id": "592534544708796474",
+        "source_type": "instagram",
+        "posted_at": "2026-04-08T23:51:58.021624+00:00"
+      },
+      {
+        "item_key": "38b12f9b61adb73b",
+        "section": "instagram",
+        "title": "@cloudual",
+        "url": "https://www.instagram.com/p/DWyvdmsjO56/",
+        "message_id": "1491586438649876501",
+        "channel_id": "592534544708796474",
+        "source_type": "instagram",
+        "posted_at": "2026-04-08T23:52:00.439829+00:00"
+      },
+      {
+        "item_key": "9b21022def3aecfd",
+        "section": "instagram",
+        "title": "@mildsoss_official",
+        "url": "https://www.instagram.com/p/DWzQnqFogi9/",
+        "message_id": "1491586448875589697",
+        "channel_id": "592534544708796474",
+        "source_type": "instagram",
+        "posted_at": "2026-04-08T23:52:02.047985+00:00"
+      },
+      {
+        "item_key": "4a8563e827cec709",
+        "section": "instagram",
+        "title": "@mildsoss_official",
+        "url": "https://www.instagram.com/p/DWw1zASomLY/",
+        "message_id": "1491586455384883323",
+        "channel_id": "592534544708796474",
+        "source_type": "instagram",
+        "posted_at": "2026-04-08T23:52:03.752301+00:00"
+      },
+      {
+        "item_key": "4db2d37ad7907c85",
+        "section": "instagram",
+        "title": "@sharedxp_official",
+        "url": "https://www.instagram.com/p/DW4drzSDBPb/",
+        "message_id": "1491586462863327433",
+        "channel_id": "592534544708796474",
+        "source_type": "instagram",
+        "posted_at": "2026-04-08T23:52:05.391538+00:00"
+      },
+      {
+        "item_key": "3c94d842e54910f1",
+        "section": "instagram",
+        "title": "@sharedxp_official",
+        "url": "https://www.instagram.com/p/DWy3v7aDLaZ/",
+        "message_id": "1491586470442434691",
+        "channel_id": "592534544708796474",
+        "source_type": "instagram",
+        "posted_at": "2026-04-08T23:52:08.024728+00:00"
+      },
+      {
+        "item_key": "8ab9a78b359d77ca",
+        "section": "instagram",
+        "title": "@wilfratgaming",
+        "url": "https://www.instagram.com/p/DWy2bSEDWGe/",
+        "message_id": "1491586480743780493",
+        "channel_id": "592534544708796474",
+        "source_type": "instagram",
+        "posted_at": "2026-04-08T23:52:09.939650+00:00"
+      },
+      {
+        "item_key": "895897950ee05e9d",
+        "section": "instagram",
+        "title": "@wilfratgaming",
+        "url": "https://www.instagram.com/p/DWwtZDGjJhi/",
+        "message_id": "1491586488851234936",
+        "channel_id": "592534544708796474",
+        "source_type": "instagram",
+        "posted_at": "2026-04-08T23:52:13.514192+00:00"
+      },
+      {
+        "item_key": "9c4ffa7a3c19aa42",
+        "section": "instagram",
+        "title": "@indiegamespotlights",
+        "url": "https://www.instagram.com/p/DWzEinOj97r/",
+        "message_id": "1491586504227553362",
+        "channel_id": "592534544708796474",
+        "source_type": "instagram",
+        "posted_at": "2026-04-08T23:52:16.200180+00:00"
+      },
+      {
+        "item_key": "e886ff6413e9949e",
+        "section": "instagram",
+        "title": "@indiegamespotlights",
+        "url": "https://www.instagram.com/p/DWwe-9OD4E3/",
+        "message_id": "1491586515183337592",
+        "channel_id": "592534544708796474",
+        "source_type": "instagram",
+        "posted_at": "2026-04-08T23:52:17.807510+00:00"
+      },
+      {
+        "item_key": "fade81049d3976d5",
+        "section": "instagram",
+        "title": "@biffmatictv",
+        "url": "https://www.instagram.com/p/DWjs3IyDTOy/",
+        "message_id": "1491586521881510009",
+        "channel_id": "592534544708796474",
+        "source_type": "instagram",
+        "posted_at": "2026-04-08T23:52:19.464254+00:00"
+      },
+      {
+        "item_key": "652717d9d93edbda",
+        "section": "instagram",
+        "title": "@biffmatictv",
+        "url": "https://www.instagram.com/p/DWhlseCDMnk/",
+        "message_id": "1491586532140781709",
+        "channel_id": "592534544708796474",
+        "source_type": "instagram",
+        "posted_at": "2026-04-08T23:52:21.875972+00:00"
+      },
+      {
+        "item_key": "b0cc1cf522419439",
+        "section": "instagram",
+        "title": "@itzjaysasa",
+        "url": "https://www.instagram.com/p/DWpuEGCjSmU/",
+        "message_id": "1491586538897932290",
+        "channel_id": "592534544708796474",
+        "source_type": "instagram",
+        "posted_at": "2026-04-08T23:52:23.751481+00:00"
+      },
+      {
+        "item_key": "c9599b27620034a5",
+        "section": "instagram",
+        "title": "@itzjaysasa",
+        "url": "https://www.instagram.com/p/DWjzGvqD_nF/",
+        "message_id": "1491586546741153953",
+        "channel_id": "592534544708796474",
+        "source_type": "instagram",
+        "posted_at": "2026-04-08T23:52:25.772163+00:00"
       }
-    ]
+    ],
+    "run_state": {
+      "section_headers": {
+        "free": {
+          "message_id": "1491586217169522728",
+          "channel_id": "592534544708796474",
+          "posted_at_utc": "2026-04-08T23:51:06.670323+00:00"
+        },
+        "paid": {
+          "message_id": "1491586325193949257",
+          "channel_id": "592534544708796474",
+          "posted_at_utc": "2026-04-08T23:51:33.142239+00:00"
+        },
+        "instagram": {
+          "message_id": "1491586410518548612",
+          "channel_id": "592534544708796474",
+          "posted_at_utc": "2026-04-08T23:51:52.888052+00:00"
+        }
+      },
+      "last_attempt_at_utc": "2026-04-08T23:51:04.821254+00:00",
+      "intro": {
+        "message_id": "1491586210622083243",
+        "channel_id": "592534544708796474",
+        "posted_at_utc": "2026-04-08T23:51:05.201367+00:00"
+      },
+      "completed": true,
+      "completed_at_utc": "2026-04-08T23:52:26.974962+00:00"
+    }
   }
 }
