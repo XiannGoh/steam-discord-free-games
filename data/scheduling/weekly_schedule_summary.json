@@ -1,40 +1,41 @@
 {
   "2026-04-13_to_2026-04-19": {
+    "week_key": "2026-04-13_to_2026-04-19",
     "date_range": "Apr 13–19, 2026",
     "summary": {
       "day_counts": {
-        "Monday": 2,
-        "Tuesday": 2,
-        "Wednesday": 1,
-        "Thursday": 1,
-        "Friday": 2,
-        "Saturday": 1,
-        "Sunday": 1
+        "Monday": 3,
+        "Tuesday": 3,
+        "Wednesday": 2,
+        "Thursday": 2,
+        "Friday": 3,
+        "Saturday": 2,
+        "Sunday": 2
       },
       "slot_counts": {
         "Monday": {
           "✅": 1,
           "🌅": 0,
           "☀️": 0,
-          "🌙": 1,
+          "🌙": 2,
           "📝": 0
         },
         "Tuesday": {
+          "✅": 1,
+          "🌅": 1,
+          "☀️": 1,
+          "🌙": 1,
+          "📝": 0
+        },
+        "Wednesday": {
           "✅": 1,
           "🌅": 0,
           "☀️": 0,
           "🌙": 1,
           "📝": 0
         },
-        "Wednesday": {
-          "✅": 0,
-          "🌅": 0,
-          "☀️": 0,
-          "🌙": 1,
-          "📝": 0
-        },
         "Thursday": {
-          "✅": 0,
+          "✅": 1,
           "🌅": 0,
           "☀️": 0,
           "🌙": 1,
@@ -43,27 +44,166 @@
         "Friday": {
           "✅": 0,
           "🌅": 0,
-          "☀️": 0,
+          "☀️": 1,
           "🌙": 2,
           "📝": 0
         },
         "Saturday": {
           "✅": 0,
           "🌅": 0,
-          "☀️": 0,
+          "☀️": 1,
           "🌙": 1,
           "📝": 0
         },
         "Sunday": {
-          "✅": 0,
+          "✅": 1,
           "🌅": 0,
           "☀️": 0,
           "🌙": 1,
           "📝": 0
         }
       },
+      "slot_voters": {
+        "Monday": {
+          "✅": [
+            {
+              "user_id": "137123568952672257",
+              "display_name": "Janithan"
+            }
+          ],
+          "🌅": [],
+          "☀️": [],
+          "🌙": [
+            {
+              "user_id": "150522802292785152",
+              "display_name": "TheMonkeyKing"
+            },
+            {
+              "user_id": "195462430535581708",
+              "display_name": "Thomas"
+            }
+          ],
+          "📝": []
+        },
+        "Tuesday": {
+          "✅": [
+            {
+              "user_id": "137123568952672257",
+              "display_name": "Janithan"
+            }
+          ],
+          "🌅": [
+            {
+              "user_id": "150522802292785152",
+              "display_name": "TheMonkeyKing"
+            }
+          ],
+          "☀️": [
+            {
+              "user_id": "150522802292785152",
+              "display_name": "TheMonkeyKing"
+            }
+          ],
+          "🌙": [
+            {
+              "user_id": "195462430535581708",
+              "display_name": "Thomas"
+            }
+          ],
+          "📝": []
+        },
+        "Wednesday": {
+          "✅": [
+            {
+              "user_id": "150522802292785152",
+              "display_name": "TheMonkeyKing"
+            }
+          ],
+          "🌅": [],
+          "☀️": [],
+          "🌙": [
+            {
+              "user_id": "195462430535581708",
+              "display_name": "Thomas"
+            }
+          ],
+          "📝": []
+        },
+        "Thursday": {
+          "✅": [
+            {
+              "user_id": "150522802292785152",
+              "display_name": "TheMonkeyKing"
+            }
+          ],
+          "🌅": [],
+          "☀️": [],
+          "🌙": [
+            {
+              "user_id": "195462430535581708",
+              "display_name": "Thomas"
+            }
+          ],
+          "📝": []
+        },
+        "Friday": {
+          "✅": [],
+          "🌅": [],
+          "☀️": [
+            {
+              "user_id": "150522802292785152",
+              "display_name": "TheMonkeyKing"
+            }
+          ],
+          "🌙": [
+            {
+              "user_id": "137123568952672257",
+              "display_name": "Janithan"
+            },
+            {
+              "user_id": "195462430535581708",
+              "display_name": "Thomas"
+            }
+          ],
+          "📝": []
+        },
+        "Saturday": {
+          "✅": [],
+          "🌅": [],
+          "☀️": [
+            {
+              "user_id": "150522802292785152",
+              "display_name": "TheMonkeyKing"
+            }
+          ],
+          "🌙": [
+            {
+              "user_id": "195462430535581708",
+              "display_name": "Thomas"
+            }
+          ],
+          "📝": []
+        },
+        "Sunday": {
+          "✅": [
+            {
+              "user_id": "150522802292785152",
+              "display_name": "TheMonkeyKing"
+            }
+          ],
+          "🌅": [],
+          "☀️": [],
+          "🌙": [
+            {
+              "user_id": "195462430535581708",
+              "display_name": "Thomas"
+            }
+          ],
+          "📝": []
+        }
+      },
       "best_overlap": {
-        "day": "Friday",
+        "day": "Monday",
         "slot": "🌙",
         "count": 2
       }
