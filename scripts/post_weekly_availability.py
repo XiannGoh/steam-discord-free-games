@@ -203,33 +203,58 @@ def post_message(session: requests.Session, thread_id: str, content: str) -> str
 def add_reaction(session: requests.Session, thread_id: str, message_id: str, emoji: str) -> None:
     """Add a single emoji reaction to a posted Discord message."""
     url = build_reaction_url(thread_id, message_id, emoji)
+    max_attempts = 5
+    transient_statuses = {500, 502, 503, 504}
 
-    for attempt in range(1, 4):
-        response = session.put(url, timeout=REQUEST_TIMEOUT_SECONDS)
-        if response.status_code != 429:
-            check_response(response, f"Failed to add reaction: {emoji}")
-            return
-
-        retry_after_seconds = 1.0
+    for attempt in range(1, max_attempts + 1):
         try:
-            payload: dict[str, Any] = response.json()
-            retry_after_value = payload.get("retry_after")
-            if isinstance(retry_after_value, (int, float)):
-                retry_after_seconds = float(retry_after_value)
-            elif isinstance(retry_after_value, str):
-                retry_after_seconds = float(retry_after_value)
-        except (ValueError, TypeError):
-            retry_after_seconds = 1.0
+            response = session.put(url, timeout=REQUEST_TIMEOUT_SECONDS)
+        except requests.exceptions.RequestException as error:
+            if attempt < max_attempts:
+                print(
+                    f"Request exception adding reaction {emoji}: {error}. "
+                    "Retrying in 1 second..."
+                )
+                time.sleep(1.0)
+                continue
+            fail(f"Failed to add reaction {emoji} after {max_attempts} attempts: {error}")
 
-        if retry_after_seconds < 0:
+        if response.status_code == 429:
             retry_after_seconds = 1.0
+            try:
+                payload: dict[str, Any] = response.json()
+                retry_after_value = payload.get("retry_after")
+                if isinstance(retry_after_value, (int, float)):
+                    retry_after_seconds = float(retry_after_value)
+                elif isinstance(retry_after_value, str):
+                    retry_after_seconds = float(retry_after_value)
+            except (ValueError, TypeError):
+                retry_after_seconds = 1.0
 
-        if attempt < 3:
-            print(
-                f"Rate limited adding reaction {emoji}, "
-                f"sleeping {retry_after_seconds} seconds before retry"
-            )
-            time.sleep(retry_after_seconds)
+            if retry_after_seconds < 0:
+                retry_after_seconds = 1.0
+
+            if attempt < max_attempts:
+                print(
+                    f"Rate limited adding reaction {emoji}, "
+                    f"sleeping {retry_after_seconds} seconds before retry"
+                )
+                time.sleep(retry_after_seconds)
+                continue
+            break
+
+        if response.status_code in transient_statuses:
+            if attempt < max_attempts:
+                print(
+                    f"Transient error adding reaction {emoji} "
+                    f"(HTTP {response.status_code}), retrying in 1 second..."
+                )
+                time.sleep(1.0)
+                continue
+            break
+
+        check_response(response, f"Failed to add reaction: {emoji}")
+        return
 
     check_response(response, f"Failed to add reaction: {emoji}")
 
