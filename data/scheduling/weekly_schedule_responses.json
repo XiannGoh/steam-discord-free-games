@@ -26,9 +26,10 @@
           },
           "Thursday": {
             "reactions": [
-              "☀️"
+              "☀️",
+              "📝"
             ],
-            "custom_reply": null
+            "custom_reply": "Thu after 7 PM"
           },
           "Friday": {
             "reactions": [
