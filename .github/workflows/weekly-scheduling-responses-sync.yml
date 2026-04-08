@@ -2,6 +2,21 @@ name: Weekly Scheduling Responses Sync
 
 on:
   workflow_dispatch:
+    inputs:
+      target_week_key:
+        description: "Optional week key (e.g. 2026-04-13_to_2026-04-19)"
+        required: false
+        default: ""
+      rebuild_summary_only:
+        description: "Skip reaction fetch and only rebuild/repair summary"
+        required: false
+        type: boolean
+        default: false
+      dry_run:
+        description: "Preview summary output and skip Discord posting"
+        required: false
+        type: boolean
+        default: false
   schedule:
     - cron: '0 23 * * *'
     - cron: '0 3 * * *'
@@ -28,6 +43,9 @@ jobs:
       - name: Sync weekly schedule responses
         env:
           DISCORD_SCHEDULING_BOT_TOKEN: ${{ secrets.DISCORD_SCHEDULING_BOT_TOKEN }}
+          TARGET_WEEK_KEY: ${{ github.event.inputs.target_week_key || '' }}
+          REBUILD_SUMMARY_ONLY: ${{ github.event.inputs.rebuild_summary_only || 'false' }}
+          DRY_RUN: ${{ github.event.inputs.dry_run || 'false' }}
         run: python scripts/sync_weekly_schedule_responses.py
 
       - name: Commit weekly schedule responses
