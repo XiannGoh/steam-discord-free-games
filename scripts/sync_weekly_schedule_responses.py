@@ -113,11 +113,11 @@ def build_current_user_url() -> str:
     return f"{DISCORD_API_BASE}/users/@me"
 
 
-def build_reaction_users_url(thread_id: str, message_id: str, emoji: str) -> str:
+def build_reaction_users_url(channel_id: str, message_id: str, emoji: str) -> str:
     """Build the Discord API URL for listing users of a specific message reaction."""
     encoded_emoji = urllib.parse.quote(emoji, safe="")
     return (
-        f"{DISCORD_API_BASE}/channels/{thread_id}/messages/"
+        f"{DISCORD_API_BASE}/channels/{channel_id}/messages/"
         f"{message_id}/reactions/{encoded_emoji}"
     )
 
@@ -140,7 +140,7 @@ def get_bot_user_id(session: requests.Session) -> str:
 
 
 def fetch_reaction_users(
-    session: requests.Session, thread_id: str, message_id: str, emoji: str
+    session: requests.Session, channel_id: str, message_id: str, emoji: str
 ) -> list[dict[str, Any]]:
     """Fetch all users who reacted with a specific emoji, handling pagination."""
     all_users: list[dict[str, Any]] = []
@@ -153,7 +153,7 @@ def fetch_reaction_users(
 
         for attempt in range(1, 4):
             response = session.get(
-                build_reaction_users_url(thread_id, message_id, emoji),
+                build_reaction_users_url(channel_id, message_id, emoji),
                 params=params,
                 timeout=REQUEST_TIMEOUT_SECONDS,
             )
@@ -208,18 +208,18 @@ def fetch_reaction_users(
     return all_users
 
 
-def build_channel_messages_url(thread_id: str) -> str:
-    """Build the Discord API URL for listing messages in a thread."""
-    return f"{DISCORD_API_BASE}/channels/{thread_id}/messages"
+def build_channel_messages_url(channel_id: str) -> str:
+    """Build the Discord API URL for listing messages in a channel."""
+    return f"{DISCORD_API_BASE}/channels/{channel_id}/messages"
 
 
-def build_create_message_url(thread_id: str) -> str:
-    """Build the Discord API URL for posting a message in a thread."""
-    return f"{DISCORD_API_BASE}/channels/{thread_id}/messages"
+def build_create_message_url(channel_id: str) -> str:
+    """Build the Discord API URL for posting a message in a channel."""
+    return f"{DISCORD_API_BASE}/channels/{channel_id}/messages"
 
 
-def fetch_thread_messages(session: requests.Session, thread_id: str) -> list[dict[str, Any]]:
-    """Fetch all messages in a thread, handling pagination."""
+def fetch_channel_messages(session: requests.Session, channel_id: str) -> list[dict[str, Any]]:
+    """Fetch all messages in a channel, handling pagination."""
     all_messages: list[dict[str, Any]] = []
     before_message_id: str | None = None
 
@@ -229,26 +229,26 @@ def fetch_thread_messages(session: requests.Session, thread_id: str) -> list[dic
             params["before"] = before_message_id
 
         response = session.get(
-            build_channel_messages_url(thread_id),
+            build_channel_messages_url(channel_id),
             params=params,
             timeout=REQUEST_TIMEOUT_SECONDS,
         )
-        check_response(response, f"Failed to fetch thread messages for thread_id={thread_id}")
+        check_response(response, f"Failed to fetch channel messages for channel_id={channel_id}")
 
         try:
             payload = response.json()
         except ValueError:
-            fail(f"Discord response was not valid JSON when fetching thread {thread_id} messages")
+            fail(f"Discord response was not valid JSON when fetching channel {channel_id} messages")
 
         if not isinstance(payload, list):
-            fail(f"Discord messages response was not a list for thread_id={thread_id}")
+            fail(f"Discord messages response was not a list for channel_id={channel_id}")
         if not payload:
             break
 
         page_messages: list[dict[str, Any]] = []
         for raw_message in payload:
             if not isinstance(raw_message, dict):
-                fail(f"Discord messages payload included a non-object for thread_id={thread_id}")
+                fail(f"Discord messages payload included a non-object for channel_id={channel_id}")
             page_messages.append(raw_message)
 
         all_messages.extend(page_messages)
@@ -260,13 +260,13 @@ def fetch_thread_messages(session: requests.Session, thread_id: str) -> list[dic
 
 
 def collect_latest_custom_replies_by_day(
-    thread_messages: list[dict[str, Any]], day_message_ids: set[str]
+    channel_messages: list[dict[str, Any]], day_message_ids: set[str]
 ) -> dict[str, dict[str, str]]:
     """Collect latest non-empty reply text per (day_message_id, user_id)."""
     latest_reply_ids: dict[str, dict[str, int]] = {}
     latest_reply_texts: dict[str, dict[str, str]] = {}
 
-    for message in thread_messages:
+    for message in channel_messages:
         author = message.get("author")
         if not isinstance(author, dict):
             continue
@@ -379,6 +379,23 @@ def normalize_optional_text(value: Any) -> str | None:
         if stripped:
             return stripped
     return None
+
+
+def get_week_channel_id(week_data: dict[str, Any], week_key: str) -> str:
+    """Return channel_id from weekly state with a fallback for legacy thread_id data."""
+    channel_id = week_data.get("channel_id")
+    if isinstance(channel_id, str) and channel_id:
+        return channel_id
+
+    legacy_thread_id = week_data.get("thread_id")
+    if isinstance(legacy_thread_id, str) and legacy_thread_id:
+        print(
+            f"Legacy thread_id detected for {week_key}; "
+            "using it as channel_id for backward compatibility"
+        )
+        return legacy_thread_id
+
+    fail(f"Missing or invalid channel_id for {week_key} in {WEEKLY_SCHEDULE_MESSAGES_FILE}")
 
 
 def compute_missing_user_ids_for_week(
@@ -496,19 +513,19 @@ def format_summary_message(date_range: str, week_summary: dict[str, Any]) -> str
     return "\n".join(lines)
 
 
-def post_thread_message(session: requests.Session, thread_id: str, content: str) -> str:
-    """Post a message to a Discord thread and return the new message id."""
+def post_channel_message(session: requests.Session, channel_id: str, content: str) -> str:
+    """Post a message to a Discord channel and return the new message id."""
     response = session.post(
-        build_create_message_url(thread_id),
+        build_create_message_url(channel_id),
         json={"content": content},
         timeout=REQUEST_TIMEOUT_SECONDS,
     )
-    check_response(response, f"Failed to post thread message for thread_id={thread_id}")
+    check_response(response, f"Failed to post channel message for channel_id={channel_id}")
 
     try:
         payload: dict[str, Any] = response.json()
     except ValueError:
-        fail("Discord response was not valid JSON when posting thread message")
+        fail("Discord response was not valid JSON when posting channel message")
 
     message_id = payload.get("id")
     if not message_id:
@@ -550,12 +567,10 @@ def main() -> None:
             if not isinstance(latest_week_data, dict):
                 fail(f"Invalid week payload for {week_key} in {WEEKLY_SCHEDULE_MESSAGES_FILE}")
 
-            thread_id = latest_week_data.get("thread_id")
+            channel_id = get_week_channel_id(latest_week_data, week_key)
             date_range = latest_week_data.get("date_range")
             days = latest_week_data.get("days")
 
-            if not thread_id or not isinstance(thread_id, str):
-                fail(f"Missing or invalid thread_id for {week_key} in {WEEKLY_SCHEDULE_MESSAGES_FILE}")
             if not date_range or not isinstance(date_range, str):
                 fail(f"Missing or invalid date_range for {week_key} in {WEEKLY_SCHEDULE_MESSAGES_FILE}")
             if not isinstance(days, dict):
@@ -563,9 +578,9 @@ def main() -> None:
 
             users_map: dict[str, dict[str, Any]] = {}
             day_message_ids = {str(day_id) for day_id in days.values() if day_id}
-            thread_messages = fetch_thread_messages(session, thread_id)
+            channel_messages = fetch_channel_messages(session, channel_id)
             latest_custom_replies = collect_latest_custom_replies_by_day(
-                thread_messages, day_message_ids
+                channel_messages, day_message_ids
             )
             for day_name in DAY_NAMES:
                 day_message_id = days.get(day_name)
@@ -576,7 +591,9 @@ def main() -> None:
                     )
 
                 for reaction in AVAILABILITY_REACTIONS:
-                    reaction_users = fetch_reaction_users(session, thread_id, str(day_message_id), reaction)
+                    reaction_users = fetch_reaction_users(
+                        session, channel_id, str(day_message_id), reaction
+                    )
                     for user in reaction_users:
                         user_id = str(user.get("id", ""))
                         if not user_id:
@@ -643,10 +660,8 @@ def main() -> None:
     if not isinstance(latest_week_summary, dict):
         fail(f"Missing week payload for {latest_week_key} in {WEEKLY_SCHEDULE_SUMMARY_FILE}")
 
-    thread_id = latest_week_messages.get("thread_id")
+    channel_id = get_week_channel_id(latest_week_messages, latest_week_key)
     date_range = latest_week_messages.get("date_range")
-    if not isinstance(thread_id, str) or not thread_id:
-        fail(f"Missing or invalid thread_id for {latest_week_key}")
     if not isinstance(date_range, str) or not date_range:
         fail(f"Missing or invalid date_range for {latest_week_key}")
 
@@ -666,7 +681,7 @@ def main() -> None:
 
         if week_outputs.get("summary_posted") is not True:
             summary_message = format_summary_message(date_range, latest_week_summary)
-            summary_message_id = post_thread_message(posting_session, thread_id, summary_message)
+            summary_message_id = post_channel_message(posting_session, channel_id, summary_message)
             week_outputs["summary_posted"] = True
             week_outputs["summary_message_id"] = summary_message_id
             print(f"Posted summary for week {latest_week_key} (message_id={summary_message_id})")
@@ -679,7 +694,9 @@ def main() -> None:
         if missing_user_ids:
             if missing_user_ids != previous_missing_users:
                 reminder_message = format_reminder_message(date_range, missing_user_ids)
-                reminder_message_id = post_thread_message(posting_session, thread_id, reminder_message)
+                reminder_message_id = post_channel_message(
+                    posting_session, channel_id, reminder_message
+                )
                 week_outputs["reminder_message_id"] = reminder_message_id
                 week_outputs["reminder_missing_users"] = missing_user_ids
                 print(
