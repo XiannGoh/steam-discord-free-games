@@ -127,12 +127,6 @@ def format_voter_names_for_message(names: List[str]) -> str:
 
 
 def pick_winners_channel_id(items: List[dict]) -> Optional[str]:
-    if DISCORD_DAILY_PICKS_CHANNEL_ID:
-        return DISCORD_DAILY_PICKS_CHANNEL_ID
-    for item in items:
-        channel_id = item.get("channel_id")
-        if isinstance(channel_id, str) and channel_id.strip():
-            return channel_id
     return DISCORD_WINNERS_CHANNEL_ID
 
 
@@ -203,7 +197,7 @@ def main() -> None:
     if not winners_channel_id:
         raise RuntimeError(
             "Winners destination channel id is not set. "
-            "Set DISCORD_DAILY_PICKS_CHANNEL_ID or DISCORD_WINNERS_CHANNEL_ID."
+            "Set DISCORD_WINNERS_CHANNEL_ID."
         )
 
     with requests.Session() as session:
