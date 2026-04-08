@@ -65,10 +65,10 @@ jobs:
           git commit -m "chore: update weekly schedule responses state"
           git push
 
-      - name: Notify Discord on failure (optional)
-        if: ${{ failure() && secrets.DISCORD_FAILURE_WEBHOOK_URL != '' }}
+      - name: Notify Discord health monitor on failure
+        if: ${{ failure() && secrets.DISCORD_HEALTH_MONITOR_WEBHOOK_URL != '' }}
         env:
-          DISCORD_FAILURE_WEBHOOK_URL: ${{ secrets.DISCORD_FAILURE_WEBHOOK_URL }}
+          DISCORD_HEALTH_MONITOR_WEBHOOK_URL: ${{ secrets.DISCORD_HEALTH_MONITOR_WEBHOOK_URL }}
           WORKFLOW_NAME: ${{ github.workflow }}
           JOB_NAME: sync-weekly-responses
           RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
@@ -83,15 +83,19 @@ jobs:
 
           payload = {
               "content": (
-                  f"⚠️ Workflow failed: {os.environ['WORKFLOW_NAME']} / {os.environ['JOB_NAME']}\n"
-                  f"target_week_key={os.environ.get('TARGET_WEEK_KEY') or '(default)'}; "
-                  f"rebuild_summary_only={os.environ.get('REBUILD_SUMMARY_ONLY')}; "
+                  "🔴 XiannGPT Bot Failure\n\n"
+                  f"Workflow: {os.environ['WORKFLOW_NAME']}\n"
+                  f"Job: {os.environ['JOB_NAME']}\n"
+                  "Status: failed\n"
+                  "Context: "
+                  f"target_week_key={os.environ.get('TARGET_WEEK_KEY') or '(default)'}, "
+                  f"rebuild_summary_only={os.environ.get('REBUILD_SUMMARY_ONLY')}, "
                   f"dry_run={os.environ.get('DRY_RUN')}\n"
                   f"Run: {os.environ['RUN_URL']}"
               )
           }
           request = urllib.request.Request(
-              os.environ["DISCORD_FAILURE_WEBHOOK_URL"],
+              os.environ["DISCORD_HEALTH_MONITOR_WEBHOOK_URL"],
               data=json.dumps(payload).encode("utf-8"),
               headers={"Content-Type": "application/json"},
               method="POST",
