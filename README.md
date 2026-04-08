@@ -17,6 +17,7 @@ This repository is now **channel-based** (no thread-based posting).
 - Weekly scheduling channel: `update-weekly-schedule-here` (`1491294381418741870`)
 - Daily picks channel: `daily-game-picks` (`1491294533751799809`)
 - Winners destination channel: `daily-game-picks` (uses `DISCORD_DAILY_PICKS_CHANNEL_ID` when set; otherwise falls back to daily item channel/state and then `DISCORD_WINNERS_CHANNEL_ID`)
+- Health monitor channel: `xiann-gpt-bot-health-monitor` (`1491520649917628536`)
 
 ---
 
@@ -31,7 +32,18 @@ If something fails:
 1. Open **GitHub Actions** → failed run → inspect the first failing step/log.
 2. Confirm required secrets are still set and non-empty.
 3. Re-run with `workflow_dispatch` and a specific date/week input when needed.
-4. If `DISCORD_FAILURE_WEBHOOK_URL` is configured, a concise failure ping is sent to Discord (failure only; no success spam).
+4. If `DISCORD_HEALTH_MONITOR_WEBHOOK_URL` is configured, a concise failure ping is sent to the health monitor Discord channel (failure only; no success spam).
+
+### Health monitor operator dashboard
+
+Operational alerts are now centralized in `xiann-gpt-bot-health-monitor`.
+
+- **Immediate failure pings:** key production workflows send a compact `🔴 XiannGPT Bot Failure` message with workflow, job, context, and run URL.
+- **Daily health report:** `bot-health-report.yml` posts one summary per day with signal lights:
+  - 🟢 healthy (latest run succeeded)
+  - 🟡 warning (stale, skipped, cancelled, or otherwise non-success)
+  - 🔴 failed (latest run failed)
+- **Operator default path:** this channel is now the primary dashboard for bot operations; email is no longer the preferred alerting path.
 
 Manual rerun quick commands (GitHub CLI):
 
@@ -76,6 +88,11 @@ Manual rerun quick commands (GitHub CLI):
 - **Schedule:** Mondays at 12:00 UTC.
 - **Manual rerun:** `gh workflow run state-sanity-check.yml`
 - **Local run:** `python scripts/check_state_sanity.py`
+
+### Bot health report (`bot-health-report.yml`)
+- **What it does:** posts a once-daily Discord health summary across core workflows.
+- **Schedule:** `10 3 * * *` (03:10 UTC daily; ~11:10 PM New York during EDT).
+- **Manual rerun:** `gh workflow run bot-health-report.yml`
 
 ---
 
@@ -241,8 +258,8 @@ This shared layer is used by weekly + daily flows for consistency and safer reru
   - `DISCORD_BOT_TOKEN`
   - `DISCORD_DAILY_PICKS_CHANNEL_ID` (recommended)
   - `DISCORD_WINNERS_CHANNEL_ID`
-- Optional failure notification (used by key workflows):
-  - `DISCORD_FAILURE_WEBHOOK_URL`
+- Health monitor notifications (failure pings + daily report):
+  - `DISCORD_HEALTH_MONITOR_WEBHOOK_URL`
 
 ## Local Testing
 
