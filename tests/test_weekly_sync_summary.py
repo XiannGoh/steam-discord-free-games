@@ -84,7 +84,8 @@ def test_summary_format_includes_dates_voter_names_and_truncation():
     msg = sync.format_summary_message("Apr 13–19, 2026", week_summary)
 
     assert "Monday 4/13" in msg
-    assert "Best overlap:" in msg
+    assert "Best overlap:" not in msg
+    assert "All days ranked:" in msg
     assert "✅" in msg
     assert "+" in msg and "more" in msg
     assert "User1, User1" not in msg
@@ -150,3 +151,115 @@ def test_main_dry_run_does_not_mutate_summary_message(monkeypatch, tmp_path, loa
 
     assert fake_client.posts == []
     assert fake_client.edits == []
+
+
+def test_main_posts_only_one_reminder_per_new_york_local_day(monkeypatch, tmp_path, load_fixture_json):
+    week_key, messages_p, responses_p, summary_p, roster_p, outputs_p = _setup_files(
+        tmp_path,
+        {
+            "2026-04-13_to_2026-04-19": {
+                "date_range": "Apr 13–19, 2026",
+                "users": {},
+            }
+        },
+    )
+
+    reminder_posts = []
+
+    def fake_post_channel_message(session, channel_id, content):
+        reminder_posts.append((channel_id, content))
+        return f"rem-{len(reminder_posts)}"
+
+    fake_client = FakeDiscordClient()
+    monkeypatch.setattr(sync.requests, "Session", FakeSession)
+    monkeypatch.setattr(sync, "DiscordClient", lambda session: fake_client)
+    monkeypatch.setattr(sync, "post_channel_message", fake_post_channel_message)
+    monkeypatch.setattr(sync, "WEEKLY_SCHEDULE_MESSAGES_FILE", str(messages_p))
+    monkeypatch.setattr(sync, "WEEKLY_SCHEDULE_RESPONSES_FILE", str(responses_p))
+    monkeypatch.setattr(sync, "WEEKLY_SCHEDULE_SUMMARY_FILE", str(summary_p))
+    monkeypatch.setattr(sync, "EXPECTED_SCHEDULE_ROSTER_FILE", str(roster_p))
+    monkeypatch.setattr(sync, "WEEKLY_SCHEDULE_BOT_OUTPUTS_FILE", str(outputs_p))
+
+    monkeypatch.setenv("DISCORD_SCHEDULING_BOT_TOKEN", "x")
+    monkeypatch.setenv("REBUILD_SUMMARY_ONLY", "true")
+    monkeypatch.setenv("TARGET_WEEK_KEY", week_key)
+    monkeypatch.delenv("DRY_RUN", raising=False)
+
+    monkeypatch.setattr(sync, "current_new_york_local_date", lambda: "2026-04-18")
+    sync.main()
+    sync.main()
+
+    outputs_after_same_day = json.loads(outputs_p.read_text(encoding="utf-8"))
+    assert len(reminder_posts) == 1
+    assert outputs_after_same_day[week_key]["last_reminder_local_date"] == "2026-04-18"
+
+    # New day + changed missing list should allow a new reminder.
+    _write(
+        responses_p,
+        {
+            week_key: {
+                "date_range": "Apr 13–19, 2026",
+                "users": {
+                    "100": {
+                        "username": "jan",
+                        "global_name": "Jan",
+                        "days": {
+                            day: {"reactions": ["✅"], "custom_reply": None}
+                            for day in sync.DAY_NAMES
+                        },
+                    }
+                },
+            }
+        },
+    )
+
+    monkeypatch.setattr(sync, "current_new_york_local_date", lambda: "2026-04-19")
+    sync.main()
+
+    outputs_after_next_day = json.loads(outputs_p.read_text(encoding="utf-8"))
+    assert len(reminder_posts) == 2
+    assert outputs_after_next_day[week_key]["last_reminder_local_date"] == "2026-04-19"
+
+
+def test_main_saturday_new_week_requires_change_and_allows_single_daily_reminder(
+    monkeypatch, tmp_path
+):
+    week_key, messages_p, responses_p, summary_p, roster_p, outputs_p = _setup_files(
+        tmp_path,
+        {
+            "2026-04-13_to_2026-04-19": {
+                "date_range": "Apr 13–19, 2026",
+                "users": {},
+            }
+        },
+    )
+    reminder_posts = []
+
+    def fake_post_channel_message(session, channel_id, content):
+        reminder_posts.append((channel_id, content))
+        return f"rem-{len(reminder_posts)}"
+
+    fake_client = FakeDiscordClient()
+    monkeypatch.setattr(sync.requests, "Session", FakeSession)
+    monkeypatch.setattr(sync, "DiscordClient", lambda session: fake_client)
+    monkeypatch.setattr(sync, "post_channel_message", fake_post_channel_message)
+    monkeypatch.setattr(sync, "WEEKLY_SCHEDULE_MESSAGES_FILE", str(messages_p))
+    monkeypatch.setattr(sync, "WEEKLY_SCHEDULE_RESPONSES_FILE", str(responses_p))
+    monkeypatch.setattr(sync, "WEEKLY_SCHEDULE_SUMMARY_FILE", str(summary_p))
+    monkeypatch.setattr(sync, "EXPECTED_SCHEDULE_ROSTER_FILE", str(roster_p))
+    monkeypatch.setattr(sync, "WEEKLY_SCHEDULE_BOT_OUTPUTS_FILE", str(outputs_p))
+    monkeypatch.setattr(sync, "current_new_york_local_date", lambda: "2026-04-18")
+
+    monkeypatch.setenv("DISCORD_SCHEDULING_BOT_TOKEN", "x")
+    monkeypatch.setenv("REBUILD_SUMMARY_ONLY", "true")
+    monkeypatch.setenv("TARGET_WEEK_KEY", week_key)
+    monkeypatch.delenv("DRY_RUN", raising=False)
+
+    # First Saturday sync for newly created week posts summary + first reminder.
+    sync.main()
+    assert len(fake_client.posts) == 1
+    assert len(reminder_posts) == 1
+
+    # Later same-day Saturday syncs cannot post another reminder.
+    sync.main()
+    assert len(reminder_posts) == 1
