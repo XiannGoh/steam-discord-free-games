@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import argparse
 import json
 import re
 import sys
@@ -105,7 +106,21 @@ def check_daily_posts(report: SanityReport) -> None:
             report.error(f"expected 'items' list for date {date_key} in {path}")
 
 
-def run_checks() -> int:
+def build_summary(report: SanityReport) -> dict[str, Any]:
+    if report.errors:
+        status = "failed"
+    elif report.warnings:
+        status = "passed_with_warnings"
+    else:
+        status = "passed"
+    return {
+        "status": status,
+        "warnings": report.warnings,
+        "errors": report.errors,
+    }
+
+
+def run_checks(*, json_output: bool = False) -> int:
     report = SanityReport()
 
     check_weekly_mapping("data/scheduling/weekly_schedule_messages.json", report)
@@ -114,6 +129,12 @@ def run_checks() -> int:
     check_weekly_mapping("data/scheduling/weekly_schedule_bot_outputs.json", report)
     check_expected_schedule_roster(report)
     check_daily_posts(report)
+
+    summary = build_summary(report)
+
+    if json_output:
+        print(json.dumps(summary))
+        return 1 if report.errors else 0
 
     if report.warnings:
         print("STATE SANITY WARNINGS:")
@@ -131,4 +152,7 @@ def run_checks() -> int:
 
 
 if __name__ == "__main__":
-    sys.exit(run_checks())
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--json", action="store_true", help="emit machine-readable JSON summary")
+    args = parser.parse_args()
+    sys.exit(run_checks(json_output=args.json))
