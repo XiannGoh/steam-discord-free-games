@@ -1,6 +1,30 @@
 {
   "2026-04-13_to_2026-04-19": {
     "date_range": "Apr 13–19, 2026",
-    "users": {}
+    "users": {
+      "195462430535581708": {
+        "username": "thomasgoh",
+        "global_name": "Thomas",
+        "days": {
+          "Monday": [
+            "🌙"
+          ],
+          "Tuesday": [
+            "🌙"
+          ],
+          "Wednesday": [
+            "🌙"
+          ],
+          "Thursday": [],
+          "Friday": [
+            "🌙"
+          ],
+          "Saturday": [
+            "🌙"
+          ],
+          "Sunday": []
+        }
+      }
+    }
   }
 }
