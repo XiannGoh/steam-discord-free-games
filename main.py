@@ -19,6 +19,7 @@ STATE_FILE = "seen_ids.json"
 PAGE_STATE_FILE = "page_state.json"
 INSTAGRAM_STATE_FILE = "instagram_seen.json"
 DISCORD_DAILY_POSTS_FILE = "discord_daily_posts.json"
+DISCORD_DAILY_POSTS_RETENTION_DAYS = 30
 
 INSTAGRAM_CREATORS = [
     "gemgamingnetwork",
@@ -798,8 +799,18 @@ def load_discord_daily_posts() -> Dict[str, dict]:
 
 
 def save_discord_daily_posts(data: Dict[str, dict]) -> None:
+    data = prune_discord_daily_posts(data)
     with open(DISCORD_DAILY_POSTS_FILE, "w", encoding="utf-8") as f:
         json.dump(data, f, indent=2, sort_keys=True)
+
+
+def prune_discord_daily_posts(data: Dict[str, dict]) -> Dict[str, dict]:
+    if len(data) <= DISCORD_DAILY_POSTS_RETENTION_DAYS:
+        return data
+
+    retained_keys = sorted(data.keys())[-DISCORD_DAILY_POSTS_RETENTION_DAYS:]
+    retained_key_set = set(retained_keys)
+    return {key: value for key, value in data.items() if key in retained_key_set}
 
 
 def add_thumbs_up_reaction(channel_id: str, message_id: str) -> None:
