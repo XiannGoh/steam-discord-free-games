@@ -1,0 +1,44 @@
+name: Weekly Scheduling Responses Sync
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '0 23 * * *'
+
+permissions:
+  contents: write
+
+jobs:
+  sync-weekly-responses:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'
+
+      - name: Install dependencies
+        run: pip install requests
+
+      - name: Sync weekly schedule responses
+        env:
+          DISCORD_SCHEDULING_BOT_TOKEN: ${{ secrets.DISCORD_SCHEDULING_BOT_TOKEN }}
+        run: python scripts/sync_weekly_schedule_responses.py
+
+      - name: Commit weekly schedule responses
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/scheduling/weekly_schedule_responses.json
+
+          if git diff --cached --quiet; then
+            echo "No weekly schedule response changes to commit"
+            exit 0
+          fi
+
+          git commit -m "chore: update weekly schedule responses state"
+          git push
