@@ -102,6 +102,8 @@ jobs:
           python - <<'PY'
           import json
           import os
+          import sys
+          import urllib.error
           import urllib.request
 
           payload = {"content": os.environ["HEALTH_REPORT_CONTENT"]}
@@ -111,5 +113,18 @@ jobs:
               headers={"Content-Type": "application/json"},
               method="POST",
           )
-          urllib.request.urlopen(request).read()
+
+          try:
+              with urllib.request.urlopen(request) as response:
+                  print(f"Discord webhook POST succeeded: HTTP {response.getcode()}")
+          except urllib.error.HTTPError as error:
+              body_bytes = error.read() if error.fp else b""
+              body_text = body_bytes.decode("utf-8", errors="replace") if body_bytes else ""
+              print(f"Discord webhook POST failed: HTTP {error.code}", file=sys.stderr)
+              if body_text:
+                  print(body_text, file=sys.stderr)
+              sys.exit(1)
+          except Exception as error:
+              print(f"Discord webhook POST failed: {error}", file=sys.stderr)
+              sys.exit(1)
           PY
