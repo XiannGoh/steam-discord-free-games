@@ -1,5 +1,10 @@
 # steam-discord-free-games
 
+[![Weekly Scheduling Bot](https://github.com/XiannGoh/steam-discord-free-games/actions/workflows/weekly-scheduling-bot.yml/badge.svg)](https://github.com/XiannGoh/steam-discord-free-games/actions/workflows/weekly-scheduling-bot.yml)
+[![Weekly Scheduling Responses Sync](https://github.com/XiannGoh/steam-discord-free-games/actions/workflows/weekly-scheduling-responses-sync.yml/badge.svg)](https://github.com/XiannGoh/steam-discord-free-games/actions/workflows/weekly-scheduling-responses-sync.yml)
+[![Steam Free Games](https://github.com/XiannGoh/steam-discord-free-games/actions/workflows/daily.yml/badge.svg)](https://github.com/XiannGoh/steam-discord-free-games/actions/workflows/daily.yml)
+[![Daily Game Picks Winners](https://github.com/XiannGoh/steam-discord-free-games/actions/workflows/evening-winners.yml/badge.svg)](https://github.com/XiannGoh/steam-discord-free-games/actions/workflows/evening-winners.yml)
+
 Discord automation for two production workflows:
 
 1. **Weekly scheduling** (availability prompts + ongoing sync/summary/reminders)
@@ -12,6 +17,65 @@ This repository is now **channel-based** (no thread-based posting).
 - Weekly scheduling channel: `update-weekly-schedule-here` (`1491294381418741870`)
 - Daily picks channel: `daily-game-picks` (`1491294533751799809`)
 - Winners destination channel: `daily-game-picks` (uses `DISCORD_DAILY_PICKS_CHANNEL_ID` when set; otherwise falls back to daily item channel/state and then `DISCORD_WINNERS_CHANNEL_ID`)
+
+---
+
+## Operator Health / Status Quick Reference
+
+Healthy at a glance:
+- The four production workflows above show green badges.
+- Recent runs in **Actions** are succeeding on schedule (daily/3-hourly/weekly cadence).
+- New state commits continue landing for weekly and daily flows.
+
+If something fails:
+1. Open **GitHub Actions** → failed run → inspect the first failing step/log.
+2. Confirm required secrets are still set and non-empty.
+3. Re-run with `workflow_dispatch` and a specific date/week input when needed.
+4. If `DISCORD_FAILURE_WEBHOOK_URL` is configured, a concise failure ping is sent to Discord (failure only; no success spam).
+
+Manual rerun quick commands (GitHub CLI):
+
+### Weekly Scheduling Bot (`weekly-scheduling-bot.yml`)
+- **What it does:** posts/repairs weekly intro + weekday availability prompts.
+- **Manual input:** `schedule_week_start` (optional `YYYY-MM-DD`, Monday only).
+- **When to rerun:** missed Saturday post, stale/deleted scheduling messages, or a backfill week.
+- **Examples:**
+  - Default target logic: `gh workflow run weekly-scheduling-bot.yml`
+  - Specific week: `gh workflow run weekly-scheduling-bot.yml -f schedule_week_start=2026-04-13`
+
+### Weekly Scheduling Responses Sync (`weekly-scheduling-responses-sync.yml`)
+- **What it does:** pulls reactions, updates state, and posts/repairs weekly summary/reminders.
+- **Manual inputs:**
+  - `target_week_key` (optional, e.g. `2026-04-13_to_2026-04-19`)
+  - `rebuild_summary_only` (`true`/`false`)
+  - `dry_run` (`true`/`false`)
+- **When to rerun:** summary drift, missed reminder, or post-reaction sync repair.
+- **Examples:**
+  - Standard sync: `gh workflow run weekly-scheduling-responses-sync.yml`
+  - Rebuild only for one week: `gh workflow run weekly-scheduling-responses-sync.yml -f target_week_key=2026-04-13_to_2026-04-19 -f rebuild_summary_only=true`
+  - Preview only: `gh workflow run weekly-scheduling-responses-sync.yml -f dry_run=true`
+
+### Daily Picks (`daily.yml`)
+- **What it does:** posts daily free/paid/creator picks and updates `discord_daily_posts.json`.
+- **Manual input:** `daily_date_utc` (optional `YYYY-MM-DD`).
+- **When to rerun:** partial morning run, stale/deleted daily messages, or date-targeted state repair.
+- **Examples:**
+  - Default run date: `gh workflow run daily.yml`
+  - Target date: `gh workflow run daily.yml -f daily_date_utc=2026-04-08`
+
+### Evening Winners (`evening-winners.yml`)
+- **What it does:** computes winners from same-day 👍 reactions and posts/edits winners message.
+- **Manual input:** `winners_date_utc` (optional `YYYY-MM-DD`).
+- **When to rerun:** missed evening summary or reaction recount/state repair for a specific day.
+- **Examples:**
+  - Default run date: `gh workflow run evening-winners.yml`
+  - Target date: `gh workflow run evening-winners.yml -f winners_date_utc=2026-04-08`
+
+### State sanity check (`state-sanity-check.yml`)
+- **What it does:** read-only parse/shape checks for key JSON state files.
+- **Schedule:** Mondays at 12:00 UTC.
+- **Manual rerun:** `gh workflow run state-sanity-check.yml`
+- **Local run:** `python scripts/check_state_sanity.py`
 
 ---
 
@@ -177,6 +241,8 @@ This shared layer is used by weekly + daily flows for consistency and safer reru
   - `DISCORD_BOT_TOKEN`
   - `DISCORD_DAILY_PICKS_CHANNEL_ID` (recommended)
   - `DISCORD_WINNERS_CHANNEL_ID`
+- Optional failure notification (used by key workflows):
+  - `DISCORD_FAILURE_WEBHOOK_URL`
 
 ## Local Testing
 

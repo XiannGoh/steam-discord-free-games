@@ -64,3 +64,37 @@ jobs:
 
           git commit -m "chore: update weekly schedule responses state"
           git push
+
+      - name: Notify Discord on failure (optional)
+        if: ${{ failure() && secrets.DISCORD_FAILURE_WEBHOOK_URL != '' }}
+        env:
+          DISCORD_FAILURE_WEBHOOK_URL: ${{ secrets.DISCORD_FAILURE_WEBHOOK_URL }}
+          WORKFLOW_NAME: ${{ github.workflow }}
+          JOB_NAME: sync-weekly-responses
+          RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+          TARGET_WEEK_KEY: ${{ github.event.inputs.target_week_key || '' }}
+          REBUILD_SUMMARY_ONLY: ${{ github.event.inputs.rebuild_summary_only || 'false' }}
+          DRY_RUN: ${{ github.event.inputs.dry_run || 'false' }}
+        run: |
+          python - <<'PY'
+          import json
+          import os
+          import urllib.request
+
+          payload = {
+              "content": (
+                  f"⚠️ Workflow failed: {os.environ['WORKFLOW_NAME']} / {os.environ['JOB_NAME']}\n"
+                  f"target_week_key={os.environ.get('TARGET_WEEK_KEY') or '(default)'}; "
+                  f"rebuild_summary_only={os.environ.get('REBUILD_SUMMARY_ONLY')}; "
+                  f"dry_run={os.environ.get('DRY_RUN')}\n"
+                  f"Run: {os.environ['RUN_URL']}"
+              )
+          }
+          request = urllib.request.Request(
+              os.environ["DISCORD_FAILURE_WEBHOOK_URL"],
+              data=json.dumps(payload).encode("utf-8"),
+              headers={"Content-Type": "application/json"},
+              method="POST",
+          )
+          urllib.request.urlopen(request).read()
+          PY
