@@ -4,6 +4,7 @@ import re
 import time
 from datetime import datetime, timedelta, timezone
 from typing import Dict, List, Optional, Tuple
+from urllib.parse import urlparse
 
 import requests
 from bs4 import BeautifulSoup
@@ -286,8 +287,18 @@ def sleep_briefly():
     time.sleep(REQUEST_DELAY_SECONDS)
 
 
-def extract_appids_from_html(html: str) -> List[str]:
-    ids = re.findall(r"/app/(\d+)", html)
+def extract_appids_from_html(html: str, from_search_results: bool = False) -> List[str]:
+    ids: List[str] = []
+    if from_search_results:
+        soup = BeautifulSoup(html, "html.parser")
+        for anchor in soup.select("a.search_result_row[href*='/app/']"):
+            href = anchor.get("href", "")
+            match = re.search(r"/app/(\d+)", href)
+            if match:
+                ids.append(match.group(1))
+    else:
+        ids = re.findall(r"/app/(\d+)", html)
+
     seen = set()
     result = []
     for app_id in ids:
@@ -307,7 +318,7 @@ def collect_steam_free_candidates(start_page: int, end_page: int) -> List[Tuple[
         if not html:
             continue
 
-        page_ids = extract_appids_from_html(html)
+        page_ids = extract_appids_from_html(html, from_search_results=True)
         print(f"FREE PAGE {page}: extracted {len(page_ids)} app ids")
 
         for app_id in page_ids:
@@ -331,7 +342,7 @@ def collect_steam_demo_candidates(start_page: int, end_page: int) -> List[Tuple[
         if not html:
             continue
 
-        page_ids = extract_appids_from_html(html)
+        page_ids = extract_appids_from_html(html, from_search_results=True)
         print(f"DEMO PAGE {page}: extracted {len(page_ids)} app ids")
 
         for app_id in page_ids:
@@ -355,7 +366,7 @@ def collect_paid_candidates(start_page: int, end_page: int) -> List[Tuple[str, s
         if not html:
             continue
 
-        page_ids = extract_appids_from_html(html)
+        page_ids = extract_appids_from_html(html, from_search_results=True)
         print(f"PAID PAGE {page}: extracted {len(page_ids)} app ids")
 
         for app_id in page_ids:
@@ -553,13 +564,30 @@ def extract_review_score(soup: BeautifulSoup) -> int:
 
 def inspect_game(source: str, app_id: str) -> Optional[dict]:
     url = f"https://store.steampowered.com/app/{app_id}/"
-    html = safe_fetch_html(url)
-    if not html:
+    try:
+        response = requests.get(url, headers=HEADERS, timeout=30)
+        response.raise_for_status()
+    except Exception as e:
+        print(f"FETCH FAILED: {url} | error={e}")
         return None
 
+    final_url = response.url or url
+    final_path = urlparse(final_url).path or ""
+    if not re.search(r"/app/\d+", final_path):
+        print(f"INVALID APP PAGE: app_id={app_id} | final_url={final_url}")
+        return None
+
+    html = response.text
     soup = BeautifulSoup(html, "html.parser")
+    if not soup.select_one("#appHubAppName"):
+        print(f"INVALID APP PAGE: app_id={app_id} | missing #appHubAppName")
+        return None
+
     title = parse_title(soup)
     if not title:
+        return None
+    if title == "Steam Store":
+        print(f"INVALID APP PAGE: app_id={app_id} | title={title}")
         return None
 
     description = parse_description(soup)
