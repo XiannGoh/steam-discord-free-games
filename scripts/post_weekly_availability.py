@@ -1,17 +1,16 @@
 """Post weekly availability prompts to a Discord scheduling channel and add reactions."""
 
-import json
 import os
 import sys
-import time
 import urllib.parse
 from datetime import date, datetime, timedelta, timezone
 from typing import Any
 
 import requests
 
-DISCORD_API_BASE = "https://discord.com/api/v10"
-REQUEST_TIMEOUT_SECONDS = 30
+from discord_api import DiscordClient, DiscordMessageNotFoundError
+from state_utils import load_json_object, prune_latest_keys, save_json_object_atomic
+
 USER_AGENT = "steam-discord-free-games/weekly-scheduling-bot"
 WEEKLY_SCHEDULE_MESSAGES_FILE = "data/scheduling/weekly_schedule_messages.json"
 
@@ -49,222 +48,92 @@ AVAILABILITY_REACTIONS: list[str] = ["✅", "🌅", "☀️", "🌙", "❌", "�
 
 
 def fail(message: str) -> None:
-    """Print an error and exit with a non-zero status."""
     print(f"ERROR: {message}", file=sys.stderr)
     sys.exit(1)
 
 
 def require_env(name: str) -> str:
-    """Return a required environment variable or exit if it is missing."""
     value = os.getenv(name)
     if not value:
         fail(f"Missing required environment variable: {name}")
     return value
 
 
-def check_response(response: requests.Response, context: str) -> None:
-    """Exit with details when a Discord API response is not successful."""
-    if not response.ok:
-        print(f"ERROR: {context}", file=sys.stderr)
-        print(f"HTTP status: {response.status_code}", file=sys.stderr)
-        print(f"Response body: {response.text}", file=sys.stderr)
-        sys.exit(1)
+def get_week_bounds(today: date | None = None, manual_week_start: str | None = None) -> tuple[date, date]:
+    if manual_week_start:
+        try:
+            monday = date.fromisoformat(manual_week_start)
+        except ValueError:
+            fail("SCHEDULE_WEEK_START must be in YYYY-MM-DD format")
+        if monday.weekday() != 0:
+            fail("SCHEDULE_WEEK_START must be a Monday")
+        return monday, monday + timedelta(days=6)
 
-
-def build_message_url(channel_id: str) -> str:
-    """Build the Discord API URL for creating a message in a channel."""
-    return f"{DISCORD_API_BASE}/channels/{channel_id}/messages"
-
-
-def build_reaction_url(channel_id: str, message_id: str, emoji: str) -> str:
-    """Build the Discord API URL for adding a reaction to a message."""
-    encoded_emoji = urllib.parse.quote(emoji, safe="")
-    return (
-        f"{DISCORD_API_BASE}/channels/{channel_id}/messages/"
-        f"{message_id}/reactions/{encoded_emoji}/@me"
-    )
-
-
-def get_next_week_bounds(today: date | None = None) -> tuple[date, date]:
-    """Return next week's Monday and Sunday dates."""
     current_date = today or date.today()
-
     days_until_next_monday = (7 - current_date.weekday()) % 7
     if days_until_next_monday == 0:
         days_until_next_monday = 7
-
-    next_monday = current_date + timedelta(days=days_until_next_monday)
-    next_sunday = next_monday + timedelta(days=6)
-    return next_monday, next_sunday
-
-
-def get_next_week_date_range(today: date | None = None) -> str:
-    """Return next week's Monday-Sunday range, formatted for the intro message."""
-    next_monday, next_sunday = get_next_week_bounds(today=today)
-    return format_week_date_range(next_monday, next_sunday)
+    monday = current_date + timedelta(days=days_until_next_monday)
+    return monday, monday + timedelta(days=6)
 
 
 def format_week_date_range(start_date: date, end_date: date) -> str:
-    """Return a Monday-Sunday range formatted for the intro message."""
-    next_monday = start_date
-    next_sunday = end_date
-
-    if next_monday.year == next_sunday.year:
-        if next_monday.month == next_sunday.month:
-            return f"{next_monday:%b} {next_monday.day}–{next_sunday.day}, {next_monday.year}"
-        return f"{next_monday:%b} {next_monday.day}–{next_sunday:%b} {next_sunday.day}, {next_monday.year}"
-
-    return (
-        f"{next_monday:%b} {next_monday.day}, {next_monday.year}"
-        f"–{next_sunday:%b} {next_sunday.day}, {next_sunday.year}"
-    )
+    if start_date.year == end_date.year:
+        if start_date.month == end_date.month:
+            return f"{start_date:%b} {start_date.day}–{end_date.day}, {start_date.year}"
+        return f"{start_date:%b} {start_date.day}–{end_date:%b} {end_date.day}, {start_date.year}"
+    return f"{start_date:%b} {start_date.day}, {start_date.year}–{end_date:%b} {end_date.day}, {end_date.year}"
 
 
 def get_week_key(start_date: date, end_date: date) -> str:
-    """Return the stable week key for persisted message IDs."""
     return f"{start_date.isoformat()}_to_{end_date.isoformat()}"
 
 
-def ensure_parent_dir(path: str) -> None:
-    """Create the parent directory for a file path if needed."""
-    parent_dir = os.path.dirname(path)
-    if parent_dir:
-        try:
-            os.makedirs(parent_dir, exist_ok=True)
-        except OSError as error:
-            fail(f"Failed to create directory {parent_dir}: {error}")
-
-
-def get_current_utc_timestamp() -> str:
-    """Return the current UTC timestamp in ISO-like format with Z suffix."""
+def utc_timestamp() -> str:
     return datetime.now(timezone.utc).replace(microsecond=0).strftime("%Y-%m-%dT%H:%M:%SZ")
 
 
-def prune_weeks(data: dict[str, Any], keep_last: int = 12) -> dict[str, Any]:
-    """Keep only the latest N week entries ordered by week key."""
-    week_keys = sorted(data.keys())
-    if len(week_keys) <= keep_last:
-        return data
-
-    keys_to_keep = set(week_keys[-keep_last:])
-    return {week_key: data[week_key] for week_key in week_keys if week_key in keys_to_keep}
-
-
-def load_json_file(path: str) -> dict[str, Any]:
-    """Load a JSON object from disk, creating an empty one if missing."""
-    if not os.path.exists(path):
-        save_json_file(path, {})
-        return {}
-
+def try_get_message(client: DiscordClient, channel_id: str, message_id: str, context: str) -> bool:
     try:
-        with open(path, "r", encoding="utf-8") as file:
-            loaded = json.load(file)
-    except json.JSONDecodeError:
-        fail(f"Invalid JSON in {path}")
-    except OSError as error:
-        fail(f"Failed to read {path}: {error}")
-
-    if not isinstance(loaded, dict):
-        fail(f"Expected top-level JSON object in {path}")
-
-    return loaded
+        client.get_message(channel_id, message_id, context=context)
+        return True
+    except DiscordMessageNotFoundError:
+        print(f"RECOVER: stale/deleted Discord message detected ({context}, message_id={message_id})")
+        return False
+    except Exception as error:
+        print(f"WARN: could not verify message ({context}, message_id={message_id}): {error}")
+        return False
 
 
-def save_json_file(path: str, data: dict[str, Any]) -> None:
-    """Write a JSON object to disk using UTF-8 and pretty indentation."""
-    ensure_parent_dir(path)
-
-    try:
-        with open(path, "w", encoding="utf-8") as file:
-            json.dump(data, file, indent=2, ensure_ascii=False)
-            file.write("\n")
-    except OSError as error:
-        fail(f"Failed to write {path}: {error}")
-
-
-def post_message(session: requests.Session, channel_id: str, content: str) -> str:
-    """Post a message and return the created Discord message ID."""
-    url = build_message_url(channel_id)
-    response = session.post(url, json={"content": content}, timeout=REQUEST_TIMEOUT_SECONDS)
-    check_response(response, "Failed to post Discord message")
-
-    try:
-        payload: dict[str, Any] = response.json()
-    except ValueError:
-        fail("Discord response was not valid JSON when posting message")
-
-    message_id = payload.get("id")
-    if not message_id:
-        fail("Discord response JSON did not include message id")
-
-    return str(message_id)
-
-
-def add_reaction(session: requests.Session, channel_id: str, message_id: str, emoji: str) -> None:
-    """Add a single emoji reaction to a posted Discord message."""
-    url = build_reaction_url(channel_id, message_id, emoji)
-    max_attempts = 5
-    transient_statuses = {500, 502, 503, 504}
-
-    for attempt in range(1, max_attempts + 1):
-        try:
-            response = session.put(url, timeout=REQUEST_TIMEOUT_SECONDS)
-        except requests.exceptions.RequestException as error:
-            if attempt < max_attempts:
-                print(
-                    f"Request exception adding reaction {emoji}: {error}. "
-                    "Retrying in 1 second..."
-                )
-                time.sleep(1.0)
-                continue
-            fail(f"Failed to add reaction {emoji} after {max_attempts} attempts: {error}")
-
-        if response.status_code == 429:
-            retry_after_seconds = 1.0
-            try:
-                payload: dict[str, Any] = response.json()
-                retry_after_value = payload.get("retry_after")
-                if isinstance(retry_after_value, (int, float)):
-                    retry_after_seconds = float(retry_after_value)
-                elif isinstance(retry_after_value, str):
-                    retry_after_seconds = float(retry_after_value)
-            except (ValueError, TypeError):
-                retry_after_seconds = 1.0
-
-            if retry_after_seconds < 0:
-                retry_after_seconds = 1.0
-
-            if attempt < max_attempts:
-                print(
-                    f"Rate limited adding reaction {emoji}, "
-                    f"sleeping {retry_after_seconds} seconds before retry"
-                )
-                time.sleep(retry_after_seconds)
-                continue
-            break
-
-        if response.status_code in transient_statuses:
-            if attempt < max_attempts:
-                print(
-                    f"Transient error adding reaction {emoji} "
-                    f"(HTTP {response.status_code}), retrying in 1 second..."
-                )
-                time.sleep(1.0)
-                continue
-            break
-
-        check_response(response, f"Failed to add reaction: {emoji}")
-        return
-
-    check_response(response, f"Failed to add reaction: {emoji}")
+def ensure_day_reactions(client: DiscordClient, channel_id: str, day_name: str, message_id: str) -> None:
+    for reaction in AVAILABILITY_REACTIONS:
+        encoded = urllib.parse.quote(reaction, safe="")
+        client.put_reaction(
+            channel_id,
+            message_id,
+            encoded,
+            context=f"seed reaction {reaction} for {day_name}",
+        )
 
 
 def main() -> None:
-    """Run the weekly availability post flow and seed day-specific reactions."""
     token = require_env("DISCORD_SCHEDULING_BOT_TOKEN")
     channel_id = require_env("DISCORD_SCHEDULING_CHANNEL_ID")
+    manual_week_start = os.getenv("SCHEDULE_WEEK_START", "").strip() or None
 
-    print(f"Starting weekly availability post (channel_id={channel_id})")
+    week_start, week_end = get_week_bounds(manual_week_start=manual_week_start)
+    week_key = get_week_key(week_start, week_end)
+    date_range = format_week_date_range(week_start, week_end)
+    intro_message = INTRO_MESSAGE_TEMPLATE.format(date_range=date_range)
+
+    print(
+        f"Starting weekly availability post (channel_id={channel_id}, week_key={week_key}, manual={bool(manual_week_start)})"
+    )
+
+    weekly_messages = load_json_object(WEEKLY_SCHEDULE_MESSAGES_FILE, log=print)
+    existing_week_state = weekly_messages.get(week_key)
+    if not isinstance(existing_week_state, dict):
+        existing_week_state = {}
 
     with requests.Session() as session:
         session.headers.update(
@@ -274,44 +143,67 @@ def main() -> None:
                 "User-Agent": USER_AGENT,
             }
         )
+        client = DiscordClient(session)
 
-        week_start, week_end = get_next_week_bounds()
-        week_key = get_week_key(week_start, week_end)
-        date_range = format_week_date_range(week_start, week_end)
-        intro_message = INTRO_MESSAGE_TEMPLATE.format(date_range=date_range)
+        intro_message_id = existing_week_state.get("intro_message_id")
+        if isinstance(intro_message_id, str) and intro_message_id and try_get_message(
+            client, channel_id, intro_message_id, f"verify intro for {week_key}"
+        ):
+            print(f"REUSE: intro message for {week_key} (message_id={intro_message_id})")
+        else:
+            payload = client.post_message(channel_id, intro_message, context=f"post intro for {week_key}")
+            intro_message_id = str(payload.get("id", ""))
+            if not intro_message_id:
+                fail("Discord response JSON did not include intro message id")
+            print(f"CREATE: intro message for {week_key} (message_id={intro_message_id})")
 
-        intro_message_id = post_message(session, channel_id, intro_message)
-        print(f"Posted intro message (message_id={intro_message_id})")
+        existing_days = existing_week_state.get("days")
+        if not isinstance(existing_days, dict):
+            existing_days = {}
 
         day_message_ids: dict[str, str] = {}
+        created_days = 0
         for day_name, day_message in DAY_MESSAGES:
-            day_message_id = post_message(session, channel_id, day_message)
-            print(f"Posted day message: {day_name} (message_id={day_message_id})")
+            existing_day_id = existing_days.get(day_name)
+            if isinstance(existing_day_id, str) and existing_day_id and try_get_message(
+                client,
+                channel_id,
+                existing_day_id,
+                context=f"verify {day_name} for {week_key}",
+            ):
+                day_message_ids[day_name] = existing_day_id
+                print(f"REUSE: day message {day_name} (message_id={existing_day_id})")
+                continue
+
+            payload = client.post_message(channel_id, day_message, context=f"post {day_name} for {week_key}")
+            day_message_id = str(payload.get("id", ""))
+            if not day_message_id:
+                fail(f"Discord response JSON did not include {day_name} message id")
+
+            ensure_day_reactions(client, channel_id, day_name, day_message_id)
             day_message_ids[day_name] = day_message_id
+            created_days += 1
+            print(f"CREATE: day message {day_name} (message_id={day_message_id})")
 
-            for reaction in AVAILABILITY_REACTIONS:
-                add_reaction(session, channel_id, day_message_id, reaction)
-                print(f"Added reaction {reaction} to {day_name}")
+    weekly_messages[week_key] = {
+        "channel_id": channel_id,
+        "date_range": date_range,
+        "created_at_utc": existing_week_state.get("created_at_utc") or utc_timestamp(),
+        "updated_at_utc": utc_timestamp(),
+        "intro_message_id": intro_message_id,
+        "days": day_message_ids,
+        "post_completed": len(day_message_ids) == len(DAY_MESSAGES),
+    }
 
-        weekly_messages = load_json_file(WEEKLY_SCHEDULE_MESSAGES_FILE)
-        weekly_messages[week_key] = {
-            "channel_id": channel_id,
-            "date_range": date_range,
-            "created_at_utc": get_current_utc_timestamp(),
-            "intro_message_id": intro_message_id,
-            "days": day_message_ids,
-        }
-        pruned_weekly_messages = prune_weeks(weekly_messages, keep_last=12)
-        if len(pruned_weekly_messages) < len(weekly_messages):
-            print("Pruned weekly schedule history to last 12 weeks")
+    pruned = prune_latest_keys(weekly_messages, keep_last=12)
+    if len(pruned) < len(weekly_messages):
+        print(f"RETENTION: pruned weekly schedule history from {len(weekly_messages)} to {len(pruned)} weeks")
 
-        save_json_file(WEEKLY_SCHEDULE_MESSAGES_FILE, pruned_weekly_messages)
-        print(
-            f"Saved weekly schedule message IDs for {week_key} "
-            f"to {WEEKLY_SCHEDULE_MESSAGES_FILE}"
-        )
-
-    print("Finished successfully")
+    save_json_object_atomic(WEEKLY_SCHEDULE_MESSAGES_FILE, pruned)
+    if created_days == 0 and existing_week_state:
+        print(f"SKIP: week {week_key} already posted and reused")
+    else:
+        print(f"Saved weekly schedule message IDs for {week_key} (created_days={created_days})")
 
 
 if __name__ == "__main__":

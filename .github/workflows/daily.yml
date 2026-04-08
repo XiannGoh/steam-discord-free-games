@@ -2,6 +2,11 @@ name: Steam Free Games
 
 on:
   workflow_dispatch:
+    inputs:
+      daily_date_utc:
+        description: "Optional UTC date key (YYYY-MM-DD) for manual rerun state targeting"
+        required: false
+        type: string
   schedule:
     # GitHub Actions cron uses UTC only (no timezone/DST support).
     # This runs at 13:00 UTC year-round: 9:00 AM in New York during EDT, 8:00 AM during EST.
@@ -36,6 +41,7 @@ jobs:
           DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
           DISCORD_BOT_TOKEN: ${{ secrets.DISCORD_BOT_TOKEN }}
           INSTAGRAM_USERNAME: ${{ secrets.INSTAGRAM_USERNAME }}
+          DAILY_DATE_UTC: ${{ inputs.daily_date_utc }}
         run: python main.py
 
       - name: Save updated state files

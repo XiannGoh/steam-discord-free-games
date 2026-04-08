@@ -2,6 +2,7 @@ import json
 import os
 import re
 import time
+import hashlib
 from datetime import datetime, timedelta, timezone
 from typing import Dict, List, Optional, Tuple
 from urllib.parse import urlparse
@@ -12,6 +13,12 @@ try:
     import instaloader
 except ImportError:
     instaloader = None
+from discord_api import DiscordClient, DiscordMessageNotFoundError
+from state_utils import (
+    load_json_object,
+    prune_latest_iso_dates,
+    save_json_object_atomic,
+)
 
 WEBHOOK_URL = os.getenv("DISCORD_WEBHOOK_URL")
 DISCORD_BOT_TOKEN = os.getenv("DISCORD_BOT_TOKEN")
@@ -20,6 +27,7 @@ PAGE_STATE_FILE = "page_state.json"
 INSTAGRAM_STATE_FILE = "instagram_seen.json"
 DISCORD_DAILY_POSTS_FILE = "discord_daily_posts.json"
 DISCORD_DAILY_POSTS_RETENTION_DAYS = 30
+DAILY_DATE_OVERRIDE_ENV = "DAILY_DATE_UTC"
 
 INSTAGRAM_CREATORS = [
     "gemgamingnetwork",
@@ -786,50 +794,52 @@ def post_to_discord_with_metadata(message: str, capture_metadata: bool = False) 
 
 
 def load_discord_daily_posts() -> Dict[str, dict]:
-    if not os.path.exists(DISCORD_DAILY_POSTS_FILE):
-        return {}
-
-    try:
-        with open(DISCORD_DAILY_POSTS_FILE, "r", encoding="utf-8") as f:
-            data = json.load(f)
-        return data if isinstance(data, dict) else {}
-    except Exception as e:
-        print(f"LOAD DISCORD DAILY POSTS FAILED: error={e}")
-        return {}
+    return load_json_object(DISCORD_DAILY_POSTS_FILE, log=print)
 
 
 def save_discord_daily_posts(data: Dict[str, dict]) -> None:
     data = prune_discord_daily_posts(data)
-    with open(DISCORD_DAILY_POSTS_FILE, "w", encoding="utf-8") as f:
-        json.dump(data, f, indent=2, sort_keys=True)
+    save_json_object_atomic(DISCORD_DAILY_POSTS_FILE, data)
 
 
 def prune_discord_daily_posts(data: Dict[str, dict]) -> Dict[str, dict]:
-    if len(data) <= DISCORD_DAILY_POSTS_RETENTION_DAYS:
-        return data
-
-    retained_keys = sorted(data.keys())[-DISCORD_DAILY_POSTS_RETENTION_DAYS:]
-    retained_key_set = set(retained_keys)
-    return {key: value for key, value in data.items() if key in retained_key_set}
+    pruned = prune_latest_iso_dates(data, DISCORD_DAILY_POSTS_RETENTION_DAYS, log=print)
+    if len(pruned) < len(data):
+        print(f"RETENTION: pruned daily posts state from {len(data)} to {len(pruned)} day keys")
+    return pruned
 
 
-def add_thumbs_up_reaction(channel_id: str, message_id: str) -> None:
+def get_target_day_key() -> str:
+    manual_day = (os.getenv(DAILY_DATE_OVERRIDE_ENV, "") or "").strip()
+    if not manual_day:
+        return datetime.now(timezone.utc).date().isoformat()
+    try:
+        datetime.fromisoformat(manual_day)
+    except ValueError:
+        raise RuntimeError(f"{DAILY_DATE_OVERRIDE_ENV} must be YYYY-MM-DD")
+    return manual_day
+
+
+def add_thumbs_up_reaction(client: DiscordClient, channel_id: str, message_id: str) -> None:
     if not DISCORD_BOT_TOKEN:
         raise RuntimeError("DISCORD_BOT_TOKEN is not set.")
+    client.put_reaction(
+        channel_id,
+        message_id,
+        "%F0%9F%91%8D",
+        context=f"add thumbs-up reaction channel={channel_id} message={message_id}",
+    )
 
-    reaction_url = (
-        f"https://discord.com/api/v10/channels/{channel_id}/messages/{message_id}/"
-        "reactions/%F0%9F%91%8D/@me"
-    )
-    response = requests.put(
-        reaction_url,
-        headers={
-            "Authorization": f"Bot {DISCORD_BOT_TOKEN}",
-            "Content-Type": "application/json",
-        },
-        timeout=30,
-    )
-    response.raise_for_status()
+
+def message_exists(client: DiscordClient, channel_id: str, message_id: str, context: str) -> bool:
+    try:
+        client.get_message(channel_id, message_id, context=context)
+        return True
+    except DiscordMessageNotFoundError:
+        return False
+    except Exception as error:
+        print(f"WARN: failed to verify existing message ({context}): {error}")
+        return False
 
 
 def record_posted_item(
@@ -839,6 +849,7 @@ def record_posted_item(
     title: str,
     url: str,
     source_type: str,
+    item_key: str,
     message_id: str,
     channel_id: Optional[str],
 ) -> None:
@@ -850,6 +861,7 @@ def record_posted_item(
             items = day_entry["items"]
 
         item_record = {
+            "item_key": item_key,
             "section": section,
             "title": title,
             "url": url,
@@ -858,7 +870,14 @@ def record_posted_item(
             "source_type": source_type,
             "posted_at": utc_now_iso(),
         }
-        items.append(item_record)
+        existing_index = next(
+            (index for index, existing in enumerate(items) if isinstance(existing, dict) and existing.get("item_key") == item_key),
+            None,
+        )
+        if existing_index is None:
+            items.append(item_record)
+        else:
+            items[existing_index] = item_record
         save_discord_daily_posts(daily_posts)
     except Exception as e:
         print(f"RECORD DAILY DISCORD ITEM FAILED: title={title} | error={e}")
@@ -876,97 +895,149 @@ def post_daily_pick_messages(free_items: List[dict], paid_items: List[dict], ins
 
     token_available = bool(DISCORD_BOT_TOKEN)
     daily_posts = load_discord_daily_posts() if token_available else {}
-    day_key = datetime.now(timezone.utc).date().isoformat()
+    day_key = get_target_day_key()
+    day_entry = daily_posts.setdefault(day_key, {})
+    if not isinstance(day_entry, dict):
+        day_entry = {}
+        daily_posts[day_key] = day_entry
 
     if not token_available:
         print("DISCORD_BOT_TOKEN missing; skipping auto-reactions and message-ID tracking.")
+    else:
+        print(f"Daily picks target day={day_key}")
 
-    post_to_discord("🎯 Daily Picks — vote with 👍 on your favorites")
+    run_state = day_entry.get("run_state")
+    if not isinstance(run_state, dict):
+        run_state = {}
+        day_entry["run_state"] = run_state
+    run_state.setdefault("section_headers", {})
+    run_state["last_attempt_at_utc"] = utc_now_iso()
+
+    if bool(run_state.get("completed")):
+        print(f"SKIP: daily picks already completed for {day_key}; rerun protection active")
+        save_discord_daily_posts(daily_posts)
+        return
+
+    discord_client: Optional[DiscordClient] = None
+    if token_available:
+        session = requests.Session()
+        session.headers.update(
+            {
+                "Authorization": f"Bot {DISCORD_BOT_TOKEN}",
+                "Content-Type": "application/json",
+            }
+        )
+        discord_client = DiscordClient(session)
+
+    def post_or_reuse_simple(message: str, state_key: str, state_obj: dict) -> None:
+        existing_message_id = state_obj.get("message_id")
+        existing_channel_id = state_obj.get("channel_id")
+        if (
+            token_available
+            and discord_client
+            and isinstance(existing_message_id, str)
+            and isinstance(existing_channel_id, str)
+            and message_exists(
+                discord_client,
+                existing_channel_id,
+                existing_message_id,
+                context=f"verify {state_key} for {day_key}",
+            )
+        ):
+            print(f"REUSE: {state_key} for {day_key} (message_id={existing_message_id})")
+            return
+
+        metadata = post_to_discord_with_metadata(message, capture_metadata=token_available)
+        if metadata and metadata.get("message_id"):
+            state_obj["message_id"] = metadata["message_id"]
+            state_obj["channel_id"] = metadata.get("channel_id")
+            state_obj["posted_at_utc"] = utc_now_iso()
+            print(f"CREATE: posted {state_key} for {day_key} (message_id={metadata['message_id']})")
+        else:
+            print(f"WARN: missing metadata for {state_key} on {day_key}")
+        save_discord_daily_posts(daily_posts)
+
+    intro_state = run_state.setdefault("intro", {})
+    post_or_reuse_simple("🎯 Daily Picks — vote with 👍 on your favorites", "intro", intro_state)
     sleep_briefly()
 
-    if free_items:
-        post_to_discord("🎮 Free Picks")
+    section_inputs = [
+        ("free", "🎮 Free Picks", free_items, False, "steam_free"),
+        ("paid", "💸 Paid Under $20", paid_items, True, "paid_under_20"),
+        ("instagram", "📸 Instagram Creator Picks", instagram_posts, False, "instagram"),
+    ]
+
+    for section_key, header_message, section_items, is_paid, source_type in section_inputs:
+        if not section_items:
+            continue
+
+        section_headers = run_state.setdefault("section_headers", {})
+        section_state = section_headers.setdefault(section_key, {})
+        post_or_reuse_simple(header_message, f"{section_key}_header", section_state)
         sleep_briefly()
-        for idx, item in enumerate(free_items, start=1):
-            metadata = post_to_discord_with_metadata(
-                format_steam_item_message(item, idx, paid=False),
-                capture_metadata=token_available,
+
+        existing_items = day_entry.get("items")
+        if not isinstance(existing_items, list):
+            existing_items = []
+            day_entry["items"] = existing_items
+
+        for idx, item in enumerate(section_items, start=1):
+            title = item["title"] if section_key != "instagram" else f"@{item['username']}"
+            url = item["url"]
+            item_key = hashlib.sha256(f"{section_key}|{source_type}|{url}".encode("utf-8")).hexdigest()[:16]
+            existing_record = next(
+                (entry for entry in existing_items if isinstance(entry, dict) and entry.get("item_key") == item_key),
+                None,
             )
-            if token_available:
-                if metadata and metadata.get("message_id") and metadata.get("channel_id"):
-                    try:
-                        add_thumbs_up_reaction(metadata["channel_id"], metadata["message_id"])
-                    except Exception as e:
-                        print(f"ADD REACTION FAILED: title={item['title']} | error={e}")
-                    record_posted_item(
-                        daily_posts=daily_posts,
-                        day_key=day_key,
-                        section="free",
-                        title=item["title"],
-                        url=item["url"],
-                        source_type="steam_free",
-                        message_id=metadata["message_id"],
-                        channel_id=metadata["channel_id"],
-                    )
-                else:
-                    print(f"DISCORD MESSAGE METADATA MISSING: title={item['title']}")
+
+            if (
+                token_available
+                and discord_client
+                and isinstance(existing_record, dict)
+                and isinstance(existing_record.get("channel_id"), str)
+                and isinstance(existing_record.get("message_id"), str)
+                and message_exists(
+                    discord_client,
+                    existing_record["channel_id"],
+                    existing_record["message_id"],
+                    context=f"verify {section_key} item for {day_key}",
+                )
+            ):
+                print(f"REUSE: {section_key} item {title} for {day_key}")
+                continue
+
+            content = (
+                format_instagram_item_message(item, idx)
+                if section_key == "instagram"
+                else format_steam_item_message(item, idx, paid=is_paid)
+            )
+            metadata = post_to_discord_with_metadata(content, capture_metadata=token_available)
+            if token_available and metadata and metadata.get("message_id") and metadata.get("channel_id"):
+                try:
+                    if discord_client:
+                        add_thumbs_up_reaction(discord_client, metadata["channel_id"], metadata["message_id"])
+                except Exception as e:
+                    print(f"ADD REACTION FAILED: title={title} | error={e}")
+                record_posted_item(
+                    daily_posts=daily_posts,
+                    day_key=day_key,
+                    section=section_key,
+                    title=title,
+                    url=url,
+                    source_type=source_type,
+                    item_key=item_key,
+                    message_id=metadata["message_id"],
+                    channel_id=metadata["channel_id"],
+                )
+                print(f"CREATE: posted {section_key} item {title} for {day_key}")
+            else:
+                print(f"WARN: missing metadata for {section_key} item title={title}")
             sleep_briefly()
 
-    if paid_items:
-        post_to_discord("💸 Paid Under $20")
-        sleep_briefly()
-        for idx, item in enumerate(paid_items, start=1):
-            metadata = post_to_discord_with_metadata(
-                format_steam_item_message(item, idx, paid=True),
-                capture_metadata=token_available,
-            )
-            if token_available:
-                if metadata and metadata.get("message_id") and metadata.get("channel_id"):
-                    try:
-                        add_thumbs_up_reaction(metadata["channel_id"], metadata["message_id"])
-                    except Exception as e:
-                        print(f"ADD REACTION FAILED: title={item['title']} | error={e}")
-                    record_posted_item(
-                        daily_posts=daily_posts,
-                        day_key=day_key,
-                        section="paid",
-                        title=item["title"],
-                        url=item["url"],
-                        source_type="paid_under_20",
-                        message_id=metadata["message_id"],
-                        channel_id=metadata["channel_id"],
-                    )
-                else:
-                    print(f"DISCORD MESSAGE METADATA MISSING: title={item['title']}")
-            sleep_briefly()
-
-    if instagram_posts:
-        post_to_discord("📸 Instagram Creator Picks")
-        sleep_briefly()
-        for idx, post in enumerate(instagram_posts, start=1):
-            metadata = post_to_discord_with_metadata(
-                format_instagram_item_message(post, idx),
-                capture_metadata=token_available,
-            )
-            if token_available:
-                if metadata and metadata.get("message_id") and metadata.get("channel_id"):
-                    try:
-                        add_thumbs_up_reaction(metadata["channel_id"], metadata["message_id"])
-                    except Exception as e:
-                        print(f"ADD REACTION FAILED: username={post['username']} | error={e}")
-                    record_posted_item(
-                        daily_posts=daily_posts,
-                        day_key=day_key,
-                        section="instagram",
-                        title=f"@{post['username']}",
-                        url=post["url"],
-                        source_type="instagram",
-                        message_id=metadata["message_id"],
-                        channel_id=metadata["channel_id"],
-                    )
-                else:
-                    print(f"DISCORD MESSAGE METADATA MISSING: username={post['username']}")
-            sleep_briefly()
+    run_state["completed"] = True
+    run_state["completed_at_utc"] = utc_now_iso()
+    save_discord_daily_posts(daily_posts)
+    print(f"COMPLETE: daily picks state marked completed for {day_key}")
 
 
 def dedupe_by_app_id(items: List[Tuple[str, str]]) -> List[Tuple[str, str]]:
@@ -1070,6 +1141,7 @@ def fetch_instagram_posts():
     
 def main():
     state = load_state()
+    print(f"Daily run target date (UTC): {get_target_day_key()}")
 
     start_page, end_page = get_page_window()
     print(f"Current rotating page window: {start_page}-{end_page}")

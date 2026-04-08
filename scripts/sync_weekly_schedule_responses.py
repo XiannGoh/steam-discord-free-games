@@ -9,6 +9,9 @@ from typing import Any
 
 import requests
 
+from discord_api import DiscordClient, DiscordMessageNotFoundError
+from state_utils import load_json_object, prune_latest_keys, save_json_object_atomic
+
 DISCORD_API_BASE = "https://discord.com/api/v10"
 REQUEST_TIMEOUT_SECONDS = 30
 USER_AGENT = "steam-discord-free-games/weekly-scheduling-bot"
@@ -56,56 +59,22 @@ def check_response(response: requests.Response, context: str) -> None:
         sys.exit(1)
 
 
-def ensure_parent_dir(path: str) -> None:
-    """Create the parent directory for a file path if needed."""
-    parent_dir = os.path.dirname(path)
-    if parent_dir:
-        try:
-            os.makedirs(parent_dir, exist_ok=True)
-        except OSError as error:
-            fail(f"Failed to create directory {parent_dir}: {error}")
-
-
 def load_json_file(path: str) -> dict[str, Any]:
-    """Load a JSON object from disk, creating an empty one if missing."""
-    if not os.path.exists(path):
-        save_json_file(path, {})
-        return {}
-
-    try:
-        with open(path, "r", encoding="utf-8") as file:
-            loaded = json.load(file)
-    except json.JSONDecodeError:
-        fail(f"Invalid JSON in {path}")
-    except OSError as error:
-        fail(f"Failed to read {path}: {error}")
-
-    if not isinstance(loaded, dict):
-        fail(f"Expected top-level JSON object in {path}")
-
-    return loaded
+    """Load a JSON object from disk."""
+    return load_json_object(path, log=print)
 
 
 def save_json_file(path: str, data: dict[str, Any]) -> None:
-    """Write a JSON object to disk using UTF-8 and pretty indentation."""
-    ensure_parent_dir(path)
-
+    """Write a JSON object to disk using atomic persistence."""
     try:
-        with open(path, "w", encoding="utf-8") as file:
-            json.dump(data, file, indent=2, ensure_ascii=False)
-            file.write("\n")
+        save_json_object_atomic(path, data)
     except OSError as error:
         fail(f"Failed to write {path}: {error}")
 
 
 def prune_weeks(data: dict[str, Any], keep_last: int = 12) -> dict[str, Any]:
     """Keep only the latest N week entries ordered by week key."""
-    week_keys = sorted(data.keys())
-    if len(week_keys) <= keep_last:
-        return data
-
-    keys_to_keep = set(week_keys[-keep_last:])
-    return {week_key: data[week_key] for week_key in week_keys if week_key in keys_to_keep}
+    return prune_latest_keys(data, keep_last=keep_last)
 
 
 def build_current_user_url() -> str:
@@ -698,6 +667,7 @@ def main() -> None:
                 "User-Agent": USER_AGENT,
             }
         )
+        discord_client = DiscordClient(posting_session)
 
         summary_message = format_summary_message(date_range, latest_week_summary)
         previous_summary_message_id = week_outputs.get("summary_message_id")
@@ -709,18 +679,48 @@ def main() -> None:
         previous_summary_message_content = week_outputs.get("summary_message_content")
 
         if summary_message_id is None:
-            summary_message_id = post_channel_message(posting_session, channel_id, summary_message)
+            payload = discord_client.post_message(
+                channel_id, summary_message, context=f"post summary for {latest_week_key}"
+            )
+            summary_message_id = str(payload.get("id", ""))
             week_outputs["summary_posted"] = True
             week_outputs["summary_message_id"] = summary_message_id
             week_outputs["summary_message_content"] = summary_message
-            print(f"Posted summary for week {latest_week_key} (message_id={summary_message_id})")
+            print(f"CREATE: posted summary for week {latest_week_key} (message_id={summary_message_id})")
         elif previous_summary_message_content != summary_message:
-            edit_channel_message(posting_session, channel_id, summary_message_id, summary_message)
-            week_outputs["summary_posted"] = True
-            week_outputs["summary_message_content"] = summary_message
-            print(f"Edited summary for week {latest_week_key} (message_id={summary_message_id})")
+            try:
+                discord_client.edit_message(
+                    channel_id,
+                    summary_message_id,
+                    summary_message,
+                    context=f"edit summary for {latest_week_key}",
+                )
+                week_outputs["summary_posted"] = True
+                week_outputs["summary_message_content"] = summary_message
+                print(
+                    f"EDIT: updated summary for week {latest_week_key} "
+                    f"(message_id={summary_message_id})"
+                )
+            except DiscordMessageNotFoundError:
+                print(
+                    f"RECOVER: stale/deleted summary message for week {latest_week_key} "
+                    f"(message_id={summary_message_id}); posting replacement"
+                )
+                payload = discord_client.post_message(
+                    channel_id,
+                    summary_message,
+                    context=f"recover summary for {latest_week_key}",
+                )
+                summary_message_id = str(payload.get("id", ""))
+                week_outputs["summary_posted"] = True
+                week_outputs["summary_message_id"] = summary_message_id
+                week_outputs["summary_message_content"] = summary_message
+                print(
+                    f"RECOVER: posted replacement summary for week {latest_week_key} "
+                    f"(message_id={summary_message_id})"
+                )
         else:
-            print(f"Summary unchanged for week {latest_week_key}; skipping summary edit")
+            print(f"SKIP: summary unchanged for week {latest_week_key}; skipping summary edit")
 
         previous_missing_users = week_outputs.get("reminder_missing_users")
         if not isinstance(previous_missing_users, list):
@@ -736,14 +736,14 @@ def main() -> None:
                 week_outputs["reminder_message_id"] = reminder_message_id
                 week_outputs["reminder_missing_users"] = missing_user_ids
                 print(
-                    f"Posted reminder for week {latest_week_key} "
+                    f"CREATE: posted reminder for week {latest_week_key} "
                     f"(message_id={reminder_message_id}, missing={len(missing_user_ids)})"
                 )
             else:
-                print(f"Reminder unchanged for week {latest_week_key}; skipping reminder post")
+                print(f"SKIP: reminder unchanged for week {latest_week_key}; skipping reminder post")
         else:
             week_outputs["reminder_missing_users"] = []
-            print(f"No missing users for week {latest_week_key}; skipping reminder post")
+            print(f"SKIP: no missing users for week {latest_week_key}; skipping reminder post")
 
     weekly_bot_outputs[latest_week_key] = week_outputs
     pruned_bot_outputs = prune_weeks(weekly_bot_outputs, keep_last=12)

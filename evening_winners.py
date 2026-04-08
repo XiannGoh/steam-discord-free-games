@@ -1,21 +1,19 @@
-import json
+import hashlib
 import os
-import time
 from datetime import datetime, timezone
 from typing import Dict, List, Optional
 
 import requests
 
+from discord_api import DiscordClient, DiscordMessageNotFoundError
+from state_utils import load_json_object, save_json_object_atomic
+
 DISCORD_DAILY_POSTS_FILE = "discord_daily_posts.json"
-DISCORD_API_BASE = "https://discord.com/api/v10"
 THUMBS_UP_EMOJI = "👍"
-MAX_RETRIES = 5
-BASE_BACKOFF_SECONDS = 2
-REQUEST_TIMEOUT_SECONDS = 30
 
 DISCORD_BOT_TOKEN = os.getenv("DISCORD_BOT_TOKEN")
 DISCORD_WINNERS_CHANNEL_ID = os.getenv("DISCORD_WINNERS_CHANNEL_ID")
-
+WINNERS_DATE_OVERRIDE_ENV = "WINNERS_DATE_UTC"
 
 SECTION_CONFIG = {
     "free": "Free Picks",
@@ -26,69 +24,19 @@ SECTION_ORDER = ["free", "paid", "instagram"]
 
 
 def load_discord_daily_posts() -> Dict[str, dict]:
-    if not os.path.exists(DISCORD_DAILY_POSTS_FILE):
-        return {}
-
-    with open(DISCORD_DAILY_POSTS_FILE, "r", encoding="utf-8") as f:
-        data = json.load(f)
-
-    return data if isinstance(data, dict) else {}
+    return load_json_object(DISCORD_DAILY_POSTS_FILE, log=print)
 
 
-def request_with_retry(method: str, url: str, headers: Dict[str, str], json_payload: Optional[dict] = None) -> requests.Response:
-    last_exc: Optional[Exception] = None
-
-    for attempt in range(1, MAX_RETRIES + 1):
-        try:
-            response = requests.request(
-                method=method,
-                url=url,
-                headers=headers,
-                json=json_payload,
-                timeout=REQUEST_TIMEOUT_SECONDS,
-            )
-
-            if response.status_code in (429, 500, 502, 503, 504):
-                retry_after = response.headers.get("Retry-After")
-                if retry_after:
-                    try:
-                        sleep_seconds = max(float(retry_after), 0.0)
-                    except ValueError:
-                        sleep_seconds = BASE_BACKOFF_SECONDS * attempt
-                else:
-                    sleep_seconds = BASE_BACKOFF_SECONDS * attempt
-
-                if attempt == MAX_RETRIES:
-                    response.raise_for_status()
-
-                print(
-                    f"RETRYABLE DISCORD ERROR: status={response.status_code} attempt={attempt}/{MAX_RETRIES}; sleeping {sleep_seconds:.1f}s"
-                )
-                time.sleep(sleep_seconds)
-                continue
-
-            response.raise_for_status()
-            return response
-        except requests.RequestException as exc:
-            last_exc = exc
-            if attempt == MAX_RETRIES:
-                raise
-
-            sleep_seconds = BASE_BACKOFF_SECONDS * attempt
-            print(
-                f"REQUEST EXCEPTION: attempt={attempt}/{MAX_RETRIES}; sleeping {sleep_seconds:.1f}s | error={exc}"
-            )
-            time.sleep(sleep_seconds)
-
-    if last_exc:
-        raise last_exc
-    raise RuntimeError("request_with_retry exhausted retries unexpectedly")
+def save_discord_daily_posts(data: Dict[str, dict]) -> None:
+    save_json_object_atomic(DISCORD_DAILY_POSTS_FILE, data)
 
 
-def fetch_message(channel_id: str, message_id: str, headers: Dict[str, str]) -> dict:
-    url = f"{DISCORD_API_BASE}/channels/{channel_id}/messages/{message_id}"
-    response = request_with_retry("GET", url, headers)
-    return response.json()
+def get_target_day_key() -> str:
+    manual_day = (os.getenv(WINNERS_DATE_OVERRIDE_ENV, "") or "").strip()
+    if not manual_day:
+        return datetime.now(timezone.utc).date().isoformat()
+    datetime.fromisoformat(manual_day)
+    return manual_day
 
 
 def get_thumbsup_count(message_payload: dict) -> int:
@@ -123,9 +71,12 @@ def build_winners_message(winners_by_section: Dict[str, List[dict]]) -> str:
     return "\n".join(lines).strip()
 
 
-def post_winners_message(channel_id: str, headers: Dict[str, str], message: str) -> None:
-    url = f"{DISCORD_API_BASE}/channels/{channel_id}/messages"
-    request_with_retry("POST", url, headers, json_payload={"content": message})
+def post_winners_message(client: DiscordClient, channel_id: str, message: str) -> str:
+    payload = client.post_message(channel_id, message, context="post winners message")
+    message_id = str(payload.get("id", ""))
+    if not message_id:
+        raise RuntimeError("Discord response missing winners message id")
+    return message_id
 
 
 def main() -> None:
@@ -134,45 +85,106 @@ def main() -> None:
     if not DISCORD_WINNERS_CHANNEL_ID:
         raise RuntimeError("DISCORD_WINNERS_CHANNEL_ID is not set.")
 
-    daily_posts = load_discord_daily_posts()
-    day_key = datetime.now(timezone.utc).date().isoformat()
-    today_entry = daily_posts.get(day_key, {})
-    items = today_entry.get("items", []) if isinstance(today_entry, dict) else []
+    day_key = get_target_day_key()
+    print(f"Starting evening winners for day={day_key}")
 
-    headers = {
-        "Authorization": f"Bot {DISCORD_BOT_TOKEN}",
-        "Content-Type": "application/json",
-    }
+    daily_posts = load_discord_daily_posts()
+    today_entry = daily_posts.get(day_key, {})
+    if not isinstance(today_entry, dict):
+        today_entry = {}
+        daily_posts[day_key] = today_entry
+    items = today_entry.get("items", []) if isinstance(today_entry, dict) else []
 
     winners_by_section: Dict[str, List[dict]] = {key: [] for key in SECTION_ORDER}
 
-    for item in items:
-        section = item.get("section")
-        channel_id = item.get("channel_id")
-        message_id = item.get("message_id")
-
-        if section not in SECTION_CONFIG:
-            continue
-        if not channel_id or not message_id:
-            continue
-
-        message_payload = fetch_message(channel_id=str(channel_id), message_id=str(message_id), headers=headers)
-        raw_thumbsup_count = get_thumbsup_count(message_payload)
-        human_votes = raw_thumbsup_count - 1
-
-        if human_votes < 1:
-            continue
-
-        winners_by_section[section].append(
+    with requests.Session() as session:
+        session.headers.update(
             {
-                "title": item.get("title", "Untitled"),
-                "url": item.get("url", ""),
-                "human_votes": human_votes,
+                "Authorization": f"Bot {DISCORD_BOT_TOKEN}",
+                "Content-Type": "application/json",
             }
         )
+        client = DiscordClient(session)
 
-    message = build_winners_message(winners_by_section)
-    post_winners_message(DISCORD_WINNERS_CHANNEL_ID, headers, message)
+        for item in items:
+            section = item.get("section")
+            channel_id = item.get("channel_id")
+            message_id = item.get("message_id")
+
+            if section not in SECTION_CONFIG:
+                continue
+            if not channel_id or not message_id:
+                continue
+
+            try:
+                message_payload = client.get_message(
+                    channel_id=str(channel_id),
+                    message_id=str(message_id),
+                    context=f"fetch votes for {item.get('title', 'item')}",
+                )
+            except DiscordMessageNotFoundError:
+                print(f"RECOVER: stale/deleted daily item message skipped (message_id={message_id})")
+                continue
+
+            raw_thumbsup_count = get_thumbsup_count(message_payload)
+            human_votes = raw_thumbsup_count - 1
+
+            if human_votes < 1:
+                continue
+
+            winners_by_section[section].append(
+                {
+                    "title": item.get("title", "Untitled"),
+                    "url": item.get("url", ""),
+                    "human_votes": human_votes,
+                }
+            )
+
+        message = build_winners_message(winners_by_section)
+        winners_state = today_entry.get("winners_state")
+        if not isinstance(winners_state, dict):
+            winners_state = {}
+            today_entry["winners_state"] = winners_state
+
+        content_hash = hashlib.sha256(message.encode("utf-8")).hexdigest()
+        previous_message_id = winners_state.get("message_id")
+        previous_content_hash = winners_state.get("content_hash")
+
+        if isinstance(previous_message_id, str) and previous_message_id:
+            try:
+                client.get_message(
+                    DISCORD_WINNERS_CHANNEL_ID,
+                    previous_message_id,
+                    context=f"verify winners message for {day_key}",
+                )
+                if previous_content_hash == content_hash:
+                    print(f"SKIP: winners already posted and unchanged for {day_key}")
+                    return
+                client.edit_message(
+                    DISCORD_WINNERS_CHANNEL_ID,
+                    previous_message_id,
+                    message,
+                    context=f"edit winners message for {day_key}",
+                )
+                winners_state["content_hash"] = content_hash
+                winners_state["last_action"] = "edit"
+                winners_state["updated_at_utc"] = datetime.now(timezone.utc).isoformat()
+                save_discord_daily_posts(daily_posts)
+                print(f"EDIT: updated winners message for {day_key} (message_id={previous_message_id})")
+                return
+            except DiscordMessageNotFoundError:
+                print(
+                    f"RECOVER: stale/deleted winners message for {day_key} "
+                    f"(message_id={previous_message_id}); posting replacement"
+                )
+
+        new_message_id = post_winners_message(client, DISCORD_WINNERS_CHANNEL_ID, message)
+        winners_state["message_id"] = new_message_id
+        winners_state["content_hash"] = content_hash
+        winners_state["last_action"] = "create"
+        winners_state["posted_at_utc"] = datetime.now(timezone.utc).isoformat()
+        save_discord_daily_posts(daily_posts)
+        print(f"CREATE: posted winners message for {day_key} (message_id={new_message_id})")
 
 
 if __name__ == "__main__":
