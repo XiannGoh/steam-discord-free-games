@@ -5,6 +5,7 @@ import os
 import sys
 import time
 import urllib.parse
+from datetime import date, datetime, timedelta
 from typing import Any
 
 import requests
@@ -34,6 +35,7 @@ DAY_NAMES: list[str] = [
 AVAILABILITY_REACTIONS: list[str] = ["✅", "🌅", "☀️", "🌙", "❌", "📝"]
 SUMMARY_SLOT_ORDER: list[str] = ["✅", "🌅", "☀️", "🌙", "📝"]
 SUMMARY_DISPLAY_ORDER: list[str] = ["✅", "🌅", "☀️", "🌙", "📝", "❌"]
+MAX_SUMMARY_LINE_LENGTH = 185
 
 
 def fail(message: str) -> None:
@@ -48,6 +50,16 @@ def require_env(name: str) -> str:
     if not value:
         fail(f"Missing required environment variable: {name}")
     return value
+
+
+
+
+def env_flag(name: str, default: bool = False) -> bool:
+    """Read a boolean environment variable with common truthy values."""
+    value = os.getenv(name)
+    if value is None:
+        return default
+    return value.strip().lower() in {"1", "true", "yes", "on"}
 
 
 def check_response(response: requests.Response, context: str) -> None:
@@ -280,7 +292,7 @@ def collect_latest_custom_replies_by_day(
 
 
 def build_weekly_summary(weekly_responses: dict[str, Any]) -> dict[str, Any]:
-    """Build derived weekly summary with day and slot overlap insights."""
+    """Build derived weekly summary with day/slot overlap and voter details."""
     summary_by_week: dict[str, Any] = {}
 
     for week_key, week_data in weekly_responses.items():
@@ -295,10 +307,20 @@ def build_weekly_summary(weekly_responses: dict[str, Any]) -> dict[str, Any]:
         slot_counts: dict[str, dict[str, int]] = {
             day: {slot: 0 for slot in SUMMARY_SLOT_ORDER} for day in DAY_NAMES
         }
+        slot_voters: dict[str, dict[str, list[dict[str, str]]]] = {
+            day: {slot: [] for slot in SUMMARY_SLOT_ORDER} for day in DAY_NAMES
+        }
 
-        for user_data in users.values():
+        for user_id, user_data in users.items():
             if not isinstance(user_data, dict):
                 continue
+
+            display_name = normalize_optional_text(user_data.get("global_name")) or normalize_optional_text(
+                user_data.get("username")
+            )
+            if display_name is None:
+                display_name = f"User {user_id}"
+
             days = user_data.get("days")
             if not isinstance(days, dict):
                 continue
@@ -320,6 +342,12 @@ def build_weekly_summary(weekly_responses: dict[str, Any]) -> dict[str, Any]:
                 for slot in SUMMARY_SLOT_ORDER:
                     if slot in reaction_set:
                         slot_counts[day_name][slot] += 1
+                        slot_voters[day_name][slot].append(
+                            {
+                                "user_id": str(user_id),
+                                "display_name": display_name,
+                            }
+                        )
 
         best_overlap_day, best_overlap_slot = max(
             [(day_name, slot) for day_name in DAY_NAMES for slot in SUMMARY_SLOT_ORDER],
@@ -331,10 +359,12 @@ def build_weekly_summary(weekly_responses: dict[str, Any]) -> dict[str, Any]:
         )
 
         summary_by_week[week_key] = {
+            "week_key": week_key,
             "date_range": week_data.get("date_range"),
             "summary": {
                 "day_counts": day_counts,
                 "slot_counts": slot_counts,
+                "slot_voters": slot_voters,
                 "best_overlap": {
                     "day": best_overlap_day,
                     "slot": best_overlap_slot,
@@ -429,8 +459,57 @@ def format_reminder_message(date_range: str, missing_user_ids: list[str]) -> str
     return "\n".join(lines)
 
 
+def parse_week_start_date(week_key: str) -> date | None:
+    """Parse a week key like YYYY-MM-DD_to_YYYY-MM-DD."""
+    try:
+        start_text, _, _ = week_key.partition("_to_")
+        return datetime.strptime(start_text, "%Y-%m-%d").date()
+    except ValueError:
+        return None
+
+
+def parse_start_date_from_date_range(date_range: str) -> date | None:
+    """Parse date range text like 'Apr 13–19, 2026' and return its start date."""
+    cleaned = date_range.replace("—", "–")
+    try:
+        month_day, _, year_text = cleaned.partition(",")
+        month_text, _, day_range = month_day.strip().partition(" ")
+        start_day_text, _, _ = day_range.partition("–")
+        if not month_text or not start_day_text or not year_text.strip():
+            return None
+        return datetime.strptime(
+            f"{month_text} {start_day_text.strip()} {year_text.strip()}",
+            "%b %d %Y",
+        ).date()
+    except ValueError:
+        return None
+
+
+def compute_week_dates_from_summary(week_summary: dict[str, Any]) -> dict[str, date]:
+    """Map weekday names to concrete dates using week key or date range context."""
+    week_key = week_summary.get("week_key")
+    if isinstance(week_key, str):
+        start = parse_week_start_date(week_key)
+        if start is not None:
+            return {
+                day_name: start + timedelta(days=index)
+                for index, day_name in enumerate(DAY_NAMES)
+            }
+
+    date_range = week_summary.get("date_range")
+    if isinstance(date_range, str):
+        maybe_start = parse_start_date_from_date_range(date_range)
+        if maybe_start is not None:
+            return {
+                day_name: maybe_start + timedelta(days=index)
+                for index, day_name in enumerate(DAY_NAMES)
+            }
+
+    return {}
+
+
 def format_summary_message(date_range: str, week_summary: dict[str, Any]) -> str:
-    """Build a concise deterministic summary message from weekly summary data."""
+    """Build a richer deterministic summary message from weekly summary data."""
     summary = week_summary.get("summary")
     if not isinstance(summary, dict):
         fail("Missing or invalid summary object for current week")
@@ -438,6 +517,7 @@ def format_summary_message(date_range: str, week_summary: dict[str, Any]) -> str
     day_counts = summary.get("day_counts")
     best_overlap = summary.get("best_overlap")
     slot_counts = summary.get("slot_counts")
+    slot_voters = summary.get("slot_voters")
 
     if not isinstance(day_counts, dict):
         fail("Missing or invalid day_counts in current week summary")
@@ -445,46 +525,133 @@ def format_summary_message(date_range: str, week_summary: dict[str, Any]) -> str
         fail("Missing or invalid best_overlap in current week summary")
     if not isinstance(slot_counts, dict):
         fail("Missing or invalid slot_counts in current week summary")
+    if not isinstance(slot_voters, dict):
+        slot_voters = {}
 
     best_day = best_overlap.get("day")
     if not isinstance(best_day, str):
         fail("Missing or invalid best_overlap fields in current week summary")
 
-    ranked_days = sorted(
-        DAY_NAMES,
-        key=lambda day_name: (-int(day_counts.get(day_name, 0)), DAY_NAMES.index(day_name)),
-    )
+    week_dates = compute_week_dates_from_summary(week_summary)
 
-    def format_day_slot_counts(day_name: str) -> str:
+    def day_with_date_label(day_name: str) -> str:
+        day_date = week_dates.get(day_name)
+        if day_date is None:
+            return day_name
+        return f"{day_name} {day_date.month}/{day_date.day}"
+
+    def format_voter_line(day_name: str, slot: str, slot_count: int) -> str:
+        raw_day_slot_voters = slot_voters.get(day_name)
+        raw_voters = []
+        if isinstance(raw_day_slot_voters, dict):
+            raw_voters = raw_day_slot_voters.get(slot, [])
+
+        voter_names: list[str] = []
+        seen_names: set[str] = set()
+        if isinstance(raw_voters, list):
+            for raw_voter in raw_voters:
+                if not isinstance(raw_voter, dict):
+                    continue
+                display_name = normalize_optional_text(raw_voter.get("display_name"))
+                if display_name is None or display_name in seen_names:
+                    continue
+                seen_names.add(display_name)
+                voter_names.append(display_name)
+
+        base_prefix = f"{slot} {slot_count} — "
+        if not voter_names:
+            return f"{base_prefix}(names unavailable)"
+
+        full_line = f"{base_prefix}{', '.join(voter_names)}"
+        if len(full_line) <= MAX_SUMMARY_LINE_LENGTH:
+            return full_line
+
+        kept_names: list[str] = []
+        for index, name in enumerate(voter_names):
+            remaining_after = len(voter_names) - (index + 1)
+            candidate_names = ", ".join([*kept_names, name])
+            if remaining_after > 0:
+                candidate_line = f"{base_prefix}{candidate_names}, +{remaining_after} more"
+            else:
+                candidate_line = f"{base_prefix}{candidate_names}"
+            if len(candidate_line) <= MAX_SUMMARY_LINE_LENGTH:
+                kept_names.append(name)
+            else:
+                break
+
+        if not kept_names:
+            return f"{base_prefix}+{len(voter_names)} more"
+
+        remaining = len(voter_names) - len(kept_names)
+        if remaining > 0:
+            return f"{base_prefix}{', '.join(kept_names)}, +{remaining} more"
+        return f"{base_prefix}{', '.join(kept_names)}"
+
+    def build_day_slot_lines(day_name: str) -> list[str]:
         raw_day_slot_counts = slot_counts.get(day_name)
         if not isinstance(raw_day_slot_counts, dict):
             raw_day_slot_counts = {}
 
-        ordered_parts: list[str] = []
+        ordered_lines: list[str] = []
         for slot in SUMMARY_DISPLAY_ORDER:
             slot_count = int(raw_day_slot_counts.get(slot, 0))
             if slot_count > 0:
-                ordered_parts.append(f"{slot} {slot_count}")
-        if ordered_parts:
-            return ", ".join(ordered_parts)
-        return "No responses"
+                ordered_lines.append(format_voter_line(day_name, slot, slot_count))
+        return ordered_lines
 
-    ranked_day_lines = [
-        f"{index + 1}. {day_name} — {format_day_slot_counts(day_name)}"
-        for index, day_name in enumerate(ranked_days)
-    ]
+    ranked_days = sorted(
+        DAY_NAMES,
+        key=lambda day_name: (
+            -max(int(slot_counts.get(day_name, {}).get(slot, 0)) for slot in SUMMARY_SLOT_ORDER),
+            -int(day_counts.get(day_name, 0)),
+            DAY_NAMES.index(day_name),
+        ),
+    )
+
+    best_day_lines = build_day_slot_lines(best_day) or ["No responses"]
+
+    ranked_day_lines: list[str] = []
+    for index, day_name in enumerate(ranked_days):
+        ranked_day_lines.append(f"{index + 1}. **{day_with_date_label(day_name)}**")
+        day_slot_lines = build_day_slot_lines(day_name)
+        if day_slot_lines:
+            ranked_day_lines.extend(day_slot_lines)
+        else:
+            ranked_day_lines.append("No responses")
+        if index < len(ranked_days) - 1:
+            ranked_day_lines.append("")
 
     lines = [
         f"📊 Availability Summary — {date_range}",
         "",
         "Best overlap:",
-        f"{best_day} — {format_day_slot_counts(best_day)}",
+        f"**{day_with_date_label(best_day)}**",
+        *best_day_lines,
         "",
         "All days ranked:",
         *ranked_day_lines,
     ]
 
-    return "\n".join(lines)
+    message = "\n".join(lines)
+    if len(message) <= 2000:
+        return message
+
+    fallback_lines = [
+        f"📊 Availability Summary — {date_range}",
+        "",
+        "Best overlap:",
+        f"**{day_with_date_label(best_day)}**",
+        f"{best_overlap.get('slot', '✅')} {best_overlap.get('count', 0)} — (details truncated)",
+        "",
+        "All days ranked:",
+        *(
+            f"{index + 1}. **{day_with_date_label(day_name)}**"
+            for index, day_name in enumerate(ranked_days)
+        ),
+        "",
+        "_Detailed voter names were truncated to fit Discord message limits._",
+    ]
+    return "\n".join(fallback_lines)
 
 
 def post_channel_message(session: requests.Session, channel_id: str, content: str) -> str:
@@ -528,134 +695,163 @@ def main() -> None:
     token = require_env("DISCORD_SCHEDULING_BOT_TOKEN")
 
     weekly_messages = load_json_file(WEEKLY_SCHEDULE_MESSAGES_FILE)
+    existing_weekly_responses = load_json_file(WEEKLY_SCHEDULE_RESPONSES_FILE)
     roster = load_json_file(EXPECTED_SCHEDULE_ROSTER_FILE)
     weekly_bot_outputs = load_json_file(WEEKLY_SCHEDULE_BOT_OUTPUTS_FILE)
     if not weekly_messages:
         print("No weekly message state found; nothing to sync")
         return
 
-    week_keys = sorted(weekly_messages.keys())[-12:]
-    print(f"Starting weekly schedule response sync for {len(week_keys)} week(s)")
+    target_week_key = normalize_optional_text(os.getenv("TARGET_WEEK_KEY"))
+    rebuild_summary_only = env_flag("REBUILD_SUMMARY_ONLY", default=False)
+    dry_run = env_flag("DRY_RUN", default=False)
 
-    with requests.Session() as session:
-        session.headers.update(
-            {
-                "Authorization": f"Bot {token}",
-                "Content-Type": "application/json",
-                "User-Agent": USER_AGENT,
-            }
-        )
-
-        bot_user_id = get_bot_user_id(session)
-        print(f"Fetched bot user (user_id={bot_user_id})")
-
-        weekly_responses: dict[str, Any] = {}
-
-        for week_key in week_keys:
-            latest_week_data = weekly_messages.get(week_key)
-            if not isinstance(latest_week_data, dict):
-                fail(f"Invalid week payload for {week_key} in {WEEKLY_SCHEDULE_MESSAGES_FILE}")
-
-            channel_id = get_week_channel_id(latest_week_data, week_key)
-            date_range = latest_week_data.get("date_range")
-            days = latest_week_data.get("days")
-
-            if not date_range or not isinstance(date_range, str):
-                fail(f"Missing or invalid date_range for {week_key} in {WEEKLY_SCHEDULE_MESSAGES_FILE}")
-            if not isinstance(days, dict):
-                fail(f"Missing or invalid days mapping for {week_key} in {WEEKLY_SCHEDULE_MESSAGES_FILE}")
-
-            users_map: dict[str, dict[str, Any]] = {}
-            day_message_ids = {str(day_id) for day_id in days.values() if day_id}
-            channel_messages = fetch_channel_messages(session, channel_id)
-            latest_custom_replies = collect_latest_custom_replies_by_day(
-                channel_messages, day_message_ids
+    if target_week_key:
+        if target_week_key not in weekly_messages:
+            fail(
+                f"TARGET_WEEK_KEY={target_week_key} not found in {WEEKLY_SCHEDULE_MESSAGES_FILE}"
             )
-            for day_name in DAY_NAMES:
-                day_message_id = days.get(day_name)
-                if not day_message_id:
+        week_keys = [target_week_key]
+    else:
+        week_keys = sorted(weekly_messages.keys())[-12:]
+
+    weekly_responses: dict[str, Any] = {}
+    for week_key, week_payload in existing_weekly_responses.items():
+        if isinstance(week_payload, dict):
+            weekly_responses[week_key] = week_payload
+
+    if rebuild_summary_only:
+        print(
+            f"Rebuild-only mode enabled; skipping reaction fetch for {len(week_keys)} "
+            f"week(s): {', '.join(week_keys)}"
+        )
+    else:
+        print(f"Starting weekly schedule response sync for {len(week_keys)} week(s)")
+        with requests.Session() as session:
+            session.headers.update(
+                {
+                    "Authorization": f"Bot {token}",
+                    "Content-Type": "application/json",
+                    "User-Agent": USER_AGENT,
+                }
+            )
+
+            bot_user_id = get_bot_user_id(session)
+            print(f"Fetched bot user (user_id={bot_user_id})")
+
+            for week_key in week_keys:
+                latest_week_data = weekly_messages.get(week_key)
+                if not isinstance(latest_week_data, dict):
+                    fail(f"Invalid week payload for {week_key} in {WEEKLY_SCHEDULE_MESSAGES_FILE}")
+
+                channel_id = get_week_channel_id(latest_week_data, week_key)
+                date_range = latest_week_data.get("date_range")
+                days = latest_week_data.get("days")
+
+                if not date_range or not isinstance(date_range, str):
                     fail(
-                        f"Missing message ID for {day_name} in week {week_key} "
-                        f"from {WEEKLY_SCHEDULE_MESSAGES_FILE}"
+                        f"Missing or invalid date_range for {week_key} "
+                        f"in {WEEKLY_SCHEDULE_MESSAGES_FILE}"
+                    )
+                if not isinstance(days, dict):
+                    fail(
+                        f"Missing or invalid days mapping for {week_key} "
+                        f"in {WEEKLY_SCHEDULE_MESSAGES_FILE}"
                     )
 
-                for reaction in AVAILABILITY_REACTIONS:
-                    reaction_users = fetch_reaction_users(
-                        session, channel_id, str(day_message_id), reaction
-                    )
-                    for user in reaction_users:
-                        user_id = str(user.get("id", ""))
-                        if not user_id:
-                            continue
+                users_map: dict[str, dict[str, Any]] = {}
+                day_message_ids = {str(day_id) for day_id in days.values() if day_id}
+                channel_messages = fetch_channel_messages(session, channel_id)
+                latest_custom_replies = collect_latest_custom_replies_by_day(
+                    channel_messages, day_message_ids
+                )
+                for day_name in DAY_NAMES:
+                    day_message_id = days.get(day_name)
+                    if not day_message_id:
+                        fail(
+                            f"Missing message ID for {day_name} in week {week_key} "
+                            f"from {WEEKLY_SCHEDULE_MESSAGES_FILE}"
+                        )
 
-                        if user_id == bot_user_id:
-                            continue
-                        if bool(user.get("bot")):
-                            continue
+                    for reaction in AVAILABILITY_REACTIONS:
+                        reaction_users = fetch_reaction_users(
+                            session, channel_id, str(day_message_id), reaction
+                        )
+                        for user in reaction_users:
+                            user_id = str(user.get("id", ""))
+                            if not user_id:
+                                continue
 
-                        if user_id not in users_map:
-                            users_map[user_id] = {
-                                "username": normalize_optional_text(user.get("username")),
-                                "global_name": normalize_optional_text(user.get("global_name")),
-                                "days": {
-                                    day: {
-                                        "reactions": [],
-                                        "custom_reply": None,
-                                    }
-                                    for day in DAY_NAMES
-                                },
-                            }
-                        else:
-                            if users_map[user_id]["username"] is None:
-                                users_map[user_id]["username"] = normalize_optional_text(
-                                    user.get("username")
+                            if user_id == bot_user_id:
+                                continue
+                            if bool(user.get("bot")):
+                                continue
+
+                            if user_id not in users_map:
+                                users_map[user_id] = {
+                                    "username": normalize_optional_text(user.get("username")),
+                                    "global_name": normalize_optional_text(user.get("global_name")),
+                                    "days": {
+                                        day: {
+                                            "reactions": [],
+                                            "custom_reply": None,
+                                        }
+                                        for day in DAY_NAMES
+                                    },
+                                }
+                            else:
+                                if users_map[user_id]["username"] is None:
+                                    users_map[user_id]["username"] = normalize_optional_text(
+                                        user.get("username")
+                                    )
+                                if users_map[user_id]["global_name"] is None:
+                                    users_map[user_id]["global_name"] = normalize_optional_text(
+                                        user.get("global_name")
+                                    )
+
+                            day_entry = users_map[user_id]["days"][day_name]
+                            if reaction not in day_entry["reactions"]:
+                                day_entry["reactions"].append(reaction)
+
+                            if reaction == "📝":
+                                custom_reply = latest_custom_replies.get(str(day_message_id), {}).get(
+                                    user_id
                                 )
-                            if users_map[user_id]["global_name"] is None:
-                                users_map[user_id]["global_name"] = normalize_optional_text(
-                                    user.get("global_name")
-                                )
+                                day_entry["custom_reply"] = custom_reply
 
-                        day_entry = users_map[user_id]["days"][day_name]
-                        if reaction not in day_entry["reactions"]:
-                            day_entry["reactions"].append(reaction)
-
-                        if reaction == "📝":
-                            custom_reply = latest_custom_replies.get(str(day_message_id), {}).get(user_id)
-                            day_entry["custom_reply"] = custom_reply
-
-            stable_users_map = {
-                user_id: users_map[user_id]
-                for user_id in sorted(users_map, key=lambda value: int(value))
-            }
-            weekly_responses[week_key] = {
-                "date_range": date_range,
-                "users": stable_users_map,
-            }
-            print(f"Synced week {week_key}")
+                stable_users_map = {
+                    user_id: users_map[user_id]
+                    for user_id in sorted(users_map, key=lambda value: int(value))
+                }
+                weekly_responses[week_key] = {
+                    "date_range": date_range,
+                    "users": stable_users_map,
+                }
+                print(f"Synced week {week_key}")
 
     pruned_weekly_responses = prune_weeks(weekly_responses, keep_last=12)
     save_json_file(WEEKLY_SCHEDULE_RESPONSES_FILE, pruned_weekly_responses)
     weekly_summary = build_weekly_summary(pruned_weekly_responses)
     save_json_file(WEEKLY_SCHEDULE_SUMMARY_FILE, weekly_summary)
 
-    latest_week_key = sorted(pruned_weekly_responses.keys())[-1]
-    latest_week_messages = weekly_messages.get(latest_week_key)
-    latest_week_responses = pruned_weekly_responses.get(latest_week_key)
-    latest_week_summary = weekly_summary.get(latest_week_key)
-    if not isinstance(latest_week_messages, dict):
-        fail(f"Missing week payload for {latest_week_key} in {WEEKLY_SCHEDULE_MESSAGES_FILE}")
-    if not isinstance(latest_week_responses, dict):
-        fail(f"Missing week payload for {latest_week_key} in {WEEKLY_SCHEDULE_RESPONSES_FILE}")
-    if not isinstance(latest_week_summary, dict):
-        fail(f"Missing week payload for {latest_week_key} in {WEEKLY_SCHEDULE_SUMMARY_FILE}")
+    posting_week_key = target_week_key or sorted(pruned_weekly_responses.keys())[-1]
+    posting_week_messages = weekly_messages.get(posting_week_key)
+    posting_week_responses = pruned_weekly_responses.get(posting_week_key)
+    posting_week_summary = weekly_summary.get(posting_week_key)
+    if not isinstance(posting_week_messages, dict):
+        fail(f"Missing week payload for {posting_week_key} in {WEEKLY_SCHEDULE_MESSAGES_FILE}")
+    if not isinstance(posting_week_responses, dict):
+        fail(f"Missing week payload for {posting_week_key} in {WEEKLY_SCHEDULE_RESPONSES_FILE}")
+    if not isinstance(posting_week_summary, dict):
+        fail(f"Missing week payload for {posting_week_key} in {WEEKLY_SCHEDULE_SUMMARY_FILE}")
 
-    channel_id = get_week_channel_id(latest_week_messages, latest_week_key)
-    date_range = latest_week_messages.get("date_range")
+    channel_id = get_week_channel_id(posting_week_messages, posting_week_key)
+    date_range = posting_week_messages.get("date_range")
     if not isinstance(date_range, str) or not date_range:
-        fail(f"Missing or invalid date_range for {latest_week_key}")
+        fail(f"Missing or invalid date_range for {posting_week_key}")
 
-    missing_user_ids = compute_missing_user_ids_for_week(latest_week_responses, roster)
-    week_outputs = weekly_bot_outputs.get(latest_week_key)
+    missing_user_ids = compute_missing_user_ids_for_week(posting_week_responses, roster)
+    week_outputs = weekly_bot_outputs.get(posting_week_key)
     if not isinstance(week_outputs, dict):
         week_outputs = {}
 
@@ -669,7 +865,7 @@ def main() -> None:
         )
         discord_client = DiscordClient(posting_session)
 
-        summary_message = format_summary_message(date_range, latest_week_summary)
+        summary_message = format_summary_message(date_range, posting_week_summary)
         previous_summary_message_id = week_outputs.get("summary_message_id")
         summary_message_id = (
             str(previous_summary_message_id)
@@ -678,74 +874,82 @@ def main() -> None:
         )
         previous_summary_message_content = week_outputs.get("summary_message_content")
 
-        if summary_message_id is None:
+        if dry_run:
+            print(f"DRY_RUN: summary preview for {posting_week_key}")
+            print(summary_message)
+            print(f"DRY_RUN: skipping Discord summary and reminder mutations for {posting_week_key}")
+        elif summary_message_id is None:
             payload = discord_client.post_message(
-                channel_id, summary_message, context=f"post summary for {latest_week_key}"
+                channel_id, summary_message, context=f"post summary for {posting_week_key}"
             )
             summary_message_id = str(payload.get("id", ""))
             week_outputs["summary_posted"] = True
             week_outputs["summary_message_id"] = summary_message_id
             week_outputs["summary_message_content"] = summary_message
-            print(f"CREATE: posted summary for week {latest_week_key} (message_id={summary_message_id})")
+            print(f"CREATE: posted summary for week {posting_week_key} (message_id={summary_message_id})")
         elif previous_summary_message_content != summary_message:
             try:
                 discord_client.edit_message(
                     channel_id,
                     summary_message_id,
                     summary_message,
-                    context=f"edit summary for {latest_week_key}",
+                    context=f"edit summary for {posting_week_key}",
                 )
                 week_outputs["summary_posted"] = True
                 week_outputs["summary_message_content"] = summary_message
                 print(
-                    f"EDIT: updated summary for week {latest_week_key} "
+                    f"EDIT: updated summary for week {posting_week_key} "
                     f"(message_id={summary_message_id})"
                 )
             except DiscordMessageNotFoundError:
                 print(
-                    f"RECOVER: stale/deleted summary message for week {latest_week_key} "
+                    f"RECOVER: stale/deleted summary message for week {posting_week_key} "
                     f"(message_id={summary_message_id}); posting replacement"
                 )
                 payload = discord_client.post_message(
                     channel_id,
                     summary_message,
-                    context=f"recover summary for {latest_week_key}",
+                    context=f"recover summary for {posting_week_key}",
                 )
                 summary_message_id = str(payload.get("id", ""))
                 week_outputs["summary_posted"] = True
                 week_outputs["summary_message_id"] = summary_message_id
                 week_outputs["summary_message_content"] = summary_message
                 print(
-                    f"RECOVER: posted replacement summary for week {latest_week_key} "
+                    f"RECOVER: posted replacement summary for week {posting_week_key} "
                     f"(message_id={summary_message_id})"
                 )
         else:
-            print(f"SKIP: summary unchanged for week {latest_week_key}; skipping summary edit")
+            print(f"SKIP: summary unchanged for week {posting_week_key}; skipping summary edit")
 
-        previous_missing_users = week_outputs.get("reminder_missing_users")
-        if not isinstance(previous_missing_users, list):
-            previous_missing_users = []
-        previous_missing_users = [str(user_id) for user_id in previous_missing_users]
+        if not dry_run:
+            previous_missing_users = week_outputs.get("reminder_missing_users")
+            if not isinstance(previous_missing_users, list):
+                previous_missing_users = []
+            previous_missing_users = [str(user_id) for user_id in previous_missing_users]
 
-        if missing_user_ids:
-            if missing_user_ids != previous_missing_users:
-                reminder_message = format_reminder_message(date_range, missing_user_ids)
-                reminder_message_id = post_channel_message(
-                    posting_session, channel_id, reminder_message
-                )
-                week_outputs["reminder_message_id"] = reminder_message_id
-                week_outputs["reminder_missing_users"] = missing_user_ids
-                print(
-                    f"CREATE: posted reminder for week {latest_week_key} "
-                    f"(message_id={reminder_message_id}, missing={len(missing_user_ids)})"
-                )
+            if missing_user_ids:
+                if missing_user_ids != previous_missing_users:
+                    reminder_message = format_reminder_message(date_range, missing_user_ids)
+                    reminder_message_id = post_channel_message(
+                        posting_session, channel_id, reminder_message
+                    )
+                    week_outputs["reminder_message_id"] = reminder_message_id
+                    week_outputs["reminder_missing_users"] = missing_user_ids
+                    print(
+                        f"CREATE: posted reminder for week {posting_week_key} "
+                        f"(message_id={reminder_message_id}, missing={len(missing_user_ids)})"
+                    )
+                else:
+                    print(
+                        f"SKIP: reminder unchanged for week {posting_week_key}; "
+                        "skipping reminder post"
+                    )
             else:
-                print(f"SKIP: reminder unchanged for week {latest_week_key}; skipping reminder post")
-        else:
-            week_outputs["reminder_missing_users"] = []
-            print(f"SKIP: no missing users for week {latest_week_key}; skipping reminder post")
+                week_outputs["reminder_missing_users"] = []
+                print(f"SKIP: no missing users for week {posting_week_key}; skipping reminder post")
 
-    weekly_bot_outputs[latest_week_key] = week_outputs
+    weekly_bot_outputs[posting_week_key] = week_outputs
     pruned_bot_outputs = prune_weeks(weekly_bot_outputs, keep_last=12)
     save_json_file(WEEKLY_SCHEDULE_BOT_OUTPUTS_FILE, pruned_bot_outputs)
     print(
