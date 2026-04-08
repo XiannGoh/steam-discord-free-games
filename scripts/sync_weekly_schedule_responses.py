@@ -7,6 +7,7 @@ import time
 import urllib.parse
 from datetime import date, datetime, timedelta
 from typing import Any
+from zoneinfo import ZoneInfo
 
 import requests
 
@@ -36,6 +37,7 @@ AVAILABILITY_REACTIONS: list[str] = ["✅", "🌅", "☀️", "🌙", "❌", "�
 SUMMARY_SLOT_ORDER: list[str] = ["✅", "🌅", "☀️", "🌙", "📝"]
 SUMMARY_DISPLAY_ORDER: list[str] = ["✅", "🌅", "☀️", "🌙", "📝", "❌"]
 MAX_SUMMARY_LINE_LENGTH = 185
+NEW_YORK_TIMEZONE = ZoneInfo("America/New_York")
 
 
 def fail(message: str) -> None:
@@ -515,22 +517,15 @@ def format_summary_message(date_range: str, week_summary: dict[str, Any]) -> str
         fail("Missing or invalid summary object for current week")
 
     day_counts = summary.get("day_counts")
-    best_overlap = summary.get("best_overlap")
     slot_counts = summary.get("slot_counts")
     slot_voters = summary.get("slot_voters")
 
     if not isinstance(day_counts, dict):
         fail("Missing or invalid day_counts in current week summary")
-    if not isinstance(best_overlap, dict):
-        fail("Missing or invalid best_overlap in current week summary")
     if not isinstance(slot_counts, dict):
         fail("Missing or invalid slot_counts in current week summary")
     if not isinstance(slot_voters, dict):
         slot_voters = {}
-
-    best_day = best_overlap.get("day")
-    if not isinstance(best_day, str):
-        fail("Missing or invalid best_overlap fields in current week summary")
 
     week_dates = compute_week_dates_from_summary(week_summary)
 
@@ -608,8 +603,6 @@ def format_summary_message(date_range: str, week_summary: dict[str, Any]) -> str
         ),
     )
 
-    best_day_lines = build_day_slot_lines(best_day) or ["No responses"]
-
     ranked_day_lines: list[str] = []
     for index, day_name in enumerate(ranked_days):
         ranked_day_lines.append(f"{index + 1}. **{day_with_date_label(day_name)}**")
@@ -624,10 +617,6 @@ def format_summary_message(date_range: str, week_summary: dict[str, Any]) -> str
     lines = [
         f"📊 Availability Summary — {date_range}",
         "",
-        "Best overlap:",
-        f"**{day_with_date_label(best_day)}**",
-        *best_day_lines,
-        "",
         "All days ranked:",
         *ranked_day_lines,
     ]
@@ -638,10 +627,6 @@ def format_summary_message(date_range: str, week_summary: dict[str, Any]) -> str
 
     fallback_lines = [
         f"📊 Availability Summary — {date_range}",
-        "",
-        "Best overlap:",
-        f"**{day_with_date_label(best_day)}**",
-        f"{best_overlap.get('slot', '✅')} {best_overlap.get('count', 0)} — (details truncated)",
         "",
         "All days ranked:",
         *(
@@ -688,6 +673,11 @@ def edit_channel_message(
         response,
         f"Failed to edit channel message for channel_id={channel_id}, message_id={message_id}",
     )
+
+
+def current_new_york_local_date() -> str:
+    """Return the current New York calendar date in ISO format."""
+    return datetime.now(NEW_YORK_TIMEZONE).date().isoformat()
 
 
 def main() -> None:
@@ -927,19 +917,31 @@ def main() -> None:
             if not isinstance(previous_missing_users, list):
                 previous_missing_users = []
             previous_missing_users = [str(user_id) for user_id in previous_missing_users]
+            last_reminder_local_date = normalize_optional_text(
+                week_outputs.get("last_reminder_local_date")
+            )
+            reminder_local_date = current_new_york_local_date()
 
             if missing_user_ids:
                 if missing_user_ids != previous_missing_users:
-                    reminder_message = format_reminder_message(date_range, missing_user_ids)
-                    reminder_message_id = post_channel_message(
-                        posting_session, channel_id, reminder_message
-                    )
-                    week_outputs["reminder_message_id"] = reminder_message_id
-                    week_outputs["reminder_missing_users"] = missing_user_ids
-                    print(
-                        f"CREATE: posted reminder for week {posting_week_key} "
-                        f"(message_id={reminder_message_id}, missing={len(missing_user_ids)})"
-                    )
+                    if last_reminder_local_date == reminder_local_date:
+                        print(
+                            f"SKIP: reminder already posted on New York date "
+                            f"{reminder_local_date} for week {posting_week_key}; skipping reminder post"
+                        )
+                    else:
+                        reminder_message = format_reminder_message(date_range, missing_user_ids)
+                        reminder_message_id = post_channel_message(
+                            posting_session, channel_id, reminder_message
+                        )
+                        week_outputs["reminder_message_id"] = reminder_message_id
+                        week_outputs["reminder_missing_users"] = missing_user_ids
+                        week_outputs["last_reminder_local_date"] = reminder_local_date
+                        print(
+                            f"CREATE: posted reminder for week {posting_week_key} "
+                            f"(message_id={reminder_message_id}, missing={len(missing_user_ids)}, "
+                            f"ny_date={reminder_local_date})"
+                        )
                 else:
                     print(
                         f"SKIP: reminder unchanged for week {posting_week_key}; "

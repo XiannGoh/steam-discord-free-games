@@ -18,11 +18,14 @@ on:
         type: boolean
         default: false
   schedule:
-    - cron: '0 23 * * *'
-    - cron: '0 3 * * *'
+    - cron: '0 */3 * * *'
 
 permissions:
   contents: write
+
+concurrency:
+  group: weekly-scheduling-responses-sync
+  cancel-in-progress: false
 
 jobs:
   sync-weekly-responses:
