@@ -2,12 +2,10 @@
   "2026-04-13_to_2026-04-19": {
     "summary_posted": true,
     "reminder_missing_users": [
-      "137123568952672257",
       "150522802292785152",
       "161248274970443776",
       "162382481369071617",
       "164270274928181248",
-      "195462430535581708",
       "245393360490201089",
       "277285824935231488",
       "412746386271109130",
@@ -15,6 +13,7 @@
       "740065988812341280"
     ],
     "summary_message_id": "1491305083965804544",
-    "reminder_message_id": "1491305086612275363"
+    "reminder_message_id": "1491347620797354096",
+    "summary_message_content": "📊 Availability Summary — Apr 13–19, 2026\n\nBest overlap:\nFriday — 🌙 2\n\nAll days ranked:\n1. Monday — ✅ 1, 🌙 1\n2. Tuesday — ✅ 1, 🌙 1\n3. Friday — 🌙 2\n4. Wednesday — 🌙 1\n5. Thursday — 🌙 1\n6. Saturday — 🌙 1\n7. Sunday — 🌙 1"
   }
 }
