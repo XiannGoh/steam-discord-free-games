@@ -1,0 +1,33 @@
+{
+  "2026-04-13_to_2026-04-19": {
+    "date_range": "Apr 13–19, 2026",
+    "users": {
+      "100": {
+        "username": "alpha",
+        "global_name": "Alpha",
+        "days": {
+          "Monday": {"reactions": ["✅", "🌙"], "custom_reply": null},
+          "Tuesday": {"reactions": ["🌅"], "custom_reply": null},
+          "Wednesday": {"reactions": ["📝"], "custom_reply": "after 6"},
+          "Thursday": {"reactions": [], "custom_reply": null},
+          "Friday": {"reactions": [], "custom_reply": null},
+          "Saturday": {"reactions": [], "custom_reply": null},
+          "Sunday": {"reactions": [], "custom_reply": null}
+        }
+      },
+      "200": {
+        "username": "beta",
+        "global_name": null,
+        "days": {
+          "Monday": {"reactions": ["✅"], "custom_reply": null},
+          "Tuesday": {"reactions": ["🌅", "☀️"], "custom_reply": null},
+          "Wednesday": {"reactions": ["📝"], "custom_reply": "late"},
+          "Thursday": {"reactions": ["❌"], "custom_reply": null},
+          "Friday": {"reactions": [], "custom_reply": null},
+          "Saturday": {"reactions": [], "custom_reply": null},
+          "Sunday": {"reactions": [], "custom_reply": null}
+        }
+      }
+    }
+  }
+}
