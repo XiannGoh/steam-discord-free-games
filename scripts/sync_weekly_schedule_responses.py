@@ -1,15 +1,13 @@
-"""Sync weekly scheduling reaction responses from Discord into durable JSON state."""
+"""Sync weekly scheduling reactions from Discord into durable JSON state."""
 
 import json
 import os
 import sys
 import time
 import urllib.parse
-from datetime import datetime, timezone
 from typing import Any
 
 import requests
-
 
 DISCORD_API_BASE = "https://discord.com/api/v10"
 REQUEST_TIMEOUT_SECONDS = 30
@@ -27,14 +25,7 @@ DAY_NAMES: list[str] = [
     "Sunday",
 ]
 
-AVAILABILITY_REACTIONS: list[str] = [
-    "✅",
-    "🌅",
-    "☀️",
-    "🌙",
-    "❌",
-    "📝",
-]
+AVAILABILITY_REACTIONS: list[str] = ["✅", "🌅", "☀️", "🌙", "❌", "📝"]
 
 
 def fail(message: str) -> None:
@@ -112,19 +103,6 @@ def prune_weeks(data: dict[str, Any], keep_last: int = 12) -> dict[str, Any]:
     return {week_key: data[week_key] for week_key in week_keys if week_key in keys_to_keep}
 
 
-def get_current_utc_timestamp() -> str:
-    """Return the current UTC timestamp in ISO-like format with Z suffix."""
-    return datetime.now(timezone.utc).replace(microsecond=0).strftime("%Y-%m-%dT%H:%M:%SZ")
-
-
-def get_latest_week_key(data: dict[str, Any]) -> str:
-    """Return the latest week key by chronological (ISO string) order."""
-    if not data:
-        fail(f"No weekly message state found in {WEEKLY_SCHEDULE_MESSAGES_FILE}")
-
-    return sorted(data.keys())[-1]
-
-
 def build_current_user_url() -> str:
     """Build the Discord API URL for fetching the current bot user."""
     return f"{DISCORD_API_BASE}/users/@me"
@@ -139,8 +117,8 @@ def build_reaction_users_url(thread_id: str, message_id: str, emoji: str) -> str
     )
 
 
-def get_bot_user(session: requests.Session) -> dict[str, Any]:
-    """Fetch and return the current bot user object."""
+def get_bot_user_id(session: requests.Session) -> str:
+    """Fetch and return the current bot user id."""
     response = session.get(build_current_user_url(), timeout=REQUEST_TIMEOUT_SECONDS)
     check_response(response, "Failed to fetch current bot user")
 
@@ -153,22 +131,7 @@ def get_bot_user(session: requests.Session) -> dict[str, Any]:
     if not user_id:
         fail("Discord response JSON did not include bot user id")
 
-    return payload
-
-
-def normalize_user(user: dict[str, Any]) -> dict[str, Any]:
-    """Normalize a Discord user object for stored response data."""
-    user_id = user.get("id")
-    username = user.get("username")
-
-    if not user_id or not username:
-        fail("Discord reaction user object missing required id/username fields")
-
-    return {
-        "user_id": str(user_id),
-        "username": str(username),
-        "global_name": user.get("global_name"),
-    }
+    return str(user_id)
 
 
 def fetch_reaction_users(
@@ -240,29 +203,33 @@ def fetch_reaction_users(
     return all_users
 
 
+def get_user_label(user: dict[str, Any]) -> str:
+    """Return display label for a Discord user."""
+    global_name = user.get("global_name")
+    username = user.get("username")
+
+    if isinstance(global_name, str) and global_name.strip():
+        return global_name.strip()
+    if isinstance(username, str) and username.strip():
+        return username.strip()
+
+    user_id = user.get("id")
+    if not user_id:
+        fail("Discord reaction user object missing id")
+    return str(user_id)
+
+
 def main() -> None:
-    """Fetch and persist reaction responses for the latest scheduled week."""
+    """Fetch and persist reaction responses for recorded scheduled weeks."""
     token = require_env("DISCORD_SCHEDULING_BOT_TOKEN")
 
     weekly_messages = load_json_file(WEEKLY_SCHEDULE_MESSAGES_FILE)
-    week_key = get_latest_week_key(weekly_messages)
+    if not weekly_messages:
+        print("No weekly message state found; nothing to sync")
+        return
 
-    latest_week_data = weekly_messages.get(week_key)
-    if not isinstance(latest_week_data, dict):
-        fail(f"Invalid week payload for {week_key} in {WEEKLY_SCHEDULE_MESSAGES_FILE}")
-
-    thread_id = latest_week_data.get("thread_id")
-    date_range = latest_week_data.get("date_range")
-    days = latest_week_data.get("days")
-
-    if not thread_id or not isinstance(thread_id, str):
-        fail(f"Missing or invalid thread_id for {week_key} in {WEEKLY_SCHEDULE_MESSAGES_FILE}")
-    if not date_range or not isinstance(date_range, str):
-        fail(f"Missing or invalid date_range for {week_key} in {WEEKLY_SCHEDULE_MESSAGES_FILE}")
-    if not isinstance(days, dict):
-        fail(f"Missing or invalid days mapping for {week_key} in {WEEKLY_SCHEDULE_MESSAGES_FILE}")
-
-    print(f"Starting weekly schedule response sync (thread_id={thread_id}, week_key={week_key})")
+    week_keys = sorted(weekly_messages.keys())[-12:]
+    print(f"Starting weekly schedule response sync for {len(week_keys)} week(s)")
 
     with requests.Session() as session:
         session.headers.update(
@@ -273,49 +240,65 @@ def main() -> None:
             }
         )
 
-        bot_user = get_bot_user(session)
-        bot_user_id = str(bot_user["id"])
+        bot_user_id = get_bot_user_id(session)
         print(f"Fetched bot user (user_id={bot_user_id})")
 
-        responses_by_day: dict[str, dict[str, list[dict[str, Any]]]] = {}
+        weekly_responses: dict[str, Any] = {}
 
-        for day_name in DAY_NAMES:
-            day_message_id = days.get(day_name)
-            if not day_message_id:
-                fail(
-                    f"Missing message ID for {day_name} in week {week_key} "
-                    f"from {WEEKLY_SCHEDULE_MESSAGES_FILE}"
-                )
+        for week_key in week_keys:
+            latest_week_data = weekly_messages.get(week_key)
+            if not isinstance(latest_week_data, dict):
+                fail(f"Invalid week payload for {week_key} in {WEEKLY_SCHEDULE_MESSAGES_FILE}")
 
-            responses_by_day[day_name] = {}
-            for reaction in AVAILABILITY_REACTIONS:
-                reaction_users = fetch_reaction_users(session, thread_id, str(day_message_id), reaction)
-                filtered_users = [
-                    normalize_user(user)
-                    for user in reaction_users
-                    if str(user.get("id", "")) != bot_user_id
-                ]
-                responses_by_day[day_name][reaction] = filtered_users
-                print(
-                    f"Fetched {len(filtered_users)} human users for "
-                    f"{day_name} reaction {reaction}"
-                )
+            thread_id = latest_week_data.get("thread_id")
+            date_range = latest_week_data.get("date_range")
+            days = latest_week_data.get("days")
 
-    weekly_responses = load_json_file(WEEKLY_SCHEDULE_RESPONSES_FILE)
-    weekly_responses[week_key] = {
-        "thread_id": thread_id,
-        "date_range": date_range,
-        "created_at_utc": get_current_utc_timestamp(),
-        "days": responses_by_day,
-    }
+            if not thread_id or not isinstance(thread_id, str):
+                fail(f"Missing or invalid thread_id for {week_key} in {WEEKLY_SCHEDULE_MESSAGES_FILE}")
+            if not date_range or not isinstance(date_range, str):
+                fail(f"Missing or invalid date_range for {week_key} in {WEEKLY_SCHEDULE_MESSAGES_FILE}")
+            if not isinstance(days, dict):
+                fail(f"Missing or invalid days mapping for {week_key} in {WEEKLY_SCHEDULE_MESSAGES_FILE}")
+
+            users_map: dict[str, dict[str, list[str]]] = {}
+            for day_name in DAY_NAMES:
+                day_message_id = days.get(day_name)
+                if not day_message_id:
+                    fail(
+                        f"Missing message ID for {day_name} in week {week_key} "
+                        f"from {WEEKLY_SCHEDULE_MESSAGES_FILE}"
+                    )
+
+                for reaction in AVAILABILITY_REACTIONS:
+                    reaction_users = fetch_reaction_users(session, thread_id, str(day_message_id), reaction)
+                    for user in reaction_users:
+                        user_id = str(user.get("id", ""))
+                        if not user_id:
+                            continue
+
+                        if user_id == bot_user_id:
+                            continue
+                        if bool(user.get("bot")):
+                            continue
+
+                        user_label = get_user_label(user)
+                        if user_label not in users_map:
+                            users_map[user_label] = {day: [] for day in DAY_NAMES}
+
+                        if reaction not in users_map[user_label][day_name]:
+                            users_map[user_label][day_name].append(reaction)
+
+            weekly_responses[week_key] = {
+                "date_range": date_range,
+                "users": users_map,
+            }
+            print(f"Synced week {week_key}")
 
     pruned_weekly_responses = prune_weeks(weekly_responses, keep_last=12)
-    if len(pruned_weekly_responses) < len(weekly_responses):
-        print("Pruned weekly schedule history to last 12 weeks")
-
     save_json_file(WEEKLY_SCHEDULE_RESPONSES_FILE, pruned_weekly_responses)
     print(
-        f"Saved weekly schedule responses for {week_key} "
+        f"Saved weekly schedule responses for {len(pruned_weekly_responses)} week(s) "
         f"to {WEEKLY_SCHEDULE_RESPONSES_FILE}"
     )
     print("Finished successfully")
