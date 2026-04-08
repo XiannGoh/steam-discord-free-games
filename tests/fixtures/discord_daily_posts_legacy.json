@@ -1,0 +1,15 @@
+{
+  "2026-04-08": {
+    "items": [
+      {
+        "item_key": "abc123",
+        "section": "free",
+        "title": "Game A",
+        "url": "https://store.steampowered.com/app/1",
+        "message_id": "10",
+        "channel_id": "20",
+        "source_type": "steam_free"
+      }
+    ]
+  }
+}

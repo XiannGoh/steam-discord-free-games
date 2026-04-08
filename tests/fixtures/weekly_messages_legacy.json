@@ -1,0 +1,16 @@
+{
+  "2026-04-13_to_2026-04-19": {
+    "thread_id": "chan-1",
+    "date_range": "Apr 13–19, 2026",
+    "intro_message_id": "intro-old",
+    "days": {
+      "Monday": "m-1",
+      "Tuesday": "t-1",
+      "Wednesday": "w-1",
+      "Thursday": "r-1",
+      "Friday": "f-1",
+      "Saturday": "s-1",
+      "Sunday": "u-1"
+    }
+  }
+}
