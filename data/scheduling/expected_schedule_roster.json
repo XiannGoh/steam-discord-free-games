@@ -1,0 +1,59 @@
+{
+  "users": {
+    "137123568952672257": {
+      "username": "janithan",
+      "global_name": "Jan",
+      "is_active": true
+    },
+    "740065988812341280": {
+      "username": "jerrylee1540",
+      "global_name": "jerryjhlee",
+      "is_active": true
+    },
+    "412746386271109130": {
+      "username": "lakerking",
+      "global_name": "Akhil",
+      "is_active": true
+    },
+    "711603470544797747": {
+      "username": "tcfs100",
+      "global_name": "TCFS100",
+      "is_active": true
+    },
+    "150522802292785152": {
+      "username": "leimana",
+      "global_name": "Raymond Monkey King Martinez",
+      "is_active": true
+    },
+    "164270274928181248": {
+      "username": "chocolie",
+      "global_name": "Charlie",
+      "is_active": true
+    },
+    "245393360490201089": {
+      "username": "lambda2484",
+      "global_name": "Kevin Lam",
+      "is_active": true
+    },
+    "162382481369071617": {
+      "username": "malphax11",
+      "global_name": "Malphax",
+      "is_active": true
+    },
+    "161248274970443776": {
+      "username": "lilwartz",
+      "global_name": "lilwartz",
+      "is_active": true
+    },
+    "277285824935231488": {
+      "username": "chiefshabs",
+      "global_name": "Rishabh",
+      "is_active": true
+    },
+    "195462430535581708": {
+      "username": "thomasgoh",
+      "global_name": "Thomas",
+      "is_active": true
+    }
+  }
+}
