@@ -11,7 +11,7 @@ This repository is now **channel-based** (no thread-based posting).
 
 - Weekly scheduling channel: `update-weekly-schedule-here` (`1491294381418741870`)
 - Daily picks channel: `daily-game-picks` (`1491294533751799809`)
-- Winners destination channel: configured by `DISCORD_WINNERS_CHANNEL_ID`
+- Winners destination channel: `daily-game-picks` (uses `DISCORD_DAILY_PICKS_CHANNEL_ID` when set; otherwise falls back to daily item channel/state and then `DISCORD_WINNERS_CHANNEL_ID`)
 
 ---
 
@@ -128,12 +128,13 @@ Manual operator control:
 Behavior:
 - Reads same-day items from `discord_daily_posts.json`
 - Fetches 👍 counts from item messages
+- Fetches 👍 voter identities and displays human voter names per winner
 - Subtracts bot default 👍 to compute human votes
 - Inclusion rules:
   - raw 👍 = 1 → excluded (0 human votes)
   - raw 👍 = 2 → included (1 human vote)
   - raw 👍 = 3 → included (2 human votes)
-- Posts winners to `DISCORD_WINNERS_CHANNEL_ID` only (not back to daily picks channel)
+- Posts winners to `daily-game-picks` (`DISCORD_DAILY_PICKS_CHANNEL_ID` preferred; backward-compatible fallback to `DISCORD_WINNERS_CHANNEL_ID`)
 
 Rerun/idempotency behavior:
 - Same-day reruns do not duplicate winners posts
@@ -174,6 +175,7 @@ This shared layer is used by weekly + daily flows for consistency and safer reru
   - `INSTAGRAM_SESSION_B64`
 - Evening winners:
   - `DISCORD_BOT_TOKEN`
+  - `DISCORD_DAILY_PICKS_CHANNEL_ID` (recommended)
   - `DISCORD_WINNERS_CHANNEL_ID`
 
 ## Local Testing

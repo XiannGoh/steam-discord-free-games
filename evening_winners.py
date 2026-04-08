@@ -2,6 +2,7 @@ import hashlib
 import os
 from datetime import datetime, timezone
 from typing import Dict, List, Optional
+from urllib.parse import quote
 
 import requests
 
@@ -10,10 +11,14 @@ from state_utils import load_json_object, save_json_object_atomic
 
 DISCORD_DAILY_POSTS_FILE = "discord_daily_posts.json"
 THUMBS_UP_EMOJI = "👍"
+THUMBS_UP_EMOJI_ENCODED = quote(THUMBS_UP_EMOJI, safe="")
 
 DISCORD_BOT_TOKEN = os.getenv("DISCORD_BOT_TOKEN")
 DISCORD_WINNERS_CHANNEL_ID = os.getenv("DISCORD_WINNERS_CHANNEL_ID")
+DISCORD_DAILY_PICKS_CHANNEL_ID = os.getenv("DISCORD_DAILY_PICKS_CHANNEL_ID")
 WINNERS_DATE_OVERRIDE_ENV = "WINNERS_DATE_UTC"
+MAX_VOTERS_SHOWN_PER_GAME = 6
+DISCORD_MESSAGE_CHAR_LIMIT = 2000
 
 SECTION_CONFIG = {
     "free": "Free Picks",
@@ -63,12 +68,113 @@ def build_winners_message(winners_by_section: Dict[str, List[dict]]) -> str:
             lines.append(item["url"])
             vote_word = "vote" if item["human_votes"] == 1 else "votes"
             lines.append(f"👍 {item['human_votes']} {vote_word}")
+            lines.append(f"Voters — {format_voter_names_for_message(item['voter_names'])}")
             lines.append("")
 
     if not has_any_winners:
         lines.append("_No votes yet today._")
 
     return "\n".join(lines).strip()
+
+
+def build_winners_message_compact(winners_by_section: Dict[str, List[dict]]) -> str:
+    lines = ["🏆 Daily Game Picks — Winners", ""]
+    has_any_winners = False
+
+    for section in SECTION_ORDER:
+        items = winners_by_section.get(section, [])
+        if not items:
+            continue
+
+        has_any_winners = True
+        lines.append(SECTION_CONFIG[section])
+        for item in items:
+            vote_word = "vote" if item["human_votes"] == 1 else "votes"
+            lines.append(f"- {item['title']} ({item['human_votes']} {vote_word})")
+            lines.append(f"  {item['url']}")
+        lines.append("")
+
+    if not has_any_winners:
+        lines.append("_No votes yet today._")
+
+    return "\n".join(lines).strip()
+
+
+def resolve_display_name(user: dict) -> str:
+    if not isinstance(user, dict):
+        return "Unknown User"
+    global_name = (user.get("global_name") or "").strip()
+    if global_name:
+        return global_name
+    username = (user.get("username") or "").strip()
+    if username:
+        return username
+    user_id = str(user.get("id") or "").strip()
+    if user_id:
+        return f"User {user_id}"
+    return "Unknown User"
+
+
+def format_voter_names_for_message(names: List[str]) -> str:
+    if not names:
+        return "Unknown voters"
+    visible = names[:MAX_VOTERS_SHOWN_PER_GAME]
+    hidden_count = len(names) - len(visible)
+    joined = ", ".join(visible)
+    if hidden_count > 0:
+        return f"{joined}, +{hidden_count} more"
+    return joined
+
+
+def pick_winners_channel_id(items: List[dict]) -> Optional[str]:
+    if DISCORD_DAILY_PICKS_CHANNEL_ID:
+        return DISCORD_DAILY_PICKS_CHANNEL_ID
+    for item in items:
+        channel_id = item.get("channel_id")
+        if isinstance(channel_id, str) and channel_id.strip():
+            return channel_id
+    return DISCORD_WINNERS_CHANNEL_ID
+
+
+def fetch_human_voter_names(
+    client: DiscordClient,
+    *,
+    channel_id: str,
+    message_id: str,
+    bot_user_id: Optional[str],
+    context: str,
+) -> List[str]:
+    names: List[str] = []
+    seen_user_ids: set[str] = set()
+    after: Optional[str] = None
+
+    while True:
+        users = client.get_reaction_users(
+            channel_id,
+            message_id,
+            THUMBS_UP_EMOJI_ENCODED,
+            context=context,
+            limit=100,
+            after=after,
+        )
+        if not users:
+            break
+        for user in users:
+            user_id = str(user.get("id") or "").strip()
+            if not user_id or user_id in seen_user_ids:
+                continue
+            seen_user_ids.add(user_id)
+            if bot_user_id and user_id == bot_user_id:
+                continue
+            names.append(resolve_display_name(user))
+        if len(users) < 100:
+            break
+        last_user_id = str(users[-1].get("id") or "").strip()
+        if not last_user_id:
+            break
+        after = last_user_id
+
+    return names
 
 
 def post_winners_message(client: DiscordClient, channel_id: str, message: str) -> str:
@@ -82,9 +188,6 @@ def post_winners_message(client: DiscordClient, channel_id: str, message: str) -
 def main() -> None:
     if not DISCORD_BOT_TOKEN:
         raise RuntimeError("DISCORD_BOT_TOKEN is not set.")
-    if not DISCORD_WINNERS_CHANNEL_ID:
-        raise RuntimeError("DISCORD_WINNERS_CHANNEL_ID is not set.")
-
     day_key = get_target_day_key()
     print(f"Starting evening winners for day={day_key}")
 
@@ -96,6 +199,12 @@ def main() -> None:
     items = today_entry.get("items", []) if isinstance(today_entry, dict) else []
 
     winners_by_section: Dict[str, List[dict]] = {key: [] for key in SECTION_ORDER}
+    winners_channel_id = pick_winners_channel_id(items)
+    if not winners_channel_id:
+        raise RuntimeError(
+            "Winners destination channel id is not set. "
+            "Set DISCORD_DAILY_PICKS_CHANNEL_ID or DISCORD_WINNERS_CHANNEL_ID."
+        )
 
     with requests.Session() as session:
         session.headers.update(
@@ -105,6 +214,8 @@ def main() -> None:
             }
         )
         client = DiscordClient(session)
+        bot_user = client.get_current_user(context="fetch bot user for winners vote filtering")
+        bot_user_id = str(bot_user.get("id") or "").strip() or None
 
         for item in items:
             section = item.get("section")
@@ -131,16 +242,26 @@ def main() -> None:
 
             if human_votes < 1:
                 continue
+            voter_names = fetch_human_voter_names(
+                client,
+                channel_id=str(channel_id),
+                message_id=str(message_id),
+                bot_user_id=bot_user_id,
+                context=f"fetch voters for {item.get('title', 'item')}",
+            )
 
             winners_by_section[section].append(
                 {
                     "title": item.get("title", "Untitled"),
                     "url": item.get("url", ""),
                     "human_votes": human_votes,
+                    "voter_names": voter_names,
                 }
             )
 
         message = build_winners_message(winners_by_section)
+        if len(message) > DISCORD_MESSAGE_CHAR_LIMIT:
+            message = build_winners_message_compact(winners_by_section)
         winners_state = today_entry.get("winners_state")
         if not isinstance(winners_state, dict):
             winners_state = {}
@@ -153,7 +274,7 @@ def main() -> None:
         if isinstance(previous_message_id, str) and previous_message_id:
             try:
                 client.get_message(
-                    DISCORD_WINNERS_CHANNEL_ID,
+                    winners_channel_id,
                     previous_message_id,
                     context=f"verify winners message for {day_key}",
                 )
@@ -161,7 +282,7 @@ def main() -> None:
                     print(f"SKIP: winners already posted and unchanged for {day_key}")
                     return
                 client.edit_message(
-                    DISCORD_WINNERS_CHANNEL_ID,
+                    winners_channel_id,
                     previous_message_id,
                     message,
                     context=f"edit winners message for {day_key}",
@@ -178,7 +299,7 @@ def main() -> None:
                     f"(message_id={previous_message_id}); posting replacement"
                 )
 
-        new_message_id = post_winners_message(client, DISCORD_WINNERS_CHANNEL_ID, message)
+        new_message_id = post_winners_message(client, winners_channel_id, message)
         winners_state["message_id"] = new_message_id
         winners_state["content_hash"] = content_hash
         winners_state["last_action"] = "create"
