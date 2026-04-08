@@ -281,5 +281,333 @@
         "url": "https://www.instagram.com/p/DWpuEGCjSmU/"
       }
     ]
+  },
+  "2026-04-08": {
+    "items": [
+      {
+        "channel_id": "1491294533751799809",
+        "message_id": "1491319485846655008",
+        "posted_at": "2026-04-08T06:11:13.354043+00:00",
+        "section": "free",
+        "source_type": "steam_free",
+        "title": "Steam Store",
+        "url": "https://store.steampowered.com/app/1457950/"
+      },
+      {
+        "channel_id": "1491294533751799809",
+        "message_id": "1491319493698387998",
+        "posted_at": "2026-04-08T06:11:15.200201+00:00",
+        "section": "free",
+        "source_type": "steam_free",
+        "title": "Steam Store",
+        "url": "https://store.steampowered.com/app/2939260/"
+      },
+      {
+        "channel_id": "1491294533751799809",
+        "message_id": "1491319501449330728",
+        "posted_at": "2026-04-08T06:11:17.127832+00:00",
+        "section": "free",
+        "source_type": "steam_free",
+        "title": "Metal Slug: Awakening",
+        "url": "https://store.steampowered.com/app/2963870/"
+      },
+      {
+        "channel_id": "1491294533751799809",
+        "message_id": "1491319509628223658",
+        "posted_at": "2026-04-08T06:11:18.890862+00:00",
+        "section": "free",
+        "source_type": "steam_free",
+        "title": "Idol Party 2 - Love Vibe",
+        "url": "https://store.steampowered.com/app/3798230/"
+      },
+      {
+        "channel_id": "1491294533751799809",
+        "message_id": "1491319517207593051",
+        "posted_at": "2026-04-08T06:11:20.863519+00:00",
+        "section": "free",
+        "source_type": "steam_free",
+        "title": "Pixel Starships",
+        "url": "https://store.steampowered.com/app/378760/"
+      },
+      {
+        "channel_id": "1491294533751799809",
+        "message_id": "1491319524920918049",
+        "posted_at": "2026-04-08T06:11:22.626234+00:00",
+        "section": "free",
+        "source_type": "steam_free",
+        "title": "UNDECEMBER: 4th Anniversary",
+        "url": "https://store.steampowered.com/app/1549250/"
+      },
+      {
+        "channel_id": "1491294533751799809",
+        "message_id": "1491319532764270632",
+        "posted_at": "2026-04-08T06:11:24.430407+00:00",
+        "section": "free",
+        "source_type": "steam_free",
+        "title": "Poker Master - Texas Hold'em, Roulette, Blackjack, Baccarat, Omaha, Slots, Teen Patti",
+        "url": "https://store.steampowered.com/app/994910/"
+      },
+      {
+        "channel_id": "1491294533751799809",
+        "message_id": "1491319539697193022",
+        "posted_at": "2026-04-08T06:11:26.115524+00:00",
+        "section": "free",
+        "source_type": "steam_free",
+        "title": "RIFT",
+        "url": "https://store.steampowered.com/app/39120/"
+      },
+      {
+        "channel_id": "1491294533751799809",
+        "message_id": "1491319547481952408",
+        "posted_at": "2026-04-08T06:11:28.008108+00:00",
+        "section": "free",
+        "source_type": "steam_free",
+        "title": "Battle Teams 2",
+        "url": "https://store.steampowered.com/app/1969870/"
+      },
+      {
+        "channel_id": "1491294533751799809",
+        "message_id": "1491319555224633504",
+        "posted_at": "2026-04-08T06:11:30.298330+00:00",
+        "section": "free",
+        "source_type": "steam_free",
+        "title": "Nin Online",
+        "url": "https://store.steampowered.com/app/1674010/"
+      },
+      {
+        "channel_id": "1491294533751799809",
+        "message_id": "1491319571389349930",
+        "posted_at": "2026-04-08T06:11:33.625982+00:00",
+        "section": "paid",
+        "source_type": "paid_under_20",
+        "title": "Scam Line",
+        "url": "https://store.steampowered.com/app/2794590/"
+      },
+      {
+        "channel_id": "1491294533751799809",
+        "message_id": "1491319578423197819",
+        "posted_at": "2026-04-08T06:11:35.438642+00:00",
+        "section": "paid",
+        "source_type": "paid_under_20",
+        "title": "Risk of Rain 2: Seekers of the Storm",
+        "url": "https://store.steampowered.com/app/2306620/"
+      },
+      {
+        "channel_id": "1491294533751799809",
+        "message_id": "1491319586514276574",
+        "posted_at": "2026-04-08T06:11:37.213447+00:00",
+        "section": "paid",
+        "source_type": "paid_under_20",
+        "title": "Ready or Not: Home Invasion",
+        "url": "https://store.steampowered.com/app/3015760/"
+      },
+      {
+        "channel_id": "1491294533751799809",
+        "message_id": "1491319593740927026",
+        "posted_at": "2026-04-08T06:11:38.956905+00:00",
+        "section": "paid",
+        "source_type": "paid_under_20",
+        "title": "Holdfast: Nations At War",
+        "url": "https://store.steampowered.com/app/589290/"
+      },
+      {
+        "channel_id": "1491294533751799809",
+        "message_id": "1491319601102061669",
+        "posted_at": "2026-04-08T06:11:40.653770+00:00",
+        "section": "paid",
+        "source_type": "paid_under_20",
+        "title": "Ready or Not: Dark Waters",
+        "url": "https://store.steampowered.com/app/3174120/"
+      },
+      {
+        "channel_id": "1491294533751799809",
+        "message_id": "1491319608505012244",
+        "posted_at": "2026-04-08T06:11:42.694291+00:00",
+        "section": "paid",
+        "source_type": "paid_under_20",
+        "title": "SWORN",
+        "url": "https://store.steampowered.com/app/1763250/"
+      },
+      {
+        "channel_id": "1491294533751799809",
+        "message_id": "1491319616394231892",
+        "posted_at": "2026-04-08T06:11:44.749030+00:00",
+        "section": "paid",
+        "source_type": "paid_under_20",
+        "title": "Worms W.M.D",
+        "url": "https://store.steampowered.com/app/327030/"
+      },
+      {
+        "channel_id": "1491294533751799809",
+        "message_id": "1491319625030438994",
+        "posted_at": "2026-04-08T06:11:46.530284+00:00",
+        "section": "paid",
+        "source_type": "paid_under_20",
+        "title": "StarRupture",
+        "url": "https://store.steampowered.com/app/1631270/"
+      },
+      {
+        "channel_id": "1491294533751799809",
+        "message_id": "1491319632961998868",
+        "posted_at": "2026-04-08T06:11:48.372308+00:00",
+        "section": "paid",
+        "source_type": "paid_under_20",
+        "title": "Barotrauma",
+        "url": "https://store.steampowered.com/app/602960/"
+      },
+      {
+        "channel_id": "1491294533751799809",
+        "message_id": "1491319640775983104",
+        "posted_at": "2026-04-08T06:11:50.338901+00:00",
+        "section": "paid",
+        "source_type": "paid_under_20",
+        "title": "Nuclear Option",
+        "url": "https://store.steampowered.com/app/2168680/"
+      },
+      {
+        "channel_id": "1491294533751799809",
+        "message_id": "1491319655472697494",
+        "posted_at": "2026-04-08T06:11:53.726639+00:00",
+        "section": "instagram",
+        "source_type": "instagram",
+        "title": "@gemgamingnetwork",
+        "url": "https://www.instagram.com/p/DWRKHq5u9JY/"
+      },
+      {
+        "channel_id": "1491294533751799809",
+        "message_id": "1491319663064252558",
+        "posted_at": "2026-04-08T06:11:56.542817+00:00",
+        "section": "instagram",
+        "source_type": "instagram",
+        "title": "@gemgamingnetwork",
+        "url": "https://www.instagram.com/p/DUWaIsyCS1S/"
+      },
+      {
+        "channel_id": "1491294533751799809",
+        "message_id": "1491319674821152829",
+        "posted_at": "2026-04-08T06:11:58.638260+00:00",
+        "section": "instagram",
+        "source_type": "instagram",
+        "title": "@cloudual",
+        "url": "https://www.instagram.com/p/DUn5shSD-Wy/"
+      },
+      {
+        "channel_id": "1491294533751799809",
+        "message_id": "1491319683893166201",
+        "posted_at": "2026-04-08T06:12:00.513362+00:00",
+        "section": "instagram",
+        "source_type": "instagram",
+        "title": "@cloudual",
+        "url": "https://www.instagram.com/p/DUYmFtqjihc/"
+      },
+      {
+        "channel_id": "1491294533751799809",
+        "message_id": "1491319691225075863",
+        "posted_at": "2026-04-08T06:12:02.235597+00:00",
+        "section": "instagram",
+        "source_type": "instagram",
+        "title": "@mildsoss_official",
+        "url": "https://www.instagram.com/p/DM1yR2DsscV/"
+      },
+      {
+        "channel_id": "1491294533751799809",
+        "message_id": "1491319698988597308",
+        "posted_at": "2026-04-08T06:12:04.287460+00:00",
+        "section": "instagram",
+        "source_type": "instagram",
+        "title": "@mildsoss_official",
+        "url": "https://www.instagram.com/p/DW2yyoqI98H/"
+      },
+      {
+        "channel_id": "1491294533751799809",
+        "message_id": "1491319707935178883",
+        "posted_at": "2026-04-08T06:12:06.333390+00:00",
+        "section": "instagram",
+        "source_type": "instagram",
+        "title": "@sharedxp_official",
+        "url": "https://www.instagram.com/p/DW12u8_DIp4/"
+      },
+      {
+        "channel_id": "1491294533751799809",
+        "message_id": "1491319715946303508",
+        "posted_at": "2026-04-08T06:12:08.102237+00:00",
+        "section": "instagram",
+        "source_type": "instagram",
+        "title": "@sharedxp_official",
+        "url": "https://www.instagram.com/p/DW1mE_tjOsS/"
+      },
+      {
+        "channel_id": "1491294533751799809",
+        "message_id": "1491319723701440512",
+        "posted_at": "2026-04-08T06:12:10.100094+00:00",
+        "section": "instagram",
+        "source_type": "instagram",
+        "title": "@wilfratgaming",
+        "url": "https://www.instagram.com/p/DW1aFieibhN/"
+      },
+      {
+        "channel_id": "1491294533751799809",
+        "message_id": "1491319731389730817",
+        "posted_at": "2026-04-08T06:12:11.750554+00:00",
+        "section": "instagram",
+        "source_type": "instagram",
+        "title": "@wilfratgaming",
+        "url": "https://www.instagram.com/p/DWzK6PzDdlD/"
+      },
+      {
+        "channel_id": "1491294533751799809",
+        "message_id": "1491319738687815861",
+        "posted_at": "2026-04-08T06:12:13.492271+00:00",
+        "section": "instagram",
+        "source_type": "instagram",
+        "title": "@indiegamespotlights",
+        "url": "https://www.instagram.com/p/DAQ2OI7vRoc/"
+      },
+      {
+        "channel_id": "1491294533751799809",
+        "message_id": "1491319746161807380",
+        "posted_at": "2026-04-08T06:12:15.546383+00:00",
+        "section": "instagram",
+        "source_type": "instagram",
+        "title": "@indiegamespotlights",
+        "url": "https://www.instagram.com/p/DW1q5HyDw9y/"
+      },
+      {
+        "channel_id": "1491294533751799809",
+        "message_id": "1491319754600747248",
+        "posted_at": "2026-04-08T06:12:17.435826+00:00",
+        "section": "instagram",
+        "source_type": "instagram",
+        "title": "@biffmatictv",
+        "url": "https://www.instagram.com/p/DW13R0JDQN9/"
+      },
+      {
+        "channel_id": "1491294533751799809",
+        "message_id": "1491319762058477713",
+        "posted_at": "2026-04-08T06:12:19.296676+00:00",
+        "section": "instagram",
+        "source_type": "instagram",
+        "title": "@biffmatictv",
+        "url": "https://www.instagram.com/p/DWySrQ5DV7T/"
+      },
+      {
+        "channel_id": "1491294533751799809",
+        "message_id": "1491319770325319780",
+        "posted_at": "2026-04-08T06:12:21.756728+00:00",
+        "section": "instagram",
+        "source_type": "instagram",
+        "title": "@itzjaysasa",
+        "url": "https://www.instagram.com/p/DW2VHTdj5JC/"
+      },
+      {
+        "channel_id": "1491294533751799809",
+        "message_id": "1491319780651569313",
+        "posted_at": "2026-04-08T06:12:23.874232+00:00",
+        "section": "instagram",
+        "source_type": "instagram",
+        "title": "@itzjaysasa",
+        "url": "https://www.instagram.com/p/DW1mbpOjWAT/"
+      }
+    ]
   }
 }
