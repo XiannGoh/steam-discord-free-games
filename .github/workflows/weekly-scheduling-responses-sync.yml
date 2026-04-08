@@ -45,6 +45,7 @@ jobs:
 
       - name: Sync weekly schedule responses
         env:
+          PYTHONPATH: .
           DISCORD_SCHEDULING_BOT_TOKEN: ${{ secrets.DISCORD_SCHEDULING_BOT_TOKEN }}
           TARGET_WEEK_KEY: ${{ github.event.inputs.target_week_key || '' }}
           REBUILD_SUMMARY_ONLY: ${{ github.event.inputs.rebuild_summary_only || 'false' }}
