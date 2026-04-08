@@ -6,27 +6,48 @@
         "username": "thomasgoh",
         "global_name": "Thomas",
         "days": {
-          "Monday": [
-            "🌙"
-          ],
-          "Tuesday": [
-            "🌙"
-          ],
-          "Wednesday": [
-            "🌙"
-          ],
-          "Thursday": [
-            "☀️"
-          ],
-          "Friday": [
-            "🌙"
-          ],
-          "Saturday": [
-            "🌙"
-          ],
-          "Sunday": [
-            "☀️"
-          ]
+          "Monday": {
+            "reactions": [
+              "🌙"
+            ],
+            "custom_reply": null
+          },
+          "Tuesday": {
+            "reactions": [
+              "🌙"
+            ],
+            "custom_reply": null
+          },
+          "Wednesday": {
+            "reactions": [
+              "🌙"
+            ],
+            "custom_reply": null
+          },
+          "Thursday": {
+            "reactions": [
+              "☀️"
+            ],
+            "custom_reply": null
+          },
+          "Friday": {
+            "reactions": [
+              "🌙"
+            ],
+            "custom_reply": null
+          },
+          "Saturday": {
+            "reactions": [
+              "🌙"
+            ],
+            "custom_reply": null
+          },
+          "Sunday": {
+            "reactions": [
+              "☀️"
+            ],
+            "custom_reply": null
+          }
         }
       }
     }
