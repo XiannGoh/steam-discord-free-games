@@ -3,24 +3,24 @@
     "date_range": "Apr 13–19, 2026",
     "summary": {
       "day_counts": {
-        "Monday": 2,
-        "Tuesday": 2,
+        "Monday": 1,
+        "Tuesday": 1,
         "Wednesday": 1,
         "Thursday": 1,
-        "Friday": 2,
+        "Friday": 1,
         "Saturday": 1,
         "Sunday": 1
       },
       "slot_counts": {
         "Monday": {
-          "✅": 1,
+          "✅": 0,
           "🌅": 0,
           "☀️": 0,
           "🌙": 1,
           "📝": 0
         },
         "Tuesday": {
-          "✅": 1,
+          "✅": 0,
           "🌅": 0,
           "☀️": 0,
           "🌙": 1,
@@ -44,7 +44,7 @@
           "✅": 0,
           "🌅": 0,
           "☀️": 0,
-          "🌙": 2,
+          "🌙": 1,
           "📝": 0
         },
         "Saturday": {
@@ -63,9 +63,9 @@
         }
       },
       "best_overlap": {
-        "day": "Friday",
+        "day": "Monday",
         "slot": "🌙",
-        "count": 2
+        "count": 1
       }
     }
   }
