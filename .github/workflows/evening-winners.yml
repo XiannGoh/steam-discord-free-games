@@ -40,7 +40,7 @@ jobs:
         run: python evening_winners.py
 
       - name: Notify Discord health monitor on failure
-        if: ${{ failure() && secrets.DISCORD_HEALTH_MONITOR_WEBHOOK_URL != '' }}
+        if: ${{ failure() && env.DISCORD_HEALTH_MONITOR_WEBHOOK_URL != '' }}
         env:
           DISCORD_HEALTH_MONITOR_WEBHOOK_URL: ${{ secrets.DISCORD_HEALTH_MONITOR_WEBHOOK_URL }}
           WORKFLOW_NAME: ${{ github.workflow }}

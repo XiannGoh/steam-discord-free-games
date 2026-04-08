@@ -94,7 +94,7 @@ jobs:
             core.setOutput("content", lines.join("\n").trim());
 
       - name: Post health report to Discord
-        if: ${{ secrets.DISCORD_HEALTH_MONITOR_WEBHOOK_URL != '' }}
+        if: ${{ env.DISCORD_HEALTH_MONITOR_WEBHOOK_URL != '' }}
         env:
           DISCORD_HEALTH_MONITOR_WEBHOOK_URL: ${{ secrets.DISCORD_HEALTH_MONITOR_WEBHOOK_URL }}
           HEALTH_REPORT_CONTENT: ${{ steps.build-report.outputs.content }}
