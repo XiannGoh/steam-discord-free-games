@@ -5,6 +5,9 @@ on:
   schedule:
     - cron: '0 13 * * 6'
 
+permissions:
+  contents: write
+
 jobs:
   post-weekly-availability:
     runs-on: ubuntu-latest
@@ -26,3 +29,17 @@ jobs:
           DISCORD_SCHEDULING_BOT_TOKEN: ${{ secrets.DISCORD_SCHEDULING_BOT_TOKEN }}
           DISCORD_SCHEDULING_THREAD_ID: ${{ secrets.DISCORD_SCHEDULING_THREAD_ID }}
         run: python scripts/post_weekly_availability.py
+
+      - name: Commit weekly schedule state
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/scheduling/weekly_schedule_messages.json
+
+          if git diff --cached --quiet; then
+            echo "No weekly schedule state changes to commit"
+            exit 0
+          fi
+
+          git commit -m "chore: update weekly schedule message state"
+          git push
