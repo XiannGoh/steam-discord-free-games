@@ -1,4 +1,4 @@
-"""Post weekly availability prompts to a Discord scheduling thread and add reactions."""
+"""Post weekly availability prompts to a Discord scheduling channel and add reactions."""
 
 import json
 import os
@@ -71,16 +71,16 @@ def check_response(response: requests.Response, context: str) -> None:
         sys.exit(1)
 
 
-def build_message_url(thread_id: str) -> str:
-    """Build the Discord API URL for creating a message in a thread."""
-    return f"{DISCORD_API_BASE}/channels/{thread_id}/messages"
+def build_message_url(channel_id: str) -> str:
+    """Build the Discord API URL for creating a message in a channel."""
+    return f"{DISCORD_API_BASE}/channels/{channel_id}/messages"
 
 
-def build_reaction_url(thread_id: str, message_id: str, emoji: str) -> str:
+def build_reaction_url(channel_id: str, message_id: str, emoji: str) -> str:
     """Build the Discord API URL for adding a reaction to a message."""
     encoded_emoji = urllib.parse.quote(emoji, safe="")
     return (
-        f"{DISCORD_API_BASE}/channels/{thread_id}/messages/"
+        f"{DISCORD_API_BASE}/channels/{channel_id}/messages/"
         f"{message_id}/reactions/{encoded_emoji}/@me"
     )
 
@@ -182,9 +182,9 @@ def save_json_file(path: str, data: dict[str, Any]) -> None:
         fail(f"Failed to write {path}: {error}")
 
 
-def post_message(session: requests.Session, thread_id: str, content: str) -> str:
+def post_message(session: requests.Session, channel_id: str, content: str) -> str:
     """Post a message and return the created Discord message ID."""
-    url = build_message_url(thread_id)
+    url = build_message_url(channel_id)
     response = session.post(url, json={"content": content}, timeout=REQUEST_TIMEOUT_SECONDS)
     check_response(response, "Failed to post Discord message")
 
@@ -200,9 +200,9 @@ def post_message(session: requests.Session, thread_id: str, content: str) -> str
     return str(message_id)
 
 
-def add_reaction(session: requests.Session, thread_id: str, message_id: str, emoji: str) -> None:
+def add_reaction(session: requests.Session, channel_id: str, message_id: str, emoji: str) -> None:
     """Add a single emoji reaction to a posted Discord message."""
-    url = build_reaction_url(thread_id, message_id, emoji)
+    url = build_reaction_url(channel_id, message_id, emoji)
     max_attempts = 5
     transient_statuses = {500, 502, 503, 504}
 
@@ -262,9 +262,9 @@ def add_reaction(session: requests.Session, thread_id: str, message_id: str, emo
 def main() -> None:
     """Run the weekly availability post flow and seed day-specific reactions."""
     token = require_env("DISCORD_SCHEDULING_BOT_TOKEN")
-    thread_id = require_env("DISCORD_SCHEDULING_THREAD_ID")
+    channel_id = require_env("DISCORD_SCHEDULING_CHANNEL_ID")
 
-    print(f"Starting weekly availability post (thread_id={thread_id})")
+    print(f"Starting weekly availability post (channel_id={channel_id})")
 
     with requests.Session() as session:
         session.headers.update(
@@ -280,22 +280,22 @@ def main() -> None:
         date_range = format_week_date_range(week_start, week_end)
         intro_message = INTRO_MESSAGE_TEMPLATE.format(date_range=date_range)
 
-        intro_message_id = post_message(session, thread_id, intro_message)
+        intro_message_id = post_message(session, channel_id, intro_message)
         print(f"Posted intro message (message_id={intro_message_id})")
 
         day_message_ids: dict[str, str] = {}
         for day_name, day_message in DAY_MESSAGES:
-            day_message_id = post_message(session, thread_id, day_message)
+            day_message_id = post_message(session, channel_id, day_message)
             print(f"Posted day message: {day_name} (message_id={day_message_id})")
             day_message_ids[day_name] = day_message_id
 
             for reaction in AVAILABILITY_REACTIONS:
-                add_reaction(session, thread_id, day_message_id, reaction)
+                add_reaction(session, channel_id, day_message_id, reaction)
                 print(f"Added reaction {reaction} to {day_name}")
 
         weekly_messages = load_json_file(WEEKLY_SCHEDULE_MESSAGES_FILE)
         weekly_messages[week_key] = {
-            "thread_id": thread_id,
+            "channel_id": channel_id,
             "date_range": date_range,
             "created_at_utc": get_current_utc_timestamp(),
             "intro_message_id": intro_message_id,

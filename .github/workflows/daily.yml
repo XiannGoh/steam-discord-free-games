@@ -3,11 +3,8 @@ name: Steam Free Games
 on:
   workflow_dispatch:
   schedule:
-    # 10:20 AM New York (EDT) = 14:20 UTC
-    - cron: "20 14 * * *"
-
-    # 5:45 PM New York (EDT) = 21:45 UTC
-    - cron: "45 21 * * *"
+    # 9:00 AM New York (EST) = 14:00 UTC; 9:00 AM New York (EDT) = 13:00 UTC
+    - cron: "0 13 * * *"
 
 permissions:
   contents: write
