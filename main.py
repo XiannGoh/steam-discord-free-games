@@ -4,7 +4,7 @@ import re
 import time
 import hashlib
 from datetime import datetime, timedelta, timezone
-from typing import Dict, List, Optional, Tuple
+from typing import Dict, List, Optional, Tuple, TypedDict
 from urllib.parse import urlparse
 
 import requests
@@ -48,6 +48,15 @@ HEADERS = {
 }
 
 # ---------- CONFIG ----------
+# Daily routing intent (do not redesign without explicit product change):
+# - demo / playtest -> Demo & Playtest section (discovery lane for promising friend-group titles).
+# - free_game / temporarily_free -> Free Picks (higher-confidence full free or temporary-free full games).
+# - paid_under_20 -> Paid Under $20 (strictest paid recommendation lane).
+# - Instagram creator picks remain a separate unchanged section.
+# Threshold philosophy:
+# - Demo/Playtest tolerates thinner review history, but demands stronger friend-group fit.
+# - Free is stricter on review confidence.
+# - Paid is strictest overall.
 # Section caps are intentionally independent: Demo/Playtest picks are curated separately
 # from Free Picks so one noisy pool cannot crowd out the other.
 MAX_FREE_POSTS = 10
@@ -59,6 +68,10 @@ MAX_PAGE_LIMIT = 50
 
 REQUEST_DELAY_SECONDS = 1.2
 REPOST_COOLDOWN_DAYS = 30
+# Threshold philosophy guardrails (quality-over-cap is intentional, especially for demos/playtests):
+# - Demo/Playtest has lower review strictness but stronger friend-group gating.
+# - Free raises review-confidence expectations.
+# - Paid is strictest overall.
 MIN_SCORE_TO_POST_FREE = 9
 MIN_SCORE_TO_POST_DEMO_PLAYTEST = 6
 MIN_SCORE_TO_POST_PAID = 8
@@ -72,6 +85,41 @@ STEAM_TOPSELLERS_URL = "https://store.steampowered.com/search/?filter=topsellers
 STEAMDB_FREE_PROMO_URL = "https://steamdb.info/upcoming/free/"
 
 DISCORD_CHAR_LIMIT = 1900
+
+FILTER_REASON_WEAK_REVIEW = "weak_review"
+FILTER_REASON_WEAK_GROUP_FIT = "weak_group_fit"
+FILTER_REASON_LOW_SIGNAL_JUNK = "low_signal_junk"
+FILTER_REASON_REPOST_COOLDOWN = "repost_cooldown"
+FILTER_REASON_BELOW_THRESHOLD = "below_threshold"
+FILTER_REASON_QUALIFIED = "qualified"
+
+DAILY_SECTION_CONFIG = [
+    {
+        "key": "demo_playtest",
+        "header": "🧪 New Demos & Playtests",
+        "source_type": "steam_demo_playtest",
+        "message_label": "Demo/Playtest",
+    },
+    {
+        "key": "free",
+        "header": "🎮 Free Picks",
+        "source_type": "steam_free",
+        "message_label": "Free",
+    },
+    {
+        "key": "paid",
+        "header": "💸 Paid Under $20",
+        "source_type": "paid_under_20",
+        "message_label": "Paid",
+    },
+    {
+        "key": "instagram",
+        "header": "📸 Instagram Creator Picks",
+        "source_type": "instagram",
+        "message_label": "Instagram",
+    },
+]
+DAILY_SECTION_ORDER = [entry["key"] for entry in DAILY_SECTION_CONFIG]
 
 MULTIPLAYER_TERMS = {
     "Massively Multiplayer": 4,
@@ -669,6 +717,10 @@ def detect_item_type(source: str, app_id: str, title: str, text: str) -> str:
     return "free_game"
 
 
+def normalize_text_lower(*parts: str) -> str:
+    return " ".join(part.strip().lower() for part in parts if isinstance(part, str) and part.strip())
+
+
 def score_multiplayer(text: str) -> Tuple[int, List[str]]:
     score = 0
     hits = []
@@ -710,8 +762,7 @@ def score_genres_and_description(title: str, description: str, text: str) -> Tup
     score = 0
     hits = []
 
-    combined = f"{title} {description} {text}"
-    lower_combined = combined.lower()
+    lower_combined = normalize_text_lower(title, description, text)
 
     for term, points in GOOD_GENRE_TERMS.items():
         if term.lower() in lower_combined:
@@ -951,15 +1002,35 @@ def _is_filtered_as_low_signal_junk(item: dict) -> bool:
     return False
 
 
+class DebugRecord(TypedDict):
+    title: str
+    type: str
+    final_score: int
+    review_sentiment: Optional[str]
+    friend_group_signal: int
+    keep: bool
+    reason_list: List[str]
+
+
 def build_filter_reason_list(item: dict) -> List[str]:
     reasons: List[str] = []
     if item.get("review_gate_failed"):
-        reasons.append("weak_review_signal")
+        reasons.append(FILTER_REASON_WEAK_REVIEW)
     if _is_filtered_for_weak_group_fit(item):
-        reasons.append("weak_multiplayer_or_friend_group_fit")
+        reasons.append(FILTER_REASON_WEAK_GROUP_FIT)
     if _is_filtered_as_low_signal_junk(item):
-        reasons.append("junk_or_prototype_low_signal")
+        reasons.append(FILTER_REASON_LOW_SIGNAL_JUNK)
     return reasons
+
+
+def route_item_to_daily_section(item_type: str) -> Optional[str]:
+    if item_type in {"demo", "playtest"}:
+        return "demo_playtest"
+    if item_type in {"free_game", "temporarily_free"}:
+        return "free"
+    if item_type == "paid_under_20":
+        return "paid"
+    return None
 
 
 def build_run_summary(
@@ -975,8 +1046,10 @@ def build_run_summary(
     filtered_weak_group_fit: int,
     filtered_low_signal_junk: int,
     filtered_repost_cooldown: int,
+    top_filter_reasons: Optional[List[Tuple[str, int]]] = None,
+    selected_title_samples: Optional[Dict[str, List[str]]] = None,
 ) -> List[str]:
-    return [
+    lines = [
         "RUN SUMMARY",
         f"- Steam candidates scanned: {steam_candidates_scanned}",
         f"- Demo/playtest candidates qualified: {demo_playtest_candidates_qualified}",
@@ -990,15 +1063,29 @@ def build_run_summary(
         f"- Filtered as junk/prototype/low-signal: {filtered_low_signal_junk}",
         f"- Filtered by repost cooldown: {filtered_repost_cooldown}",
     ]
+    for index, (reason, count) in enumerate(top_filter_reasons or []):
+        rank = ["Top", "Second", "Third"][index] if index < 3 else f"#{index + 1}"
+        lines.append(f"- {rank} filter reason: {reason} ({count})")
+    if selected_title_samples:
+        lines.append("- Selected by section (sample):")
+        for section in ("demo_playtest", "free", "paid"):
+            titles = selected_title_samples.get(section, [])
+            label = next((cfg["message_label"] for cfg in DAILY_SECTION_CONFIG if cfg["key"] == section), section)
+            display = ", ".join(titles) if titles else "none"
+            lines.append(f"  - {label}: {display}")
+    return lines
 
 
 def export_daily_debug_summary(
     records: List[dict],
     run_summary_lines: List[str],
     path: str = DAILY_DEBUG_SUMMARY_FILE,
+    target_day_key: Optional[str] = None,
 ) -> None:
     payload = {
         "generated_at_utc": utc_now_iso(),
+        "target_day_key": target_day_key or get_target_day_key(),
+        "section_order": DAILY_SECTION_ORDER,
         "run_summary": run_summary_lines,
         "records": records,
     }
@@ -1023,8 +1110,7 @@ def score_quality_refinements(
     hits = []
     lower_title = title.lower()
     lower_text = text.lower()
-    lower_description = description.lower()
-    combined = f"{lower_title} {lower_description} {lower_text}"
+    combined = normalize_text_lower(title, description, text)
 
     strong_review = review_sentiment in STRONG_REVIEW_SENTIMENTS
     positive_or_better = review_sentiment in POSITIVE_OR_BETTER_REVIEW_SENTIMENTS
@@ -1592,14 +1678,20 @@ def post_daily_pick_messages(
     post_or_reuse_simple("🎯 Daily Picks — vote with 👍 on your favorites", "intro", intro_state)
     sleep_briefly()
 
-    section_inputs = [
-        ("demo_playtest", "🧪 New Demos & Playtests", demo_playtest_items, False, "steam_demo_playtest"),
-        ("free", "🎮 Free Picks", free_items, False, "steam_free"),
-        ("paid", "💸 Paid Under $20", paid_items, True, "paid_under_20"),
-        ("instagram", "📸 Instagram Creator Picks", instagram_posts, False, "instagram"),
-    ]
+    section_items_by_key = {
+        "demo_playtest": demo_playtest_items,
+        "free": free_items,
+        "paid": paid_items,
+        "instagram": instagram_posts,
+    }
+    section_paid_flags = {"demo_playtest": False, "free": False, "paid": True, "instagram": False}
 
-    for section_key, header_message, section_items, is_paid, source_type in section_inputs:
+    for section in DAILY_SECTION_CONFIG:
+        section_key = section["key"]
+        header_message = section["header"]
+        section_items = section_items_by_key.get(section_key, [])
+        is_paid = section_paid_flags.get(section_key, False)
+        source_type = section["source_type"]
         if not section_items:
             continue
 
@@ -1800,7 +1892,7 @@ def main():
     filtered_weak_group_fit = 0
     filtered_low_signal_junk = 0
     filtered_repost_cooldown = 0
-    debug_records: List[dict] = []
+    debug_records: List[DebugRecord] = []
 
     for source, app_id in free_candidates:
         item = inspect_game(source, app_id)
@@ -1809,7 +1901,7 @@ def main():
         if not item:
             continue
         log_candidate_decision(item, phase="evaluated")
-        record = {
+        record: DebugRecord = {
             "title": item["title"],
             "type": item["type"],
             "final_score": item["score"],
@@ -1820,11 +1912,11 @@ def main():
         }
         if not item["keep"]:
             reason_list = build_filter_reason_list(item)
-            if "weak_review_signal" in reason_list:
+            if FILTER_REASON_WEAK_REVIEW in reason_list:
                 filtered_weak_reviews += 1
-            if "weak_multiplayer_or_friend_group_fit" in reason_list:
+            if FILTER_REASON_WEAK_GROUP_FIT in reason_list:
                 filtered_weak_group_fit += 1
-            if "junk_or_prototype_low_signal" in reason_list:
+            if FILTER_REASON_LOW_SIGNAL_JUNK in reason_list:
                 filtered_low_signal_junk += 1
             record["reason_list"] = reason_list
             log_candidate_decision(item, phase="filtered_not_kept")
@@ -1832,16 +1924,17 @@ def main():
             continue
         if not can_repost(app_id, item["type"], state):
             filtered_repost_cooldown += 1
-            record["reason_list"] = ["repost_cooldown"]
+            record["reason_list"] = [FILTER_REASON_REPOST_COOLDOWN]
             log_candidate_decision(item, phase="filtered_repost_cooldown")
             debug_records.append(record)
             continue
 
-        record["reason_list"] = ["qualified"]
+        record["reason_list"] = [FILTER_REASON_QUALIFIED]
         debug_records.append(record)
-        if item["type"] in {"demo", "playtest"}:
+        section_key = route_item_to_daily_section(item["type"])
+        if section_key == "demo_playtest":
             qualified_demo_playtest.append(item)
-        elif item["type"] in {"free_game", "temporarily_free"}:
+        elif section_key == "free":
             qualified_free.append(item)
 
     for source, app_id in paid_candidates:
@@ -1851,7 +1944,7 @@ def main():
         if not item:
             continue
         log_candidate_decision(item, phase="evaluated")
-        record = {
+        record: DebugRecord = {
             "title": item["title"],
             "type": item["type"],
             "final_score": item["score"],
@@ -1861,16 +1954,16 @@ def main():
             "reason_list": [],
         }
         if item["type"] != "paid_under_20":
-            record["reason_list"] = ["not_paid_under_20"]
+            record["reason_list"] = [FILTER_REASON_BELOW_THRESHOLD]
             debug_records.append(record)
             continue
         if not item["keep"]:
             reason_list = build_filter_reason_list(item)
-            if "weak_review_signal" in reason_list:
+            if FILTER_REASON_WEAK_REVIEW in reason_list:
                 filtered_weak_reviews += 1
-            if "weak_multiplayer_or_friend_group_fit" in reason_list:
+            if FILTER_REASON_WEAK_GROUP_FIT in reason_list:
                 filtered_weak_group_fit += 1
-            if "junk_or_prototype_low_signal" in reason_list:
+            if FILTER_REASON_LOW_SIGNAL_JUNK in reason_list:
                 filtered_low_signal_junk += 1
             record["reason_list"] = reason_list
             log_candidate_decision(item, phase="filtered_not_kept")
@@ -1878,14 +1971,15 @@ def main():
             continue
         if not can_repost(app_id, item["type"], state):
             filtered_repost_cooldown += 1
-            record["reason_list"] = ["repost_cooldown"]
+            record["reason_list"] = [FILTER_REASON_REPOST_COOLDOWN]
             log_candidate_decision(item, phase="filtered_repost_cooldown")
             debug_records.append(record)
             continue
 
-        record["reason_list"] = ["qualified"]
+        record["reason_list"] = [FILTER_REASON_QUALIFIED]
         debug_records.append(record)
-        qualified_paid.append(item)
+        if route_item_to_daily_section(item["type"]) == "paid":
+            qualified_paid.append(item)
 
     qualified_free.sort(
         key=lambda x: (
@@ -1968,6 +2062,19 @@ def main():
             f"score={item['score']} review_score={item.get('review_score', 0)}"
         )
 
+    reason_counts: Dict[str, int] = {}
+    for record in debug_records:
+        for reason in record["reason_list"]:
+            if reason == FILTER_REASON_QUALIFIED:
+                continue
+            reason_counts[reason] = reason_counts.get(reason, 0) + 1
+    top_filter_reasons = sorted(reason_counts.items(), key=lambda kv: kv[1], reverse=True)[:3]
+    selected_title_samples = {
+        "demo_playtest": [item["title"] for item in demo_playtest_items[:3]],
+        "free": [item["title"] for item in free_items[:3]],
+        "paid": [item["title"] for item in paid_items[:3]],
+    }
+
     run_summary_lines = build_run_summary(
         steam_candidates_scanned=steam_candidates_scanned,
         demo_playtest_candidates_qualified=len(qualified_demo_playtest),
@@ -1980,10 +2087,12 @@ def main():
         filtered_weak_group_fit=filtered_weak_group_fit,
         filtered_low_signal_junk=filtered_low_signal_junk,
         filtered_repost_cooldown=filtered_repost_cooldown,
+        top_filter_reasons=top_filter_reasons,
+        selected_title_samples=selected_title_samples,
     )
     for line in run_summary_lines:
         print(line)
-    export_daily_debug_summary(debug_records, run_summary_lines)
+    export_daily_debug_summary(debug_records, run_summary_lines, target_day_key=get_target_day_key())
 
     next_start_page = get_next_start_page(start_page)
     save_page_state(next_start_page)

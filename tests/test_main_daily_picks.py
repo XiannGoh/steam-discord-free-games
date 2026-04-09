@@ -181,6 +181,36 @@ def test_daily_sections_post_in_new_order(monkeypatch, tmp_path):
     ]
 
 
+def test_daily_section_order_is_product_invariant():
+    assert main.DAILY_SECTION_ORDER == ["demo_playtest", "free", "paid", "instagram"]
+    assert [entry["header"] for entry in main.DAILY_SECTION_CONFIG] == [
+        "🧪 New Demos & Playtests",
+        "🎮 Free Picks",
+        "💸 Paid Under $20",
+        "📸 Instagram Creator Picks",
+    ]
+
+
+def test_routing_exclusivity_invariants():
+    assert main.route_item_to_daily_section("demo") == "demo_playtest"
+    assert main.route_item_to_daily_section("playtest") == "demo_playtest"
+    assert main.route_item_to_daily_section("free_game") == "free"
+    assert main.route_item_to_daily_section("temporarily_free") == "free"
+    assert main.route_item_to_daily_section("paid_under_20") == "paid"
+
+    demo_like = {"demo", "playtest"}
+    free_like = {"free_game", "temporarily_free"}
+    paid_like = {"paid_under_20"}
+    all_types = demo_like | free_like | paid_like
+    sections = [main.route_item_to_daily_section(item_type) for item_type in all_types]
+    assert all(section in {"demo_playtest", "free", "paid"} for section in sections)
+    assert len(sections) == len(set((item_type, section) for item_type, section in zip(all_types, sections)))
+
+    assert all(main.route_item_to_daily_section(item_type) != "free" for item_type in demo_like)
+    assert all(main.route_item_to_daily_section(item_type) != "demo_playtest" for item_type in free_like)
+    assert all(main.route_item_to_daily_section(item_type) not in {"demo_playtest", "free"} for item_type in paid_like)
+
+
 def test_demo_playtest_label_uses_specific_type():
     demo_message = main.format_steam_item_message(
         {"title": "Demo A", "url": "https://store.steampowered.com/app/1", "score": 9, "type": "demo"},
@@ -221,6 +251,16 @@ def test_demo_selection_prefers_quality_over_filling_cap():
     assert [item["title"] for item in selected] == ["Strong"]
 
 
+def test_demo_selection_can_intentionally_post_below_cap_when_only_weak_remain():
+    qualified = [
+        {"title": "Strong A", "score": main.DEMO_PLAYTEST_QUALITY_FLOOR_SCORE},
+        {"title": "Weak B", "score": main.MIN_SCORE_TO_POST_DEMO_PLAYTEST},
+        {"title": "Weak C", "score": main.MIN_SCORE_TO_POST_DEMO_PLAYTEST},
+    ]
+    selected = main.select_demo_playtest_items(qualified, cap=10)
+    assert [item["title"] for item in selected] == ["Strong A"]
+
+
 def test_run_summary_aggregation_lines():
     lines = main.build_run_summary(
         steam_candidates_scanned=40,
@@ -234,12 +274,20 @@ def test_run_summary_aggregation_lines():
         filtered_weak_group_fit=6,
         filtered_low_signal_junk=4,
         filtered_repost_cooldown=3,
+        top_filter_reasons=[("weak_group_fit", 6), ("low_signal_junk", 4), ("repost_cooldown", 3)],
+        selected_title_samples={
+            "demo_playtest": ["Demo A"],
+            "free": ["Free A", "Free B"],
+            "paid": ["Paid A"],
+        },
     )
 
     assert lines[0] == "RUN SUMMARY"
     assert "- Steam candidates scanned: 40" in lines
     assert "- Demo/playtest posted: 4" in lines
     assert "- Filtered by repost cooldown: 3" in lines
+    assert "- Top filter reason: weak_group_fit (6)" in lines
+    assert "  - Demo/Playtest: Demo A" in lines
 
 
 def test_debug_export_writes_expected_structure(tmp_path):
@@ -261,13 +309,17 @@ def test_debug_export_writes_expected_structure(tmp_path):
     saved = json.loads(output_path.read_text(encoding="utf-8"))
 
     assert saved["run_summary"] == summary
+    assert saved["target_day_key"]
+    assert saved["section_order"] == main.DAILY_SECTION_ORDER
     assert saved["records"][0]["title"] == "Demo A"
     assert saved["records"][0]["reason_list"] == ["qualified"]
 
 
-def test_debug_export_fails_gracefully(monkeypatch):
+def test_debug_export_fails_gracefully(monkeypatch, capsys):
     def fake_open(*args, **kwargs):
         raise OSError("disk full")
 
     monkeypatch.setattr("builtins.open", fake_open)
     main.export_daily_debug_summary([], ["RUN SUMMARY"], path="ignored.json")
+    captured = capsys.readouterr()
+    assert "WARN: failed to write debug summary" in captured.out
