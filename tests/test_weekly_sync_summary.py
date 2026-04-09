@@ -541,12 +541,25 @@ def test_main_legacy_summary_backfills_signature_without_noisy_edit(monkeypatch,
             }
         },
     )
+    weekly_responses = json.loads(responses_p.read_text(encoding="utf-8"))
+    roster = json.loads(roster_p.read_text(encoding="utf-8"))
+    posting_week_summary = sync.build_weekly_summary(weekly_responses)[week_key]
+    missing_user_ids = sync.compute_missing_user_ids_for_week(weekly_responses[week_key], roster)
+    active_user_count = sync.count_active_roster_users(roster)
+    responded_count = max(active_user_count - len(missing_user_ids), 0)
+    legacy_content = sync.format_summary_message(
+        "Apr 13–19, 2026",
+        posting_week_summary,
+        responded_count=responded_count,
+        active_user_count=active_user_count,
+        synced_at_utc=sync.datetime(2026, 4, 9, 0, 0, tzinfo=sync.timezone.utc),
+    )
     _write(
         outputs_p,
         {
             week_key: {
                 "summary_message_id": "sum-old",
-                "summary_message_content": "legacy-summary-content",
+                "summary_message_content": legacy_content,
             }
         },
     )
@@ -570,6 +583,82 @@ def test_main_legacy_summary_backfills_signature_without_noisy_edit(monkeypatch,
     outputs = json.loads(outputs_p.read_text(encoding="utf-8"))
     assert fake_client.posts == []
     assert fake_client.edits == []
-    assert outputs[week_key]["summary_message_content"] == "legacy-summary-content"
+    assert outputs[week_key]["summary_message_content"] == legacy_content
     assert isinstance(outputs[week_key].get("summary_data_signature"), str)
     assert "summary_last_synced_at_utc" not in outputs[week_key]
+
+
+def test_main_legacy_summary_with_changed_data_triggers_edit(monkeypatch, tmp_path):
+    week_key, messages_p, responses_p, summary_p, roster_p, outputs_p = _setup_files(
+        tmp_path,
+        {
+            "2026-04-13_to_2026-04-19": {
+                "date_range": "Apr 13–19, 2026",
+                "users": {},
+            }
+        },
+    )
+    old_responses = json.loads(responses_p.read_text(encoding="utf-8"))
+    roster = json.loads(roster_p.read_text(encoding="utf-8"))
+    old_summary = sync.build_weekly_summary(old_responses)[week_key]
+    old_missing = sync.compute_missing_user_ids_for_week(old_responses[week_key], roster)
+    active_user_count = sync.count_active_roster_users(roster)
+    old_responded = max(active_user_count - len(old_missing), 0)
+    legacy_content = sync.format_summary_message(
+        "Apr 13–19, 2026",
+        old_summary,
+        responded_count=old_responded,
+        active_user_count=active_user_count,
+        synced_at_utc=sync.datetime(2026, 4, 1, 0, 0, tzinfo=sync.timezone.utc),
+    )
+    _write(
+        outputs_p,
+        {
+            week_key: {
+                "summary_message_id": "sum-old",
+                "summary_message_content": legacy_content,
+            }
+        },
+    )
+
+    _write(
+        responses_p,
+        {
+            week_key: {
+                "date_range": "Apr 13–19, 2026",
+                "users": {
+                    "100": {
+                        "username": "jan",
+                        "global_name": "Jan",
+                        "days": {
+                            day: {"reactions": ["✅"], "custom_reply": None}
+                            for day in sync.DAY_NAMES
+                        },
+                    }
+                },
+            }
+        },
+    )
+
+    fake_client = FakeDiscordClient()
+    monkeypatch.setattr(sync.requests, "Session", FakeSession)
+    monkeypatch.setattr(sync, "DiscordClient", lambda session: fake_client)
+    monkeypatch.setattr(sync, "post_channel_message", lambda session, channel_id, content: "rem-1")
+    monkeypatch.setattr(sync, "WEEKLY_SCHEDULE_MESSAGES_FILE", str(messages_p))
+    monkeypatch.setattr(sync, "WEEKLY_SCHEDULE_RESPONSES_FILE", str(responses_p))
+    monkeypatch.setattr(sync, "WEEKLY_SCHEDULE_SUMMARY_FILE", str(summary_p))
+    monkeypatch.setattr(sync, "EXPECTED_SCHEDULE_ROSTER_FILE", str(roster_p))
+    monkeypatch.setattr(sync, "WEEKLY_SCHEDULE_BOT_OUTPUTS_FILE", str(outputs_p))
+    monkeypatch.setenv("DISCORD_SCHEDULING_BOT_TOKEN", "x")
+    monkeypatch.setenv("REBUILD_SUMMARY_ONLY", "true")
+    monkeypatch.setenv("TARGET_WEEK_KEY", week_key)
+    monkeypatch.delenv("DRY_RUN", raising=False)
+
+    sync.main()
+
+    outputs = json.loads(outputs_p.read_text(encoding="utf-8"))
+    assert fake_client.posts == []
+    assert len(fake_client.edits) == 1
+    assert outputs[week_key]["summary_message_content"] != legacy_content
+    assert isinstance(outputs[week_key].get("summary_data_signature"), str)
+    assert "summary_last_synced_at_utc" in outputs[week_key]
