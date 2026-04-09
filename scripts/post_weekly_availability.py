@@ -34,14 +34,14 @@ Tue 7–9 PM
 Wed after 6
 Sat 1–4 PM"""
 
-DAY_MESSAGES: list[tuple[str, str]] = [
-    ("Monday", "🇲 Monday"),
-    ("Tuesday", "🇹 Tuesday"),
-    ("Wednesday", "🇼 Wednesday"),
-    ("Thursday", "🇷 Thursday"),
-    ("Friday", "🇫 Friday"),
-    ("Saturday", "🇸 Saturday"),
-    ("Sunday", "🇺 Sunday"),
+DAY_MESSAGE_TEMPLATES: list[tuple[str, str, int]] = [
+    ("Monday", "🇲", 0),
+    ("Tuesday", "🇹", 1),
+    ("Wednesday", "🇼", 2),
+    ("Thursday", "🇷", 3),
+    ("Friday", "🇫", 4),
+    ("Saturday", "🇸", 5),
+    ("Sunday", "🇺", 6),
 ]
 
 AVAILABILITY_REACTIONS: list[str] = ["✅", "🌅", "☀️", "🌙", "❌", "📝"]
@@ -105,6 +105,10 @@ def try_get_message(client: DiscordClient, channel_id: str, message_id: str, con
         return False
 
 
+def format_day_message(day_name: str, emoji: str, day_date: date) -> str:
+    return f"{emoji} {day_name} — {day_date.month}/{day_date.day}"
+
+
 def ensure_day_reactions(client: DiscordClient, channel_id: str, day_name: str, message_id: str) -> None:
     for reaction in AVAILABILITY_REACTIONS:
         encoded = urllib.parse.quote(reaction, safe="")
@@ -163,7 +167,9 @@ def main() -> None:
 
         day_message_ids: dict[str, str] = {}
         created_days = 0
-        for day_name, day_message in DAY_MESSAGES:
+        for day_name, emoji, day_offset in DAY_MESSAGE_TEMPLATES:
+            day_date = week_start + timedelta(days=day_offset)
+            day_message = format_day_message(day_name, emoji, day_date)
             existing_day_id = existing_days.get(day_name)
             if isinstance(existing_day_id, str) and existing_day_id and try_get_message(
                 client,
@@ -192,7 +198,7 @@ def main() -> None:
         "updated_at_utc": utc_timestamp(),
         "intro_message_id": intro_message_id,
         "days": day_message_ids,
-        "post_completed": len(day_message_ids) == len(DAY_MESSAGES),
+        "post_completed": len(day_message_ids) == len(DAY_MESSAGE_TEMPLATES),
     }
 
     pruned = prune_latest_keys(weekly_messages, keep_last=12)

@@ -60,10 +60,10 @@ def test_rerun_reuses_intro_and_days_without_duplicates(monkeypatch, tmp_path):
             "date_range": "Apr 13–19, 2026",
             "created_at_utc": "2026-04-01T00:00:00Z",
             "intro_message_id": "intro-1",
-            "days": {day: f"id-{day}" for day, _ in weekly.DAY_MESSAGES},
+            "days": {day: f"id-{day}" for day, _, _ in weekly.DAY_MESSAGE_TEMPLATES},
         }
     }
-    fake = FakeClient(existing_message_ids={"intro-1", *[f"id-{day}" for day, _ in weekly.DAY_MESSAGES]})
+    fake = FakeClient(existing_message_ids={"intro-1", *[f"id-{day}" for day, _, _ in weekly.DAY_MESSAGE_TEMPLATES]})
 
     saved = _run_main(monkeypatch, tmp_path, existing_state=existing, fake_client=fake)
 
@@ -79,7 +79,7 @@ def test_partial_recovery_only_creates_missing_or_stale_posts(monkeypatch, tmp_p
             "channel_id": "chan-1",
             "date_range": "Apr 13–19, 2026",
             "intro_message_id": "intro-1",
-            "days": {day: f"id-{day}" for day, _ in weekly.DAY_MESSAGES},
+            "days": {day: f"id-{day}" for day, _, _ in weekly.DAY_MESSAGE_TEMPLATES},
         }
     }
     fake = FakeClient(
@@ -94,6 +94,31 @@ def test_partial_recovery_only_creates_missing_or_stale_posts(monkeypatch, tmp_p
     assert saved[week_key]["days"]["Wednesday"].startswith("new-")
     assert saved[week_key]["days"]["Monday"] == "id-Monday"
     assert len(fake.reaction_calls) == len(weekly.AVAILABILITY_REACTIONS)
+
+
+def test_day_message_includes_week_dates_and_compact_format(monkeypatch, tmp_path):
+    fake = FakeClient()
+
+    _run_main(monkeypatch, tmp_path, existing_state={}, fake_client=fake)
+
+    day_contents = [
+        content
+        for context, content, _ in fake.created_messages
+        if context.startswith("post ") and "intro" not in context
+    ]
+    assert day_contents == [
+        "🇲 Monday — 4/13",
+        "🇹 Tuesday — 4/14",
+        "🇼 Wednesday — 4/15",
+        "🇷 Thursday — 4/16",
+        "🇫 Friday — 4/17",
+        "🇸 Saturday — 4/18",
+        "🇺 Sunday — 4/19",
+    ]
+
+
+def test_format_day_message_uses_no_leading_zeros():
+    assert weekly.format_day_message("Monday", "🇲", weekly.date(2026, 4, 3)) == "🇲 Monday — 4/3"
 
 
 def test_legacy_state_shape_loads_and_upgrades(monkeypatch, tmp_path, load_fixture_json):
