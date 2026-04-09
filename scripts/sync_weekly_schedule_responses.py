@@ -12,6 +12,7 @@ from zoneinfo import ZoneInfo
 import requests
 
 from discord_api import DiscordClient, DiscordMessageNotFoundError
+from scripts.scheduling_labels import DAY_NAMES, format_day_label
 from state_utils import load_json_object, prune_latest_keys, save_json_object_atomic
 
 DISCORD_API_BASE = "https://discord.com/api/v10"
@@ -22,16 +23,6 @@ WEEKLY_SCHEDULE_RESPONSES_FILE = "data/scheduling/weekly_schedule_responses.json
 WEEKLY_SCHEDULE_SUMMARY_FILE = "data/scheduling/weekly_schedule_summary.json"
 EXPECTED_SCHEDULE_ROSTER_FILE = "data/scheduling/expected_schedule_roster.json"
 WEEKLY_SCHEDULE_BOT_OUTPUTS_FILE = "data/scheduling/weekly_schedule_bot_outputs.json"
-
-DAY_NAMES: list[str] = [
-    "Monday",
-    "Tuesday",
-    "Wednesday",
-    "Thursday",
-    "Friday",
-    "Saturday",
-    "Sunday",
-]
 
 AVAILABILITY_REACTIONS: list[str] = ["✅", "🌅", "☀️", "🌙", "❌", "📝"]
 SUMMARY_SLOT_ORDER: list[str] = ["✅", "🌅", "☀️", "🌙", "📝"]
@@ -533,7 +524,7 @@ def format_summary_message(date_range: str, week_summary: dict[str, Any]) -> str
         day_date = week_dates.get(day_name)
         if day_date is None:
             return day_name
-        return f"{day_name} {day_date.month}/{day_date.day}"
+        return format_day_label(day_name, day_date)
 
     def format_voter_line(day_name: str, slot: str, slot_count: int) -> str:
         raw_day_slot_voters = slot_voters.get(day_name)
@@ -594,31 +585,21 @@ def format_summary_message(date_range: str, week_summary: dict[str, Any]) -> str
                 ordered_lines.append(format_voter_line(day_name, slot, slot_count))
         return ordered_lines
 
-    ranked_days = sorted(
-        DAY_NAMES,
-        key=lambda day_name: (
-            -max(int(slot_counts.get(day_name, {}).get(slot, 0)) for slot in SUMMARY_SLOT_ORDER),
-            -int(day_counts.get(day_name, 0)),
-            DAY_NAMES.index(day_name),
-        ),
-    )
-
-    ranked_day_lines: list[str] = []
-    for index, day_name in enumerate(ranked_days):
-        ranked_day_lines.append(f"{index + 1}. **{day_with_date_label(day_name)}**")
+    chronological_day_lines: list[str] = []
+    for index, day_name in enumerate(DAY_NAMES):
+        chronological_day_lines.append(f"**{day_with_date_label(day_name)}**")
         day_slot_lines = build_day_slot_lines(day_name)
         if day_slot_lines:
-            ranked_day_lines.extend(day_slot_lines)
+            chronological_day_lines.extend(day_slot_lines)
         else:
-            ranked_day_lines.append("No responses")
-        if index < len(ranked_days) - 1:
-            ranked_day_lines.append("")
+            chronological_day_lines.append("No responses")
+        if index < len(DAY_NAMES) - 1:
+            chronological_day_lines.append("")
 
     lines = [
         f"📊 Availability Summary — {date_range}",
         "",
-        "All days ranked:",
-        *ranked_day_lines,
+        *chronological_day_lines,
     ]
 
     message = "\n".join(lines)
@@ -628,11 +609,7 @@ def format_summary_message(date_range: str, week_summary: dict[str, Any]) -> str
     fallback_lines = [
         f"📊 Availability Summary — {date_range}",
         "",
-        "All days ranked:",
-        *(
-            f"{index + 1}. **{day_with_date_label(day_name)}**"
-            for index, day_name in enumerate(ranked_days)
-        ),
+        *(f"**{day_with_date_label(day_name)}**" for day_name in DAY_NAMES),
         "",
         "_Detailed voter names were truncated to fit Discord message limits._",
     ]

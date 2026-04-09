@@ -18,6 +18,7 @@ on:
         type: boolean
         default: false
   schedule:
+    # No-op touch: keep cron unchanged while forcing workflow re-evaluation.
     - cron: '0 */3 * * *'
 
 permissions:
