@@ -44,6 +44,19 @@ jobs:
       - name: Install dependencies
         run: pip install requests
 
+      - name: Log sync context
+        env:
+          TARGET_WEEK_KEY: ${{ github.event.inputs.target_week_key || '' }}
+          REBUILD_SUMMARY_ONLY: ${{ github.event.inputs.rebuild_summary_only || 'false' }}
+          DRY_RUN: ${{ github.event.inputs.dry_run || 'false' }}
+        run: |
+          echo "Workflow trigger: ${{ github.event_name }}"
+          echo "Selected TARGET_WEEK_KEY: ${TARGET_WEEK_KEY:-'(default latest)'}"
+          echo "REBUILD_SUMMARY_ONLY: ${REBUILD_SUMMARY_ONLY}"
+          echo "DRY_RUN: ${DRY_RUN}"
+          echo "Current UTC time: $(date -u '+%Y-%m-%d %H:%M:%S UTC')"
+          echo "Current New York time: $(TZ=America/New_York date '+%Y-%m-%d %I:%M:%S %p %Z')"
+
       - name: Sync weekly schedule responses
         env:
           PYTHONPATH: .
@@ -52,6 +65,12 @@ jobs:
           REBUILD_SUMMARY_ONLY: ${{ github.event.inputs.rebuild_summary_only || 'false' }}
           DRY_RUN: ${{ github.event.inputs.dry_run || 'false' }}
         run: python scripts/sync_weekly_schedule_responses.py
+
+      - name: Log sync completion
+        run: |
+          echo "Sync step completed"
+          echo "Post-sync UTC time: $(date -u '+%Y-%m-%d %H:%M:%S UTC')"
+          echo "Post-sync New York time: $(TZ=America/New_York date '+%Y-%m-%d %I:%M:%S %p %Z')"
 
       - name: Commit weekly schedule responses
         run: |
