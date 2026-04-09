@@ -14,6 +14,17 @@ Additionally, this repo contains a **live voice-channel join alert bot script** 
 
 This repository is now **channel-based** (no thread-based posting).
 
+## Tiny Repo File Map
+
+- `main.py` → scoring, routing, daily pick selection, posting.
+- `evening_winners.py` → winners selection and rendering.
+- `daily_section_config.py` → shared daily section order/labels/routing ownership.
+- `daily_debug_summary.json` → ephemeral operator debug output for the current run.
+
+### Maintainer note
+
+Section order and labels are intentionally centralized, threshold comments are intentional operator guidance, and any future tuning should happen only after observing real-world runs.
+
 ## Current Discord Channels
 
 - Weekly scheduling channel: `update-weekly-schedule-here` (`1491294381418741870`)

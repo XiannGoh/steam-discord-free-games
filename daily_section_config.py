@@ -1,7 +1,6 @@
-"""Shared daily/winners section configuration.
+"""Single shared config for section order, labels, and routing ownership.
 
-Daily picks and evening winners intentionally use the same section order and labels
-so operators see a consistent product flow.
+Keeping this centralized ensures daily picks and evening winners stay aligned.
 """
 
 from typing import Dict, List
