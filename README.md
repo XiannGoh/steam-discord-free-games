@@ -18,7 +18,7 @@ This repository is now **channel-based** (no thread-based posting).
 
 - Weekly scheduling channel: `update-weekly-schedule-here` (`1491294381418741870`)
 - Daily picks channel: `daily-game-picks` (`1491294533751799809`)
-- Winners destination channel: `daily-game-picks` (uses `DISCORD_DAILY_PICKS_CHANNEL_ID` when set; otherwise falls back to daily item channel/state and then `DISCORD_WINNERS_CHANNEL_ID`)
+- Winners destination channel: configured by `DISCORD_WINNERS_CHANNEL_ID` (currently `daily-game-picks`)
 - Health monitor channel: `xiann-gpt-bot-health-monitor` (`1491520649917628536`)
 
 ---
@@ -41,10 +41,14 @@ If something fails:
 Operational alerts are now centralized in `xiann-gpt-bot-health-monitor`.
 
 - **Immediate failure pings:** key production workflows send a compact `🔴 XiannGPT Bot Failure` message with workflow, job, context, and run URL.
-- **Daily health report:** `bot-health-report.yml` posts one summary per day with signal lights:
-  - 🟢 healthy (latest run succeeded)
-  - 🟡 warning (stale, skipped, cancelled, or otherwise non-success)
-  - 🔴 failed (latest run failed)
+- **Daily health report:** `bot-health-report.yml` posts one summary per day with:
+  - A top-level **Overall** block (`🟢/🟡/🔴`) that tells operators if action is needed.
+  - Workflow and state sections that include `Disposition` and `Next step` on yellow/red items.
+  - Informational warnings that can explicitly be `No action needed`.
+  - Action meaning:
+    - 🟢 = no action needed
+    - 🟡 = monitor / follow-up
+    - 🔴 = action needed
 - **Operator default path:** this channel is now the primary dashboard for bot operations; email is no longer the preferred alerting path.
 
 Manual rerun quick commands (GitHub CLI):
@@ -117,6 +121,10 @@ Use this section as the fast triage guide when a workflow or state file drifts.
 - State/artifact consistency (missing or malformed files, missing summary/output links, winners-state coherence).
 - Roster/config integrity (missing/malformed/empty expected roster).
 - Winners + weekly scheduling sanity (expected week/day entries, summary freshness, picks↔winners coherence).
+- Top-level operator signal derived from workflow + state dispositions:
+  - 🟢 no action needed
+  - 🟡 monitor / follow-up
+  - 🔴 action needed
 
 ### Manual recovery / triage playbook
 
@@ -127,6 +135,9 @@ Use this section as the fast triage guide when a workflow or state file drifts.
 - **Weekly summary missing**
   1. Confirm the week exists in `weekly_schedule_messages.json` and `weekly_schedule_responses.json`.
   2. Run sync with `target_week_key=<week>` and `rebuild_summary_only=true`.
+- **Expected weekly schedule post missing**
+  1. Re-run `weekly-scheduling-bot.yml` (not responses sync) to post/repair weekly intro/day messages.
+  2. Confirm `data/scheduling/weekly_schedule_messages.json` includes the current/next expected week key.
 - **Winners state missing**
   1. Confirm picks exist for expected winners day in `discord_daily_posts.json`.
   2. Re-run `evening-winners.yml` with `winners_date_utc=<day>`.
@@ -142,7 +153,7 @@ Use this section as the fast triage guide when a workflow or state file drifts.
 
 - Weekly scheduling post/sync: `DISCORD_SCHEDULING_BOT_TOKEN`, `DISCORD_SCHEDULING_CHANNEL_ID`.
 - Daily picks: `DISCORD_WEBHOOK_URL`, `DISCORD_BOT_TOKEN`, `INSTAGRAM_USERNAME`, `INSTAGRAM_SESSION_B64`.
-- Evening winners: `DISCORD_BOT_TOKEN`, winners destination channel env (`DISCORD_DAILY_PICKS_CHANNEL_ID` and/or `DISCORD_WINNERS_CHANNEL_ID`).
+- Evening winners: `DISCORD_BOT_TOKEN`, winners destination channel env (`DISCORD_WINNERS_CHANNEL_ID`).
 - Health reporting: `DISCORD_HEALTH_MONITOR_WEBHOOK_URL`.
 
 ---
@@ -266,7 +277,7 @@ Behavior:
   - raw 👍 = 1 → excluded (0 human votes)
   - raw 👍 = 2 → included (1 human vote)
   - raw 👍 = 3 → included (2 human votes)
-- Posts winners to `daily-game-picks` (`DISCORD_DAILY_PICKS_CHANNEL_ID` preferred; backward-compatible fallback to `DISCORD_WINNERS_CHANNEL_ID`)
+- Posts winners to the channel configured by `DISCORD_WINNERS_CHANNEL_ID` (currently `daily-game-picks`)
 
 Rerun/idempotency behavior:
 - Same-day reruns do not duplicate winners posts
@@ -307,7 +318,6 @@ This shared layer is used by weekly + daily flows for consistency and safer reru
   - `INSTAGRAM_SESSION_B64`
 - Evening winners:
   - `DISCORD_BOT_TOKEN`
-  - `DISCORD_DAILY_PICKS_CHANNEL_ID` (recommended)
   - `DISCORD_WINNERS_CHANNEL_ID`
 - Health monitor notifications (failure pings + daily report):
   - `DISCORD_HEALTH_MONITOR_WEBHOOK_URL`

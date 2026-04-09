@@ -360,7 +360,7 @@ def test_actionable_warning_has_specific_next_step(tmp_path, monkeypatch):
     issues = report.compute_state_issues(now_utc=now_utc)
     weekly_issue = next(issue for issue in issues if issue.code == "weekly.expected_post_missing")
     assert weekly_issue.disposition == "Action recommended"
-    assert "Re-run weekly-scheduling-responses-sync.yml" in (weekly_issue.next_step or "")
+    assert "Re-run weekly-scheduling-bot.yml" in (weekly_issue.next_step or "")
 
 
 def test_error_rendering_uses_action_required():
@@ -429,7 +429,7 @@ def test_overall_summary_is_yellow_for_monitor_or_follow_up_dispositions():
                 title="Expected weekly schedule post missing",
                 context="No current/next expected weekly schedule message entry found.",
                 disposition="Action recommended",
-                next_step="Re-run weekly-scheduling-responses-sync.yml.",
+                next_step="Re-run weekly-scheduling-bot.yml.",
             )
         ],
         report_date="Apr 9, 2026",
