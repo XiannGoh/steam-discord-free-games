@@ -221,7 +221,6 @@ def render_report(
             [
             f"{icon} {state_check_label}",
             f"Last run: {status} (see State / Artifact Health)",
-            "",
             ]
         )
     else:
@@ -229,7 +228,6 @@ def render_report(
             [
             f"🟢 {state_check_label}",
             "Last run: healthy (see State / Artifact Health)",
-            "",
             ]
         )
 
