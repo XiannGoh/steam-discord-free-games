@@ -524,6 +524,23 @@ def format_summary_last_updated_line(synced_at_utc: datetime) -> str:
     return f"*Last updated: {month_day}, {hour_12}:{minute} {am_pm} ET*"
 
 
+def normalize_summary_content_for_data_compare(content: Any) -> str | None:
+    """Normalize summary content for legacy data comparison.
+
+    Drops the volatile "Last updated" line so we can compare meaningful
+    summary content across pre-signature and post-signature runs.
+    """
+    if not isinstance(content, str):
+        return None
+
+    normalized_lines = [
+        line
+        for line in content.splitlines()
+        if not line.strip().startswith("*Last updated:")
+    ]
+    return "\n".join(normalized_lines).strip()
+
+
 def format_summary_message(
     date_range: str,
     week_summary: dict[str, Any],
@@ -938,11 +955,23 @@ def main() -> None:
             and isinstance(previous_summary_message_content, str)
             and bool(previous_summary_message_content)
         )
-        summary_data_changed = (
-            previous_summary_data_signature != current_summary_data_signature
-            if previous_summary_data_signature is not None
-            else not is_legacy_summary_without_signature
-        )
+        if previous_summary_data_signature is not None:
+            summary_data_changed = previous_summary_data_signature != current_summary_data_signature
+        elif is_legacy_summary_without_signature:
+            legacy_compare_synced_at_utc = previous_summary_last_synced_at_utc or summary_synced_at_utc
+            regenerated_legacy_comparable_message = format_summary_message(
+                date_range,
+                posting_week_summary,
+                responded_count=responded_active_user_count,
+                active_user_count=active_user_count,
+                synced_at_utc=legacy_compare_synced_at_utc,
+            )
+            summary_data_changed = (
+                normalize_summary_content_for_data_compare(previous_summary_message_content)
+                != normalize_summary_content_for_data_compare(regenerated_legacy_comparable_message)
+            )
+        else:
+            summary_data_changed = True
 
         if summary_data_changed:
             effective_summary_synced_at_utc = summary_synced_at_utc
