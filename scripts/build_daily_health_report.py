@@ -32,6 +32,8 @@ class Issue:
     file_path: str | None = None
     week_key: str | None = None
     day_key: str | None = None
+    disposition: str | None = None
+    next_step: str | None = None
     extra: dict[str, str] = field(default_factory=dict)
 
 
@@ -72,13 +74,13 @@ def _format_ny_timestamp(value: Any) -> str | None:
     return f"{ny_time.strftime('%b')} {ny_time.day}, {hour_12}:{ny_time.minute:02d} {ny_time.strftime('%p')} ET"
 
 
-def evaluate_workflow_status(run: dict[str, Any] | None, stale_hours: int) -> tuple[str, str, bool]:
+def evaluate_workflow_status(run: dict[str, Any] | None, stale_hours: int) -> tuple[str, str, bool, str]:
     if not run:
-        return "🟡", "no recent run found", False
+        return "🟡", "no recent run found", False, "no_recent_run"
 
     updated_at = run.get("updated_at") or run.get("created_at")
     if not isinstance(updated_at, str):
-        return "🟡", "run timestamp missing", True
+        return "🟡", "run timestamp missing", True, "timestamp_missing"
 
     run_time = datetime.fromisoformat(updated_at.replace("Z", "+00:00"))
     age_hours = (datetime.now(timezone.utc) - run_time).total_seconds() / 3600
@@ -86,12 +88,12 @@ def evaluate_workflow_status(run: dict[str, Any] | None, stale_hours: int) -> tu
     conclusion = str(run.get("conclusion") or run.get("status") or "unknown")
 
     if age_hours > stale_hours:
-        return "🟡", f"{conclusion} ({recency}) — stale", True
+        return "🟡", f"{conclusion} ({recency}) — stale", True, "stale"
     if conclusion == "success":
-        return "🟢", f"{conclusion} ({recency})", False
+        return "🟢", f"{conclusion} ({recency})", False, "success"
     if conclusion in {"failure", "timed_out", "startup_failure", "action_required"}:
-        return "🔴", f"{conclusion} ({recency})", True
-    return "🟡", f"{conclusion} ({recency})", True
+        return "🔴", f"{conclusion} ({recency})", True, "failed"
+    return "🟡", f"{conclusion} ({recency})", True, "non_success"
 
 
 def _week_keys(payload: Any) -> set[str]:
@@ -134,8 +136,11 @@ def _new_issue(
     file_path: str | None = None,
     week_key: str | None = None,
     day_key: str | None = None,
+    disposition: str | None = None,
+    next_step: str | None = None,
     extra: dict[str, str] | None = None,
 ) -> Issue:
+    guidance_disposition, guidance_next_step = _state_issue_guidance(code, severity, file_path=file_path)
     return Issue(
         code=code,
         severity=severity,
@@ -144,8 +149,63 @@ def _new_issue(
         file_path=file_path,
         week_key=week_key,
         day_key=day_key,
+        disposition=disposition or guidance_disposition,
+        next_step=next_step or guidance_next_step,
         extra=extra or {},
     )
+
+
+def _state_issue_guidance(code: str, severity: str, *, file_path: str | None = None) -> tuple[str, str]:
+    code_map: dict[str, tuple[str, str]] = {
+        "weekly.summary_freshness_missing": (
+            "No action needed",
+            "None. This is usually legacy output missing summary_last_synced_at_utc; monitor for future writes.",
+        ),
+        "winners.state_missing": (
+            "No action needed",
+            "None unless the expected winners post is missing in Discord for that day.",
+        ),
+        "daily.today_missing": (
+            "Monitor only",
+            "Wait for the next daily-picks run, then confirm today's entry appears in discord_daily_posts.json.",
+        ),
+        "weekly.expected_post_missing": (
+            "Action recommended",
+            "Re-run weekly-scheduling-responses-sync.yml to generate the expected weekly schedule post state.",
+        ),
+    }
+    if code in code_map:
+        return code_map[code]
+    if severity == "error":
+        target = file_path or "state files"
+        return "Action required", f"Inspect {target} and fix malformed/inconsistent fields before the next run."
+    return "Action recommended", "Re-run the related workflow and verify state files update as expected."
+
+
+def _workflow_guidance(
+    *,
+    status_reason: str,
+    icon: str,
+    workflow_name: str,
+    run: dict[str, Any] | None,
+) -> tuple[str, str] | None:
+    if icon == "🟢":
+        return None
+    run_url = run.get("html_url") if isinstance(run, dict) and isinstance(run.get("html_url"), str) else None
+    if status_reason == "stale":
+        return (
+            "Action recommended",
+            f"Re-run {workflow_name} if no run is expected soon; otherwise monitor the next scheduled run.",
+        )
+    if status_reason in {"no_recent_run", "timestamp_missing"}:
+        return (
+            "Action recommended",
+            f"Trigger {workflow_name} manually and verify run metadata is recorded correctly.",
+        )
+    if status_reason == "failed":
+        url_note = f"Open run details: {run_url}. " if run_url else ""
+        return ("Action required", f"{url_note}Fix the failure cause and re-run the workflow.")
+    return ("Monitor only", "Watch the next run and intervene only if this status repeats.")
 
 
 def compute_state_issues(*, now_utc: datetime | None = None) -> list[Issue]:
@@ -400,6 +460,18 @@ def _render_state_issue(issue: Issue) -> list[str]:
     for key, value in issue.extra.items():
         lines.append(f"{key}: {value}")
     lines.append(f"Context: {issue.context}")
+    disposition = issue.disposition
+    next_step = issue.next_step
+    if not disposition or not next_step:
+        default_disposition, default_next_step = _state_issue_guidance(
+            issue.code,
+            issue.severity,
+            file_path=issue.file_path,
+        )
+        disposition = disposition or default_disposition
+        next_step = next_step or default_next_step
+    lines.append(f"Disposition: {disposition}")
+    lines.append(f"Next step: {next_step}")
     return lines
 
 
@@ -458,7 +530,7 @@ def build_workflow_status_lines(workflow_runs: list[dict[str, Any]]) -> list[str
     for workflow in workflow_runs:
         stale_hours = int(workflow["staleHours"])
         run = workflow.get("run")
-        icon, status_text, include_details = evaluate_workflow_status(run, stale_hours)
+        icon, status_text, include_details, status_reason = evaluate_workflow_status(run, stale_hours)
         lines.append(f"{icon} {workflow['name']}")
         lines.append(f"Last run: {status_text}")
 
@@ -472,6 +544,16 @@ def build_workflow_status_lines(workflow_runs: list[dict[str, Any]]) -> list[str
                 lines.append(f"Last run time: {timestamp_text}")
             if run.get("html_url"):
                 lines.append(f"Run: {run['html_url']}")
+        guidance = _workflow_guidance(
+            status_reason=status_reason,
+            icon=icon,
+            workflow_name=workflow["name"],
+            run=run if isinstance(run, dict) else None,
+        )
+        if guidance:
+            disposition, next_step = guidance
+            lines.append(f"Disposition: {disposition}")
+            lines.append(f"Next step: {next_step}")
         lines.append("")
     return lines
 

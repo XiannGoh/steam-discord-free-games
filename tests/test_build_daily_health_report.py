@@ -97,6 +97,8 @@ def test_stale_workflow_includes_triage_metadata():
     assert "Trigger: schedule" in rendered
     assert "Last run time:" in rendered
     assert "Run: https://example.test/run/1" in rendered
+    assert "Disposition: Action recommended" in rendered
+    assert "Next step: Re-run Weekly Scheduling Responses Sync" in rendered
 
 
 def test_missing_summary_and_winners_state_reported_once(tmp_path, monkeypatch):
@@ -168,6 +170,8 @@ def test_signal_light_formatting_uses_expected_icons_and_state_metadata():
     assert "🟡 Daily picks warning" in rendered
     assert "Code: state.error" in rendered
     assert "File: discord_daily_posts.json" in rendered
+    assert "Disposition: Action required" in rendered
+    assert "Next step: Inspect discord_daily_posts.json" in rendered
 
 
 def test_final_report_snapshot_shape_with_mixed_signals_and_triage_metadata():
@@ -222,6 +226,8 @@ def test_final_report_snapshot_shape_with_mixed_signals_and_triage_metadata():
     assert "Expected freshness: ≤30h" in rendered
     assert "Trigger: schedule" in rendered
     assert "Run: https://example.test/run/42" in rendered
+    assert "Disposition: Action recommended" in rendered
+    assert "Disposition: Action required" in rendered
 
     assert "## State / Artifact Health" in rendered
     assert "🔴 Winners state inconsistent" in rendered
@@ -229,6 +235,7 @@ def test_final_report_snapshot_shape_with_mixed_signals_and_triage_metadata():
     assert "🟡 Weekly summary missing" in rendered
     assert "Week: 2026-04-13_to_2026-04-19" in rendered
     assert "Context: Weekly responses exist but summary entry is absent." in rendered
+    assert "Next step: Re-run the related workflow" in rendered
 
 
 def test_health_report_cleanup_removes_state_sanity_check_references_from_workflow_monitoring():
@@ -305,3 +312,82 @@ def test_weekly_and_winners_freshness_checks_are_high_signal_without_duplicates(
     assert "weekly.summary_freshness_missing" in codes and codes.count("weekly.summary_freshness_missing") == 1
     assert "winners.stale_vs_picks" in codes
     assert "winners.freshness_missing" not in codes
+
+
+def test_benign_warning_renders_no_action_needed_guidance():
+    rendered = "\n".join(
+        report._render_state_issue(
+            report.Issue(
+                code="weekly.summary_freshness_missing",
+                severity="warning",
+                title="Weekly summary freshness fields missing",
+                context="Summary exists but outputs are missing summary_last_synced_at_utc.",
+                file_path="data/scheduling/weekly_schedule_bot_outputs.json",
+                week_key="2026-04-13_to_2026-04-19",
+                disposition="No action needed",
+                next_step="None. This is usually legacy output missing summary_last_synced_at_utc; monitor for future writes.",
+            )
+        )
+    )
+    assert "Disposition: No action needed" in rendered
+    assert "Next step: None." in rendered
+
+
+def test_monitor_only_case_for_daily_today_missing(tmp_path, monkeypatch):
+    now_utc = datetime(2026, 4, 10, 3, 10, tzinfo=timezone.utc)
+    _configure_paths(monkeypatch, tmp_path)
+    _seed_healthy_state(tmp_path, now_utc=now_utc)
+    _write_json(tmp_path / "discord_daily_posts.json", {})
+
+    issues = report.compute_state_issues(now_utc=now_utc)
+    today_issue = next(issue for issue in issues if issue.code == "daily.today_missing")
+    assert today_issue.disposition == "Monitor only"
+    assert "Wait for the next daily-picks run" in (today_issue.next_step or "")
+
+
+def test_actionable_warning_has_specific_next_step(tmp_path, monkeypatch):
+    now_utc = datetime(2026, 4, 10, 3, 10, tzinfo=timezone.utc)
+    _configure_paths(monkeypatch, tmp_path)
+
+    week = "2026-03-30_to_2026-04-05"
+    _write_json(tmp_path / "data/scheduling/weekly_schedule_messages.json", {week: {"intro_message_id": "123"}})
+    _write_json(tmp_path / "data/scheduling/weekly_schedule_responses.json", {})
+    _write_json(tmp_path / "data/scheduling/weekly_schedule_summary.json", {})
+    _write_json(tmp_path / "data/scheduling/weekly_schedule_bot_outputs.json", {})
+    _write_json(tmp_path / "data/scheduling/expected_schedule_roster.json", {"users": {"1": {"is_active": True}}})
+    _write_json(tmp_path / "discord_daily_posts.json", {})
+
+    issues = report.compute_state_issues(now_utc=now_utc)
+    weekly_issue = next(issue for issue in issues if issue.code == "weekly.expected_post_missing")
+    assert weekly_issue.disposition == "Action recommended"
+    assert "Re-run weekly-scheduling-responses-sync.yml" in (weekly_issue.next_step or "")
+
+
+def test_error_rendering_uses_action_required():
+    lines = report._render_state_issue(
+        report.Issue(
+            code="winners.keys_malformed",
+            severity="error",
+            title="Winners state inconsistent",
+            context="winner_keys field is malformed.",
+            file_path="discord_daily_posts.json",
+            day_key="2026-04-09",
+            disposition="Action required",
+            next_step="Inspect discord_daily_posts.json and fix malformed winners_state fields.",
+        )
+    )
+    rendered = "\n".join(lines)
+    assert "Disposition: Action required" in rendered
+    assert "Next step: Inspect discord_daily_posts.json" in rendered
+
+
+def test_green_workflow_output_has_no_guidance_lines():
+    run = {
+        "updated_at": datetime.now(timezone.utc).isoformat(),
+        "created_at": datetime.now(timezone.utc).isoformat(),
+        "conclusion": "success",
+    }
+    lines = report.build_workflow_status_lines([{"name": "Daily Steam Picks", "staleHours": 6, "run": run}])
+    rendered = "\n".join(lines)
+    assert "Disposition:" not in rendered
+    assert "Next step:" not in rendered
