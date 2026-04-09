@@ -958,17 +958,24 @@ def main() -> None:
         if previous_summary_data_signature is not None:
             summary_data_changed = previous_summary_data_signature != current_summary_data_signature
         elif is_legacy_summary_without_signature:
-            legacy_compare_synced_at_utc = previous_summary_last_synced_at_utc or summary_synced_at_utc
+            # Legacy rows may have pre-signature content; compare normalized content
+            # before backfilling a signature so changed summaries still trigger edits.
             regenerated_legacy_comparable_message = format_summary_message(
                 date_range,
                 posting_week_summary,
                 responded_count=responded_active_user_count,
                 active_user_count=active_user_count,
-                synced_at_utc=legacy_compare_synced_at_utc,
+                synced_at_utc=summary_synced_at_utc,
+            )
+            previous_legacy_normalized_content = normalize_summary_content_for_data_compare(
+                previous_summary_message_content
+            )
+            regenerated_legacy_normalized_content = normalize_summary_content_for_data_compare(
+                regenerated_legacy_comparable_message
             )
             summary_data_changed = (
-                normalize_summary_content_for_data_compare(previous_summary_message_content)
-                != normalize_summary_content_for_data_compare(regenerated_legacy_comparable_message)
+                previous_legacy_normalized_content
+                != regenerated_legacy_normalized_content
             )
         else:
             summary_data_changed = True
