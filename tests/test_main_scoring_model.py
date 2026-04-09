@@ -195,6 +195,28 @@ def test_demo_group_play_fit_beats_solo_demo(monkeypatch):
     assert solo_item["keep"] is False
 
 
+def test_demo_legit_playable_cues_help_score(monkeypatch):
+    with_cues = build_html(
+        "Cue Demo",
+        "team up with friends",
+        "Multiplayer Online Co-Op up to 6 players demo available request access play now",
+        "",
+    )
+    without_cues = build_html(
+        "Base Demo",
+        "team up with friends",
+        "Multiplayer Online Co-Op up to 6 players",
+        "",
+    )
+    stub_app_pages(monkeypatch, {"742": with_cues, "743": without_cues})
+
+    cue_item = main.inspect_game("steam_demo", "742")
+    base_item = main.inspect_game("steam_demo", "743")
+    assert cue_item is not None and base_item is not None
+    assert cue_item["score"] > base_item["score"]
+    assert any(hit.startswith("playable-cue:") for hit in cue_item["demo_hits"])
+
+
 def test_demo_missing_reviews_more_tolerant_than_free_game(monkeypatch):
     shared_text = "Multiplayer Online Co-Op up to 6 players party game loot runs"
     demo_html = build_html("Co-op Demo", "friends", shared_text, "")
@@ -261,6 +283,48 @@ def test_junk_keywords_and_titles_are_penalized(monkeypatch):
     clean_item = main.inspect_game("steam_free", "1002")
     assert junk_item is not None and clean_item is not None
     assert junk_item["score"] < clean_item["score"]
+
+
+def test_vertical_slice_and_proof_of_concept_are_penalized(monkeypatch):
+    junk = build_html(
+        "Prototype Arena",
+        "proof of concept build",
+        "Multiplayer Online Co-Op up to 6 players vertical slice placeholder",
+        "Mostly Positive",
+    )
+    clean = build_html(
+        "Team Arena",
+        "friends game",
+        "Multiplayer Online Co-Op up to 6 players",
+        "Mostly Positive",
+    )
+    stub_app_pages(monkeypatch, {"1003": junk, "1004": clean})
+
+    junk_item = main.inspect_game("steam_free", "1003")
+    clean_item = main.inspect_game("steam_free", "1004")
+    assert junk_item is not None and clean_item is not None
+    assert junk_item["score"] < clean_item["score"]
+
+
+def test_demo_replayability_terms_help_when_friend_fit_exists(monkeypatch):
+    replayable = build_html(
+        "Replay Demo",
+        "team up with friends",
+        "Multiplayer Online Co-Op up to 6 players runs loot progression procedural replayable",
+        "",
+    )
+    basic = build_html(
+        "Basic Demo",
+        "team up with friends",
+        "Multiplayer Online Co-Op up to 6 players",
+        "",
+    )
+    stub_app_pages(monkeypatch, {"1005": replayable, "1006": basic})
+
+    replay_item = main.inspect_game("steam_demo", "1005")
+    basic_item = main.inspect_game("steam_demo", "1006")
+    assert replay_item is not None and basic_item is not None
+    assert replay_item["score"] > basic_item["score"]
 
 
 def test_coop_preferred_over_pvp_only(monkeypatch):

@@ -179,3 +179,43 @@ def test_daily_sections_post_in_new_order(monkeypatch, tmp_path):
         "🎮 Free Picks",
         "💸 Paid Under $20",
     ]
+
+
+def test_demo_playtest_label_uses_specific_type():
+    demo_message = main.format_steam_item_message(
+        {"title": "Demo A", "url": "https://store.steampowered.com/app/1", "score": 9, "type": "demo"},
+        1,
+        demo_playtest=True,
+    )
+    playtest_message = main.format_steam_item_message(
+        {"title": "Playtest B", "url": "https://store.steampowered.com/app/2", "score": 10, "type": "playtest"},
+        2,
+        demo_playtest=True,
+    )
+
+    assert "🧪 Demo Pick #1" in demo_message
+    assert "🧪 Playtest Pick #2" in playtest_message
+
+
+def test_light_diversity_rerank_penalizes_excess_duplicate_tags():
+    items = [
+        {"title": "Survival A", "score": 12, "diversity_tags": ["survival"]},
+        {"title": "Survival B", "score": 11, "diversity_tags": ["survival"]},
+        {"title": "Survival C", "score": 10, "diversity_tags": ["survival"]},
+        {"title": "Party D", "score": 10, "diversity_tags": ["party"]},
+    ]
+
+    reranked = main.apply_light_diversity_rerank(items)
+    assert [item["title"] for item in reranked[:3]] == ["Survival A", "Survival B", "Party D"]
+    assert reranked[2]["diversity_penalty"] == 0
+    assert reranked[3]["diversity_penalty"] >= 1
+
+
+def test_demo_selection_prefers_quality_over_filling_cap():
+    qualified = [
+        {"title": "Strong", "score": 8},
+        {"title": "Borderline", "score": main.MIN_SCORE_TO_POST_DEMO_PLAYTEST},
+    ]
+    selected = main.select_demo_playtest_items(qualified, cap=10)
+
+    assert [item["title"] for item in selected] == ["Strong"]

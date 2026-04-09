@@ -144,11 +144,14 @@ FRIEND_GROUP_PHRASE_SCORES = {
 
 REPLAYABILITY_PHRASE_SCORES = {
     "procedurally generated": 1,
+    "procedural": 1,
     "roguelite co-op": 1,
     "endless replayability": 1,
+    "replayable": 1,
     "loot": 1,
     "runs": 1,
     "randomized": 1,
+    "randomly generated": 1,
     "progression": 1,
 }
 
@@ -170,6 +173,10 @@ DEMO_PLAYTEST_FRIEND_SIGNALS = {
     "up to 6 players": 4,
     "up to 8 players": 4,
     "replayability": 1,
+    "replayable": 1,
+    "procedural": 1,
+    "procedurally generated": 1,
+    "randomly generated": 1,
     "loot": 1,
     "runs": 1,
     "progression": 1,
@@ -188,6 +195,9 @@ DEMO_PLAYTEST_SOLO_SIGNALS = {
 }
 
 DEMO_PLAYTEST_MIN_FRIEND_SIGNAL = 5
+DEMO_PLAYTEST_QUALITY_FLOOR_SCORE = MIN_SCORE_TO_POST_DEMO_PLAYTEST + 1
+LIGHT_DIVERSITY_PER_EXTRA_DUPLICATE = 1
+LIGHT_DIVERSITY_DUPLICATE_FREE_SLOTS = 2
 
 RELEASE_DATE_FORMATS = [
     "%b %d, %Y",
@@ -202,11 +212,22 @@ LOW_SIGNAL_KEYWORD_SCORES = {
     "hentai": -4,
     "nsfw": -4,
     "prototype": -2,
+    "vertical slice": -2,
+    "proof of concept": -2,
     "test": -2,
+    "placeholder": -2,
     "ai-generated": -2,
     "meme": -2,
     "asset flip": -4,
     "unity asset": -3,
+}
+
+DEMO_PLAYTEST_LEGIT_PLAYABLE_CUE_SCORES = {
+    "demo available": 1,
+    "playtest available": 1,
+    "request access": 1,
+    "join playtest": 1,
+    "play now": 1,
 }
 
 TITLE_LOW_SIGNAL_KEYWORD_SCORES = {
@@ -775,6 +796,11 @@ def score_demo_playtest_friend_group_fit(
             score += points
             hits.append(f"solo:{phrase}")
 
+    for phrase, points in DEMO_PLAYTEST_LEGIT_PLAYABLE_CUE_SCORES.items():
+        if phrase in combined:
+            score += points
+            hits.append(f"playable-cue:{phrase}")
+
     has_coop_or_mp = (
         "co-op" in combined
         or "coop" in combined
@@ -810,6 +836,90 @@ def score_demo_playtest_friend_group_fit(
             hits.append(f"freshness:{freshness_bonus}")
 
     return score, friend_signal_score, freshness_bonus, hits
+
+
+def extract_diversity_tags(title: str, description: str, text: str) -> List[str]:
+    combined = f"{title} {description} {text}".lower()
+    tag_terms = (
+        "survival",
+        "crafting",
+        "shooter",
+        "roguelike",
+        "roguelite",
+        "party",
+        "extraction",
+    )
+    return [term for term in tag_terms if term in combined]
+
+
+def apply_light_diversity_rerank(items: List[dict]) -> List[dict]:
+    if len(items) <= 2:
+        return items
+
+    remaining = list(items)
+    selected: List[dict] = []
+    tag_counts: Dict[str, int] = {}
+
+    while remaining:
+        best_item = None
+        best_adjusted_score = None
+        for item in remaining:
+            penalty = 0
+            for tag in item.get("diversity_tags", []):
+                extra = max(0, tag_counts.get(tag, 0) - LIGHT_DIVERSITY_DUPLICATE_FREE_SLOTS + 1)
+                penalty += extra * LIGHT_DIVERSITY_PER_EXTRA_DUPLICATE
+            adjusted_score = item["score"] - penalty
+            if best_adjusted_score is None or adjusted_score > best_adjusted_score:
+                best_item = item
+                best_adjusted_score = adjusted_score
+
+        assert best_item is not None
+        picked = dict(best_item)
+        picked["diversity_penalty"] = picked["score"] - int(best_adjusted_score)
+        selected.append(picked)
+        for tag in best_item.get("diversity_tags", []):
+            tag_counts[tag] = tag_counts.get(tag, 0) + 1
+        remaining.remove(best_item)
+
+    return selected
+
+
+def select_demo_playtest_items(qualified_demo_playtest: List[dict], cap: int) -> List[dict]:
+    # Explicit quality-over-cap behavior:
+    # keep section short on weak days instead of filling to max with borderline picks.
+    strong_items = [item for item in qualified_demo_playtest if item["score"] >= DEMO_PLAYTEST_QUALITY_FLOOR_SCORE]
+    if strong_items:
+        return strong_items[:cap]
+    return qualified_demo_playtest[:cap]
+
+
+def build_keep_debug_context(item: dict) -> str:
+    keep_parts = [
+        f"keep={item['keep']}",
+        f"rejected={item.get('rejected', False)}",
+        f"review_gate_failed={item.get('review_gate_failed', False)}",
+    ]
+    if item["type"] in {"demo", "playtest"}:
+        keep_parts.append(f"friend_signal={item.get('demo_friend_signal_score', 0)}")
+    return ", ".join(keep_parts)
+
+
+def log_candidate_decision(item: dict, phase: str) -> None:
+    if item["type"] in {"demo", "playtest"}:
+        print(
+            f"DEMO_CANDIDATE[{phase}]: {item['title']} | type={item['type']} "
+            f"| score={item['score']} | sentiment={item.get('review_sentiment')} "
+            f"| reviews={item.get('review_count', 0)} | friend_signal={item.get('demo_friend_signal_score', 0)} "
+            f"| freshness={item.get('demo_freshness_bonus', 0)} | refinement_hits={item.get('refinement_hits', [])[:4]} "
+            f"| demo_hits={item.get('demo_hits', [])[:4]} | {build_keep_debug_context(item)}"
+        )
+        return
+
+    print(
+        f"CANDIDATE[{phase}]: {item['title']} | type={item['type']} | score={item['score']} "
+        f"| sentiment={item.get('review_sentiment')} | reviews={item.get('review_count', 0)} "
+        f"| {build_keep_debug_context(item)}"
+    )
 
 
 def score_quality_refinements(
@@ -1066,6 +1176,7 @@ def inspect_game(source: str, app_id: str) -> Optional[dict]:
         "demo_friend_signal_score": demo_friend_signal_score,
         "demo_freshness_bonus": demo_freshness_bonus,
         "demo_hits": demo_hits,
+        "diversity_tags": extract_diversity_tags(title, description, page_text),
     }
 
 
@@ -1095,7 +1206,12 @@ def format_item_block(item: dict, idx: int, paid: bool = False) -> str:
 
 def format_steam_item_message(item: dict, idx: int, paid: bool = False, demo_playtest: bool = False) -> str:
     emoji = "💸" if paid else ("🧪" if demo_playtest else "🎮")
-    label = "Paid Pick" if paid else ("Demo / Playtest Pick" if demo_playtest else "Free Pick")
+    if paid:
+        label = "Paid Pick"
+    elif demo_playtest:
+        label = f"{type_label(item.get('type', 'demo'))} Pick"
+    else:
+        label = "Free Pick"
     lines = [
         f"{emoji} {label} #{idx}",
         item["title"],
@@ -1596,9 +1712,12 @@ def main():
 
         if not item:
             continue
+        log_candidate_decision(item, phase="evaluated")
         if not item["keep"]:
+            log_candidate_decision(item, phase="filtered_not_kept")
             continue
         if not can_repost(app_id, item["type"], state):
+            log_candidate_decision(item, phase="filtered_repost_cooldown")
             continue
 
         if item["type"] in {"demo", "playtest"}:
@@ -1612,11 +1731,14 @@ def main():
 
         if not item:
             continue
+        log_candidate_decision(item, phase="evaluated")
         if item["type"] != "paid_under_20":
             continue
         if not item["keep"]:
+            log_candidate_decision(item, phase="filtered_not_kept")
             continue
         if not can_repost(app_id, item["type"], state):
+            log_candidate_decision(item, phase="filtered_repost_cooldown")
             continue
 
         qualified_paid.append(item)
@@ -1648,13 +1770,21 @@ def main():
         reverse=True
     )
 
-    demo_playtest_items = qualified_demo_playtest[:MAX_DEMO_PLAYTEST_POSTS]
+    qualified_demo_playtest = apply_light_diversity_rerank(qualified_demo_playtest)
+    qualified_free = apply_light_diversity_rerank(qualified_free)
+    qualified_paid = apply_light_diversity_rerank(qualified_paid)
+
+    demo_playtest_items = select_demo_playtest_items(qualified_demo_playtest, MAX_DEMO_PLAYTEST_POSTS)
     free_items = qualified_free[:MAX_FREE_POSTS]
     paid_items = qualified_paid[:MAX_PAID_POSTS]
 
     print(f"Qualified demo/playtest items before cap: {len(qualified_demo_playtest)}")
     print(f"Qualified free items before cap: {len(qualified_free)}")
     print(f"Qualified paid items before cap: {len(qualified_paid)}")
+    print(
+        f"Demo/playtest quality floor for final section: score>={DEMO_PLAYTEST_QUALITY_FLOOR_SCORE} "
+        f"(cap={MAX_DEMO_PLAYTEST_POSTS})"
+    )
 
     instagram_posts = fetch_instagram_posts()
     post_daily_pick_messages(demo_playtest_items, free_items, paid_items, instagram_posts)
@@ -1674,10 +1804,12 @@ def main():
     print(f"Paid items selected: {len(paid_items)}")
 
     for item in demo_playtest_items:
+        log_candidate_decision(item, phase="selected")
         print(
             f"DEMO/PLAYTEST: {item['title']} ({item['type']}) "
             f"score={item['score']} friend_signal={item.get('demo_friend_signal_score', 0)} "
-            f"freshness_bonus={item.get('demo_freshness_bonus', 0)}"
+            f"freshness_bonus={item.get('demo_freshness_bonus', 0)} "
+            f"diversity_penalty={item.get('diversity_penalty', 0)}"
         )
 
     for item in free_items:
