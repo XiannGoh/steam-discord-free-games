@@ -186,13 +186,14 @@ def test_final_report_snapshot_shape_with_mixed_signals():
         "🔴 Bot Data Health Check (consolidated)\n"
         "Last run: issues found (see State / Artifact Health)\n"
         "\n"
-        "\n"
         "## State / Artifact Health\n"
         "\n"
         "🔴 Winners state message id is missing\n"
         "🟡 Daily picks entry missing expected field"
     )
     assert rendered == expected
+    assert "\n\n## State / Artifact Health\n" in rendered
+    assert "\n\n\n## State / Artifact Health\n" not in rendered
 
     assert "## Workflow Status" in rendered
     assert "## State / Artifact Health" in rendered
