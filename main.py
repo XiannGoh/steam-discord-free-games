@@ -14,6 +14,7 @@ try:
 except ImportError:
     instaloader = None
 from discord_api import DiscordClient, DiscordMessageNotFoundError
+from daily_section_config import DAILY_SECTION_CONFIG, DAILY_SECTION_ORDER
 from state_utils import (
     load_json_object,
     prune_latest_iso_dates,
@@ -48,6 +49,8 @@ HEADERS = {
 }
 
 # ---------- CONFIG ----------
+# Edit-safely note: tune thresholds only after observing real production runs;
+# avoid speculative changes that are not feedback-driven.
 # Daily routing intent (do not redesign without explicit product change):
 # - demo / playtest -> Demo & Playtest section (discovery lane for promising friend-group titles).
 # - free_game / temporarily_free -> Free Picks (higher-confidence full free or temporary-free full games).
@@ -92,34 +95,6 @@ FILTER_REASON_LOW_SIGNAL_JUNK = "low_signal_junk"
 FILTER_REASON_REPOST_COOLDOWN = "repost_cooldown"
 FILTER_REASON_BELOW_THRESHOLD = "below_threshold"
 FILTER_REASON_QUALIFIED = "qualified"
-
-DAILY_SECTION_CONFIG = [
-    {
-        "key": "demo_playtest",
-        "header": "🧪 New Demos & Playtests",
-        "source_type": "steam_demo_playtest",
-        "message_label": "Demo/Playtest",
-    },
-    {
-        "key": "free",
-        "header": "🎮 Free Picks",
-        "source_type": "steam_free",
-        "message_label": "Free",
-    },
-    {
-        "key": "paid",
-        "header": "💸 Paid Under $20",
-        "source_type": "paid_under_20",
-        "message_label": "Paid",
-    },
-    {
-        "key": "instagram",
-        "header": "📸 Instagram Creator Picks",
-        "source_type": "instagram",
-        "message_label": "Instagram",
-    },
-]
-DAILY_SECTION_ORDER = [entry["key"] for entry in DAILY_SECTION_CONFIG]
 
 MULTIPLAYER_TERMS = {
     "Massively Multiplayer": 4,
@@ -913,6 +888,9 @@ def extract_diversity_tags(title: str, description: str, text: str) -> List[str]
 
 
 def apply_light_diversity_rerank(items: List[dict]) -> List[dict]:
+    # Diversity rerank is intentionally weaker than base quality scoring:
+    # it only nudges away from near-identical same-day picks and should never
+    # overpower stronger underlying scores.
     if len(items) <= 2:
         return items
 
@@ -946,7 +924,8 @@ def apply_light_diversity_rerank(items: List[dict]) -> List[dict]:
 
 def select_demo_playtest_items(qualified_demo_playtest: List[dict], cap: int) -> List[dict]:
     # Explicit quality-over-cap behavior:
-    # keep section short on weak days instead of filling to max with borderline picks.
+    # for demo/playtest we intentionally prefer posting fewer strong picks over
+    # filling the cap with weak borderline items.
     strong_items = [item for item in qualified_demo_playtest if item["score"] >= DEMO_PLAYTEST_QUALITY_FLOOR_SCORE]
     if strong_items:
         return strong_items[:cap]
@@ -1023,14 +1002,17 @@ def build_filter_reason_list(item: dict) -> List[str]:
     return reasons
 
 
+ITEM_TYPE_TO_DAILY_SECTION = {
+    "demo": "demo_playtest",
+    "playtest": "demo_playtest",
+    "free_game": "free",
+    "temporarily_free": "free",
+    "paid_under_20": "paid",
+}
+
+
 def route_item_to_daily_section(item_type: str) -> Optional[str]:
-    if item_type in {"demo", "playtest"}:
-        return "demo_playtest"
-    if item_type in {"free_game", "temporarily_free"}:
-        return "free"
-    if item_type == "paid_under_20":
-        return "paid"
-    return None
+    return ITEM_TYPE_TO_DAILY_SECTION.get(item_type)
 
 
 def build_run_summary(

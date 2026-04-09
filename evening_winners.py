@@ -5,6 +5,7 @@ from urllib.parse import quote
 
 import requests
 
+from daily_section_config import DAILY_SECTION_DISPLAY_LABELS, DAILY_SECTION_ORDER
 from discord_api import DiscordClient, DiscordMessageNotFoundError
 from state_utils import load_json_object, save_json_object_atomic
 
@@ -20,13 +21,10 @@ WINNERS_LOOKBACK_DAYS = 10
 MAX_VOTERS_SHOWN_PER_GAME = 6
 DISCORD_MESSAGE_CHAR_LIMIT = 2000
 
-SECTION_CONFIG = {
-    "demo_playtest": "New Demos & Playtests",
-    "free": "Free Picks",
-    "paid": "Paid Under $20",
-    "instagram": "Instagram Creator Picks",
-}
-SECTION_ORDER = ["demo_playtest", "free", "paid", "instagram"]
+# Winners intentionally mirror daily section ordering as product behavior,
+# not an incidental implementation detail.
+SECTION_CONFIG = DAILY_SECTION_DISPLAY_LABELS
+SECTION_ORDER = DAILY_SECTION_ORDER
 
 
 def load_discord_daily_posts() -> Dict[str, dict]:
