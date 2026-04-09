@@ -250,6 +250,10 @@ Posting behavior in `daily-game-picks`:
   - Instagram Creator Picks
 - One Discord message per item
 - Adds a default 👍 reaction to each posted item
+- Selection intent (low-risk/quality-first):
+  - **New Demos & Playtests** sits above Free Picks and prioritizes friend-group fit (co-op/player-count cues), freshness, and basic legitimacy cues (`demo available`, `request access`, `playtest available`) over random catalog fill.
+  - **Free Picks** remain focused on full free and temporarily free full games.
+  - The bot prefers quality over maxing section caps (especially for demos/playtests), so some days intentionally post fewer than the section maximum.
 
 State + reliability:
 - Tracks daily post metadata in `discord_daily_posts.json`
