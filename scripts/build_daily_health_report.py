@@ -37,6 +37,13 @@ class Issue:
     extra: dict[str, str] = field(default_factory=dict)
 
 
+@dataclass(frozen=True)
+class OverallHealthSummary:
+    icon: str
+    headline: str
+    detail: str
+
+
 def _load_json(path: Path) -> Any | None:
     try:
         return json.loads(path.read_text(encoding="utf-8"))
@@ -475,6 +482,64 @@ def _render_state_issue(issue: Issue) -> list[str]:
     return lines
 
 
+def summarize_overall_health(*, workflow_status_lines: list[str], state_issues: list[Issue]) -> OverallHealthSummary:
+    dispositions: list[str] = []
+    for line in workflow_status_lines:
+        if line.startswith("Disposition: "):
+            dispositions.append(line.removeprefix("Disposition: ").strip())
+
+    for issue in state_issues:
+        disposition = issue.disposition
+        if not disposition:
+            disposition, _ = _state_issue_guidance(issue.code, issue.severity, file_path=issue.file_path)
+        dispositions.append(disposition)
+
+    action_required_count = sum(1 for disposition in dispositions if disposition == "Action required")
+    monitor_or_follow_up_count = sum(
+        1 for disposition in dispositions if disposition in {"Monitor only", "Action recommended"}
+    )
+    no_action_needed_count = sum(1 for disposition in dispositions if disposition == "No action needed")
+    error_issue_count = sum(1 for issue in state_issues if issue.severity == "error")
+
+    if action_required_count > 0 or error_issue_count > 0:
+        urgent_count = max(action_required_count, error_issue_count)
+        noun = "item requires" if urgent_count == 1 else "items require"
+        return OverallHealthSummary(
+            icon="🔴",
+            headline="Action needed",
+            detail=f"{urgent_count} {noun} immediate attention.",
+        )
+
+    if monitor_or_follow_up_count > 0:
+        noun = "item should" if monitor_or_follow_up_count == 1 else "items should"
+        return OverallHealthSummary(
+            icon="🟡",
+            headline="Follow-up recommended",
+            detail=f"{monitor_or_follow_up_count} {noun} be monitored or reviewed soon.",
+        )
+
+    if no_action_needed_count > 0:
+        noun = "warning" if no_action_needed_count == 1 else "warnings"
+        return OverallHealthSummary(
+            icon="🟢",
+            headline="Healthy with informational warnings",
+            detail=f"{no_action_needed_count} low-priority {noun} detected. No action needed.",
+        )
+
+    return OverallHealthSummary(
+        icon="🟢",
+        headline="Healthy",
+        detail="No action needed.",
+    )
+
+
+def render_overall_summary(summary: OverallHealthSummary) -> list[str]:
+    return [
+        f"{summary.icon} Overall: {summary.headline}",
+        summary.detail,
+    ]
+
+
 def render_report(
     *,
     workflow_status_lines: list[str],
@@ -483,6 +548,8 @@ def render_report(
     state_check_label: str = "Bot Data Health Check (consolidated)",
 ) -> str:
     lines = [f"🚦 XiannGPT Bot Daily Health — {report_date}"]
+    summary = summarize_overall_health(workflow_status_lines=workflow_status_lines, state_issues=state_issues)
+    lines.extend(["", *render_overall_summary(summary)])
     lines.extend(_render_section("Workflow Status", workflow_status_lines))
 
     if state_issues:
