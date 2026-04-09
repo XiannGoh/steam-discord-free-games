@@ -555,6 +555,21 @@ def legacy_summary_data_matches_current(
     return previous_normalized is not None and previous_normalized == current_normalized
 
 
+def legacy_summary_data_changed(
+    previous_summary_message_content: Any,
+    regenerated_legacy_comparable_message: str,
+) -> bool:
+    """Return whether legacy summary content differs from current meaningful data.
+
+    This protects migration backfills from freezing stale summaries when
+    legacy outputs have content but no stored data signature yet.
+    """
+    return not legacy_summary_data_matches_current(
+        previous_summary_message_content,
+        regenerated_legacy_comparable_message,
+    )
+
+
 def format_summary_message(
     date_range: str,
     week_summary: dict[str, Any],
@@ -980,7 +995,7 @@ def main() -> None:
                 active_user_count=active_user_count,
                 synced_at_utc=legacy_compare_synced_at_utc,
             )
-            summary_data_changed = not legacy_summary_data_matches_current(
+            summary_data_changed = legacy_summary_data_changed(
                 previous_summary_message_content,
                 regenerated_legacy_comparable_message,
             )

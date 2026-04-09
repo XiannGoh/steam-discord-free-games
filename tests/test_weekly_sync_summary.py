@@ -694,6 +694,8 @@ def test_main_legacy_summary_with_changed_data_triggers_edit(monkeypatch, tmp_pa
     outputs = json.loads(outputs_p.read_text(encoding="utf-8"))
     assert fake_client.posts == []
     assert len(fake_client.edits) == 1
+    edited_content = fake_client.edits[0][2]
+    assert "1 of 2 people responded" in edited_content
     assert outputs[week_key]["summary_message_content"] != legacy_content
     assert isinstance(outputs[week_key].get("summary_data_signature"), str)
     assert "summary_last_synced_at_utc" in outputs[week_key]
