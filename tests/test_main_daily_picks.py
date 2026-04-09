@@ -211,6 +211,16 @@ def test_routing_exclusivity_invariants():
     assert all(main.route_item_to_daily_section(item_type) not in {"demo_playtest", "free"} for item_type in paid_like)
 
 
+def test_each_item_type_has_exactly_one_section_owner():
+    item_types = ["demo", "playtest", "free_game", "temporarily_free", "paid_under_20"]
+    owned_sections = [main.route_item_to_daily_section(item_type) for item_type in item_types]
+
+    assert all(section is not None for section in owned_sections)
+    assert owned_sections.count("demo_playtest") == 2
+    assert owned_sections.count("free") == 2
+    assert owned_sections.count("paid") == 1
+
+
 def test_demo_playtest_label_uses_specific_type():
     demo_message = main.format_steam_item_message(
         {"title": "Demo A", "url": "https://store.steampowered.com/app/1", "score": 9, "type": "demo"},
@@ -309,8 +319,9 @@ def test_debug_export_writes_expected_structure(tmp_path):
     saved = json.loads(output_path.read_text(encoding="utf-8"))
 
     assert saved["run_summary"] == summary
+    assert saved["generated_at_utc"]
     assert saved["target_day_key"]
-    assert saved["section_order"] == main.DAILY_SECTION_ORDER
+    assert saved["section_order"] == ["demo_playtest", "free", "paid", "instagram"]
     assert saved["records"][0]["title"] == "Demo A"
     assert saved["records"][0]["reason_list"] == ["qualified"]
 

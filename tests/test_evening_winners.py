@@ -412,6 +412,12 @@ def test_winners_section_order_is_product_invariant():
     assert demo_idx < free_idx < paid_idx < instagram_idx
 
 
+def test_winners_use_same_section_order_as_daily_picks():
+    assert winners.SECTION_ORDER == ["demo_playtest", "free", "paid", "instagram"]
+    assert winners.SECTION_CONFIG["demo_playtest"] == "New Demos & Playtests"
+    assert winners.SECTION_CONFIG["instagram"] == "Instagram Creator Picks"
+
+
 def test_winners_pipeline_integration_late_votes_dedupe_and_coherent_edit(monkeypatch, tmp_path):
     day_key, path = _setup_daily(tmp_path)
     payloads = {

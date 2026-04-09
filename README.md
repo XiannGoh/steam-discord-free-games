@@ -265,6 +265,11 @@ Daily routing reference (operator-facing):
 | `temporarily_free` | Free Picks | Higher-confidence free games |
 | `paid_under_20` | Paid Under $20 | Strictest quality gate |
 
+Routing glossary (quick scan):
+- **`demo` / `playtest`** → **Demo & Playtest** (`demo_playtest`): friend-group discovery lane.
+- **`free_game` / `temporarily_free`** → **Free Picks** (`free`): higher-confidence free/temporarily-free titles.
+- **`paid_under_20`** → **Paid Under $20** (`paid`): strictest quality lane.
+
 Daily picks troubleshooting (operator quick guide):
 - If **New Demos & Playtests** is unexpectedly empty, check run logs for:
   - `DEMO_PLAYTEST_MIN_FRIEND_SIGNAL` gate misses,
@@ -277,6 +282,15 @@ Daily picks troubleshooting (operator quick guide):
 - For quality signal tuning, review replayability and legitimacy cue hits in logs/debug JSON before adjusting weights/thresholds.
 - At end of each daily run, start with the `RUN SUMMARY` block in logs, then inspect `daily_debug_summary.json` for per-item keep/filtered reasons.
   - `daily_debug_summary.json` is ephemeral: it is overwritten every run and is intended for current-run debugging only (not historical analytics).
+
+`daily_debug_summary.json` mini glossary:
+- `final_score`: final scoring output for the candidate.
+- `review_sentiment`: parsed Steam review sentiment used in scoring.
+- `friend_group_signal`: friend-group fit signal (especially important for demo/playtest).
+- `reason_list`: compact keep/filter reasons (for example `weak_review`, `repost_cooldown`).
+- `section_order`: canonical section order used for this run.
+- `generated_at_utc`: export timestamp.
+- `target_day_key`: UTC day key the run targeted.
 
 State + reliability:
 - Tracks daily post metadata in `discord_daily_posts.json`
@@ -306,6 +320,7 @@ Behavior:
   - raw 👍 = 2 → included (1 human vote)
   - raw 👍 = 3 → included (2 human votes)
 - Posts winners to the channel configured by `DISCORD_WINNERS_CHANNEL_ID` (currently `daily-game-picks`)
+- Winners intentionally inherit the same section order as daily picks (`demo_playtest`, `free`, `paid`, `instagram`).
 
 Rerun/idempotency behavior:
 - Same-day reruns do not duplicate winners posts
