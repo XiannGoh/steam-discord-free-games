@@ -84,3 +84,50 @@ def test_load_discord_daily_posts_handles_old_shapes(monkeypatch, tmp_path):
     monkeypatch.setattr(main, "DISCORD_DAILY_POSTS_FILE", str(path))
 
     assert main.load_discord_daily_posts() == {}
+
+
+def test_daily_item_persistence_stores_descriptions(monkeypatch, tmp_path):
+    daily_path = tmp_path / "daily.json"
+    daily_path.write_text("{}", encoding="utf-8")
+    day_key = "2026-04-08"
+
+    counter = {"i": 0}
+
+    def fake_post(message, capture_metadata=False):
+        counter["i"] += 1
+        return {"message_id": f"new-{counter['i']}", "channel_id": "chan-1"}
+
+    fake_client = FakeDiscordClient()
+
+    monkeypatch.setattr(main, "DISCORD_DAILY_POSTS_FILE", str(daily_path))
+    monkeypatch.setattr(main, "DISCORD_BOT_TOKEN", "token")
+    monkeypatch.setattr(main, "DiscordClient", lambda session: fake_client)
+    monkeypatch.setattr(main, "post_to_discord_with_metadata", fake_post)
+    monkeypatch.setattr(main, "sleep_briefly", lambda: None)
+    monkeypatch.setenv(main.DAILY_DATE_OVERRIDE_ENV, day_key)
+
+    free_items = [
+        {
+            "title": "Game A",
+            "url": "https://store.steampowered.com/app/1",
+            "description": "Steam short description",
+            "price": "Free",
+            "score": 9,
+        }
+    ]
+    instagram_posts = [
+        {
+            "username": "creator",
+            "caption": "Creator caption text",
+            "url": "https://www.instagram.com/p/abc/",
+        }
+    ]
+    main.post_daily_pick_messages(free_items, [], instagram_posts)
+
+    saved = json.loads(daily_path.read_text(encoding="utf-8"))
+    items = saved[day_key]["items"]
+    steam_item = next(item for item in items if item["section"] == "free")
+    instagram_item = next(item for item in items if item["section"] == "instagram")
+
+    assert steam_item["description"] == "Steam short description"
+    assert instagram_item["description"] == "Creator caption text"

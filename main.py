@@ -852,6 +852,7 @@ def record_posted_item(
     item_key: str,
     message_id: str,
     channel_id: Optional[str],
+    description: Optional[str] = None,
 ) -> None:
     try:
         day_entry = daily_posts.setdefault(day_key, {"items": []})
@@ -870,6 +871,8 @@ def record_posted_item(
             "source_type": source_type,
             "posted_at": utc_now_iso(),
         }
+        if isinstance(description, str):
+            item_record["description"] = description
         existing_index = next(
             (index for index, existing in enumerate(items) if isinstance(existing, dict) and existing.get("item_key") == item_key),
             None,
@@ -1028,6 +1031,7 @@ def post_daily_pick_messages(free_items: List[dict], paid_items: List[dict], ins
                     item_key=item_key,
                     message_id=metadata["message_id"],
                     channel_id=metadata["channel_id"],
+                    description=item.get("caption") if section_key == "instagram" else item.get("description"),
                 )
                 print(f"CREATE: posted {section_key} item {title} for {day_key}")
             else:
