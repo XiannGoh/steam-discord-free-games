@@ -598,7 +598,26 @@ def test_main_legacy_summary_with_changed_data_triggers_edit(monkeypatch, tmp_pa
             }
         },
     )
-    old_responses = json.loads(responses_p.read_text(encoding="utf-8"))
+    old_responses = {
+        week_key: {
+            "date_range": "Apr 13–19, 2026",
+            "users": {
+                "100": {
+                    "username": "jan",
+                    "global_name": "Jan",
+                    "days": {
+                        day: (
+                            {"reactions": ["✅"], "custom_reply": None}
+                            if day == "Monday"
+                            else {"reactions": [], "custom_reply": None}
+                        )
+                        for day in sync.DAY_NAMES
+                    },
+                }
+            },
+        }
+    }
+    _write(responses_p, old_responses)
     roster = json.loads(roster_p.read_text(encoding="utf-8"))
     old_summary = sync.build_weekly_summary(old_responses)[week_key]
     old_missing = sync.compute_missing_user_ids_for_week(old_responses[week_key], roster)
@@ -631,7 +650,11 @@ def test_main_legacy_summary_with_changed_data_triggers_edit(monkeypatch, tmp_pa
                         "username": "jan",
                         "global_name": "Jan",
                         "days": {
-                            day: {"reactions": ["✅"], "custom_reply": None}
+                            day: (
+                                {"reactions": ["🌅"], "custom_reply": None}
+                                if day == "Monday"
+                                else {"reactions": [], "custom_reply": None}
+                            )
                             for day in sync.DAY_NAMES
                         },
                     }
@@ -660,5 +683,6 @@ def test_main_legacy_summary_with_changed_data_triggers_edit(monkeypatch, tmp_pa
     assert fake_client.posts == []
     assert len(fake_client.edits) == 1
     assert outputs[week_key]["summary_message_content"] != legacy_content
+    assert "*1 of 2 people responded • 1 still missing*" in outputs[week_key]["summary_message_content"]
     assert isinstance(outputs[week_key].get("summary_data_signature"), str)
     assert "summary_last_synced_at_utc" in outputs[week_key]

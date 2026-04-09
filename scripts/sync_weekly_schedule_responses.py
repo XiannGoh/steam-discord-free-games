@@ -966,6 +966,10 @@ def main() -> None:
                 active_user_count=active_user_count,
                 synced_at_utc=legacy_compare_synced_at_utc,
             )
+            # Legacy records may have summary content but no signature yet.
+            # Compare normalized content before backfilling signature so we
+            # still edit when meaningful summary data changed since the
+            # pre-signature sync.
             summary_data_changed = (
                 normalize_summary_content_for_data_compare(previous_summary_message_content)
                 != normalize_summary_content_for_data_compare(regenerated_legacy_comparable_message)
