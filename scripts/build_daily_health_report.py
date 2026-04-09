@@ -209,36 +209,47 @@ def render_report(
     report_date: str,
     state_check_label: str = "Bot Data Health Check (consolidated)",
 ) -> str:
-    lines = [f"🚦 XiannGPT Bot Daily Health — {report_date}", "", "## Workflow Status", ""]
-    lines.extend(workflow_status_lines)
+    lines = [f"🚦 XiannGPT Bot Daily Health — {report_date}"]
+    lines.extend(_render_section("Workflow Status", workflow_status_lines))
 
     if state_issues:
         if any(issue.severity == "error" for issue in state_issues):
             icon, status = "🔴", "issues found"
         else:
             icon, status = "🟡", "warnings found"
-        lines.extend([
+        lines.extend(
+            [
             f"{icon} {state_check_label}",
             f"Last run: {status} (see State / Artifact Health)",
             "",
-        ])
+            ]
+        )
     else:
-        lines.extend([
+        lines.extend(
+            [
             f"🟢 {state_check_label}",
             "Last run: healthy (see State / Artifact Health)",
             "",
-        ])
+            ]
+        )
 
-    lines.extend(["## State / Artifact Health", ""])
-
+    state_lines: list[str] = []
     if not state_issues:
-        lines.append("🟢 No state inconsistencies detected")
+        state_lines.append("🟢 No state inconsistencies detected")
     else:
         for issue in sorted(state_issues, key=lambda item: (item.severity != "error", item.message)):
             icon = "🔴" if issue.severity == "error" else "🟡"
-            lines.append(f"{icon} {issue.message}")
+            state_lines.append(f"{icon} {issue.message}")
+
+    lines.extend(_render_section("State / Artifact Health", state_lines))
 
     return "\n".join(lines).strip()
+
+
+def _render_section(title: str, content_lines: list[str]) -> list[str]:
+    section = ["", f"## {title}", ""]
+    section.extend(content_lines)
+    return section
 
 
 def build_workflow_status_lines(workflow_runs: list[dict[str, Any]]) -> list[str]:
@@ -259,7 +270,7 @@ def _report_date_new_york(now_utc: datetime) -> str:
     from zoneinfo import ZoneInfo
 
     ny_time = now_utc.astimezone(ZoneInfo("America/New_York"))
-    return ny_time.strftime("%b %-d, %Y")
+    return f"{ny_time.strftime('%b')} {ny_time.day}, {ny_time.year}"
 
 
 def main() -> None:

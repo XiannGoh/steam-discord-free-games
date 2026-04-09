@@ -142,3 +142,66 @@ def test_signal_light_formatting_uses_expected_icons():
     assert "🟡 Evening Winners" in rendered
     assert "🔴 State error" in rendered
     assert "🟡 State warning" in rendered
+
+
+def test_final_report_snapshot_shape_with_mixed_signals():
+    workflow_lines = [
+        "🟢 Daily Steam Picks",
+        "Last run: success (2h ago)",
+        "",
+        "🟡 Evening Winners",
+        "Last run: success (40h ago) — stale",
+        "Run: https://example.test/run/42",
+        "",
+        "🟢 Weekly Schedule Summary",
+        "Last run: success (4h ago)",
+        "",
+    ]
+    state_issues = [
+        report.Issue(code="state_warning", severity="warning", message="Daily picks entry missing expected field"),
+        report.Issue(code="state_error", severity="error", message="Winners state message id is missing"),
+    ]
+
+    rendered = report.render_report(
+        workflow_status_lines=workflow_lines,
+        state_issues=state_issues,
+        report_date="Apr 9, 2026",
+    )
+
+    expected = (
+        "🚦 XiannGPT Bot Daily Health — Apr 9, 2026\n"
+        "\n"
+        "## Workflow Status\n"
+        "\n"
+        "🟢 Daily Steam Picks\n"
+        "Last run: success (2h ago)\n"
+        "\n"
+        "🟡 Evening Winners\n"
+        "Last run: success (40h ago) — stale\n"
+        "Run: https://example.test/run/42\n"
+        "\n"
+        "🟢 Weekly Schedule Summary\n"
+        "Last run: success (4h ago)\n"
+        "\n"
+        "🔴 Bot Data Health Check (consolidated)\n"
+        "Last run: issues found (see State / Artifact Health)\n"
+        "\n"
+        "\n"
+        "## State / Artifact Health\n"
+        "\n"
+        "🔴 Winners state message id is missing\n"
+        "🟡 Daily picks entry missing expected field"
+    )
+    assert rendered == expected
+
+    assert "## Workflow Status" in rendered
+    assert "## State / Artifact Health" in rendered
+    assert "🔴 Bot Data Health Check (consolidated)" in rendered
+    assert "🟢 Daily Steam Picks" in rendered
+    assert "🟡 Evening Winners" in rendered
+    assert "🔴 Winners state message id is missing" in rendered
+
+
+def test_report_date_new_york_format_is_portable_and_unpadded_day():
+    now_utc = datetime(2026, 4, 9, 16, 0, tzinfo=timezone.utc)
+    assert report._report_date_new_york(now_utc) == "Apr 9, 2026"
