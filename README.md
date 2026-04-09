@@ -74,7 +74,7 @@ Manual rerun quick commands (GitHub CLI):
   - Preview only: `gh workflow run weekly-scheduling-responses-sync.yml -f dry_run=true`
 
 ### Daily Picks (`daily.yml`)
-- **What it does:** posts daily free/paid/creator picks and updates `discord_daily_posts.json`.
+- **What it does:** posts daily demos/playtests + free/paid/creator picks and updates `discord_daily_posts.json`.
 - **Manual input:** `daily_date_utc` (optional `YYYY-MM-DD`).
 - **When to rerun:** partial morning run, stale/deleted daily messages, or date-targeted state repair.
 - **Examples:**
@@ -244,6 +244,7 @@ Operator controls (`workflow_dispatch` / env passthrough):
 Posting behavior in `daily-game-picks`:
 - Intro message
 - Section headers:
+  - New Demos & Playtests
   - Free Picks
   - Paid Under $20
   - Instagram Creator Picks
