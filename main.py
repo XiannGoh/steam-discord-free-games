@@ -56,7 +56,7 @@ MAX_PAGE_LIMIT = 50
 REQUEST_DELAY_SECONDS = 1.2
 REPOST_COOLDOWN_DAYS = 30
 MIN_SCORE_TO_POST_FREE = 9
-MIN_SCORE_TO_POST_PAID = 7
+MIN_SCORE_TO_POST_PAID = 8
 
 MAX_FETCH_RETRIES = 5
 BACKOFF_SECONDS = 4
@@ -129,6 +129,49 @@ BAD_TERMS = {
     "character creator": -4,
 }
 
+FRIEND_GROUP_PHRASE_SCORES = {
+    "4-player co-op": 2,
+    "4 player co-op": 2,
+    "4-player online co-op": 2,
+    "drop-in co-op": 1,
+    "couch co-op": 2,
+    "party game": 2,
+    "cross-platform multiplayer": 1,
+    "up to 6 players": 2,
+    "up to 8 players": 2,
+}
+
+REPLAYABILITY_PHRASE_SCORES = {
+    "procedurally generated": 1,
+    "roguelite co-op": 1,
+    "endless replayability": 1,
+    "loot": 1,
+    "runs": 1,
+    "randomized": 1,
+    "progression": 1,
+}
+
+LOW_SIGNAL_KEYWORD_SCORES = {
+    "clicker": -3,
+    "idle": -3,
+    "hentai": -4,
+    "nsfw": -4,
+    "prototype": -3,
+    "test": -2,
+    "ai-generated": -3,
+    "meme": -2,
+    "asset flip": -4,
+    "unity asset": -3,
+}
+
+TITLE_LOW_SIGNAL_KEYWORD_SCORES = {
+    "simulator": -1,
+    "clicker": -2,
+    "idle": -2,
+    "prototype": -2,
+    "test": -1,
+}
+
 PLAYER_COUNT_PATTERNS = [
     (r"\b1\s*-\s*4\b", 3),
     (r"\b1\s*-\s*6\b", 4),
@@ -152,7 +195,7 @@ REVIEW_SENTIMENT_SCORES = {
     "Very Positive": 9,
     "Positive": 7,
     "Mostly Positive": 5,
-    "Mixed": -4,
+    "Mixed": -6,
     "Mostly Negative": -8,
     "Negative": -8,
     "Very Negative": -10,
@@ -186,7 +229,29 @@ PAID_MINIMUM_REVIEW_SENTIMENTS = {
 }
 
 TEMPORARILY_FREE_SCORE_BONUS = 1
-DEMO_SCORE_PENALTY = 1
+DEMO_SCORE_PENALTY = 2
+
+UNKNOWN_REVIEW_SCORE_BY_TYPE = {
+    "free_game": -2,
+    "demo": -2,
+    "temporarily_free": -2,
+    "paid_under_20": -6,
+}
+
+STRONG_REVIEW_SENTIMENTS = {"Very Positive", "Overwhelmingly Positive"}
+POSITIVE_OR_BETTER_REVIEW_SENTIMENTS = {
+    "Positive",
+    "Mostly Positive",
+    "Very Positive",
+    "Overwhelmingly Positive",
+}
+REVIEW_CONFIDENCE_BASELINE_SENTIMENTS = {
+    "Positive",
+    "Mostly Positive",
+    "Very Positive",
+    "Overwhelmingly Positive",
+}
+REVIEW_CONFIDENCE_STRONG_SENTIMENTS = {"Very Positive", "Overwhelmingly Positive"}
 
 REJECT_PATTERNS = [
     r"\b1\s*-\s*2\b",
@@ -546,7 +611,7 @@ def score_player_count(text: str) -> Tuple[int, List[str], bool]:
     lower_text = text.lower()
 
     if "massively multiplayer" in lower_text or re.search(r"\bmmo\b", lower_text):
-        score += 6
+        score += 5
         hits.append("MMO/Massively Multiplayer")
         return score, hits, False
 
@@ -583,6 +648,131 @@ def score_genres_and_description(title: str, description: str, text: str) -> Tup
         if term.lower() in lower_combined:
             score += points
             hits.append(term)
+
+    return score, hits
+
+
+def has_4plus_player_signal(text: str) -> bool:
+    patterns = [
+        r"\b4\s*player\b",
+        r"\b4\s*players\b",
+        r"\b5\s*player\b",
+        r"\b5\s*players\b",
+        r"\b6\s*player\b",
+        r"\b6\s*players\b",
+        r"\bup to 4 players\b",
+        r"\bup to 5 players\b",
+        r"\bup to 6 players\b",
+        r"\bup to 8 players\b",
+        r"\b1\s*-\s*4\b",
+        r"\b1\s*-\s*6\b",
+        r"\b2\s*-\s*4\b",
+        r"\b2\s*-\s*6\b",
+        r"\b3\s*-\s*4\b",
+        r"\b3\s*-\s*6\b",
+        r"\b4\s*\+\b",
+    ]
+    return any(re.search(pattern, text, re.IGNORECASE) for pattern in patterns)
+
+
+def extract_review_count(page_text: str) -> int:
+    match = re.search(r"([\d,]+)\s+(?:user\s+)?reviews?\b", page_text, re.IGNORECASE)
+    if not match:
+        return 0
+    try:
+        return int(match.group(1).replace(",", ""))
+    except ValueError:
+        return 0
+
+
+def score_quality_refinements(
+    title: str,
+    description: str,
+    text: str,
+    review_sentiment: Optional[str],
+    review_count: int,
+    multiplayer_score: int,
+    player_score: int,
+) -> Tuple[int, List[str]]:
+    score = 0
+    hits = []
+    lower_title = title.lower()
+    lower_text = text.lower()
+    lower_description = description.lower()
+    combined = f"{lower_title} {lower_description} {lower_text}"
+
+    strong_review = review_sentiment in STRONG_REVIEW_SENTIMENTS
+    positive_or_better = review_sentiment in POSITIVE_OR_BETTER_REVIEW_SENTIMENTS
+    has_4plus = has_4plus_player_signal(text)
+    has_coop = "co-op" in lower_text or "co op" in lower_text or "online co-op" in lower_text
+    has_pvp = "pvp" in lower_text or "online pvp" in lower_text
+    strong_multiplayer = multiplayer_score >= 4 or player_score >= 3
+
+    if strong_review and has_4plus:
+        score += 2
+        hits.append("strong-review-4plus-combo")
+
+    if review_count >= 1000 and review_sentiment in REVIEW_CONFIDENCE_BASELINE_SENTIMENTS:
+        score += 1
+        hits.append("review-count-1k")
+    if review_count >= 10000 and review_sentiment in REVIEW_CONFIDENCE_STRONG_SENTIMENTS:
+        score += 1
+        hits.append("review-count-10k-strong")
+
+    for phrase, points in FRIEND_GROUP_PHRASE_SCORES.items():
+        if phrase in combined:
+            score += points
+            hits.append(f"group:{phrase}")
+
+    for phrase, points in REPLAYABILITY_PHRASE_SCORES.items():
+        if phrase in combined:
+            score += points
+            hits.append(f"replay:{phrase}")
+
+    if "single-player" in combined and multiplayer_score <= 2:
+        score -= 2
+        hits.append("single-player-with-weak-mp")
+
+    for keyword, points in LOW_SIGNAL_KEYWORD_SCORES.items():
+        if keyword in combined:
+            score += points
+            hits.append(f"low-signal:{keyword}")
+
+    for keyword, points in TITLE_LOW_SIGNAL_KEYWORD_SCORES.items():
+        if keyword in lower_title:
+            score += points
+            hits.append(f"title-low-signal:{keyword}")
+
+    story_terms = ["visual novel", "dating sim", "interactive fiction", "story-rich", "narrative"]
+    if not strong_multiplayer:
+        for term in story_terms:
+            if term in combined:
+                score -= 2
+                hits.append(f"story:{term}")
+
+    if "early access" in combined and not strong_review:
+        score -= 2
+        hits.append("early-access")
+
+    if has_coop:
+        score += 1
+        hits.append("coop-preference")
+    if has_pvp and not has_coop:
+        score -= 1
+        hits.append("pvp-only-penalty")
+
+    if has_4plus and any(token in combined for token in ["4 players", "4-player", "up to 4 players", "up to 5 players", "up to 6 players", "5 players", "6 players"]):
+        score += 1
+        hits.append("4to6-player-preference")
+
+    if multiplayer_score >= 6 and review_sentiment == "Mixed":
+        score -= 2
+        hits.append("keyword-stuffing-weak-review")
+
+    trusted_genres = ["survival", "shooter", "roguelite", "party"]
+    if strong_review and has_4plus and has_coop and any(term in combined for term in trusted_genres):
+        score += 2
+        hits.append("trusted-profile")
 
     return score, hits
 
@@ -649,7 +839,8 @@ def inspect_game(source: str, app_id: str) -> Optional[dict]:
     player_score, player_hits, rejected = score_player_count(page_text)
     flavor_score, flavor_hits = score_genres_and_description(title, description, page_text)
     review_sentiment = extract_review_sentiment(soup)
-    review_score = REVIEW_SENTIMENT_SCORES.get(review_sentiment, 0)
+    review_count = extract_review_count(page_text)
+    review_score = REVIEW_SENTIMENT_SCORES.get(review_sentiment, UNKNOWN_REVIEW_SCORE_BY_TYPE.get(item_type, 0))
 
     review_gate_failed = False
     if item_type in ["free_game", "demo", "temporarily_free"]:
@@ -657,13 +848,30 @@ def inspect_game(source: str, app_id: str) -> Optional[dict]:
     elif item_type == "paid_under_20":
         review_gate_failed = review_sentiment not in PAID_MINIMUM_REVIEW_SENTIMENTS
 
+    refinement_score, refinement_hits = score_quality_refinements(
+        title=title,
+        description=description,
+        text=page_text,
+        review_sentiment=review_sentiment,
+        review_count=review_count,
+        multiplayer_score=multiplayer_score,
+        player_score=player_score,
+    )
+
     type_adjustment = 0
-    if item_type == "temporarily_free":
+    if item_type == "temporarily_free" and review_sentiment in POSITIVE_OR_BETTER_REVIEW_SENTIMENTS:
         type_adjustment += TEMPORARILY_FREE_SCORE_BONUS
     if item_type == "demo":
         type_adjustment -= DEMO_SCORE_PENALTY
 
-    total_score = multiplayer_score + player_score + flavor_score + review_score + type_adjustment
+    total_score = (
+        multiplayer_score
+        + player_score
+        + flavor_score
+        + review_score
+        + refinement_score
+        + type_adjustment
+    )
 
     has_multiplayer_signal = multiplayer_score > 0
     has_3plus_signal = player_score > 0
@@ -699,8 +907,10 @@ def inspect_game(source: str, app_id: str) -> Optional[dict]:
         "multiplayer_hits": multiplayer_hits,
         "player_hits": player_hits,
         "flavor_hits": flavor_hits,
+        "refinement_hits": refinement_hits,
         "review_sentiment": review_sentiment,
         "review_score": review_score,
+        "review_count": review_count,
         "review_gate_failed": review_gate_failed,
     }
 
