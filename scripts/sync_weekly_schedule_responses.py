@@ -665,11 +665,12 @@ def compute_summary_data_signature(
     missing_user_ids: list[str],
 ) -> str:
     """Hash meaningful summary inputs to detect real summary-data changes."""
+    normalized_missing_user_ids = sorted(missing_user_ids)
     signature_payload = {
         "week_summary": week_summary,
         "responded_count": responded_count,
         "active_user_count": active_user_count,
-        "missing_user_ids": missing_user_ids,
+        "missing_user_ids": normalized_missing_user_ids,
     }
     stable_payload = json.dumps(signature_payload, sort_keys=True, separators=(",", ":"))
     return hashlib.sha256(stable_payload.encode("utf-8")).hexdigest()

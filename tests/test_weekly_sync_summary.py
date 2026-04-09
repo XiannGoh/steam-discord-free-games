@@ -204,6 +204,41 @@ def test_summary_includes_status_timestamp_spacing_and_slot_order():
     assert "\n**Monday 4/13**\n✅ 3 — Alice, Bob, Charlie\n🌅 1 — Dawn\n☀️ 2 — Sun1, Sun2\n🌙 1 — Moon\n📝 1 — Note\n❌ 4 — (names unavailable)\n\n**Tuesday 4/14**\n☀️ 1 — Erin\n\n**Wednesday 4/15**\nNo responses" in msg
 
 
+def test_summary_signature_normalizes_missing_user_order():
+    week_summary = {
+        "week_key": "2026-04-13_to_2026-04-19",
+        "date_range": "Apr 13–19, 2026",
+        "summary": {
+            "day_counts": {day: 0 for day in sync.DAY_NAMES},
+            "slot_counts": {day: {slot: 0 for slot in sync.SUMMARY_DISPLAY_ORDER} for day in sync.DAY_NAMES},
+            "slot_voters": {day: {slot: [] for slot in sync.SUMMARY_SLOT_ORDER} for day in sync.DAY_NAMES},
+            "best_overlap": {"day": "Monday", "slot": "✅", "count": 0},
+        },
+    }
+
+    signature_ab = sync.compute_summary_data_signature(
+        week_summary=week_summary,
+        responded_count=0,
+        active_user_count=2,
+        missing_user_ids=["100", "200"],
+    )
+    signature_ba = sync.compute_summary_data_signature(
+        week_summary=week_summary,
+        responded_count=0,
+        active_user_count=2,
+        missing_user_ids=["200", "100"],
+    )
+    signature_different_set = sync.compute_summary_data_signature(
+        week_summary=week_summary,
+        responded_count=0,
+        active_user_count=2,
+        missing_user_ids=["100", "300"],
+    )
+
+    assert signature_ab == signature_ba
+    assert signature_ab != signature_different_set
+
+
 def test_main_rebuild_only_edits_or_recovers_summary(monkeypatch, tmp_path, load_fixture_json):
     weekly_responses = load_fixture_json("weekly_responses_named_users.json")
     week_key, messages_p, responses_p, summary_p, roster_p, outputs_p = _setup_files(tmp_path, weekly_responses)
