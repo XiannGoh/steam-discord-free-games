@@ -1,11 +1,12 @@
 """Sync weekly scheduling reactions from Discord into durable JSON state."""
 
 import json
+import hashlib
 import os
 import sys
 import time
 import urllib.parse
-from datetime import date, datetime, timedelta
+from datetime import date, datetime, timedelta, timezone
 from typing import Any
 from zoneinfo import ZoneInfo
 
@@ -657,6 +658,42 @@ def format_summary_message(
     return "\n".join(fallback_lines)
 
 
+def compute_summary_data_signature(
+    week_summary: dict[str, Any],
+    responded_count: int,
+    active_user_count: int,
+    missing_user_ids: list[str],
+) -> str:
+    """Hash meaningful summary inputs to detect real summary-data changes."""
+    signature_payload = {
+        "week_summary": week_summary,
+        "responded_count": responded_count,
+        "active_user_count": active_user_count,
+        "missing_user_ids": missing_user_ids,
+    }
+    stable_payload = json.dumps(signature_payload, sort_keys=True, separators=(",", ":"))
+    return hashlib.sha256(stable_payload.encode("utf-8")).hexdigest()
+
+
+def parse_iso_utc_datetime(value: Any) -> datetime | None:
+    """Parse an ISO timestamp into an aware UTC datetime."""
+    if not isinstance(value, str) or not value.strip():
+        return None
+
+    normalized = value.strip()
+    if normalized.endswith("Z"):
+        normalized = f"{normalized[:-1]}+00:00"
+
+    try:
+        parsed = datetime.fromisoformat(normalized)
+    except ValueError:
+        return None
+
+    if parsed.tzinfo is None:
+        return parsed.replace(tzinfo=timezone.utc)
+    return parsed.astimezone(timezone.utc)
+
+
 def post_channel_message(session: requests.Session, channel_id: str, content: str) -> str:
     """Post a message to a Discord channel and return the new message id."""
     response = session.post(
@@ -860,8 +897,9 @@ def main() -> None:
 
     missing_user_ids = compute_missing_user_ids_for_week(posting_week_responses, roster)
     active_user_count = count_active_roster_users(roster)
-    responded_count = max(active_user_count - len(missing_user_ids), 0)
-    summary_synced_at_utc = datetime.now(ZoneInfo("UTC"))
+    # "Responded" means active roster users minus users still missing per reminder logic.
+    responded_active_user_count = max(active_user_count - len(missing_user_ids), 0)
+    summary_synced_at_utc = datetime.now(timezone.utc)
     week_outputs = weekly_bot_outputs.get(posting_week_key)
     if not isinstance(week_outputs, dict):
         week_outputs = {}
@@ -876,13 +914,6 @@ def main() -> None:
         )
         discord_client = DiscordClient(posting_session)
 
-        summary_message = format_summary_message(
-            date_range,
-            posting_week_summary,
-            responded_count=responded_count,
-            active_user_count=active_user_count,
-            synced_at_utc=summary_synced_at_utc,
-        )
         previous_summary_message_id = week_outputs.get("summary_message_id")
         summary_message_id = (
             str(previous_summary_message_id)
@@ -890,6 +921,55 @@ def main() -> None:
             else None
         )
         previous_summary_message_content = week_outputs.get("summary_message_content")
+        previous_summary_data_signature = normalize_optional_text(
+            week_outputs.get("summary_data_signature")
+        )
+        previous_summary_last_synced_at_utc = parse_iso_utc_datetime(
+            week_outputs.get("summary_last_synced_at_utc")
+        )
+        current_summary_data_signature = compute_summary_data_signature(
+            posting_week_summary,
+            responded_count=responded_active_user_count,
+            active_user_count=active_user_count,
+            missing_user_ids=missing_user_ids,
+        )
+        is_legacy_summary_without_signature = (
+            previous_summary_data_signature is None
+            and isinstance(previous_summary_message_content, str)
+            and bool(previous_summary_message_content)
+        )
+        summary_data_changed = (
+            previous_summary_data_signature != current_summary_data_signature
+            if previous_summary_data_signature is not None
+            else not is_legacy_summary_without_signature
+        )
+
+        if summary_data_changed:
+            effective_summary_synced_at_utc = summary_synced_at_utc
+            week_outputs["summary_last_synced_at_utc"] = (
+                effective_summary_synced_at_utc.isoformat()
+            )
+        else:
+            effective_summary_synced_at_utc = previous_summary_last_synced_at_utc
+
+        if (
+            not summary_data_changed
+            and isinstance(previous_summary_message_content, str)
+            and previous_summary_message_content
+        ):
+            summary_message = previous_summary_message_content
+        else:
+            if effective_summary_synced_at_utc is None:
+                effective_summary_synced_at_utc = summary_synced_at_utc
+            summary_message = format_summary_message(
+                date_range,
+                posting_week_summary,
+                responded_count=responded_active_user_count,
+                active_user_count=active_user_count,
+                synced_at_utc=effective_summary_synced_at_utc,
+            )
+
+        week_outputs["summary_data_signature"] = current_summary_data_signature
 
         if dry_run:
             print(f"DRY_RUN: summary preview for {posting_week_key}")

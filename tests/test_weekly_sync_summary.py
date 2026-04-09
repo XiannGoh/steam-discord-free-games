@@ -86,7 +86,7 @@ def test_summary_format_includes_dates_voter_names_and_truncation():
         week_summary,
         responded_count=1,
         active_user_count=2,
-        synced_at_utc=sync.datetime(2026, 4, 9, 0, 0, tzinfo=sync.ZoneInfo("UTC")),
+        synced_at_utc=sync.datetime(2026, 4, 9, 0, 0, tzinfo=sync.timezone.utc),
     )
 
     assert "Monday 4/13" in msg
@@ -120,7 +120,7 @@ def test_summary_format_is_monday_to_sunday_chronological():
         week_summary,
         responded_count=1,
         active_user_count=2,
-        synced_at_utc=sync.datetime(2026, 4, 9, 0, 0, tzinfo=sync.ZoneInfo("UTC")),
+        synced_at_utc=sync.datetime(2026, 4, 9, 0, 0, tzinfo=sync.timezone.utc),
     )
 
     day_positions = [msg.index(f"**{day} 4/{13 + index}**") for index, day in enumerate(sync.DAY_NAMES)]
@@ -150,7 +150,7 @@ def test_shared_date_label_helper_matches_summary_and_day_posts():
         week_summary,
         responded_count=1,
         active_user_count=2,
-        synced_at_utc=sync.datetime(2026, 4, 9, 0, 0, tzinfo=sync.ZoneInfo("UTC")),
+        synced_at_utc=sync.datetime(2026, 4, 9, 0, 0, tzinfo=sync.timezone.utc),
     )
     assert "**Monday 4/13**" in msg
 
@@ -194,7 +194,7 @@ def test_summary_includes_status_timestamp_spacing_and_slot_order():
         week_summary,
         responded_count=12,
         active_user_count=14,
-        synced_at_utc=sync.datetime(2026, 4, 10, 0, 0, tzinfo=sync.ZoneInfo("UTC")),
+        synced_at_utc=sync.datetime(2026, 4, 10, 0, 0, tzinfo=sync.timezone.utc),
     )
 
     assert "*12 of 14 people responded • 2 still missing*" in msg
@@ -212,6 +212,8 @@ def test_main_rebuild_only_edits_or_recovers_summary(monkeypatch, tmp_path, load
         week_key: {
             "summary_message_id": "sum-old",
             "summary_message_content": "old-content",
+            "summary_data_signature": "stale-signature",
+            "summary_last_synced_at_utc": "2026-04-01T00:00:00+00:00",
         },
         "2026-04-06_to_2026-04-12": {"summary_message_id": "preserve-me"},
     }
@@ -249,6 +251,7 @@ def test_main_dry_run_does_not_mutate_summary_message(monkeypatch, tmp_path, loa
     fake_client = FakeDiscordClient()
     monkeypatch.setattr(sync.requests, "Session", FakeSession)
     monkeypatch.setattr(sync, "DiscordClient", lambda session: fake_client)
+    monkeypatch.setattr(sync, "post_channel_message", lambda session, channel_id, content: "rem-1")
     monkeypatch.setattr(sync, "WEEKLY_SCHEDULE_MESSAGES_FILE", str(messages_p))
     monkeypatch.setattr(sync, "WEEKLY_SCHEDULE_RESPONSES_FILE", str(responses_p))
     monkeypatch.setattr(sync, "WEEKLY_SCHEDULE_SUMMARY_FILE", str(summary_p))
@@ -376,3 +379,197 @@ def test_main_saturday_new_week_requires_change_and_allows_single_daily_reminder
     # Later same-day Saturday syncs cannot post another reminder.
     sync.main()
     assert len(reminder_posts) == 1
+
+
+def test_main_unchanged_summary_signature_skips_edit_and_keeps_timestamp(
+    monkeypatch, tmp_path
+):
+    week_key, messages_p, responses_p, summary_p, roster_p, outputs_p = _setup_files(
+        tmp_path,
+        {
+            "2026-04-13_to_2026-04-19": {
+                "date_range": "Apr 13–19, 2026",
+                "users": {},
+            }
+        },
+    )
+
+    weekly_responses = json.loads(responses_p.read_text(encoding="utf-8"))
+    roster = json.loads(roster_p.read_text(encoding="utf-8"))
+    weekly_summary = sync.build_weekly_summary(weekly_responses)
+    posting_week_summary = weekly_summary[week_key]
+    missing_user_ids = sync.compute_missing_user_ids_for_week(weekly_responses[week_key], roster)
+    active_user_count = sync.count_active_roster_users(roster)
+    responded_count = max(active_user_count - len(missing_user_ids), 0)
+    old_synced_at = sync.datetime(2026, 4, 1, 0, 0, tzinfo=sync.timezone.utc)
+    prior_summary_message = sync.format_summary_message(
+        "Apr 13–19, 2026",
+        posting_week_summary,
+        responded_count=responded_count,
+        active_user_count=active_user_count,
+        synced_at_utc=old_synced_at,
+    )
+    prior_signature = sync.compute_summary_data_signature(
+        posting_week_summary, responded_count, active_user_count, missing_user_ids
+    )
+    _write(
+        outputs_p,
+        {
+            week_key: {
+                "summary_message_id": "sum-old",
+                "summary_message_content": prior_summary_message,
+                "summary_data_signature": prior_signature,
+                "summary_last_synced_at_utc": old_synced_at.isoformat(),
+            }
+        },
+    )
+
+    fake_client = FakeDiscordClient()
+    monkeypatch.setattr(sync.requests, "Session", FakeSession)
+    monkeypatch.setattr(sync, "DiscordClient", lambda session: fake_client)
+    monkeypatch.setattr(sync, "post_channel_message", lambda session, channel_id, content: "rem-1")
+    monkeypatch.setattr(sync, "WEEKLY_SCHEDULE_MESSAGES_FILE", str(messages_p))
+    monkeypatch.setattr(sync, "WEEKLY_SCHEDULE_RESPONSES_FILE", str(responses_p))
+    monkeypatch.setattr(sync, "WEEKLY_SCHEDULE_SUMMARY_FILE", str(summary_p))
+    monkeypatch.setattr(sync, "EXPECTED_SCHEDULE_ROSTER_FILE", str(roster_p))
+    monkeypatch.setattr(sync, "WEEKLY_SCHEDULE_BOT_OUTPUTS_FILE", str(outputs_p))
+    monkeypatch.setenv("DISCORD_SCHEDULING_BOT_TOKEN", "x")
+    monkeypatch.setenv("REBUILD_SUMMARY_ONLY", "true")
+    monkeypatch.setenv("TARGET_WEEK_KEY", week_key)
+    monkeypatch.delenv("DRY_RUN", raising=False)
+
+    sync.main()
+
+    outputs = json.loads(outputs_p.read_text(encoding="utf-8"))
+    assert fake_client.posts == []
+    assert fake_client.edits == []
+    assert outputs[week_key]["summary_last_synced_at_utc"] == old_synced_at.isoformat()
+    assert outputs[week_key]["summary_message_content"] == prior_summary_message
+
+
+def test_main_changed_summary_data_updates_timestamp_and_edits_message(monkeypatch, tmp_path):
+    week_key, messages_p, responses_p, summary_p, roster_p, outputs_p = _setup_files(
+        tmp_path,
+        {
+            "2026-04-13_to_2026-04-19": {
+                "date_range": "Apr 13–19, 2026",
+                "users": {},
+            }
+        },
+    )
+    baseline_weekly_responses = json.loads(responses_p.read_text(encoding="utf-8"))
+    roster = json.loads(roster_p.read_text(encoding="utf-8"))
+    baseline_summary = sync.build_weekly_summary(baseline_weekly_responses)[week_key]
+    baseline_missing = sync.compute_missing_user_ids_for_week(
+        baseline_weekly_responses[week_key], roster
+    )
+    active_user_count = sync.count_active_roster_users(roster)
+    baseline_responded = max(active_user_count - len(baseline_missing), 0)
+    old_synced_at = sync.datetime(2026, 4, 1, 0, 0, tzinfo=sync.timezone.utc)
+    baseline_content = sync.format_summary_message(
+        "Apr 13–19, 2026",
+        baseline_summary,
+        responded_count=baseline_responded,
+        active_user_count=active_user_count,
+        synced_at_utc=old_synced_at,
+    )
+    baseline_signature = sync.compute_summary_data_signature(
+        baseline_summary, baseline_responded, active_user_count, baseline_missing
+    )
+    _write(
+        outputs_p,
+        {
+            week_key: {
+                "summary_message_id": "sum-old",
+                "summary_message_content": baseline_content,
+                "summary_data_signature": baseline_signature,
+                "summary_last_synced_at_utc": old_synced_at.isoformat(),
+            }
+        },
+    )
+
+    _write(
+        responses_p,
+        {
+            week_key: {
+                "date_range": "Apr 13–19, 2026",
+                "users": {
+                    "100": {
+                        "username": "jan",
+                        "global_name": "Jan",
+                        "days": {
+                            day: {"reactions": ["✅"], "custom_reply": None}
+                            for day in sync.DAY_NAMES
+                        },
+                    }
+                },
+            }
+        },
+    )
+
+    fake_client = FakeDiscordClient()
+    monkeypatch.setattr(sync.requests, "Session", FakeSession)
+    monkeypatch.setattr(sync, "DiscordClient", lambda session: fake_client)
+    monkeypatch.setattr(sync, "post_channel_message", lambda session, channel_id, content: "rem-1")
+    monkeypatch.setattr(sync, "WEEKLY_SCHEDULE_MESSAGES_FILE", str(messages_p))
+    monkeypatch.setattr(sync, "WEEKLY_SCHEDULE_RESPONSES_FILE", str(responses_p))
+    monkeypatch.setattr(sync, "WEEKLY_SCHEDULE_SUMMARY_FILE", str(summary_p))
+    monkeypatch.setattr(sync, "EXPECTED_SCHEDULE_ROSTER_FILE", str(roster_p))
+    monkeypatch.setattr(sync, "WEEKLY_SCHEDULE_BOT_OUTPUTS_FILE", str(outputs_p))
+    monkeypatch.setenv("DISCORD_SCHEDULING_BOT_TOKEN", "x")
+    monkeypatch.setenv("REBUILD_SUMMARY_ONLY", "true")
+    monkeypatch.setenv("TARGET_WEEK_KEY", week_key)
+    monkeypatch.delenv("DRY_RUN", raising=False)
+
+    sync.main()
+
+    outputs = json.loads(outputs_p.read_text(encoding="utf-8"))
+    assert fake_client.posts == []
+    assert len(fake_client.edits) == 1
+    assert outputs[week_key]["summary_message_content"] != baseline_content
+    assert outputs[week_key]["summary_data_signature"] != baseline_signature
+    assert outputs[week_key]["summary_last_synced_at_utc"] != old_synced_at.isoformat()
+
+
+def test_main_legacy_summary_backfills_signature_without_noisy_edit(monkeypatch, tmp_path):
+    week_key, messages_p, responses_p, summary_p, roster_p, outputs_p = _setup_files(
+        tmp_path,
+        {
+            "2026-04-13_to_2026-04-19": {
+                "date_range": "Apr 13–19, 2026",
+                "users": {},
+            }
+        },
+    )
+    _write(
+        outputs_p,
+        {
+            week_key: {
+                "summary_message_id": "sum-old",
+                "summary_message_content": "legacy-summary-content",
+            }
+        },
+    )
+
+    fake_client = FakeDiscordClient()
+    monkeypatch.setattr(sync.requests, "Session", FakeSession)
+    monkeypatch.setattr(sync, "DiscordClient", lambda session: fake_client)
+    monkeypatch.setattr(sync, "post_channel_message", lambda session, channel_id, content: "rem-1")
+    monkeypatch.setattr(sync, "WEEKLY_SCHEDULE_MESSAGES_FILE", str(messages_p))
+    monkeypatch.setattr(sync, "WEEKLY_SCHEDULE_RESPONSES_FILE", str(responses_p))
+    monkeypatch.setattr(sync, "WEEKLY_SCHEDULE_SUMMARY_FILE", str(summary_p))
+    monkeypatch.setattr(sync, "EXPECTED_SCHEDULE_ROSTER_FILE", str(roster_p))
+    monkeypatch.setattr(sync, "WEEKLY_SCHEDULE_BOT_OUTPUTS_FILE", str(outputs_p))
+    monkeypatch.setenv("DISCORD_SCHEDULING_BOT_TOKEN", "x")
+    monkeypatch.setenv("REBUILD_SUMMARY_ONLY", "true")
+    monkeypatch.setenv("TARGET_WEEK_KEY", week_key)
+    monkeypatch.delenv("DRY_RUN", raising=False)
+
+    sync.main()
+
+    outputs = json.loads(outputs_p.read_text(encoding="utf-8"))
+    assert fake_client.posts == []
+    assert fake_client.edits == []
+    assert outputs[week_key]["summary_message_content"] == "legacy-summary-content"
+    assert isinstance(outputs[week_key].get("summary_data_signature"), str)
+    assert "summary_last_synced_at_utc" not in outputs[week_key]
