@@ -1,6 +1,5 @@
-import hashlib
 import os
-from datetime import datetime, timezone
+from datetime import datetime, timedelta, timezone
 from typing import Dict, List, Optional
 from urllib.parse import quote
 
@@ -17,6 +16,7 @@ DISCORD_BOT_TOKEN = os.getenv("DISCORD_BOT_TOKEN")
 DISCORD_WINNERS_CHANNEL_ID = os.getenv("DISCORD_WINNERS_CHANNEL_ID")
 DISCORD_DAILY_PICKS_CHANNEL_ID = os.getenv("DISCORD_DAILY_PICKS_CHANNEL_ID")
 WINNERS_DATE_OVERRIDE_ENV = "WINNERS_DATE_UTC"
+WINNERS_LOOKBACK_DAYS = 10
 MAX_VOTERS_SHOWN_PER_GAME = 6
 DISCORD_MESSAGE_CHAR_LIMIT = 2000
 
@@ -50,6 +50,14 @@ def get_thumbsup_count(message_payload: dict) -> int:
         if emoji.get("name") == THUMBS_UP_EMOJI:
             return int(reaction.get("count", 0))
     return 0
+
+
+def get_lookback_day_keys(target_day_key: str, lookback_days: int = WINNERS_LOOKBACK_DAYS) -> List[str]:
+    target_date = datetime.fromisoformat(target_day_key).date()
+    return [
+        (target_date - timedelta(days=offset)).isoformat()
+        for offset in range(lookback_days)
+    ]
 
 
 def build_winners_message(winners_by_section: Dict[str, List[dict]]) -> str:
@@ -190,7 +198,15 @@ def main() -> None:
     if not isinstance(today_entry, dict):
         today_entry = {}
         daily_posts[day_key] = today_entry
-    items = today_entry.get("items", []) if isinstance(today_entry, dict) else []
+    lookback_day_keys = get_lookback_day_keys(day_key)
+    items: List[dict] = []
+    for bucket_key in lookback_day_keys:
+        bucket = daily_posts.get(bucket_key, {})
+        if not isinstance(bucket, dict):
+            continue
+        bucket_items = bucket.get("items", [])
+        if isinstance(bucket_items, list):
+            items.extend(bucket_items)
 
     winners_by_section: Dict[str, List[dict]] = {key: [] for key in SECTION_ORDER}
     winners_channel_id = pick_winners_channel_id(items)
@@ -211,10 +227,16 @@ def main() -> None:
         bot_user = client.get_current_user(context="fetch bot user for winners vote filtering")
         bot_user_id = str(bot_user.get("id") or "").strip() or None
 
+        deduped_winners: Dict[str, dict] = {}
         for item in items:
             section = item.get("section")
             channel_id = item.get("channel_id")
             message_id = item.get("message_id")
+            dedupe_key = str(item.get("url") or "").strip()
+            if not dedupe_key:
+                dedupe_key = str(item.get("item_key") or "").strip()
+            if not dedupe_key:
+                dedupe_key = f"{channel_id}:{message_id}"
 
             if section not in SECTION_CONFIG:
                 continue
@@ -244,12 +266,25 @@ def main() -> None:
                 context=f"fetch voters for {item.get('title', 'item')}",
             )
 
+            existing = deduped_winners.get(dedupe_key)
+            candidate = {
+                "section": section,
+                "title": item.get("title", "Untitled"),
+                "url": item.get("url", ""),
+                "human_votes": human_votes,
+                "voter_names": voter_names,
+            }
+            if existing is None or candidate["human_votes"] > existing["human_votes"]:
+                deduped_winners[dedupe_key] = candidate
+
+        for winner in deduped_winners.values():
+            section = winner["section"]
             winners_by_section[section].append(
                 {
-                    "title": item.get("title", "Untitled"),
-                    "url": item.get("url", ""),
-                    "human_votes": human_votes,
-                    "voter_names": voter_names,
+                    "title": winner["title"],
+                    "url": winner["url"],
+                    "human_votes": winner["human_votes"],
+                    "voter_names": winner["voter_names"],
                 }
             )
 
@@ -261,9 +296,19 @@ def main() -> None:
             winners_state = {}
             today_entry["winners_state"] = winners_state
 
-        content_hash = hashlib.sha256(message.encode("utf-8")).hexdigest()
+        current_winner_keys = sorted(deduped_winners.keys())
         previous_message_id = winners_state.get("message_id")
-        previous_content_hash = winners_state.get("content_hash")
+        previous_winner_keys = winners_state.get("winner_keys")
+        if not isinstance(previous_winner_keys, list):
+            previous_winner_keys = []
+
+        if not current_winner_keys and not (isinstance(previous_message_id, str) and previous_message_id):
+            print(f"SKIP: no eligible winners in last {WINNERS_LOOKBACK_DAYS} days for {day_key}")
+            return
+
+        if sorted(str(key) for key in previous_winner_keys) == current_winner_keys:
+            print(f"SKIP: no newly eligible winners for {day_key}")
+            return
 
         if isinstance(previous_message_id, str) and previous_message_id:
             try:
@@ -272,16 +317,13 @@ def main() -> None:
                     previous_message_id,
                     context=f"verify winners message for {day_key}",
                 )
-                if previous_content_hash == content_hash:
-                    print(f"SKIP: winners already posted and unchanged for {day_key}")
-                    return
                 client.edit_message(
                     winners_channel_id,
                     previous_message_id,
                     message,
                     context=f"edit winners message for {day_key}",
                 )
-                winners_state["content_hash"] = content_hash
+                winners_state["winner_keys"] = current_winner_keys
                 winners_state["last_action"] = "edit"
                 winners_state["updated_at_utc"] = datetime.now(timezone.utc).isoformat()
                 save_discord_daily_posts(daily_posts)
@@ -295,7 +337,7 @@ def main() -> None:
 
         new_message_id = post_winners_message(client, winners_channel_id, message)
         winners_state["message_id"] = new_message_id
-        winners_state["content_hash"] = content_hash
+        winners_state["winner_keys"] = current_winner_keys
         winners_state["last_action"] = "create"
         winners_state["posted_at_utc"] = datetime.now(timezone.utc).isoformat()
         save_discord_daily_posts(daily_posts)
