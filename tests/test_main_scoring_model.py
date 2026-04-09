@@ -75,7 +75,7 @@ def test_mmo_player_bonus_is_reduced(monkeypatch):
     item = main.inspect_game("steam_free", "301")
     assert item is not None
     player_score, _, _ = main.score_player_count("Massively Multiplayer MMO Online Co-Op")
-    assert player_score == 5
+    assert player_score == 4
 
 
 def test_very_positive_group_game_ranks_above_mixed(monkeypatch):
@@ -109,6 +109,27 @@ def test_review_count_confidence_bonus(monkeypatch):
     high_item = main.inspect_game("steam_free", "502")
     assert low_item is not None and high_item is not None
     assert high_item["review_count"] == 12000
+    assert high_item["score"] >= low_item["score"] + 2
+
+
+def test_review_count_confidence_bonus_applies_to_mostly_positive(monkeypatch):
+    low_count = build_html(
+        "Low Count Mostly Positive",
+        "team up with friends",
+        "Multiplayer Online Co-Op up to 6 players Mostly Positive 90 reviews",
+        "Mostly Positive",
+    )
+    high_count = build_html(
+        "High Count Mostly Positive",
+        "team up with friends",
+        "Multiplayer Online Co-Op up to 6 players Mostly Positive 15,000 reviews",
+        "Mostly Positive",
+    )
+    stub_app_pages(monkeypatch, {"503": low_count, "504": high_count})
+
+    low_item = main.inspect_game("steam_free", "503")
+    high_item = main.inspect_game("steam_free", "504")
+    assert low_item is not None and high_item is not None
     assert high_item["score"] >= low_item["score"] + 2
 
 
@@ -205,3 +226,28 @@ def test_trusted_profile_bonus_lifts_best_fit_games(monkeypatch):
     weaker_item = main.inspect_game("steam_free", "1202")
     assert trusted_item is not None and weaker_item is not None
     assert trusted_item["score"] > weaker_item["score"]
+
+
+def test_keyword_stuffing_penalty_for_mixed_reviews(monkeypatch):
+    text = "Multiplayer Online Co-Op Co-op squad team-based online pvp up to 6 players"
+    mixed_score, mixed_hits = main.score_quality_refinements(
+        title="Stuffed Keywords",
+        description="friends game",
+        text=text,
+        review_sentiment="Mixed",
+        review_count=200,
+        multiplayer_score=8,
+        player_score=4,
+    )
+    positive_score, _ = main.score_quality_refinements(
+        title="Stuffed Keywords",
+        description="friends game",
+        text=text,
+        review_sentiment="Mostly Positive",
+        review_count=200,
+        multiplayer_score=8,
+        player_score=4,
+    )
+
+    assert "keyword-stuffing-weak-review" in mixed_hits
+    assert mixed_score <= positive_score - 2

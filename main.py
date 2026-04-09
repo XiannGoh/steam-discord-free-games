@@ -153,12 +153,12 @@ REPLAYABILITY_PHRASE_SCORES = {
 
 LOW_SIGNAL_KEYWORD_SCORES = {
     "clicker": -3,
-    "idle": -3,
+    "idle": -2,
     "hentai": -4,
     "nsfw": -4,
-    "prototype": -3,
+    "prototype": -2,
     "test": -2,
-    "ai-generated": -3,
+    "ai-generated": -2,
     "meme": -2,
     "asset flip": -4,
     "unity asset": -3,
@@ -611,7 +611,7 @@ def score_player_count(text: str) -> Tuple[int, List[str], bool]:
     lower_text = text.lower()
 
     if "massively multiplayer" in lower_text or re.search(r"\bmmo\b", lower_text):
-        score += 5
+        score += 4
         hits.append("MMO/Massively Multiplayer")
         return score, hits, False
 
@@ -712,12 +712,12 @@ def score_quality_refinements(
         score += 2
         hits.append("strong-review-4plus-combo")
 
-    if review_count >= 1000 and review_sentiment in REVIEW_CONFIDENCE_BASELINE_SENTIMENTS:
+    if review_count >= 10000 and review_sentiment in REVIEW_CONFIDENCE_BASELINE_SENTIMENTS:
+        score += 2
+        hits.append("review-count-10k")
+    elif review_count >= 1000 and review_sentiment in REVIEW_CONFIDENCE_BASELINE_SENTIMENTS:
         score += 1
         hits.append("review-count-1k")
-    if review_count >= 10000 and review_sentiment in REVIEW_CONFIDENCE_STRONG_SENTIMENTS:
-        score += 1
-        hits.append("review-count-10k-strong")
 
     for phrase, points in FRIEND_GROUP_PHRASE_SCORES.items():
         if phrase in combined:
@@ -769,7 +769,7 @@ def score_quality_refinements(
         score -= 2
         hits.append("keyword-stuffing-weak-review")
 
-    trusted_genres = ["survival", "shooter", "roguelite", "party"]
+    trusted_genres = ["survival", "shooter", "roguelike", "roguelite", "party", "extraction"]
     if strong_review and has_4plus and has_coop and any(term in combined for term in trusted_genres):
         score += 2
         hits.append("trusted-profile")
