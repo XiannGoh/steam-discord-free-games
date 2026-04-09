@@ -306,9 +306,26 @@ def main() -> None:
             print(f"SKIP: no eligible winners in last {WINNERS_LOOKBACK_DAYS} days for {day_key}")
             return
 
-        if sorted(str(key) for key in previous_winner_keys) == current_winner_keys:
-            print(f"SKIP: no newly eligible winners for {day_key}")
-            return
+        winner_keys_unchanged = sorted(str(key) for key in previous_winner_keys) == current_winner_keys
+        if winner_keys_unchanged:
+            if isinstance(previous_message_id, str) and previous_message_id:
+                try:
+                    client.get_message(
+                        winners_channel_id,
+                        previous_message_id,
+                        context=f"verify unchanged winners message for {day_key}",
+                    )
+                    print(f"SKIP: no newly eligible winners for {day_key}")
+                    return
+                except DiscordMessageNotFoundError:
+                    print(
+                        f"RECOVER: stale/deleted winners message for {day_key} "
+                        f"(message_id={previous_message_id}); posting replacement"
+                    )
+                    previous_message_id = None
+            elif not current_winner_keys:
+                print(f"SKIP: no newly eligible winners for {day_key}")
+                return
 
         if isinstance(previous_message_id, str) and previous_message_id:
             try:
