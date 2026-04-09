@@ -501,7 +501,36 @@ def compute_week_dates_from_summary(week_summary: dict[str, Any]) -> dict[str, d
     return {}
 
 
-def format_summary_message(date_range: str, week_summary: dict[str, Any]) -> str:
+def count_active_roster_users(roster: dict[str, Any]) -> int:
+    """Return the number of active users from the expected roster."""
+    users = roster.get("users")
+    if not isinstance(users, dict):
+        fail(f"Missing or invalid users object in {EXPECTED_SCHEDULE_ROSTER_FILE}")
+    return sum(
+        1
+        for user in users.values()
+        if isinstance(user, dict) and user.get("is_active") is True
+    )
+
+
+def format_summary_last_updated_line(synced_at_utc: datetime) -> str:
+    """Format a compact New York last-updated line for summary output."""
+    ny_time = synced_at_utc.astimezone(NEW_YORK_TIMEZONE)
+    month_day = f"{ny_time.strftime('%b')} {ny_time.day}"
+    hour_12 = ((ny_time.hour - 1) % 12) + 1
+    minute = f"{ny_time.minute:02d}"
+    am_pm = ny_time.strftime("%p")
+    return f"*Last updated: {month_day}, {hour_12}:{minute} {am_pm} ET*"
+
+
+def format_summary_message(
+    date_range: str,
+    week_summary: dict[str, Any],
+    *,
+    responded_count: int,
+    active_user_count: int,
+    synced_at_utc: datetime,
+) -> str:
     """Build a richer deterministic summary message from weekly summary data."""
     summary = week_summary.get("summary")
     if not isinstance(summary, dict):
@@ -596,8 +625,17 @@ def format_summary_message(date_range: str, week_summary: dict[str, Any]) -> str
         if index < len(DAY_NAMES) - 1:
             chronological_day_lines.append("")
 
+    missing_count = max(active_user_count - responded_count, 0)
+    response_status_line = (
+        f"*{responded_count} of {active_user_count} people responded • "
+        f"{missing_count} still missing*"
+    )
+    last_updated_line = format_summary_last_updated_line(synced_at_utc)
     lines = [
         f"📊 Availability Summary — {date_range}",
+        "",
+        response_status_line,
+        last_updated_line,
         "",
         *chronological_day_lines,
     ]
@@ -608,6 +646,9 @@ def format_summary_message(date_range: str, week_summary: dict[str, Any]) -> str
 
     fallback_lines = [
         f"📊 Availability Summary — {date_range}",
+        "",
+        response_status_line,
+        last_updated_line,
         "",
         *(f"**{day_with_date_label(day_name)}**" for day_name in DAY_NAMES),
         "",
@@ -818,6 +859,9 @@ def main() -> None:
         fail(f"Missing or invalid date_range for {posting_week_key}")
 
     missing_user_ids = compute_missing_user_ids_for_week(posting_week_responses, roster)
+    active_user_count = count_active_roster_users(roster)
+    responded_count = max(active_user_count - len(missing_user_ids), 0)
+    summary_synced_at_utc = datetime.now(ZoneInfo("UTC"))
     week_outputs = weekly_bot_outputs.get(posting_week_key)
     if not isinstance(week_outputs, dict):
         week_outputs = {}
@@ -832,7 +876,13 @@ def main() -> None:
         )
         discord_client = DiscordClient(posting_session)
 
-        summary_message = format_summary_message(date_range, posting_week_summary)
+        summary_message = format_summary_message(
+            date_range,
+            posting_week_summary,
+            responded_count=responded_count,
+            active_user_count=active_user_count,
+            synced_at_utc=summary_synced_at_utc,
+        )
         previous_summary_message_id = week_outputs.get("summary_message_id")
         summary_message_id = (
             str(previous_summary_message_id)

@@ -81,7 +81,13 @@ def test_summary_format_includes_dates_voter_names_and_truncation():
         },
     }
 
-    msg = sync.format_summary_message("Apr 13–19, 2026", week_summary)
+    msg = sync.format_summary_message(
+        "Apr 13–19, 2026",
+        week_summary,
+        responded_count=1,
+        active_user_count=2,
+        synced_at_utc=sync.datetime(2026, 4, 9, 0, 0, tzinfo=sync.ZoneInfo("UTC")),
+    )
 
     assert "Monday 4/13" in msg
     assert "Best overlap:" not in msg
@@ -109,7 +115,13 @@ def test_summary_format_is_monday_to_sunday_chronological():
         },
     }
 
-    msg = sync.format_summary_message("Apr 13–19, 2026", week_summary)
+    msg = sync.format_summary_message(
+        "Apr 13–19, 2026",
+        week_summary,
+        responded_count=1,
+        active_user_count=2,
+        synced_at_utc=sync.datetime(2026, 4, 9, 0, 0, tzinfo=sync.ZoneInfo("UTC")),
+    )
 
     day_positions = [msg.index(f"**{day} 4/{13 + index}**") for index, day in enumerate(sync.DAY_NAMES)]
     assert day_positions == sorted(day_positions)
@@ -133,8 +145,63 @@ def test_shared_date_label_helper_matches_summary_and_day_posts():
         },
     }
 
-    msg = sync.format_summary_message("Apr 13–19, 2026", week_summary)
+    msg = sync.format_summary_message(
+        "Apr 13–19, 2026",
+        week_summary,
+        responded_count=1,
+        active_user_count=2,
+        synced_at_utc=sync.datetime(2026, 4, 9, 0, 0, tzinfo=sync.ZoneInfo("UTC")),
+    )
     assert "**Monday 4/13**" in msg
+
+
+def test_summary_includes_status_timestamp_spacing_and_slot_order():
+    week_summary = {
+        "week_key": "2026-04-13_to_2026-04-19",
+        "date_range": "Apr 13–19, 2026",
+        "summary": {
+            "day_counts": {d: 0 for d in sync.DAY_NAMES},
+            "slot_counts": {
+                "Monday": {"✅": 3, "🌅": 1, "☀️": 2, "🌙": 1, "📝": 1, "❌": 4},
+                "Tuesday": {"✅": 0, "🌅": 0, "☀️": 1, "🌙": 0, "📝": 0, "❌": 0},
+                **{
+                    day: {slot: 0 for slot in sync.SUMMARY_DISPLAY_ORDER}
+                    for day in sync.DAY_NAMES
+                    if day not in {"Monday", "Tuesday"}
+                },
+            },
+            "slot_voters": {
+                "Monday": {
+                    "✅": [{"display_name": "Alice"}, {"display_name": "Bob"}, {"display_name": "Charlie"}],
+                    "🌅": [{"display_name": "Dawn"}],
+                    "☀️": [{"display_name": "Sun1"}, {"display_name": "Sun2"}],
+                    "🌙": [{"display_name": "Moon"}],
+                    "📝": [{"display_name": "Note"}],
+                },
+                "Tuesday": {"✅": [], "🌅": [], "☀️": [{"display_name": "Erin"}], "🌙": [], "📝": []},
+                **{
+                    day: {slot: [] for slot in sync.SUMMARY_SLOT_ORDER}
+                    for day in sync.DAY_NAMES
+                    if day not in {"Monday", "Tuesday"}
+                },
+            },
+            "best_overlap": {"day": "Monday", "slot": "✅", "count": 3},
+        },
+    }
+
+    msg = sync.format_summary_message(
+        "Apr 13–19, 2026",
+        week_summary,
+        responded_count=12,
+        active_user_count=14,
+        synced_at_utc=sync.datetime(2026, 4, 10, 0, 0, tzinfo=sync.ZoneInfo("UTC")),
+    )
+
+    assert "*12 of 14 people responded • 2 still missing*" in msg
+    assert "*Last updated: Apr 9, 8:00 PM ET*" in msg
+    assert "\n\n**Tuesday 4/14**" in msg
+    assert "\n\n\n**Tuesday 4/14**" not in msg
+    assert "\n**Monday 4/13**\n✅ 3 — Alice, Bob, Charlie\n🌅 1 — Dawn\n☀️ 2 — Sun1, Sun2\n🌙 1 — Moon\n📝 1 — Note\n❌ 4 — (names unavailable)\n\n**Tuesday 4/14**\n☀️ 1 — Erin\n\n**Wednesday 4/15**\nNo responses" in msg
 
 
 def test_main_rebuild_only_edits_or_recovers_summary(monkeypatch, tmp_path, load_fixture_json):
