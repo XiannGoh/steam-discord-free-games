@@ -317,3 +317,43 @@ def test_build_winners_message_compact_fallback_when_too_long(monkeypatch):
     compact = winners.build_winners_message_compact(winners_by_section)
     assert "Voters —" not in compact
     assert "- Game 0 (2 votes)" in compact
+
+
+def test_winners_pipeline_integration_late_votes_dedupe_and_coherent_edit(monkeypatch, tmp_path):
+    day_key, path = _setup_daily(tmp_path)
+    payloads = {
+        "m-late": {"reactions": [{"emoji": {"name": "👍"}, "count": 2}]},  # 1 human
+        "m-dupe": {"reactions": [{"emoji": {"name": "👍"}, "count": 4}]},  # 3 humans (wins dedupe key)
+        "m-paid": {"reactions": [{"emoji": {"name": "👍"}, "count": 2}]},
+        "m-bot-only": {"reactions": [{"emoji": {"name": "👍"}, "count": 1}]},
+        "m-old-in": {"reactions": [{"emoji": {"name": "👍"}, "count": 1}]},
+    }
+    reaction_users = {
+        "m-dupe": [{"id": "bot-1"}, {"id": "u1", "username": "jan"}, {"id": "u2", "username": "jerry"}, {"id": "u3", "username": "akhil"}],
+        "m-paid": [{"id": "bot-1"}, {"id": "u9", "username": "thomas"}],
+    }
+    fake_create = FakeDiscordClient(payloads, reaction_users)
+    _patch_common(monkeypatch, path, fake_create, day_key)
+
+    winners.main()
+    assert len(fake_create.posts) == 1
+    create_content = fake_create.posts[0][1]
+    assert "Same Game Repost" in create_content
+    assert "Late Voted Earlier Day" not in create_content
+    assert "Only Bot Vote" not in create_content
+
+    data = json.loads(path.read_text(encoding="utf-8"))
+    winners_state = data[day_key]["winners_state"]
+    assert sorted(winners_state["winner_keys"]) == ["paid-win", "shared-dupe"]
+    assert winners_state["winner_vote_counts"]["shared-dupe"] == 3
+
+    payloads["m-paid"] = {"reactions": [{"emoji": {"name": "👍"}, "count": 3}]}
+    reaction_users["m-paid"] = [{"id": "bot-1"}, {"id": "u9", "username": "thomas"}, {"id": "u10", "username": "raymond"}]
+    fake_edit = FakeDiscordClient(payloads, reaction_users)
+    monkeypatch.setattr(winners, "DiscordClient", lambda session: fake_edit)
+
+    winners.main()
+    assert len(fake_edit.edits) == 1
+    edit_content = fake_edit.edits[0][2]
+    assert "Current Paid Winner" in edit_content
+    assert "👍 2 votes" in edit_content
