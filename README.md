@@ -96,6 +96,60 @@ Manual rerun quick commands (GitHub CLI):
 - **Schedule:** `10 3 * * *` (03:10 UTC daily; ~11:10 PM New York during EDT).
 - **Manual rerun:** `gh workflow run bot-health-report.yml`
 
+## Operator Runbook (Consolidated)
+
+Use this section as the fast triage guide when a workflow or state file drifts.
+
+### Workflow purpose map
+
+- `daily.yml`: posts daily game picks and persists item message metadata in `discord_daily_posts.json`.
+- `evening-winners.yml`: reads daily picks + reactions, computes winners, posts/edits winners message, and stores winners state back into `discord_daily_posts.json`.
+- `weekly-scheduling-bot.yml`: posts weekly intro/day prompts and writes week message IDs into `data/scheduling/weekly_schedule_messages.json`.
+- `weekly-scheduling-responses-sync.yml`: syncs weekly reactions, rebuilds weekly summary, evaluates reminder decisions, posts/edits summary/reminders, and updates weekly response/summary/output state files.
+- `bot-health-report.yml`: compiles workflow freshness + state/artifact checks and posts one daily health report to the health monitor channel/webhook.
+
+### State files and what they are for
+
+- `discord_daily_posts.json`: daily picks item registry and winners output state (`winners_state`) by day.
+- `data/scheduling/weekly_schedule_messages.json`: canonical weekly intro/day message IDs and date-range context.
+- `data/scheduling/weekly_schedule_responses.json`: synced per-user weekly availability reactions/custom replies.
+- `data/scheduling/weekly_schedule_summary.json`: derived weekly summary structure from synced responses.
+- `data/scheduling/weekly_schedule_bot_outputs.json`: operational outputs/metadata (summary message ID/content/signature, summary freshness timestamp, reminder state).
+- `data/scheduling/expected_schedule_roster.json`: expected active roster used for reminder missing-user logic.
+
+### What the daily health report checks
+
+- Workflow freshness/status (stale, failure, missing recent run).
+- State/artifact consistency (missing or malformed files, missing summary/output links, winners-state coherence).
+- Roster/config integrity (missing/malformed/empty expected roster).
+- Winners + weekly scheduling sanity (expected week/day entries, summary freshness, picks↔winners coherence).
+
+### Manual recovery / triage playbook
+
+- **Weekly Scheduling Responses Sync is stale**
+  1. Re-run `weekly-scheduling-responses-sync.yml`.
+  2. If summary drift only: rerun with `rebuild_summary_only=true`.
+  3. Confirm `weekly_schedule_summary.json` and `weekly_schedule_bot_outputs.json` update for the target week.
+- **Weekly summary missing**
+  1. Confirm the week exists in `weekly_schedule_messages.json` and `weekly_schedule_responses.json`.
+  2. Run sync with `target_week_key=<week>` and `rebuild_summary_only=true`.
+- **Winners state missing**
+  1. Confirm picks exist for expected winners day in `discord_daily_posts.json`.
+  2. Re-run `evening-winners.yml` with `winners_date_utc=<day>`.
+- **Malformed roster**
+  1. Repair `data/scheduling/expected_schedule_roster.json` to a valid `users` object with active user entries.
+  2. Re-run `state-sanity-check.yml`, then `weekly-scheduling-responses-sync.yml`.
+- **Daily picks / winners inconsistency**
+  1. Verify `discord_daily_posts.json` day entry has valid `items` message IDs.
+  2. Re-run `daily.yml` (if items missing/stale) then `evening-winners.yml` for the same day.
+
+### Required secrets / env vars by area (high-level)
+
+- Weekly scheduling post/sync: `DISCORD_SCHEDULING_BOT_TOKEN`, `DISCORD_SCHEDULING_CHANNEL_ID`.
+- Daily picks: `DISCORD_WEBHOOK_URL`, `DISCORD_BOT_TOKEN`, `INSTAGRAM_USERNAME`, `INSTAGRAM_SESSION_B64`.
+- Evening winners: `DISCORD_BOT_TOKEN`, winners destination channel env (`DISCORD_DAILY_PICKS_CHANNEL_ID` and/or `DISCORD_WINNERS_CHANNEL_ID`).
+- Health reporting: `DISCORD_HEALTH_MONITOR_WEBHOOK_URL`.
+
 ---
 
 ## Workflow Overview

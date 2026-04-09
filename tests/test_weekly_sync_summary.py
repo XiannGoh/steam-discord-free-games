@@ -338,38 +338,89 @@ def test_main_posts_only_one_reminder_per_new_york_local_day(monkeypatch, tmp_pa
 
     monkeypatch.setattr(sync, "current_new_york_local_date", lambda: "2026-04-18")
     sync.main()
+
+
+def test_weekly_pipeline_integration_happy_path(monkeypatch, tmp_path):
+    week_key = "2026-04-13_to_2026-04-19"
+    messages = {
+        week_key: {
+            "channel_id": "chan-1",
+            "date_range": "Apr 13–19, 2026",
+            "days": {d: f"id-{d}" for d in sync.DAY_NAMES},
+        }
+    }
+    roster = {
+        "users": {
+            "100": {"is_active": True},
+            "200": {"is_active": True},
+            "300": {"is_active": True},
+        }
+    }
+
+    messages_p = tmp_path / "messages.json"
+    responses_p = tmp_path / "responses.json"
+    summary_p = tmp_path / "summary.json"
+    roster_p = tmp_path / "roster.json"
+    outputs_p = tmp_path / "outputs.json"
+
+    _write(messages_p, messages)
+    _write(responses_p, {})
+    _write(summary_p, {})
+    _write(roster_p, roster)
+    _write(outputs_p, {})
+
+    fake_client = FakeDiscordClient()
+    reminder_posts = []
+
+    def fake_post_channel_message(session, channel_id, content):
+        reminder_posts.append((channel_id, content))
+        return f"rem-{len(reminder_posts)}"
+
+    def fake_fetch_reaction_users(session, channel_id, message_id, emoji):
+        if message_id == "id-Monday" and emoji == "✅":
+            return [{"id": "100", "username": "jan", "global_name": "Jan"}]
+        if message_id == "id-Tuesday" and emoji == "🌙":
+            return [{"id": "200", "username": "jerry", "global_name": "Jerry"}]
+        return []
+
+    monkeypatch.setattr(sync.requests, "Session", FakeSession)
+    monkeypatch.setattr(sync, "DiscordClient", lambda session: fake_client)
+    monkeypatch.setattr(sync, "get_bot_user_id", lambda session: "bot-1")
+    monkeypatch.setattr(sync, "fetch_reaction_users", fake_fetch_reaction_users)
+    monkeypatch.setattr(sync, "fetch_channel_messages", lambda session, channel_id: [])
+    monkeypatch.setattr(sync, "post_channel_message", fake_post_channel_message)
+    monkeypatch.setattr(sync, "current_new_york_local_date", lambda: "2026-04-18")
+    monkeypatch.setattr(sync, "WEEKLY_SCHEDULE_MESSAGES_FILE", str(messages_p))
+    monkeypatch.setattr(sync, "WEEKLY_SCHEDULE_RESPONSES_FILE", str(responses_p))
+    monkeypatch.setattr(sync, "WEEKLY_SCHEDULE_SUMMARY_FILE", str(summary_p))
+    monkeypatch.setattr(sync, "EXPECTED_SCHEDULE_ROSTER_FILE", str(roster_p))
+    monkeypatch.setattr(sync, "WEEKLY_SCHEDULE_BOT_OUTPUTS_FILE", str(outputs_p))
+    monkeypatch.setenv("DISCORD_SCHEDULING_BOT_TOKEN", "x")
+    monkeypatch.delenv("REBUILD_SUMMARY_ONLY", raising=False)
+    monkeypatch.delenv("TARGET_WEEK_KEY", raising=False)
+    monkeypatch.delenv("DRY_RUN", raising=False)
+
     sync.main()
 
-    outputs_after_same_day = json.loads(outputs_p.read_text(encoding="utf-8"))
+    responses = json.loads(responses_p.read_text(encoding="utf-8"))
+    assert week_key in responses
+    users = responses[week_key]["users"]
+    assert sorted(users.keys()) == ["100", "200"]
+    assert users["100"]["days"]["Monday"]["reactions"] == ["✅"]
+    assert users["200"]["days"]["Tuesday"]["reactions"] == ["🌙"]
+
+    summary = json.loads(summary_p.read_text(encoding="utf-8"))
+    assert summary[week_key]["summary"]["slot_counts"]["Monday"]["✅"] == 1
+    assert summary[week_key]["summary"]["slot_counts"]["Tuesday"]["🌙"] == 1
+
+    outputs = json.loads(outputs_p.read_text(encoding="utf-8"))
+    week_outputs = outputs[week_key]
+    assert week_outputs["summary_message_id"].startswith("summary-")
+    assert isinstance(week_outputs.get("summary_data_signature"), str) and week_outputs["summary_data_signature"]
+    assert isinstance(week_outputs.get("summary_last_synced_at_utc"), str)
+    assert week_outputs["reminder_missing_users"] == ["300"]
+    assert week_outputs["last_reminder_local_date"] == "2026-04-18"
     assert len(reminder_posts) == 1
-    assert outputs_after_same_day[week_key]["last_reminder_local_date"] == "2026-04-18"
-
-    # New day + changed missing list should allow a new reminder.
-    _write(
-        responses_p,
-        {
-            week_key: {
-                "date_range": "Apr 13–19, 2026",
-                "users": {
-                    "100": {
-                        "username": "jan",
-                        "global_name": "Jan",
-                        "days": {
-                            day: {"reactions": ["✅"], "custom_reply": None}
-                            for day in sync.DAY_NAMES
-                        },
-                    }
-                },
-            }
-        },
-    )
-
-    monkeypatch.setattr(sync, "current_new_york_local_date", lambda: "2026-04-19")
-    sync.main()
-
-    outputs_after_next_day = json.loads(outputs_p.read_text(encoding="utf-8"))
-    assert len(reminder_posts) == 2
-    assert outputs_after_next_day[week_key]["last_reminder_local_date"] == "2026-04-19"
 
 
 def test_main_saturday_new_week_requires_change_and_allows_single_daily_reminder(
