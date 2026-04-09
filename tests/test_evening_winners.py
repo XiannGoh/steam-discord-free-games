@@ -22,8 +22,10 @@ class FakeDiscordClient:
         self.posts = []
         self.edits = []
         self.reaction_calls = []
+        self.message_calls = []
 
     def get_message(self, channel_id, message_id, *, context):
+        self.message_calls.append((channel_id, message_id, context))
         if self.stale_winner_id and message_id == self.stale_winner_id:
             raise winners.DiscordMessageNotFoundError("missing")
         if message_id in self.message_payloads:
@@ -203,6 +205,33 @@ def test_unchanged_winner_keys_with_stale_message_posts_replacement(monkeypatch,
     assert fake.edits == []
     updated = json.loads(path.read_text(encoding="utf-8"))
     assert updated[day_key]["winners_state"]["message_id"] == "w-1"
+
+
+def test_unchanged_winner_keys_with_live_message_skips_after_verification(monkeypatch, tmp_path):
+    day_key, path = _setup_daily(tmp_path)
+    data = json.loads(path.read_text(encoding="utf-8"))
+    data[day_key]["winners_state"] = {"message_id": "w-live", "winner_keys": ["paid-win", "shared-dupe"]}
+    path.write_text(json.dumps(data), encoding="utf-8")
+
+    payloads = {
+        "m-late": {"reactions": [{"emoji": {"name": "👍"}, "count": 2}]},
+        "m-dupe": {"reactions": [{"emoji": {"name": "👍"}, "count": 2}]},
+        "m-paid": {"reactions": [{"emoji": {"name": "👍"}, "count": 2}]},
+        "m-old-in": {"reactions": [{"emoji": {"name": "👍"}, "count": 1}]},
+        "w-live": {"id": "w-live", "content": "existing winners"},
+    }
+    reaction_users = {
+        "m-late": [{"id": "bot-1"}, {"id": "u1", "username": "u1"}],
+        "m-paid": [{"id": "bot-1"}, {"id": "u2", "username": "u2"}],
+    }
+    fake = FakeDiscordClient(payloads, reaction_users)
+    _patch_common(monkeypatch, path, fake, day_key)
+
+    winners.main()
+
+    assert fake.posts == []
+    assert fake.edits == []
+    assert ("wchan", "w-live", f"verify unchanged winners message for {day_key}") in fake.message_calls
 
 
 def test_stale_daily_item_message_is_skipped(monkeypatch, tmp_path):
