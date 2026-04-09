@@ -1320,5 +1320,432 @@
       "completed": true,
       "completed_at_utc": "2026-04-08T23:52:26.974962+00:00"
     }
+  },
+  "2026-04-09": {
+    "run_state": {
+      "section_headers": {
+        "free": {
+          "message_id": "1491849560333750444",
+          "channel_id": "592534544708796474",
+          "posted_at_utc": "2026-04-09T17:17:32.585252+00:00"
+        },
+        "paid": {
+          "message_id": "1491849641858175111",
+          "channel_id": "592534544708796474",
+          "posted_at_utc": "2026-04-09T17:17:51.989182+00:00"
+        },
+        "instagram": {
+          "message_id": "1491849728650903552",
+          "channel_id": "592534544708796474",
+          "posted_at_utc": "2026-04-09T17:18:12.921817+00:00"
+        }
+      },
+      "last_attempt_at_utc": "2026-04-09T17:17:30.036634+00:00",
+      "intro": {
+        "message_id": "1491849550875459831",
+        "channel_id": "592534544708796474",
+        "posted_at_utc": "2026-04-09T17:17:31.042427+00:00"
+      },
+      "completed": true,
+      "completed_at_utc": "2026-04-09T17:18:43.412548+00:00"
+    },
+    "items": [
+      {
+        "item_key": "1775f0ff2b0f1fa6",
+        "section": "free",
+        "title": "CounterAttack: Uprising",
+        "url": "https://store.steampowered.com/app/451600/",
+        "message_id": "1491849566700699809",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-04-09T17:17:34.410238+00:00",
+        "description": "CounterAttack: Uprising is a side scrolling space shooter (shmup). Team up or fight solo, 1 - 4 player local or up to 8 players online coop, unlock upgrades, use powerful ultimate abilities, enhance your ship the way you want, and save the Earth from annihilation."
+      },
+      {
+        "item_key": "e6e2db2be1df3235",
+        "section": "free",
+        "title": "DarkOrbit Reloaded",
+        "url": "https://store.steampowered.com/app/4054110/",
+        "message_id": "1491849574342590509",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-04-09T17:17:36.160791+00:00",
+        "description": "Dark Orbit is a free-2-play space MMO where three companies battle for galactic domination. Customize ships, trade resources, fight aliens and uncover a grand conspiracy on your epic cosmic journey. Thrilling PvP and PvE missions await! Will you lead your faction beyond the final frontier?"
+      },
+      {
+        "item_key": "78a67b3339fd535e",
+        "section": "free",
+        "title": "SUPER PEOPLE",
+        "url": "https://store.steampowered.com/app/1190340/",
+        "message_id": "1491849581569245285",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-04-09T17:17:37.888909+00:00",
+        "description": "SUPER PEOPLE is a skill-driven battle royale from WONDER PEOPLE. With 15 super soldiers, each with unique abilities, you shape the pace of engagements, your tactics, and the finish—turning a familiar battle royale into a completely different kind of fun."
+      },
+      {
+        "item_key": "475ddef837645e57",
+        "section": "free",
+        "title": "Uncharted Waters Online",
+        "url": "https://store.steampowered.com/app/890400/",
+        "message_id": "1491849588364017777",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-04-09T17:17:39.713073+00:00",
+        "description": "Discover yourself in the “Age of Discovery” where you’ll sail out into the uncharted waters! Discover real historical artifacts and mystical legends! Start a company and make enormous fortunes! Fight in fierce sea battles! Whatever your play style, you can play who you want and how you want in UWO!"
+      },
+      {
+        "item_key": "1dc4f9fbf6250ce3",
+        "section": "free",
+        "title": "DK Online",
+        "url": "https://store.steampowered.com/app/781030/",
+        "message_id": "1491849596521943080",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-04-09T17:17:41.532819+00:00",
+        "description": "DK Online, a fantasy-themed classic MMORPG, invites you to combat monsters, engage in intense PvP, and prove your skills by leveling up. You can magically transform your look into stylish characters. Conquer achievements and explore a vast world as a Dragon Knight. Massive rewards await you!"
+      },
+      {
+        "item_key": "cb818c91b6f9e202",
+        "section": "free",
+        "title": "Anomaly Zone",
+        "url": "https://store.steampowered.com/app/1157250/",
+        "message_id": "1491849604189388943",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-04-09T17:17:43.224754+00:00",
+        "description": "Anomaly Zone is an open world MMORPG and a post-apocalyptic shooter. Be a scientist, a soldier, a hunter or an engineer. Explore anomalous territories, search for artifacts, fight mutants and other players. Participate in mass PvP and PvE battles. The Zone is waiting!"
+      },
+      {
+        "item_key": "1822bf4d96efbf16",
+        "section": "free",
+        "title": "M.A.R.S.",
+        "url": "https://store.steampowered.com/app/314430/",
+        "message_id": "1491849611516842125",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-04-09T17:17:45.182838+00:00",
+        "description": "MARS is a Free-To-Play Third Person Shooter set in an evolving sci-fi world. From the hilarious Headhunter mode, to Huge Mecha vs Mecha battles, to fully customizable loadouts; whether Co-op or PvP, M.A.R.S. has something for everyone. Kill, Die, Repeat."
+      },
+      {
+        "item_key": "db8a36f23f19ec68",
+        "section": "free",
+        "title": "Trianga's Project: Battle Splash 2.0",
+        "url": "https://store.steampowered.com/app/756600/",
+        "message_id": "1491849619230036101",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-04-09T17:17:46.964055+00:00",
+        "description": "Full-Physics Water FPS/TPS, Class-based Action-packed Arena Shooter, Run & Gun with Rocket Jump, Single/Coop/Multiplayers, Survive Procedural Waves of Enemies, Lots of Game Modes, Endless Challenges and Replayability, with an Anime Beautiful Cast, and More...!"
+      },
+      {
+        "item_key": "dfdac081c591c736",
+        "section": "free",
+        "title": "Shop Legends",
+        "url": "https://store.steampowered.com/app/982300/",
+        "message_id": "1491849626641498225",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-04-09T17:17:48.572716+00:00",
+        "description": "Immerse yourself in an Idle Simulation Tycoon RPG like no other, where you are tasked with managing a thriving item shop, crafting legendary gear for customers, commanding mighty heroes to loot rare artifacts & blueprints all while challenging top-ranked shopkeepers in an epic business adventure!"
+      },
+      {
+        "item_key": "e4e4e6d14b15c1d0",
+        "section": "free",
+        "title": "Baccarat Online: Baccarist",
+        "url": "https://store.steampowered.com/app/3673460/",
+        "message_id": "1491849634136588471",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-04-09T17:17:50.504865+00:00",
+        "description": "Favored by the highest of high rollers, baccarat is one of the world's oldest and most popular card games. The aim of the game is to guess who will hit the highest hand value, which in this game is 9. Feel the risk as you dive into the casino atmosphere and hit the big time!"
+      },
+      {
+        "item_key": "ce386c009c351dcd",
+        "section": "paid",
+        "title": "Hero Siege - Bard (Class)",
+        "url": "https://store.steampowered.com/app/3305660/",
+        "message_id": "1491849647931658301",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-04-09T17:17:53.697230+00:00",
+        "description": "Shred the battlefield with face-melting solos and thunderous riffs! The Bard storms into Hero Siege with amps cranked to 11, fusing the fury of death metal with the raw brutality of the pit."
+      },
+      {
+        "item_key": "6f708f09fc0827e6",
+        "section": "paid",
+        "title": "Make Way",
+        "url": "https://store.steampowered.com/app/1445790/",
+        "message_id": "1491849655145992232",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-04-09T17:17:55.314084+00:00",
+        "description": "Speed around loops, dart through train crossings, drift around helter skelters, and unleash wacky weaponry in this modern take on classic top-down multiplayer racing games such as Micro Machines and Mashed. The twist? You build the track."
+      },
+      {
+        "item_key": "6a6df59ac600f4d8",
+        "section": "paid",
+        "title": "Age of Empires IV: Dynasties of the East",
+        "url": "https://store.steampowered.com/app/3067190/",
+        "message_id": "1491849663173758986",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-04-09T17:17:57.600492+00:00",
+        "description": "Expand your legacy in Dynasties of the East—featuring 4 new variant civilizations, 8 maps, 6 biomes, and a new roguelite RTS experience with dynamic challenges and unpredictable wave-based attacks"
+      },
+      {
+        "item_key": "af071fe8dacf1d37",
+        "section": "paid",
+        "title": "THE FINALS - The Apothecarion Set",
+        "url": "https://store.steampowered.com/app/4062430/",
+        "message_id": "1491849671528943676",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-04-09T17:17:59.314508+00:00",
+        "description": "The Apothecarion Set includes: 1 Legendary Outfit, 1 Epic Emote, 1 Legendary Weapon Skin, 1 Epic Charm, 2 400 Multibucks."
+      },
+      {
+        "item_key": "d2e6f14f981367b3",
+        "section": "paid",
+        "title": "BitCraft Online",
+        "url": "https://store.steampowered.com/app/3454650/",
+        "message_id": "1491849678927564860",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-04-09T17:18:01.192897+00:00",
+        "description": "Join thousands of players in a true single-world MMORPG. Carve out a cozy nook, master a player-driven economy, or band together to transform the ancient wilderness into thriving cities. From humble beginnings to legend, your choices matter - because in BitCraft, your actions shape our world."
+      },
+      {
+        "item_key": "c8a84ca492e4dd03",
+        "section": "paid",
+        "title": "MechWarrior 5: Mercenaries - Shadow of Kerensky",
+        "url": "https://store.steampowered.com/app/3799610/",
+        "message_id": "1491849686854799420",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-04-09T17:18:03.136873+00:00",
+        "description": "Take on a 12-mission story campaign set during the Clan Invasion. Battle through a shifting Inner Sphere map, face powerful Clan OmniMechs, and salvage cutting-edge Clan tech."
+      },
+      {
+        "item_key": "cfbcfa03c8668f6c",
+        "section": "paid",
+        "title": "Elite Dangerous: Odyssey",
+        "url": "https://store.steampowered.com/app/1336350/",
+        "message_id": "1491849694471524455",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-04-09T17:18:04.901026+00:00",
+        "description": "Disembark, Commander, and leave your mark on the galaxy in Elite Dangerous: Odyssey. Explore distant worlds on foot and expand the frontier of known space."
+      },
+      {
+        "item_key": "0313f07cb3625c6e",
+        "section": "paid",
+        "title": "theHunter: Call of the Wild™ - Emerald Coast Australia",
+        "url": "https://store.steampowered.com/app/2383430/",
+        "message_id": "1491849702117740737",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-04-09T17:18:06.575634+00:00",
+        "description": "Welcome to Australia! Discover breathtaking landscapes and hunt iconic animal species such as the Saltwater Crocodile and Eastern Gray Kangaroo as you explore this magical new hunting destination down under."
+      },
+      {
+        "item_key": "a109c2b1475ad495",
+        "section": "paid",
+        "title": "theHunter: Call of the Wild™ - Sundarpatan Nepal Hunting Reserve",
+        "url": "https://store.steampowered.com/app/2869680/",
+        "message_id": "1491849709105578064",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-04-09T17:18:08.163334+00:00",
+        "description": "Brave the beauty at the stunning Sundarpatan Nepal Hunting Reserve. Hunt among three distinct climate regions and go in pursuit of 10 new animal species."
+      },
+      {
+        "item_key": "fdba868804ba7034",
+        "section": "paid",
+        "title": "DiRT Rally 2.0",
+        "url": "https://store.steampowered.com/app/690790/",
+        "message_id": "1491849716319649969",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-04-09T17:18:11.118079+00:00",
+        "description": "DiRT Rally 2.0 dares you to carve your way through a selection of iconic rally locations from across the globe, in the most powerful off-road vehicles ever made, knowing that the smallest mistake could end your stage."
+      },
+      {
+        "item_key": "2b260fd0e9b2b463",
+        "section": "instagram",
+        "title": "@gemgamingnetwork",
+        "url": "https://www.instagram.com/p/DW6rWPvB-Dt/",
+        "message_id": "1491849735735218317",
+        "channel_id": "592534544708796474",
+        "source_type": "instagram",
+        "posted_at": "2026-04-09T17:18:14.669784+00:00",
+        "description": "New Extraction Shooter Similar to Rust & Arc Raiders  It’s called: Enginefall  💰: FREE PLAYTEST  🌎: PC (Steam) 👥: 1-8..."
+      },
+      {
+        "item_key": "770e35e2b62c3390",
+        "section": "instagram",
+        "title": "@gemgamingnetwork",
+        "url": "https://www.instagram.com/p/DWzRjUbhHRp/",
+        "message_id": "1491849742873792744",
+        "channel_id": "592534544708796474",
+        "source_type": "instagram",
+        "posted_at": "2026-04-09T17:18:16.495186+00:00",
+        "description": "3 co-op games under $20 on Steam   1. Animalkind 2. Imposters 3. Meowgic  Which ones did I miss? 👀🔥  #steamgames #gam..."
+      },
+      {
+        "item_key": "a4364e2427ffbc0d",
+        "section": "instagram",
+        "title": "@cloudual",
+        "url": "https://www.instagram.com/p/DW6yjjdCXae/",
+        "message_id": "1491849750855549048",
+        "channel_id": "592534544708796474",
+        "source_type": "instagram",
+        "posted_at": "2026-04-09T17:18:18.330119+00:00",
+        "description": "Cozy Sky-Settler Co-Op Where Storms Shut Your Whole Base Down #SolarpunkGame #SolarpunkGamePartner"
+      },
+      {
+        "item_key": "2d0f851d9b7ed9fc",
+        "section": "instagram",
+        "title": "@cloudual",
+        "url": "https://www.instagram.com/p/DW6eJB_E9Cu/",
+        "message_id": "1491849758480797817",
+        "channel_id": "592534544708796474",
+        "source_type": "instagram",
+        "posted_at": "2026-04-09T17:18:20.496486+00:00",
+        "description": "You and your friends have until sunrise to escape this co-op delivery horror game #nightshipperspartner"
+      },
+      {
+        "item_key": "51f43ba9ebe62da1",
+        "section": "instagram",
+        "title": "@mildsoss_official",
+        "url": "https://www.instagram.com/p/DW6yMd8I_de/",
+        "message_id": "1491849767528169489",
+        "channel_id": "592534544708796474",
+        "source_type": "instagram",
+        "posted_at": "2026-04-09T17:18:22.243546+00:00",
+        "description": "One of the most wishlisted games on Steam made by just two people  🎮 Solarpunk 🗓️ 2026 👥 1-4 Players 🖥️ PC (Steam)  #..."
+      },
+      {
+        "item_key": "17046ce52e468f92",
+        "section": "instagram",
+        "title": "@mildsoss_official",
+        "url": "https://www.instagram.com/p/DW5D3Z9osL5/",
+        "message_id": "1491849774952091744",
+        "channel_id": "592534544708796474",
+        "source_type": "instagram",
+        "posted_at": "2026-04-09T17:18:24.098777+00:00",
+        "description": "Explore portals with your friends underneath a British pub  🎮 Hazard Levels 🗓️ 2026 👥 1-4 Players 🖥️ PC, Xbox, PlaySt..."
+      },
+      {
+        "item_key": "e6cc61c95fc98df1",
+        "section": "instagram",
+        "title": "@sharedxp_official",
+        "url": "https://www.instagram.com/p/DW6ybUEDPZY/",
+        "message_id": "1491849782401171527",
+        "channel_id": "592534544708796474",
+        "source_type": "instagram",
+        "posted_at": "2026-04-09T17:18:25.866503+00:00",
+        "description": "Solarpunk is a cozy survival-crafting game where you build a sky base, grow food, automate systems, and explore float..."
+      },
+      {
+        "item_key": "8e5afb9cbecbdc05",
+        "section": "instagram",
+        "title": "@sharedxp_official",
+        "url": "https://www.instagram.com/p/DWwcJrnjH_D/",
+        "message_id": "1491849790122754089",
+        "channel_id": "592534544708796474",
+        "source_type": "instagram",
+        "posted_at": "2026-04-09T17:18:27.685459+00:00",
+        "description": "5 co-op creature collecting games to fill that multiplayer Pokémon void: KinForge, Pickmon, Aniimo, Witchspire, and L..."
+      },
+      {
+        "item_key": "09a62551274b384c",
+        "section": "instagram",
+        "title": "@wilfratgaming",
+        "url": "https://www.instagram.com/p/DWucpmZjQI3/",
+        "message_id": "1491849797710118972",
+        "channel_id": "592534544708796474",
+        "source_type": "instagram",
+        "posted_at": "2026-04-09T17:18:29.754472+00:00",
+        "description": "Escape the noise and build your own private sanctuary. 🌿🏙️ Tiny Eden!  #tinyeden #cozygames #gaming #wilfrat #gamesto..."
+      },
+      {
+        "item_key": "e0aa83348bd523ca",
+        "section": "instagram",
+        "title": "@wilfratgaming",
+        "url": "https://www.instagram.com/p/DWtoBjDDcL8/",
+        "message_id": "1491849806497189899",
+        "channel_id": "592534544708796474",
+        "source_type": "instagram",
+        "posted_at": "2026-04-09T17:18:31.642340+00:00",
+        "description": "Level Zero: Extraction! #videogames #gamestoplay #gaming"
+      },
+      {
+        "item_key": "af76e5507978bb67",
+        "section": "instagram",
+        "title": "@indiegamespotlights",
+        "url": "https://www.instagram.com/p/DW6zn3QDxhU/",
+        "message_id": "1491849814324023296",
+        "channel_id": "592534544708796474",
+        "source_type": "instagram",
+        "posted_at": "2026-04-09T17:18:33.332895+00:00",
+        "description": "Co-op driving horror indie game where up to 5 players explore dangerous locations, loot valuable items, and keep thei..."
+      },
+      {
+        "item_key": "1173eba5df635fea",
+        "section": "instagram",
+        "title": "@indiegamespotlights",
+        "url": "https://www.instagram.com/p/DW6y_ZJj2tc/",
+        "message_id": "1491849821424849116",
+        "channel_id": "592534544708796474",
+        "source_type": "instagram",
+        "posted_at": "2026-04-09T17:18:35.083113+00:00",
+        "description": "A driving horror game with friends? In this co-op open world, your car is the only way out, drive, fix, loot, and sur..."
+      },
+      {
+        "item_key": "d4d6c6e6d6561074",
+        "section": "instagram",
+        "title": "@biffmatictv",
+        "url": "https://www.instagram.com/p/DW4_x16CLyy/",
+        "message_id": "1491849828483862711",
+        "channel_id": "592534544708796474",
+        "source_type": "instagram",
+        "posted_at": "2026-04-09T17:18:36.863780+00:00",
+        "description": "Traverse dimensions with your friends in this co-op horror game! Hazard Levels  #gaming #horrorgames #coopgame #newga..."
+      },
+      {
+        "item_key": "b6ce3b4e4e697a52",
+        "section": "instagram",
+        "title": "@biffmatictv",
+        "url": "https://www.instagram.com/p/DWZtDyUDSyy/",
+        "message_id": "1491849836356571217",
+        "channel_id": "592534544708796474",
+        "source_type": "instagram",
+        "posted_at": "2026-04-09T17:18:38.606903+00:00",
+        "description": "Design warships from scratch and take them into battle! NavalArt!   #gaming #simulatorgame #sandboxgame #warships #mu..."
+      },
+      {
+        "item_key": "a962776e3f907955",
+        "section": "instagram",
+        "title": "@itzjaysasa",
+        "url": "https://www.instagram.com/p/DW6yqSpjUWJ/",
+        "message_id": "1491849843520442459",
+        "channel_id": "592534544708796474",
+        "source_type": "instagram",
+        "posted_at": "2026-04-09T17:18:40.416164+00:00",
+        "description": "This new indie game was just announced at the Triple I showcase and it mixes cozy farming with a twisted thriller | G..."
+      },
+      {
+        "item_key": "733410d01936f76d",
+        "section": "instagram",
+        "title": "@itzjaysasa",
+        "url": "https://www.instagram.com/p/DW5LMRWDdWp/",
+        "message_id": "1491849851145556009",
+        "channel_id": "592534544708796474",
+        "source_type": "instagram",
+        "posted_at": "2026-04-09T17:18:42.209649+00:00",
+        "description": "Here’s a fun scary game to play with friends, where you explore procedurally generated worlds for unique ingredients ..."
+      }
+    ]
   }
 }
