@@ -178,7 +178,7 @@ def _state_issue_guidance(code: str, severity: str, *, file_path: str | None = N
         ),
         "weekly.expected_post_missing": (
             "Action recommended",
-            "Re-run weekly-scheduling-responses-sync.yml to generate the expected weekly schedule post state.",
+            "Re-run weekly-scheduling-bot.yml to post/repair the expected weekly schedule messages for the current or next week.",
         ),
     }
     if code in code_map:
