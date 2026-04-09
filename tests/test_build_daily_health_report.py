@@ -391,3 +391,84 @@ def test_green_workflow_output_has_no_guidance_lines():
     rendered = "\n".join(lines)
     assert "Disposition:" not in rendered
     assert "Next step:" not in rendered
+
+
+def test_overall_summary_is_green_when_only_no_action_needed_warnings():
+    rendered = report.render_report(
+        workflow_status_lines=["🟢 Daily Steam Picks", "Last run: success (1h ago)", ""],
+        state_issues=[
+            report.Issue(
+                code="weekly.summary_freshness_missing",
+                severity="warning",
+                title="Weekly summary freshness fields missing",
+                context="Summary exists but outputs are missing summary_last_synced_at_utc.",
+                disposition="No action needed",
+                next_step="None.",
+            )
+        ],
+        report_date="Apr 9, 2026",
+    )
+
+    assert "🟢 Overall: Healthy with informational warnings" in rendered
+    assert "1 low-priority warning detected. No action needed." in rendered
+
+
+def test_overall_summary_is_yellow_for_monitor_or_follow_up_dispositions():
+    rendered = report.render_report(
+        workflow_status_lines=[
+            "🟡 Evening Winners",
+            "Last run: success (40h ago) — stale",
+            "Disposition: Monitor only",
+            "Next step: Watch next run.",
+            "",
+        ],
+        state_issues=[
+            report.Issue(
+                code="weekly.expected_post_missing",
+                severity="warning",
+                title="Expected weekly schedule post missing",
+                context="No current/next expected weekly schedule message entry found.",
+                disposition="Action recommended",
+                next_step="Re-run weekly-scheduling-responses-sync.yml.",
+            )
+        ],
+        report_date="Apr 9, 2026",
+    )
+
+    assert "🟡 Overall: Follow-up recommended" in rendered
+    assert "2 items should be monitored or reviewed soon." in rendered
+
+
+def test_overall_summary_is_red_when_action_required_or_error_exists():
+    rendered = report.render_report(
+        workflow_status_lines=[
+            "🔴 Weekly Scheduling Responses Sync",
+            "Last run: failure (1h ago)",
+            "Disposition: Action required",
+            "Next step: Fix workflow failure.",
+            "",
+        ],
+        state_issues=[
+            report.Issue(
+                code="winners.message_id_missing",
+                severity="error",
+                title="Winners state inconsistent",
+                context="message_id is missing from winners state.",
+            )
+        ],
+        report_date="Apr 9, 2026",
+    )
+
+    assert "🔴 Overall: Action needed" in rendered
+    assert "items require immediate attention." in rendered
+
+
+def test_overall_summary_is_green_when_fully_healthy():
+    rendered = report.render_report(
+        workflow_status_lines=["🟢 Daily Steam Picks", "Last run: success (1h ago)", ""],
+        state_issues=[],
+        report_date="Apr 9, 2026",
+    )
+
+    assert "🟢 Overall: Healthy" in rendered
+    assert "No action needed." in rendered
