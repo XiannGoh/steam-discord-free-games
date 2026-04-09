@@ -219,3 +219,55 @@ def test_demo_selection_prefers_quality_over_filling_cap():
     selected = main.select_demo_playtest_items(qualified, cap=10)
 
     assert [item["title"] for item in selected] == ["Strong"]
+
+
+def test_run_summary_aggregation_lines():
+    lines = main.build_run_summary(
+        steam_candidates_scanned=40,
+        demo_playtest_candidates_qualified=5,
+        free_candidates_qualified=9,
+        paid_candidates_qualified=3,
+        demo_playtest_posted=4,
+        free_posted=8,
+        paid_posted=2,
+        filtered_weak_reviews=7,
+        filtered_weak_group_fit=6,
+        filtered_low_signal_junk=4,
+        filtered_repost_cooldown=3,
+    )
+
+    assert lines[0] == "RUN SUMMARY"
+    assert "- Steam candidates scanned: 40" in lines
+    assert "- Demo/playtest posted: 4" in lines
+    assert "- Filtered by repost cooldown: 3" in lines
+
+
+def test_debug_export_writes_expected_structure(tmp_path):
+    output_path = tmp_path / "daily_debug_summary.json"
+    records = [
+        {
+            "title": "Demo A",
+            "type": "demo",
+            "final_score": 11,
+            "review_sentiment": "Very Positive",
+            "friend_group_signal": 7,
+            "keep": True,
+            "reason_list": ["qualified"],
+        }
+    ]
+    summary = ["RUN SUMMARY", "- Steam candidates scanned: 1"]
+
+    main.export_daily_debug_summary(records, summary, path=str(output_path))
+    saved = json.loads(output_path.read_text(encoding="utf-8"))
+
+    assert saved["run_summary"] == summary
+    assert saved["records"][0]["title"] == "Demo A"
+    assert saved["records"][0]["reason_list"] == ["qualified"]
+
+
+def test_debug_export_fails_gracefully(monkeypatch):
+    def fake_open(*args, **kwargs):
+        raise OSError("disk full")
+
+    monkeypatch.setattr("builtins.open", fake_open)
+    main.export_daily_debug_summary([], ["RUN SUMMARY"], path="ignored.json")

@@ -28,6 +28,7 @@ INSTAGRAM_STATE_FILE = "instagram_seen.json"
 DISCORD_DAILY_POSTS_FILE = "discord_daily_posts.json"
 DISCORD_DAILY_POSTS_RETENTION_DAYS = 30
 DAILY_DATE_OVERRIDE_ENV = "DAILY_DATE_UTC"
+DAILY_DEBUG_SUMMARY_FILE = "daily_debug_summary.json"
 
 INSTAGRAM_CREATORS = [
     "gemgamingnetwork",
@@ -47,6 +48,8 @@ HEADERS = {
 }
 
 # ---------- CONFIG ----------
+# Section caps are intentionally independent: Demo/Playtest picks are curated separately
+# from Free Picks so one noisy pool cannot crowd out the other.
 MAX_FREE_POSTS = 10
 MAX_DEMO_PLAYTEST_POSTS = 10
 MAX_PAID_POSTS = 10
@@ -195,7 +198,11 @@ DEMO_PLAYTEST_SOLO_SIGNALS = {
 }
 
 DEMO_PLAYTEST_MIN_FRIEND_SIGNAL = 5
+# Quality-over-cap for Demo/Playtest: we prefer fewer stronger items over filling
+# the entire section with borderline picks.
 DEMO_PLAYTEST_QUALITY_FLOOR_SCORE = MIN_SCORE_TO_POST_DEMO_PLAYTEST + 1
+# Diversity rerank is intentionally weak (light penalty only after a couple repeats)
+# so quality remains primary and variety is just a soft tie-breaker.
 LIGHT_DIVERSITY_PER_EXTRA_DUPLICATE = 1
 LIGHT_DIVERSITY_DUPLICATE_FREE_SLOTS = 2
 
@@ -206,6 +213,8 @@ RELEASE_DATE_FORMATS = [
     "%d %B, %Y",
 ]
 
+# Heavier penalties here are intentional to suppress low-signal/junk entries from
+# leaking into daily picks despite keyword stuffing elsewhere on the page.
 LOW_SIGNAL_KEYWORD_SCORES = {
     "clicker": -3,
     "idle": -2,
@@ -922,6 +931,85 @@ def log_candidate_decision(item: dict, phase: str) -> None:
     )
 
 
+def _is_filtered_for_weak_group_fit(item: dict) -> bool:
+    item_type = item.get("type")
+    if item.get("rejected"):
+        return True
+    if item_type in {"free_game", "temporarily_free"}:
+        return not item.get("multiplayer_hits") or not item.get("player_hits")
+    if item_type in {"demo", "playtest"}:
+        return item.get("demo_friend_signal_score", 0) < DEMO_PLAYTEST_MIN_FRIEND_SIGNAL
+    if item_type == "paid_under_20":
+        return not item.get("multiplayer_hits")
+    return False
+
+
+def _is_filtered_as_low_signal_junk(item: dict) -> bool:
+    for hit in item.get("refinement_hits", []):
+        if hit.startswith("low-signal:") or hit.startswith("title-low-signal:"):
+            return True
+    return False
+
+
+def build_filter_reason_list(item: dict) -> List[str]:
+    reasons: List[str] = []
+    if item.get("review_gate_failed"):
+        reasons.append("weak_review_signal")
+    if _is_filtered_for_weak_group_fit(item):
+        reasons.append("weak_multiplayer_or_friend_group_fit")
+    if _is_filtered_as_low_signal_junk(item):
+        reasons.append("junk_or_prototype_low_signal")
+    return reasons
+
+
+def build_run_summary(
+    *,
+    steam_candidates_scanned: int,
+    demo_playtest_candidates_qualified: int,
+    free_candidates_qualified: int,
+    paid_candidates_qualified: int,
+    demo_playtest_posted: int,
+    free_posted: int,
+    paid_posted: int,
+    filtered_weak_reviews: int,
+    filtered_weak_group_fit: int,
+    filtered_low_signal_junk: int,
+    filtered_repost_cooldown: int,
+) -> List[str]:
+    return [
+        "RUN SUMMARY",
+        f"- Steam candidates scanned: {steam_candidates_scanned}",
+        f"- Demo/playtest candidates qualified: {demo_playtest_candidates_qualified}",
+        f"- Free candidates qualified: {free_candidates_qualified}",
+        f"- Paid candidates qualified: {paid_candidates_qualified}",
+        f"- Demo/playtest posted: {demo_playtest_posted}",
+        f"- Free posted: {free_posted}",
+        f"- Paid posted: {paid_posted}",
+        f"- Filtered for weak reviews: {filtered_weak_reviews}",
+        f"- Filtered for weak multiplayer/friend-group fit: {filtered_weak_group_fit}",
+        f"- Filtered as junk/prototype/low-signal: {filtered_low_signal_junk}",
+        f"- Filtered by repost cooldown: {filtered_repost_cooldown}",
+    ]
+
+
+def export_daily_debug_summary(
+    records: List[dict],
+    run_summary_lines: List[str],
+    path: str = DAILY_DEBUG_SUMMARY_FILE,
+) -> None:
+    payload = {
+        "generated_at_utc": utc_now_iso(),
+        "run_summary": run_summary_lines,
+        "records": records,
+    }
+    try:
+        with open(path, "w", encoding="utf-8") as f:
+            json.dump(payload, f, indent=2, ensure_ascii=False)
+        print(f"DEBUG EXPORT: wrote {path} ({len(records)} records)")
+    except Exception as e:
+        print(f"WARN: failed to write debug summary ({path}): {e}")
+
+
 def score_quality_refinements(
     title: str,
     description: str,
@@ -1145,6 +1233,8 @@ def inspect_game(source: str, app_id: str) -> Optional[dict]:
             total_score >= MIN_SCORE_TO_POST_FREE
         )
     elif item_type in {"demo", "playtest"}:
+        # Demo/Playtest has a stricter friend-group gate than full free games:
+        # we only post tests that already show multiplayer viability for group nights.
         keep = (
             has_multiplayer_signal and
             not rejected and
@@ -1701,10 +1791,16 @@ def main():
 
     print(f"Free candidates collected: {len(free_candidates)}")
     print(f"Paid candidates collected: {len(paid_candidates)}")
+    steam_candidates_scanned = len(free_candidates) + len(paid_candidates)
 
     qualified_demo_playtest = []
     qualified_free = []
     qualified_paid = []
+    filtered_weak_reviews = 0
+    filtered_weak_group_fit = 0
+    filtered_low_signal_junk = 0
+    filtered_repost_cooldown = 0
+    debug_records: List[dict] = []
 
     for source, app_id in free_candidates:
         item = inspect_game(source, app_id)
@@ -1713,13 +1809,36 @@ def main():
         if not item:
             continue
         log_candidate_decision(item, phase="evaluated")
+        record = {
+            "title": item["title"],
+            "type": item["type"],
+            "final_score": item["score"],
+            "review_sentiment": item.get("review_sentiment"),
+            "friend_group_signal": item.get("demo_friend_signal_score", 0),
+            "keep": bool(item["keep"]),
+            "reason_list": [],
+        }
         if not item["keep"]:
+            reason_list = build_filter_reason_list(item)
+            if "weak_review_signal" in reason_list:
+                filtered_weak_reviews += 1
+            if "weak_multiplayer_or_friend_group_fit" in reason_list:
+                filtered_weak_group_fit += 1
+            if "junk_or_prototype_low_signal" in reason_list:
+                filtered_low_signal_junk += 1
+            record["reason_list"] = reason_list
             log_candidate_decision(item, phase="filtered_not_kept")
+            debug_records.append(record)
             continue
         if not can_repost(app_id, item["type"], state):
+            filtered_repost_cooldown += 1
+            record["reason_list"] = ["repost_cooldown"]
             log_candidate_decision(item, phase="filtered_repost_cooldown")
+            debug_records.append(record)
             continue
 
+        record["reason_list"] = ["qualified"]
+        debug_records.append(record)
         if item["type"] in {"demo", "playtest"}:
             qualified_demo_playtest.append(item)
         elif item["type"] in {"free_game", "temporarily_free"}:
@@ -1732,15 +1851,40 @@ def main():
         if not item:
             continue
         log_candidate_decision(item, phase="evaluated")
+        record = {
+            "title": item["title"],
+            "type": item["type"],
+            "final_score": item["score"],
+            "review_sentiment": item.get("review_sentiment"),
+            "friend_group_signal": item.get("demo_friend_signal_score", 0),
+            "keep": bool(item["keep"]),
+            "reason_list": [],
+        }
         if item["type"] != "paid_under_20":
+            record["reason_list"] = ["not_paid_under_20"]
+            debug_records.append(record)
             continue
         if not item["keep"]:
+            reason_list = build_filter_reason_list(item)
+            if "weak_review_signal" in reason_list:
+                filtered_weak_reviews += 1
+            if "weak_multiplayer_or_friend_group_fit" in reason_list:
+                filtered_weak_group_fit += 1
+            if "junk_or_prototype_low_signal" in reason_list:
+                filtered_low_signal_junk += 1
+            record["reason_list"] = reason_list
             log_candidate_decision(item, phase="filtered_not_kept")
+            debug_records.append(record)
             continue
         if not can_repost(app_id, item["type"], state):
+            filtered_repost_cooldown += 1
+            record["reason_list"] = ["repost_cooldown"]
             log_candidate_decision(item, phase="filtered_repost_cooldown")
+            debug_records.append(record)
             continue
 
+        record["reason_list"] = ["qualified"]
+        debug_records.append(record)
         qualified_paid.append(item)
 
     qualified_free.sort(
@@ -1823,6 +1967,23 @@ def main():
             f"PAID: {item['title']} ({item['type']}) "
             f"score={item['score']} review_score={item.get('review_score', 0)}"
         )
+
+    run_summary_lines = build_run_summary(
+        steam_candidates_scanned=steam_candidates_scanned,
+        demo_playtest_candidates_qualified=len(qualified_demo_playtest),
+        free_candidates_qualified=len(qualified_free),
+        paid_candidates_qualified=len(qualified_paid),
+        demo_playtest_posted=len(demo_playtest_items),
+        free_posted=len(free_items),
+        paid_posted=len(paid_items),
+        filtered_weak_reviews=filtered_weak_reviews,
+        filtered_weak_group_fit=filtered_weak_group_fit,
+        filtered_low_signal_junk=filtered_low_signal_junk,
+        filtered_repost_cooldown=filtered_repost_cooldown,
+    )
+    for line in run_summary_lines:
+        print(line)
+    export_daily_debug_summary(debug_records, run_summary_lines)
 
     next_start_page = get_next_start_page(start_page)
     save_page_state(next_start_page)
