@@ -298,11 +298,65 @@ def test_build_winners_message_voter_truncation():
     assert "Voters — Jan, Jerry, Akhil, Thomas, Charlie, Kevin, +3 more" in content
 
 
+def test_build_winners_message_includes_description_when_present():
+    winners_by_section = {
+        "free": [
+            {
+                "title": "Game A",
+                "description": "A fast co-op roguelike shooter.",
+                "url": "u-a",
+                "human_votes": 2,
+                "voter_names": ["Jan", "Jerry"],
+            }
+        ],
+        "paid": [],
+        "instagram": [],
+    }
+    content = winners.build_winners_message(winners_by_section)
+    assert "Game A" in content
+    assert "A fast co-op roguelike shooter." in content
+    assert "u-a" in content
+
+
+def test_build_winners_message_omits_description_when_absent_or_empty():
+    winners_by_section = {
+        "free": [
+            {
+                "title": "Game A",
+                "description": " \n\t ",
+                "url": "u-a",
+                "human_votes": 2,
+                "voter_names": ["Jan"],
+            },
+            {
+                "title": "Game B",
+                "url": "u-b",
+                "human_votes": 1,
+                "voter_names": ["Jerry"],
+            },
+        ],
+        "paid": [],
+        "instagram": [],
+    }
+    content = winners.build_winners_message(winners_by_section)
+    assert " \n\t " not in content
+    assert "Voters — Jan" in content
+    assert "Voters — Jerry" in content
+
+
+def test_normalize_winner_description_truncates_long_text():
+    long_description = "A" * 200
+    normalized = winners.normalize_winner_description_for_message(long_description)
+    assert len(normalized) == 110
+    assert normalized.endswith("...")
+
+
 def test_build_winners_message_compact_fallback_when_too_long(monkeypatch):
     winners_by_section = {
         "free": [
             {
                 "title": f"Game {idx}",
+                "description": "B" * 300,
                 "url": f"https://example.com/{idx}",
                 "human_votes": 2,
                 "voter_names": [f"User {i}" for i in range(10)],
@@ -316,6 +370,7 @@ def test_build_winners_message_compact_fallback_when_too_long(monkeypatch):
     assert len(message) > winners.DISCORD_MESSAGE_CHAR_LIMIT
     compact = winners.build_winners_message_compact(winners_by_section)
     assert "Voters —" not in compact
+    assert "BBBBB" not in compact
     assert "- Game 0 (2 votes)" in compact
 
 

@@ -73,6 +73,9 @@ def build_winners_message(winners_by_section: Dict[str, List[dict]]) -> str:
         lines.append(SECTION_CONFIG[section])
         for item in items:
             lines.append(item["title"])
+            description = normalize_winner_description_for_message(item.get("description"))
+            if description:
+                lines.append(description)
             lines.append(item["url"])
             vote_word = "vote" if item["human_votes"] == 1 else "votes"
             lines.append(f"👍 {item['human_votes']} {vote_word}")
@@ -106,6 +109,19 @@ def build_winners_message_compact(winners_by_section: Dict[str, List[dict]]) -> 
         lines.append("_No votes yet today._")
 
     return "\n".join(lines).strip()
+
+
+def normalize_winner_description_for_message(
+    description: Optional[str], max_length: int = 110
+) -> str:
+    if not isinstance(description, str):
+        return ""
+    cleaned = " ".join(description.split()).strip()
+    if not cleaned:
+        return ""
+    if len(cleaned) <= max_length:
+        return cleaned
+    return f"{cleaned[:max_length - 3].rstrip()}..."
 
 
 def resolve_display_name(user: dict) -> str:
@@ -271,6 +287,7 @@ def main() -> None:
                 "section": section,
                 "title": item.get("title", "Untitled"),
                 "url": item.get("url", ""),
+                "description": item.get("description"),
                 "human_votes": human_votes,
                 "voter_names": voter_names,
             }
@@ -283,6 +300,7 @@ def main() -> None:
                 {
                     "title": winner["title"],
                     "url": winner["url"],
+                    "description": winner.get("description"),
                     "human_votes": winner["human_votes"],
                     "voter_names": winner["voter_names"],
                 }
