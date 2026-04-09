@@ -62,19 +62,22 @@ def test_daily_pick_rerun_and_partial_recovery(monkeypatch, tmp_path, load_fixtu
     monkeypatch.setattr(main, "sleep_briefly", lambda: None)
     monkeypatch.setenv(main.DAILY_DATE_OVERRIDE_ENV, day_key)
 
+    demo_items = [
+        {"title": "Demo A", "url": "https://store.steampowered.com/app/9", "price": "Free", "score": 10},
+    ]
     free_items = [
         {"title": "Game A", "url": "https://store.steampowered.com/app/1", "price": "Free", "score": 9},
         {"title": "Game B", "url": "https://store.steampowered.com/app/2", "price": "Free", "score": 8},
     ]
-    main.post_daily_pick_messages(free_items, [], [])
+    main.post_daily_pick_messages(demo_items, free_items, [], [])
 
     saved = json.loads(daily_path.read_text(encoding="utf-8"))
     assert any("Game B" in msg for msg in posted)
     assert saved[day_key]["run_state"]["completed"] is True
-    assert len(fake_client.reactions) == 1  # only new item gets default 👍
+    assert len(fake_client.reactions) == 2  # demo + newly posted free item get default 👍
 
     posted_before = len(posted)
-    main.post_daily_pick_messages(free_items, [], [])
+    main.post_daily_pick_messages(demo_items, free_items, [], [])
     assert len(posted) == posted_before
 
 
@@ -122,7 +125,7 @@ def test_daily_item_persistence_stores_descriptions(monkeypatch, tmp_path):
             "url": "https://www.instagram.com/p/abc/",
         }
     ]
-    main.post_daily_pick_messages(free_items, [], instagram_posts)
+    main.post_daily_pick_messages([], free_items, [], instagram_posts)
 
     saved = json.loads(daily_path.read_text(encoding="utf-8"))
     items = saved[day_key]["items"]
@@ -131,3 +134,48 @@ def test_daily_item_persistence_stores_descriptions(monkeypatch, tmp_path):
 
     assert steam_item["description"] == "Steam short description"
     assert instagram_item["description"] == "Creator caption text"
+
+
+def test_daily_sections_post_in_new_order(monkeypatch, tmp_path):
+    daily_path = tmp_path / "daily.json"
+    daily_path.write_text("{}", encoding="utf-8")
+    day_key = "2026-04-08"
+    posted = []
+    counter = {"i": 0}
+
+    def fake_post(message, capture_metadata=False):
+        posted.append(message)
+        counter["i"] += 1
+        return {"message_id": f"m-{counter['i']}", "channel_id": "chan-1"}
+
+    fake_client = FakeDiscordClient()
+
+    monkeypatch.setattr(main, "DISCORD_DAILY_POSTS_FILE", str(daily_path))
+    monkeypatch.setattr(main, "DISCORD_BOT_TOKEN", "token")
+    monkeypatch.setattr(main, "DiscordClient", lambda session: fake_client)
+    monkeypatch.setattr(main, "post_to_discord_with_metadata", fake_post)
+    monkeypatch.setattr(main, "sleep_briefly", lambda: None)
+    monkeypatch.setenv(main.DAILY_DATE_OVERRIDE_ENV, day_key)
+
+    main.post_daily_pick_messages(
+        [{"title": "Demo", "url": "https://store.steampowered.com/app/11", "score": 10}],
+        [{"title": "Free", "url": "https://store.steampowered.com/app/12", "score": 10}],
+        [{"title": "Paid", "url": "https://store.steampowered.com/app/13", "score": 10}],
+        [{"username": "creator", "caption": "caption", "url": "https://www.instagram.com/p/a/"}],
+    )
+
+    headers = [
+        message for message in posted
+        if message in {
+            "🎯 Daily Picks — vote with 👍 on your favorites",
+            "🧪 New Demos & Playtests",
+            "🎮 Free Picks",
+            "💸 Paid Under $20",
+        }
+    ]
+    assert headers[:4] == [
+        "🎯 Daily Picks — vote with 👍 on your favorites",
+        "🧪 New Demos & Playtests",
+        "🎮 Free Picks",
+        "💸 Paid Under $20",
+    ]

@@ -146,7 +146,7 @@ def test_paid_rejects_unknown_and_mixed(monkeypatch):
     assert mixed_item["review_gate_failed"] is True
 
 
-def test_demo_penalty_keeps_full_game_above_demo(monkeypatch):
+def test_demo_pick_scoring_tracks_friend_group_signals(monkeypatch):
     shared = "Multiplayer Online Co-Op up to 6 players party game Very Positive"
     full_html = build_html("Full Game", "friends", shared, "Very Positive")
     demo_html = build_html("Demo Game", "friends", shared, "Very Positive")
@@ -155,7 +155,74 @@ def test_demo_penalty_keeps_full_game_above_demo(monkeypatch):
     full_item = main.inspect_game("steam_free", "701")
     demo_item = main.inspect_game("steam_demo", "702")
     assert full_item is not None and demo_item is not None
-    assert full_item["score"] > demo_item["score"]
+    assert demo_item["demo_friend_signal_score"] >= main.DEMO_PLAYTEST_MIN_FRIEND_SIGNAL
+    assert demo_item["keep"] is True
+
+
+def test_demo_and_playtest_detected_and_routed(monkeypatch):
+    demo_html = build_html("Demo Game", "friends", "Multiplayer Online Co-Op up to 6 players", "Mostly Positive")
+    playtest_html = build_html("Squad Rush Playtest", "team up", "Multiplayer squad up to 6 players", "")
+    stub_app_pages(monkeypatch, {"730": demo_html, "731": playtest_html})
+
+    demo_item = main.inspect_game("steam_demo", "730")
+    playtest_item = main.inspect_game("steam_demo", "731")
+
+    assert demo_item is not None and playtest_item is not None
+    assert demo_item["type"] == "demo"
+    assert playtest_item["type"] == "playtest"
+
+
+def test_demo_group_play_fit_beats_solo_demo(monkeypatch):
+    group_html = build_html(
+        "Group Demo",
+        "team up with friends",
+        "Multiplayer Online Co-Op up to 6 players squad loot runs progression",
+        "",
+    )
+    solo_html = build_html(
+        "Solo Story Demo",
+        "single-player narrative",
+        "single-player only story-rich demo",
+        "",
+    )
+    stub_app_pages(monkeypatch, {"740": group_html, "741": solo_html})
+
+    group_item = main.inspect_game("steam_demo", "740")
+    solo_item = main.inspect_game("steam_demo", "741")
+    assert group_item is not None and solo_item is not None
+    assert group_item["keep"] is True
+    assert group_item["demo_friend_signal_score"] > solo_item["demo_friend_signal_score"]
+    assert solo_item["keep"] is False
+
+
+def test_demo_missing_reviews_more_tolerant_than_free_game(monkeypatch):
+    shared_text = "Multiplayer Online Co-Op up to 6 players party game loot runs"
+    demo_html = build_html("Co-op Demo", "friends", shared_text, "")
+    free_html = build_html("Co-op Full", "friends", shared_text, "")
+    stub_app_pages(monkeypatch, {"750": demo_html, "751": free_html})
+
+    demo_item = main.inspect_game("steam_demo", "750")
+    free_item = main.inspect_game("steam_free", "751")
+
+    assert demo_item is not None and free_item is not None
+    assert demo_item["keep"] is True
+    assert free_item["keep"] is False
+
+
+def test_demo_newness_bonus_is_small_and_optional(monkeypatch):
+    recent_text = "Release Date: Apr 01, 2026 Multiplayer Online Co-Op up to 6 players"
+    older_text = "Release Date: Jan 01, 2024 Multiplayer Online Co-Op up to 6 players squad loot runs progression"
+    recent_html = build_html("Recent Demo", "friends", recent_text, "")
+    older_html = build_html("Older Strong Demo", "team up with friends", older_text, "")
+    stub_app_pages(monkeypatch, {"760": recent_html, "761": older_html})
+
+    recent_item = main.inspect_game("steam_demo", "760")
+    older_item = main.inspect_game("steam_demo", "761")
+
+    assert recent_item is not None and older_item is not None
+    assert recent_item["demo_freshness_bonus"] >= 1
+    assert older_item["demo_freshness_bonus"] == 0
+    assert older_item["keep"] is True
 
 
 def test_temporarily_free_bonus_requires_positive_or_better(monkeypatch):

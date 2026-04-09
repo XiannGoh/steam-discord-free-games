@@ -48,6 +48,7 @@ HEADERS = {
 
 # ---------- CONFIG ----------
 MAX_FREE_POSTS = 10
+MAX_DEMO_PLAYTEST_POSTS = 10
 MAX_PAID_POSTS = 10
 
 PAGE_WINDOW_SIZE = 10
@@ -56,6 +57,7 @@ MAX_PAGE_LIMIT = 50
 REQUEST_DELAY_SECONDS = 1.2
 REPOST_COOLDOWN_DAYS = 30
 MIN_SCORE_TO_POST_FREE = 9
+MIN_SCORE_TO_POST_DEMO_PLAYTEST = 6
 MIN_SCORE_TO_POST_PAID = 8
 
 MAX_FETCH_RETRIES = 5
@@ -119,7 +121,6 @@ BAD_TERMS = {
     "soundtrack": -10,
     "DLC": -8,
     "benchmark": -6,
-    "playtest": -4,
     "test server": -5,
     "dedicated server": -5,
     "server tools": -6,
@@ -150,6 +151,50 @@ REPLAYABILITY_PHRASE_SCORES = {
     "randomized": 1,
     "progression": 1,
 }
+
+DEMO_PLAYTEST_FRIEND_SIGNALS = {
+    "online co-op": 4,
+    "co-op": 3,
+    "coop": 3,
+    "multiplayer": 3,
+    "party game": 3,
+    "party": 2,
+    "squad": 2,
+    "team up": 2,
+    "drop-in co-op": 2,
+    "couch co-op": 2,
+    "4-player co-op": 3,
+    "4 player co-op": 3,
+    "up to 4 players": 3,
+    "up to 5 players": 3,
+    "up to 6 players": 4,
+    "up to 8 players": 4,
+    "replayability": 1,
+    "loot": 1,
+    "runs": 1,
+    "progression": 1,
+    "randomized": 1,
+}
+
+DEMO_PLAYTEST_SOLO_SIGNALS = {
+    "single-player only": -6,
+    "single player only": -6,
+    "single-player": -3,
+    "single player": -3,
+    "solo": -2,
+    "story-rich": -2,
+    "narrative": -2,
+    "visual novel": -4,
+}
+
+DEMO_PLAYTEST_MIN_FRIEND_SIGNAL = 5
+
+RELEASE_DATE_FORMATS = [
+    "%b %d, %Y",
+    "%B %d, %Y",
+    "%d %b, %Y",
+    "%d %B, %Y",
+]
 
 LOW_SIGNAL_KEYWORD_SCORES = {
     "clicker": -3,
@@ -233,7 +278,8 @@ DEMO_SCORE_PENALTY = 2
 
 UNKNOWN_REVIEW_SCORE_BY_TYPE = {
     "free_game": -2,
-    "demo": -2,
+    "demo": -1,
+    "playtest": 0,
     "temporarily_free": -2,
     "paid_under_20": -6,
 }
@@ -573,6 +619,9 @@ def detect_item_type(source: str, app_id: str, title: str, text: str) -> str:
     if source == "steamdb_promo" or "free to keep" in lower_text or "100% off" in lower_text:
         return "temporarily_free"
 
+    if "playtest" in lower_title or "playtest" in lower_text:
+        return "playtest"
+
     if source == "steam_demo" or "demo" in lower_title or "demo" in lower_text:
         return "demo"
 
@@ -683,6 +732,84 @@ def extract_review_count(page_text: str) -> int:
         return int(match.group(1).replace(",", ""))
     except ValueError:
         return 0
+
+
+def extract_release_date(page_text: str) -> Optional[datetime]:
+    match = re.search(
+        r"Release Date:\s*([A-Za-z]{3,9}\s+\d{1,2},\s+\d{4})",
+        page_text,
+        re.IGNORECASE,
+    )
+    if not match:
+        return None
+    raw = clean_text(match.group(1))
+    for fmt in RELEASE_DATE_FORMATS:
+        try:
+            return datetime.strptime(raw, fmt).replace(tzinfo=timezone.utc)
+        except ValueError:
+            continue
+    return None
+
+
+def score_demo_playtest_friend_group_fit(
+    title: str,
+    description: str,
+    text: str,
+    review_sentiment: Optional[str],
+    review_count: int,
+) -> Tuple[int, int, int, List[str]]:
+    score = 0
+    friend_signal_score = 0
+    freshness_bonus = 0
+    hits: List[str] = []
+
+    combined = f"{title} {description} {text}".lower()
+    for phrase, points in DEMO_PLAYTEST_FRIEND_SIGNALS.items():
+        if phrase in combined:
+            score += points
+            friend_signal_score += points
+            hits.append(f"friend:{phrase}")
+
+    for phrase, points in DEMO_PLAYTEST_SOLO_SIGNALS.items():
+        if phrase in combined:
+            score += points
+            hits.append(f"solo:{phrase}")
+
+    has_coop_or_mp = (
+        "co-op" in combined
+        or "coop" in combined
+        or "multiplayer" in combined
+        or "massively multiplayer" in combined
+    )
+    if has_coop_or_mp:
+        friend_signal_score += 1
+        score += 1
+        hits.append("friend:coop-or-mp")
+
+    if has_4plus_player_signal(text):
+        friend_signal_score += 2
+        score += 2
+        hits.append("friend:4plus")
+
+    if review_sentiment in FREE_REVIEW_BLOCKLIST:
+        score -= 4
+        hits.append("review:negative")
+    elif review_sentiment in POSITIVE_OR_BETTER_REVIEW_SENTIMENTS and review_count >= 100:
+        score += 1
+        hits.append("review:positive")
+
+    release_date = extract_release_date(text)
+    if release_date:
+        age_days = (datetime.now(timezone.utc) - release_date).days
+        if age_days <= 14:
+            freshness_bonus = 2
+        elif age_days <= 45:
+            freshness_bonus = 1
+        if freshness_bonus > 0:
+            score += freshness_bonus
+            hits.append(f"freshness:{freshness_bonus}")
+
+    return score, friend_signal_score, freshness_bonus, hits
 
 
 def score_quality_refinements(
@@ -843,8 +970,10 @@ def inspect_game(source: str, app_id: str) -> Optional[dict]:
     review_score = REVIEW_SENTIMENT_SCORES.get(review_sentiment, UNKNOWN_REVIEW_SCORE_BY_TYPE.get(item_type, 0))
 
     review_gate_failed = False
-    if item_type in ["free_game", "demo", "temporarily_free"]:
-        review_gate_failed = review_sentiment in FREE_REVIEW_BLOCKLIST
+    if item_type in ["free_game", "temporarily_free"]:
+        review_gate_failed = review_sentiment is None or review_sentiment in FREE_REVIEW_BLOCKLIST
+    elif item_type in ["demo", "playtest"]:
+        review_gate_failed = review_sentiment in {"Very Negative", "Overwhelmingly Negative"}
     elif item_type == "paid_under_20":
         review_gate_failed = review_sentiment not in PAID_MINIMUM_REVIEW_SENTIMENTS
 
@@ -861,8 +990,21 @@ def inspect_game(source: str, app_id: str) -> Optional[dict]:
     type_adjustment = 0
     if item_type == "temporarily_free" and review_sentiment in POSITIVE_OR_BETTER_REVIEW_SENTIMENTS:
         type_adjustment += TEMPORARILY_FREE_SCORE_BONUS
-    if item_type == "demo":
+    if item_type in {"demo", "playtest"}:
         type_adjustment -= DEMO_SCORE_PENALTY
+
+    demo_section_score = 0
+    demo_friend_signal_score = 0
+    demo_freshness_bonus = 0
+    demo_hits: List[str] = []
+    if item_type in {"demo", "playtest"}:
+        demo_section_score, demo_friend_signal_score, demo_freshness_bonus, demo_hits = score_demo_playtest_friend_group_fit(
+            title=title,
+            description=description,
+            text=page_text,
+            review_sentiment=review_sentiment,
+            review_count=review_count,
+        )
 
     total_score = (
         multiplayer_score
@@ -871,6 +1013,7 @@ def inspect_game(source: str, app_id: str) -> Optional[dict]:
         + review_score
         + refinement_score
         + type_adjustment
+        + demo_section_score
     )
 
     has_multiplayer_signal = multiplayer_score > 0
@@ -883,13 +1026,21 @@ def inspect_game(source: str, app_id: str) -> Optional[dict]:
             not review_gate_failed and
             total_score >= MIN_SCORE_TO_POST_PAID
         )
-    elif item_type in ["free_game", "demo", "temporarily_free"]:
+    elif item_type in ["free_game", "temporarily_free"]:
         keep = (
             has_multiplayer_signal and
             has_3plus_signal and
             not rejected and
             not review_gate_failed and
             total_score >= MIN_SCORE_TO_POST_FREE
+        )
+    elif item_type in {"demo", "playtest"}:
+        keep = (
+            has_multiplayer_signal and
+            not rejected and
+            not review_gate_failed and
+            demo_friend_signal_score >= DEMO_PLAYTEST_MIN_FRIEND_SIGNAL and
+            total_score >= MIN_SCORE_TO_POST_DEMO_PLAYTEST
         )
     else:
         keep = False
@@ -912,12 +1063,17 @@ def inspect_game(source: str, app_id: str) -> Optional[dict]:
         "review_score": review_score,
         "review_count": review_count,
         "review_gate_failed": review_gate_failed,
+        "demo_friend_signal_score": demo_friend_signal_score,
+        "demo_freshness_bonus": demo_freshness_bonus,
+        "demo_hits": demo_hits,
     }
 
 
 def type_label(item_type: str) -> str:
     if item_type == "demo":
         return "Demo"
+    if item_type == "playtest":
+        return "Playtest"
     if item_type == "temporarily_free":
         return "Temporarily Free"
     if item_type == "paid_under_20":
@@ -937,9 +1093,9 @@ def format_item_block(item: dict, idx: int, paid: bool = False) -> str:
     return "\n".join(lines)
 
 
-def format_steam_item_message(item: dict, idx: int, paid: bool = False) -> str:
-    emoji = "💸" if paid else "🎮"
-    label = "Paid Pick" if paid else "Free Pick"
+def format_steam_item_message(item: dict, idx: int, paid: bool = False, demo_playtest: bool = False) -> str:
+    emoji = "💸" if paid else ("🧪" if demo_playtest else "🎮")
+    label = "Paid Pick" if paid else ("Demo / Playtest Pick" if demo_playtest else "Free Pick")
     lines = [
         f"{emoji} {label} #{idx}",
         item["title"],
@@ -1153,8 +1309,13 @@ def post_message_chunks(chunks: List[str]) -> None:
         sleep_briefly()
 
 
-def post_daily_pick_messages(free_items: List[dict], paid_items: List[dict], instagram_posts: List[dict]) -> None:
-    if not (free_items or paid_items or instagram_posts):
+def post_daily_pick_messages(
+    demo_playtest_items: List[dict],
+    free_items: List[dict],
+    paid_items: List[dict],
+    instagram_posts: List[dict],
+) -> None:
+    if not (demo_playtest_items or free_items or paid_items or instagram_posts):
         return
 
     token_available = bool(DISCORD_BOT_TOKEN)
@@ -1226,6 +1387,7 @@ def post_daily_pick_messages(free_items: List[dict], paid_items: List[dict], ins
     sleep_briefly()
 
     section_inputs = [
+        ("demo_playtest", "🧪 New Demos & Playtests", demo_playtest_items, False, "steam_demo_playtest"),
         ("free", "🎮 Free Picks", free_items, False, "steam_free"),
         ("paid", "💸 Paid Under $20", paid_items, True, "paid_under_20"),
         ("instagram", "📸 Instagram Creator Picks", instagram_posts, False, "instagram"),
@@ -1273,7 +1435,7 @@ def post_daily_pick_messages(free_items: List[dict], paid_items: List[dict], ins
             content = (
                 format_instagram_item_message(item, idx)
                 if section_key == "instagram"
-                else format_steam_item_message(item, idx, paid=is_paid)
+                else format_steam_item_message(item, idx, paid=is_paid, demo_playtest=(section_key == "demo_playtest"))
             )
             metadata = post_to_discord_with_metadata(content, capture_metadata=token_available)
             if token_available and metadata and metadata.get("message_id") and metadata.get("channel_id"):
@@ -1424,6 +1586,7 @@ def main():
     print(f"Free candidates collected: {len(free_candidates)}")
     print(f"Paid candidates collected: {len(paid_candidates)}")
 
+    qualified_demo_playtest = []
     qualified_free = []
     qualified_paid = []
 
@@ -1438,7 +1601,10 @@ def main():
         if not can_repost(app_id, item["type"], state):
             continue
 
-        qualified_free.append(item)
+        if item["type"] in {"demo", "playtest"}:
+            qualified_demo_playtest.append(item)
+        elif item["type"] in {"free_game", "temporarily_free"}:
+            qualified_free.append(item)
 
     for source, app_id in paid_candidates:
         item = inspect_game(source, app_id)
@@ -1460,7 +1626,16 @@ def main():
             x["score"],
             x.get("review_score", 0),
             1 if x["type"] == "temporarily_free" else 0,
-            -1 if x["type"] == "demo" else 0,
+        ),
+        reverse=True
+    )
+
+    qualified_demo_playtest.sort(
+        key=lambda x: (
+            x["score"],
+            x.get("demo_friend_signal_score", 0),
+            x.get("demo_freshness_bonus", 0),
+            x.get("review_score", 0),
         ),
         reverse=True
     )
@@ -1473,27 +1648,37 @@ def main():
         reverse=True
     )
 
+    demo_playtest_items = qualified_demo_playtest[:MAX_DEMO_PLAYTEST_POSTS]
     free_items = qualified_free[:MAX_FREE_POSTS]
     paid_items = qualified_paid[:MAX_PAID_POSTS]
 
+    print(f"Qualified demo/playtest items before cap: {len(qualified_demo_playtest)}")
     print(f"Qualified free items before cap: {len(qualified_free)}")
     print(f"Qualified paid items before cap: {len(qualified_paid)}")
 
     instagram_posts = fetch_instagram_posts()
-    post_daily_pick_messages(free_items, paid_items, instagram_posts)
+    post_daily_pick_messages(demo_playtest_items, free_items, paid_items, instagram_posts)
 
-    if not free_items and not paid_items:
+    if not demo_playtest_items and not free_items and not paid_items:
         print("No qualifying games found from Steam.")
 
-    for item in free_items + paid_items:
+    for item in demo_playtest_items + free_items + paid_items:
         update_state_for_post(item["id"], item["type"], state)
 
     save_state(state)
 
-    total = len(free_items) + len(paid_items)
+    total = len(demo_playtest_items) + len(free_items) + len(paid_items)
     print(f"Posted {total} Steam item(s) to Discord.")
+    print(f"Demo/playtest items selected: {len(demo_playtest_items)}")
     print(f"Free items selected: {len(free_items)}")
     print(f"Paid items selected: {len(paid_items)}")
+
+    for item in demo_playtest_items:
+        print(
+            f"DEMO/PLAYTEST: {item['title']} ({item['type']}) "
+            f"score={item['score']} friend_signal={item.get('demo_friend_signal_score', 0)} "
+            f"freshness_bonus={item.get('demo_freshness_bonus', 0)}"
+        )
 
     for item in free_items:
         print(

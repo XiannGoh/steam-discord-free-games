@@ -300,6 +300,7 @@ def test_build_winners_message_voter_truncation():
 
 def test_build_winners_message_includes_description_when_present():
     winners_by_section = {
+        "demo_playtest": [],
         "free": [
             {
                 "title": "Game A",
@@ -320,6 +321,7 @@ def test_build_winners_message_includes_description_when_present():
 
 def test_build_winners_message_omits_description_when_absent_or_empty():
     winners_by_section = {
+        "demo_playtest": [],
         "free": [
             {
                 "title": "Game A",
@@ -353,6 +355,7 @@ def test_normalize_winner_description_truncates_long_text():
 
 def test_build_winners_message_compact_fallback_when_too_long(monkeypatch):
     winners_by_section = {
+        "demo_playtest": [],
         "free": [
             {
                 "title": f"Game {idx}",
@@ -372,6 +375,26 @@ def test_build_winners_message_compact_fallback_when_too_long(monkeypatch):
     assert "Voters —" not in compact
     assert "BBBBB" not in compact
     assert "- Game 0 (2 votes)" in compact
+
+
+def test_build_winners_message_supports_demo_playtest_section():
+    winners_by_section = {
+        "demo_playtest": [
+            {
+                "title": "Squad Demo",
+                "description": "A co-op demo for friend groups.",
+                "url": "u-demo",
+                "human_votes": 2,
+                "voter_names": ["Jan", "Jerry"],
+            }
+        ],
+        "free": [],
+        "paid": [],
+        "instagram": [],
+    }
+    content = winners.build_winners_message(winners_by_section)
+    assert "New Demos & Playtests" in content
+    assert "Squad Demo" in content
 
 
 def test_winners_pipeline_integration_late_votes_dedupe_and_coherent_edit(monkeypatch, tmp_path):

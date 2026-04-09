@@ -21,11 +21,12 @@ MAX_VOTERS_SHOWN_PER_GAME = 6
 DISCORD_MESSAGE_CHAR_LIMIT = 2000
 
 SECTION_CONFIG = {
+    "demo_playtest": "New Demos & Playtests",
     "free": "Free Picks",
     "paid": "Paid Under $20",
     "instagram": "Instagram Creator Picks",
 }
-SECTION_ORDER = ["free", "paid", "instagram"]
+SECTION_ORDER = ["demo_playtest", "free", "paid", "instagram"]
 
 
 def load_discord_daily_posts() -> Dict[str, dict]:
