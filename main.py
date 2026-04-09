@@ -75,6 +75,8 @@ REPOST_COOLDOWN_DAYS = 30
 # - Demo/Playtest has lower review strictness but stronger friend-group gating.
 # - Free raises review-confidence expectations.
 # - Paid is strictest overall.
+# These thresholds are intentionally conservative; do not tune further without
+# first observing real Discord output over multiple runs.
 MIN_SCORE_TO_POST_FREE = 9
 MIN_SCORE_TO_POST_DEMO_PLAYTEST = 6
 MIN_SCORE_TO_POST_PAID = 8
@@ -1064,6 +1066,7 @@ def export_daily_debug_summary(
     path: str = DAILY_DEBUG_SUMMARY_FILE,
     target_day_key: Optional[str] = None,
 ) -> None:
+    # Intentionally ephemeral troubleshooting artifact: overwritten each run.
     payload = {
         "generated_at_utc": utc_now_iso(),
         "target_day_key": target_day_key or get_target_day_key(),
