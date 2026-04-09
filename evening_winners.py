@@ -310,6 +310,8 @@ def main() -> None:
         if winner_keys_unchanged:
             if isinstance(previous_message_id, str) and previous_message_id:
                 try:
+                    # Even when winner keys are unchanged, confirm the stored winners message
+                    # still exists before skipping. If it was deleted, we must recreate it.
                     client.get_message(
                         winners_channel_id,
                         previous_message_id,
