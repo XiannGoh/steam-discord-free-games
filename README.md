@@ -10,6 +10,8 @@ Discord automation for two production workflows:
 1. **Weekly scheduling** (availability prompts + ongoing sync/summary/reminders)
 2. **Steam daily picks + evening winners**
 
+Additionally, this repo contains a **live voice-channel join alert bot script** (`scripts/voice_join_alert_bot.py`) that is intended to run continuously with a dedicated Discord bot token (not on a cron workflow).
+
 This repository is now **channel-based** (no thread-based posting).
 
 ## Current Discord Channels
@@ -260,6 +262,26 @@ This shared layer is used by weekly + daily flows for consistency and safer reru
   - `DISCORD_WINNERS_CHANNEL_ID`
 - Health monitor notifications (failure pings + daily report):
   - `DISCORD_HEALTH_MONITOR_WEBHOOK_URL`
+
+## Voice-channel join alert bot (live process)
+
+- **Script:** `scripts/voice_join_alert_bot.py`
+- **Run model:** long-running Discord Gateway client process (required for live voice-state events)
+- **Target voice channel ID:** `1491560965567938692`
+- **Cooldown:** 5 minutes per joiner (`300` seconds)
+- **Roster source:** `data/scheduling/expected_schedule_roster.json` (`is_active: true` users only)
+- **Hard exclusions:** `162382481369071617` (Malphax), `161248274970443776` (lilwartz), and the current joiner
+- **Message destination:** only the same voice channel's attached chat surface (no fallback destination channel)
+
+Required environment variable:
+
+- `DISCORD_VOICE_ALERT_BOT_TOKEN`
+
+Start command:
+
+```bash
+python scripts/voice_join_alert_bot.py
+```
 
 ## Local Testing
 
