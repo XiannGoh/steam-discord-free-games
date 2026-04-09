@@ -231,6 +231,37 @@ def test_final_report_snapshot_shape_with_mixed_signals_and_triage_metadata():
     assert "Context: Weekly responses exist but summary entry is absent." in rendered
 
 
+def test_health_report_cleanup_removes_state_sanity_check_references_from_workflow_monitoring():
+    workflow_file = Path(".github/workflows/bot-health-report.yml").read_text(encoding="utf-8")
+
+    assert "state-sanity-check.yml" not in workflow_file
+    assert "State Sanity Check" not in workflow_file
+
+    rendered = report.render_report(
+        workflow_status_lines=[
+            "🟢 Weekly Scheduling Bot",
+            "Last run: success (4h ago)",
+            "",
+            "🟢 Weekly Scheduling Responses Sync",
+            "Last run: success (1h ago)",
+            "",
+            "🟢 Daily Steam Picks",
+            "Last run: success (6h ago)",
+            "",
+            "🟢 Evening Winners",
+            "Last run: success (8h ago)",
+            "",
+        ],
+        state_issues=[],
+        report_date="Apr 9, 2026",
+    )
+
+    assert "## Workflow Status" in rendered
+    assert "## State / Artifact Health" in rendered
+    assert "🟢 No state inconsistencies detected" in rendered
+    assert "State Sanity Check" not in rendered
+
+
 def test_report_date_new_york_format_is_portable_and_unpadded_day():
     now_utc = datetime(2026, 4, 9, 16, 0, tzinfo=timezone.utc)
     assert report._report_date_new_york(now_utc) == "Apr 9, 2026"
