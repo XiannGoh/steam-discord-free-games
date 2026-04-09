@@ -16,8 +16,11 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Build daily health report
-        id: build-report
+      - name: Check out repository
+        uses: actions/checkout@v5
+
+      - name: Collect workflow run status
+        id: collect-workflows
         uses: actions/github-script@v7
         with:
           script: |
@@ -26,51 +29,9 @@ jobs:
               { file: "weekly-scheduling-responses-sync.yml", name: "Weekly Scheduling Responses Sync", staleHours: 6 },
               { file: "daily.yml", name: "Daily Steam Picks", staleHours: 30 },
               { file: "evening-winners.yml", name: "Evening Winners", staleHours: 30 },
-              { file: "state-sanity-check.yml", name: "Bot Data Health Check", staleHours: 192 },
             ];
 
-            function formatAge(hours) {
-              if (hours < 1) return "<1h ago";
-              if (hours < 48) return `${Math.round(hours)}h ago`;
-              return `${Math.round(hours / 24)}d ago`;
-            }
-
-            function evaluateStatus(run, staleHours) {
-              if (!run) return { icon: "🟡", statusText: "no recent run found", includeRun: false };
-
-              const updatedAt = new Date(run.updated_at || run.created_at);
-              const ageHours = (Date.now() - updatedAt.getTime()) / 3_600_000;
-              const recency = formatAge(ageHours);
-              const conclusion = run.conclusion || run.status || "unknown";
-
-              if (ageHours > staleHours) {
-                return {
-                  icon: "🟡",
-                  statusText: `${conclusion} (${recency}) — stale`,
-                  includeRun: true,
-                };
-              }
-
-              if (["success"].includes(conclusion)) {
-                return { icon: "🟢", statusText: `${conclusion} (${recency})`, includeRun: false };
-              }
-
-              if (["failure", "timed_out", "startup_failure", "action_required"].includes(conclusion)) {
-                return { icon: "🔴", statusText: `${conclusion} (${recency})`, includeRun: true };
-              }
-
-              return { icon: "🟡", statusText: `${conclusion} (${recency})`, includeRun: true };
-            }
-
-            const nyDate = new Intl.DateTimeFormat("en-US", {
-              timeZone: "America/New_York",
-              month: "short",
-              day: "numeric",
-              year: "numeric",
-            }).format(new Date());
-
-            const lines = [`🚦 XiannGPT Bot Daily Health — ${nyDate}`, ""];
-
+            const output = [];
             for (const workflow of workflows) {
               const response = await github.rest.actions.listWorkflowRuns({
                 owner: context.repo.owner,
@@ -79,19 +40,26 @@ jobs:
                 per_page: 1,
                 exclude_pull_requests: true,
               });
-
-              const run = response.data.workflow_runs[0] || null;
-              const status = evaluateStatus(run, workflow.staleHours);
-
-              lines.push(`${status.icon} ${workflow.name}`);
-              lines.push(`Last run: ${status.statusText}`);
-              if (status.includeRun && run?.html_url) {
-                lines.push(`Run: ${run.html_url}`);
-              }
-              lines.push("");
+              output.push({
+                ...workflow,
+                run: response.data.workflow_runs[0] || null,
+              });
             }
 
-            core.setOutput("content", lines.join("\n").trim());
+            core.setOutput("workflows", JSON.stringify(output));
+
+      - name: Build daily health report
+        id: build-report
+        env:
+          WORKFLOW_RUNS_JSON: ${{ steps.collect-workflows.outputs.workflows }}
+        run: |
+          printf '%s' "${WORKFLOW_RUNS_JSON}" > workflow-runs.json
+          python scripts/build_daily_health_report.py --workflow-runs-json workflow-runs.json > health-report.txt
+          {
+            echo "content<<EOF"
+            cat health-report.txt
+            echo "EOF"
+          } >> "$GITHUB_OUTPUT"
 
       - name: Post health report to Discord
         if: ${{ env.DISCORD_HEALTH_MONITOR_WEBHOOK_URL != '' }}
