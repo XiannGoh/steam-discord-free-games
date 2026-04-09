@@ -10,7 +10,12 @@ class FakeResponse:
         return None
 
 
-def build_html(title: str, description: str, review_sentiment: str, feature_text: str) -> str:
+def build_html(
+    title: str,
+    description: str,
+    feature_text: str,
+    review_sentiment: str = "",
+) -> str:
     return f"""
     <html>
       <head><meta property="og:title" content="{title}" /></head>
@@ -32,111 +37,171 @@ def stub_app_pages(monkeypatch, html_by_app_id):
     monkeypatch.setattr(main.requests, "get", fake_get)
 
 
-def test_bad_review_free_games_are_rejected(monkeypatch):
-    html = build_html(
-        title="Noisy Co-op Game",
-        description="Play with friends online.",
-        review_sentiment="Mostly Negative",
-        feature_text="Multiplayer Online Co-Op Up to 8 players",
-    )
-    stub_app_pages(monkeypatch, {"101": html})
+def test_unknown_review_sentiment_penalized_and_blocked_for_paid(monkeypatch):
+    base_text = "Multiplayer Online Co-Op up to 6 players party game"
+    free_html = build_html("Unknown Free", "friends game", base_text, review_sentiment="")
+    paid_html = build_html("Unknown Paid", "friends game", base_text, review_sentiment="")
+    stub_app_pages(monkeypatch, {"101": free_html, "102": paid_html})
+    monkeypatch.setattr(main, "get_price_info", lambda app_id: (9.99, False))
 
-    item = main.inspect_game("steam_free", "101")
+    free_item = main.inspect_game("steam_free", "101")
+    paid_item = main.inspect_game("paid_candidate", "102")
 
-    assert item is not None
-    assert item["review_sentiment"] == "Mostly Negative"
-    assert item["review_gate_failed"] is True
-    assert item["keep"] is False
-
-
-def test_paid_games_below_mostly_positive_are_rejected(monkeypatch):
-    html = build_html(
-        title="Paid Mixed Game",
-        description="Online squad game.",
-        review_sentiment="Mixed",
-        feature_text="Multiplayer Online Co-Op Up to 8 players",
-    )
-    stub_app_pages(monkeypatch, {"202": html})
-    monkeypatch.setattr(main, "get_price_info", lambda app_id: (14.99, False))
-
-    item = main.inspect_game("paid_candidate", "202")
-
-    assert item is not None
-    assert item["type"] == "paid_under_20"
-    assert item["review_sentiment"] == "Mixed"
-    assert item["review_gate_failed"] is True
-    assert item["keep"] is False
+    assert free_item is not None and paid_item is not None
+    assert free_item["review_sentiment"] is None
+    assert free_item["review_score"] == -2
+    assert paid_item["review_sentiment"] is None
+    assert paid_item["review_gate_failed"] is True
 
 
-def test_strong_reviews_rank_above_weaker_reviews(monkeypatch):
-    shared_features = "Multiplayer Online Co-Op Up to 8 players friends party action"
-    html_good = build_html("Good Game", "Team up with friends", "Very Positive", shared_features)
-    html_weak = build_html("Weak Game", "Team up with friends", "Mixed", shared_features)
-    stub_app_pages(monkeypatch, {"301": html_good, "302": html_weak})
+def test_mixed_reviews_are_harder_to_qualify(monkeypatch):
+    shared = "Multiplayer Online Co-Op up to 6 players party game"
+    html_mostly_positive = build_html("Mostly Positive Game", "friends game", shared, "Mostly Positive")
+    html_mixed = build_html("Mixed Game", "friends game", shared, "Mixed")
+    stub_app_pages(monkeypatch, {"201": html_mostly_positive, "202": html_mixed})
 
-    good_item = main.inspect_game("steam_free", "301")
-    weak_item = main.inspect_game("steam_free", "302")
-
-    assert good_item is not None and weak_item is not None
-    assert good_item["score"] > weak_item["score"]
-
-    ranked = sorted(
-        [good_item, weak_item],
-        key=lambda x: (x["score"], x.get("review_score", 0)),
-        reverse=True,
-    )
-    assert ranked[0]["id"] == "301"
-
-
-def test_mixed_reviews_get_meaningful_penalty(monkeypatch):
-    shared_features = "Multiplayer Online Co-Op Up to 8 players friends party action"
-    html_mostly_positive = build_html(
-        "Mostly Positive Game",
-        "Play with friends online",
-        "Mostly Positive",
-        shared_features,
-    )
-    html_mixed = build_html(
-        "Mixed Game",
-        "Play with friends online",
-        "Mixed",
-        shared_features,
-    )
-    stub_app_pages(monkeypatch, {"401": html_mostly_positive, "402": html_mixed})
-
-    mostly_positive = main.inspect_game("steam_free", "401")
-    mixed = main.inspect_game("steam_free", "402")
+    mostly_positive = main.inspect_game("steam_free", "201")
+    mixed = main.inspect_game("steam_free", "202")
 
     assert mostly_positive is not None and mixed is not None
-    assert mostly_positive["review_score"] - mixed["review_score"] >= 8
-    assert mostly_positive["score"] - mixed["score"] >= 8
+    assert mixed["review_score"] == -6
+    assert mostly_positive["score"] > mixed["score"]
 
 
-def test_demo_does_not_outrank_equivalent_full_game(monkeypatch):
-    shared_features = "Multiplayer Online Co-Op Up to 8 players friends party action"
-    html_full = build_html("Full Game", "Play with friends online", "Very Positive", shared_features)
-    html_demo = build_html("Demo Version", "Play with friends online", "Very Positive", shared_features)
-    stub_app_pages(monkeypatch, {"501": html_full, "502": html_demo})
+def test_mmo_player_bonus_is_reduced(monkeypatch):
+    html = build_html("MMO Game", "friends game", "Massively Multiplayer MMO Online Co-Op")
+    stub_app_pages(monkeypatch, {"301": html})
 
-    full_game = main.inspect_game("steam_free", "501")
-    demo_game = main.inspect_game("steam_demo", "502")
-
-    assert full_game is not None and demo_game is not None
-    assert full_game["type"] == "free_game"
-    assert demo_game["type"] == "demo"
-    assert full_game["score"] > demo_game["score"]
+    item = main.inspect_game("steam_free", "301")
+    assert item is not None
+    player_score, _, _ = main.score_player_count("Massively Multiplayer MMO Online Co-Op")
+    assert player_score == 5
 
 
-def test_temporarily_free_gets_only_modest_preference(monkeypatch):
-    shared_features = "Multiplayer Online Co-Op Up to 8 players friends party action"
-    html_regular = build_html("Regular Free", "Play with friends online", "Very Positive", shared_features)
-    html_temp = build_html("Temp Free", "100% off play with friends online", "Very Positive", shared_features)
-    stub_app_pages(monkeypatch, {"601": html_regular, "602": html_temp})
+def test_very_positive_group_game_ranks_above_mixed(monkeypatch):
+    shared = "Multiplayer Online Co-Op up to 6 players party game"
+    strong = build_html("Strong Co-op", "team up with friends", shared, "Very Positive")
+    weak = build_html("Weak Co-op", "team up with friends", shared, "Mixed")
+    stub_app_pages(monkeypatch, {"401": strong, "402": weak})
 
-    regular = main.inspect_game("steam_free", "601")
-    temporary = main.inspect_game("steamdb_promo", "602")
+    strong_item = main.inspect_game("steam_free", "401")
+    weak_item = main.inspect_game("steam_free", "402")
+    assert strong_item is not None and weak_item is not None
+    assert strong_item["score"] > weak_item["score"]
 
-    assert regular is not None and temporary is not None
-    assert regular["type"] == "free_game"
-    assert temporary["type"] == "temporarily_free"
-    assert temporary["score"] == regular["score"] + main.TEMPORARILY_FREE_SCORE_BONUS
+
+def test_review_count_confidence_bonus(monkeypatch):
+    low_count = build_html(
+        "Low Count",
+        "team up with friends",
+        "Multiplayer Online Co-Op up to 6 players Very Positive 80 reviews",
+        "Very Positive",
+    )
+    high_count = build_html(
+        "High Count",
+        "team up with friends",
+        "Multiplayer Online Co-Op up to 6 players Very Positive 12,000 reviews",
+        "Very Positive",
+    )
+    stub_app_pages(monkeypatch, {"501": low_count, "502": high_count})
+
+    low_item = main.inspect_game("steam_free", "501")
+    high_item = main.inspect_game("steam_free", "502")
+    assert low_item is not None and high_item is not None
+    assert high_item["review_count"] == 12000
+    assert high_item["score"] >= low_item["score"] + 2
+
+
+def test_paid_rejects_unknown_and_mixed(monkeypatch):
+    unknown = build_html("Paid Unknown", "friends", "Multiplayer Online Co-Op up to 6 players")
+    mixed = build_html("Paid Mixed", "friends", "Multiplayer Online Co-Op up to 6 players", "Mixed")
+    stub_app_pages(monkeypatch, {"601": unknown, "602": mixed})
+    monkeypatch.setattr(main, "get_price_info", lambda app_id: (15.0, False))
+
+    unknown_item = main.inspect_game("paid_candidate", "601")
+    mixed_item = main.inspect_game("paid_candidate", "602")
+    assert unknown_item is not None and mixed_item is not None
+    assert unknown_item["review_gate_failed"] is True
+    assert mixed_item["review_gate_failed"] is True
+
+
+def test_demo_penalty_keeps_full_game_above_demo(monkeypatch):
+    shared = "Multiplayer Online Co-Op up to 6 players party game Very Positive"
+    full_html = build_html("Full Game", "friends", shared, "Very Positive")
+    demo_html = build_html("Demo Game", "friends", shared, "Very Positive")
+    stub_app_pages(monkeypatch, {"701": full_html, "702": demo_html})
+
+    full_item = main.inspect_game("steam_free", "701")
+    demo_item = main.inspect_game("steam_demo", "702")
+    assert full_item is not None and demo_item is not None
+    assert full_item["score"] > demo_item["score"]
+
+
+def test_temporarily_free_bonus_requires_positive_or_better(monkeypatch):
+    pos = build_html("Promo Positive", "friends", "100% off Multiplayer up to 6 players", "Positive")
+    mixed = build_html("Promo Mixed", "friends", "100% off Multiplayer up to 6 players", "Mixed")
+    stub_app_pages(monkeypatch, {"801": pos, "802": mixed})
+
+    pos_item = main.inspect_game("steamdb_promo", "801")
+    mixed_item = main.inspect_game("steamdb_promo", "802")
+    assert pos_item is not None and mixed_item is not None
+    assert pos_item["score"] >= mixed_item["score"] + main.TEMPORARILY_FREE_SCORE_BONUS
+
+
+def test_single_player_weak_multiplayer_gets_penalty(monkeypatch):
+    weak = build_html("Solo Leaning", "single-player narrative", "single-player Multiplayer", "Mostly Positive")
+    strong = build_html("Strong MP", "friends game", "single-player Multiplayer Online Co-Op up to 6 players", "Mostly Positive")
+    stub_app_pages(monkeypatch, {"901": weak, "902": strong})
+
+    weak_item = main.inspect_game("steam_free", "901")
+    strong_item = main.inspect_game("steam_free", "902")
+    assert weak_item is not None and strong_item is not None
+    assert weak_item["score"] < strong_item["score"]
+
+
+def test_junk_keywords_and_titles_are_penalized(monkeypatch):
+    junk = build_html(
+        "Prototype Clicker Simulator Test",
+        "idle meme game",
+        "Multiplayer up to 6 players clicker idle prototype",
+        "Mostly Positive",
+    )
+    clean = build_html("Team Party Ops", "friends game", "Multiplayer Online Co-Op up to 6 players", "Mostly Positive")
+    stub_app_pages(monkeypatch, {"1001": junk, "1002": clean})
+
+    junk_item = main.inspect_game("steam_free", "1001")
+    clean_item = main.inspect_game("steam_free", "1002")
+    assert junk_item is not None and clean_item is not None
+    assert junk_item["score"] < clean_item["score"]
+
+
+def test_coop_preferred_over_pvp_only(monkeypatch):
+    coop = build_html("Coop Game", "friends", "Multiplayer Online Co-Op up to 6 players", "Mostly Positive")
+    pvp = build_html("PvP Arena", "friends", "Multiplayer Online PvP up to 6 players", "Mostly Positive")
+    stub_app_pages(monkeypatch, {"1101": coop, "1102": pvp})
+
+    coop_item = main.inspect_game("steam_free", "1101")
+    pvp_item = main.inspect_game("steam_free", "1102")
+    assert coop_item is not None and pvp_item is not None
+    assert coop_item["score"] > pvp_item["score"]
+
+
+def test_trusted_profile_bonus_lifts_best_fit_games(monkeypatch):
+    trusted = build_html(
+        "Survival Squad",
+        "team up with friends",
+        "Very Positive Multiplayer Online Co-Op up to 6 players survival progression 20,000 reviews",
+        "Very Positive",
+    )
+    weaker = build_html(
+        "Generic Multiplayer",
+        "team up with friends",
+        "Mostly Positive Multiplayer Online PvP up to 4 players 20,000 reviews",
+        "Mostly Positive",
+    )
+    stub_app_pages(monkeypatch, {"1201": trusted, "1202": weaker})
+
+    trusted_item = main.inspect_game("steam_free", "1201")
+    weaker_item = main.inspect_game("steam_free", "1202")
+    assert trusted_item is not None and weaker_item is not None
+    assert trusted_item["score"] > weaker_item["score"]
