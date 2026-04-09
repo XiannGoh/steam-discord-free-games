@@ -1,6 +1,7 @@
 import json
 
 from scripts import post_weekly_availability as weekly
+from scripts import scheduling_labels
 
 
 class FakeSession:
@@ -118,7 +119,11 @@ def test_day_message_includes_week_dates_and_compact_format(monkeypatch, tmp_pat
 
 
 def test_format_day_message_uses_no_leading_zeros():
-    assert weekly.format_day_message("Monday", "🇲", weekly.date(2026, 4, 3)) == "🇲 Monday — 4/3"
+    assert (
+        weekly.format_day_message("Monday", "🇲", weekly.date(2026, 4, 3))
+        == scheduling_labels.format_day_label("Monday", weekly.date(2026, 4, 3), include_emoji=True)
+        == "🇲 Monday — 4/3"
+    )
 
 
 def test_legacy_state_shape_loads_and_upgrades(monkeypatch, tmp_path, load_fixture_json):

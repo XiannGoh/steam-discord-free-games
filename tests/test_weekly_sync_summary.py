@@ -85,10 +85,56 @@ def test_summary_format_includes_dates_voter_names_and_truncation():
 
     assert "Monday 4/13" in msg
     assert "Best overlap:" not in msg
-    assert "All days ranked:" in msg
+    assert "All days ranked:" not in msg
     assert "✅" in msg
     assert "+" in msg and "more" in msg
     assert "User1, User1" not in msg
+
+
+def test_summary_format_is_monday_to_sunday_chronological():
+    week_summary = {
+        "week_key": "2026-04-13_to_2026-04-19",
+        "date_range": "Apr 13–19, 2026",
+        "summary": {
+            "day_counts": {d: 0 for d in sync.DAY_NAMES},
+            "slot_counts": {
+                d: {slot: 0 for slot in sync.SUMMARY_DISPLAY_ORDER}
+                for d in sync.DAY_NAMES
+            },
+            "slot_voters": {
+                d: {slot: [] for slot in sync.SUMMARY_SLOT_ORDER}
+                for d in sync.DAY_NAMES
+            },
+            "best_overlap": {"day": "Monday", "slot": "✅", "count": 0},
+        },
+    }
+
+    msg = sync.format_summary_message("Apr 13–19, 2026", week_summary)
+
+    day_positions = [msg.index(f"**{day} 4/{13 + index}**") for index, day in enumerate(sync.DAY_NAMES)]
+    assert day_positions == sorted(day_positions)
+
+
+def test_shared_date_label_helper_matches_summary_and_day_posts():
+    week_summary = {
+        "week_key": "2026-04-13_to_2026-04-19",
+        "date_range": "Apr 13–19, 2026",
+        "summary": {
+            "day_counts": {d: 0 for d in sync.DAY_NAMES},
+            "slot_counts": {
+                d: {slot: 0 for slot in sync.SUMMARY_DISPLAY_ORDER}
+                for d in sync.DAY_NAMES
+            },
+            "slot_voters": {
+                d: {slot: [] for slot in sync.SUMMARY_SLOT_ORDER}
+                for d in sync.DAY_NAMES
+            },
+            "best_overlap": {"day": "Monday", "slot": "✅", "count": 0},
+        },
+    }
+
+    msg = sync.format_summary_message("Apr 13–19, 2026", week_summary)
+    assert "**Monday 4/13**" in msg
 
 
 def test_main_rebuild_only_edits_or_recovers_summary(monkeypatch, tmp_path, load_fixture_json):

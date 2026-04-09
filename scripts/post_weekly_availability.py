@@ -9,6 +9,7 @@ from typing import Any
 import requests
 
 from discord_api import DiscordClient, DiscordMessageNotFoundError
+from scripts.scheduling_labels import DAY_MESSAGE_TEMPLATES, format_day_label
 from state_utils import load_json_object, prune_latest_keys, save_json_object_atomic
 
 USER_AGENT = "steam-discord-free-games/weekly-scheduling-bot"
@@ -33,16 +34,6 @@ If needed, reply under a day message for custom availability, for example:
 Tue 7–9 PM
 Wed after 6
 Sat 1–4 PM"""
-
-DAY_MESSAGE_TEMPLATES: list[tuple[str, str, int]] = [
-    ("Monday", "🇲", 0),
-    ("Tuesday", "🇹", 1),
-    ("Wednesday", "🇼", 2),
-    ("Thursday", "🇷", 3),
-    ("Friday", "🇫", 4),
-    ("Saturday", "🇸", 5),
-    ("Sunday", "🇺", 6),
-]
 
 AVAILABILITY_REACTIONS: list[str] = ["✅", "🌅", "☀️", "🌙", "❌", "📝"]
 
@@ -106,7 +97,8 @@ def try_get_message(client: DiscordClient, channel_id: str, message_id: str, con
 
 
 def format_day_message(day_name: str, emoji: str, day_date: date) -> str:
-    return f"{emoji} {day_name} — {day_date.month}/{day_date.day}"
+    _ = emoji
+    return format_day_label(day_name, day_date, include_emoji=True)
 
 
 def ensure_day_reactions(client: DiscordClient, channel_id: str, day_name: str, message_id: str) -> None:
