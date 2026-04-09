@@ -55,8 +55,8 @@ MAX_PAGE_LIMIT = 50
 
 REQUEST_DELAY_SECONDS = 1.2
 REPOST_COOLDOWN_DAYS = 30
-MIN_SCORE_TO_POST_FREE = 8
-MIN_SCORE_TO_POST_PAID = 4
+MIN_SCORE_TO_POST_FREE = 9
+MIN_SCORE_TO_POST_PAID = 7
 
 MAX_FETCH_RETRIES = 5
 BACKOFF_SECONDS = 4
@@ -69,18 +69,18 @@ STEAMDB_FREE_PROMO_URL = "https://steamdb.info/upcoming/free/"
 DISCORD_CHAR_LIMIT = 1900
 
 MULTIPLAYER_TERMS = {
-    "Massively Multiplayer": 6,
-    "MMO": 6,
-    "Online Co-Op": 5,
-    "Online Co-op": 5,
-    "Co-op": 4,
-    "Co-Op": 4,
-    "Multiplayer": 3,
-    "Multi-player": 3,
-    "Online PvP": 3,
-    "PvP": 2,
-    "Squad": 2,
-    "Team-based": 2,
+    "Massively Multiplayer": 4,
+    "MMO": 4,
+    "Online Co-Op": 3,
+    "Online Co-op": 3,
+    "Co-op": 2,
+    "Co-Op": 2,
+    "Multiplayer": 2,
+    "Multi-player": 2,
+    "Online PvP": 2,
+    "PvP": 1,
+    "Squad": 1,
+    "Team-based": 1,
 }
 
 GOOD_GENRE_TERMS = {
@@ -130,22 +130,63 @@ BAD_TERMS = {
 }
 
 PLAYER_COUNT_PATTERNS = [
-    (r"\b1\s*-\s*4\b", 4),
-    (r"\b1\s*-\s*6\b", 5),
-    (r"\b1\s*-\s*8\b", 6),
-    (r"\b2\s*-\s*4\b", 4),
-    (r"\b2\s*-\s*6\b", 5),
-    (r"\b2\s*-\s*8\b", 6),
-    (r"\b3\s*\+\b", 5),
-    (r"\b3\s*-\s*4\b", 4),
-    (r"\b3\s*-\s*6\b", 5),
-    (r"\b3\s*-\s*8\b", 6),
-    (r"\b4\s*player\b", 4),
-    (r"\b4\s*players\b", 4),
-    (r"\bup to 4 players\b", 4),
-    (r"\bup to 6 players\b", 5),
-    (r"\bup to 8 players\b", 6),
+    (r"\b1\s*-\s*4\b", 3),
+    (r"\b1\s*-\s*6\b", 4),
+    (r"\b1\s*-\s*8\b", 5),
+    (r"\b2\s*-\s*4\b", 3),
+    (r"\b2\s*-\s*6\b", 4),
+    (r"\b2\s*-\s*8\b", 5),
+    (r"\b3\s*\+\b", 4),
+    (r"\b3\s*-\s*4\b", 3),
+    (r"\b3\s*-\s*6\b", 4),
+    (r"\b3\s*-\s*8\b", 5),
+    (r"\b4\s*player\b", 3),
+    (r"\b4\s*players\b", 3),
+    (r"\bup to 4 players\b", 3),
+    (r"\bup to 6 players\b", 4),
+    (r"\bup to 8 players\b", 5),
 ]
+
+REVIEW_SENTIMENT_SCORES = {
+    "Overwhelmingly Positive": 12,
+    "Very Positive": 9,
+    "Positive": 7,
+    "Mostly Positive": 5,
+    "Mixed": -4,
+    "Mostly Negative": -8,
+    "Negative": -8,
+    "Very Negative": -10,
+    "Overwhelmingly Negative": -12,
+}
+
+REVIEW_SENTIMENT_PATTERNS = [
+    "Overwhelmingly Positive",
+    "Very Positive",
+    "Mostly Positive",
+    "Positive",
+    "Mixed",
+    "Overwhelmingly Negative",
+    "Very Negative",
+    "Mostly Negative",
+    "Negative",
+]
+
+FREE_REVIEW_BLOCKLIST = {
+    "Mostly Negative",
+    "Negative",
+    "Very Negative",
+    "Overwhelmingly Negative",
+}
+
+PAID_MINIMUM_REVIEW_SENTIMENTS = {
+    "Mostly Positive",
+    "Positive",
+    "Very Positive",
+    "Overwhelmingly Positive",
+}
+
+TEMPORARILY_FREE_SCORE_BONUS = 1
+DEMO_SCORE_PENALTY = 1
 
 REJECT_PATTERNS = [
     r"\b1\s*-\s*2\b",
@@ -546,29 +587,22 @@ def score_genres_and_description(title: str, description: str, text: str) -> Tup
     return score, hits
 
 
-def extract_review_score(soup: BeautifulSoup) -> int:
+def extract_review_sentiment(soup: BeautifulSoup) -> Optional[str]:
     page_text = soup.get_text(" ", strip=True)
 
-    if "Overwhelmingly Positive" in page_text:
-        return 6
-    if "Very Positive" in page_text:
-        return 5
-    if "Mostly Positive" in page_text:
-        return 3
-    if "Positive" in page_text:
-        return 4
-    if "Mixed" in page_text:
-        return 0
-    if "Mostly Negative" in page_text:
-        return -3
-    if "Very Negative" in page_text:
-        return -5
-    if "Overwhelmingly Negative" in page_text:
-        return -6
-    if "Negative" in page_text:
-        return -4
+    for sentiment in REVIEW_SENTIMENT_PATTERNS:
+        if sentiment in page_text:
+            return sentiment
 
-    return 0
+    return None
+
+
+def extract_review_score(soup: BeautifulSoup) -> int:
+    sentiment = extract_review_sentiment(soup)
+    if sentiment is None:
+        return 0
+
+    return REVIEW_SENTIMENT_SCORES[sentiment]
 
 
 def inspect_game(source: str, app_id: str) -> Optional[dict]:
@@ -614,9 +648,22 @@ def inspect_game(source: str, app_id: str) -> Optional[dict]:
     multiplayer_score, multiplayer_hits = score_multiplayer(page_text)
     player_score, player_hits, rejected = score_player_count(page_text)
     flavor_score, flavor_hits = score_genres_and_description(title, description, page_text)
-    review_score = extract_review_score(soup)
+    review_sentiment = extract_review_sentiment(soup)
+    review_score = REVIEW_SENTIMENT_SCORES.get(review_sentiment, 0)
 
-    total_score = multiplayer_score + player_score + flavor_score + review_score
+    review_gate_failed = False
+    if item_type in ["free_game", "demo", "temporarily_free"]:
+        review_gate_failed = review_sentiment in FREE_REVIEW_BLOCKLIST
+    elif item_type == "paid_under_20":
+        review_gate_failed = review_sentiment not in PAID_MINIMUM_REVIEW_SENTIMENTS
+
+    type_adjustment = 0
+    if item_type == "temporarily_free":
+        type_adjustment += TEMPORARILY_FREE_SCORE_BONUS
+    if item_type == "demo":
+        type_adjustment -= DEMO_SCORE_PENALTY
+
+    total_score = multiplayer_score + player_score + flavor_score + review_score + type_adjustment
 
     has_multiplayer_signal = multiplayer_score > 0
     has_3plus_signal = player_score > 0
@@ -625,6 +672,7 @@ def inspect_game(source: str, app_id: str) -> Optional[dict]:
         keep = (
             has_multiplayer_signal and
             not rejected and
+            not review_gate_failed and
             total_score >= MIN_SCORE_TO_POST_PAID
         )
     elif item_type in ["free_game", "demo", "temporarily_free"]:
@@ -632,6 +680,7 @@ def inspect_game(source: str, app_id: str) -> Optional[dict]:
             has_multiplayer_signal and
             has_3plus_signal and
             not rejected and
+            not review_gate_failed and
             total_score >= MIN_SCORE_TO_POST_FREE
         )
     else:
@@ -650,7 +699,9 @@ def inspect_game(source: str, app_id: str) -> Optional[dict]:
         "multiplayer_hits": multiplayer_hits,
         "player_hits": player_hits,
         "flavor_hits": flavor_hits,
+        "review_sentiment": review_sentiment,
         "review_score": review_score,
+        "review_gate_failed": review_gate_failed,
     }
 
 
@@ -1199,7 +1250,7 @@ def main():
             x["score"],
             x.get("review_score", 0),
             1 if x["type"] == "temporarily_free" else 0,
-            1 if x["type"] == "demo" else 0,
+            -1 if x["type"] == "demo" else 0,
         ),
         reverse=True
     )
