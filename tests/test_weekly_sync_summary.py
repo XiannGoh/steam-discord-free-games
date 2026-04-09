@@ -155,6 +155,41 @@ def test_shared_date_label_helper_matches_summary_and_day_posts():
     assert "**Monday 4/13**" in msg
 
 
+def test_legacy_summary_data_compare_ignores_last_updated_line():
+    week_summary = {
+        "week_key": "2026-04-13_to_2026-04-19",
+        "date_range": "Apr 13–19, 2026",
+        "summary": {
+            "day_counts": {d: 0 for d in sync.DAY_NAMES},
+            "slot_counts": {
+                d: {slot: 0 for slot in sync.SUMMARY_DISPLAY_ORDER}
+                for d in sync.DAY_NAMES
+            },
+            "slot_voters": {
+                d: {slot: [] for slot in sync.SUMMARY_SLOT_ORDER}
+                for d in sync.DAY_NAMES
+            },
+            "best_overlap": {"day": "Monday", "slot": "✅", "count": 0},
+        },
+    }
+    old_message = sync.format_summary_message(
+        "Apr 13–19, 2026",
+        week_summary,
+        responded_count=0,
+        active_user_count=2,
+        synced_at_utc=sync.datetime(2026, 4, 1, 0, 0, tzinfo=sync.timezone.utc),
+    )
+    regenerated = sync.format_summary_message(
+        "Apr 13–19, 2026",
+        week_summary,
+        responded_count=0,
+        active_user_count=2,
+        synced_at_utc=sync.datetime(2026, 4, 9, 0, 0, tzinfo=sync.timezone.utc),
+    )
+
+    assert sync.legacy_summary_data_matches_current(old_message, regenerated) is True
+
+
 def test_summary_includes_status_timestamp_spacing_and_slot_order():
     week_summary = {
         "week_key": "2026-04-13_to_2026-04-19",
