@@ -297,16 +297,39 @@ def main() -> None:
             today_entry["winners_state"] = winners_state
 
         current_winner_keys = sorted(deduped_winners.keys())
+        current_winner_vote_counts = {
+            key: int(deduped_winners[key]["human_votes"])
+            for key in current_winner_keys
+        }
         previous_message_id = winners_state.get("message_id")
         previous_winner_keys = winners_state.get("winner_keys")
         if not isinstance(previous_winner_keys, list):
             previous_winner_keys = []
+        previous_winner_vote_counts = winners_state.get("winner_vote_counts")
+        had_previous_vote_snapshot = isinstance(previous_winner_vote_counts, dict)
+        if not had_previous_vote_snapshot:
+            previous_winner_vote_counts = {}
+        normalized_previous_vote_counts = {
+            str(key): int(value)
+            for key, value in previous_winner_vote_counts.items()
+            if str(key)
+        }
 
         if not current_winner_keys and not (isinstance(previous_message_id, str) and previous_message_id):
             print(f"SKIP: no eligible winners in last {WINNERS_LOOKBACK_DAYS} days for {day_key}")
             return
 
-        if sorted(str(key) for key in previous_winner_keys) == current_winner_keys:
+        keys_unchanged = sorted(str(key) for key in previous_winner_keys) == current_winner_keys
+        vote_counts_unchanged = normalized_previous_vote_counts == current_winner_vote_counts
+
+        if keys_unchanged and not had_previous_vote_snapshot:
+            winners_state["winner_vote_counts"] = current_winner_vote_counts
+            winners_state["updated_at_utc"] = datetime.now(timezone.utc).isoformat()
+            save_discord_daily_posts(daily_posts)
+            print(f"SKIP: no newly eligible winners for {day_key} (backfilled vote snapshot)")
+            return
+
+        if keys_unchanged and vote_counts_unchanged:
             print(f"SKIP: no newly eligible winners for {day_key}")
             return
 
@@ -324,6 +347,7 @@ def main() -> None:
                     context=f"edit winners message for {day_key}",
                 )
                 winners_state["winner_keys"] = current_winner_keys
+                winners_state["winner_vote_counts"] = current_winner_vote_counts
                 winners_state["last_action"] = "edit"
                 winners_state["updated_at_utc"] = datetime.now(timezone.utc).isoformat()
                 save_discord_daily_posts(daily_posts)
@@ -338,6 +362,7 @@ def main() -> None:
         new_message_id = post_winners_message(client, winners_channel_id, message)
         winners_state["message_id"] = new_message_id
         winners_state["winner_keys"] = current_winner_keys
+        winners_state["winner_vote_counts"] = current_winner_vote_counts
         winners_state["last_action"] = "create"
         winners_state["posted_at_utc"] = datetime.now(timezone.utc).isoformat()
         save_discord_daily_posts(daily_posts)

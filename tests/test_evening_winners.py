@@ -167,6 +167,63 @@ def test_winners_rerun_skip_then_edit_for_newly_eligible_winner(monkeypatch, tmp
     assert "Brand New" in fake_edit.edits[0][2]
 
 
+def test_winners_rerun_same_keys_with_higher_votes_triggers_edit(monkeypatch, tmp_path):
+    day_key, path = _setup_daily(tmp_path)
+    data = json.loads(path.read_text(encoding="utf-8"))
+    data[day_key]["winners_state"] = {
+        "message_id": "w-old",
+        "winner_keys": ["paid-win", "shared-dupe"],
+        "winner_vote_counts": {"paid-win": 1, "shared-dupe": 1},
+    }
+    path.write_text(json.dumps(data), encoding="utf-8")
+
+    payloads = {
+        "m-late": {"reactions": [{"emoji": {"name": "👍"}, "count": 4}]},  # 3 human votes
+        "m-dupe": {"reactions": [{"emoji": {"name": "👍"}, "count": 2}]},
+        "m-paid": {"reactions": [{"emoji": {"name": "👍"}, "count": 2}]},
+    }
+    reaction_users = {
+        "m-late": [{"id": "bot-1"}, {"id": "u1", "username": "u1"}, {"id": "u5", "username": "u5"}, {"id": "u8", "username": "u8"}],
+        "m-paid": [{"id": "bot-1"}, {"id": "u2", "username": "u2"}],
+    }
+    fake = FakeDiscordClient(payloads, reaction_users)
+    _patch_common(monkeypatch, path, fake, day_key)
+    winners.main()
+
+    assert len(fake.edits) == 1
+    assert fake.edits[0][0] == "wchan"
+    assert "Late Voted Earlier Day" in fake.edits[0][2]
+    assert "👍 3 votes" in fake.edits[0][2]
+    assert fake.posts == []
+
+
+def test_winners_rerun_same_keys_same_vote_counts_is_noop(monkeypatch, tmp_path):
+    day_key, path = _setup_daily(tmp_path)
+    data = json.loads(path.read_text(encoding="utf-8"))
+    data[day_key]["winners_state"] = {
+        "message_id": "w-old",
+        "winner_keys": ["paid-win", "shared-dupe"],
+        "winner_vote_counts": {"paid-win": 1, "shared-dupe": 2},
+    }
+    path.write_text(json.dumps(data), encoding="utf-8")
+
+    payloads = {
+        "m-late": {"reactions": [{"emoji": {"name": "👍"}, "count": 3}]},  # 2 human votes
+        "m-dupe": {"reactions": [{"emoji": {"name": "👍"}, "count": 2}]},
+        "m-paid": {"reactions": [{"emoji": {"name": "👍"}, "count": 2}]},
+    }
+    reaction_users = {
+        "m-late": [{"id": "bot-1"}, {"id": "u1", "username": "u1"}, {"id": "u5", "username": "u5"}],
+        "m-paid": [{"id": "bot-1"}, {"id": "u2", "username": "u2"}],
+    }
+    fake = FakeDiscordClient(payloads, reaction_users)
+    _patch_common(monkeypatch, path, fake, day_key)
+    winners.main()
+
+    assert fake.posts == []
+    assert fake.edits == []
+
+
 def test_no_eligible_winners_and_no_existing_message_is_noop(monkeypatch, tmp_path):
     day_key = "2026-04-08"
     path = tmp_path / "daily.json"
