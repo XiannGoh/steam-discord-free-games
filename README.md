@@ -85,12 +85,6 @@ Manual rerun quick commands (GitHub CLI):
   - Default run date: `gh workflow run evening-winners.yml`
   - Target date: `gh workflow run evening-winners.yml -f winners_date_utc=2026-04-08`
 
-### State sanity check (`state-sanity-check.yml`)
-- **What it does:** read-only parse/shape checks for key JSON state files.
-- **Schedule:** Mondays at 12:00 UTC.
-- **Manual rerun:** `gh workflow run state-sanity-check.yml`
-- **Local run:** `python scripts/check_state_sanity.py`
-
 ### Bot health report (`bot-health-report.yml`)
 - **What it does:** posts a once-daily Discord health summary across core workflows.
 - **Schedule:** `10 3 * * *` (03:10 UTC daily; ~11:10 PM New York during EDT).
@@ -138,7 +132,8 @@ Use this section as the fast triage guide when a workflow or state file drifts.
   2. Re-run `evening-winners.yml` with `winners_date_utc=<day>`.
 - **Malformed roster**
   1. Repair `data/scheduling/expected_schedule_roster.json` to a valid `users` object with active user entries.
-  2. Re-run `state-sanity-check.yml`, then `weekly-scheduling-responses-sync.yml`.
+  2. Re-run `weekly-scheduling-responses-sync.yml`.
+  3. Confirm the next `bot-health-report.yml` run clears the warning.
 - **Daily picks / winners inconsistency**
   1. Verify `discord_daily_posts.json` day entry has valid `items` message IDs.
   2. Re-run `daily.yml` (if items missing/stale) then `evening-winners.yml` for the same day.

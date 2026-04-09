@@ -29,7 +29,6 @@ jobs:
               { file: "weekly-scheduling-responses-sync.yml", name: "Weekly Scheduling Responses Sync", staleHours: 6 },
               { file: "daily.yml", name: "Daily Steam Picks", staleHours: 30 },
               { file: "evening-winners.yml", name: "Evening Winners", staleHours: 30 },
-              { file: "state-sanity-check.yml", name: "State Sanity Check", staleHours: 240 },
             ];
 
             const output = [];
