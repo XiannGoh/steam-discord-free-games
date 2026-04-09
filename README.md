@@ -255,6 +255,16 @@ Posting behavior in `daily-game-picks`:
   - **Free Picks** remain focused on full free and temporarily free full games.
   - The bot prefers quality over maxing section caps (especially for demos/playtests), so some days intentionally post fewer than the section maximum.
 
+Daily routing reference (operator-facing):
+
+| Item Type | Daily Section | Main Selection Philosophy |
+| --- | --- | --- |
+| `demo` | New Demos & Playtests | Friend-group discovery lane |
+| `playtest` | New Demos & Playtests | Friend-group discovery lane |
+| `free_game` | Free Picks | Higher-confidence free games |
+| `temporarily_free` | Free Picks | Higher-confidence free games |
+| `paid_under_20` | Paid Under $20 | Strictest quality gate |
+
 Daily picks troubleshooting (operator quick guide):
 - If **New Demos & Playtests** is unexpectedly empty, check run logs for:
   - `DEMO_PLAYTEST_MIN_FRIEND_SIGNAL` gate misses,
@@ -266,6 +276,7 @@ Daily picks troubleshooting (operator quick guide):
 - If variety feels repetitive, tune only the light diversity knobs (`LIGHT_DIVERSITY_PER_EXTRA_DUPLICATE`, `LIGHT_DIVERSITY_DUPLICATE_FREE_SLOTS`) — this rerank is intentionally weak and should stay secondary to score quality.
 - For quality signal tuning, review replayability and legitimacy cue hits in logs/debug JSON before adjusting weights/thresholds.
 - At end of each daily run, start with the `RUN SUMMARY` block in logs, then inspect `daily_debug_summary.json` for per-item keep/filtered reasons.
+  - `daily_debug_summary.json` is ephemeral: it is overwritten every run and is intended for current-run debugging only (not historical analytics).
 
 State + reliability:
 - Tracks daily post metadata in `discord_daily_posts.json`

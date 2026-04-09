@@ -397,6 +397,21 @@ def test_build_winners_message_supports_demo_playtest_section():
     assert "Squad Demo" in content
 
 
+def test_winners_section_order_is_product_invariant():
+    winners_by_section = {
+        "demo_playtest": [{"title": "Demo Winner", "url": "u-demo", "human_votes": 3, "voter_names": ["A"]}],
+        "free": [{"title": "Free Winner", "url": "u-free", "human_votes": 2, "voter_names": ["B"]}],
+        "paid": [{"title": "Paid Winner", "url": "u-paid", "human_votes": 1, "voter_names": ["C"]}],
+        "instagram": [{"title": "Creator Pick", "url": "u-ig", "human_votes": 1, "voter_names": ["D"]}],
+    }
+    message = winners.build_winners_message(winners_by_section)
+    demo_idx = message.index("New Demos & Playtests")
+    free_idx = message.index("Free Picks")
+    paid_idx = message.index("Paid Under $20")
+    instagram_idx = message.index("Instagram Creator Picks")
+    assert demo_idx < free_idx < paid_idx < instagram_idx
+
+
 def test_winners_pipeline_integration_late_votes_dedupe_and_coherent_edit(monkeypatch, tmp_path):
     day_key, path = _setup_daily(tmp_path)
     payloads = {
