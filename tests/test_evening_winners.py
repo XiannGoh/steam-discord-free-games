@@ -607,6 +607,60 @@ def test_cross_day_winner_suppression_hides_previously_announced_game(monkeypatc
     assert state["winner_keys"] == ["fresh-win"]
 
 
+def test_cross_day_late_vote_updates_previously_announced_winner_without_repost(monkeypatch, tmp_path):
+    day_key = "2026-04-08"
+    path = tmp_path / "daily.json"
+    data = {
+        "2026-04-07": {
+            "items": [],
+            "winners_state": {
+                "message_id": "w-prev",
+                "message_ids": ["w-prev"],
+                "winner_keys": ["shared-dupe"],
+                "winner_vote_counts": {"shared-dupe": 2},
+                "winner_entries": [
+                    {
+                        "winner_key": "shared-dupe",
+                        "section": "free",
+                        "title": "Original Winner",
+                        "url": "shared-dupe",
+                        "human_votes": 2,
+                        "voter_names": ["jan", "jerry"],
+                    }
+                ],
+            },
+        },
+        day_key: {
+            "items": [
+                {"section": "free", "title": "Same Game Repost", "url": "shared-dupe", "channel_id": "c", "message_id": "m-late"},
+            ]
+        },
+    }
+    path.write_text(json.dumps(data), encoding="utf-8")
+    payloads = {
+        "m-late": {"reactions": [{"emoji": {"name": "👍"}, "count": 4}]},
+    }
+    reaction_users = {
+        "m-late": [{"id": "bot-1"}, {"id": "u1", "username": "jan"}, {"id": "u2", "username": "jerry"}, {"id": "u3", "username": "akhil"}],
+    }
+    fake = FakeDiscordClient(payloads, reaction_users)
+    _patch_common(monkeypatch, path, fake, day_key)
+
+    winners.main()
+
+    assert fake.posts == []
+    assert len(fake.edits) == 1
+    assert fake.edits[0][1] == "w-prev"
+    assert "Same Game Repost" in fake.edits[0][2]
+    assert "👍 3 votes" in fake.edits[0][2]
+
+    updated = json.loads(path.read_text(encoding="utf-8"))
+    prior_state = updated["2026-04-07"]["winners_state"]
+    assert prior_state["winner_vote_counts"]["shared-dupe"] == 3
+    assert prior_state["winner_entries"][0]["human_votes"] == 3
+    assert updated[day_key].get("winners_state", {}) == {}
+
+
 def test_cross_day_winner_suppression_checks_multiple_recent_days(monkeypatch, tmp_path):
     day_key = "2026-04-08"
     path = tmp_path / "daily.json"
@@ -675,6 +729,38 @@ def test_cross_day_suppression_keeps_legacy_states_readable(monkeypatch, tmp_pat
 
     assert len(fake.posts) == 1
     assert "Legacy Compatible Winner" in fake.posts[0][1]
+
+
+def test_cross_day_late_vote_with_legacy_state_still_suppresses_without_breaking(monkeypatch, tmp_path):
+    day_key = "2026-04-08"
+    path = tmp_path / "daily.json"
+    data = {
+        "2026-04-07": {
+            "items": [],
+            "winners_state": {
+                "message_id": "w-prev",
+                "winner_keys": ["shared-dupe"],
+                "winner_vote_counts": {"shared-dupe": 2},
+            },
+        },
+        day_key: {
+            "items": [
+                {"section": "free", "title": "Same Game Repost", "url": "shared-dupe", "channel_id": "c", "message_id": "m-late"},
+            ]
+        },
+    }
+    path.write_text(json.dumps(data), encoding="utf-8")
+    payloads = {"m-late": {"reactions": [{"emoji": {"name": "👍"}, "count": 4}]}}
+    reaction_users = {"m-late": [{"id": "bot-1"}, {"id": "u1", "username": "jan"}, {"id": "u2", "username": "jerry"}, {"id": "u3", "username": "akhil"}]}
+    fake = FakeDiscordClient(payloads, reaction_users)
+    _patch_common(monkeypatch, path, fake, day_key)
+
+    winners.main()
+
+    assert fake.posts == []
+    assert fake.edits == []
+    state = json.loads(path.read_text(encoding="utf-8"))["2026-04-07"]["winners_state"]
+    assert state["winner_vote_counts"]["shared-dupe"] == 2
 
 
 def test_winners_main_chunked_create_posts_multiple_messages(monkeypatch, tmp_path):

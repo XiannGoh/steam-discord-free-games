@@ -338,6 +338,209 @@ def collect_recent_announced_winner_keys(
     return announced_keys
 
 
+def _coerce_int(value: object, default: int = 0) -> int:
+    try:
+        return int(value)
+    except (TypeError, ValueError):
+        return default
+
+
+def _build_winners_by_section_from_entries(entries: List[dict]) -> Dict[str, List[dict]]:
+    winners_by_section: Dict[str, List[dict]] = {key: [] for key in SECTION_ORDER}
+    for entry in entries:
+        section = str(entry.get("section") or "").strip()
+        if section not in winners_by_section:
+            continue
+        winners_by_section[section].append(
+            {
+                "title": entry.get("title", "Untitled"),
+                "url": entry.get("url", ""),
+                "description": entry.get("description"),
+                "human_votes": _coerce_int(entry.get("human_votes"), 0),
+                "voter_names": entry.get("voter_names", []),
+            }
+        )
+    return winners_by_section
+
+
+def collect_recent_announced_winner_index(
+    daily_posts: Dict[str, dict],
+    *,
+    target_day_key: str,
+    lookback_days: int = WINNERS_LOOKBACK_DAYS,
+) -> Dict[str, dict]:
+    announced_index: Dict[str, dict] = {}
+    for bucket_key in get_lookback_day_keys(target_day_key, lookback_days)[1:]:
+        bucket = daily_posts.get(bucket_key, {})
+        if not isinstance(bucket, dict):
+            continue
+        winners_state = bucket.get("winners_state")
+        if not isinstance(winners_state, dict):
+            continue
+        winner_entries = winners_state.get("winner_entries")
+        if isinstance(winner_entries, list):
+            for entry in winner_entries:
+                if not isinstance(entry, dict):
+                    continue
+                winner_key = str(entry.get("winner_key") or "").strip()
+                if not winner_key or winner_key in announced_index:
+                    continue
+                announced_index[winner_key] = {
+                    "day_key": bucket_key,
+                    "human_votes": _coerce_int(entry.get("human_votes"), 0),
+                    "can_update_state": True,
+                }
+            continue
+
+        winner_keys = winners_state.get("winner_keys")
+        if not isinstance(winner_keys, list):
+            continue
+        winner_vote_counts = winners_state.get("winner_vote_counts")
+        normalized_vote_counts = winner_vote_counts if isinstance(winner_vote_counts, dict) else {}
+        for winner_key in winner_keys:
+            normalized = str(winner_key).strip()
+            if not normalized or normalized in announced_index:
+                continue
+            announced_index[normalized] = {
+                "day_key": bucket_key,
+                "human_votes": _coerce_int(normalized_vote_counts.get(normalized), 0),
+                "can_update_state": False,
+            }
+    return announced_index
+
+
+def update_existing_winner_entry_if_needed(
+    daily_posts: Dict[str, dict],
+    *,
+    key: str,
+    candidate: dict,
+    announced_info: dict,
+) -> bool:
+    if not announced_info.get("can_update_state"):
+        return False
+    if candidate["human_votes"] <= _coerce_int(announced_info.get("human_votes"), 0):
+        return False
+
+    day_key = str(announced_info.get("day_key") or "").strip()
+    if not day_key:
+        return False
+    bucket = daily_posts.get(day_key, {})
+    if not isinstance(bucket, dict):
+        return False
+    winners_state = bucket.get("winners_state")
+    if not isinstance(winners_state, dict):
+        return False
+    winner_entries = winners_state.get("winner_entries")
+    if not isinstance(winner_entries, list):
+        return False
+
+    updated = False
+    for entry in winner_entries:
+        if not isinstance(entry, dict):
+            continue
+        entry_key = str(entry.get("winner_key") or "").strip()
+        if entry_key != key:
+            continue
+        entry["section"] = candidate["section"]
+        entry["title"] = candidate["title"]
+        entry["url"] = candidate["url"]
+        entry["description"] = candidate.get("description")
+        entry["human_votes"] = candidate["human_votes"]
+        entry["voter_names"] = candidate["voter_names"]
+        updated = True
+        break
+
+    if not updated:
+        return False
+
+    winners_state["winner_vote_counts"] = {
+        str(entry.get("winner_key") or "").strip(): _coerce_int(entry.get("human_votes"), 0)
+        for entry in winner_entries
+        if isinstance(entry, dict) and str(entry.get("winner_key") or "").strip()
+    }
+    winners_state["updated_at_utc"] = datetime.now(timezone.utc).isoformat()
+    return True
+
+
+def upsert_winners_messages_for_day(
+    client: DiscordClient,
+    *,
+    daily_posts: Dict[str, dict],
+    day_key: str,
+    winners_channel_id: str,
+) -> bool:
+    bucket = daily_posts.get(day_key, {})
+    if not isinstance(bucket, dict):
+        return False
+    winners_state = bucket.get("winners_state")
+    if not isinstance(winners_state, dict):
+        return False
+    winner_entries = winners_state.get("winner_entries")
+    if not isinstance(winner_entries, list):
+        return False
+
+    winners_by_section = _build_winners_by_section_from_entries(winner_entries)
+    messages = build_winners_message_chunks(winners_by_section)
+    previous_message_ids = normalize_winners_message_ids(winners_state)
+    if not previous_message_ids:
+        return False
+    try:
+        for index, previous_message_id in enumerate(previous_message_ids):
+            client.get_message(
+                winners_channel_id,
+                previous_message_id,
+                context=f"verify winners message {index + 1}/{len(previous_message_ids)} for {day_key}",
+            )
+    except DiscordMessageNotFoundError:
+        previous_message_ids = []
+        print(f"RECOVER: stale/deleted winners message for {day_key}; posting replacement")
+
+    resulting_message_ids: List[str] = []
+    if previous_message_ids:
+        for index, message in enumerate(messages):
+            if index < len(previous_message_ids):
+                message_id = previous_message_ids[index]
+                client.edit_message(
+                    winners_channel_id,
+                    message_id,
+                    message,
+                    context=f"edit winners message chunk {index + 1}/{len(messages)} for {day_key}",
+                )
+                resulting_message_ids.append(message_id)
+            else:
+                resulting_message_ids.append(post_winners_message(client, winners_channel_id, message))
+        for stale_index in range(len(messages), len(previous_message_ids)):
+            stale_message_id = previous_message_ids[stale_index]
+            client.edit_message(
+                winners_channel_id,
+                stale_message_id,
+                "_(Winners content moved to earlier message chunks.)_",
+                context=f"clear stale winners chunk {stale_index + 1}/{len(previous_message_ids)} for {day_key}",
+            )
+        winners_state["last_action"] = "edit"
+        winners_state["updated_at_utc"] = datetime.now(timezone.utc).isoformat()
+        print(f"EDIT: updated winners messages for {day_key} (message_ids={resulting_message_ids})")
+    else:
+        resulting_message_ids = [post_winners_message(client, winners_channel_id, message) for message in messages]
+        winners_state["last_action"] = "create"
+        winners_state["posted_at_utc"] = datetime.now(timezone.utc).isoformat()
+        print(f"CREATE: posted winners messages for {day_key} (message_ids={resulting_message_ids})")
+
+    winners_state["message_id"] = resulting_message_ids[0]
+    winners_state["message_ids"] = resulting_message_ids
+    winners_state["winner_keys"] = sorted(
+        str(entry.get("winner_key") or "").strip()
+        for entry in winner_entries
+        if isinstance(entry, dict) and str(entry.get("winner_key") or "").strip()
+    )
+    winners_state["winner_vote_counts"] = {
+        str(entry.get("winner_key") or "").strip(): _coerce_int(entry.get("human_votes"), 0)
+        for entry in winner_entries
+        if isinstance(entry, dict) and str(entry.get("winner_key") or "").strip()
+    }
+    return True
+
+
 def post_winners_message(client: DiscordClient, channel_id: str, message: str) -> str:
     payload = client.post_message(channel_id, message, context="post winners message")
     message_id = str(payload.get("id", ""))
@@ -445,15 +648,26 @@ def main() -> None:
             if existing is None or candidate["human_votes"] > existing["human_votes"]:
                 deduped_winners[dedupe_key] = candidate
 
-        previously_announced_winner_keys = collect_recent_announced_winner_keys(
+        recently_announced_winner_index = collect_recent_announced_winner_index(
             daily_posts,
             target_day_key=day_key,
         )
-        deduped_winners = {
-            key: winner
-            for key, winner in deduped_winners.items()
-            if key not in previously_announced_winner_keys
-        }
+        prior_days_requiring_updates: set[str] = set()
+        new_winners_by_key: Dict[str, dict] = {}
+        for key, winner in deduped_winners.items():
+            announced_info = recently_announced_winner_index.get(key)
+            if not announced_info:
+                new_winners_by_key[key] = winner
+                continue
+            updated = update_existing_winner_entry_if_needed(
+                daily_posts,
+                key=key,
+                candidate=winner,
+                announced_info=announced_info,
+            )
+            if updated:
+                prior_days_requiring_updates.add(str(announced_info.get("day_key") or "").strip())
+        deduped_winners = new_winners_by_key
 
         for winner in deduped_winners.values():
             section = winner["section"]
@@ -491,22 +705,76 @@ def main() -> None:
             for key, value in previous_winner_vote_counts.items()
             if str(key)
         }
+        previous_winner_entries = winners_state.get("winner_entries")
+        has_previous_winner_entries = isinstance(previous_winner_entries, list)
 
         if not current_winner_keys and not previous_message_ids:
+            for prior_day in sorted(key for key in prior_days_requiring_updates if key and key != day_key):
+                upsert_winners_messages_for_day(
+                    client,
+                    daily_posts=daily_posts,
+                    day_key=prior_day,
+                    winners_channel_id=winners_channel_id,
+                )
+            if prior_days_requiring_updates:
+                save_discord_daily_posts(daily_posts)
             print(f"SKIP: no eligible winners in last {WINNERS_LOOKBACK_DAYS} days for {day_key}")
             return
 
         keys_unchanged = sorted(str(key) for key in previous_winner_keys) == current_winner_keys
         vote_counts_unchanged = normalized_previous_vote_counts == current_winner_vote_counts
+        current_winner_entries = [
+            {
+                "winner_key": key,
+                "section": deduped_winners[key]["section"],
+                "title": deduped_winners[key]["title"],
+                "url": deduped_winners[key]["url"],
+                "description": deduped_winners[key].get("description"),
+                "human_votes": deduped_winners[key]["human_votes"],
+                "voter_names": deduped_winners[key]["voter_names"],
+            }
+            for key in current_winner_keys
+        ]
 
         if keys_unchanged and not had_previous_vote_snapshot:
             winners_state["winner_vote_counts"] = current_winner_vote_counts
+            winners_state["winner_entries"] = current_winner_entries
             winners_state["updated_at_utc"] = datetime.now(timezone.utc).isoformat()
+            for prior_day in sorted(key for key in prior_days_requiring_updates if key and key != day_key):
+                upsert_winners_messages_for_day(
+                    client,
+                    daily_posts=daily_posts,
+                    day_key=prior_day,
+                    winners_channel_id=winners_channel_id,
+                )
             save_discord_daily_posts(daily_posts)
             print(f"SKIP: no newly eligible winners for {day_key} (backfilled vote snapshot)")
             return
 
+        if keys_unchanged and vote_counts_unchanged and has_previous_winner_entries:
+            for prior_day in sorted(key for key in prior_days_requiring_updates if key and key != day_key):
+                upsert_winners_messages_for_day(
+                    client,
+                    daily_posts=daily_posts,
+                    day_key=prior_day,
+                    winners_channel_id=winners_channel_id,
+                )
+            if prior_days_requiring_updates:
+                save_discord_daily_posts(daily_posts)
+            print(f"SKIP: no newly eligible winners for {day_key}")
+            return
+
         if keys_unchanged and vote_counts_unchanged:
+            winners_state["winner_entries"] = current_winner_entries
+            winners_state["updated_at_utc"] = datetime.now(timezone.utc).isoformat()
+            for prior_day in sorted(key for key in prior_days_requiring_updates if key and key != day_key):
+                upsert_winners_messages_for_day(
+                    client,
+                    daily_posts=daily_posts,
+                    day_key=prior_day,
+                    winners_channel_id=winners_channel_id,
+                )
+            save_discord_daily_posts(daily_posts)
             print(f"SKIP: no newly eligible winners for {day_key}")
             return
 
@@ -557,6 +825,14 @@ def main() -> None:
         winners_state["message_ids"] = resulting_message_ids
         winners_state["winner_keys"] = current_winner_keys
         winners_state["winner_vote_counts"] = current_winner_vote_counts
+        winners_state["winner_entries"] = current_winner_entries
+        for prior_day in sorted(key for key in prior_days_requiring_updates if key and key != day_key):
+            upsert_winners_messages_for_day(
+                client,
+                daily_posts=daily_posts,
+                day_key=prior_day,
+                winners_channel_id=winners_channel_id,
+            )
         save_discord_daily_posts(daily_posts)
 
 
