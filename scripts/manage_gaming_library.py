@@ -1,12 +1,29 @@
 import argparse
 
-from gaming_library import manage_library
+from gaming_library import manage_library, normalize_user_id_token
 
 
 def _parse_users(value: str) -> list[str]:
     if not value:
         return []
-    return [token.strip() for token in value.split(",") if token.strip()]
+    normalized: list[str] = []
+    invalid_tokens: list[str] = []
+    for token in value.split(","):
+        raw = token.strip()
+        if not raw:
+            continue
+        user_id = normalize_user_id_token(raw)
+        if user_id:
+            normalized.append(user_id)
+        else:
+            invalid_tokens.append(raw)
+    if invalid_tokens:
+        invalid_display = ", ".join(invalid_tokens)
+        raise RuntimeError(
+            "Unsupported --user-ids token(s): "
+            f"{invalid_display}. Use raw IDs or <@123...>/<@!123...> mention format."
+        )
+    return normalized
 
 
 if __name__ == "__main__":
