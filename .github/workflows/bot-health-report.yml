@@ -100,9 +100,30 @@ jobs:
           chunks = split_discord_content(report)
 
           if len(chunks) > 1:
+              # Prefixes are added after chunking, so reserve room for them and
+              # re-chunk until every labeled chunk stays within Discord's 2000-char limit.
+              while True:
+                  total_chunks = len(chunks)
+                  max_prefix_len = len(f"📋 Bot Health Report ({total_chunks}/{total_chunks})\n")
+                  reserved_hard_limit = 2000 - max_prefix_len
+                  if reserved_hard_limit <= 0:
+                      raise RuntimeError("Health report chunk label unexpectedly exceeds Discord hard limit")
+
+                  reserved_target_limit = min(1900, reserved_hard_limit)
+                  rechunked = split_discord_content(
+                      report,
+                      target_limit=reserved_target_limit,
+                      hard_limit=reserved_hard_limit,
+                  )
+                  if len(rechunked) == total_chunks:
+                      chunks = rechunked
+                      break
+                  chunks = rechunked
+
               labeled_chunks = []
+              total_chunks = len(chunks)
               for idx, chunk in enumerate(chunks, start=1):
-                  prefix = f"📋 Bot Health Report ({idx}/{len(chunks)})\n"
+                  prefix = f"📋 Bot Health Report ({idx}/{total_chunks})\n"
                   labeled_chunks.append(f"{prefix}{chunk}")
               chunks = labeled_chunks
 
