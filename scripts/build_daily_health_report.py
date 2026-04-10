@@ -4,7 +4,7 @@ from __future__ import annotations
 
 import argparse
 import json
-from dataclasses import dataclass, field
+from dataclasses import asdict, dataclass, field
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
 from typing import Any
@@ -21,6 +21,41 @@ WEEKLY_PATHS = {
 DAILY_POSTS_PATH = ROOT / "discord_daily_posts.json"
 
 NEW_YORK_TZ = ZoneInfo("America/New_York")
+SCHEDULE_EXPECTATIONS: dict[str, dict[str, Any]] = {
+    "Weekly Scheduling Bot": {
+        "kind": "weekly",
+        "cron": "0 13 * * 6",
+        "cadence": "weekly Saturday 13:00 UTC",
+        "hour": 13,
+        "minute": 0,
+        "weekday": 5,
+        "window_before_minutes": 90,
+    },
+    "Weekly Scheduling Responses Sync": {
+        "kind": "interval",
+        "cron": "0 */3 * * *",
+        "cadence": "every 3 hours (UTC)",
+        "interval_hours": 3,
+        "minute": 0,
+        "window_before_minutes": 90,
+    },
+    "Daily Steam Picks": {
+        "kind": "daily",
+        "cron": "0 13 * * *",
+        "cadence": "daily 13:00 UTC",
+        "hour": 13,
+        "minute": 0,
+        "window_before_minutes": 90,
+    },
+    "Evening Winners": {
+        "kind": "daily",
+        "cron": "0 23 * * *",
+        "cadence": "daily 23:00 UTC",
+        "hour": 23,
+        "minute": 0,
+        "window_before_minutes": 90,
+    },
+}
 
 
 @dataclass(frozen=True)
@@ -42,6 +77,24 @@ class OverallHealthSummary:
     icon: str
     headline: str
     detail: str
+
+
+@dataclass(frozen=True)
+class WorkflowScheduleDiagnostics:
+    code: str
+    message: str
+    expected_cadence: str
+    expected_schedule_time_utc: datetime | None
+    expected_window_start_utc: datetime | None
+    found_scheduled_run_in_window: bool
+    latest_run_is_manual_recovery: bool
+    latest_run_event: str | None
+    latest_run_created_at: datetime | None
+    latest_run_updated_at: datetime | None
+    latest_run_id: int | None
+    latest_run_conclusion: str | None
+    scheduled_run_in_window_id: int | None
+    scheduled_run_in_window_created_at: datetime | None
 
 
 def _load_json(path: Path) -> Any | None:
@@ -101,6 +154,110 @@ def evaluate_workflow_status(run: dict[str, Any] | None, stale_hours: int) -> tu
     if conclusion in {"failure", "timed_out", "startup_failure", "action_required"}:
         return "🔴", f"{conclusion} ({recency})", True, "failed"
     return "🟡", f"{conclusion} ({recency})", True, "non_success"
+
+
+def _latest_expected_schedule_time(now_utc: datetime, expectation: dict[str, Any]) -> datetime | None:
+    kind = expectation.get("kind")
+    if kind == "daily":
+        candidate = now_utc.replace(
+            hour=int(expectation["hour"]),
+            minute=int(expectation.get("minute", 0)),
+            second=0,
+            microsecond=0,
+        )
+        if candidate > now_utc:
+            candidate -= timedelta(days=1)
+        return candidate
+    if kind == "weekly":
+        candidate = now_utc.replace(
+            hour=int(expectation["hour"]),
+            minute=int(expectation.get("minute", 0)),
+            second=0,
+            microsecond=0,
+        )
+        target_weekday = int(expectation["weekday"])
+        days_back = (candidate.weekday() - target_weekday) % 7
+        candidate -= timedelta(days=days_back)
+        if candidate > now_utc:
+            candidate -= timedelta(days=7)
+        return candidate
+    if kind == "interval":
+        interval_hours = int(expectation["interval_hours"])
+        minute = int(expectation.get("minute", 0))
+        aligned = now_utc.replace(minute=minute, second=0, microsecond=0)
+        aligned = aligned.replace(hour=(aligned.hour // interval_hours) * interval_hours)
+        if aligned > now_utc:
+            aligned -= timedelta(hours=interval_hours)
+        return aligned
+    return None
+
+
+def build_schedule_diagnostics(
+    workflow_name: str,
+    *,
+    latest_run: dict[str, Any] | None,
+    recent_runs: list[dict[str, Any]],
+    now_utc: datetime,
+) -> WorkflowScheduleDiagnostics | None:
+    expectation = SCHEDULE_EXPECTATIONS.get(workflow_name)
+    if not expectation:
+        return None
+    expected_time = _latest_expected_schedule_time(now_utc, expectation)
+    if expected_time is None:
+        return None
+    window_start = expected_time - timedelta(minutes=int(expectation.get("window_before_minutes", 60)))
+
+    scheduled_in_window = None
+    for run in recent_runs:
+        if run.get("event") != "schedule":
+            continue
+        created_at = _parse_iso_utc(run.get("created_at") or run.get("run_started_at") or run.get("updated_at"))
+        if created_at is None:
+            continue
+        if created_at >= window_start:
+            scheduled_in_window = run
+            break
+
+    latest_event = latest_run.get("event") if isinstance(latest_run, dict) and isinstance(latest_run.get("event"), str) else None
+    found_scheduled = scheduled_in_window is not None
+    latest_manual_recovery = bool(latest_event and latest_event != "schedule" and found_scheduled)
+
+    if found_scheduled and latest_event == "schedule":
+        code = "workflow.scheduled_window_satisfied"
+        message = "Scheduled run found in expected window."
+    elif found_scheduled and latest_event != "schedule":
+        code = "workflow.latest_manual_run"
+        message = "Latest run was manual/non-scheduled; expected scheduled run was still found in window."
+    elif latest_event and latest_event != "schedule":
+        code = "workflow.expected_scheduled_run_missing"
+        message = "Latest run was manual/non-scheduled and no scheduled run was found in the expected window."
+    elif latest_event == "schedule":
+        code = "workflow.latest_scheduled_but_outside_expected_window"
+        message = "Latest run is scheduled but appears older than the most recent expected schedule window."
+    else:
+        code = "workflow.expected_scheduled_run_missing"
+        message = "No scheduled run found in the most recent expected window."
+
+    return WorkflowScheduleDiagnostics(
+        code=code,
+        message=message,
+        expected_cadence=f"{expectation['cadence']} (cron: {expectation['cron']})",
+        expected_schedule_time_utc=expected_time,
+        expected_window_start_utc=window_start,
+        found_scheduled_run_in_window=found_scheduled,
+        latest_run_is_manual_recovery=latest_manual_recovery,
+        latest_run_event=latest_event,
+        latest_run_created_at=_parse_iso_utc(latest_run.get("created_at")) if isinstance(latest_run, dict) else None,
+        latest_run_updated_at=_parse_iso_utc(latest_run.get("updated_at")) if isinstance(latest_run, dict) else None,
+        latest_run_id=latest_run.get("id") if isinstance(latest_run, dict) and isinstance(latest_run.get("id"), int) else None,
+        latest_run_conclusion=str(latest_run.get("conclusion") or latest_run.get("status")) if isinstance(latest_run, dict) else None,
+        scheduled_run_in_window_id=scheduled_in_window.get("id")
+        if isinstance(scheduled_in_window, dict) and isinstance(scheduled_in_window.get("id"), int)
+        else None,
+        scheduled_run_in_window_created_at=_parse_iso_utc(scheduled_in_window.get("created_at"))
+        if isinstance(scheduled_in_window, dict)
+        else None,
+    )
 
 
 def _week_keys(payload: Any) -> set[str]:
@@ -592,12 +749,51 @@ def _render_section(title: str, content_lines: list[str]) -> list[str]:
     return section
 
 
-def build_workflow_status_lines(workflow_runs: list[dict[str, Any]]) -> list[str]:
+def _serialize_schedule_diagnostics(
+    workflow_name: str,
+    stale_hours: int,
+    diagnostics: WorkflowScheduleDiagnostics | None,
+) -> dict[str, Any] | None:
+    if diagnostics is None:
+        return None
+    payload = asdict(diagnostics)
+    for key in (
+        "expected_schedule_time_utc",
+        "expected_window_start_utc",
+        "latest_run_created_at",
+        "latest_run_updated_at",
+        "scheduled_run_in_window_created_at",
+    ):
+        value = payload.get(key)
+        if isinstance(value, datetime):
+            payload[key] = value.isoformat()
+    payload["workflow_name"] = workflow_name
+    payload["stale_hours"] = stale_hours
+    return payload
+
+
+def build_workflow_status_lines(
+    workflow_runs: list[dict[str, Any]], *, now_utc: datetime | None = None
+) -> tuple[list[str], list[dict[str, Any]]]:
+    now_utc = now_utc or datetime.now(timezone.utc)
     lines: list[str] = []
+    diagnostics_payload: list[dict[str, Any]] = []
     for workflow in workflow_runs:
         stale_hours = int(workflow["staleHours"])
+        recent_runs = workflow.get("recentRuns")
         run = workflow.get("run")
+        if not isinstance(run, dict):
+            run = recent_runs[0] if isinstance(recent_runs, list) and recent_runs and isinstance(recent_runs[0], dict) else None
         icon, status_text, include_details, status_reason = evaluate_workflow_status(run, stale_hours)
+        schedule_diagnostics = build_schedule_diagnostics(
+            workflow["name"],
+            latest_run=run if isinstance(run, dict) else None,
+            recent_runs=recent_runs if isinstance(recent_runs, list) else ([run] if isinstance(run, dict) else []),
+            now_utc=now_utc,
+        )
+        serialized = _serialize_schedule_diagnostics(workflow["name"], stale_hours, schedule_diagnostics)
+        if serialized:
+            diagnostics_payload.append(serialized)
         lines.append(f"{icon} {workflow['name']}")
         lines.append(f"Last run: {status_text}")
 
@@ -611,6 +807,20 @@ def build_workflow_status_lines(workflow_runs: list[dict[str, Any]]) -> list[str
                 lines.append(f"Last run time: {timestamp_text}")
             if run.get("html_url"):
                 lines.append(f"Run: {run['html_url']}")
+        if schedule_diagnostics:
+            lines.append(f"Expected cadence: {schedule_diagnostics.expected_cadence}")
+            expected_time_text = _format_ny_timestamp(schedule_diagnostics.expected_schedule_time_utc.isoformat())
+            if expected_time_text:
+                lines.append(f"Expected latest schedule (ET): {expected_time_text}")
+            lines.append(
+                f"Schedule check: {schedule_diagnostics.message} [{schedule_diagnostics.code}]"
+            )
+            if schedule_diagnostics.latest_run_is_manual_recovery:
+                lines.append("Latest context: manual recovery run detected after scheduled execution.")
+            elif schedule_diagnostics.latest_run_event and schedule_diagnostics.latest_run_event != "schedule":
+                lines.append("Latest context: latest run trigger is manual/non-scheduled.")
+            if not schedule_diagnostics.found_scheduled_run_in_window:
+                lines.append("Scheduled window evidence: no scheduled run found in expected window.")
         guidance = _workflow_guidance(
             status_reason=status_reason,
             icon=icon,
@@ -622,7 +832,7 @@ def build_workflow_status_lines(workflow_runs: list[dict[str, Any]]) -> list[str
             lines.append(f"Disposition: {disposition}")
             lines.append(f"Next step: {next_step}")
         lines.append("")
-    return lines
+    return lines, diagnostics_payload
 
 
 def _report_date_new_york(now_utc: datetime) -> str:
@@ -633,19 +843,29 @@ def _report_date_new_york(now_utc: datetime) -> str:
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--workflow-runs-json", required=True, help="Path to workflow run metadata JSON")
+    parser.add_argument(
+        "--schedule-diagnostics-out",
+        default="",
+        help="Optional path to write compact workflow schedule diagnostics JSON.",
+    )
     args = parser.parse_args()
 
     payload = _load_json(Path(args.workflow_runs_json))
     workflow_runs = payload if isinstance(payload, list) else []
 
     now_utc = datetime.now(timezone.utc)
-    workflow_lines = build_workflow_status_lines(workflow_runs)
+    workflow_lines, diagnostics_payload = build_workflow_status_lines(workflow_runs, now_utc=now_utc)
     state_issues = compute_state_issues(now_utc=now_utc)
     report = render_report(
         workflow_status_lines=workflow_lines,
         state_issues=state_issues,
         report_date=_report_date_new_york(now_utc),
     )
+    if args.schedule_diagnostics_out:
+        Path(args.schedule_diagnostics_out).write_text(
+            json.dumps({"generated_at_utc": now_utc.isoformat(), "workflows": diagnostics_payload}, indent=2),
+            encoding="utf-8",
+        )
     print(report)
 
 

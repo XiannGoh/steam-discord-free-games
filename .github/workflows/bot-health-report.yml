@@ -37,12 +37,23 @@ jobs:
                 owner: context.repo.owner,
                 repo: context.repo.repo,
                 workflow_id: workflow.file,
-                per_page: 1,
+                per_page: 20,
                 exclude_pull_requests: true,
               });
+              const runs = response.data.workflow_runs || [];
               output.push({
                 ...workflow,
-                run: response.data.workflow_runs[0] || null,
+                run: runs[0] || null,
+                recentRuns: runs.slice(0, 20).map((run) => ({
+                  id: run.id,
+                  event: run.event,
+                  status: run.status,
+                  conclusion: run.conclusion,
+                  created_at: run.created_at,
+                  updated_at: run.updated_at,
+                  run_started_at: run.run_started_at,
+                  html_url: run.html_url,
+                })),
               });
             }
 
@@ -54,12 +65,21 @@ jobs:
           WORKFLOW_RUNS_JSON: ${{ steps.collect-workflows.outputs.workflows }}
         run: |
           printf '%s' "${WORKFLOW_RUNS_JSON}" > workflow-runs.json
-          python scripts/build_daily_health_report.py --workflow-runs-json workflow-runs.json > health-report.txt
+          python scripts/build_daily_health_report.py \
+            --workflow-runs-json workflow-runs.json \
+            --schedule-diagnostics-out workflow-schedule-diagnostics.json \
+            > health-report.txt
           {
             echo "content<<EOF"
             cat health-report.txt
             echo "EOF"
           } >> "$GITHUB_OUTPUT"
+
+      - name: Upload scheduling diagnostics artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: workflow-schedule-diagnostics
+          path: workflow-schedule-diagnostics.json
 
       - name: Post health report to Discord
         if: ${{ env.DISCORD_HEALTH_MONITOR_WEBHOOK_URL != '' }}

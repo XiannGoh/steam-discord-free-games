@@ -71,7 +71,7 @@ def test_healthy_state_has_all_clear_message(tmp_path, monkeypatch):
     assert issues == []
 
     rendered = report.render_report(
-        workflow_status_lines=["🟢 Daily Steam Picks", "Last run: success (1h ago)", ""],
+        workflow_status_lines=["🟢 Daily Steam Picks", "Last run: success (1h ago)", "Expected cadence: daily 13:00 UTC (cron: 0 13 * * *)", ""],
         state_issues=issues,
         report_date="Apr 9, 2026",
     )
@@ -87,10 +87,13 @@ def test_stale_workflow_includes_triage_metadata():
         "event": "schedule",
         "html_url": "https://example.test/run/1",
     }
-    lines = report.build_workflow_status_lines(
-        [{"name": "Weekly Scheduling Responses Sync", "staleHours": 2, "run": run}]
+    lines, diagnostics = report.build_workflow_status_lines(
+        [{"name": "Weekly Scheduling Responses Sync", "staleHours": 2, "run": run}],
+        now_utc=datetime(2026, 1, 1, 4, 0, tzinfo=timezone.utc),
     )
     rendered = "\n".join(lines)
+
+    assert diagnostics
 
     assert "🔴 Weekly Scheduling Responses Sync" in rendered
     assert "Expected freshness: ≤2h" in rendered
@@ -377,6 +380,7 @@ def test_error_rendering_uses_action_required():
         )
     )
     rendered = "\n".join(lines)
+
     assert "Disposition: Action required" in rendered
     assert "Next step: Inspect discord_daily_posts.json" in rendered
 
@@ -387,15 +391,20 @@ def test_green_workflow_output_has_no_guidance_lines():
         "created_at": datetime.now(timezone.utc).isoformat(),
         "conclusion": "success",
     }
-    lines = report.build_workflow_status_lines([{"name": "Daily Steam Picks", "staleHours": 6, "run": run}])
+    lines, diagnostics = report.build_workflow_status_lines(
+        [{"name": "Daily Steam Picks", "staleHours": 6, "run": run}],
+        now_utc=datetime.now(timezone.utc),
+    )
     rendered = "\n".join(lines)
+
+    assert diagnostics
     assert "Disposition:" not in rendered
     assert "Next step:" not in rendered
 
 
 def test_overall_summary_is_green_when_only_no_action_needed_warnings():
     rendered = report.render_report(
-        workflow_status_lines=["🟢 Daily Steam Picks", "Last run: success (1h ago)", ""],
+        workflow_status_lines=["🟢 Daily Steam Picks", "Last run: success (1h ago)", "Expected cadence: daily 13:00 UTC (cron: 0 13 * * *)", ""],
         state_issues=[
             report.Issue(
                 code="weekly.summary_freshness_missing",
@@ -411,6 +420,74 @@ def test_overall_summary_is_green_when_only_no_action_needed_warnings():
 
     assert "🟢 Overall: Healthy with informational warnings" in rendered
     assert "1 low-priority warning detected. No action needed." in rendered
+
+
+def test_schedule_diagnostics_detects_latest_manual_recovery_when_scheduled_exists():
+    now_utc = datetime(2026, 4, 10, 23, 30, tzinfo=timezone.utc)
+    latest_manual = {
+        "id": 100,
+        "event": "workflow_dispatch",
+        "created_at": "2026-04-10T23:20:00+00:00",
+        "updated_at": "2026-04-10T23:21:00+00:00",
+        "conclusion": "success",
+    }
+    recent_runs = [
+        latest_manual,
+        {"id": 99, "event": "schedule", "created_at": "2026-04-10T23:01:00+00:00", "updated_at": "2026-04-10T23:05:00+00:00"},
+    ]
+    diagnostics = report.build_schedule_diagnostics(
+        "Evening Winners",
+        latest_run=latest_manual,
+        recent_runs=recent_runs,
+        now_utc=now_utc,
+    )
+
+    assert diagnostics is not None
+    assert diagnostics.code == "workflow.latest_manual_run"
+    assert diagnostics.latest_run_is_manual_recovery is True
+    assert diagnostics.found_scheduled_run_in_window is True
+
+
+def test_schedule_diagnostics_flags_missing_scheduled_window_when_only_manual_exists():
+    now_utc = datetime(2026, 4, 10, 23, 30, tzinfo=timezone.utc)
+    latest_manual = {
+        "id": 120,
+        "event": "workflow_dispatch",
+        "created_at": "2026-04-10T22:40:00+00:00",
+        "updated_at": "2026-04-10T22:45:00+00:00",
+        "conclusion": "success",
+    }
+    diagnostics = report.build_schedule_diagnostics(
+        "Evening Winners",
+        latest_run=latest_manual,
+        recent_runs=[latest_manual],
+        now_utc=now_utc,
+    )
+
+    assert diagnostics is not None
+    assert diagnostics.code == "workflow.expected_scheduled_run_missing"
+    assert diagnostics.found_scheduled_run_in_window is False
+
+
+def test_schedule_diagnostics_flags_old_scheduled_run_outside_expected_window():
+    now_utc = datetime(2026, 4, 10, 23, 30, tzinfo=timezone.utc)
+    latest_schedule = {
+        "id": 140,
+        "event": "schedule",
+        "created_at": "2026-04-09T22:30:00+00:00",
+        "updated_at": "2026-04-09T22:35:00+00:00",
+        "conclusion": "success",
+    }
+    diagnostics = report.build_schedule_diagnostics(
+        "Evening Winners",
+        latest_run=latest_schedule,
+        recent_runs=[latest_schedule],
+        now_utc=now_utc,
+    )
+
+    assert diagnostics is not None
+    assert diagnostics.code == "workflow.latest_scheduled_but_outside_expected_window"
+    assert diagnostics.found_scheduled_run_in_window is False
 
 
 def test_overall_summary_is_red_when_stale_workflow_is_action_required():
@@ -465,7 +542,7 @@ def test_overall_summary_is_red_when_action_required_or_error_exists():
 
 def test_overall_summary_is_green_when_fully_healthy():
     rendered = report.render_report(
-        workflow_status_lines=["🟢 Daily Steam Picks", "Last run: success (1h ago)", ""],
+        workflow_status_lines=["🟢 Daily Steam Picks", "Last run: success (1h ago)", "Expected cadence: daily 13:00 UTC (cron: 0 13 * * *)", ""],
         state_issues=[],
         report_date="Apr 9, 2026",
     )
