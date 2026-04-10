@@ -29,7 +29,7 @@ Section order and labels are intentionally centralized, threshold comments are i
 
 - Weekly scheduling channel: `update-weekly-schedule-here` (`1491294381418741870`)
 - Daily picks channel: `xianngpt-bot-daily-vote-here` (`1491294533751799809`)
-- Winners destination channel: configured by `DISCORD_WINNERS_CHANNEL_ID` (currently `xianngpt-bot-daily-vote-here`)
+- Winners destination channel: configured by `DISCORD_WINNERS_CHANNEL_ID` (currently `daily-game-picks`)
 - Health monitor channel: `xiann-gpt-bot-health-monitor` (`1491520649917628536`)
 
 ---
@@ -332,7 +332,7 @@ Behavior:
   - raw 👍 = 1 → excluded (0 human votes)
   - raw 👍 = 2 → included (1 human vote)
   - raw 👍 = 3 → included (2 human votes)
-- Posts winners to the channel configured by `DISCORD_WINNERS_CHANNEL_ID` (currently `xianngpt-bot-daily-vote-here`)
+- Posts winners to the channel configured by `DISCORD_WINNERS_CHANNEL_ID` (currently `daily-game-picks`)
 - Winners intentionally inherit the same section order as daily picks (`demo_playtest`, `free`, `paid`, `instagram`).
 
 Rerun/idempotency behavior:
