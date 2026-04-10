@@ -2,6 +2,7 @@ import json
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
 
+from discord_api import split_discord_content
 from scripts import build_daily_health_report as report
 
 
@@ -270,6 +271,51 @@ def test_health_report_cleanup_removes_state_sanity_check_references_from_workfl
     assert "## State / Artifact Health" in rendered
     assert "🟢 No state inconsistencies detected" in rendered
     assert "State Sanity Check" not in rendered
+
+
+def _label_health_report_chunks(report_text: str) -> list[str]:
+    chunks = split_discord_content(report_text)
+    if len(chunks) <= 1:
+        return chunks
+
+    while True:
+        total_chunks = len(chunks)
+        max_prefix_len = len(f"📋 Bot Health Report ({total_chunks}/{total_chunks})\n")
+        reserved_hard_limit = 2000 - max_prefix_len
+        if reserved_hard_limit <= 0:
+            raise RuntimeError("Health report chunk label unexpectedly exceeds Discord hard limit")
+
+        reserved_target_limit = min(1900, reserved_hard_limit)
+        rechunked = split_discord_content(
+            report_text,
+            target_limit=reserved_target_limit,
+            hard_limit=reserved_hard_limit,
+        )
+        if len(rechunked) == total_chunks:
+            chunks = rechunked
+            break
+        chunks = rechunked
+
+    total_chunks = len(chunks)
+    return [f"📋 Bot Health Report ({idx}/{total_chunks})\n{chunk}" for idx, chunk in enumerate(chunks, start=1)]
+
+
+def test_health_report_chunk_labels_never_push_labeled_chunks_past_discord_limit():
+    long_report = "\n".join([f"- health line {idx}: {'x' * 180}" for idx in range(1, 260)])
+    labeled_chunks = _label_health_report_chunks(long_report)
+
+    assert len(labeled_chunks) > 1
+    assert all(len(chunk) <= 2000 for chunk in labeled_chunks)
+    assert labeled_chunks[0].startswith("📋 Bot Health Report (1/")
+
+
+def test_health_report_workflow_keeps_post_chunk_label_overflow_guardrails():
+    workflow_file = Path(".github/workflows/bot-health-report.yml").read_text(encoding="utf-8")
+
+    assert "max_prefix_len = len(f\"📋 Bot Health Report ({total_chunks}/{total_chunks})\\n\")" in workflow_file
+    assert "reserved_hard_limit = 2000 - max_prefix_len" in workflow_file
+    assert "if reserved_hard_limit <= 0:" in workflow_file
+    assert "rechunked = split_discord_content(" in workflow_file
 
 
 def test_report_date_new_york_format_is_portable_and_unpadded_day():
