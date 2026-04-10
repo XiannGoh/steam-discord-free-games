@@ -376,6 +376,51 @@ def test_build_winners_message_compact_fallback_when_too_long(monkeypatch):
     assert "- Game 0 (2 votes)" in compact
 
 
+def test_build_winners_message_chunks_keeps_single_message_under_limit():
+    winners_by_section = {
+        "demo_playtest": [],
+        "free": [
+            {
+                "title": "Game A",
+                "description": "Short description.",
+                "url": "https://example.com/a",
+                "human_votes": 2,
+                "voter_names": ["Jan", "Jerry"],
+            }
+        ],
+        "paid": [],
+        "instagram": [],
+    }
+
+    chunks = winners.build_winners_message_chunks(winners_by_section)
+    assert len(chunks) == 1
+    assert chunks[0] == winners.build_winners_message(winners_by_section)
+
+
+def test_build_winners_message_chunks_splits_over_limit_without_exceeding_discord_limit():
+    winners_by_section = {
+        "demo_playtest": [],
+        "free": [
+            {
+                "title": f"Very Long Winner Title {idx}",
+                "description": "A" * 110,
+                "url": f"https://example.com/{idx}",
+                "human_votes": 2,
+                "voter_names": [f"User {i}" for i in range(12)],
+            }
+            for idx in range(30)
+        ],
+        "paid": [],
+        "instagram": [],
+    }
+
+    chunks = winners.build_winners_message_chunks(winners_by_section)
+    assert len(chunks) > 1
+    assert chunks[0].startswith("🏆 Daily Game Picks — Winners")
+    for chunk in chunks:
+        assert len(chunk) <= winners.DISCORD_MESSAGE_CHAR_LIMIT
+
+
 def test_build_winners_message_supports_demo_playtest_section():
     winners_by_section = {
         "demo_playtest": [
@@ -455,3 +500,107 @@ def test_winners_pipeline_integration_late_votes_dedupe_and_coherent_edit(monkey
     edit_content = fake_edit.edits[0][2]
     assert "Current Paid Winner" in edit_content
     assert "👍 2 votes" in edit_content
+
+
+def test_winners_main_chunked_create_posts_multiple_messages(monkeypatch, tmp_path):
+    day_key = "2026-04-08"
+    path = tmp_path / "daily.json"
+    items = [
+        {
+            "section": "free",
+            "title": f"Chunked Winner {idx}",
+            "description": "A" * 110,
+            "url": f"https://example.com/{idx}",
+            "channel_id": "c",
+            "message_id": f"m-{idx}",
+        }
+        for idx in range(35)
+    ]
+    path.write_text(json.dumps({day_key: {"items": items}}), encoding="utf-8")
+    payloads = {f"m-{idx}": {"reactions": [{"emoji": {"name": "👍"}, "count": (3 if idx == 0 else 2)}]} for idx in range(35)}
+    reaction_users = {f"m-{idx}": ([{"id": "bot-1"}, {"id": "u-extra", "username": "extra"}, {"id": f"u-{idx}", "username": f"user-{idx}"}] if idx == 0 else [{"id": "bot-1"}, {"id": f"u-{idx}", "username": f"user-{idx}"}]) for idx in range(35)}
+    fake = FakeDiscordClient(payloads, reaction_users)
+    _patch_common(monkeypatch, path, fake, day_key)
+
+    winners.main()
+
+    assert len(fake.posts) > 1
+    state = json.loads(path.read_text(encoding="utf-8"))[day_key]["winners_state"]
+    assert state["message_id"] == "w-1"
+    assert state["message_ids"] == [post[2] for post in fake.posts]
+    for _, content, _ in fake.posts:
+        assert len(content) <= winners.DISCORD_MESSAGE_CHAR_LIMIT
+
+
+def test_winners_main_legacy_single_message_id_state_still_edits(monkeypatch, tmp_path):
+    day_key, path = _setup_daily(tmp_path)
+    data = json.loads(path.read_text(encoding="utf-8"))
+    data[day_key]["winners_state"] = {
+        "message_id": "w-old",
+        "winner_keys": ["paid-win", "shared-dupe"],
+        "winner_vote_counts": {"paid-win": 1, "shared-dupe": 1},
+    }
+    path.write_text(json.dumps(data), encoding="utf-8")
+
+    payloads = {
+        "m-late": {"reactions": [{"emoji": {"name": "👍"}, "count": 4}]},
+        "m-dupe": {"reactions": [{"emoji": {"name": "👍"}, "count": 2}]},
+        "m-paid": {"reactions": [{"emoji": {"name": "👍"}, "count": 2}]},
+    }
+    reaction_users = {
+        "m-late": [{"id": "bot-1"}, {"id": "u1", "username": "u1"}, {"id": "u5", "username": "u5"}, {"id": "u8", "username": "u8"}],
+        "m-paid": [{"id": "bot-1"}, {"id": "u2", "username": "u2"}],
+    }
+    fake = FakeDiscordClient(payloads, reaction_users)
+    _patch_common(monkeypatch, path, fake, day_key)
+
+    winners.main()
+
+    assert len(fake.edits) == 1
+    assert fake.edits[0][1] == "w-old"
+    assert fake.posts == []
+
+
+def test_winners_main_multi_message_state_updates_without_duplicate_reposts(monkeypatch, tmp_path):
+    day_key = "2026-04-08"
+    path = tmp_path / "daily.json"
+    items = [
+        {
+            "section": "free",
+            "title": f"Chunked Winner {idx}",
+            "description": "A" * 110,
+            "url": f"https://example.com/{idx}",
+            "channel_id": "c",
+            "message_id": f"m-{idx}",
+        }
+        for idx in range(35)
+    ]
+    path.write_text(
+        json.dumps(
+            {
+                day_key: {
+                    "items": items,
+                    "winners_state": {
+                        "message_id": "w-1",
+                        "message_ids": ["w-1", "w-2", "w-3", "w-4"],
+                        "winner_keys": [f"https://example.com/{idx}" for idx in range(35)],
+                        "winner_vote_counts": {f"https://example.com/{idx}": 1 for idx in range(35)},
+                    },
+                }
+            }
+        ),
+        encoding="utf-8",
+    )
+
+    payloads = {f"m-{idx}": {"reactions": [{"emoji": {"name": "👍"}, "count": (3 if idx == 0 else 2)}]} for idx in range(35)}
+    reaction_users = {f"m-{idx}": [{"id": "bot-1"}, {"id": f"u-{idx}", "username": f"user-{idx}"}] for idx in range(35)}
+    fake = FakeDiscordClient(payloads, reaction_users)
+    _patch_common(monkeypatch, path, fake, day_key)
+
+    winners.main()
+
+    assert fake.posts == []
+    edited_ids = [entry[1] for entry in fake.edits]
+    assert edited_ids == ["w-1", "w-2", "w-3", "w-4"]
+    state = json.loads(path.read_text(encoding="utf-8"))[day_key]["winners_state"]
+    assert state["message_ids"] == ["w-1", "w-2", "w-3", "w-4"]
