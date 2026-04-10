@@ -95,7 +95,7 @@ def evaluate_workflow_status(run: dict[str, Any] | None, stale_hours: int) -> tu
     conclusion = str(run.get("conclusion") or run.get("status") or "unknown")
 
     if age_hours > stale_hours:
-        return "🟡", f"{conclusion} ({recency}) — stale", True, "stale"
+        return "🔴", f"{conclusion} ({recency}) — stale", True, "stale"
     if conclusion == "success":
         return "🟢", f"{conclusion} ({recency})", False, "success"
     if conclusion in {"failure", "timed_out", "startup_failure", "action_required"}:
@@ -201,7 +201,7 @@ def _workflow_guidance(
     run_url = run.get("html_url") if isinstance(run, dict) and isinstance(run.get("html_url"), str) else None
     if status_reason == "stale":
         return (
-            "Action recommended",
+            "Action required",
             f"Re-run {workflow_name} if no run is expected soon; otherwise monitor the next scheduled run.",
         )
     if status_reason in {"no_recent_run", "timestamp_missing"}:
