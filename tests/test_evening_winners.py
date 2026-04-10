@@ -318,6 +318,46 @@ def test_build_winners_message_includes_description_when_present():
     assert "u-a" in content
 
 
+def test_instagram_winner_description_present_remains_unchanged():
+    winners_by_section = {
+        "demo_playtest": [],
+        "free": [],
+        "paid": [],
+        "instagram": [
+            {
+                "title": "@creator",
+                "description": "Big co-op giveaway this weekend",
+                "url": "https://www.instagram.com/p/ABC123/",
+                "human_votes": 3,
+                "voter_names": ["Jan", "Jerry", "Akhil"],
+            }
+        ],
+    }
+    content = winners.build_winners_message(winners_by_section)
+    assert "Big co-op giveaway this weekend" in content
+    assert "caption unavailable in legacy state" not in content
+
+
+def test_instagram_winner_missing_description_uses_fallback():
+    winners_by_section = {
+        "demo_playtest": [],
+        "free": [],
+        "paid": [],
+        "instagram": [
+            {
+                "title": "@creator",
+                "url": "https://www.instagram.com/p/ABC123/",
+                "human_votes": 2,
+                "voter_names": ["Jan", "Jerry"],
+            }
+        ],
+    }
+    content = winners.build_winners_message(winners_by_section)
+    assert "Instagram post from @creator" in content
+    assert "caption unavailable in legacy state" in content
+    assert "ABC123" in content
+
+
 def test_build_winners_message_omits_description_when_absent_or_empty():
     winners_by_section = {
         "demo_playtest": [],
@@ -343,6 +383,7 @@ def test_build_winners_message_omits_description_when_absent_or_empty():
     assert " \n\t " not in content
     assert "Voters — Jan" in content
     assert "Voters — Jerry" in content
+    assert "caption unavailable in legacy state" not in content
 
 
 def test_normalize_winner_description_truncates_long_text():
@@ -419,6 +460,29 @@ def test_build_winners_message_chunks_splits_over_limit_without_exceeding_discor
     assert chunks[0].startswith("🏆 Daily Game Picks — Winners")
     for chunk in chunks:
         assert len(chunk) <= winners.DISCORD_MESSAGE_CHAR_LIMIT
+
+
+def test_build_winners_message_chunks_include_instagram_fallback_for_legacy_records():
+    winners_by_section = {
+        "demo_playtest": [],
+        "free": [],
+        "paid": [],
+        "instagram": [
+            {
+                "title": "@creator",
+                "url": "https://www.instagram.com/p/LEGACY001/",
+                "human_votes": 2,
+                "voter_names": ["Jan", "Jerry"],
+            }
+            for _ in range(20)
+        ],
+    }
+
+    chunks = winners.build_winners_message_chunks(winners_by_section, target_max=400, hard_limit=winners.DISCORD_MESSAGE_CHAR_LIMIT)
+    assert len(chunks) > 1
+    joined = "\n".join(chunks)
+    assert "Instagram post from @creator" in joined
+    assert "caption unavailable in legacy state" in joined
 
 
 def test_build_winners_message_supports_demo_playtest_section():
