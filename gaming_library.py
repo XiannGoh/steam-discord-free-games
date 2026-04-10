@@ -308,11 +308,14 @@ def sync_promotions_from_winners(state: Dict[str, Any], daily_posts: Dict[str, A
             winner_key = str(winner.get("winner_key") or "").strip()
             if not winner_key:
                 continue
+            winner_messages = winners_state.get("winner_messages")
+            winner_message = winner_messages.get(winner_key) if isinstance(winner_messages, dict) else None
+            channel_id = str((winner_message or {}).get("channel_id") or "").strip()
+            message_id = str((winner_message or {}).get("message_id") or "").strip()
             source_item = items_index.get(winner_key)
-            if not source_item:
-                continue
-            channel_id = str(source_item.get("channel_id") or "").strip()
-            message_id = str(source_item.get("message_id") or "").strip()
+            if (not channel_id or not message_id) and isinstance(source_item, dict):
+                channel_id = str(source_item.get("channel_id") or "").strip()
+                message_id = str(source_item.get("message_id") or "").strip()
             if not channel_id or not message_id:
                 continue
 
@@ -327,12 +330,12 @@ def sync_promotions_from_winners(state: Dict[str, Any], daily_posts: Dict[str, A
             if not human_user_ids:
                 continue
 
-            canonical_name = str(winner.get("title") or source_item.get("title") or "Untitled").strip()
-            url = str(winner.get("url") or source_item.get("url") or "").strip()
+            canonical_name = str(winner.get("title") or (source_item or {}).get("title") or "Untitled").strip()
+            url = str(winner.get("url") or (source_item or {}).get("url") or "").strip()
             source_metadata = {
                 "winner_key": winner_key,
-                "description": winner.get("description") or source_item.get("description"),
-                "daily_section": source_item.get("section"),
+                "description": winner.get("description") or (source_item or {}).get("description"),
+                "daily_section": (source_item or {}).get("section"),
             }
             identity_key = build_identity_key(canonical_name, url)
             game_preexisted = identity_key in state.setdefault("games", {})
@@ -340,8 +343,8 @@ def sync_promotions_from_winners(state: Dict[str, Any], daily_posts: Dict[str, A
                 state,
                 canonical_name=canonical_name,
                 url=url,
-                source_type=str(source_item.get("source_type") or "winner_promotion"),
-                source_section=str(source_item.get("section") or ""),
+                source_type=str((source_item or {}).get("source_type") or "winner_promotion"),
+                source_section=str((source_item or {}).get("section") or ""),
                 source_metadata=source_metadata,
             )
             assignment_changed = False

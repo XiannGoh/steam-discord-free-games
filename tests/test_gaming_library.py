@@ -41,7 +41,13 @@ def _seed_daily_posts_with_winner():
                         "url": "https://store.steampowered.com/app/12345/Star_Crew/",
                         "description": "co-op space game",
                     }
-                ]
+                ],
+                "winner_messages": {
+                    "https://store.steampowered.com/app/12345/Star_Crew/": {
+                        "channel_id": "winners-1",
+                        "message_id": "winner-message-1",
+                    }
+                },
             },
         }
     }
@@ -52,7 +58,7 @@ def test_promote_winner_via_bookmark_auto_assigns_user():
     daily_posts = _seed_daily_posts_with_winner()
     client = FakeDiscordClient(
         reactions={
-            ("daily-1", "item-1", lib.BOOKMARK_EMOJI_ENCODED): [
+            ("winners-1", "winner-message-1", lib.BOOKMARK_EMOJI_ENCODED): [
                 {"id": "bot-1"},
                 {"id": "u-1"},
             ]
@@ -71,7 +77,7 @@ def test_promotions_do_not_duplicate_library_entries_for_same_game():
     state = lib.load_gaming_library(path="/tmp/does-not-exist.json")
     daily_posts = _seed_daily_posts_with_winner()
     client = FakeDiscordClient(
-        reactions={("daily-1", "item-1", lib.BOOKMARK_EMOJI_ENCODED): [{"id": "u-1"}]}
+        reactions={("winners-1", "winner-message-1", lib.BOOKMARK_EMOJI_ENCODED): [{"id": "u-1"}]}
     )
 
     first_promotions = lib.sync_promotions_from_winners(state, daily_posts, client, bot_user_id=None)
@@ -80,6 +86,21 @@ def test_promotions_do_not_duplicate_library_entries_for_same_game():
     assert list(state["games"].keys()) == ["steam:12345"]
     assert first_promotions == 1
     assert second_promotions == 0
+
+
+def test_promotions_prefer_winners_channel_message_over_daily_message():
+    state = lib.load_gaming_library(path="/tmp/does-not-exist.json")
+    daily_posts = _seed_daily_posts_with_winner()
+    client = FakeDiscordClient(
+        reactions={
+            ("daily-1", "item-1", lib.BOOKMARK_EMOJI_ENCODED): [{"id": "u-daily"}],
+            ("winners-1", "winner-message-1", lib.BOOKMARK_EMOJI_ENCODED): [{"id": "u-winner"}],
+        }
+    )
+    lib.sync_promotions_from_winners(state, daily_posts, client, bot_user_id=None)
+    assignments = state["games"]["steam:12345"]["assignments"]
+    assert "u-winner" in assignments
+    assert "u-daily" not in assignments
 
 
 def test_manual_add_with_canonical_name_and_instagram_metadata_preserved():

@@ -36,16 +36,16 @@ class FakeDiscordClient:
 
     def get_reaction_users(self, channel_id, message_id, encoded_emoji, *, context, limit=100, after=None):
         self.reaction_calls.append((channel_id, message_id, encoded_emoji, limit, after))
-        return self.reaction_users.get(message_id, [])
+        return self.reaction_users.get(message_id, []) or self.reaction_users.get((channel_id, message_id, encoded_emoji), [])
 
     def edit_message(self, channel_id, message_id, content, *, context):
-        self.edits.append((channel_id, message_id, content))
+        self.edits.append((channel_id, message_id, content, context))
         return {"id": message_id}
 
     def post_message(self, channel_id, content, *, context):
         mid = f"w-{len(self.posts)+1}"
-        self.posts.append((channel_id, content, mid))
-        return {"id": mid}
+        self.posts.append((channel_id, content, mid, context))
+        return {"id": mid, "channel_id": channel_id}
 
     def put_reaction(self, channel_id, message_id, encoded_emoji, *, context):
         self.put_reactions.append((channel_id, message_id, encoded_emoji, context))
@@ -57,6 +57,7 @@ def _patch_common(monkeypatch, path, fake, day_key):
     monkeypatch.setattr(winners, "DiscordClient", lambda session: fake)
     monkeypatch.setattr(winners, "DISCORD_BOT_TOKEN", "x")
     monkeypatch.setattr(winners, "DISCORD_WINNERS_CHANNEL_ID", "wchan")
+    monkeypatch.setattr(winners, "DISCORD_GUILD_ID", "guild-1")
     monkeypatch.setenv(winners.WINNERS_DATE_OVERRIDE_ENV, day_key)
 
 
@@ -64,16 +65,6 @@ def _setup_daily(tmp_path):
     day_key = "2026-04-08"
     path = tmp_path / "daily.json"
     data = {
-        "2026-03-29": {
-            "items": [
-                {"section": "free", "title": "Old Outside Window", "url": "old-out", "channel_id": "c", "message_id": "m-old-out"}
-            ]
-        },
-        "2026-03-30": {
-            "items": [
-                {"section": "free", "title": "Old Inside Window", "url": "old-in", "channel_id": "c", "message_id": "m-old-in"}
-            ]
-        },
         "2026-04-07": {
             "items": [
                 {"section": "free", "title": "Late Voted Earlier Day", "url": "shared-dupe", "channel_id": "c", "message_id": "m-late"},
@@ -81,793 +72,195 @@ def _setup_daily(tmp_path):
         },
         day_key: {
             "items": [
+                {"section": "demo_playtest", "title": "Demo Winner", "url": "demo-win", "channel_id": "c", "message_id": "m-demo"},
                 {"section": "free", "title": "Same Game Repost", "url": "shared-dupe", "channel_id": "c", "message_id": "m-dupe"},
-                {"section": "free", "title": "Only Bot Vote", "url": "bot-only", "channel_id": "c", "message_id": "m-bot-only"},
                 {"section": "paid", "title": "Current Paid Winner", "url": "paid-win", "channel_id": "c", "message_id": "m-paid"},
             ]
-        }
+        },
     }
     path.write_text(json.dumps(data), encoding="utf-8")
     return day_key, path
 
 
-def test_winner_vote_rules_and_message_content(monkeypatch, tmp_path):
+def test_winners_channel_posts_intro_sections_games_and_footer_in_order(monkeypatch, tmp_path):
     day_key, path = _setup_daily(tmp_path)
     payloads = {
-        "m-old-out": {"reactions": [{"emoji": {"name": "👍"}, "count": 2}]},
-        "m-old-in": {"reactions": [{"emoji": {"name": "👍"}, "count": 1}]},
+        "m-demo": {"reactions": [{"emoji": {"name": "👍"}, "count": 2}]},
         "m-late": {"reactions": [{"emoji": {"name": "👍"}, "count": 3}]},
         "m-dupe": {"reactions": [{"emoji": {"name": "👍"}, "count": 2}]},
-        "m-bot-only": {"reactions": [{"emoji": {"name": "👍"}, "count": 1}]},
         "m-paid": {"reactions": [{"emoji": {"name": "👍"}, "count": 2}]},
     }
     reaction_users = {
-        "m-late": [
-            {"id": "bot-1", "global_name": "Bot Name", "username": "bot-user"},
-            {"id": "u1", "global_name": "Jan", "username": "jan123"},
-            {"id": "u5", "global_name": "LateFan", "username": "latefan"},
-        ],
-        "m-paid": [
-            {"id": "bot-1", "global_name": "Bot Name", "username": "bot-user"},
-            {"id": "u2", "global_name": "Jerry", "username": "jerry1"},
-            {"id": "u3", "global_name": None, "username": "akhil_user"},
-        ],
-    }
-    fake = FakeDiscordClient(payloads, reaction_users)
-
-    _patch_common(monkeypatch, path, fake, day_key)
-
-    winners.main()
-
-    assert len(fake.posts) == 1
-    assert fake.posts[0][0] == "wchan"
-    content = fake.posts[0][1]
-    assert "Late Voted Earlier Day" in content
-    assert "Old Inside Window" not in content  # only bot's default reaction
-    assert "Old Outside Window" not in content  # outside 10-day lookback
-    assert "Same Game Repost" not in content  # deduped against late-voted earlier post by url
-    assert "Only Bot Vote" not in content
-    assert "Current Paid Winner" in content and "👍 1 vote" in content
-    assert "Voters — Jan, LateFan" in content
-    assert "Voters — Jerry, akhil_user" in content
-    assert "Bot Name" not in content
-    assert ("c", "m-late", winners.BOOKMARK_EMOJI_ENCODED, "add bookmark reaction for winner shared-dupe") in fake.put_reactions
-    assert ("c", "m-paid", winners.BOOKMARK_EMOJI_ENCODED, "add bookmark reaction for winner paid-win") in fake.put_reactions
-
-
-def test_winners_rerun_skip_then_edit_for_newly_eligible_winner(monkeypatch, tmp_path):
-    day_key, path = _setup_daily(tmp_path)
-    data = json.loads(path.read_text(encoding="utf-8"))
-    data[day_key]["winners_state"] = {"message_id": "w-old", "winner_keys": ["paid-win", "shared-dupe"]}
-    path.write_text(json.dumps(data), encoding="utf-8")
-
-    payloads = {
-        "m-late": {"reactions": [{"emoji": {"name": "👍"}, "count": 2}]},
-        "m-dupe": {"reactions": [{"emoji": {"name": "👍"}, "count": 2}]},
-        "m-paid": {"reactions": [{"emoji": {"name": "👍"}, "count": 2}]},
-        "m-old-in": {"reactions": [{"emoji": {"name": "👍"}, "count": 1}]},
-    }
-    reaction_users = {
-        "m-late": [{"id": "bot-1"}, {"id": "u1", "username": "u1"}],
-        "m-paid": [{"id": "bot-1"}, {"id": "u2", "username": "u2"}],
-    }
-    fake_skip = FakeDiscordClient(payloads, reaction_users)
-    _patch_common(monkeypatch, path, fake_skip, day_key)
-    winners.main()
-    assert fake_skip.posts == [] and fake_skip.edits == []
-
-    data = json.loads(path.read_text(encoding="utf-8"))
-    data["2026-04-07"]["items"].append(
-        {"section": "free", "title": "Brand New", "url": "new-url", "channel_id": "c", "message_id": "m-new"}
-    )
-    path.write_text(json.dumps(data), encoding="utf-8")
-    payloads["m-new"] = {"reactions": [{"emoji": {"name": "👍"}, "count": 2}]}
-    reaction_users["m-new"] = [{"id": "bot-1"}, {"id": "u9", "username": "newvoter"}]
-
-    fake_edit = FakeDiscordClient(payloads, reaction_users)
-    monkeypatch.setattr(winners, "DiscordClient", lambda session: fake_edit)
-    winners.main()
-    assert len(fake_edit.edits) == 1
-    assert fake_edit.edits[0][0] == "wchan"
-    assert "Brand New" in fake_edit.edits[0][2]
-
-
-def test_winners_rerun_same_keys_with_higher_votes_triggers_edit(monkeypatch, tmp_path):
-    day_key, path = _setup_daily(tmp_path)
-    data = json.loads(path.read_text(encoding="utf-8"))
-    data[day_key]["winners_state"] = {
-        "message_id": "w-old",
-        "winner_keys": ["paid-win", "shared-dupe"],
-        "winner_vote_counts": {"paid-win": 1, "shared-dupe": 1},
-    }
-    path.write_text(json.dumps(data), encoding="utf-8")
-
-    payloads = {
-        "m-late": {"reactions": [{"emoji": {"name": "👍"}, "count": 4}]},  # 3 human votes
-        "m-dupe": {"reactions": [{"emoji": {"name": "👍"}, "count": 2}]},
-        "m-paid": {"reactions": [{"emoji": {"name": "👍"}, "count": 2}]},
-    }
-    reaction_users = {
-        "m-late": [{"id": "bot-1"}, {"id": "u1", "username": "u1"}, {"id": "u5", "username": "u5"}, {"id": "u8", "username": "u8"}],
-        "m-paid": [{"id": "bot-1"}, {"id": "u2", "username": "u2"}],
+        "m-demo": [{"id": "bot-1"}, {"id": "u-demo", "username": "demouser"}],
+        "m-late": [{"id": "bot-1"}, {"id": "u1", "username": "jan"}, {"id": "u2", "username": "jerry"}],
+        "m-paid": [{"id": "bot-1"}, {"id": "u3", "username": "thomas"}],
     }
     fake = FakeDiscordClient(payloads, reaction_users)
     _patch_common(monkeypatch, path, fake, day_key)
+
     winners.main()
 
-    assert len(fake.edits) == 1
-    assert fake.edits[0][0] == "wchan"
-    assert "Late Voted Earlier Day" in fake.edits[0][2]
-    assert "👍 3 votes" in fake.edits[0][2]
-    assert fake.posts == []
+    posted = [content for _, content, _, _ in fake.posts]
+    assert posted[0].startswith("🏆 Daily Game Picks — Winners")
+    assert posted[1] == "🧪 Demo & Playtest Winners"
+    assert "Demo Winner" in posted[2]
+    assert posted[3] == "🎮 Free Winners"
+    assert "Late Voted Earlier Day" in posted[4]
+    assert posted[5] == "💸 Paid Winners"
+    assert "Current Paid Winner" in posted[6]
+    assert posted[-1].startswith("🗓️ Daily Winners for")
+    assert "Demo & Playtest Winners → [Jump](https://discord.com/channels/guild-1/wchan/w-2)" in posted[-1]
+    assert "Free Winners → [Jump](https://discord.com/channels/guild-1/wchan/w-4)" in posted[-1]
+    assert "Paid Winners → [Jump](https://discord.com/channels/guild-1/wchan/w-6)" in posted[-1]
 
 
-def test_winners_rerun_same_keys_same_vote_counts_is_noop(monkeypatch, tmp_path):
-    day_key, path = _setup_daily(tmp_path)
-    data = json.loads(path.read_text(encoding="utf-8"))
-    data[day_key]["winners_state"] = {
-        "message_id": "w-old",
-        "winner_keys": ["paid-win", "shared-dupe"],
-        "winner_vote_counts": {"paid-win": 1, "shared-dupe": 2},
-    }
-    path.write_text(json.dumps(data), encoding="utf-8")
-
-    payloads = {
-        "m-late": {"reactions": [{"emoji": {"name": "👍"}, "count": 3}]},  # 2 human votes
-        "m-dupe": {"reactions": [{"emoji": {"name": "👍"}, "count": 2}]},
-        "m-paid": {"reactions": [{"emoji": {"name": "👍"}, "count": 2}]},
-    }
-    reaction_users = {
-        "m-late": [{"id": "bot-1"}, {"id": "u1", "username": "u1"}, {"id": "u5", "username": "u5"}],
-        "m-paid": [{"id": "bot-1"}, {"id": "u2", "username": "u2"}],
-    }
-    fake = FakeDiscordClient(payloads, reaction_users)
-    _patch_common(monkeypatch, path, fake, day_key)
-    winners.main()
-
-    assert fake.posts == []
-    assert fake.edits == []
-
-
-def test_no_eligible_winners_and_no_existing_message_is_noop(monkeypatch, tmp_path):
+def test_winners_footer_omits_missing_sections(monkeypatch, tmp_path):
     day_key = "2026-04-08"
     path = tmp_path / "daily.json"
-    path.write_text(json.dumps({day_key: {"items": []}}), encoding="utf-8")
-    fake = FakeDiscordClient({})
+    data = {day_key: {"items": [{"section": "free", "title": "Only Free", "url": "free-win", "channel_id": "c", "message_id": "m-free"}]}}
+    path.write_text(json.dumps(data), encoding="utf-8")
+    fake = FakeDiscordClient(
+        {"m-free": {"reactions": [{"emoji": {"name": "👍"}, "count": 2}]}},
+        {"m-free": [{"id": "bot-1"}, {"id": "u1", "username": "u1"}]},
+    )
+    _patch_common(monkeypatch, path, fake, day_key)
+    winners.main()
+    footer = fake.posts[-1][1]
+    assert "Free Winners" in footer
+    assert "Paid Winners" not in footer
+    assert "Creator Winners" not in footer
+
+
+def test_bookmark_added_to_winners_game_messages_not_daily_messages(monkeypatch, tmp_path):
+    day_key, path = _setup_daily(tmp_path)
+    fake = FakeDiscordClient(
+        {
+            "m-demo": {"reactions": [{"emoji": {"name": "👍"}, "count": 2}]},
+            "m-late": {"reactions": [{"emoji": {"name": "👍"}, "count": 2}]},
+            "m-paid": {"reactions": [{"emoji": {"name": "👍"}, "count": 2}]},
+        },
+        {
+            "m-demo": [{"id": "bot-1"}, {"id": "u1", "username": "u1"}],
+            "m-late": [{"id": "bot-1"}, {"id": "u2", "username": "u2"}],
+            "m-paid": [{"id": "bot-1"}, {"id": "u3", "username": "u3"}],
+        },
+    )
+    _patch_common(monkeypatch, path, fake, day_key)
+
+    winners.main()
+
+    reaction_targets = {(c, m) for c, m, e, _ in fake.put_reactions if e == winners.BOOKMARK_EMOJI_ENCODED}
+    assert ("wchan", "w-3") in reaction_targets
+    assert ("wchan", "w-5") in reaction_targets
+    assert ("wchan", "w-7") in reaction_targets
+    assert ("c", "m-demo") not in reaction_targets
+
+
+def test_same_day_rerun_reuses_existing_intro_header_footer_and_game(monkeypatch, tmp_path):
+    day_key, path = _setup_daily(tmp_path)
+    data = json.loads(path.read_text(encoding="utf-8"))
+    data[day_key]["winners_state"] = {
+        "intro": {"channel_id": "wchan", "message_id": "intro-1"},
+        "section_headers": {"free": {"channel_id": "wchan", "message_id": "header-free-1"}},
+        "winner_messages": {"shared-dupe": {"channel_id": "wchan", "message_id": "winner-free-1"}},
+        "footer": {"channel_id": "wchan", "message_id": "footer-1"},
+        "winner_keys": ["shared-dupe"],
+        "winner_vote_counts": {"shared-dupe": 1},
+        "winner_entries": [
+            {"winner_key": "shared-dupe", "section": "free", "title": "Late Voted Earlier Day", "url": "shared-dupe", "human_votes": 1, "voter_names": ["jan"]}
+        ],
+    }
+    path.write_text(json.dumps(data), encoding="utf-8")
+    fake = FakeDiscordClient(
+        {
+            "m-late": {"reactions": [{"emoji": {"name": "👍"}, "count": 2}]},
+            "intro-1": {},
+            "header-free-1": {},
+            "winner-free-1": {},
+            "footer-1": {},
+        },
+        {"m-late": [{"id": "bot-1"}, {"id": "u1", "username": "jan"}]},
+    )
     _patch_common(monkeypatch, path, fake, day_key)
     winners.main()
     assert fake.posts == []
     assert fake.edits == []
 
 
-def test_stale_daily_item_message_is_skipped(monkeypatch, tmp_path):
-    day_key, path = _setup_daily(tmp_path)
-    payloads = {"m-paid": {"reactions": [{"emoji": {"name": "👍"}, "count": 2}]}}
-
-    class ItemStaleClient(FakeDiscordClient):
-        def get_message(self, channel_id, message_id, *, context):
-            if message_id == "m-late":
-                raise winners.DiscordMessageNotFoundError("missing item")
-            return super().get_message(channel_id, message_id, context=context)
-
-    reaction_users = {"m-paid": [{"id": "bot-1", "username": "bot"}, {"id": "u9", "global_name": "Thomas", "username": "thomas"}]}
-    fake = ItemStaleClient(payloads, reaction_users)
-    _patch_common(monkeypatch, path, fake, day_key)
-    winners.main()
-    assert len(fake.posts) == 1
-    assert "Current Paid Winner" in fake.posts[0][1]
-    assert "Voters — Thomas" in fake.posts[0][1]
-
-
-def test_dedupe_only_within_rolling_window_not_forever(monkeypatch, tmp_path):
-    # Window for 2026-04-08 includes 2026-03-30..2026-04-08. It does not include 2026-03-29.
-    day_key, path = _setup_daily(tmp_path)
-    data = json.loads(path.read_text(encoding="utf-8"))
-    data[day_key]["items"] = []
-    data["2026-03-29"]["items"] = [
-        {"section": "free", "title": "Old Return Winner", "url": "return-url", "channel_id": "c", "message_id": "m-return"},
-    ]
-    data[day_key]["items"].append(
-        {"section": "free", "title": "Old Return Winner Reappears", "url": "return-url", "channel_id": "c", "message_id": "m-return-new"}
-    )
-    path.write_text(json.dumps(data), encoding="utf-8")
-
-    payloads = {
-        "m-return": {"reactions": [{"emoji": {"name": "👍"}, "count": 2}]},
-        "m-return-new": {"reactions": [{"emoji": {"name": "👍"}, "count": 2}]},
-    }
-    reaction_users = {
-        "m-return-new": [{"id": "bot-1"}, {"id": "u2", "username": "u2"}],
-    }
-    fake = FakeDiscordClient(payloads, reaction_users)
-    _patch_common(monkeypatch, path, fake, day_key)
-    winners.main()
-    content = fake.posts[0][1]
-    assert "Old Return Winner Reappears" in content
-
-
-def test_build_winners_message_voter_truncation():
-    winners_by_section = {
-        "free": [
-            {
-                "title": "Game A",
-                "url": "u-a",
-                "human_votes": 9,
-                "voter_names": ["Jan", "Jerry", "Akhil", "Thomas", "Charlie", "Kevin", "Raymond", "Rishabh", "Malphax"],
-            }
-        ],
-        "paid": [],
-        "instagram": [],
-    }
-    content = winners.build_winners_message(winners_by_section)
-    assert "Voters — Jan, Jerry, Akhil, Thomas, Charlie, Kevin, +3 more" in content
-
-
-def test_build_winners_message_includes_description_when_present():
-    winners_by_section = {
-        "demo_playtest": [],
-        "free": [
-            {
-                "title": "Game A",
-                "description": "A fast co-op roguelike shooter.",
-                "url": "u-a",
-                "human_votes": 2,
-                "voter_names": ["Jan", "Jerry"],
-            }
-        ],
-        "paid": [],
-        "instagram": [],
-    }
-    content = winners.build_winners_message(winners_by_section)
-    assert "Game A" in content
-    assert "A fast co-op roguelike shooter." in content
-    assert "u-a" in content
-
-
-def test_instagram_winner_description_present_remains_unchanged():
-    winners_by_section = {
-        "demo_playtest": [],
-        "free": [],
-        "paid": [],
-        "instagram": [
-            {
-                "title": "@creator",
-                "description": "Big co-op giveaway this weekend",
-                "url": "https://www.instagram.com/p/ABC123/",
-                "human_votes": 3,
-                "voter_names": ["Jan", "Jerry", "Akhil"],
-            }
-        ],
-    }
-    content = winners.build_winners_message(winners_by_section)
-    assert "Big co-op giveaway this weekend" in content
-    assert "caption unavailable in legacy state" not in content
-
-
-def test_instagram_winner_missing_description_uses_fallback():
-    winners_by_section = {
-        "demo_playtest": [],
-        "free": [],
-        "paid": [],
-        "instagram": [
-            {
-                "title": "@creator",
-                "url": "https://www.instagram.com/p/ABC123/",
-                "human_votes": 2,
-                "voter_names": ["Jan", "Jerry"],
-            }
-        ],
-    }
-    content = winners.build_winners_message(winners_by_section)
-    assert "Instagram post from @creator" in content
-    assert "caption unavailable in legacy state" in content
-    assert "ABC123" in content
-
-
-def test_build_winners_message_omits_description_when_absent_or_empty():
-    winners_by_section = {
-        "demo_playtest": [],
-        "free": [
-            {
-                "title": "Game A",
-                "description": " \n\t ",
-                "url": "u-a",
-                "human_votes": 2,
-                "voter_names": ["Jan"],
-            },
-            {
-                "title": "Game B",
-                "url": "u-b",
-                "human_votes": 1,
-                "voter_names": ["Jerry"],
-            },
-        ],
-        "paid": [],
-        "instagram": [],
-    }
-    content = winners.build_winners_message(winners_by_section)
-    assert " \n\t " not in content
-    assert "Voters — Jan" in content
-    assert "Voters — Jerry" in content
-    assert "caption unavailable in legacy state" not in content
-
-
-def test_normalize_winner_description_truncates_long_text():
-    long_description = "A" * 200
-    normalized = winners.normalize_winner_description_for_message(long_description)
-    assert len(normalized) == 110
-    assert normalized.endswith("...")
-
-
-def test_build_winners_message_compact_fallback_when_too_long(monkeypatch):
-    winners_by_section = {
-        "demo_playtest": [],
-        "free": [
-            {
-                "title": f"Game {idx}",
-                "description": "B" * 300,
-                "url": f"https://example.com/{idx}",
-                "human_votes": 2,
-                "voter_names": [f"User {i}" for i in range(10)],
-            }
-            for idx in range(50)
-        ],
-        "paid": [],
-        "instagram": [],
-    }
-    message = winners.build_winners_message(winners_by_section)
-    assert len(message) > winners.DISCORD_MESSAGE_CHAR_LIMIT
-    compact = winners.build_winners_message_compact(winners_by_section)
-    assert "Voters —" not in compact
-    assert "BBBBB" not in compact
-    assert "- Game 0 (2 votes)" in compact
-
-
-def test_build_winners_message_chunks_keeps_single_message_under_limit():
-    winners_by_section = {
-        "demo_playtest": [],
-        "free": [
-            {
-                "title": "Game A",
-                "description": "Short description.",
-                "url": "https://example.com/a",
-                "human_votes": 2,
-                "voter_names": ["Jan", "Jerry"],
-            }
-        ],
-        "paid": [],
-        "instagram": [],
-    }
-
-    chunks = winners.build_winners_message_chunks(winners_by_section)
-    assert len(chunks) == 1
-    assert chunks[0] == winners.build_winners_message(winners_by_section)
-
-
-def test_build_winners_message_chunks_splits_over_limit_without_exceeding_discord_limit():
-    winners_by_section = {
-        "demo_playtest": [],
-        "free": [
-            {
-                "title": f"Very Long Winner Title {idx}",
-                "description": "A" * 110,
-                "url": f"https://example.com/{idx}",
-                "human_votes": 2,
-                "voter_names": [f"User {i}" for i in range(12)],
-            }
-            for idx in range(30)
-        ],
-        "paid": [],
-        "instagram": [],
-    }
-
-    chunks = winners.build_winners_message_chunks(winners_by_section)
-    assert len(chunks) > 1
-    assert chunks[0].startswith("🏆 Daily Game Picks — Winners")
-    for chunk in chunks:
-        assert len(chunk) <= winners.DISCORD_MESSAGE_CHAR_LIMIT
-
-
-def test_build_winners_message_chunks_include_instagram_fallback_for_legacy_records():
-    winners_by_section = {
-        "demo_playtest": [],
-        "free": [],
-        "paid": [],
-        "instagram": [
-            {
-                "title": "@creator",
-                "url": "https://www.instagram.com/p/LEGACY001/",
-                "human_votes": 2,
-                "voter_names": ["Jan", "Jerry"],
-            }
-            for _ in range(20)
-        ],
-    }
-
-    chunks = winners.build_winners_message_chunks(winners_by_section, target_max=400, hard_limit=winners.DISCORD_MESSAGE_CHAR_LIMIT)
-    assert len(chunks) > 1
-    joined = "\n".join(chunks)
-    assert "Instagram post from @creator" in joined
-    assert "caption unavailable in legacy state" in joined
-
-
-def test_build_winners_message_supports_demo_playtest_section():
-    winners_by_section = {
-        "demo_playtest": [
-            {
-                "title": "Squad Demo",
-                "description": "A co-op demo for friend groups.",
-                "url": "u-demo",
-                "human_votes": 2,
-                "voter_names": ["Jan", "Jerry"],
-            }
-        ],
-        "free": [],
-        "paid": [],
-        "instagram": [],
-    }
-    content = winners.build_winners_message(winners_by_section)
-    assert "New Demos & Playtests" in content
-    assert "Squad Demo" in content
-
-
-def test_winners_section_order_is_product_invariant():
-    winners_by_section = {
-        "demo_playtest": [{"title": "Demo Winner", "url": "u-demo", "human_votes": 3, "voter_names": ["A"]}],
-        "free": [{"title": "Free Winner", "url": "u-free", "human_votes": 2, "voter_names": ["B"]}],
-        "paid": [{"title": "Paid Winner", "url": "u-paid", "human_votes": 1, "voter_names": ["C"]}],
-        "instagram": [{"title": "Creator Pick", "url": "u-ig", "human_votes": 1, "voter_names": ["D"]}],
-    }
-    message = winners.build_winners_message(winners_by_section)
-    demo_idx = message.index("New Demos & Playtests")
-    free_idx = message.index("Free Picks")
-    paid_idx = message.index("Paid Under $20")
-    instagram_idx = message.index("Instagram Creator Picks")
-    assert demo_idx < free_idx < paid_idx < instagram_idx
-
-
-def test_winners_use_same_section_order_as_daily_picks():
-    assert winners.SECTION_ORDER == ["demo_playtest", "free", "paid", "instagram"]
-    assert winners.SECTION_CONFIG["demo_playtest"] == "New Demos & Playtests"
-    assert winners.SECTION_CONFIG["instagram"] == "Instagram Creator Picks"
-
-
-def test_winners_pipeline_integration_late_votes_dedupe_and_coherent_edit(monkeypatch, tmp_path):
-    day_key, path = _setup_daily(tmp_path)
-    payloads = {
-        "m-late": {"reactions": [{"emoji": {"name": "👍"}, "count": 2}]},  # 1 human
-        "m-dupe": {"reactions": [{"emoji": {"name": "👍"}, "count": 4}]},  # 3 humans (wins dedupe key)
-        "m-paid": {"reactions": [{"emoji": {"name": "👍"}, "count": 2}]},
-        "m-bot-only": {"reactions": [{"emoji": {"name": "👍"}, "count": 1}]},
-        "m-old-in": {"reactions": [{"emoji": {"name": "👍"}, "count": 1}]},
-    }
-    reaction_users = {
-        "m-dupe": [{"id": "bot-1"}, {"id": "u1", "username": "jan"}, {"id": "u2", "username": "jerry"}, {"id": "u3", "username": "akhil"}],
-        "m-paid": [{"id": "bot-1"}, {"id": "u9", "username": "thomas"}],
-    }
-    fake_create = FakeDiscordClient(payloads, reaction_users)
-    _patch_common(monkeypatch, path, fake_create, day_key)
-
-    winners.main()
-    assert len(fake_create.posts) == 1
-    create_content = fake_create.posts[0][1]
-    assert "Same Game Repost" in create_content
-    assert "Late Voted Earlier Day" not in create_content
-    assert "Only Bot Vote" not in create_content
-
-    data = json.loads(path.read_text(encoding="utf-8"))
-    winners_state = data[day_key]["winners_state"]
-    assert sorted(winners_state["winner_keys"]) == ["paid-win", "shared-dupe"]
-    assert winners_state["winner_vote_counts"]["shared-dupe"] == 3
-
-    payloads["m-paid"] = {"reactions": [{"emoji": {"name": "👍"}, "count": 3}]}
-    reaction_users["m-paid"] = [{"id": "bot-1"}, {"id": "u9", "username": "thomas"}, {"id": "u10", "username": "raymond"}]
-    fake_edit = FakeDiscordClient(payloads, reaction_users)
-    monkeypatch.setattr(winners, "DiscordClient", lambda session: fake_edit)
-
-    winners.main()
-    assert len(fake_edit.edits) == 1
-    edit_content = fake_edit.edits[0][2]
-    assert "Current Paid Winner" in edit_content
-    assert "👍 2 votes" in edit_content
-
-
-def test_cross_day_winner_suppression_hides_previously_announced_game(monkeypatch, tmp_path):
+def test_late_votes_edit_prior_day_individual_winner_message(monkeypatch, tmp_path):
     day_key = "2026-04-08"
     path = tmp_path / "daily.json"
     data = {
         "2026-04-07": {
             "items": [],
             "winners_state": {
-                "message_id": "w-prev",
-                "winner_keys": ["shared-dupe"],
-                "winner_vote_counts": {"shared-dupe": 2},
-            },
-        },
-        day_key: {
-            "items": [
-                {"section": "free", "title": "Intruder", "url": "shared-dupe", "channel_id": "c", "message_id": "m-intruder"},
-                {"section": "paid", "title": "Fresh Arrival", "url": "fresh-win", "channel_id": "c", "message_id": "m-fresh"},
-            ]
-        },
-    }
-    path.write_text(json.dumps(data), encoding="utf-8")
-    payloads = {
-        "m-intruder": {"reactions": [{"emoji": {"name": "👍"}, "count": 4}]},
-        "m-fresh": {"reactions": [{"emoji": {"name": "👍"}, "count": 2}]},
-    }
-    reaction_users = {
-        "m-intruder": [{"id": "bot-1"}, {"id": "u1", "username": "repeat"}, {"id": "u2", "username": "again"}, {"id": "u3", "username": "again2"}],
-        "m-fresh": [{"id": "bot-1"}, {"id": "u9", "username": "new-user"}],
-    }
-    fake = FakeDiscordClient(payloads, reaction_users)
-    _patch_common(monkeypatch, path, fake, day_key)
-
-    winners.main()
-
-    assert len(fake.posts) == 1
-    content = fake.posts[0][1]
-    assert "Intruder" not in content
-    assert "Fresh Arrival" in content
-    state = json.loads(path.read_text(encoding="utf-8"))[day_key]["winners_state"]
-    assert state["winner_keys"] == ["fresh-win"]
-
-
-def test_cross_day_late_vote_updates_previously_announced_winner_without_repost(monkeypatch, tmp_path):
-    day_key = "2026-04-08"
-    path = tmp_path / "daily.json"
-    data = {
-        "2026-04-07": {
-            "items": [],
-            "winners_state": {
-                "message_id": "w-prev",
-                "message_ids": ["w-prev"],
                 "winner_keys": ["shared-dupe"],
                 "winner_vote_counts": {"shared-dupe": 2},
                 "winner_entries": [
-                    {
-                        "winner_key": "shared-dupe",
-                        "section": "free",
-                        "title": "Original Winner",
-                        "url": "shared-dupe",
-                        "human_votes": 2,
-                        "voter_names": ["jan", "jerry"],
-                    }
+                    {"winner_key": "shared-dupe", "section": "free", "title": "Original Winner", "url": "shared-dupe", "human_votes": 2, "voter_names": ["jan", "jerry"]}
                 ],
+                "winner_messages": {"shared-dupe": {"channel_id": "wchan", "message_id": "winner-prev-1"}},
+                "intro": {"channel_id": "wchan", "message_id": "intro-prev"},
+                "section_headers": {"free": {"channel_id": "wchan", "message_id": "header-prev-free"}},
+                "footer": {"channel_id": "wchan", "message_id": "footer-prev"},
             },
         },
-        day_key: {
-            "items": [
-                {"section": "free", "title": "Same Game Repost", "url": "shared-dupe", "channel_id": "c", "message_id": "m-late"},
-            ]
-        },
+        day_key: {"items": [{"section": "free", "title": "Same Game Repost", "url": "shared-dupe", "channel_id": "c", "message_id": "m-late"}]},
     }
     path.write_text(json.dumps(data), encoding="utf-8")
-    payloads = {
-        "m-late": {"reactions": [{"emoji": {"name": "👍"}, "count": 4}]},
-    }
-    reaction_users = {
-        "m-late": [{"id": "bot-1"}, {"id": "u1", "username": "jan"}, {"id": "u2", "username": "jerry"}, {"id": "u3", "username": "akhil"}],
-    }
-    fake = FakeDiscordClient(payloads, reaction_users)
-    _patch_common(monkeypatch, path, fake, day_key)
-
-    winners.main()
-
-    assert fake.posts == []
-    assert len(fake.edits) == 1
-    assert fake.edits[0][1] == "w-prev"
-    assert "Same Game Repost" in fake.edits[0][2]
-    assert "👍 3 votes" in fake.edits[0][2]
-
-    updated = json.loads(path.read_text(encoding="utf-8"))
-    prior_state = updated["2026-04-07"]["winners_state"]
-    assert prior_state["winner_vote_counts"]["shared-dupe"] == 3
-    assert prior_state["winner_entries"][0]["human_votes"] == 3
-    assert updated[day_key].get("winners_state", {}) == {}
-
-
-def test_cross_day_winner_suppression_checks_multiple_recent_days(monkeypatch, tmp_path):
-    day_key = "2026-04-08"
-    path = tmp_path / "daily.json"
-    data = {
-        "2026-04-05": {
-            "items": [],
-            "winners_state": {"message_id": "w-older", "winner_keys": ["older-repeat"]},
-        },
-        "2026-04-07": {
-            "items": [],
-            "winners_state": {"message_id": "w-prev", "winner_keys": ["newer-repeat"]},
-        },
-        day_key: {
-            "items": [
-                {"section": "free", "title": "Older Repeat", "url": "older-repeat", "channel_id": "c", "message_id": "m-older-repeat"},
-                {"section": "free", "title": "Newer Repeat", "url": "newer-repeat", "channel_id": "c", "message_id": "m-newer-repeat"},
-                {"section": "free", "title": "Only New Winner", "url": "brand-new", "channel_id": "c", "message_id": "m-brand-new"},
-            ]
-        },
-    }
-    path.write_text(json.dumps(data), encoding="utf-8")
-    payloads = {
-        "m-older-repeat": {"reactions": [{"emoji": {"name": "👍"}, "count": 2}]},
-        "m-newer-repeat": {"reactions": [{"emoji": {"name": "👍"}, "count": 2}]},
-        "m-brand-new": {"reactions": [{"emoji": {"name": "👍"}, "count": 2}]},
-    }
-    reaction_users = {
-        "m-older-repeat": [{"id": "bot-1"}, {"id": "u1", "username": "u1"}],
-        "m-newer-repeat": [{"id": "bot-1"}, {"id": "u2", "username": "u2"}],
-        "m-brand-new": [{"id": "bot-1"}, {"id": "u3", "username": "u3"}],
-    }
-    fake = FakeDiscordClient(payloads, reaction_users)
-    _patch_common(monkeypatch, path, fake, day_key)
-
-    winners.main()
-
-    content = fake.posts[0][1]
-    assert "Older Repeat" not in content
-    assert "Newer Repeat" not in content
-    assert "Only New Winner" in content
-
-
-def test_cross_day_suppression_keeps_legacy_states_readable(monkeypatch, tmp_path):
-    day_key = "2026-04-08"
-    path = tmp_path / "daily.json"
-    data = {
-        "2026-04-07": {
-            "items": [],
-            "winners_state": {
-                "message_id": "w-prev",
-            },
-        },
-        day_key: {
-            "items": [
-                {"section": "free", "title": "Legacy Compatible Winner", "url": "legacy-new", "channel_id": "c", "message_id": "m-legacy"},
-            ]
-        },
-    }
-    path.write_text(json.dumps(data), encoding="utf-8")
-    payloads = {"m-legacy": {"reactions": [{"emoji": {"name": "👍"}, "count": 2}]}}
-    reaction_users = {"m-legacy": [{"id": "bot-1"}, {"id": "u1", "username": "u1"}]}
-    fake = FakeDiscordClient(payloads, reaction_users)
-    _patch_common(monkeypatch, path, fake, day_key)
-
-    winners.main()
-
-    assert len(fake.posts) == 1
-    assert "Legacy Compatible Winner" in fake.posts[0][1]
-
-
-def test_cross_day_late_vote_with_legacy_state_still_suppresses_without_breaking(monkeypatch, tmp_path):
-    day_key = "2026-04-08"
-    path = tmp_path / "daily.json"
-    data = {
-        "2026-04-07": {
-            "items": [],
-            "winners_state": {
-                "message_id": "w-prev",
-                "winner_keys": ["shared-dupe"],
-                "winner_vote_counts": {"shared-dupe": 2},
-            },
-        },
-        day_key: {
-            "items": [
-                {"section": "free", "title": "Same Game Repost", "url": "shared-dupe", "channel_id": "c", "message_id": "m-late"},
-            ]
-        },
-    }
-    path.write_text(json.dumps(data), encoding="utf-8")
-    payloads = {"m-late": {"reactions": [{"emoji": {"name": "👍"}, "count": 4}]}}
-    reaction_users = {"m-late": [{"id": "bot-1"}, {"id": "u1", "username": "jan"}, {"id": "u2", "username": "jerry"}, {"id": "u3", "username": "akhil"}]}
-    fake = FakeDiscordClient(payloads, reaction_users)
-    _patch_common(monkeypatch, path, fake, day_key)
-
-    winners.main()
-
-    assert fake.posts == []
-    assert fake.edits == []
-    state = json.loads(path.read_text(encoding="utf-8"))["2026-04-07"]["winners_state"]
-    assert state["winner_vote_counts"]["shared-dupe"] == 2
-
-
-def test_winners_main_chunked_create_posts_multiple_messages(monkeypatch, tmp_path):
-    day_key = "2026-04-08"
-    path = tmp_path / "daily.json"
-    items = [
-        {
-            "section": "free",
-            "title": f"Chunked Winner {idx}",
-            "description": "A" * 110,
-            "url": f"https://example.com/{idx}",
-            "channel_id": "c",
-            "message_id": f"m-{idx}",
-        }
-        for idx in range(35)
-    ]
-    path.write_text(json.dumps({day_key: {"items": items}}), encoding="utf-8")
-    payloads = {f"m-{idx}": {"reactions": [{"emoji": {"name": "👍"}, "count": (3 if idx == 0 else 2)}]} for idx in range(35)}
-    reaction_users = {f"m-{idx}": ([{"id": "bot-1"}, {"id": "u-extra", "username": "extra"}, {"id": f"u-{idx}", "username": f"user-{idx}"}] if idx == 0 else [{"id": "bot-1"}, {"id": f"u-{idx}", "username": f"user-{idx}"}]) for idx in range(35)}
-    fake = FakeDiscordClient(payloads, reaction_users)
-    _patch_common(monkeypatch, path, fake, day_key)
-
-    winners.main()
-
-    assert len(fake.posts) > 1
-    state = json.loads(path.read_text(encoding="utf-8"))[day_key]["winners_state"]
-    assert state["message_id"] == "w-1"
-    assert state["message_ids"] == [post[2] for post in fake.posts]
-    for _, content, _ in fake.posts:
-        assert len(content) <= winners.DISCORD_MESSAGE_CHAR_LIMIT
-
-
-def test_winners_main_legacy_single_message_id_state_still_edits(monkeypatch, tmp_path):
-    day_key, path = _setup_daily(tmp_path)
-    data = json.loads(path.read_text(encoding="utf-8"))
-    data[day_key]["winners_state"] = {
-        "message_id": "w-old",
-        "winner_keys": ["paid-win", "shared-dupe"],
-        "winner_vote_counts": {"paid-win": 1, "shared-dupe": 1},
-    }
-    path.write_text(json.dumps(data), encoding="utf-8")
-
-    payloads = {
-        "m-late": {"reactions": [{"emoji": {"name": "👍"}, "count": 4}]},
-        "m-dupe": {"reactions": [{"emoji": {"name": "👍"}, "count": 2}]},
-        "m-paid": {"reactions": [{"emoji": {"name": "👍"}, "count": 2}]},
-    }
-    reaction_users = {
-        "m-late": [{"id": "bot-1"}, {"id": "u1", "username": "u1"}, {"id": "u5", "username": "u5"}, {"id": "u8", "username": "u8"}],
-        "m-paid": [{"id": "bot-1"}, {"id": "u2", "username": "u2"}],
-    }
-    fake = FakeDiscordClient(payloads, reaction_users)
-    _patch_common(monkeypatch, path, fake, day_key)
-
-    winners.main()
-
-    assert len(fake.edits) == 1
-    assert fake.edits[0][1] == "w-old"
-    assert fake.posts == []
-
-
-def test_winners_main_multi_message_state_updates_without_duplicate_reposts(monkeypatch, tmp_path):
-    day_key = "2026-04-08"
-    path = tmp_path / "daily.json"
-    items = [
-        {
-            "section": "free",
-            "title": f"Chunked Winner {idx}",
-            "description": "A" * 110,
-            "url": f"https://example.com/{idx}",
-            "channel_id": "c",
-            "message_id": f"m-{idx}",
-        }
-        for idx in range(35)
-    ]
-    path.write_text(
-        json.dumps(
-            {
-                day_key: {
-                    "items": items,
-                    "winners_state": {
-                        "message_id": "w-1",
-                        "message_ids": ["w-1", "w-2", "w-3", "w-4"],
-                        "winner_keys": [f"https://example.com/{idx}" for idx in range(35)],
-                        "winner_vote_counts": {f"https://example.com/{idx}": 1 for idx in range(35)},
-                    },
-                }
-            }
-        ),
-        encoding="utf-8",
+    fake = FakeDiscordClient(
+        {"m-late": {"reactions": [{"emoji": {"name": "👍"}, "count": 4}]}, "winner-prev-1": {}, "intro-prev": {}, "header-prev-free": {}, "footer-prev": {}},
+        {"m-late": [{"id": "bot-1"}, {"id": "u1", "username": "jan"}, {"id": "u2", "username": "jerry"}, {"id": "u3", "username": "akhil"}]},
     )
-
-    payloads = {f"m-{idx}": {"reactions": [{"emoji": {"name": "👍"}, "count": (3 if idx == 0 else 2)}]} for idx in range(35)}
-    reaction_users = {f"m-{idx}": [{"id": "bot-1"}, {"id": f"u-{idx}", "username": f"user-{idx}"}] for idx in range(35)}
-    fake = FakeDiscordClient(payloads, reaction_users)
     _patch_common(monkeypatch, path, fake, day_key)
+    winners.main()
+    assert fake.posts == []
+    assert any(entry[1] == "winner-prev-1" and "👍 3 votes" in entry[2] for entry in fake.edits)
 
+
+def test_cross_day_duplicate_suppression_and_section_order(monkeypatch, tmp_path):
+    day_key = "2026-04-08"
+    path = tmp_path / "daily.json"
+    data = {
+        "2026-04-07": {"items": [], "winners_state": {"winner_keys": ["repeat-free"]}},
+        day_key: {
+            "items": [
+                {"section": "free", "title": "Old Repeat", "url": "repeat-free", "channel_id": "c", "message_id": "m-repeat"},
+                {"section": "demo_playtest", "title": "Demo Fresh", "url": "demo-fresh", "channel_id": "c", "message_id": "m-demo"},
+                {"section": "paid", "title": "Paid Fresh", "url": "paid-fresh", "channel_id": "c", "message_id": "m-paid"},
+            ]
+        },
+    }
+    path.write_text(json.dumps(data), encoding="utf-8")
+    fake = FakeDiscordClient(
+        {
+            "m-repeat": {"reactions": [{"emoji": {"name": "👍"}, "count": 2}]},
+            "m-demo": {"reactions": [{"emoji": {"name": "👍"}, "count": 2}]},
+            "m-paid": {"reactions": [{"emoji": {"name": "👍"}, "count": 2}]},
+        },
+        {
+            "m-repeat": [{"id": "bot-1"}, {"id": "u1", "username": "u1"}],
+            "m-demo": [{"id": "bot-1"}, {"id": "u2", "username": "u2"}],
+            "m-paid": [{"id": "bot-1"}, {"id": "u3", "username": "u3"}],
+        },
+    )
+    _patch_common(monkeypatch, path, fake, day_key)
     winners.main()
 
-    assert fake.posts == []
-    edited_ids = [entry[1] for entry in fake.edits]
-    assert edited_ids == ["w-1", "w-2", "w-3", "w-4"]
-    state = json.loads(path.read_text(encoding="utf-8"))[day_key]["winners_state"]
-    assert state["message_ids"] == ["w-1", "w-2", "w-3", "w-4"]
+    body = "\n".join([p[1] for p in fake.posts])
+    assert "Old Repeat" not in body
+    assert body.index("🧪 Demo & Playtest Winners") < body.index("💸 Paid Winners")
+
+
+def test_instagram_fallback_description_is_preserved():
+    msg = winners.build_winner_game_message(
+        {
+            "title": "@creator",
+            "url": "https://www.instagram.com/p/ABC123/",
+            "human_votes": 2,
+            "voter_names": ["Jan", "Jerry"],
+        },
+        section="instagram",
+    )
+    assert "Instagram post from @creator" in msg
+    assert "caption unavailable in legacy state" in msg
