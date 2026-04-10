@@ -72,9 +72,9 @@ HEADERS = {
 # - Paid is strictest overall.
 # Section caps are intentionally independent: Demo/Playtest picks are curated separately
 # from Free Picks so one noisy pool cannot crowd out the other.
-MAX_FREE_POSTS = 10
-MAX_DEMO_PLAYTEST_POSTS = 10
-MAX_PAID_POSTS = 10
+MAX_FREE_POSTS = 5
+MAX_DEMO_PLAYTEST_POSTS = 5
+MAX_PAID_POSTS = 5
 
 PAGE_WINDOW_SIZE = 10
 MAX_PAGE_LIMIT = 50
