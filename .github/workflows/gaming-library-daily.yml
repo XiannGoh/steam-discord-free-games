@@ -1,0 +1,50 @@
+name: Gaming Library Daily Reminder
+
+on:
+  workflow_dispatch:
+    inputs:
+      library_date_utc:
+        description: "Optional UTC date key (YYYY-MM-DD) for manual rerun"
+        required: false
+        type: string
+  schedule:
+    - cron: "0 14 * * *"
+
+permissions:
+  contents: write
+
+jobs:
+  run-gaming-library-daily:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Download repository
+        uses: actions/checkout@v5
+
+      - name: Install Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: "3.11"
+
+      - name: Install packages
+        run: pip install -r requirements.txt
+
+      - name: Post daily gaming library reminder
+        env:
+          DISCORD_BOT_TOKEN: ${{ secrets.DISCORD_BOT_TOKEN }}
+          DISCORD_GAMING_LIBRARY_CHANNEL_ID: ${{ secrets.DISCORD_GAMING_LIBRARY_CHANNEL_ID }}
+          LIBRARY_DATE_UTC: ${{ inputs.library_date_utc }}
+        run: python scripts/post_daily_gaming_library.py
+
+      - name: Save updated gaming library state
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          if [ -f gaming_library.json ]; then git add gaming_library.json; fi
+
+          if ! git diff --cached --quiet; then
+            git commit -m "Update gaming library daily state"
+            git pull --rebase origin main
+          fi
+          git push
