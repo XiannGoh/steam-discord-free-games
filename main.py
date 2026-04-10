@@ -54,6 +54,30 @@ INSTAGRAM_GAME_KEY_BOILERPLATE_PATTERNS = [
     r"\bout\s+now\b",
     r"\blink\s+in\s+bio\b",
 ]
+INSTAGRAM_GAME_KEY_FALLBACK_BOUNDARY_PATTERNS = [
+    r"\bdemo\b",
+    r"\bplaytest\b",
+    r"\bfree\b",
+    r"\bsteam\b",
+    r"\bwishlist\b",
+    r"\bout\s+now\b",
+    r"\blink\s+in\s+bio\b",
+]
+INSTAGRAM_GAME_KEY_GENERIC_PREFIX_TOKENS = {
+    "check",
+    "this",
+    "that",
+    "out",
+    "pick",
+    "picks",
+    "today",
+    "game",
+    "games",
+    "new",
+    "my",
+    "our",
+    "you",
+}
 
 HEADERS = {
     "User-Agent": "Mozilla/5.0"
@@ -1855,6 +1879,13 @@ def _normalize_instagram_game_key_fragment(text: str) -> str:
     return normalized
 
 
+def _is_low_confidence_instagram_title_candidate(key: str) -> bool:
+    tokens = key.split()
+    if len(tokens) > 6:
+        return True
+    return any(token in INSTAGRAM_GAME_KEY_GENERIC_PREFIX_TOKENS for token in tokens)
+
+
 def derive_instagram_game_key(caption: str) -> Optional[str]:
     if not caption:
         return None
@@ -1876,18 +1907,28 @@ def derive_instagram_game_key(caption: str) -> Optional[str]:
                 return key
 
     separator_match = re.search(r"\s[-|:]\s", raw_caption)
-    if not separator_match:
-        return None
+    if separator_match:
+        candidate = raw_caption[:separator_match.start()].strip()
+        key = _normalize_instagram_game_key_fragment(candidate)
+        if key and len(key) >= 3 and re.search(r"[a-z]", key):
+            return key
 
-    candidate = raw_caption[:separator_match.start()].strip()
-    key = _normalize_instagram_game_key_fragment(candidate)
-    if not key:
-        return None
+    boundary_start = None
+    for pattern in INSTAGRAM_GAME_KEY_FALLBACK_BOUNDARY_PATTERNS:
+        match = re.search(pattern, raw_caption, flags=re.IGNORECASE)
+        if not match:
+            continue
+        if boundary_start is None or match.start() < boundary_start:
+            boundary_start = match.start()
 
-    if len(key) < 3 or not re.search(r"[a-z]", key):
-        return None
+    if boundary_start is not None:
+        candidate = raw_caption[:boundary_start].strip(" -|:–—•")
+        key = _normalize_instagram_game_key_fragment(candidate)
+        if key and len(key) >= 3 and re.search(r"[a-z]", key):
+            if not _is_low_confidence_instagram_title_candidate(key):
+                return key
 
-    return key
+    return None
 
 
 def dedupe_instagram_posts(posts: List[dict]) -> List[dict]:

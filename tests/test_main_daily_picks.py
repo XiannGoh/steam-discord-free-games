@@ -215,6 +215,36 @@ def test_dedupe_instagram_posts_keeps_low_confidence_boilerplate_only_captions()
     assert [post["url"] for post in deduped] == ["u1", "u2"]
 
 
+def test_dedupe_instagram_posts_merges_same_game_without_separator_when_boilerplate_differs():
+    posts = [
+        {"username": "creator_a", "caption": "Star Drift free on Steam now", "url": "u1"},
+        {"username": "creator_b", "caption": "STAR DRIFT wishlist link in bio", "url": "u2"},
+    ]
+
+    deduped = main.dedupe_instagram_posts(posts)
+
+    assert [post["url"] for post in deduped] == ["u1"]
+
+
+def test_dedupe_instagram_posts_keeps_low_confidence_non_title_prefixes_conservative():
+    posts = [
+        {"username": "creator_a", "caption": "Check this out link in bio", "url": "u1"},
+        {"username": "creator_b", "caption": "Check this out on Steam", "url": "u2"},
+    ]
+
+    deduped = main.dedupe_instagram_posts(posts)
+
+    assert [post["url"] for post in deduped] == ["u1", "u2"]
+
+
+def test_derive_instagram_game_key_extracts_prefix_before_boilerplate_boundary():
+    assert main.derive_instagram_game_key("Neon Harbor wishlist now on steam") == "neon harbor"
+
+
+def test_derive_instagram_game_key_rejects_generic_prefix_candidates():
+    assert main.derive_instagram_game_key("Check this out link in bio") is None
+
+
 def test_instagram_dedupe_debug_summary_counts_and_samples():
     posts = [
         {"username": "creator_a", "caption": '"Nova Hex" - out now', "url": "u1"},
