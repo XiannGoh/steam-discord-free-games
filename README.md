@@ -103,6 +103,7 @@ Manual rerun quick commands (GitHub CLI):
 ### Bot health report (`bot-health-report.yml`)
 - **What it does:** posts a once-daily Discord health summary across core workflows.
 - **Schedule:** `10 3 * * *` (03:10 UTC daily; ~11:10 PM New York during EDT).
+- **Workflow freshness thresholds:** Weekly Scheduling Bot `168h`, Weekly Scheduling Responses Sync `6h`, Daily Steam Picks `20h`, Evening Winners `12h`.
 - **Manual rerun:** `gh workflow run bot-health-report.yml`
 
 ## Operator Runbook (Consolidated)
