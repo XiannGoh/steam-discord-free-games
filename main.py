@@ -43,6 +43,15 @@ INSTAGRAM_CREATORS = [
 ]
 
 MAX_INSTAGRAM_POSTS_PER_ACCOUNT = 2
+INSTAGRAM_GAME_KEY_BOILERPLATE_PATTERNS = [
+    r"\bdemo\b",
+    r"\bplaytest\b",
+    r"\bfree\b",
+    r"\bsteam\b",
+    r"\bwishlist\b",
+    r"\bout\s+now\b",
+    r"\blink\s+in\s+bio\b",
+]
 
 HEADERS = {
     "User-Agent": "Mozilla/5.0"
@@ -1759,6 +1768,70 @@ def dedupe_by_app_id(items: List[Tuple[str, str]]) -> List[Tuple[str, str]]:
             output.append((source, app_id))
     return output
 
+
+def _normalize_instagram_game_key_fragment(text: str) -> str:
+    normalized = text.lower()
+    normalized = re.sub(r"#\w+", " ", normalized)
+    for pattern in INSTAGRAM_GAME_KEY_BOILERPLATE_PATTERNS:
+        normalized = re.sub(pattern, " ", normalized)
+    normalized = re.sub(r"[^a-z0-9\s]", " ", normalized)
+    normalized = re.sub(r"\s+", " ", normalized).strip()
+    return normalized
+
+
+def derive_instagram_game_key(caption: str) -> Optional[str]:
+    if not caption:
+        return None
+
+    raw_caption = caption.strip()
+    if not raw_caption or raw_caption == "(no caption)":
+        return None
+
+    quoted_or_bracketed_patterns = [
+        r"[\"“”]([^\"“”]{2,80})[\"“”]",
+        r"\[([^\[\]]{2,80})\]",
+        r"\(([^\(\)]{2,80})\)",
+    ]
+    for pattern in quoted_or_bracketed_patterns:
+        match = re.search(pattern, raw_caption)
+        if match:
+            key = _normalize_instagram_game_key_fragment(match.group(1))
+            if key:
+                return key
+
+    separator_match = re.search(r"\s[-|:]\s", raw_caption)
+    if not separator_match:
+        return None
+
+    candidate = raw_caption[:separator_match.start()].strip()
+    key = _normalize_instagram_game_key_fragment(candidate)
+    if not key:
+        return None
+
+    if len(key) < 3 or not re.search(r"[a-z]", key):
+        return None
+
+    return key
+
+
+def dedupe_instagram_posts(posts: List[dict]) -> List[dict]:
+    seen_keys = set()
+    deduped_posts: List[dict] = []
+
+    for post in posts:
+        key = derive_instagram_game_key(post.get("caption", ""))
+        if key is None:
+            deduped_posts.append(post)
+            continue
+
+        if key in seen_keys:
+            continue
+
+        seen_keys.add(key)
+        deduped_posts.append(post)
+
+    return deduped_posts
+
 def load_instagram_seen():
     if not os.path.exists(INSTAGRAM_STATE_FILE):
         return {}
@@ -2009,7 +2082,7 @@ def main():
         f"(cap={MAX_DEMO_PLAYTEST_POSTS})"
     )
 
-    instagram_posts = fetch_instagram_posts()
+    instagram_posts = dedupe_instagram_posts(fetch_instagram_posts())
     post_daily_pick_messages(demo_playtest_items, free_items, paid_items, instagram_posts)
 
     if not demo_playtest_items and not free_items and not paid_items:

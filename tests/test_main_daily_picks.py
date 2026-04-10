@@ -136,6 +136,51 @@ def test_daily_item_persistence_stores_descriptions(monkeypatch, tmp_path):
     assert instagram_item["description"] == "Creator caption text"
 
 
+def test_dedupe_instagram_posts_merges_same_game_across_creators():
+    posts = [
+        {"username": "creator_a", "caption": '"Star Drift" - free on Steam #indie 🚀', "url": "u1"},
+        {"username": "creator_b", "caption": '"STAR DRIFT" | wishlist now #Steam ✨', "url": "u2"},
+    ]
+
+    deduped = main.dedupe_instagram_posts(posts)
+
+    assert [post["url"] for post in deduped] == ["u1"]
+
+
+def test_dedupe_instagram_posts_keeps_different_games():
+    posts = [
+        {"username": "creator_a", "caption": '"Star Drift" - out now', "url": "u1"},
+        {"username": "creator_b", "caption": '"Moon Harbor" - out now', "url": "u2"},
+    ]
+
+    deduped = main.dedupe_instagram_posts(posts)
+
+    assert [post["url"] for post in deduped] == ["u1", "u2"]
+
+
+def test_dedupe_instagram_posts_keeps_low_confidence_captions():
+    posts = [
+        {"username": "creator_a", "caption": "Go check this out link in bio", "url": "u1"},
+        {"username": "creator_b", "caption": "Super fun pick today 🔥", "url": "u2"},
+    ]
+
+    deduped = main.dedupe_instagram_posts(posts)
+
+    assert [post["url"] for post in deduped] == ["u1", "u2"]
+
+
+def test_dedupe_instagram_posts_preserves_surviving_order():
+    posts = [
+        {"username": "creator_a", "caption": "[Night Signal]: out now", "url": "u1"},
+        {"username": "creator_b", "caption": '"NIGHT SIGNAL" - demo', "url": "u2"},
+        {"username": "creator_c", "caption": '"Orbit Tail" - wishlist', "url": "u3"},
+    ]
+
+    deduped = main.dedupe_instagram_posts(posts)
+
+    assert [post["url"] for post in deduped] == ["u1", "u3"]
+
+
 def test_daily_sections_post_in_new_order(monkeypatch, tmp_path):
     daily_path = tmp_path / "daily.json"
     daily_path.write_text("{}", encoding="utf-8")
