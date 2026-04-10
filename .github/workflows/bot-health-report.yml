@@ -25,10 +25,10 @@ jobs:
         with:
           script: |
             const workflows = [
-              { file: "weekly-scheduling-bot.yml", name: "Weekly Scheduling Bot", staleHours: 192 },
+              { file: "weekly-scheduling-bot.yml", name: "Weekly Scheduling Bot", staleHours: 168 },
               { file: "weekly-scheduling-responses-sync.yml", name: "Weekly Scheduling Responses Sync", staleHours: 6 },
-              { file: "daily.yml", name: "Daily Steam Picks", staleHours: 30 },
-              { file: "evening-winners.yml", name: "Evening Winners", staleHours: 30 },
+              { file: "daily.yml", name: "Daily Steam Picks", staleHours: 20 },
+              { file: "evening-winners.yml", name: "Evening Winners", staleHours: 12 },
             ];
 
             const output = [];
