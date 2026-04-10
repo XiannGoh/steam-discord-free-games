@@ -14,7 +14,7 @@ on:
     - cron: "10 23 * * *"
 
 permissions:
-  contents: read
+  contents: write
 
 jobs:
   run-evening-winners:
@@ -38,6 +38,16 @@ jobs:
           DISCORD_WINNERS_CHANNEL_ID: ${{ secrets.DISCORD_WINNERS_CHANNEL_ID }}
           WINNERS_DATE_UTC: ${{ inputs.winners_date_utc }}
         run: python evening_winners.py
+
+      - name: Save updated winners state
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          if [ -f discord_daily_posts.json ]; then git add discord_daily_posts.json; fi
+
+          git diff --cached --quiet || git commit -m "Update winners state"
+          git push
 
       - name: Notify Discord health monitor on failure
         if: ${{ failure() && env.DISCORD_HEALTH_MONITOR_WEBHOOK_URL != '' }}
