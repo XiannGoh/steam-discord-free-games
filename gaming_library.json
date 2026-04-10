@@ -1,6 +1,49 @@
 {
   "version": 1,
-  "games": {},
+  "games": {
+    "steam:1621690": {
+      "identity_key": "steam:1621690",
+      "canonical_name": "Core Keeper",
+      "url": "https://store.steampowered.com/app/1621690/",
+      "source_type": "paid_under_20",
+      "source_section": "paid",
+      "source_metadata": {
+        "winner_key": "https://store.steampowered.com/app/1621690/",
+        "description": null,
+        "daily_section": "paid"
+      },
+      "assignments": {
+        "195462430535581708": {
+          "status": "active",
+          "updated_at_utc": "2026-04-10T09:39:19.389764+00:00"
+        }
+      },
+      "archived": false,
+      "created_at_utc": "2026-04-10T09:39:19.389733+00:00",
+      "updated_at_utc": "2026-04-10T09:39:19.389773+00:00"
+    },
+    "url:https://www.instagram.com/p/dw6y_zjj2tc/": {
+      "identity_key": "url:https://www.instagram.com/p/dw6y_zjj2tc/",
+      "canonical_name": "@indiegamespotlights",
+      "url": "https://www.instagram.com/p/DW6y_ZJj2tc/",
+      "source_type": "instagram",
+      "source_section": "instagram",
+      "source_metadata": {
+        "winner_key": "https://www.instagram.com/p/DW6y_ZJj2tc/",
+        "description": "A driving horror game with friends? In this co-op open world, your car is the only way out, drive, fix, loot, and sur...",
+        "daily_section": "instagram"
+      },
+      "assignments": {
+        "195462430535581708": {
+          "status": "active",
+          "updated_at_utc": "2026-04-10T09:39:31.041675+00:00"
+        }
+      },
+      "archived": false,
+      "created_at_utc": "2026-04-10T09:39:31.041650+00:00",
+      "updated_at_utc": "2026-04-10T09:39:31.041685+00:00"
+    }
+  },
   "daily_posts": {
     "2026-04-10": {
       "messages": {
