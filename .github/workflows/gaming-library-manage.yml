@@ -77,6 +77,8 @@ jobs:
         run: pip install -r requirements.txt
 
       - name: Apply manual gaming library operation
+        env:
+          PYTHONPATH: .
         run: |
           python scripts/manage_gaming_library.py \
             --operation "${{ inputs.operation }}" \
