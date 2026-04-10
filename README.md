@@ -146,6 +146,7 @@ Use this section as the fast triage guide when a workflow or state file drifts.
   - 🟡 monitor / follow-up (informational/non-urgent only)
   - 🔴 action needed
   - Note: stale workflow freshness is classified as 🔴 with `Disposition: Action required`.
+  - Long reports are now automatically split into multiple Discord messages (readable chunk boundaries, hard-capped below Discord's 2000-char content limit).
 
 ### Manual recovery / triage playbook
 
@@ -212,6 +213,7 @@ What it does:
 - Builds and stores derived summary data
 - Posts/edits weekly summary message in the scheduling channel
 - Posts reminder mentions for missing users when needed
+- Summary/reminder outputs now auto-chunk when content grows, with backward-compatible `*_message_id` + `*_message_ids` tracking for rerun-safe edits.
 
 Weekly state files (12-week retention):
 - `data/scheduling/weekly_schedule_messages.json`

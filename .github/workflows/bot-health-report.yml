@@ -87,32 +87,64 @@ jobs:
           DISCORD_HEALTH_MONITOR_WEBHOOK_URL: ${{ secrets.DISCORD_HEALTH_MONITOR_WEBHOOK_URL }}
           HEALTH_REPORT_CONTENT: ${{ steps.build-report.outputs.content }}
         run: |
-          payload="$(python - <<'PY'
+          python - <<'PY'
           import json
           import os
-          print(json.dumps({"content": os.environ["HEALTH_REPORT_CONTENT"]}))
+          import subprocess
+          import sys
+
+          from discord_api import split_discord_content
+
+          webhook = os.environ["DISCORD_HEALTH_MONITOR_WEBHOOK_URL"]
+          report = os.environ["HEALTH_REPORT_CONTENT"]
+          chunks = split_discord_content(report)
+
+          if len(chunks) > 1:
+              labeled_chunks = []
+              for idx, chunk in enumerate(chunks, start=1):
+                  prefix = f"📋 Bot Health Report ({idx}/{len(chunks)})\n"
+                  labeled_chunks.append(f"{prefix}{chunk}")
+              chunks = labeled_chunks
+
+          for idx, chunk in enumerate(chunks, start=1):
+              payload = json.dumps({"content": chunk})
+              result = subprocess.run(
+                  [
+                      "curl",
+                      "--silent",
+                      "--show-error",
+                      "--output",
+                      "/tmp/discord-health-response.txt",
+                      "--write-out",
+                      "%{http_code}",
+                      "--header",
+                      "Content-Type: application/json",
+                      "--header",
+                      "User-Agent: steam-discord-free-games-health-monitor/1.0",
+                      "--data",
+                      payload,
+                      "--request",
+                      "POST",
+                      webhook,
+                  ],
+                  check=False,
+                  text=True,
+                  capture_output=True,
+              )
+              http_status = (result.stdout or "").strip()
+              if http_status.startswith("2"):
+                  print(f"Discord webhook POST chunk {idx}/{len(chunks)} succeeded: HTTP {http_status}")
+                  continue
+
+              print(f"Discord webhook POST chunk {idx}/{len(chunks)} failed: HTTP {http_status}", file=sys.stderr)
+              try:
+                  with open("/tmp/discord-health-response.txt", encoding="utf-8") as response_file:
+                      response_body = response_file.read()
+                  if response_body.strip():
+                      print(response_body, file=sys.stderr)
+              except OSError:
+                  pass
+              if result.stderr:
+                  print(result.stderr, file=sys.stderr)
+              sys.exit(1)
           PY
-          )"
-
-          response_file="$(mktemp)"
-          http_status="$(curl --silent --show-error \
-            --output "${response_file}" \
-            --write-out "%{http_code}" \
-            --header "Content-Type: application/json" \
-            --header "User-Agent: steam-discord-free-games-health-monitor/1.0" \
-            --data "${payload}" \
-            --request POST \
-            "${DISCORD_HEALTH_MONITOR_WEBHOOK_URL}")"
-
-          if [[ "${http_status}" =~ ^2[0-9][0-9]$ ]]; then
-            echo "Discord webhook POST succeeded: HTTP ${http_status}"
-          else
-            echo "Discord webhook POST failed: HTTP ${http_status}" >&2
-            if [[ -s "${response_file}" ]]; then
-              cat "${response_file}" >&2
-            fi
-            rm -f "${response_file}"
-            exit 1
-          fi
-
-          rm -f "${response_file}"

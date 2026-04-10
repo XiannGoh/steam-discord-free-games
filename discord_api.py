@@ -6,8 +6,66 @@ from typing import Any
 import requests
 
 DISCORD_API_BASE = "https://discord.com/api/v10"
+DISCORD_MESSAGE_HARD_LIMIT = 2000
+DISCORD_MESSAGE_TARGET_LIMIT = 1900
 DEFAULT_TIMEOUT_SECONDS = 30
 RETRY_STATUSES = {429, 500, 502, 503, 504}
+
+
+def split_discord_content(
+    content: str,
+    *,
+    target_limit: int = DISCORD_MESSAGE_TARGET_LIMIT,
+    hard_limit: int = DISCORD_MESSAGE_HARD_LIMIT,
+) -> list[str]:
+    """Split long content into Discord-safe chunks with readable boundaries."""
+    text = str(content)
+    if len(text) <= hard_limit:
+        return [text]
+
+    if target_limit <= 0 or hard_limit <= 0:
+        raise ValueError("Discord chunk limits must be positive")
+    if target_limit > hard_limit:
+        target_limit = hard_limit
+
+    chunks: list[str] = []
+    remaining = text
+
+    while remaining:
+        if len(remaining) <= hard_limit:
+            chunks.append(remaining)
+            break
+
+        window = remaining[:target_limit]
+        split_at = _best_split_index(window)
+        if split_at <= 0:
+            split_at = target_limit
+
+        chunk = remaining[:split_at].rstrip("\n")
+        if not chunk:
+            chunk = remaining[:target_limit]
+            split_at = len(chunk)
+
+        if len(chunk) > hard_limit:
+            chunk = chunk[:hard_limit]
+            split_at = len(chunk)
+
+        chunks.append(chunk)
+        remaining = remaining[split_at:].lstrip("\n")
+
+    for chunk in chunks:
+        if len(chunk) > hard_limit:
+            raise ValueError("Generated Discord chunk exceeded hard limit")
+
+    return chunks
+
+
+def _best_split_index(window: str) -> int:
+    for token in ("\n\n", "\n- ", "\n* ", "\n• ", "\n"):
+        idx = window.rfind(token)
+        if idx > 0:
+            return idx + len(token)
+    return window.rfind(" ")
 
 
 class DiscordApiError(RuntimeError):
