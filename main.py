@@ -23,6 +23,7 @@ from state_utils import (
 
 WEBHOOK_URL = os.getenv("DISCORD_WEBHOOK_URL")
 DISCORD_BOT_TOKEN = os.getenv("DISCORD_BOT_TOKEN")
+DISCORD_GUILD_ID = os.getenv("DISCORD_GUILD_ID")
 STATE_FILE = "seen_ids.json"
 PAGE_STATE_FILE = "page_state.json"
 INSTAGRAM_STATE_FILE = "instagram_seen.json"
@@ -1608,6 +1609,59 @@ def post_message_chunks(chunks: List[str]) -> None:
         sleep_briefly()
 
 
+def build_discord_message_link(guild_id: str, channel_id: str, message_id: str) -> str:
+    return f"https://discord.com/channels/{guild_id}/{channel_id}/{message_id}"
+
+
+def build_daily_navigation_footer(
+    run_state: dict,
+    guild_id: Optional[str],
+    posted_section_keys: List[str],
+) -> Optional[str]:
+    if not isinstance(guild_id, str) or not guild_id.strip():
+        print("WARN: DISCORD_GUILD_ID missing; skipping daily navigation footer.")
+        return None
+
+    intro_state = run_state.get("intro")
+    if not isinstance(intro_state, dict):
+        print("WARN: intro state missing; skipping daily navigation footer.")
+        return None
+
+    intro_channel_id = intro_state.get("channel_id")
+    intro_message_id = intro_state.get("message_id")
+    if not (isinstance(intro_channel_id, str) and isinstance(intro_message_id, str)):
+        print("WARN: intro message metadata missing; skipping daily navigation footer.")
+        return None
+
+    section_labels = {
+        "demo_playtest": "🧪 Demo & Playtest Picks",
+        "free": "🎮 Free Picks",
+        "paid": "💸 Paid Picks",
+        "instagram": "📸 Creator Picks",
+    }
+    section_headers = run_state.get("section_headers", {})
+    lines = [f"🎯 Intro / Top of Post → {build_discord_message_link(guild_id, intro_channel_id, intro_message_id)}"]
+
+    for section_key in DAILY_SECTION_ORDER:
+        if section_key not in posted_section_keys:
+            continue
+        section_state = section_headers.get(section_key) if isinstance(section_headers, dict) else None
+        if not isinstance(section_state, dict):
+            print(f"WARN: {section_key} header state missing; skipping daily navigation footer.")
+            return None
+        channel_id = section_state.get("channel_id")
+        message_id = section_state.get("message_id")
+        if not (isinstance(channel_id, str) and isinstance(message_id, str)):
+            print(f"WARN: {section_key} header metadata missing; skipping daily navigation footer.")
+            return None
+        section_label = section_labels.get(section_key)
+        if not section_label:
+            continue
+        lines.append(f"{section_label} → {build_discord_message_link(guild_id, channel_id, message_id)}")
+
+    return "\n".join(lines)
+
+
 def post_daily_pick_messages(
     demo_playtest_items: List[dict],
     free_items: List[dict],
@@ -1691,6 +1745,7 @@ def post_daily_pick_messages(
         "paid": paid_items,
         "instagram": instagram_posts,
     }
+    posted_section_keys = [section_key for section_key in DAILY_SECTION_ORDER if section_items_by_key.get(section_key)]
     section_paid_flags = {"demo_playtest": False, "free": False, "paid": True, "instagram": False}
 
     for section in DAILY_SECTION_CONFIG:
@@ -1765,6 +1820,12 @@ def post_daily_pick_messages(
             else:
                 print(f"WARN: missing metadata for {section_key} item title={title}")
             sleep_briefly()
+
+    footer_state = run_state.setdefault("navigation_footer", {})
+    footer_content = build_daily_navigation_footer(run_state, DISCORD_GUILD_ID, posted_section_keys)
+    if footer_content:
+        post_or_reuse_simple(footer_content, "navigation_footer", footer_state)
+        sleep_briefly()
 
     run_state["completed"] = True
     run_state["completed_at_utc"] = utc_now_iso()

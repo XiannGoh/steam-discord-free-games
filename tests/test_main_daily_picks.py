@@ -276,6 +276,128 @@ def test_daily_sections_post_in_new_order(monkeypatch, tmp_path):
     ]
 
 
+def test_daily_navigation_footer_is_posted_last_with_expected_links(monkeypatch, tmp_path):
+    daily_path = tmp_path / "daily.json"
+    daily_path.write_text("{}", encoding="utf-8")
+    day_key = "2026-04-08"
+    posted = []
+    counter = {"i": 0}
+
+    def fake_post(message, capture_metadata=False):
+        posted.append(message)
+        counter["i"] += 1
+        return {"message_id": f"m-{counter['i']}", "channel_id": "chan-1"}
+
+    fake_client = FakeDiscordClient()
+
+    monkeypatch.setattr(main, "DISCORD_DAILY_POSTS_FILE", str(daily_path))
+    monkeypatch.setattr(main, "DISCORD_BOT_TOKEN", "token")
+    monkeypatch.setattr(main, "DISCORD_GUILD_ID", "guild-1")
+    monkeypatch.setattr(main, "DiscordClient", lambda session: fake_client)
+    monkeypatch.setattr(main, "post_to_discord_with_metadata", fake_post)
+    monkeypatch.setattr(main, "sleep_briefly", lambda: None)
+    monkeypatch.setenv(main.DAILY_DATE_OVERRIDE_ENV, day_key)
+
+    main.post_daily_pick_messages(
+        [{"title": "Demo", "url": "https://store.steampowered.com/app/11", "score": 10}],
+        [{"title": "Free", "url": "https://store.steampowered.com/app/12", "score": 10}],
+        [],
+        [],
+    )
+
+    expected_footer = "\n".join(
+        [
+            "🎯 Intro / Top of Post → https://discord.com/channels/guild-1/chan-1/m-1",
+            "🧪 Demo & Playtest Picks → https://discord.com/channels/guild-1/chan-1/m-2",
+            "🎮 Free Picks → https://discord.com/channels/guild-1/chan-1/m-4",
+        ]
+    )
+    assert posted[-1] == expected_footer
+    assert any("Demo Pick #1" in message for message in posted[:-1])
+    assert any("Free Pick #1" in message for message in posted[:-1])
+
+
+def test_daily_navigation_footer_rerun_reuses_existing_message(monkeypatch, tmp_path):
+    daily_path = tmp_path / "daily.json"
+    day_key = "2026-04-08"
+    initial = {
+        day_key: {
+            "run_state": {
+                "intro": {"message_id": "intro-1", "channel_id": "chan-1"},
+                "section_headers": {"free": {"message_id": "header-free-1", "channel_id": "chan-1"}},
+                "navigation_footer": {"message_id": "footer-1", "channel_id": "chan-1"},
+                "completed": False,
+            },
+            "items": [
+                {
+                    "item_key": main.hashlib.sha256(
+                        "free|steam_free|https://store.steampowered.com/app/12".encode("utf-8")
+                    ).hexdigest()[:16],
+                    "section": "free",
+                    "title": "Free",
+                    "url": "https://store.steampowered.com/app/12",
+                    "message_id": "item-1",
+                    "channel_id": "chan-1",
+                    "source_type": "steam_free",
+                    "posted_at": "2026-04-08T00:00:00+00:00",
+                }
+            ],
+        }
+    }
+    daily_path.write_text(json.dumps(initial), encoding="utf-8")
+    posted = []
+
+    def fake_post(message, capture_metadata=False):
+        posted.append(message)
+        return {"message_id": "new-message", "channel_id": "chan-1"}
+
+    fake_client = FakeDiscordClient(existing_ids={"intro-1", "header-free-1", "footer-1", "item-1"})
+
+    monkeypatch.setattr(main, "DISCORD_DAILY_POSTS_FILE", str(daily_path))
+    monkeypatch.setattr(main, "DISCORD_BOT_TOKEN", "token")
+    monkeypatch.setattr(main, "DISCORD_GUILD_ID", "guild-1")
+    monkeypatch.setattr(main, "DiscordClient", lambda session: fake_client)
+    monkeypatch.setattr(main, "post_to_discord_with_metadata", fake_post)
+    monkeypatch.setattr(main, "sleep_briefly", lambda: None)
+    monkeypatch.setenv(main.DAILY_DATE_OVERRIDE_ENV, day_key)
+
+    main.post_daily_pick_messages([], [{"title": "Free", "url": "https://store.steampowered.com/app/12", "score": 10}], [], [])
+
+    assert posted == []
+
+
+def test_daily_navigation_footer_skips_safely_when_guild_or_metadata_missing(monkeypatch, tmp_path):
+    daily_path = tmp_path / "daily.json"
+    daily_path.write_text("{}", encoding="utf-8")
+    day_key = "2026-04-08"
+    posted = []
+    counter = {"i": 0}
+
+    def fake_post(message, capture_metadata=False):
+        posted.append(message)
+        counter["i"] += 1
+        if counter["i"] == 2:
+            return {"message_id": f"m-{counter['i']}", "channel_id": None}
+        return {"message_id": f"m-{counter['i']}", "channel_id": "chan-1"}
+
+    fake_client = FakeDiscordClient()
+
+    monkeypatch.setattr(main, "DISCORD_DAILY_POSTS_FILE", str(daily_path))
+    monkeypatch.setattr(main, "DISCORD_BOT_TOKEN", "token")
+    monkeypatch.setattr(main, "DISCORD_GUILD_ID", "")
+    monkeypatch.setattr(main, "DiscordClient", lambda session: fake_client)
+    monkeypatch.setattr(main, "post_to_discord_with_metadata", fake_post)
+    monkeypatch.setattr(main, "sleep_briefly", lambda: None)
+    monkeypatch.setenv(main.DAILY_DATE_OVERRIDE_ENV, day_key)
+
+    main.post_daily_pick_messages([{"title": "Demo", "url": "https://store.steampowered.com/app/11", "score": 10}], [], [], [])
+
+    assert any("Demo Pick #1" in message for message in posted)
+    assert not any("Intro / Top of Post" in message for message in posted)
+    saved = json.loads(daily_path.read_text(encoding="utf-8"))
+    assert saved[day_key]["run_state"]["completed"] is True
+
+
 def test_daily_section_order_is_product_invariant():
     assert main.DAILY_SECTION_ORDER == ["demo_playtest", "free", "paid", "instagram"]
     assert [entry["header"] for entry in main.DAILY_SECTION_CONFIG] == [
