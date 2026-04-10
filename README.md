@@ -262,7 +262,7 @@ Posting behavior in `daily-game-picks`:
 - One Discord message per item
 - Adds a default 👍 reaction to each posted item
 - Instagram creator picks are conservatively deduplicated using a caption-derived normalized game key; if a reliable key cannot be derived from caption text, the post is kept.
-- Instagram seen-state is intentionally bounded: only the most recent 50 shortcodes per creator are retained in `instagram_seen.json`, preventing unbounded state growth.
+- Instagram seen-state is intentionally bounded by `INSTAGRAM_SEEN_RETENTION_PER_CREATOR` (default `50`): only the most recent 50 shortcodes per creator are retained in `instagram_seen.json`, preventing unbounded state growth over time.
 - Selection intent (low-risk/quality-first):
   - **New Demos & Playtests** sits above Free Picks and prioritizes friend-group fit (co-op/player-count cues), freshness, and basic legitimacy cues (`demo available`, `request access`, `playtest available`) over random catalog fill.
   - **Free Picks** remain focused on full free and temporarily free full games.
@@ -363,20 +363,24 @@ This shared layer is used by weekly + daily flows for consistency and safer reru
 ## Environment / Secrets (GitHub Actions)
 
 - Weekly scheduling bot:
-  - `DISCORD_SCHEDULING_BOT_TOKEN`
-  - `DISCORD_SCHEDULING_CHANNEL_ID`
+  - `DISCORD_SCHEDULING_BOT_TOKEN` — required bot token used to post/repair weekly intro/day prompts.
+  - `DISCORD_SCHEDULING_CHANNEL_ID` — required channel ID where weekly scheduling prompts are posted.
+  - `SCHEDULE_WEEK_START` (optional, `YYYY-MM-DD` Monday) — manual week override for backfill/repair runs.
 - Weekly responses sync:
-  - `DISCORD_SCHEDULING_BOT_TOKEN`
+  - `DISCORD_SCHEDULING_BOT_TOKEN` — required bot token used to fetch reactions and post/edit weekly summary/reminders.
+  - `TARGET_WEEK_KEY` (optional; workflow input `target_week_key`) — limit sync/rebuild to a specific stored week key.
+  - `REBUILD_SUMMARY_ONLY` (optional; workflow input `rebuild_summary_only`) — skip reaction fetch and only rebuild/repair summary output.
+  - `DRY_RUN` (optional; workflow input `dry_run`) — preview behavior without mutating Discord messages.
 - Daily picks:
-  - `DISCORD_WEBHOOK_URL`
-  - `DISCORD_BOT_TOKEN`
-  - `INSTAGRAM_USERNAME`
-  - `INSTAGRAM_SESSION_B64`
+  - `DISCORD_WEBHOOK_URL` — required webhook URL used to post daily intro/section/item content.
+  - `DISCORD_BOT_TOKEN` — required bot token for reactions, message checks, and daily state linkage.
+  - `INSTAGRAM_USERNAME` — required Instagram account username used for session-authenticated scraping.
+  - `INSTAGRAM_SESSION_B64` — required base64-encoded Instaloader session content (written to `instaloader.session` by workflow).
 - Evening winners:
-  - `DISCORD_BOT_TOKEN`
-  - `DISCORD_WINNERS_CHANNEL_ID`
+  - `DISCORD_BOT_TOKEN` — required bot token used to fetch reactions/voters and post winners output.
+  - `DISCORD_WINNERS_CHANNEL_ID` — required destination channel ID for winners posts.
 - Health monitor notifications (failure pings + daily report):
-  - `DISCORD_HEALTH_MONITOR_WEBHOOK_URL`
+  - `DISCORD_HEALTH_MONITOR_WEBHOOK_URL` — webhook URL used by workflow failure handlers and `bot-health-report.yml`.
 
 ## Voice-channel join alert bot (live process)
 
