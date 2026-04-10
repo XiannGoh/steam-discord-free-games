@@ -19,6 +19,7 @@ WINNERS_DATE_OVERRIDE_ENV = "WINNERS_DATE_UTC"
 WINNERS_LOOKBACK_DAYS = 10
 MAX_VOTERS_SHOWN_PER_GAME = 6
 DISCORD_MESSAGE_CHAR_LIMIT = 2000
+WINNERS_MESSAGE_TARGET_MAX = 1900
 
 # Winners intentionally mirror daily section ordering as product behavior,
 # not an incidental implementation detail.
@@ -84,6 +85,80 @@ def build_winners_message(winners_by_section: Dict[str, List[dict]]) -> str:
         lines.append("_No votes yet today._")
 
     return "\n".join(lines).strip()
+
+
+def _build_winner_item_lines(item: dict) -> List[str]:
+    lines = [item["title"]]
+    description = normalize_winner_description_for_message(item.get("description"))
+    if description:
+        lines.append(description)
+    lines.append(item["url"])
+    vote_word = "vote" if item["human_votes"] == 1 else "votes"
+    lines.append(f"👍 {item['human_votes']} {vote_word}")
+    lines.append(f"Voters — {format_voter_names_for_message(item['voter_names'])}")
+    lines.append("")
+    return lines
+
+
+def build_winners_message_chunks(
+    winners_by_section: Dict[str, List[dict]],
+    *,
+    target_max: int = WINNERS_MESSAGE_TARGET_MAX,
+    hard_limit: int = DISCORD_MESSAGE_CHAR_LIMIT,
+) -> List[str]:
+    full_message = build_winners_message(winners_by_section)
+    if len(full_message) <= hard_limit:
+        return [full_message]
+
+    header = "🏆 Daily Game Picks — Winners"
+    chunks: List[str] = []
+    current_lines: List[str] = [header, ""]
+    has_any_winners = any(isinstance(winners_by_section.get(section), list) and winners_by_section.get(section) for section in SECTION_ORDER)
+
+    def finalize_current_chunk() -> None:
+        if current_lines:
+            rendered = "\n".join(current_lines).strip()
+            if rendered:
+                chunks.append(rendered)
+
+    def can_fit(lines: List[str], extra_lines: List[str]) -> bool:
+        rendered = "\n".join(lines + extra_lines).strip()
+        return len(rendered) <= target_max
+
+    if not has_any_winners:
+        return [full_message]
+
+    for section in SECTION_ORDER:
+        items = winners_by_section.get(section, [])
+        if not items:
+            continue
+
+        section_header_lines = [SECTION_CONFIG[section]]
+        section_full_lines = section_header_lines[:]
+        for item in items:
+            section_full_lines.extend(_build_winner_item_lines(item))
+
+        if can_fit(current_lines, section_full_lines):
+            current_lines.extend(section_full_lines)
+            continue
+
+        if len("\n".join(current_lines).strip()) > len(header):
+            finalize_current_chunk()
+            current_lines = []
+
+        current_lines.extend(section_header_lines)
+        for item in items:
+            item_lines = _build_winner_item_lines(item)
+            if not can_fit(current_lines, item_lines):
+                finalize_current_chunk()
+                current_lines = [SECTION_CONFIG[section]]
+            current_lines.extend(item_lines)
+
+    finalize_current_chunk()
+    for chunk in chunks:
+        if len(chunk) > hard_limit:
+            raise RuntimeError("Winners chunk exceeded Discord character limit")
+    return chunks
 
 
 def build_winners_message_compact(winners_by_section: Dict[str, List[dict]]) -> str:
@@ -201,6 +276,18 @@ def post_winners_message(client: DiscordClient, channel_id: str, message: str) -
     return message_id
 
 
+def normalize_winners_message_ids(winners_state: dict) -> List[str]:
+    message_ids = winners_state.get("message_ids")
+    if isinstance(message_ids, list):
+        normalized = [str(message_id).strip() for message_id in message_ids if str(message_id).strip()]
+        if normalized:
+            return normalized
+    message_id = winners_state.get("message_id")
+    if isinstance(message_id, str) and message_id.strip():
+        return [message_id.strip()]
+    return []
+
+
 def main() -> None:
     if not DISCORD_BOT_TOKEN:
         raise RuntimeError("DISCORD_BOT_TOKEN is not set.")
@@ -304,9 +391,7 @@ def main() -> None:
                 }
             )
 
-        message = build_winners_message(winners_by_section)
-        if len(message) > DISCORD_MESSAGE_CHAR_LIMIT:
-            message = build_winners_message_compact(winners_by_section)
+        messages = build_winners_message_chunks(winners_by_section)
         winners_state = today_entry.get("winners_state")
         if not isinstance(winners_state, dict):
             winners_state = {}
@@ -317,7 +402,7 @@ def main() -> None:
             key: int(deduped_winners[key]["human_votes"])
             for key in current_winner_keys
         }
-        previous_message_id = winners_state.get("message_id")
+        previous_message_ids = normalize_winners_message_ids(winners_state)
         previous_winner_keys = winners_state.get("winner_keys")
         if not isinstance(previous_winner_keys, list):
             previous_winner_keys = []
@@ -331,7 +416,7 @@ def main() -> None:
             if str(key)
         }
 
-        if not current_winner_keys and not (isinstance(previous_message_id, str) and previous_message_id):
+        if not current_winner_keys and not previous_message_ids:
             print(f"SKIP: no eligible winners in last {WINNERS_LOOKBACK_DAYS} days for {day_key}")
             return
 
@@ -349,40 +434,54 @@ def main() -> None:
             print(f"SKIP: no newly eligible winners for {day_key}")
             return
 
-        if isinstance(previous_message_id, str) and previous_message_id:
+        if previous_message_ids:
             try:
-                client.get_message(
-                    winners_channel_id,
-                    previous_message_id,
-                    context=f"verify winners message for {day_key}",
-                )
+                for index, previous_message_id in enumerate(previous_message_ids):
+                    client.get_message(
+                        winners_channel_id,
+                        previous_message_id,
+                        context=f"verify winners message {index + 1}/{len(previous_message_ids)} for {day_key}",
+                    )
+            except DiscordMessageNotFoundError:
+                previous_message_ids = []
+                print(f"RECOVER: stale/deleted winners message for {day_key}; posting replacement")
+
+        resulting_message_ids: List[str] = []
+        if previous_message_ids:
+            for index, message in enumerate(messages):
+                if index < len(previous_message_ids):
+                    message_id = previous_message_ids[index]
+                    client.edit_message(
+                        winners_channel_id,
+                        message_id,
+                        message,
+                        context=f"edit winners message chunk {index + 1}/{len(messages)} for {day_key}",
+                    )
+                    resulting_message_ids.append(message_id)
+                else:
+                    resulting_message_ids.append(post_winners_message(client, winners_channel_id, message))
+            for stale_index in range(len(messages), len(previous_message_ids)):
+                stale_message_id = previous_message_ids[stale_index]
                 client.edit_message(
                     winners_channel_id,
-                    previous_message_id,
-                    message,
-                    context=f"edit winners message for {day_key}",
+                    stale_message_id,
+                    "_(Winners content moved to earlier message chunks.)_",
+                    context=f"clear stale winners chunk {stale_index + 1}/{len(previous_message_ids)} for {day_key}",
                 )
-                winners_state["winner_keys"] = current_winner_keys
-                winners_state["winner_vote_counts"] = current_winner_vote_counts
-                winners_state["last_action"] = "edit"
-                winners_state["updated_at_utc"] = datetime.now(timezone.utc).isoformat()
-                save_discord_daily_posts(daily_posts)
-                print(f"EDIT: updated winners message for {day_key} (message_id={previous_message_id})")
-                return
-            except DiscordMessageNotFoundError:
-                print(
-                    f"RECOVER: stale/deleted winners message for {day_key} "
-                    f"(message_id={previous_message_id}); posting replacement"
-                )
+            winners_state["last_action"] = "edit"
+            winners_state["updated_at_utc"] = datetime.now(timezone.utc).isoformat()
+            print(f"EDIT: updated winners messages for {day_key} (message_ids={resulting_message_ids})")
+        else:
+            resulting_message_ids = [post_winners_message(client, winners_channel_id, message) for message in messages]
+            winners_state["last_action"] = "create"
+            winners_state["posted_at_utc"] = datetime.now(timezone.utc).isoformat()
+            print(f"CREATE: posted winners messages for {day_key} (message_ids={resulting_message_ids})")
 
-        new_message_id = post_winners_message(client, winners_channel_id, message)
-        winners_state["message_id"] = new_message_id
+        winners_state["message_id"] = resulting_message_ids[0]
+        winners_state["message_ids"] = resulting_message_ids
         winners_state["winner_keys"] = current_winner_keys
         winners_state["winner_vote_counts"] = current_winner_vote_counts
-        winners_state["last_action"] = "create"
-        winners_state["posted_at_utc"] = datetime.now(timezone.utc).isoformat()
         save_discord_daily_posts(daily_posts)
-        print(f"CREATE: posted winners message for {day_key} (message_id={new_message_id})")
 
 
 if __name__ == "__main__":
