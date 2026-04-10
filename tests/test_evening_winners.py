@@ -502,6 +502,117 @@ def test_winners_pipeline_integration_late_votes_dedupe_and_coherent_edit(monkey
     assert "👍 2 votes" in edit_content
 
 
+def test_cross_day_winner_suppression_hides_previously_announced_game(monkeypatch, tmp_path):
+    day_key = "2026-04-08"
+    path = tmp_path / "daily.json"
+    data = {
+        "2026-04-07": {
+            "items": [],
+            "winners_state": {
+                "message_id": "w-prev",
+                "winner_keys": ["shared-dupe"],
+                "winner_vote_counts": {"shared-dupe": 2},
+            },
+        },
+        day_key: {
+            "items": [
+                {"section": "free", "title": "Intruder", "url": "shared-dupe", "channel_id": "c", "message_id": "m-intruder"},
+                {"section": "paid", "title": "Fresh Arrival", "url": "fresh-win", "channel_id": "c", "message_id": "m-fresh"},
+            ]
+        },
+    }
+    path.write_text(json.dumps(data), encoding="utf-8")
+    payloads = {
+        "m-intruder": {"reactions": [{"emoji": {"name": "👍"}, "count": 4}]},
+        "m-fresh": {"reactions": [{"emoji": {"name": "👍"}, "count": 2}]},
+    }
+    reaction_users = {
+        "m-intruder": [{"id": "bot-1"}, {"id": "u1", "username": "repeat"}, {"id": "u2", "username": "again"}, {"id": "u3", "username": "again2"}],
+        "m-fresh": [{"id": "bot-1"}, {"id": "u9", "username": "new-user"}],
+    }
+    fake = FakeDiscordClient(payloads, reaction_users)
+    _patch_common(monkeypatch, path, fake, day_key)
+
+    winners.main()
+
+    assert len(fake.posts) == 1
+    content = fake.posts[0][1]
+    assert "Intruder" not in content
+    assert "Fresh Arrival" in content
+    state = json.loads(path.read_text(encoding="utf-8"))[day_key]["winners_state"]
+    assert state["winner_keys"] == ["fresh-win"]
+
+
+def test_cross_day_winner_suppression_checks_multiple_recent_days(monkeypatch, tmp_path):
+    day_key = "2026-04-08"
+    path = tmp_path / "daily.json"
+    data = {
+        "2026-04-05": {
+            "items": [],
+            "winners_state": {"message_id": "w-older", "winner_keys": ["older-repeat"]},
+        },
+        "2026-04-07": {
+            "items": [],
+            "winners_state": {"message_id": "w-prev", "winner_keys": ["newer-repeat"]},
+        },
+        day_key: {
+            "items": [
+                {"section": "free", "title": "Older Repeat", "url": "older-repeat", "channel_id": "c", "message_id": "m-older-repeat"},
+                {"section": "free", "title": "Newer Repeat", "url": "newer-repeat", "channel_id": "c", "message_id": "m-newer-repeat"},
+                {"section": "free", "title": "Only New Winner", "url": "brand-new", "channel_id": "c", "message_id": "m-brand-new"},
+            ]
+        },
+    }
+    path.write_text(json.dumps(data), encoding="utf-8")
+    payloads = {
+        "m-older-repeat": {"reactions": [{"emoji": {"name": "👍"}, "count": 2}]},
+        "m-newer-repeat": {"reactions": [{"emoji": {"name": "👍"}, "count": 2}]},
+        "m-brand-new": {"reactions": [{"emoji": {"name": "👍"}, "count": 2}]},
+    }
+    reaction_users = {
+        "m-older-repeat": [{"id": "bot-1"}, {"id": "u1", "username": "u1"}],
+        "m-newer-repeat": [{"id": "bot-1"}, {"id": "u2", "username": "u2"}],
+        "m-brand-new": [{"id": "bot-1"}, {"id": "u3", "username": "u3"}],
+    }
+    fake = FakeDiscordClient(payloads, reaction_users)
+    _patch_common(monkeypatch, path, fake, day_key)
+
+    winners.main()
+
+    content = fake.posts[0][1]
+    assert "Older Repeat" not in content
+    assert "Newer Repeat" not in content
+    assert "Only New Winner" in content
+
+
+def test_cross_day_suppression_keeps_legacy_states_readable(monkeypatch, tmp_path):
+    day_key = "2026-04-08"
+    path = tmp_path / "daily.json"
+    data = {
+        "2026-04-07": {
+            "items": [],
+            "winners_state": {
+                "message_id": "w-prev",
+            },
+        },
+        day_key: {
+            "items": [
+                {"section": "free", "title": "Legacy Compatible Winner", "url": "legacy-new", "channel_id": "c", "message_id": "m-legacy"},
+            ]
+        },
+    }
+    path.write_text(json.dumps(data), encoding="utf-8")
+    payloads = {"m-legacy": {"reactions": [{"emoji": {"name": "👍"}, "count": 2}]}}
+    reaction_users = {"m-legacy": [{"id": "bot-1"}, {"id": "u1", "username": "u1"}]}
+    fake = FakeDiscordClient(payloads, reaction_users)
+    _patch_common(monkeypatch, path, fake, day_key)
+
+    winners.main()
+
+    assert len(fake.posts) == 1
+    assert "Legacy Compatible Winner" in fake.posts[0][1]
+
+
 def test_winners_main_chunked_create_posts_multiple_messages(monkeypatch, tmp_path):
     day_key = "2026-04-08"
     path = tmp_path / "daily.json"

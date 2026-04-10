@@ -268,6 +268,46 @@ def fetch_human_voter_names(
     return names
 
 
+
+
+def build_winner_identity_key(item: dict) -> str:
+    dedupe_key = str(item.get("url") or "").strip()
+    if dedupe_key:
+        return dedupe_key
+
+    dedupe_key = str(item.get("item_key") or "").strip()
+    if dedupe_key:
+        return dedupe_key
+
+    channel_id = str(item.get("channel_id") or "").strip()
+    message_id = str(item.get("message_id") or "").strip()
+    return f"{channel_id}:{message_id}"
+
+
+def collect_recent_announced_winner_keys(
+    daily_posts: Dict[str, dict],
+    *,
+    target_day_key: str,
+    lookback_days: int = WINNERS_LOOKBACK_DAYS,
+) -> set[str]:
+    announced_keys: set[str] = set()
+    for bucket_key in get_lookback_day_keys(target_day_key, lookback_days)[1:]:
+        bucket = daily_posts.get(bucket_key, {})
+        if not isinstance(bucket, dict):
+            continue
+        winners_state = bucket.get("winners_state")
+        if not isinstance(winners_state, dict):
+            continue
+        winner_keys = winners_state.get("winner_keys")
+        if not isinstance(winner_keys, list):
+            continue
+        for winner_key in winner_keys:
+            normalized = str(winner_key).strip()
+            if normalized:
+                announced_keys.add(normalized)
+    return announced_keys
+
+
 def post_winners_message(client: DiscordClient, channel_id: str, message: str) -> str:
     payload = client.post_message(channel_id, message, context="post winners message")
     message_id = str(payload.get("id", ""))
@@ -333,11 +373,7 @@ def main() -> None:
             section = item.get("section")
             channel_id = item.get("channel_id")
             message_id = item.get("message_id")
-            dedupe_key = str(item.get("url") or "").strip()
-            if not dedupe_key:
-                dedupe_key = str(item.get("item_key") or "").strip()
-            if not dedupe_key:
-                dedupe_key = f"{channel_id}:{message_id}"
+            dedupe_key = build_winner_identity_key(item)
 
             if section not in SECTION_CONFIG:
                 continue
@@ -378,6 +414,16 @@ def main() -> None:
             }
             if existing is None or candidate["human_votes"] > existing["human_votes"]:
                 deduped_winners[dedupe_key] = candidate
+
+        previously_announced_winner_keys = collect_recent_announced_winner_keys(
+            daily_posts,
+            target_day_key=day_key,
+        )
+        deduped_winners = {
+            key: winner
+            for key, winner in deduped_winners.items()
+            if key not in previously_announced_winner_keys
+        }
 
         for winner in deduped_winners.values():
             section = winner["section"]
