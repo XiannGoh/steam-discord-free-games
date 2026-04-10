@@ -2123,6 +2123,550 @@
         "posted_at": "2026-04-10T06:11:12.457454+00:00",
         "description": "This new game merges a hardcore driving sim with a deep mechanic repair system | Game: Truck Mechanic: Dangerous Path..."
       }
-    ]
+    ],
+    "winners_state": {
+      "intro": {
+        "message_id": "1492093054876647424",
+        "channel_id": "1491294533751799809"
+      },
+      "section_headers": {
+        "free": {
+          "message_id": "1492093057833631836",
+          "channel_id": "1491294533751799809"
+        },
+        "paid": {
+          "message_id": "1492093063315853383",
+          "channel_id": "1491294533751799809"
+        },
+        "instagram": {
+          "message_id": "1492093077655916565",
+          "channel_id": "1491294533751799809"
+        }
+      },
+      "winner_messages": {
+        "https://store.steampowered.com/app/253710/": {
+          "message_id": "1492093059574534145",
+          "channel_id": "1491294533751799809"
+        },
+        "https://store.steampowered.com/app/451600/": {
+          "message_id": "1492093061680074853",
+          "channel_id": "1491294533751799809"
+        },
+        "https://store.steampowered.com/app/1621690/": {
+          "message_id": "1492093065165410375",
+          "channel_id": "1491294533751799809"
+        },
+        "https://store.steampowered.com/app/305620/": {
+          "message_id": "1492093068655198230",
+          "channel_id": "1491294533751799809"
+        },
+        "https://store.steampowered.com/app/4197940/": {
+          "message_id": "1492093071267991604",
+          "channel_id": "1491294533751799809"
+        },
+        "https://store.steampowered.com/app/518150/": {
+          "message_id": "1492093073881305088",
+          "channel_id": "1491294533751799809"
+        },
+        "https://www.instagram.com/p/DRxhGu7jAfg/": {
+          "message_id": "1492093101198803025",
+          "channel_id": "1491294533751799809"
+        },
+        "https://www.instagram.com/p/DW1UP51GV2H/": {
+          "message_id": "1492093106085036163",
+          "channel_id": "1491294533751799809"
+        },
+        "https://www.instagram.com/p/DW1sNoEIN39/": {
+          "message_id": "1492093108337246339",
+          "channel_id": "1491294533751799809"
+        },
+        "https://www.instagram.com/p/DW2K-saBhC6/": {
+          "message_id": "1492093110484734103",
+          "channel_id": "1491294533751799809"
+        },
+        "https://www.instagram.com/p/DW4DZ4aiTJk/": {
+          "message_id": "1492093112984535111",
+          "channel_id": "1491294533751799809"
+        },
+        "https://www.instagram.com/p/DW4v0YqBl-C/": {
+          "message_id": "1492093115694190594",
+          "channel_id": "1491294533751799809"
+        },
+        "https://www.instagram.com/p/DW6rWPvB-Dt/": {
+          "message_id": "1492093118991040604",
+          "channel_id": "1491294533751799809"
+        },
+        "https://www.instagram.com/p/DW6y_ZJj2tc/": {
+          "message_id": "1492093121486524457",
+          "channel_id": "1491294533751799809"
+        },
+        "https://www.instagram.com/p/DW6ybUEDPZY/": {
+          "message_id": "1492093123554185297",
+          "channel_id": "1491294533751799809"
+        },
+        "https://www.instagram.com/p/DW6zn3QDxhU/": {
+          "message_id": "1492093126485999636",
+          "channel_id": "1491294533751799809"
+        },
+        "https://www.instagram.com/p/DWZtDyUDSyy/": {
+          "message_id": "1492093129044529232",
+          "channel_id": "1491294533751799809"
+        },
+        "https://www.instagram.com/p/DWhlseCDMnk/": {
+          "message_id": "1492093131414310992",
+          "channel_id": "1491294533751799809"
+        },
+        "https://www.instagram.com/p/DWjzGvqD_nF/": {
+          "message_id": "1492093155036893218",
+          "channel_id": "1491294533751799809"
+        },
+        "https://www.instagram.com/p/DWnQrciCKC5/": {
+          "message_id": "1492093158052462744",
+          "channel_id": "1491294533751799809"
+        },
+        "https://www.instagram.com/p/DWr0txEks7l/": {
+          "message_id": "1492093166923546684",
+          "channel_id": "1491294533751799809"
+        },
+        "https://www.instagram.com/p/DWtoBjDDcL8/": {
+          "message_id": "1492093168932618283",
+          "channel_id": "1491294533751799809"
+        },
+        "https://www.instagram.com/p/DWuzRiCCHTU/": {
+          "message_id": "1492093171105136762",
+          "channel_id": "1491294533751799809"
+        },
+        "https://www.instagram.com/p/DWw1zASomLY/": {
+          "message_id": "1492093173407682573",
+          "channel_id": "1491294533751799809"
+        },
+        "https://www.instagram.com/p/DWwcJrnjH_D/": {
+          "message_id": "1492093179174850692",
+          "channel_id": "1491294533751799809"
+        },
+        "https://www.instagram.com/p/DWy2bSEDWGe/": {
+          "message_id": "1492093182023041236",
+          "channel_id": "1491294533751799809"
+        },
+        "https://www.instagram.com/p/DWy3v7aDLaZ/": {
+          "message_id": "1492093184736755763",
+          "channel_id": "1491294533751799809"
+        },
+        "https://www.instagram.com/p/DWzRjUbhHRp/": {
+          "message_id": "1492093187219652731",
+          "channel_id": "1491294533751799809"
+        }
+      },
+      "footer": {},
+      "message_id": "1492093054876647424",
+      "message_ids": [
+        "1492093054876647424",
+        "1492093057833631836",
+        "1492093059574534145",
+        "1492093061680074853",
+        "1492093063315853383",
+        "1492093065165410375",
+        "1492093068655198230",
+        "1492093071267991604",
+        "1492093073881305088",
+        "1492093077655916565",
+        "1492093101198803025",
+        "1492093106085036163",
+        "1492093108337246339",
+        "1492093110484734103",
+        "1492093112984535111",
+        "1492093115694190594",
+        "1492093118991040604",
+        "1492093121486524457",
+        "1492093123554185297",
+        "1492093126485999636",
+        "1492093129044529232",
+        "1492093131414310992",
+        "1492093155036893218",
+        "1492093158052462744",
+        "1492093166923546684",
+        "1492093168932618283",
+        "1492093171105136762",
+        "1492093173407682573",
+        "1492093179174850692",
+        "1492093182023041236",
+        "1492093184736755763",
+        "1492093187219652731"
+      ],
+      "last_action": "create",
+      "updated_at_utc": "2026-04-10T09:25:38.285344+00:00",
+      "posted_at_utc": "2026-04-10T09:25:38.285360+00:00",
+      "winner_keys": [
+        "https://store.steampowered.com/app/1621690/",
+        "https://store.steampowered.com/app/253710/",
+        "https://store.steampowered.com/app/305620/",
+        "https://store.steampowered.com/app/4197940/",
+        "https://store.steampowered.com/app/451600/",
+        "https://store.steampowered.com/app/518150/",
+        "https://www.instagram.com/p/DRxhGu7jAfg/",
+        "https://www.instagram.com/p/DW1UP51GV2H/",
+        "https://www.instagram.com/p/DW1sNoEIN39/",
+        "https://www.instagram.com/p/DW2K-saBhC6/",
+        "https://www.instagram.com/p/DW4DZ4aiTJk/",
+        "https://www.instagram.com/p/DW4v0YqBl-C/",
+        "https://www.instagram.com/p/DW6rWPvB-Dt/",
+        "https://www.instagram.com/p/DW6y_ZJj2tc/",
+        "https://www.instagram.com/p/DW6ybUEDPZY/",
+        "https://www.instagram.com/p/DW6zn3QDxhU/",
+        "https://www.instagram.com/p/DWZtDyUDSyy/",
+        "https://www.instagram.com/p/DWhlseCDMnk/",
+        "https://www.instagram.com/p/DWjzGvqD_nF/",
+        "https://www.instagram.com/p/DWnQrciCKC5/",
+        "https://www.instagram.com/p/DWr0txEks7l/",
+        "https://www.instagram.com/p/DWtoBjDDcL8/",
+        "https://www.instagram.com/p/DWuzRiCCHTU/",
+        "https://www.instagram.com/p/DWw1zASomLY/",
+        "https://www.instagram.com/p/DWwcJrnjH_D/",
+        "https://www.instagram.com/p/DWy2bSEDWGe/",
+        "https://www.instagram.com/p/DWy3v7aDLaZ/",
+        "https://www.instagram.com/p/DWzRjUbhHRp/"
+      ],
+      "winner_vote_counts": {
+        "https://store.steampowered.com/app/1621690/": 1,
+        "https://store.steampowered.com/app/253710/": 1,
+        "https://store.steampowered.com/app/305620/": 1,
+        "https://store.steampowered.com/app/4197940/": 1,
+        "https://store.steampowered.com/app/451600/": 1,
+        "https://store.steampowered.com/app/518150/": 1,
+        "https://www.instagram.com/p/DRxhGu7jAfg/": 1,
+        "https://www.instagram.com/p/DW1UP51GV2H/": 1,
+        "https://www.instagram.com/p/DW1sNoEIN39/": 1,
+        "https://www.instagram.com/p/DW2K-saBhC6/": 1,
+        "https://www.instagram.com/p/DW4DZ4aiTJk/": 1,
+        "https://www.instagram.com/p/DW4v0YqBl-C/": 1,
+        "https://www.instagram.com/p/DW6rWPvB-Dt/": 1,
+        "https://www.instagram.com/p/DW6y_ZJj2tc/": 1,
+        "https://www.instagram.com/p/DW6ybUEDPZY/": 1,
+        "https://www.instagram.com/p/DW6zn3QDxhU/": 1,
+        "https://www.instagram.com/p/DWZtDyUDSyy/": 1,
+        "https://www.instagram.com/p/DWhlseCDMnk/": 1,
+        "https://www.instagram.com/p/DWjzGvqD_nF/": 1,
+        "https://www.instagram.com/p/DWnQrciCKC5/": 1,
+        "https://www.instagram.com/p/DWr0txEks7l/": 1,
+        "https://www.instagram.com/p/DWtoBjDDcL8/": 1,
+        "https://www.instagram.com/p/DWuzRiCCHTU/": 1,
+        "https://www.instagram.com/p/DWw1zASomLY/": 2,
+        "https://www.instagram.com/p/DWwcJrnjH_D/": 1,
+        "https://www.instagram.com/p/DWy2bSEDWGe/": 1,
+        "https://www.instagram.com/p/DWy3v7aDLaZ/": 1,
+        "https://www.instagram.com/p/DWzRjUbhHRp/": 1
+      },
+      "winner_entries": [
+        {
+          "winner_key": "https://store.steampowered.com/app/1621690/",
+          "section": "paid",
+          "title": "Core Keeper",
+          "url": "https://store.steampowered.com/app/1621690/",
+          "description": null,
+          "human_votes": 1,
+          "voter_names": [
+            "Chocolie"
+          ]
+        },
+        {
+          "winner_key": "https://store.steampowered.com/app/253710/",
+          "section": "free",
+          "title": "theHunter Classic",
+          "url": "https://store.steampowered.com/app/253710/",
+          "description": null,
+          "human_votes": 1,
+          "voter_names": [
+            "Thomas"
+          ]
+        },
+        {
+          "winner_key": "https://store.steampowered.com/app/305620/",
+          "section": "paid",
+          "title": "The Long Dark",
+          "url": "https://store.steampowered.com/app/305620/",
+          "description": null,
+          "human_votes": 1,
+          "voter_names": [
+            "Thomas"
+          ]
+        },
+        {
+          "winner_key": "https://store.steampowered.com/app/4197940/",
+          "section": "paid",
+          "title": "Age of Mythology: Retold - Obsidian Mirror",
+          "url": "https://store.steampowered.com/app/4197940/",
+          "description": null,
+          "human_votes": 1,
+          "voter_names": [
+            "CountCrapula"
+          ]
+        },
+        {
+          "winner_key": "https://store.steampowered.com/app/451600/",
+          "section": "free",
+          "title": "CounterAttack: Uprising",
+          "url": "https://store.steampowered.com/app/451600/",
+          "description": "CounterAttack: Uprising is a side scrolling space shooter (shmup). Team up or fight solo, 1 - 4 player local or up to 8 players online coop, unlock upgrades, use powerful ultimate abilities, enhance your ship the way you want, and save the Earth from annihilation.",
+          "human_votes": 1,
+          "voter_names": [
+            "Thomas"
+          ]
+        },
+        {
+          "winner_key": "https://store.steampowered.com/app/518150/",
+          "section": "paid",
+          "title": "Intruder",
+          "url": "https://store.steampowered.com/app/518150/",
+          "description": null,
+          "human_votes": 1,
+          "voter_names": [
+            "CountCrapula"
+          ]
+        },
+        {
+          "winner_key": "https://www.instagram.com/p/DRxhGu7jAfg/",
+          "section": "instagram",
+          "title": "@gemgamingnetwork",
+          "url": "https://www.instagram.com/p/DRxhGu7jAfg/",
+          "description": null,
+          "human_votes": 1,
+          "voter_names": [
+            "Thomas"
+          ]
+        },
+        {
+          "winner_key": "https://www.instagram.com/p/DW1UP51GV2H/",
+          "section": "instagram",
+          "title": "@cloudual",
+          "url": "https://www.instagram.com/p/DW1UP51GV2H/",
+          "description": null,
+          "human_votes": 1,
+          "voter_names": [
+            "Thomas"
+          ]
+        },
+        {
+          "winner_key": "https://www.instagram.com/p/DW1sNoEIN39/",
+          "section": "instagram",
+          "title": "@mildsoss_official",
+          "url": "https://www.instagram.com/p/DW1sNoEIN39/",
+          "description": null,
+          "human_votes": 1,
+          "voter_names": [
+            "Thomas"
+          ]
+        },
+        {
+          "winner_key": "https://www.instagram.com/p/DW2K-saBhC6/",
+          "section": "instagram",
+          "title": "@gemgamingnetwork",
+          "url": "https://www.instagram.com/p/DW2K-saBhC6/",
+          "description": null,
+          "human_votes": 1,
+          "voter_names": [
+            "Thomas"
+          ]
+        },
+        {
+          "winner_key": "https://www.instagram.com/p/DW4DZ4aiTJk/",
+          "section": "instagram",
+          "title": "@wilfratgaming",
+          "url": "https://www.instagram.com/p/DW4DZ4aiTJk/",
+          "description": null,
+          "human_votes": 1,
+          "voter_names": [
+            "Thomas"
+          ]
+        },
+        {
+          "winner_key": "https://www.instagram.com/p/DW4v0YqBl-C/",
+          "section": "instagram",
+          "title": "@gemgamingnetwork",
+          "url": "https://www.instagram.com/p/DW4v0YqBl-C/",
+          "description": null,
+          "human_votes": 1,
+          "voter_names": [
+            "Thomas"
+          ]
+        },
+        {
+          "winner_key": "https://www.instagram.com/p/DW6rWPvB-Dt/",
+          "section": "instagram",
+          "title": "@gemgamingnetwork",
+          "url": "https://www.instagram.com/p/DW6rWPvB-Dt/",
+          "description": "New Extraction Shooter Similar to Rust & Arc Raiders  It’s called: Enginefall  💰: FREE PLAYTEST  🌎: PC (Steam) 👥: 1-8...",
+          "human_votes": 1,
+          "voter_names": [
+            "Thomas"
+          ]
+        },
+        {
+          "winner_key": "https://www.instagram.com/p/DW6y_ZJj2tc/",
+          "section": "instagram",
+          "title": "@indiegamespotlights",
+          "url": "https://www.instagram.com/p/DW6y_ZJj2tc/",
+          "description": "A driving horror game with friends? In this co-op open world, your car is the only way out, drive, fix, loot, and sur...",
+          "human_votes": 1,
+          "voter_names": [
+            "Thomas"
+          ]
+        },
+        {
+          "winner_key": "https://www.instagram.com/p/DW6ybUEDPZY/",
+          "section": "instagram",
+          "title": "@sharedxp_official",
+          "url": "https://www.instagram.com/p/DW6ybUEDPZY/",
+          "description": "Solarpunk is a cozy survival-crafting game where you build a sky base, grow food, automate systems, and explore float...",
+          "human_votes": 1,
+          "voter_names": [
+            "Thomas"
+          ]
+        },
+        {
+          "winner_key": "https://www.instagram.com/p/DW6zn3QDxhU/",
+          "section": "instagram",
+          "title": "@indiegamespotlights",
+          "url": "https://www.instagram.com/p/DW6zn3QDxhU/",
+          "description": "Co-op driving horror indie game where up to 5 players explore dangerous locations, loot valuable items, and keep thei...",
+          "human_votes": 1,
+          "voter_names": [
+            "Thomas"
+          ]
+        },
+        {
+          "winner_key": "https://www.instagram.com/p/DWZtDyUDSyy/",
+          "section": "instagram",
+          "title": "@biffmatictv",
+          "url": "https://www.instagram.com/p/DWZtDyUDSyy/",
+          "description": "Design warships from scratch and take them into battle! NavalArt!   #gaming #simulatorgame #sandboxgame #warships #mu...",
+          "human_votes": 1,
+          "voter_names": [
+            "Thomas"
+          ]
+        },
+        {
+          "winner_key": "https://www.instagram.com/p/DWhlseCDMnk/",
+          "section": "instagram",
+          "title": "@biffmatictv",
+          "url": "https://www.instagram.com/p/DWhlseCDMnk/",
+          "description": null,
+          "human_votes": 1,
+          "voter_names": [
+            "Thomas"
+          ]
+        },
+        {
+          "winner_key": "https://www.instagram.com/p/DWjzGvqD_nF/",
+          "section": "instagram",
+          "title": "@itzjaysasa",
+          "url": "https://www.instagram.com/p/DWjzGvqD_nF/",
+          "description": null,
+          "human_votes": 1,
+          "voter_names": [
+            "Thomas"
+          ]
+        },
+        {
+          "winner_key": "https://www.instagram.com/p/DWnQrciCKC5/",
+          "section": "instagram",
+          "title": "@biffmatictv",
+          "url": "https://www.instagram.com/p/DWnQrciCKC5/",
+          "description": null,
+          "human_votes": 1,
+          "voter_names": [
+            "Thomas"
+          ]
+        },
+        {
+          "winner_key": "https://www.instagram.com/p/DWr0txEks7l/",
+          "section": "instagram",
+          "title": "@itzjaysasa",
+          "url": "https://www.instagram.com/p/DWr0txEks7l/",
+          "description": null,
+          "human_votes": 1,
+          "voter_names": [
+            "Thomas"
+          ]
+        },
+        {
+          "winner_key": "https://www.instagram.com/p/DWtoBjDDcL8/",
+          "section": "instagram",
+          "title": "@wilfratgaming",
+          "url": "https://www.instagram.com/p/DWtoBjDDcL8/",
+          "description": "Level Zero: Extraction! #videogames #gamestoplay #gaming",
+          "human_votes": 1,
+          "voter_names": [
+            "Thomas"
+          ]
+        },
+        {
+          "winner_key": "https://www.instagram.com/p/DWuzRiCCHTU/",
+          "section": "instagram",
+          "title": "@biffmatictv",
+          "url": "https://www.instagram.com/p/DWuzRiCCHTU/",
+          "description": null,
+          "human_votes": 1,
+          "voter_names": [
+            "Thomas"
+          ]
+        },
+        {
+          "winner_key": "https://www.instagram.com/p/DWw1zASomLY/",
+          "section": "instagram",
+          "title": "@mildsoss_official",
+          "url": "https://www.instagram.com/p/DWw1zASomLY/",
+          "description": null,
+          "human_votes": 2,
+          "voter_names": [
+            "Thomas",
+            "lambda"
+          ]
+        },
+        {
+          "winner_key": "https://www.instagram.com/p/DWwcJrnjH_D/",
+          "section": "instagram",
+          "title": "@sharedxp_official",
+          "url": "https://www.instagram.com/p/DWwcJrnjH_D/",
+          "description": "5 co-op creature collecting games to fill that multiplayer Pokémon void: KinForge, Pickmon, Aniimo, Witchspire, and L...",
+          "human_votes": 1,
+          "voter_names": [
+            "Thomas"
+          ]
+        },
+        {
+          "winner_key": "https://www.instagram.com/p/DWy2bSEDWGe/",
+          "section": "instagram",
+          "title": "@wilfratgaming",
+          "url": "https://www.instagram.com/p/DWy2bSEDWGe/",
+          "description": null,
+          "human_votes": 1,
+          "voter_names": [
+            "Thomas"
+          ]
+        },
+        {
+          "winner_key": "https://www.instagram.com/p/DWy3v7aDLaZ/",
+          "section": "instagram",
+          "title": "@sharedxp_official",
+          "url": "https://www.instagram.com/p/DWy3v7aDLaZ/",
+          "description": null,
+          "human_votes": 1,
+          "voter_names": [
+            "Thomas"
+          ]
+        },
+        {
+          "winner_key": "https://www.instagram.com/p/DWzRjUbhHRp/",
+          "section": "instagram",
+          "title": "@gemgamingnetwork",
+          "url": "https://www.instagram.com/p/DWzRjUbhHRp/",
+          "description": "3 co-op games under $20 on Steam   1. Animalkind 2. Imposters 3. Meowgic  Which ones did I miss? 👀🔥  #steamgames #gam...",
+          "human_votes": 1,
+          "voter_names": [
+            "Thomas"
+          ]
+        }
+      ]
+    }
   }
 }
