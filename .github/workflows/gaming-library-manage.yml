@@ -1,0 +1,104 @@
+name: Gaming Library Manage
+
+on:
+  workflow_dispatch:
+    inputs:
+      operation:
+        description: "add | rename | assign | unassign | set_status | archive | unarchive"
+        required: true
+        type: choice
+        options:
+          - add
+          - rename
+          - assign
+          - unassign
+          - set_status
+          - archive
+          - unarchive
+      canonical_name:
+        description: "Canonical game name"
+        required: false
+        type: string
+      url:
+        description: "Source URL"
+        required: false
+        type: string
+      source_type:
+        description: "Optional source type"
+        required: false
+        type: string
+      source_section:
+        description: "Optional source section"
+        required: false
+        type: string
+      source_caption:
+        description: "Optional original caption/description"
+        required: false
+        type: string
+      identity_key:
+        description: "Optional explicit identity key"
+        required: false
+        type: string
+      user_ids:
+        description: "Comma-separated Discord user IDs"
+        required: false
+        type: string
+      status:
+        description: "active | paused | dropped"
+        required: false
+        default: active
+        type: choice
+        options:
+          - active
+          - paused
+          - dropped
+      archive:
+        description: "Optional boolean override for add"
+        required: false
+        type: string
+
+permissions:
+  contents: write
+
+jobs:
+  run-gaming-library-manage:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Download repository
+        uses: actions/checkout@v5
+
+      - name: Install Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: "3.11"
+
+      - name: Install packages
+        run: pip install -r requirements.txt
+
+      - name: Apply manual gaming library operation
+        run: |
+          python scripts/manage_gaming_library.py \
+            --operation "${{ inputs.operation }}" \
+            --canonical-name "${{ inputs.canonical_name }}" \
+            --url "${{ inputs.url }}" \
+            --source-type "${{ inputs.source_type }}" \
+            --source-section "${{ inputs.source_section }}" \
+            --source-caption "${{ inputs.source_caption }}" \
+            --identity-key "${{ inputs.identity_key }}" \
+            --user-ids "${{ inputs.user_ids }}" \
+            --status "${{ inputs.status }}" \
+            --archive "${{ inputs.archive }}"
+
+      - name: Save managed gaming library state
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          if [ -f gaming_library.json ]; then git add gaming_library.json; fi
+
+          if ! git diff --cached --quiet; then
+            git commit -m "Manage gaming library state"
+            git pull --rebase origin main
+          fi
+          git push
