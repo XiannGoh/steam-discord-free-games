@@ -46,7 +46,10 @@ jobs:
 
           if [ -f discord_daily_posts.json ]; then git add discord_daily_posts.json; fi
 
-          git diff --cached --quiet || git commit -m "Update winners state"
+          if ! git diff --cached --quiet; then
+            git commit -m "Update winners state"
+            git pull --rebase origin main
+          fi
           git push
 
       - name: Notify Discord health monitor on failure
