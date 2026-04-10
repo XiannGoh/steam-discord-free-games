@@ -31,6 +31,7 @@ jobs:
 
       - name: Post daily gaming library reminder
         env:
+          PYTHONPATH: .
           DISCORD_BOT_TOKEN: ${{ secrets.DISCORD_BOT_TOKEN }}
           DISCORD_GAMING_LIBRARY_CHANNEL_ID: ${{ secrets.DISCORD_GAMING_LIBRARY_CHANNEL_ID }}
           LIBRARY_DATE_UTC: ${{ inputs.library_date_utc }}
