@@ -147,7 +147,7 @@ def test_paid_rejects_unknown_and_mixed(monkeypatch):
 
 
 def test_demo_pick_scoring_tracks_friend_group_signals(monkeypatch):
-    shared = "Multiplayer Online Co-Op up to 6 players party game Very Positive"
+    shared = "Multiplayer Online Co-Op up to 6 players party game Very Positive Download Demo"
     full_html = build_html("Full Game", "friends", shared, "Very Positive")
     demo_html = build_html("Demo Game", "friends", shared, "Very Positive")
     stub_app_pages(monkeypatch, {"701": full_html, "702": demo_html})
@@ -176,7 +176,7 @@ def test_demo_group_play_fit_beats_solo_demo(monkeypatch):
     group_html = build_html(
         "Group Demo",
         "team up with friends",
-        "Multiplayer Online Co-Op up to 6 players squad loot runs progression",
+        "Multiplayer Online Co-Op up to 6 players squad loot runs progression Download Demo",
         "",
     )
     solo_html = build_html(
@@ -218,9 +218,10 @@ def test_demo_legit_playable_cues_help_score(monkeypatch):
 
 
 def test_demo_missing_reviews_more_tolerant_than_free_game(monkeypatch):
-    shared_text = "Multiplayer Online Co-Op up to 6 players party game loot runs"
-    demo_html = build_html("Co-op Demo", "friends", shared_text, "")
-    free_html = build_html("Co-op Full", "friends", shared_text, "")
+    demo_text = "Multiplayer Online Co-Op up to 6 players party game loot runs Demo Available"
+    free_text = "Multiplayer Online Co-Op up to 6 players party game loot runs"
+    demo_html = build_html("Co-op Demo", "friends", demo_text, "")
+    free_html = build_html("Co-op Full", "friends", free_text, "")
     stub_app_pages(monkeypatch, {"750": demo_html, "751": free_html})
 
     demo_item = main.inspect_game("steam_demo", "750")
@@ -232,8 +233,8 @@ def test_demo_missing_reviews_more_tolerant_than_free_game(monkeypatch):
 
 
 def test_demo_newness_bonus_is_small_and_optional(monkeypatch):
-    recent_text = "Release Date: Apr 01, 2026 Multiplayer Online Co-Op up to 6 players"
-    older_text = "Release Date: Jan 01, 2024 Multiplayer Online Co-Op up to 6 players squad loot runs progression"
+    recent_text = "Release Date: Apr 01, 2026 Multiplayer Online Co-Op up to 6 players Request Access"
+    older_text = "Release Date: Jan 01, 2024 Multiplayer Online Co-Op up to 6 players squad loot runs progression Join Playtest"
     recent_html = build_html("Recent Demo", "friends", recent_text, "")
     older_html = build_html("Older Strong Demo", "team up with friends", older_text, "")
     stub_app_pages(monkeypatch, {"760": recent_html, "761": older_html})
@@ -245,6 +246,65 @@ def test_demo_newness_bonus_is_small_and_optional(monkeypatch):
     assert recent_item["demo_freshness_bonus"] >= 1
     assert older_item["demo_freshness_bonus"] == 0
     assert older_item["keep"] is True
+
+
+def test_paid_game_with_download_demo_signal_allowed_in_demo_playtest(monkeypatch):
+    html = build_html(
+        "Paid Game Demo",
+        "team up with friends",
+        "Multiplayer Online Co-Op up to 6 players Download Demo",
+        "Mostly Positive",
+    )
+    stub_app_pages(monkeypatch, {"900": html})
+
+    item = main.inspect_game("steam_demo", "900")
+    assert item is not None
+    assert item["type"] == "demo"
+    assert item["demo_has_free_to_try_signal"] is True
+    assert item["keep"] is True
+
+
+def test_playtest_request_access_or_join_playtest_allowed(monkeypatch):
+    request_access = build_html(
+        "Squad Test Playtest",
+        "team up",
+        "Multiplayer squad up to 6 players Request Access",
+        "",
+    )
+    join_playtest = build_html(
+        "Squad Test Playtest 2",
+        "team up",
+        "Multiplayer squad up to 6 players Join Playtest",
+        "",
+    )
+    stub_app_pages(monkeypatch, {"901": request_access, "902": join_playtest})
+
+    request_item = main.inspect_game("steam_demo", "901")
+    join_item = main.inspect_game("steam_demo", "902")
+
+    assert request_item is not None and join_item is not None
+    assert request_item["type"] == "playtest"
+    assert join_item["type"] == "playtest"
+    assert request_item["demo_has_free_to_try_signal"] is True
+    assert join_item["demo_has_free_to_try_signal"] is True
+    assert request_item["keep"] is True
+    assert join_item["keep"] is True
+
+
+def test_paid_game_with_demo_wording_but_without_access_signal_excluded(monkeypatch):
+    html = build_html(
+        "Upcoming Paid Demo",
+        "wishlist now",
+        "Multiplayer Online Co-Op up to 6 players demo coming soon",
+        "Mostly Positive",
+    )
+    stub_app_pages(monkeypatch, {"903": html})
+
+    item = main.inspect_game("steam_demo", "903")
+    assert item is not None
+    assert item["type"] == "demo"
+    assert item["demo_has_free_to_try_signal"] is False
+    assert item["keep"] is False
 
 
 def test_temporarily_free_bonus_requires_positive_or_better(monkeypatch):

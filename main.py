@@ -267,6 +267,7 @@ LOW_SIGNAL_KEYWORD_SCORES = {
 }
 
 DEMO_PLAYTEST_LEGIT_PLAYABLE_CUE_SCORES = {
+    "download demo": 1,
     "demo available": 1,
     "playtest available": 1,
     "request access": 1,
@@ -885,6 +886,11 @@ def score_demo_playtest_friend_group_fit(
     return score, friend_signal_score, freshness_bonus, hits
 
 
+def has_demo_playtest_free_to_try_signal(title: str, description: str, text: str) -> bool:
+    combined = f"{title} {description} {text}".lower()
+    return any(phrase in combined for phrase in DEMO_PLAYTEST_LEGIT_PLAYABLE_CUE_SCORES)
+
+
 def extract_diversity_tags(title: str, description: str, text: str) -> List[str]:
     combined = f"{title} {description} {text}".lower()
     tag_terms = (
@@ -1278,6 +1284,7 @@ def inspect_game(source: str, app_id: str) -> Optional[dict]:
     demo_friend_signal_score = 0
     demo_freshness_bonus = 0
     demo_hits: List[str] = []
+    demo_has_free_to_try_signal = True
     if item_type in {"demo", "playtest"}:
         demo_section_score, demo_friend_signal_score, demo_freshness_bonus, demo_hits = score_demo_playtest_friend_group_fit(
             title=title,
@@ -1286,6 +1293,7 @@ def inspect_game(source: str, app_id: str) -> Optional[dict]:
             review_sentiment=review_sentiment,
             review_count=review_count,
         )
+        demo_has_free_to_try_signal = has_demo_playtest_free_to_try_signal(title, description, page_text)
 
     total_score = (
         multiplayer_score
@@ -1319,6 +1327,7 @@ def inspect_game(source: str, app_id: str) -> Optional[dict]:
         # Demo/Playtest has a stricter friend-group gate than full free games:
         # we only post tests that already show multiplayer viability for group nights.
         keep = (
+            demo_has_free_to_try_signal and
             has_multiplayer_signal and
             not rejected and
             not review_gate_failed and
@@ -1348,6 +1357,7 @@ def inspect_game(source: str, app_id: str) -> Optional[dict]:
         "review_gate_failed": review_gate_failed,
         "demo_friend_signal_score": demo_friend_signal_score,
         "demo_freshness_bonus": demo_freshness_bonus,
+        "demo_has_free_to_try_signal": demo_has_free_to_try_signal,
         "demo_hits": demo_hits,
         "diversity_tags": extract_diversity_tags(title, description, page_text),
     }
