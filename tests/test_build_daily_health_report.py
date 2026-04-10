@@ -92,12 +92,12 @@ def test_stale_workflow_includes_triage_metadata():
     )
     rendered = "\n".join(lines)
 
-    assert "🟡 Weekly Scheduling Responses Sync" in rendered
+    assert "🔴 Weekly Scheduling Responses Sync" in rendered
     assert "Expected freshness: ≤2h" in rendered
     assert "Trigger: schedule" in rendered
     assert "Last run time:" in rendered
     assert "Run: https://example.test/run/1" in rendered
-    assert "Disposition: Action recommended" in rendered
+    assert "Disposition: Action required" in rendered
     assert "Next step: Re-run Weekly Scheduling Responses Sync" in rendered
 
 
@@ -179,7 +179,7 @@ def test_final_report_snapshot_shape_with_mixed_signals_and_triage_metadata():
         "🟢 Daily Steam Picks",
         "Last run: success (2h ago)",
         "",
-        "🟡 Evening Winners",
+        "🔴 Evening Winners",
         "Last run: success (40h ago) — stale",
         "Expected freshness: ≤30h",
         "Trigger: schedule",
@@ -221,12 +221,12 @@ def test_final_report_snapshot_shape_with_mixed_signals_and_triage_metadata():
 
     assert "## Workflow Status" in rendered
     assert "🟢 Daily Steam Picks" in rendered
-    assert "🟡 Evening Winners" in rendered
+    assert "🔴 Evening Winners" in rendered
     assert "🔴 Weekly Scheduling Responses Sync" in rendered
     assert "Expected freshness: ≤30h" in rendered
     assert "Trigger: schedule" in rendered
     assert "Run: https://example.test/run/42" in rendered
-    assert "Disposition: Action recommended" in rendered
+    assert "Disposition: Action required" in rendered
     assert "Disposition: Action required" in rendered
 
     assert "## State / Artifact Health" in rendered
@@ -413,13 +413,13 @@ def test_overall_summary_is_green_when_only_no_action_needed_warnings():
     assert "1 low-priority warning detected. No action needed." in rendered
 
 
-def test_overall_summary_is_yellow_for_monitor_or_follow_up_dispositions():
+def test_overall_summary_is_red_when_stale_workflow_is_action_required():
     rendered = report.render_report(
         workflow_status_lines=[
-            "🟡 Evening Winners",
+            "🔴 Evening Winners",
             "Last run: success (40h ago) — stale",
-            "Disposition: Monitor only",
-            "Next step: Watch next run.",
+            "Disposition: Action required",
+            "Next step: Re-run Evening Winners if no run is expected soon; otherwise monitor the next scheduled run.",
             "",
         ],
         state_issues=[
@@ -435,8 +435,8 @@ def test_overall_summary_is_yellow_for_monitor_or_follow_up_dispositions():
         report_date="Apr 9, 2026",
     )
 
-    assert "🟡 Overall: Follow-up recommended" in rendered
-    assert "2 items should be monitored or reviewed soon." in rendered
+    assert "🔴 Overall: Action needed" in rendered
+    assert "1 item requires immediate attention." in rendered
 
 
 def test_overall_summary_is_red_when_action_required_or_error_exists():

@@ -58,8 +58,9 @@ Operational alerts are now centralized in `xiann-gpt-bot-health-monitor`.
   - Informational warnings that can explicitly be `No action needed`.
   - Action meaning:
     - 🟢 = no action needed
-    - 🟡 = monitor / follow-up
+    - 🟡 = monitor / follow-up (non-urgent warnings)
     - 🔴 = action needed
+    - Missed workflow freshness windows (`stale`) are treated as 🔴 action needed.
 - **Operator default path:** this channel is now the primary dashboard for bot operations; email is no longer the preferred alerting path.
 
 Manual rerun quick commands (GitHub CLI):
@@ -135,8 +136,9 @@ Use this section as the fast triage guide when a workflow or state file drifts.
 - Winners + weekly scheduling sanity (expected week/day entries, summary freshness, picks↔winners coherence).
 - Top-level operator signal derived from workflow + state dispositions:
   - 🟢 no action needed
-  - 🟡 monitor / follow-up
+  - 🟡 monitor / follow-up (informational/non-urgent only)
   - 🔴 action needed
+  - Note: stale workflow freshness is classified as 🔴 with `Disposition: Action required`.
 
 ### Manual recovery / triage playbook
 
