@@ -1561,6 +1561,11 @@ def get_target_day_key() -> str:
     return manual_day
 
 
+def format_daily_picks_footer_date(target_day_key: str) -> str:
+    target_day = datetime.fromisoformat(target_day_key).date()
+    return f"{target_day:%A, %B} {target_day.day}, {target_day:%Y}"
+
+
 def add_thumbs_up_reaction(client: DiscordClient, channel_id: str, message_id: str) -> None:
     if not DISCORD_BOT_TOKEN:
         raise RuntimeError("DISCORD_BOT_TOKEN is not set.")
@@ -1640,6 +1645,7 @@ def build_discord_message_link(guild_id: str, channel_id: str, message_id: str) 
 def build_daily_navigation_footer(
     run_state: dict,
     guild_id: Optional[str],
+    target_day_key: str,
     posted_section_keys: List[str],
 ) -> Optional[str]:
     if not isinstance(guild_id, str) or not guild_id.strip():
@@ -1665,7 +1671,9 @@ def build_daily_navigation_footer(
     }
     section_headers = run_state.get("section_headers", {})
     lines = [
-        f"🎯 Intro / Top of Post → [Jump]({build_discord_message_link(guild_id, intro_channel_id, intro_message_id)})"
+        f"🗓️ Daily Picks for {format_daily_picks_footer_date(target_day_key)}",
+        "",
+        f"🎯 Intro / Top of Post → [Jump]({build_discord_message_link(guild_id, intro_channel_id, intro_message_id)})",
     ]
 
     for section_key in DAILY_SECTION_ORDER:
@@ -1848,7 +1856,7 @@ def post_daily_pick_messages(
             sleep_briefly()
 
     footer_state = run_state.setdefault("navigation_footer", {})
-    footer_content = build_daily_navigation_footer(run_state, DISCORD_GUILD_ID, posted_section_keys)
+    footer_content = build_daily_navigation_footer(run_state, DISCORD_GUILD_ID, day_key, posted_section_keys)
     if footer_content:
         post_or_reuse_simple(footer_content, "navigation_footer", footer_state)
         sleep_briefly()
