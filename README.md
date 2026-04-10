@@ -262,6 +262,7 @@ Posting behavior in `daily-game-picks`:
 - One Discord message per item
 - Adds a default 👍 reaction to each posted item
 - Instagram creator picks are conservatively deduplicated using a caption-derived normalized game key; if a reliable key cannot be derived from caption text, the post is kept.
+- Instagram seen-state is intentionally bounded: only the most recent 50 shortcodes per creator are retained in `instagram_seen.json`, preventing unbounded state growth.
 - Selection intent (low-risk/quality-first):
   - **New Demos & Playtests** sits above Free Picks and prioritizes friend-group fit (co-op/player-count cues), freshness, and basic legitimacy cues (`demo available`, `request access`, `playtest available`) over random catalog fill.
   - **Free Picks** remain focused on full free and temporarily free full games.
