@@ -55,6 +55,11 @@ Operational alerts are now centralized in `xiann-gpt-bot-health-monitor`.
 - **Daily health report:** `bot-health-report.yml` posts one summary per day with:
   - A top-level **Overall** block (`🟢/🟡/🔴`) that tells operators if action is needed.
   - Workflow and state sections that include `Disposition` and `Next step` on yellow/red items.
+  - Workflow schedule observability fields for monitored cron workflows:
+    - latest trigger/event (`schedule`, `workflow_dispatch`, etc.)
+    - expected cadence + expected latest scheduled window
+    - schedule diagnosis code/message (for example `workflow.latest_manual_run`, `workflow.expected_scheduled_run_missing`)
+    - manual-recovery context when a dispatch run appears to have been used as a repair path
   - Informational warnings that can explicitly be `No action needed`.
   - Action meaning:
     - 🟢 = no action needed
@@ -105,6 +110,7 @@ Manual rerun quick commands (GitHub CLI):
 - **What it does:** posts a once-daily Discord health summary across core workflows.
 - **Schedule:** `10 3 * * *` (03:10 UTC daily; ~11:10 PM New York during EDT).
 - **Workflow freshness thresholds:** Weekly Scheduling Bot `168h`, Weekly Scheduling Responses Sync `6h`, Daily Steam Picks `20h`, Evening Winners `12h`.
+- **Scheduling diagnostics artifact:** uploads `workflow-schedule-diagnostics.json` each run with compact expected-vs-actual schedule evidence (latest run metadata, expected window classification, and diagnosis code per monitored workflow).
 - **Manual rerun:** `gh workflow run bot-health-report.yml`
 
 ## Operator Runbook (Consolidated)
@@ -131,6 +137,7 @@ Use this section as the fast triage guide when a workflow or state file drifts.
 ### What the daily health report checks
 
 - Workflow freshness/status (stale, failure, missing recent run).
+- Workflow schedule diagnostics (scheduled-window evidence, latest trigger context, manual-recovery detection, and explicit diagnosis codes for missing/late expected scheduled runs).
 - State/artifact consistency (missing or malformed files, missing summary/output links, winners-state coherence).
 - Roster/config integrity (missing/malformed/empty expected roster).
 - Winners + weekly scheduling sanity (expected week/day entries, summary freshness, picks↔winners coherence).
