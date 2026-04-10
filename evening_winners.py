@@ -1,4 +1,5 @@
 import os
+import re
 from datetime import datetime, timedelta, timezone
 from typing import Dict, List, Optional
 from urllib.parse import quote
@@ -72,7 +73,7 @@ def build_winners_message(winners_by_section: Dict[str, List[dict]]) -> str:
         lines.append(SECTION_CONFIG[section])
         for item in items:
             lines.append(item["title"])
-            description = normalize_winner_description_for_message(item.get("description"))
+            description = resolve_winner_description_for_message(item, section=section)
             if description:
                 lines.append(description)
             lines.append(item["url"])
@@ -87,9 +88,9 @@ def build_winners_message(winners_by_section: Dict[str, List[dict]]) -> str:
     return "\n".join(lines).strip()
 
 
-def _build_winner_item_lines(item: dict) -> List[str]:
+def _build_winner_item_lines(item: dict, *, section: str) -> List[str]:
     lines = [item["title"]]
-    description = normalize_winner_description_for_message(item.get("description"))
+    description = resolve_winner_description_for_message(item, section=section)
     if description:
         lines.append(description)
     lines.append(item["url"])
@@ -136,7 +137,7 @@ def build_winners_message_chunks(
         section_header_lines = [SECTION_CONFIG[section]]
         section_full_lines = section_header_lines[:]
         for item in items:
-            section_full_lines.extend(_build_winner_item_lines(item))
+            section_full_lines.extend(_build_winner_item_lines(item, section=section))
 
         if can_fit(current_lines, section_full_lines):
             current_lines.extend(section_full_lines)
@@ -148,7 +149,7 @@ def build_winners_message_chunks(
 
         current_lines.extend(section_header_lines)
         for item in items:
-            item_lines = _build_winner_item_lines(item)
+            item_lines = _build_winner_item_lines(item, section=section)
             if not can_fit(current_lines, item_lines):
                 finalize_current_chunk()
                 current_lines = [SECTION_CONFIG[section]]
@@ -195,6 +196,35 @@ def normalize_winner_description_for_message(
     if len(cleaned) <= max_length:
         return cleaned
     return f"{cleaned[:max_length - 3].rstrip()}..."
+
+
+def build_instagram_legacy_description_fallback(item: dict) -> str:
+    title = str(item.get("title") or "").strip()
+    if title and not re.fullmatch(r"@[A-Za-z0-9._]+", title):
+        return title
+
+    creator = title if title else str(item.get("username") or "").strip()
+    url = str(item.get("url") or "").strip()
+    shortcode_match = re.search(r"instagram\.com/p/([^/?#]+)/?", url)
+    shortcode = shortcode_match.group(1) if shortcode_match else ""
+    if creator:
+        if shortcode:
+            return f"Instagram post from {creator} · post {shortcode} (caption unavailable in legacy state)"
+        return f"Instagram post from {creator} (caption unavailable in legacy state)"
+    return ""
+
+
+def resolve_winner_description_for_message(item: dict, *, section: Optional[str] = None) -> str:
+    normalized_description = normalize_winner_description_for_message(item.get("description"))
+    if normalized_description:
+        return normalized_description
+
+    resolved_section = section or str(item.get("section") or "").strip()
+    if resolved_section != "instagram":
+        return ""
+
+    fallback = build_instagram_legacy_description_fallback(item)
+    return normalize_winner_description_for_message(fallback)
 
 
 def resolve_display_name(user: dict) -> str:
