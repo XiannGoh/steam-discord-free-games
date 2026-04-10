@@ -1,10 +1,12 @@
 import gaming_library as lib
+from scripts.manage_gaming_library import _parse_users
 
 
 class FakeDiscordClient:
     def __init__(self, reactions=None):
         self.reactions = reactions or {}
         self.posts = []
+        self.put_reactions = []
 
     def get_reaction_users(self, channel_id, message_id, encoded_emoji, *, context, limit=100, after=None):
         return self.reactions.get((channel_id, message_id, encoded_emoji), [])
@@ -13,6 +15,9 @@ class FakeDiscordClient:
         message_id = f"m-{len(self.posts)+1}"
         self.posts.append((channel_id, content, context))
         return {"id": message_id, "channel_id": channel_id}
+
+    def put_reaction(self, channel_id, message_id, encoded_emoji, *, context):
+        self.put_reactions.append((channel_id, message_id, encoded_emoji, context))
 
 
 def _seed_daily_posts_with_winner():
@@ -69,10 +74,12 @@ def test_promotions_do_not_duplicate_library_entries_for_same_game():
         reactions={("daily-1", "item-1", lib.BOOKMARK_EMOJI_ENCODED): [{"id": "u-1"}]}
     )
 
-    lib.sync_promotions_from_winners(state, daily_posts, client, bot_user_id=None)
-    lib.sync_promotions_from_winners(state, daily_posts, client, bot_user_id=None)
+    first_promotions = lib.sync_promotions_from_winners(state, daily_posts, client, bot_user_id=None)
+    second_promotions = lib.sync_promotions_from_winners(state, daily_posts, client, bot_user_id=None)
 
     assert list(state["games"].keys()) == ["steam:12345"]
+    assert first_promotions == 1
+    assert second_promotions == 0
 
 
 def test_manual_add_with_canonical_name_and_instagram_metadata_preserved():
@@ -145,8 +152,33 @@ def test_daily_library_post_records_message_metadata_and_status_sync():
     assert posted is True
     assert state["daily_posts"]["2026-04-10"]["completed"] is True
     assert len(client.posts) == 2
+    assert client.put_reactions == [
+        ("lib-chan", "m-2", lib.quote("✅", safe=""), "add gaming library status reaction ✅ for 2026-04-10"),
+        ("lib-chan", "m-2", lib.quote("⏸️", safe=""), "add gaming library status reaction ⏸️ for 2026-04-10"),
+        ("lib-chan", "m-2", lib.quote("❌", safe=""), "add gaming library status reaction ❌ for 2026-04-10"),
+    ]
 
     updates = lib.sync_statuses_from_library_posts(state, client, bot_user_id=None)
     assert updates >= 2
     assert game["assignments"]["u1"]["status"] == lib.STATUS_ACTIVE
     assert game["assignments"]["u2"]["status"] == lib.STATUS_DROPPED
+
+
+def test_manage_library_normalizes_mention_user_ids(tmp_path):
+    state = {"games": {}, "daily_posts": {}, "version": 1}
+    path = tmp_path / "gaming_library.json"
+    lib.save_gaming_library(state, str(path))
+    lib.manage_library(
+        operation="add",
+        canonical_name="Mention Parse",
+        url="https://store.steampowered.com/app/777/mention/",
+        user_ids=["<@123>", "<@!456>", "789"],
+        state_path=str(path),
+    )
+    updated = lib.load_gaming_library(str(path))
+    assignments = updated["games"]["steam:777"]["assignments"]
+    assert sorted(assignments.keys()) == ["123", "456", "789"]
+
+
+def test_manage_script_user_parser_accepts_discord_mentions():
+    assert _parse_users("123,<@456>,<@!789>") == ["123", "456", "789"]

@@ -22,6 +22,7 @@ class FakeDiscordClient:
         self.posts = []
         self.edits = []
         self.reaction_calls = []
+        self.put_reactions = []
 
     def get_message(self, channel_id, message_id, *, context):
         if self.stale_winner_id and message_id == self.stale_winner_id:
@@ -45,6 +46,9 @@ class FakeDiscordClient:
         mid = f"w-{len(self.posts)+1}"
         self.posts.append((channel_id, content, mid))
         return {"id": mid}
+
+    def put_reaction(self, channel_id, message_id, encoded_emoji, *, context):
+        self.put_reactions.append((channel_id, message_id, encoded_emoji, context))
 
 
 def _patch_common(monkeypatch, path, fake, day_key):
@@ -127,6 +131,8 @@ def test_winner_vote_rules_and_message_content(monkeypatch, tmp_path):
     assert "Voters — Jan, LateFan" in content
     assert "Voters — Jerry, akhil_user" in content
     assert "Bot Name" not in content
+    assert ("c", "m-late", winners.BOOKMARK_EMOJI_ENCODED, "add bookmark reaction for winner shared-dupe") in fake.put_reactions
+    assert ("c", "m-paid", winners.BOOKMARK_EMOJI_ENCODED, "add bookmark reaction for winner paid-win") in fake.put_reactions
 
 
 def test_winners_rerun_skip_then_edit_for_newly_eligible_winner(monkeypatch, tmp_path):

@@ -29,6 +29,7 @@ STATUS_TO_EMOJI = {
 }
 EMOJI_TO_STATUS = {emoji: status for status, emoji in STATUS_TO_EMOJI.items()}
 EMOJI_TO_STATUS_ENCODED = {quote(emoji, safe=""): status for emoji, status in EMOJI_TO_STATUS.items()}
+MENTION_USER_ID_PATTERN = re.compile(r"^<@!?(\d+)>$")
 
 
 def utc_now_iso() -> str:
@@ -137,6 +138,15 @@ def assign_user(game: Dict[str, Any], user_id: str, status: str = STATUS_ACTIVE)
     game["updated_at_utc"] = utc_now_iso()
 
 
+def assign_user_if_changed(game: Dict[str, Any], user_id: str, status: str = STATUS_ACTIVE) -> bool:
+    assignments = game.setdefault("assignments", {})
+    existing = assignments.get(str(user_id))
+    if isinstance(existing, dict) and str(existing.get("status") or "") == status:
+        return False
+    assign_user(game, user_id, status)
+    return True
+
+
 def unassign_user(game: Dict[str, Any], user_id: str) -> None:
     assignments = game.setdefault("assignments", {})
     assignments.pop(str(user_id), None)
@@ -243,6 +253,14 @@ def post_daily_library_reminder(
         message_id = str(payload.get("id") or "")
         if not message_id:
             raise RuntimeError("Discord response missing id for gaming library message")
+        if message.get("type") == "game":
+            for emoji in ("✅", "⏸️", "❌"):
+                client.put_reaction(
+                    str(payload.get("channel_id") or channel_id),
+                    message_id,
+                    quote(emoji, safe=""),
+                    context=f"add gaming library status reaction {emoji} for {day_key}",
+                )
         posted[message.get("identity_key", message["type"])] = {"message_id": message_id, "channel_id": str(payload.get("channel_id") or channel_id)}
 
     day_entry["messages"] = posted
@@ -316,6 +334,8 @@ def sync_promotions_from_winners(state: Dict[str, Any], daily_posts: Dict[str, A
                 "description": winner.get("description") or source_item.get("description"),
                 "daily_section": source_item.get("section"),
             }
+            identity_key = build_identity_key(canonical_name, url)
+            game_preexisted = identity_key in state.setdefault("games", {})
             game = ensure_game_entry(
                 state,
                 canonical_name=canonical_name,
@@ -324,12 +344,27 @@ def sync_promotions_from_winners(state: Dict[str, Any], daily_posts: Dict[str, A
                 source_section=str(source_item.get("section") or ""),
                 source_metadata=source_metadata,
             )
+            assignment_changed = False
             for user_id in human_user_ids:
-                assign_user(game, user_id, STATUS_ACTIVE)
+                if assign_user_if_changed(game, user_id, STATUS_ACTIVE):
+                    assignment_changed = True
             game["archived"] = False
             refresh_archive_state(game)
-            promoted_count += 1
+            if (not game_preexisted) or assignment_changed:
+                promoted_count += 1
     return promoted_count
+
+
+def normalize_user_id_token(user_id_like: str) -> str:
+    token = str(user_id_like or "").strip()
+    if not token:
+        return ""
+    if token.isdigit():
+        return token
+    mention_match = MENTION_USER_ID_PATTERN.fullmatch(token)
+    if mention_match:
+        return mention_match.group(1)
+    return ""
 
 
 def sync_statuses_from_library_posts(state: Dict[str, Any], client: DiscordClient, bot_user_id: Optional[str]) -> int:
@@ -443,7 +478,12 @@ def manage_library(
     state_path: str = GAMING_LIBRARY_FILE,
 ) -> bool:
     state = load_gaming_library(state_path)
-    user_ids = [uid for uid in (user_ids or []) if uid]
+    normalized_user_ids: List[str] = []
+    for user_id_like in user_ids or []:
+        normalized = normalize_user_id_token(str(user_id_like))
+        if normalized:
+            normalized_user_ids.append(normalized)
+    user_ids = normalized_user_ids
 
     if operation == "add":
         game = ensure_game_entry(

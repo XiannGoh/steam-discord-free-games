@@ -13,6 +13,8 @@ from state_utils import load_json_object, save_json_object_atomic
 DISCORD_DAILY_POSTS_FILE = "discord_daily_posts.json"
 THUMBS_UP_EMOJI = "👍"
 THUMBS_UP_EMOJI_ENCODED = quote(THUMBS_UP_EMOJI, safe="")
+BOOKMARK_EMOJI = "🔖"
+BOOKMARK_EMOJI_ENCODED = quote(BOOKMARK_EMOJI, safe="")
 
 DISCORD_BOT_TOKEN = os.getenv("DISCORD_BOT_TOKEN")
 DISCORD_WINNERS_CHANNEL_ID = os.getenv("DISCORD_WINNERS_CHANNEL_ID")
@@ -255,6 +257,21 @@ def format_voter_names_for_message(names: List[str]) -> str:
 
 def pick_winners_channel_id(items: List[dict]) -> Optional[str]:
     return DISCORD_WINNERS_CHANNEL_ID
+
+
+def add_bookmark_reaction(
+    client: DiscordClient,
+    *,
+    channel_id: str,
+    message_id: str,
+    context: str,
+) -> None:
+    client.put_reaction(
+        channel_id,
+        message_id,
+        BOOKMARK_EMOJI_ENCODED,
+        context=context,
+    )
 
 
 def fetch_human_voter_names(
@@ -644,9 +661,23 @@ def main() -> None:
                 "description": item.get("description"),
                 "human_votes": human_votes,
                 "voter_names": voter_names,
+                "channel_id": str(channel_id),
+                "message_id": str(message_id),
             }
             if existing is None or candidate["human_votes"] > existing["human_votes"]:
                 deduped_winners[dedupe_key] = candidate
+
+        for winner_key, winner in deduped_winners.items():
+            winner_channel_id = str(winner.get("channel_id") or "").strip()
+            winner_message_id = str(winner.get("message_id") or "").strip()
+            if not winner_channel_id or not winner_message_id:
+                continue
+            add_bookmark_reaction(
+                client,
+                channel_id=winner_channel_id,
+                message_id=winner_message_id,
+                context=f"add bookmark reaction for winner {winner_key}",
+            )
 
         recently_announced_winner_index = collect_recent_announced_winner_index(
             daily_posts,
