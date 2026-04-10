@@ -25,9 +25,12 @@ class FakeDiscordClient:
         self.posts.append((channel_id, content, context, mid))
         return {"id": mid}
 
-    def edit_message(self, channel_id, message_id, content, *, context):
+    def get_message(self, channel_id, message_id, *, context):
         if self.stale_summary_id and message_id == self.stale_summary_id:
             raise sync.DiscordMessageNotFoundError("missing")
+        return {"id": message_id}
+
+    def edit_message(self, channel_id, message_id, content, *, context):
         self.edits.append((channel_id, message_id, content, context))
         return {"id": message_id}
 
@@ -315,16 +318,9 @@ def test_main_posts_only_one_reminder_per_new_york_local_day(monkeypatch, tmp_pa
         },
     )
 
-    reminder_posts = []
-
-    def fake_post_channel_message(session, channel_id, content):
-        reminder_posts.append((channel_id, content))
-        return f"rem-{len(reminder_posts)}"
-
     fake_client = FakeDiscordClient()
     monkeypatch.setattr(sync.requests, "Session", FakeSession)
     monkeypatch.setattr(sync, "DiscordClient", lambda session: fake_client)
-    monkeypatch.setattr(sync, "post_channel_message", fake_post_channel_message)
     monkeypatch.setattr(sync, "WEEKLY_SCHEDULE_MESSAGES_FILE", str(messages_p))
     monkeypatch.setattr(sync, "WEEKLY_SCHEDULE_RESPONSES_FILE", str(responses_p))
     monkeypatch.setattr(sync, "WEEKLY_SCHEDULE_SUMMARY_FILE", str(summary_p))
@@ -420,7 +416,8 @@ def test_weekly_pipeline_integration_happy_path(monkeypatch, tmp_path):
     assert isinstance(week_outputs.get("summary_last_synced_at_utc"), str)
     assert week_outputs["reminder_missing_users"] == ["300"]
     assert week_outputs["last_reminder_local_date"] == "2026-04-18"
-    assert len(reminder_posts) == 1
+    reminder_ids = week_outputs.get("reminder_message_ids")
+    assert isinstance(reminder_ids, list) and len(reminder_ids) == 1
 
 
 def test_main_saturday_new_week_requires_change_and_allows_single_daily_reminder(
@@ -435,16 +432,9 @@ def test_main_saturday_new_week_requires_change_and_allows_single_daily_reminder
             }
         },
     )
-    reminder_posts = []
-
-    def fake_post_channel_message(session, channel_id, content):
-        reminder_posts.append((channel_id, content))
-        return f"rem-{len(reminder_posts)}"
-
     fake_client = FakeDiscordClient()
     monkeypatch.setattr(sync.requests, "Session", FakeSession)
     monkeypatch.setattr(sync, "DiscordClient", lambda session: fake_client)
-    monkeypatch.setattr(sync, "post_channel_message", fake_post_channel_message)
     monkeypatch.setattr(sync, "WEEKLY_SCHEDULE_MESSAGES_FILE", str(messages_p))
     monkeypatch.setattr(sync, "WEEKLY_SCHEDULE_RESPONSES_FILE", str(responses_p))
     monkeypatch.setattr(sync, "WEEKLY_SCHEDULE_SUMMARY_FILE", str(summary_p))
@@ -459,12 +449,11 @@ def test_main_saturday_new_week_requires_change_and_allows_single_daily_reminder
 
     # First Saturday sync for newly created week posts summary + first reminder.
     sync.main()
-    assert len(fake_client.posts) == 1
-    assert len(reminder_posts) == 1
+    assert len(fake_client.posts) == 2
 
     # Later same-day Saturday syncs cannot post another reminder.
     sync.main()
-    assert len(reminder_posts) == 1
+    assert len(fake_client.posts) == 2
 
 
 def test_main_unchanged_summary_signature_skips_edit_and_keeps_timestamp(
@@ -513,7 +502,6 @@ def test_main_unchanged_summary_signature_skips_edit_and_keeps_timestamp(
     fake_client = FakeDiscordClient()
     monkeypatch.setattr(sync.requests, "Session", FakeSession)
     monkeypatch.setattr(sync, "DiscordClient", lambda session: fake_client)
-    monkeypatch.setattr(sync, "post_channel_message", lambda session, channel_id, content: "rem-1")
     monkeypatch.setattr(sync, "WEEKLY_SCHEDULE_MESSAGES_FILE", str(messages_p))
     monkeypatch.setattr(sync, "WEEKLY_SCHEDULE_RESPONSES_FILE", str(responses_p))
     monkeypatch.setattr(sync, "WEEKLY_SCHEDULE_SUMMARY_FILE", str(summary_p))
@@ -527,7 +515,7 @@ def test_main_unchanged_summary_signature_skips_edit_and_keeps_timestamp(
     sync.main()
 
     outputs = json.loads(outputs_p.read_text(encoding="utf-8"))
-    assert fake_client.posts == []
+    assert len(fake_client.posts) == 1
     assert fake_client.edits == []
     assert outputs[week_key]["summary_last_synced_at_utc"] == old_synced_at.isoformat()
     assert outputs[week_key]["summary_message_content"] == prior_summary_message
@@ -596,7 +584,6 @@ def test_main_changed_summary_data_updates_timestamp_and_edits_message(monkeypat
     fake_client = FakeDiscordClient()
     monkeypatch.setattr(sync.requests, "Session", FakeSession)
     monkeypatch.setattr(sync, "DiscordClient", lambda session: fake_client)
-    monkeypatch.setattr(sync, "post_channel_message", lambda session, channel_id, content: "rem-1")
     monkeypatch.setattr(sync, "WEEKLY_SCHEDULE_MESSAGES_FILE", str(messages_p))
     monkeypatch.setattr(sync, "WEEKLY_SCHEDULE_RESPONSES_FILE", str(responses_p))
     monkeypatch.setattr(sync, "WEEKLY_SCHEDULE_SUMMARY_FILE", str(summary_p))
@@ -610,7 +597,7 @@ def test_main_changed_summary_data_updates_timestamp_and_edits_message(monkeypat
     sync.main()
 
     outputs = json.loads(outputs_p.read_text(encoding="utf-8"))
-    assert fake_client.posts == []
+    assert len(fake_client.posts) == 1
     assert len(fake_client.edits) == 1
     assert outputs[week_key]["summary_message_content"] != baseline_content
     assert outputs[week_key]["summary_data_signature"] != baseline_signature
@@ -640,7 +627,6 @@ def test_main_legacy_summary_backfills_signature_without_noisy_edit(monkeypatch,
     fake_client = FakeDiscordClient()
     monkeypatch.setattr(sync.requests, "Session", FakeSession)
     monkeypatch.setattr(sync, "DiscordClient", lambda session: fake_client)
-    monkeypatch.setattr(sync, "post_channel_message", lambda session, channel_id, content: "rem-1")
     monkeypatch.setattr(sync, "WEEKLY_SCHEDULE_MESSAGES_FILE", str(messages_p))
     monkeypatch.setattr(sync, "WEEKLY_SCHEDULE_RESPONSES_FILE", str(responses_p))
     monkeypatch.setattr(sync, "WEEKLY_SCHEDULE_SUMMARY_FILE", str(summary_p))
@@ -654,8 +640,63 @@ def test_main_legacy_summary_backfills_signature_without_noisy_edit(monkeypatch,
     sync.main()
 
     outputs = json.loads(outputs_p.read_text(encoding="utf-8"))
-    assert fake_client.posts == []
+    assert len(fake_client.posts) == 1
     assert fake_client.edits == []
     assert outputs[week_key]["summary_message_content"] == "legacy-summary-content"
     assert isinstance(outputs[week_key].get("summary_data_signature"), str)
     assert "summary_last_synced_at_utc" not in outputs[week_key]
+
+
+def test_main_summary_uses_multi_message_ids_when_content_is_long(monkeypatch, tmp_path, load_fixture_json):
+    weekly_responses = load_fixture_json("weekly_responses_named_users.json")
+    week_key, messages_p, responses_p, summary_p, roster_p, outputs_p = _setup_files(tmp_path, weekly_responses)
+    _write(outputs_p, {})
+
+    fake_client = FakeDiscordClient()
+    monkeypatch.setattr(sync.requests, "Session", FakeSession)
+    monkeypatch.setattr(sync, "DiscordClient", lambda session: fake_client)
+    monkeypatch.setattr(sync, "WEEKLY_SCHEDULE_MESSAGES_FILE", str(messages_p))
+    monkeypatch.setattr(sync, "WEEKLY_SCHEDULE_RESPONSES_FILE", str(responses_p))
+    monkeypatch.setattr(sync, "WEEKLY_SCHEDULE_SUMMARY_FILE", str(summary_p))
+    monkeypatch.setattr(sync, "EXPECTED_SCHEDULE_ROSTER_FILE", str(roster_p))
+    monkeypatch.setattr(sync, "WEEKLY_SCHEDULE_BOT_OUTPUTS_FILE", str(outputs_p))
+    monkeypatch.setattr(sync, "format_summary_message", lambda *args, **kwargs: ("line\n" * 900).strip())
+    monkeypatch.setenv("DISCORD_SCHEDULING_BOT_TOKEN", "x")
+    monkeypatch.setenv("REBUILD_SUMMARY_ONLY", "true")
+    monkeypatch.setenv("TARGET_WEEK_KEY", week_key)
+
+    sync.main()
+
+    outputs = json.loads(outputs_p.read_text(encoding="utf-8"))
+    posted_ids = outputs[week_key].get("summary_message_ids")
+    assert isinstance(posted_ids, list) and len(posted_ids) >= 2
+    assert outputs[week_key]["summary_message_id"] == posted_ids[0]
+
+
+def test_main_reminder_uses_multi_message_ids_when_content_is_long(monkeypatch, tmp_path, load_fixture_json):
+    weekly_responses = load_fixture_json("weekly_responses_named_users.json")
+    week_key, messages_p, responses_p, summary_p, roster_p, outputs_p = _setup_files(tmp_path, weekly_responses)
+
+    # Inflate active roster to force a long missing-user reminder.
+    roster_users = {str(1000 + idx): {"is_active": True} for idx in range(350)}
+    _write(roster_p, {"users": roster_users})
+    _write(outputs_p, {})
+
+    fake_client = FakeDiscordClient()
+    monkeypatch.setattr(sync.requests, "Session", FakeSession)
+    monkeypatch.setattr(sync, "DiscordClient", lambda session: fake_client)
+    monkeypatch.setattr(sync, "WEEKLY_SCHEDULE_MESSAGES_FILE", str(messages_p))
+    monkeypatch.setattr(sync, "WEEKLY_SCHEDULE_RESPONSES_FILE", str(responses_p))
+    monkeypatch.setattr(sync, "WEEKLY_SCHEDULE_SUMMARY_FILE", str(summary_p))
+    monkeypatch.setattr(sync, "EXPECTED_SCHEDULE_ROSTER_FILE", str(roster_p))
+    monkeypatch.setattr(sync, "WEEKLY_SCHEDULE_BOT_OUTPUTS_FILE", str(outputs_p))
+    monkeypatch.setenv("DISCORD_SCHEDULING_BOT_TOKEN", "x")
+    monkeypatch.setenv("REBUILD_SUMMARY_ONLY", "true")
+    monkeypatch.setenv("TARGET_WEEK_KEY", week_key)
+
+    sync.main()
+
+    outputs = json.loads(outputs_p.read_text(encoding="utf-8"))
+    reminder_ids = outputs[week_key].get("reminder_message_ids")
+    assert isinstance(reminder_ids, list) and len(reminder_ids) >= 2
+    assert outputs[week_key]["reminder_message_id"] == reminder_ids[0]

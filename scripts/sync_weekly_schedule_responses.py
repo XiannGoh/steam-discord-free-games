@@ -12,7 +12,7 @@ from zoneinfo import ZoneInfo
 
 import requests
 
-from discord_api import DiscordClient, DiscordMessageNotFoundError
+from discord_api import DiscordClient, DiscordMessageNotFoundError, split_discord_content
 from scripts.scheduling_labels import DAY_NAMES, format_day_label
 from state_utils import load_json_object, prune_latest_keys, save_json_object_atomic
 
@@ -30,6 +30,82 @@ SUMMARY_SLOT_ORDER: list[str] = ["✅", "🌅", "☀️", "🌙", "📝"]
 SUMMARY_DISPLAY_ORDER: list[str] = ["✅", "🌅", "☀️", "🌙", "📝", "❌"]
 MAX_SUMMARY_LINE_LENGTH = 185
 NEW_YORK_TIMEZONE = ZoneInfo("America/New_York")
+
+
+def normalize_message_ids(output_state: dict[str, Any], single_key: str, list_key: str) -> list[str]:
+    """Read message ids with backward compatibility for legacy single-id state."""
+    raw_ids = output_state.get(list_key)
+    if isinstance(raw_ids, list):
+        normalized = [str(message_id).strip() for message_id in raw_ids if str(message_id).strip()]
+        if normalized:
+            return normalized
+
+    raw_single = output_state.get(single_key)
+    if isinstance(raw_single, str) and raw_single.strip():
+        return [raw_single.strip()]
+
+    return []
+
+
+def upsert_message_chunks(
+    client: DiscordClient,
+    channel_id: str,
+    chunks: list[str],
+    previous_message_ids: list[str],
+    *,
+    context_prefix: str,
+    stale_placeholder: str,
+) -> list[str]:
+    """Create/edit chunked Discord messages while preserving idempotent reruns."""
+    valid_existing_ids: list[str] = []
+    for index, existing_message_id in enumerate(previous_message_ids, start=1):
+        try:
+            client.get_message(
+                channel_id,
+                existing_message_id,
+                context=f"verify {context_prefix} chunk {index}/{len(previous_message_ids)}",
+            )
+            valid_existing_ids.append(existing_message_id)
+        except DiscordMessageNotFoundError:
+            print(
+                f"RECOVER: stale/deleted {context_prefix} chunk "
+                f"(message_id={existing_message_id}); replacing chunk set"
+            )
+            valid_existing_ids = []
+            break
+
+    resulting_ids: list[str] = []
+    for index, chunk in enumerate(chunks):
+        if index < len(valid_existing_ids):
+            message_id = valid_existing_ids[index]
+            client.edit_message(
+                channel_id,
+                message_id,
+                chunk,
+                context=f"edit {context_prefix} chunk {index + 1}/{len(chunks)}",
+            )
+            resulting_ids.append(message_id)
+        else:
+            payload = client.post_message(
+                channel_id,
+                chunk,
+                context=f"post {context_prefix} chunk {index + 1}/{len(chunks)}",
+            )
+            message_id = str(payload.get("id", ""))
+            if not message_id:
+                fail(f"Discord response JSON did not include id for {context_prefix} chunk")
+            resulting_ids.append(message_id)
+
+    for stale_index in range(len(chunks), len(valid_existing_ids)):
+        stale_id = valid_existing_ids[stale_index]
+        client.edit_message(
+            channel_id,
+            stale_id,
+            stale_placeholder,
+            context=f"clear stale {context_prefix} chunk {stale_index + 1}/{len(valid_existing_ids)}",
+        )
+
+    return resulting_ids
 
 
 def fail(message: str) -> None:
@@ -915,11 +991,10 @@ def main() -> None:
         )
         discord_client = DiscordClient(posting_session)
 
-        previous_summary_message_id = week_outputs.get("summary_message_id")
-        summary_message_id = (
-            str(previous_summary_message_id)
-            if isinstance(previous_summary_message_id, str) and previous_summary_message_id
-            else None
+        previous_summary_message_ids = normalize_message_ids(
+            week_outputs,
+            "summary_message_id",
+            "summary_message_ids",
         )
         previous_summary_message_content = week_outputs.get("summary_message_content")
         previous_summary_data_signature = normalize_optional_text(
@@ -972,50 +1047,63 @@ def main() -> None:
 
         week_outputs["summary_data_signature"] = current_summary_data_signature
 
+        summary_chunks = split_discord_content(summary_message)
+
         if dry_run:
             print(f"DRY_RUN: summary preview for {posting_week_key}")
             print(summary_message)
             print(f"DRY_RUN: skipping Discord summary and reminder mutations for {posting_week_key}")
-        elif summary_message_id is None:
-            payload = discord_client.post_message(
-                channel_id, summary_message, context=f"post summary for {posting_week_key}"
+        elif not previous_summary_message_ids:
+            summary_message_ids = upsert_message_chunks(
+                discord_client,
+                channel_id,
+                summary_chunks,
+                [],
+                context_prefix=f"summary for {posting_week_key}",
+                stale_placeholder="_(Summary content moved to earlier message chunks.)_",
             )
-            summary_message_id = str(payload.get("id", ""))
             week_outputs["summary_posted"] = True
-            week_outputs["summary_message_id"] = summary_message_id
+            week_outputs["summary_message_id"] = summary_message_ids[0]
+            week_outputs["summary_message_ids"] = summary_message_ids
             week_outputs["summary_message_content"] = summary_message
-            print(f"CREATE: posted summary for week {posting_week_key} (message_id={summary_message_id})")
+            print(
+                f"CREATE: posted summary for week {posting_week_key} "
+                f"(message_ids={summary_message_ids})"
+            )
         elif previous_summary_message_content != summary_message:
             try:
-                discord_client.edit_message(
+                summary_message_ids = upsert_message_chunks(
+                    discord_client,
                     channel_id,
-                    summary_message_id,
-                    summary_message,
-                    context=f"edit summary for {posting_week_key}",
+                    summary_chunks,
+                    previous_summary_message_ids,
+                    context_prefix=f"summary for {posting_week_key}",
+                    stale_placeholder="_(Summary content moved to earlier message chunks.)_",
                 )
                 week_outputs["summary_posted"] = True
+                week_outputs["summary_message_id"] = summary_message_ids[0]
+                week_outputs["summary_message_ids"] = summary_message_ids
                 week_outputs["summary_message_content"] = summary_message
                 print(
                     f"EDIT: updated summary for week {posting_week_key} "
-                    f"(message_id={summary_message_id})"
+                    f"(message_ids={summary_message_ids})"
                 )
             except DiscordMessageNotFoundError:
-                print(
-                    f"RECOVER: stale/deleted summary message for week {posting_week_key} "
-                    f"(message_id={summary_message_id}); posting replacement"
-                )
-                payload = discord_client.post_message(
+                summary_message_ids = upsert_message_chunks(
+                    discord_client,
                     channel_id,
-                    summary_message,
-                    context=f"recover summary for {posting_week_key}",
+                    summary_chunks,
+                    [],
+                    context_prefix=f"recover summary for {posting_week_key}",
+                    stale_placeholder="_(Summary content moved to earlier message chunks.)_",
                 )
-                summary_message_id = str(payload.get("id", ""))
                 week_outputs["summary_posted"] = True
-                week_outputs["summary_message_id"] = summary_message_id
+                week_outputs["summary_message_id"] = summary_message_ids[0]
+                week_outputs["summary_message_ids"] = summary_message_ids
                 week_outputs["summary_message_content"] = summary_message
                 print(
                     f"RECOVER: posted replacement summary for week {posting_week_key} "
-                    f"(message_id={summary_message_id})"
+                    f"(message_ids={summary_message_ids})"
                 )
         else:
             print(f"SKIP: summary unchanged for week {posting_week_key}; skipping summary edit")
@@ -1039,15 +1127,27 @@ def main() -> None:
                         )
                     else:
                         reminder_message = format_reminder_message(date_range, missing_user_ids)
-                        reminder_message_id = post_channel_message(
-                            posting_session, channel_id, reminder_message
+                        reminder_chunks = split_discord_content(reminder_message)
+                        reminder_message_ids = normalize_message_ids(
+                            week_outputs,
+                            "reminder_message_id",
+                            "reminder_message_ids",
                         )
-                        week_outputs["reminder_message_id"] = reminder_message_id
+                        updated_reminder_ids = upsert_message_chunks(
+                            discord_client,
+                            channel_id,
+                            reminder_chunks,
+                            reminder_message_ids,
+                            context_prefix=f"reminder for {posting_week_key}",
+                            stale_placeholder="_(Reminder content moved to earlier message chunks.)_",
+                        )
+                        week_outputs["reminder_message_id"] = updated_reminder_ids[0]
+                        week_outputs["reminder_message_ids"] = updated_reminder_ids
                         week_outputs["reminder_missing_users"] = missing_user_ids
                         week_outputs["last_reminder_local_date"] = reminder_local_date
                         print(
                             f"CREATE: posted reminder for week {posting_week_key} "
-                            f"(message_id={reminder_message_id}, missing={len(missing_user_ids)}, "
+                            f"(message_ids={updated_reminder_ids}, missing={len(missing_user_ids)}, "
                             f"ny_date={reminder_local_date})"
                         )
                 else:
