@@ -1640,7 +1640,9 @@ def build_daily_navigation_footer(
         "instagram": "📸 Creator Picks",
     }
     section_headers = run_state.get("section_headers", {})
-    lines = [f"🎯 Intro / Top of Post → {build_discord_message_link(guild_id, intro_channel_id, intro_message_id)}"]
+    lines = [
+        f"🎯 Intro / Top of Post → [Jump]({build_discord_message_link(guild_id, intro_channel_id, intro_message_id)})"
+    ]
 
     for section_key in DAILY_SECTION_ORDER:
         if section_key not in posted_section_keys:
@@ -1657,7 +1659,7 @@ def build_daily_navigation_footer(
         section_label = section_labels.get(section_key)
         if not section_label:
             continue
-        lines.append(f"{section_label} → {build_discord_message_link(guild_id, channel_id, message_id)}")
+        lines.append(f"{section_label} → [Jump]({build_discord_message_link(guild_id, channel_id, message_id)})")
 
     return "\n".join(lines)
 

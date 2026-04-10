@@ -307,9 +307,9 @@ def test_daily_navigation_footer_is_posted_last_with_expected_links(monkeypatch,
 
     expected_footer = "\n".join(
         [
-            "🎯 Intro / Top of Post → https://discord.com/channels/guild-1/chan-1/m-1",
-            "🧪 Demo & Playtest Picks → https://discord.com/channels/guild-1/chan-1/m-2",
-            "🎮 Free Picks → https://discord.com/channels/guild-1/chan-1/m-4",
+            "🎯 Intro / Top of Post → [Jump](https://discord.com/channels/guild-1/chan-1/m-1)",
+            "🧪 Demo & Playtest Picks → [Jump](https://discord.com/channels/guild-1/chan-1/m-2)",
+            "🎮 Free Picks → [Jump](https://discord.com/channels/guild-1/chan-1/m-4)",
         ]
     )
     assert posted[-1] == expected_footer
