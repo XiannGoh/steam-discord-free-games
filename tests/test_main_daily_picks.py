@@ -337,6 +337,8 @@ def test_daily_navigation_footer_is_posted_last_with_expected_links(monkeypatch,
 
     expected_footer = "\n".join(
         [
+            "🗓️ Daily Picks for Wednesday, April 8, 2026",
+            "",
             "🎯 Intro / Top of Post → [Jump](https://discord.com/channels/guild-1/chan-1/m-1)",
             "🧪 Demo & Playtest Picks → [Jump](https://discord.com/channels/guild-1/chan-1/m-2)",
             "🎮 Free Picks → [Jump](https://discord.com/channels/guild-1/chan-1/m-4)",
@@ -394,6 +396,33 @@ def test_daily_navigation_footer_rerun_reuses_existing_message(monkeypatch, tmp_
     main.post_daily_pick_messages([], [{"title": "Free", "url": "https://store.steampowered.com/app/12", "score": 10}], [], [])
 
     assert posted == []
+
+
+def test_daily_navigation_footer_uses_target_day_override_for_display(monkeypatch, tmp_path):
+    daily_path = tmp_path / "daily.json"
+    daily_path.write_text("{}", encoding="utf-8")
+    day_key = "2026-04-10"
+    posted = []
+    counter = {"i": 0}
+
+    def fake_post(message, capture_metadata=False):
+        posted.append(message)
+        counter["i"] += 1
+        return {"message_id": f"m-{counter['i']}", "channel_id": "chan-1"}
+
+    fake_client = FakeDiscordClient()
+
+    monkeypatch.setattr(main, "DISCORD_DAILY_POSTS_FILE", str(daily_path))
+    monkeypatch.setattr(main, "DISCORD_BOT_TOKEN", "token")
+    monkeypatch.setattr(main, "DISCORD_GUILD_ID", "guild-1")
+    monkeypatch.setattr(main, "DiscordClient", lambda session: fake_client)
+    monkeypatch.setattr(main, "post_to_discord_with_metadata", fake_post)
+    monkeypatch.setattr(main, "sleep_briefly", lambda: None)
+    monkeypatch.setenv(main.DAILY_DATE_OVERRIDE_ENV, day_key)
+
+    main.post_daily_pick_messages([], [{"title": "Free", "url": "https://store.steampowered.com/app/12", "score": 10}], [], [])
+
+    assert posted[-1].splitlines()[0] == "🗓️ Daily Picks for Friday, April 10, 2026"
 
 
 def test_daily_navigation_footer_skips_safely_when_guild_or_metadata_missing(monkeypatch, tmp_path):
