@@ -6,7 +6,9 @@ class FakeDiscordClient:
     def __init__(self, reactions=None):
         self.reactions = reactions or {}
         self.posts = []
+        self.edits = []
         self.put_reactions = []
+        self.not_found_edits = set()
 
     def get_reaction_users(self, channel_id, message_id, encoded_emoji, *, context, limit=100, after=None):
         return self.reactions.get((channel_id, message_id, encoded_emoji), [])
@@ -18,6 +20,12 @@ class FakeDiscordClient:
 
     def put_reaction(self, channel_id, message_id, encoded_emoji, *, context):
         self.put_reactions.append((channel_id, message_id, encoded_emoji, context))
+
+    def edit_message(self, channel_id, message_id, content, *, context):
+        if (channel_id, message_id) in self.not_found_edits:
+            raise lib.DiscordMessageNotFoundError("not found")
+        self.edits.append((channel_id, message_id, content, context))
+        return {"id": message_id, "channel_id": channel_id}
 
 
 def _seed_daily_posts_with_winner():
@@ -183,6 +191,76 @@ def test_daily_library_post_records_message_metadata_and_status_sync():
     assert updates >= 2
     assert game["assignments"]["u1"]["status"] == lib.STATUS_ACTIVE
     assert game["assignments"]["u2"]["status"] == lib.STATUS_DROPPED
+
+
+def test_daily_library_rerun_after_promotions_reuses_header_and_adds_missing_games():
+    state = lib.load_gaming_library(path="/tmp/does-not-exist.json")
+    client = FakeDiscordClient()
+
+    first_posted = lib.post_daily_library_reminder(state, day_key="2026-04-10", channel_id="lib-chan", client=client)
+
+    assert first_posted is True
+    assert len(client.posts) == 1
+    assert "No active library games for today" in client.posts[0][1]
+
+    game = lib.ensure_game_entry(state, canonical_name="Core Keeper", url="https://store.steampowered.com/app/1621690/")
+    lib.assign_user(game, "u1", lib.STATUS_ACTIVE)
+
+    second_posted = lib.post_daily_library_reminder(state, day_key="2026-04-10", channel_id="lib-chan", client=client)
+
+    assert second_posted is True
+    assert len(client.posts) == 2
+    assert len(client.edits) == 1
+    edited_header = client.edits[0]
+    assert edited_header[1] == "m-1"
+    assert "React on each game" in edited_header[2]
+    assert state["daily_posts"]["2026-04-10"]["messages"]["header"]["message_id"] == "m-1"
+    assert "steam:1621690" in state["daily_posts"]["2026-04-10"]["messages"]
+    assert client.put_reactions == [
+        ("lib-chan", "m-2", lib.quote("✅", safe=""), "add gaming library status reaction ✅ for 2026-04-10"),
+        ("lib-chan", "m-2", lib.quote("⏸️", safe=""), "add gaming library status reaction ⏸️ for 2026-04-10"),
+        ("lib-chan", "m-2", lib.quote("❌", safe=""), "add gaming library status reaction ❌ for 2026-04-10"),
+    ]
+
+
+def test_daily_library_rerun_updates_existing_game_message_without_duplicate_post():
+    state = lib.load_gaming_library(path="/tmp/does-not-exist.json")
+    game = lib.ensure_game_entry(state, canonical_name="Status Game", url="https://store.steampowered.com/app/200/status/")
+    lib.assign_user(game, "u1", lib.STATUS_ACTIVE)
+    client = FakeDiscordClient()
+
+    lib.post_daily_library_reminder(state, day_key="2026-04-10", channel_id="lib-chan", client=client)
+    assert len(client.posts) == 2
+    assert len(client.put_reactions) == 3
+
+    lib.set_user_status(game, "u1", lib.STATUS_PAUSED)
+    posted_again = lib.post_daily_library_reminder(state, day_key="2026-04-10", channel_id="lib-chan", client=client)
+
+    assert posted_again is True
+    assert len(client.posts) == 2
+    assert len(client.put_reactions) == 3
+    assert len(client.edits) == 2
+    game_edit = client.edits[1]
+    assert game_edit[1] == "m-2"
+    assert "(paused)" in game_edit[2]
+
+
+def test_daily_library_reruns_converge_without_duplicate_headers_or_games():
+    state = lib.load_gaming_library(path="/tmp/does-not-exist.json")
+    game = lib.ensure_game_entry(state, canonical_name="Converge", url="https://store.steampowered.com/app/300/converge/")
+    lib.assign_user(game, "u1", lib.STATUS_ACTIVE)
+    client = FakeDiscordClient()
+
+    lib.post_daily_library_reminder(state, day_key="2026-04-10", channel_id="lib-chan", client=client)
+    lib.post_daily_library_reminder(state, day_key="2026-04-10", channel_id="lib-chan", client=client)
+    lib.post_daily_library_reminder(state, day_key="2026-04-10", channel_id="lib-chan", client=client)
+
+    assert len(client.posts) == 2
+    assert len(client.edits) == 4
+    messages = state["daily_posts"]["2026-04-10"]["messages"]
+    assert sorted(messages.keys()) == ["header", "steam:300"]
+    assert messages["header"]["message_id"] == "m-1"
+    assert messages["steam:300"]["message_id"] == "m-2"
 
 
 def test_manage_library_normalizes_mention_user_ids(tmp_path):

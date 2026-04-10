@@ -242,18 +242,47 @@ def post_daily_library_reminder(
 ) -> bool:
     daily_posts = state.setdefault("daily_posts", {})
     day_entry = daily_posts.setdefault(day_key, {})
-    if bool(day_entry.get("completed")):
-        print(f"SKIP: library daily reminder already completed for {day_key}")
-        return False
+    existing_messages = day_entry.get("messages")
+    if not isinstance(existing_messages, dict):
+        existing_messages = {}
 
     messages = build_daily_library_messages(state, day_key)
-    posted: Dict[str, Dict[str, str]] = {}
+    reconciled_messages: Dict[str, Dict[str, str]] = {}
+    changed = False
     for message in messages:
-        payload = client.post_message(channel_id, message["content"], context=f"post gaming library {message['type']} for {day_key}")
+        message_key = str(message.get("identity_key", message["type"]))
+        existing_info = existing_messages.get(message_key)
+        existing_channel_id = str((existing_info or {}).get("channel_id") or channel_id).strip()
+        existing_message_id = str((existing_info or {}).get("message_id") or "").strip()
+
+        payload: Dict[str, Any]
+        is_new_message = False
+        if existing_message_id:
+            try:
+                payload = client.edit_message(
+                    existing_channel_id,
+                    existing_message_id,
+                    message["content"],
+                    context=f"edit gaming library {message['type']} for {day_key}",
+                )
+                changed = True
+            except DiscordMessageNotFoundError:
+                payload = client.post_message(
+                    channel_id,
+                    message["content"],
+                    context=f"repost missing gaming library {message['type']} for {day_key}",
+                )
+                is_new_message = True
+                changed = True
+        else:
+            payload = client.post_message(channel_id, message["content"], context=f"post gaming library {message['type']} for {day_key}")
+            is_new_message = True
+            changed = True
+
         message_id = str(payload.get("id") or "")
         if not message_id:
             raise RuntimeError("Discord response missing id for gaming library message")
-        if message.get("type") == "game":
+        if message.get("type") == "game" and is_new_message:
             for emoji in ("✅", "⏸️", "❌"):
                 client.put_reaction(
                     str(payload.get("channel_id") or channel_id),
@@ -261,12 +290,12 @@ def post_daily_library_reminder(
                     quote(emoji, safe=""),
                     context=f"add gaming library status reaction {emoji} for {day_key}",
                 )
-        posted[message.get("identity_key", message["type"])] = {"message_id": message_id, "channel_id": str(payload.get("channel_id") or channel_id)}
+        reconciled_messages[message_key] = {"message_id": message_id, "channel_id": str(payload.get("channel_id") or channel_id)}
 
-    day_entry["messages"] = posted
+    day_entry["messages"] = reconciled_messages
     day_entry["completed"] = True
     day_entry["completed_at_utc"] = utc_now_iso()
-    return True
+    return changed
 
 
 def _build_winner_identity_key(item: Dict[str, Any]) -> str:
