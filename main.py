@@ -43,6 +43,7 @@ INSTAGRAM_CREATORS = [
 ]
 
 MAX_INSTAGRAM_POSTS_PER_ACCOUNT = 2
+INSTAGRAM_SEEN_RETENTION_PER_CREATOR = 50
 INSTAGRAM_GAME_KEY_BOILERPLATE_PATTERNS = [
     r"\bdemo\b",
     r"\bplaytest\b",
@@ -1074,6 +1075,7 @@ def export_daily_debug_summary(
     run_summary_lines: List[str],
     path: str = DAILY_DEBUG_SUMMARY_FILE,
     target_day_key: Optional[str] = None,
+    instagram_debug: Optional[Dict[str, object]] = None,
 ) -> None:
     # Intentionally ephemeral troubleshooting artifact: overwritten each run.
     payload = {
@@ -1081,6 +1083,7 @@ def export_daily_debug_summary(
         "target_day_key": target_day_key or get_target_day_key(),
         "section_order": DAILY_SECTION_ORDER,
         "run_summary": run_summary_lines,
+        "instagram_debug": instagram_debug or {},
         "records": records,
     }
     try:
@@ -1815,8 +1818,14 @@ def derive_instagram_game_key(caption: str) -> Optional[str]:
 
 
 def dedupe_instagram_posts(posts: List[dict]) -> List[dict]:
+    deduped_posts, _ = _dedupe_instagram_posts_with_debug(posts)
+    return deduped_posts
+
+
+def _dedupe_instagram_posts_with_debug(posts: List[dict]) -> Tuple[List[dict], Dict[str, object]]:
     seen_keys = set()
     deduped_posts: List[dict] = []
+    removed_keys: List[str] = []
 
     for post in posts:
         key = derive_instagram_game_key(post.get("caption", ""))
@@ -1825,12 +1834,33 @@ def dedupe_instagram_posts(posts: List[dict]) -> List[dict]:
             continue
 
         if key in seen_keys:
+            if len(removed_keys) < 3:
+                removed_keys.append(key)
             continue
 
         seen_keys.add(key)
         deduped_posts.append(post)
 
-    return deduped_posts
+    debug: Dict[str, object] = {
+        "fetched_count": len(posts),
+        "deduped_count": len(deduped_posts),
+        "removed_count": len(posts) - len(deduped_posts),
+    }
+    if removed_keys:
+        debug["removed_key_samples"] = removed_keys
+    return deduped_posts, debug
+
+
+def prune_instagram_seen_state(data: object) -> Dict[str, List[str]]:
+    if not isinstance(data, dict):
+        return {}
+    cleaned: Dict[str, List[str]] = {}
+    for username, shortcodes in data.items():
+        if not isinstance(username, str) or not isinstance(shortcodes, list):
+            continue
+        valid_shortcodes = [code for code in shortcodes if isinstance(code, str) and code]
+        cleaned[username] = valid_shortcodes[-INSTAGRAM_SEEN_RETENTION_PER_CREATOR:]
+    return cleaned
 
 def load_instagram_seen():
     if not os.path.exists(INSTAGRAM_STATE_FILE):
@@ -1838,14 +1868,14 @@ def load_instagram_seen():
 
     try:
         with open(INSTAGRAM_STATE_FILE, "r", encoding="utf-8") as f:
-            return json.load(f)
+            return prune_instagram_seen_state(json.load(f))
     except Exception:
         return {}
 
 
 def save_instagram_seen(data):
     with open(INSTAGRAM_STATE_FILE, "w", encoding="utf-8") as f:
-        json.dump(data, f, indent=2)
+        json.dump(prune_instagram_seen_state(data), f, indent=2)
 
 
 def fetch_instagram_posts():
@@ -1912,7 +1942,7 @@ def fetch_instagram_posts():
                 if count >= MAX_INSTAGRAM_POSTS_PER_ACCOUNT:
                     break
 
-            seen[username] = seen[username][-50:]
+            seen[username] = seen[username][-INSTAGRAM_SEEN_RETENTION_PER_CREATOR:]
 
         except Exception as e:
             print(f"Instagram scrape failed for {username}: {e}")
@@ -2082,7 +2112,14 @@ def main():
         f"(cap={MAX_DEMO_PLAYTEST_POSTS})"
     )
 
-    instagram_posts = dedupe_instagram_posts(fetch_instagram_posts())
+    fetched_instagram_posts = fetch_instagram_posts()
+    instagram_posts, instagram_debug = _dedupe_instagram_posts_with_debug(fetched_instagram_posts)
+    print(
+        "Instagram dedupe: "
+        f"fetched={instagram_debug['fetched_count']} "
+        f"kept={instagram_debug['deduped_count']} "
+        f"removed={instagram_debug['removed_count']}"
+    )
     post_daily_pick_messages(demo_playtest_items, free_items, paid_items, instagram_posts)
 
     if not demo_playtest_items and not free_items and not paid_items:
@@ -2150,7 +2187,12 @@ def main():
     )
     for line in run_summary_lines:
         print(line)
-    export_daily_debug_summary(debug_records, run_summary_lines, target_day_key=get_target_day_key())
+    export_daily_debug_summary(
+        debug_records,
+        run_summary_lines,
+        target_day_key=get_target_day_key(),
+        instagram_debug=instagram_debug,
+    )
 
     next_start_page = get_next_start_page(start_page)
     save_page_state(next_start_page)
