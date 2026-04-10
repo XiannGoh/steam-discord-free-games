@@ -52,7 +52,6 @@ def _patch_common(monkeypatch, path, fake, day_key):
     monkeypatch.setattr(winners.requests, "Session", FakeSession)
     monkeypatch.setattr(winners, "DiscordClient", lambda session: fake)
     monkeypatch.setattr(winners, "DISCORD_BOT_TOKEN", "x")
-    monkeypatch.setattr(winners, "DISCORD_DAILY_PICKS_CHANNEL_ID", "daily-picks")
     monkeypatch.setattr(winners, "DISCORD_WINNERS_CHANNEL_ID", "wchan")
     monkeypatch.setenv(winners.WINNERS_DATE_OVERRIDE_ENV, day_key)
 
