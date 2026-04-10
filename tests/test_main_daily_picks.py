@@ -181,6 +181,56 @@ def test_dedupe_instagram_posts_preserves_surviving_order():
     assert [post["url"] for post in deduped] == ["u1", "u3"]
 
 
+def test_dedupe_instagram_posts_handles_separator_variants():
+    posts = [
+        {"username": "creator_a", "caption": "Sky Relay - out now", "url": "u1"},
+        {"username": "creator_b", "caption": "SKY RELAY | wishlist now", "url": "u2"},
+        {"username": "creator_c", "caption": "Sky Relay : free on Steam", "url": "u3"},
+    ]
+
+    deduped = main.dedupe_instagram_posts(posts)
+
+    assert [post["url"] for post in deduped] == ["u1"]
+
+
+def test_dedupe_instagram_posts_handles_quoted_and_bracketed_titles():
+    posts = [
+        {"username": "creator_a", "caption": '[Echo Vale] - demo on Steam', "url": "u1"},
+        {"username": "creator_b", "caption": '"ECHO VALE" - link in bio', "url": "u2"},
+    ]
+
+    deduped = main.dedupe_instagram_posts(posts)
+
+    assert [post["url"] for post in deduped] == ["u1"]
+
+
+def test_dedupe_instagram_posts_keeps_low_confidence_boilerplate_only_captions():
+    posts = [
+        {"username": "creator_a", "caption": "Demo - Steam - wishlist - link in bio", "url": "u1"},
+        {"username": "creator_b", "caption": "playtest : out now on steam", "url": "u2"},
+    ]
+
+    deduped = main.dedupe_instagram_posts(posts)
+
+    assert [post["url"] for post in deduped] == ["u1", "u2"]
+
+
+def test_instagram_dedupe_debug_summary_counts_and_samples():
+    posts = [
+        {"username": "creator_a", "caption": '"Nova Hex" - out now', "url": "u1"},
+        {"username": "creator_b", "caption": '"NOVA HEX" | wishlist', "url": "u2"},
+        {"username": "creator_c", "caption": '"Moon Harbor" - out now', "url": "u3"},
+    ]
+
+    deduped, debug = main._dedupe_instagram_posts_with_debug(posts)
+
+    assert [post["url"] for post in deduped] == ["u1", "u3"]
+    assert debug["fetched_count"] == 3
+    assert debug["deduped_count"] == 2
+    assert debug["removed_count"] == 1
+    assert debug["removed_key_samples"] == ["nova hex"]
+
+
 def test_daily_sections_post_in_new_order(monkeypatch, tmp_path):
     daily_path = tmp_path / "daily.json"
     daily_path.write_text("{}", encoding="utf-8")
@@ -360,15 +410,35 @@ def test_debug_export_writes_expected_structure(tmp_path):
     ]
     summary = ["RUN SUMMARY", "- Steam candidates scanned: 1"]
 
-    main.export_daily_debug_summary(records, summary, path=str(output_path))
+    instagram_debug = {"fetched_count": 4, "deduped_count": 3, "removed_count": 1}
+
+    main.export_daily_debug_summary(records, summary, path=str(output_path), instagram_debug=instagram_debug)
     saved = json.loads(output_path.read_text(encoding="utf-8"))
 
     assert saved["run_summary"] == summary
     assert saved["generated_at_utc"]
     assert saved["target_day_key"]
     assert saved["section_order"] == ["demo_playtest", "free", "paid", "instagram"]
+    assert saved["instagram_debug"] == instagram_debug
     assert saved["records"][0]["title"] == "Demo A"
     assert saved["records"][0]["reason_list"] == ["qualified"]
+
+
+def test_prune_instagram_seen_state_enforces_retention_and_shape():
+    oversized = [f"code-{idx}" for idx in range(main.INSTAGRAM_SEEN_RETENTION_PER_CREATOR + 5)]
+    pruned = main.prune_instagram_seen_state(
+        {
+            "creator": oversized,
+            "bad_creator": "not-a-list",
+            123: ["ignored"],
+            "mixed": ["ok", "", None, "ok-2"],
+        }
+    )
+
+    assert pruned["creator"] == oversized[-main.INSTAGRAM_SEEN_RETENTION_PER_CREATOR:]
+    assert "bad_creator" not in pruned
+    assert "123" not in pruned
+    assert pruned["mixed"] == ["ok", "ok-2"]
 
 
 def test_debug_export_fails_gracefully(monkeypatch, capsys):
