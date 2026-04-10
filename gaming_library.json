@@ -1,5 +1,16 @@
 {
   "version": 1,
   "games": {},
-  "daily_posts": {}
+  "daily_posts": {
+    "2026-04-10": {
+      "messages": {
+        "header": {
+          "message_id": "1492095786941681664",
+          "channel_id": "1492038691248410676"
+        }
+      },
+      "completed": true,
+      "completed_at_utc": "2026-04-10T09:35:57.590409+00:00"
+    }
+  }
 }
