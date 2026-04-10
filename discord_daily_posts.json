@@ -1747,5 +1747,382 @@
         "description": "Here’s a fun scary game to play with friends, where you explore procedurally generated worlds for unique ingredients ..."
       }
     ]
+  },
+  "2026-04-10": {
+    "run_state": {
+      "section_headers": {
+        "demo_playtest": {
+          "message_id": "1492043996837580935",
+          "channel_id": "592534544708796474",
+          "posted_at_utc": "2026-04-10T06:10:11.229425+00:00"
+        },
+        "free": {
+          "message_id": "1492044047030681771",
+          "channel_id": "592534544708796474",
+          "posted_at_utc": "2026-04-10T06:10:21.889284+00:00"
+        },
+        "paid": {
+          "message_id": "1492044089884020809",
+          "channel_id": "592534544708796474",
+          "posted_at_utc": "2026-04-10T06:10:32.040652+00:00"
+        },
+        "instagram": {
+          "message_id": "1492044132829626478",
+          "channel_id": "592534544708796474",
+          "posted_at_utc": "2026-04-10T06:10:42.345719+00:00"
+        }
+      },
+      "last_attempt_at_utc": "2026-04-10T06:10:07.951997+00:00",
+      "intro": {
+        "message_id": "1492043990214643742",
+        "channel_id": "592534544708796474",
+        "posted_at_utc": "2026-04-10T06:10:08.442518+00:00"
+      },
+      "completed": true,
+      "completed_at_utc": "2026-04-10T06:11:13.661766+00:00"
+    },
+    "items": [
+      {
+        "item_key": "6565d5f214190cb8",
+        "section": "demo_playtest",
+        "title": "World of Tanks Blitz",
+        "url": "https://store.steampowered.com/app/444200/",
+        "message_id": "1492044008971571251",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_demo_playtest",
+        "posted_at": "2026-04-10T06:10:13.108025+00:00",
+        "description": "Blow off steam and tank turrets in a free-to-play online 7v7 tank shooter! Drive hundreds of tanks, from museum classics to \"did-that-ever-exist?\" specials, in quick 5 to 7-minute brawls packed with metal mayhem. Play solo or team up with a friend and enjoy smooth action even on modest hardware!"
+      },
+      {
+        "item_key": "d704d4fb435dc489",
+        "section": "demo_playtest",
+        "title": "Nation Red",
+        "url": "https://store.steampowered.com/app/39800/",
+        "message_id": "1492044016878092319",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_demo_playtest",
+        "posted_at": "2026-04-10T06:10:14.902288+00:00",
+        "description": "Nation Red is an ultra fast infinite play arena-based shooter providing an exceptional close-quarter battlefield experience. Fight thousands of zombie mutants and their bosses in frantic bloody gameplay while earning close to 100 perks. Fight in Barricade, Survival or Free Play mode."
+      },
+      {
+        "item_key": "072520347fcf42c5",
+        "section": "demo_playtest",
+        "title": "Final Exam",
+        "url": "https://store.steampowered.com/app/233190/",
+        "message_id": "1492044023874060339",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_demo_playtest",
+        "posted_at": "2026-04-10T06:10:16.578855+00:00",
+        "description": "Jump into the frenzied action and the whacky humor of a pure 2.5D side-scroller! While they were going to their old high school for what was supposed to be the party of their life, four long-time friends end up in a ghost town full of monstrous creatures."
+      },
+      {
+        "item_key": "0553189c57d827f1",
+        "section": "demo_playtest",
+        "title": "Crossout",
+        "url": "https://store.steampowered.com/app/386180/",
+        "message_id": "1492044031356702811",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_demo_playtest",
+        "posted_at": "2026-04-10T06:10:18.394003+00:00",
+        "description": "Crossout - the postapocalyptic MMO action game where you can create a unique design for an armoured vehicle from dozens of parts and then drive it into multiplayer battles raging on land and in the skies alike."
+      },
+      {
+        "item_key": "b1f2a56973e41f00",
+        "section": "demo_playtest",
+        "title": "Strinova",
+        "url": "https://store.steampowered.com/app/1282270/",
+        "message_id": "1492044038981943297",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_demo_playtest",
+        "posted_at": "2026-04-10T06:10:20.270879+00:00",
+        "description": "Strinova is an anime-style third-person tactical competitive shooter. Switch freely between three-dimensional and two-dimensional forms in this one-of-a-kind game that offers a unique tactical shooting system for an unparalleled experience."
+      },
+      {
+        "item_key": "6b3fc02e8112cd09",
+        "section": "free",
+        "title": "Goose Goose Duck",
+        "url": "https://store.steampowered.com/app/1568590/",
+        "message_id": "1492044053548892160",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-04-10T06:10:23.659603+00:00",
+        "description": "Goose Goose Duck is a game of social deduction for up to 16 players. Players are separated into different groups that are each assigned a different objective. Complete your team’s objective to win!"
+      },
+      {
+        "item_key": "155f3cf7f568e8b3",
+        "section": "free",
+        "title": "War Selection",
+        "url": "https://store.steampowered.com/app/1022450/",
+        "message_id": "1492044061232861247",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-04-10T06:10:25.386745+00:00",
+        "description": "War Selection is a compelling RTS game featuring base building, resource extraction and warfare. Evolve from a stone age tribe to a distinct industrial nation with unique game mechanics and battle for supremacy with dozens of players on a unique procedurally generated map."
+      },
+      {
+        "item_key": "46c71600d34ea593",
+        "section": "free",
+        "title": "The Seven Deadly Sins: Origin",
+        "url": "https://store.steampowered.com/app/3679080/",
+        "message_id": "1492044068438540450",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-04-10T06:10:27.159729+00:00",
+        "description": "<The Seven Deadly Sins: Origin> is an open-world anime RPG set in the universe of [The Seven Deadly Sins]. Step into the role of Prince Tristan of Liones and explore an open-world Britannia, as you embark on a journey to restore order to a world thrown into chaos by the collision of time and space."
+      },
+      {
+        "item_key": "288c3768c5988af7",
+        "section": "free",
+        "title": "Asphalt Legends",
+        "url": "https://store.steampowered.com/app/1815780/",
+        "message_id": "1492044075749212240",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-04-10T06:10:28.925342+00:00",
+        "description": "Spark your competitive soul with Asphalt Legends and feel the collective heartbeat of the road! Join forces with other players to speed through intense arcade races, perform jaw-dropping stunts, and charge towards victory while driving the finest hypercars!"
+      },
+      {
+        "item_key": "e28f4852271fa5c8",
+        "section": "free",
+        "title": "Astral Party",
+        "url": "https://store.steampowered.com/app/2622000/",
+        "message_id": "1492044083097637005",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-04-10T06:10:30.587768+00:00",
+        "description": "Astral Party is a multiplayer party game populated by cute anime girls! Choose your favorite character, strategize skills & cards, and roll the dice to destroy friendships in this unique board game."
+      },
+      {
+        "item_key": "056ae22a242246e7",
+        "section": "paid",
+        "title": "Project Zomboid",
+        "url": "https://store.steampowered.com/app/108600/",
+        "message_id": "1492044095907172544",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-04-10T06:10:33.668758+00:00",
+        "description": "Project Zomboid is the ultimate in zombie survival. Alone or in MP: you loot, build, craft, fight, farm and fish in a struggle to survive. A hardcore RPG skillset, a vast map, massively customisable sandbox and a cute tutorial raccoon await the unwary. So how will you die? All it takes is a bite.."
+      },
+      {
+        "item_key": "5f9e8186977f8437",
+        "section": "paid",
+        "title": "Rivals of Aether II",
+        "url": "https://store.steampowered.com/app/2217000/",
+        "message_id": "1492044103179829289",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-04-10T06:10:35.403101+00:00",
+        "description": "Rivals of Aether II is the sequel to the hit indie fighting game, Rivals of Aether. Play as both new and returning elemental fighters in the next generation of platform fighters."
+      },
+      {
+        "item_key": "d84bb118865fdac6",
+        "section": "paid",
+        "title": "PowerWash Simulator 2 - Adventure Time Pack",
+        "url": "https://store.steampowered.com/app/4173830/",
+        "message_id": "1492044109928599604",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-04-10T06:10:37.193027+00:00",
+        "description": "What time is it?! The new Adventure Time Pack is set to bring the Ooo to PowerWash Simulator TwOoo. Grab your friends and blast away grime from distant lands or clean up the wreckage of the world as a solo adventurer in five jobs from the world of Adventure Time – the fun will never end!"
+      },
+      {
+        "item_key": "a505d3175d582e5e",
+        "section": "paid",
+        "title": "REMATCH",
+        "url": "https://store.steampowered.com/app/2138720/",
+        "message_id": "1492044117931196486",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-04-10T06:10:39.172457+00:00",
+        "description": "Rematch is an online multiplayer football game. Control one player and compete with your team in fast-paced 5v5 matches from an immersive third-person perspective. Team up with your friends and join the action."
+      },
+      {
+        "item_key": "b440e5990902ab07",
+        "section": "paid",
+        "title": "Risk of Rain 2",
+        "url": "https://store.steampowered.com/app/632360/",
+        "message_id": "1492044126051369000",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-04-10T06:10:40.767299+00:00",
+        "description": "Escape a chaotic alien planet by fighting through hordes of frenzied monsters – with your friends, or on your own. Combine loot in surprising ways and master each character until you become the havoc you feared upon your first crash landing."
+      },
+      {
+        "item_key": "8dcf220d85eb287a",
+        "section": "instagram",
+        "title": "@gemgamingnetwork",
+        "url": "https://www.instagram.com/p/DW7UlG3hBx3/",
+        "message_id": "1492044139611557989",
+        "channel_id": "592534544708796474",
+        "source_type": "instagram",
+        "posted_at": "2026-04-10T06:10:44.293219+00:00",
+        "description": "NEW First-Person Souls Game set in Europe   It’s called: Valor Mortis  Featured on @iii_initiative 🏆  💰: TBD 🌎: PC & ..."
+      },
+      {
+        "item_key": "14cfe94d8e9d11fd",
+        "section": "instagram",
+        "title": "@gemgamingnetwork",
+        "url": "https://www.instagram.com/p/DW6_9Eth4cG/",
+        "message_id": "1492044147513753783",
+        "channel_id": "592534544708796474",
+        "source_type": "instagram",
+        "posted_at": "2026-04-10T06:10:46.054305+00:00",
+        "description": "NEW Funny Typing Battle Royale Game 🤣  It’s called: Final Sentence   Featured on @iii_initiative 🏆  💰: TBD 🌎: PC (Ste..."
+      },
+      {
+        "item_key": "caf37ded9f2d8af1",
+        "section": "instagram",
+        "title": "@cloudual",
+        "url": "https://www.instagram.com/p/DW5Ekm1Cu2p/",
+        "message_id": "1492044155155648562",
+        "channel_id": "592534544708796474",
+        "source_type": "instagram",
+        "posted_at": "2026-04-10T06:10:47.786994+00:00",
+        "description": "New Co-Op Horror Game where you survive the night or the campfire dies #quackhunters #quackhunterspartner"
+      },
+      {
+        "item_key": "a37e3114efdf0ea1",
+        "section": "instagram",
+        "title": "@cloudual",
+        "url": "https://www.instagram.com/p/DWwYdmoCJwv/",
+        "message_id": "1492044162185302157",
+        "channel_id": "592534544708796474",
+        "source_type": "instagram",
+        "posted_at": "2026-04-10T06:10:49.524359+00:00",
+        "description": "They Made Minesweeper Co-op… and You Can THROW Your Friends on the Bombs"
+      },
+      {
+        "item_key": "edfcef56d0a486f9",
+        "section": "instagram",
+        "title": "@mildsoss_official",
+        "url": "https://www.instagram.com/p/DW7AuAqIiab/",
+        "message_id": "1492044169508683856",
+        "channel_id": "592534544708796474",
+        "source_type": "instagram",
+        "posted_at": "2026-04-10T06:10:51.205272+00:00",
+        "description": "This Typewriter battle royale went viral and it was just featured in the Triple-I Initiative and shadow dropped after..."
+      },
+      {
+        "item_key": "dc944c8e853760e8",
+        "section": "instagram",
+        "title": "@mildsoss_official",
+        "url": "https://www.instagram.com/p/DWrVibSo1Js/",
+        "message_id": "1492044176286552095",
+        "channel_id": "592534544708796474",
+        "source_type": "instagram",
+        "posted_at": "2026-04-10T06:10:52.799414+00:00",
+        "description": "Go on some side quests with your friends after a night out  🎮 Friendly Steps 🗓️ 2026 👥 1-4 Players 🖥️ PC (Steam)  #ga..."
+      },
+      {
+        "item_key": "bddb33e3887d4acc",
+        "section": "instagram",
+        "title": "@sharedxp_official",
+        "url": "https://www.instagram.com/p/DW7SKbJjFNq/",
+        "message_id": "1492044183211343963",
+        "channel_id": "592534544708796474",
+        "source_type": "instagram",
+        "posted_at": "2026-04-10T06:10:54.505414+00:00",
+        "description": "Lost Railway is a 2D co-op quota horror game where up to 4 players loot a nightmare world, keep the train moving, and..."
+      },
+      {
+        "item_key": "a090c500ab114291",
+        "section": "instagram",
+        "title": "@sharedxp_official",
+        "url": "https://www.instagram.com/p/DW7BUnDDIvY/",
+        "message_id": "1492044190341791804",
+        "channel_id": "592534544708796474",
+        "source_type": "instagram",
+        "posted_at": "2026-04-10T06:10:56.864849+00:00",
+        "description": "Thick As Thieves is a stealth heist game where you sneak through a dark fantasy city, steal valuables, and outsmart g..."
+      },
+      {
+        "item_key": "8f0fcf5b81f4511e",
+        "section": "instagram",
+        "title": "@wilfratgaming",
+        "url": "https://www.instagram.com/p/DW61cwjDYTN/",
+        "message_id": "1492044200227635270",
+        "channel_id": "592534544708796474",
+        "source_type": "instagram",
+        "posted_at": "2026-04-10T06:10:58.710385+00:00",
+        "description": "This NEW BATTLE ROYALE was featured in the triple-i initiative show! Final Sentence! #videogames #gamestoplay #finals..."
+      },
+      {
+        "item_key": "f334b2bb2c6df71c",
+        "section": "instagram",
+        "title": "@wilfratgaming",
+        "url": "https://www.instagram.com/p/DWrV0h9jf9O/",
+        "message_id": "1492044208012398745",
+        "channel_id": "592534544708796474",
+        "source_type": "instagram",
+        "posted_at": "2026-04-10T06:11:00.688451+00:00",
+        "description": "Drunk. Tied together. Trying to walk home… what could go wrong? A chaotic co-op rage game where one mistake ruins eve..."
+      },
+      {
+        "item_key": "db020f33dfcd4b19",
+        "section": "instagram",
+        "title": "@indiegamespotlights",
+        "url": "https://www.instagram.com/p/DWwev5Vjyba/",
+        "message_id": "1492044218829373441",
+        "channel_id": "592534544708796474",
+        "source_type": "instagram",
+        "posted_at": "2026-04-10T06:11:02.994133+00:00",
+        "description": "A tornado survival game with friends? Play with up to 8 players, scavenge fast, repair your van, and escape before th..."
+      },
+      {
+        "item_key": "8911a4ba791185bd",
+        "section": "instagram",
+        "title": "@indiegamespotlights",
+        "url": "https://www.instagram.com/p/DWrUV_fD1Bc/",
+        "message_id": "1492044226181992480",
+        "channel_id": "592534544708796474",
+        "source_type": "instagram",
+        "posted_at": "2026-04-10T06:11:04.960906+00:00",
+        "description": "A streamer simulator indie game where the endless grind becomes content. In this you play as Sisyphus reimagined as a..."
+      },
+      {
+        "item_key": "5101c04dd0b91143",
+        "section": "instagram",
+        "title": "@biffmatictv",
+        "url": "https://www.instagram.com/p/DW7Jot5Dfee/",
+        "message_id": "1492044234247901325",
+        "channel_id": "592534544708796474",
+        "source_type": "instagram",
+        "posted_at": "2026-04-10T06:11:06.839091+00:00",
+        "description": "This fantasy RPG has some of the coolest combat I’ve ever seen! Just shown at the Triple I Initiative Showcase - Alka..."
+      },
+      {
+        "item_key": "2f81b1eb7fe5ba96",
+        "section": "instagram",
+        "title": "@biffmatictv",
+        "url": "https://www.instagram.com/p/DW60hFdDVYs/",
+        "message_id": "1492044242191781959",
+        "channel_id": "592534544708796474",
+        "source_type": "instagram",
+        "posted_at": "2026-04-10T06:11:08.757953+00:00",
+        "description": "This farming game has a dark twist, as you’re faced with difficult decisions that will test your morality.. CROP!   @..."
+      },
+      {
+        "item_key": "b389ecfcafa57e44",
+        "section": "instagram",
+        "title": "@itzjaysasa",
+        "url": "https://www.instagram.com/p/DW7l_b7if8H/",
+        "message_id": "1492044250437914777",
+        "channel_id": "592534544708796474",
+        "source_type": "instagram",
+        "posted_at": "2026-04-10T06:11:10.632419+00:00",
+        "description": "Here’s a game that’s perfect to play with friends or a significant other. It was also featured in the Triple I Initia..."
+      },
+      {
+        "item_key": "f57e2e88b3eaa76a",
+        "section": "instagram",
+        "title": "@itzjaysasa",
+        "url": "https://www.instagram.com/p/DWb1STIjV5k/",
+        "message_id": "1492044258180599959",
+        "channel_id": "592534544708796474",
+        "source_type": "instagram",
+        "posted_at": "2026-04-10T06:11:12.457454+00:00",
+        "description": "This new game merges a hardcore driving sim with a deep mechanic repair system | Game: Truck Mechanic: Dangerous Path..."
+      }
+    ]
   }
 }
