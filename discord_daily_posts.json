@@ -2668,5 +2668,383 @@
         }
       ]
     }
+  },
+  "2026-04-11": {
+    "run_state": {
+      "section_headers": {
+        "demo_playtest": {
+          "message_id": "1492544686030721096",
+          "channel_id": "592534544708796474",
+          "posted_at_utc": "2026-04-11T15:19:43.759271+00:00"
+        },
+        "free": {
+          "message_id": "1492544732407140364",
+          "channel_id": "592534544708796474",
+          "posted_at_utc": "2026-04-11T15:19:54.638295+00:00"
+        },
+        "paid": {
+          "message_id": "1492544789667778640",
+          "channel_id": "592534544708796474",
+          "posted_at_utc": "2026-04-11T15:20:08.198043+00:00"
+        },
+        "instagram": {
+          "message_id": "1492544836178415646",
+          "channel_id": "592534544708796474",
+          "posted_at_utc": "2026-04-11T15:20:19.485525+00:00"
+        }
+      },
+      "last_attempt_at_utc": "2026-04-11T15:19:38.068975+00:00",
+      "intro": {
+        "message_id": "1492544664618668222",
+        "channel_id": "592534544708796474",
+        "posted_at_utc": "2026-04-11T15:19:41.956090+00:00"
+      },
+      "navigation_footer": {},
+      "completed": true,
+      "completed_at_utc": "2026-04-11T15:20:50.933340+00:00"
+    },
+    "items": [
+      {
+        "item_key": "a085c50fbeea983c",
+        "section": "demo_playtest",
+        "title": "State of Survival",
+        "url": "https://store.steampowered.com/app/2485460/",
+        "message_id": "1492544693735788710",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_demo_playtest",
+        "posted_at": "2026-04-11T15:19:45.698043+00:00",
+        "description": "Survive the Zombies War in this RPG game of Apocalypse and Survival"
+      },
+      {
+        "item_key": "9bfaf2e3c8b5e305",
+        "section": "demo_playtest",
+        "title": "Dungeons & Dragons: Chronicles of Mystara",
+        "url": "https://store.steampowered.com/app/229480/",
+        "message_id": "1492544701637591093",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_demo_playtest",
+        "posted_at": "2026-04-11T15:19:47.628359+00:00",
+        "description": "Dungeons & Dragons: Chronicles of Mystara brings reworkings of two of Capcom’s classic arcade hits - Dungeons & Dragons: Tower of Doom and Dungeons & Dragons: Shadow over Mystara – together in one definitive digital package."
+      },
+      {
+        "item_key": "17febb99c4827f31",
+        "section": "demo_playtest",
+        "title": "Zombasite",
+        "url": "https://store.steampowered.com/app/408960/",
+        "message_id": "1492544709409898598",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_demo_playtest",
+        "posted_at": "2026-04-11T15:19:49.411475+00:00",
+        "description": "Zombasite is a zombie apocalypse action RPG set in a dynamic, evolving, fantasy world for Windows, Mac, and Linux."
+      },
+      {
+        "item_key": "c0e73ee52dd6cc61",
+        "section": "demo_playtest",
+        "title": "Infection Rate",
+        "url": "https://store.steampowered.com/app/689030/",
+        "message_id": "1492544717324550144",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_demo_playtest",
+        "posted_at": "2026-04-11T15:19:51.338542+00:00",
+        "description": "3rd person Co-op Zombie Survival with multiplayer"
+      },
+      {
+        "item_key": "75117269ddf83c17",
+        "section": "demo_playtest",
+        "title": "SpaceCraft",
+        "url": "https://store.steampowered.com/app/3276050/",
+        "message_id": "1492544725381808178",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_demo_playtest",
+        "posted_at": "2026-04-11T15:19:53.109756+00:00",
+        "description": "The Universe is yours. SpaceCraft is an online space exploration and building game. Explore a vast galaxy of solar systems and planets, mine and craft resources, design and build ships, automate planetary bases and interplanetary logistics, trade and cooperate."
+      },
+      {
+        "item_key": "9c2bde7b16a027c8",
+        "section": "free",
+        "title": "Fistful of Frags",
+        "url": "https://store.steampowered.com/app/265630/",
+        "message_id": "1492544739118026772",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-04-11T15:19:56.918595+00:00",
+        "description": "Multiplayer based, first person enabled, action packed and skill demanding shooter set in the Wild West times. A unique combination of non stop action and slow but powerful weaponry."
+      },
+      {
+        "item_key": "cc5239aef1abeed5",
+        "section": "free",
+        "title": "Wheelchair Wizards",
+        "url": "https://store.steampowered.com/app/3832630/",
+        "message_id": "1492544748786028784",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-04-11T15:19:58.925344+00:00",
+        "description": "Wheelchair Wizards is a 4 player party game where you battle your friends while upgrading your wizard."
+      },
+      {
+        "item_key": "dc309f6da2906d55",
+        "section": "free",
+        "title": "Pirate101",
+        "url": "https://store.steampowered.com/app/620620/",
+        "message_id": "1492544757388546058",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-04-11T15:20:02.556458+00:00",
+        "description": "Assemble your ragtag crew and prepare to plunder the skyways in search of the legendary map to El Dorado! Danger lurks around every corner as you outsmart clockwork soldiers, uncover hidden mysteries, and unleash powerful combos in this pirate turn-based tactics MMORPG."
+      },
+      {
+        "item_key": "518dc0cccca04c22",
+        "section": "free",
+        "title": "MapleStory M",
+        "url": "https://store.steampowered.com/app/3969080/",
+        "message_id": "1492544772009754797",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-04-11T15:20:04.715518+00:00",
+        "description": "The MapleStory you missed is calling you. MapleStory M is an MMORPG full of MapleStory's signature charm and worldview. Enjoy jobs bursting with personality, lighthearted battles, an easy leveling-up system, and even co-op gameplay. Begin your own adventure in this adorable 2D side-scrolling world."
+      },
+      {
+        "item_key": "794406c592444e9f",
+        "section": "free",
+        "title": "Force of Warships: Battleship Games",
+        "url": "https://store.steampowered.com/app/1991860/",
+        "message_id": "1492544781404999741",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-04-11T15:20:06.657722+00:00",
+        "description": "Direct your battleship to glorious victory! Online battle under your leadership!"
+      },
+      {
+        "item_key": "ebdeea4856c9d610",
+        "section": "paid",
+        "title": "Ember Knights",
+        "url": "https://store.steampowered.com/app/1135230/",
+        "message_id": "1492544796089127115",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-04-11T15:20:10.697032+00:00",
+        "description": "Ember Knights is an action rogue-lite for 1-4 players where you play as legendary knights, the last spark of hope against the mad sorcerer Praxis and his hordes of unwavering fiends. Wield weapons & skills, build synergies with game-changing relics and free the universe of Praxis’ corruption."
+      },
+      {
+        "item_key": "6a6686b8e60a2717",
+        "section": "paid",
+        "title": "American Truck Simulator - Louisiana",
+        "url": "https://store.steampowered.com/app/3012580/",
+        "message_id": "1492544806138675383",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-04-11T15:20:12.339778+00:00",
+        "description": "Embark on a journey to the Pelican State nestled in the south of the U.S.. Discover the subtropical climate of the state, which has allowed the magnificent brooding scenery of coastal bayous, and lush, dank vegetation to thrive."
+      },
+      {
+        "item_key": "d57720992e9ce7a1",
+        "section": "paid",
+        "title": "My Summer Car",
+        "url": "https://store.steampowered.com/app/516750/",
+        "message_id": "1492544813462192189",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-04-11T15:20:14.263642+00:00",
+        "description": "My Summer Car is the ultimate car owning, building, fixing, tuning, maintenance AND permadeath life survival simulator. You start the game with hundreds of loose parts and assemble both car and engine."
+      },
+      {
+        "item_key": "eb631e36ca0b5276",
+        "section": "paid",
+        "title": "XCOM® 2",
+        "url": "https://store.steampowered.com/app/268500/",
+        "message_id": "1492544821418791163",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-04-11T15:20:15.862937+00:00",
+        "description": "XCOM 2 is the sequel to XCOM: Enemy Unknown, the 2012 award-winning strategy game of the year. Earth has changed and is now under alien rule. Facing impossible odds you must rebuild XCOM, and ignite a global resistance to reclaim our world and save humanity."
+      },
+      {
+        "item_key": "381218f910dfc584",
+        "section": "paid",
+        "title": "CarX Street",
+        "url": "https://store.steampowered.com/app/1114150/",
+        "message_id": "1492544828272017540",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-04-11T15:20:17.786617+00:00",
+        "description": "Conquer mountain roads, highways, and city streets. Build your dream car with detailed tuning that unleashes the potential of “CarX Technology”© physics. Take part in thrilling races, enjoying realistic gameplay and dynamic driving."
+      },
+      {
+        "item_key": "ac9959ea94f36fa2",
+        "section": "instagram",
+        "title": "@gemgamingnetwork",
+        "url": "https://www.instagram.com/p/DW95Y0hhE3_/",
+        "message_id": "1492544843426173008",
+        "channel_id": "592534544708796474",
+        "source_type": "instagram",
+        "posted_at": "2026-04-11T15:20:21.142842+00:00",
+        "description": "3 fun steam games you need to play with friends   1. Far Far West  2. Solarpunk  3. Final Sentence  Featured on @iii_..."
+      },
+      {
+        "item_key": "522e3d3c179f3c26",
+        "section": "instagram",
+        "title": "@gemgamingnetwork",
+        "url": "https://www.instagram.com/p/DW9QyC5h8w_/",
+        "message_id": "1492544850283991060",
+        "channel_id": "592534544708796474",
+        "source_type": "instagram",
+        "posted_at": "2026-04-11T15:20:22.933849+00:00",
+        "description": "Most Anticipated Stealth Co-op Game of 2026   It’s called: Thick as Thieves  💰: TBD  🌎: PC (Steam) 👥: 1-4 Players 🎮: ..."
+      },
+      {
+        "item_key": "6f10331d52b5d8ed",
+        "section": "instagram",
+        "title": "@cloudual",
+        "url": "https://www.instagram.com/p/DW_uS8kEqFV/",
+        "message_id": "1492544857833476106",
+        "channel_id": "592534544708796474",
+        "source_type": "instagram",
+        "posted_at": "2026-04-11T15:20:24.594005+00:00",
+        "description": "This FREE Co-op Tower Defense Turned Into a Roguelite #Stellarcraft"
+      },
+      {
+        "item_key": "61d255544c04656a",
+        "section": "instagram",
+        "title": "@cloudual",
+        "url": "https://www.instagram.com/p/DW9oR7gDOZV/",
+        "message_id": "1492544864716456077",
+        "channel_id": "592534544708796474",
+        "source_type": "instagram",
+        "posted_at": "2026-04-11T15:20:26.294233+00:00",
+        "description": "3 NEW Indie Games You Should Check Out"
+      },
+      {
+        "item_key": "31848a072aef9bce",
+        "section": "instagram",
+        "title": "@mildsoss_official",
+        "url": "https://www.instagram.com/p/DW_icCzoD8e/",
+        "message_id": "1492544872635306065",
+        "channel_id": "592534544708796474",
+        "source_type": "instagram",
+        "posted_at": "2026-04-11T15:20:28.496873+00:00",
+        "description": "Deliver food with your friends in the underworld  🎮 Night Shippers 🗓️ Available Now 👥 1-8 Players 💰$5 USD 🖥️ PC (Stea..."
+      },
+      {
+        "item_key": "d45ac1fcd0d8a9c3",
+        "section": "instagram",
+        "title": "@mildsoss_official",
+        "url": "https://www.instagram.com/p/DW9em2ZoAPB/",
+        "message_id": "1492544881439281343",
+        "channel_id": "592534544708796474",
+        "source_type": "instagram",
+        "posted_at": "2026-04-11T15:20:30.511010+00:00",
+        "description": "This game revealed a crazy pivot right before launch  🎮 Thick As Thieves 🗓️ May 20, 2026 👥 1-2 Players 🖥️ PC, Xbox, P..."
+      },
+      {
+        "item_key": "9ac1fe19e108cbe1",
+        "section": "instagram",
+        "title": "@sharedxp_official",
+        "url": "https://www.instagram.com/p/DW9iVSSjKad/",
+        "message_id": "1492544889555259616",
+        "channel_id": "592534544708796474",
+        "source_type": "instagram",
+        "posted_at": "2026-04-11T15:20:32.437951+00:00",
+        "description": "Far Far West is a 1–4 player co-op weird west shooter where you hunt bounties, blast monsters, sling spells, and upgr..."
+      },
+      {
+        "item_key": "1705d808febf7b7c",
+        "section": "instagram",
+        "title": "@sharedxp_official",
+        "url": "https://www.instagram.com/p/DWqtW8JDAhn/",
+        "message_id": "1492544897847398550",
+        "channel_id": "592534544708796474",
+        "source_type": "instagram",
+        "posted_at": "2026-04-11T15:20:34.314266+00:00",
+        "description": "Elements is a split-screen co-op open-world adventure where two siblings explore, fight, and hunt down 8 elemental st..."
+      },
+      {
+        "item_key": "d3cf403d47fcff2b",
+        "section": "instagram",
+        "title": "@wilfratgaming",
+        "url": "https://www.instagram.com/p/DW9qFEUjT4T/",
+        "message_id": "1492544905149415568",
+        "channel_id": "592534544708796474",
+        "source_type": "instagram",
+        "posted_at": "2026-04-11T15:20:35.921622+00:00",
+        "description": "Professional Ship Simulator! #gamestoplay #gaming #gamingclips"
+      },
+      {
+        "item_key": "047b3090fffcbb89",
+        "section": "instagram",
+        "title": "@wilfratgaming",
+        "url": "https://www.instagram.com/p/DWpFsfsjb2R/",
+        "message_id": "1492544912250507285",
+        "channel_id": "592534544708796474",
+        "source_type": "instagram",
+        "posted_at": "2026-04-11T15:20:37.856553+00:00",
+        "description": "All Will Fall! Survival City Builder! Out now on Steam!  #videogames #gamestoplay #gaming"
+      },
+      {
+        "item_key": "43726d018cffcc6c",
+        "section": "instagram",
+        "title": "@indiegamespotlights",
+        "url": "https://www.instagram.com/p/DWmK9FljEbK/",
+        "message_id": "1492544920320475358",
+        "channel_id": "592534544708796474",
+        "source_type": "instagram",
+        "posted_at": "2026-04-11T15:20:40.299579+00:00",
+        "description": "A cozy frog mystery game? Play as a young frog running a seaside pub, serve villagers, explore cozy islands and uncov..."
+      },
+      {
+        "item_key": "3c22182b8aebf070",
+        "section": "instagram",
+        "title": "@indiegamespotlights",
+        "url": "https://www.instagram.com/p/DU6DQbtD3RD/",
+        "message_id": "1492544930608844911",
+        "channel_id": "592534544708796474",
+        "source_type": "instagram",
+        "posted_at": "2026-04-11T15:20:42.002224+00:00",
+        "description": "Online co-op cooking game where running a food truck is only half the battle. Shop for ingredients, cook under pressu..."
+      },
+      {
+        "item_key": "da4bfa8e324a43a0",
+        "section": "instagram",
+        "title": "@biffmatictv",
+        "url": "https://www.instagram.com/p/DWRjaTbjZKQ/",
+        "message_id": "1492544937919643749",
+        "channel_id": "592534544708796474",
+        "source_type": "instagram",
+        "posted_at": "2026-04-11T15:20:43.966998+00:00",
+        "description": "Run the underworld in this new god game meets management simulator! Sintopia!  Wishlist it via the link in my bio   #..."
+      },
+      {
+        "item_key": "384b8a0e8d091dce",
+        "section": "instagram",
+        "title": "@biffmatictv",
+        "url": "https://www.instagram.com/p/DWO_Fu2jaiq/",
+        "message_id": "1492544945645424672",
+        "channel_id": "592534544708796474",
+        "source_type": "instagram",
+        "posted_at": "2026-04-11T15:20:45.958256+00:00",
+        "description": "Road trip across a frozen wasteland with your friends in this co-op survival game. Arctic Drive!  #gaming #newgames #..."
+      },
+      {
+        "item_key": "cc5ecf015f5c7f87",
+        "section": "instagram",
+        "title": "@itzjaysasa",
+        "url": "https://www.instagram.com/p/DWEwW2QDc2N/",
+        "message_id": "1492544954638008501",
+        "channel_id": "592534544708796474",
+        "source_type": "instagram",
+        "posted_at": "2026-04-11T15:20:47.995149+00:00",
+        "description": "This game puts a unique twist on the extraction genre by not having pvp, but instead puts you in the shoes of a rescu..."
+      },
+      {
+        "item_key": "a5acf408445f2cfa",
+        "section": "instagram",
+        "title": "@itzjaysasa",
+        "url": "https://www.instagram.com/p/DWCjdtLkq6e/",
+        "message_id": "1492544962884141106",
+        "channel_id": "592534544708796474",
+        "source_type": "instagram",
+        "posted_at": "2026-04-11T15:20:49.728668+00:00",
+        "description": "Here’s a fun game to play with friends that has over 500,000 different task variations | Game: Task Time  #whattoplay..."
+      }
+    ]
   }
 }
