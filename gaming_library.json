@@ -60,18 +60,10 @@
         "header": {
           "message_id": "1492098297148477600",
           "channel_id": "1492038691248410676"
-        },
-        "url:https://www.instagram.com/p/dw6y_zjj2tc/": {
-          "message_id": "1492098298323144866",
-          "channel_id": "1492038691248410676"
-        },
-        "steam:1621690": {
-          "message_id": "1492098310465654826",
-          "channel_id": "1492038691248410676"
         }
       },
       "completed": true,
-      "completed_at_utc": "2026-04-10T09:46:03.252328+00:00"
+      "completed_at_utc": "2026-04-11T15:47:55.661780+00:00"
     }
   }
 }
