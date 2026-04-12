@@ -7,6 +7,11 @@ on:
         description: "Optional UTC date key (YYYY-MM-DD) for manual rerun state targeting"
         required: false
         type: string
+      force_refresh_same_day:
+        description: "When true, reconcile/edit same-day Discord posts instead of skipping completed runs"
+        required: false
+        default: false
+        type: boolean
   schedule:
     # GitHub Actions cron uses UTC only (no timezone/DST support).
     # This runs at 13:00 UTC year-round: 9:00 AM in New York during EDT, 8:00 AM during EST.
@@ -43,6 +48,7 @@ jobs:
           DISCORD_GUILD_ID: ${{ secrets.DISCORD_GUILD_ID }}
           INSTAGRAM_USERNAME: ${{ secrets.INSTAGRAM_USERNAME }}
           DAILY_DATE_UTC: ${{ inputs.daily_date_utc }}
+          FORCE_REFRESH_SAME_DAY: ${{ inputs.force_refresh_same_day || false }}
         run: python main.py
 
       - name: Save updated state files
@@ -67,13 +73,16 @@ jobs:
           JOB_NAME: run-script
           RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
           DAILY_DATE_UTC: ${{ inputs.daily_date_utc || '' }}
+          FORCE_REFRESH_SAME_DAY: ${{ inputs.force_refresh_same_day || false }}
         run: |
           payload="$(python - <<'PY'
           import json
           import os
 
           target = os.environ.get("DAILY_DATE_UTC")
+          force = str(os.environ.get("FORCE_REFRESH_SAME_DAY", "")).strip().lower() in {"1", "true", "yes", "on"}
           details = f"daily_date_utc={target}" if target else "daily_date_utc=(default)"
+          details = f"{details}, force_refresh_same_day={'true' if force else 'false'}"
           print(json.dumps({
               "content": (
                   "🔴 XiannGPT Bot Failure\n\n"
