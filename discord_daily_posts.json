@@ -3046,5 +3046,383 @@
         "description": "Here’s a fun game to play with friends that has over 500,000 different task variations | Game: Task Time  #whattoplay..."
       }
     ]
+  },
+  "2026-04-12": {
+    "run_state": {
+      "section_headers": {
+        "demo_playtest": {
+          "message_id": "1492908722631217262",
+          "channel_id": "592534544708796474",
+          "posted_at_utc": "2026-04-12T15:26:16.708093+00:00"
+        },
+        "free": {
+          "message_id": "1492908793670139986",
+          "channel_id": "592534544708796474",
+          "posted_at_utc": "2026-04-12T15:26:33.566072+00:00"
+        },
+        "paid": {
+          "message_id": "1492908841992720567",
+          "channel_id": "592534544708796474",
+          "posted_at_utc": "2026-04-12T15:26:45.204694+00:00"
+        },
+        "instagram": {
+          "message_id": "1492908895352389723",
+          "channel_id": "592534544708796474",
+          "posted_at_utc": "2026-04-12T15:26:57.932016+00:00"
+        }
+      },
+      "last_attempt_at_utc": "2026-04-12T15:26:13.165028+00:00",
+      "intro": {
+        "message_id": "1492908709834260571",
+        "channel_id": "592534544708796474",
+        "posted_at_utc": "2026-04-12T15:26:14.884138+00:00"
+      },
+      "navigation_footer": {},
+      "completed": true,
+      "completed_at_utc": "2026-04-12T15:27:28.669128+00:00"
+    },
+    "items": [
+      {
+        "item_key": "d9577e1e417abd7b",
+        "section": "demo_playtest",
+        "title": "DoodleVR",
+        "url": "https://store.steampowered.com/app/936170/",
+        "message_id": "1492908729425985620",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_demo_playtest",
+        "posted_at": "2026-04-12T15:26:18.561342+00:00",
+        "description": "Doodle VR is a Pictionary like VR game. A classic word guessing game where one person draws a picture in virtual reality and the teammates have to guess what is being drawn."
+      },
+      {
+        "item_key": "0db41d21ccb0026b",
+        "section": "demo_playtest",
+        "title": "PixelJunk™ Monsters 2",
+        "url": "https://store.steampowered.com/app/749800/",
+        "message_id": "1492908737592164372",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_demo_playtest",
+        "posted_at": "2026-04-12T15:26:21.082686+00:00",
+        "description": "PixelJunk™ Monsters is back with the simple, yet highly strategic real-time tower defense gameplay gameplay of the original title, now with updated graphics and brand new multiplayer modes!"
+      },
+      {
+        "item_key": "687addd369792d79",
+        "section": "demo_playtest",
+        "title": "Crazy Wheels",
+        "url": "https://store.steampowered.com/app/1450790/",
+        "message_id": "1492908749004734586",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_demo_playtest",
+        "posted_at": "2026-04-12T15:26:25.116680+00:00",
+        "description": "The floor is lava! Relive your childhood dream-races around the house with Crazy Wheels, a fast-paced, action-packed arcade racing game."
+      },
+      {
+        "item_key": "74c51449cb05f2e3",
+        "section": "demo_playtest",
+        "title": "Fast Dust",
+        "url": "https://store.steampowered.com/app/891330/",
+        "message_id": "1492908764595228744",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_demo_playtest",
+        "posted_at": "2026-04-12T15:26:27.088468+00:00",
+        "description": "Fast Dust is a racing game, cars with character, heavily battered but still have some power under the hood. You have 70 racetracks and drive through the forest, canyon and in the old factory town. Get ready for rain, snow, fog and night drive. Discover shortcuts on the road and win!"
+      },
+      {
+        "item_key": "36094abed0becb4b",
+        "section": "demo_playtest",
+        "title": "HyperParasite",
+        "url": "https://store.steampowered.com/app/838110/",
+        "message_id": "1492908773503668324",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_demo_playtest",
+        "posted_at": "2026-04-12T15:26:32.038562+00:00",
+        "description": "A rogue-lite twin-stick shooter/brawler that never plays the same twice. Collect and control 60 different characters as the body-snatching alien Parasite with a grudge against humanity. Fight to the top of the food chain: possess the President, push the Big Red Button and one-up the human race."
+      },
+      {
+        "item_key": "e188714550640a4b",
+        "section": "free",
+        "title": "Alien Swarm",
+        "url": "https://store.steampowered.com/app/630/",
+        "message_id": "1492908800527569050",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-04-12T15:26:35.436761+00:00",
+        "description": "Co-operative multiplayer game and complete code base available for free."
+      },
+      {
+        "item_key": "ae77eb1305e80eeb",
+        "section": "free",
+        "title": "Soccer Field Pro 3D",
+        "url": "https://store.steampowered.com/app/3468160/",
+        "message_id": "1492908808312324226",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-04-12T15:26:37.198115+00:00",
+        "description": "Free-to-play 3D football game with realistic physics, fast-paced multiplayer matches, player customization, and room creation. Play with friends or compete online!"
+      },
+      {
+        "item_key": "5c0b4831c80506d9",
+        "section": "free",
+        "title": "Dirty Bomb®",
+        "url": "https://store.steampowered.com/app/333930/",
+        "message_id": "1492908818852610128",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-04-12T15:26:39.827217+00:00",
+        "description": "Work together or die alone! Fight to restore peace to London or tear it down for profit in the most challenging team based shooter around."
+      },
+      {
+        "item_key": "feec871cd5b9d0d1",
+        "section": "free",
+        "title": "Iverian Wars: Craxion vs Defugel",
+        "url": "https://store.steampowered.com/app/1191830/",
+        "message_id": "1492908826926780660",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-04-12T15:26:41.765075+00:00",
+        "description": "Iverian Wars: Craxion vs Defugel is a faction-based strategic action MMORPG set in the world of Iveria. Engage in large-scale battles, customize your gear freely, and shape the fate of the continent through war and strategy."
+      },
+      {
+        "item_key": "e560b2aa183b7c3f",
+        "section": "free",
+        "title": "Life is Feudal: Arden",
+        "url": "https://store.steampowered.com/app/3285700/",
+        "message_id": "1492908834753351843",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-04-12T15:26:43.458796+00:00",
+        "description": "Life is Feudal: Arden is a new free-to-play open-world MMORPG set in the Middle Ages, built on the foundation of Life is Feudal: MMO. Engage in thrilling PvP combat, navigate political intrigue, master a variety of professions and craft unique items. Forge your own path to power and greatness!"
+      },
+      {
+        "item_key": "88622896e7350a60",
+        "section": "paid",
+        "title": "StarRupture - Supporter Pack",
+        "url": "https://store.steampowered.com/app/4167250/",
+        "message_id": "1492908849559113831",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-04-12T15:26:47.255947+00:00",
+        "description": "Supporter Pack for StarRupture grants you extra items for the game and lots of digital goodies."
+      },
+      {
+        "item_key": "7e25523a8ceaedb4",
+        "section": "paid",
+        "title": "Travellers Rest",
+        "url": "https://store.steampowered.com/app/1139980/",
+        "message_id": "1492908857788207227",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-04-12T15:26:48.883447+00:00",
+        "description": "Craft, farm, build and cook! In Travellers Rest you will have to use all the available tools to become the best tavern keeper in the realm. Create unique dishes and drinks to please your customers as you discover the world and its colorful characters."
+      },
+      {
+        "item_key": "12f00aafb7c2650b",
+        "section": "paid",
+        "title": "American Truck Simulator - Arkansas",
+        "url": "https://store.steampowered.com/app/2585150/",
+        "message_id": "1492908864302223571",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-04-12T15:26:52.577233+00:00",
+        "description": "Welcome to the Natural State! Located in the south-central region of the United States, the state is a nature wonderland with three national forests, many State Parks, nearly 9,000 miles of pristine streams and rivers like the Arkansas and Mississippi, as well as the ever-stretching Ozark and Ouachita mountain ranges."
+      },
+      {
+        "item_key": "2dff925456612347",
+        "section": "paid",
+        "title": "Farming Simulator 22",
+        "url": "https://store.steampowered.com/app/1248130/",
+        "message_id": "1492908880106225797",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-04-12T15:26:54.367446+00:00",
+        "description": "Create your farm and let the good times grow! Harvest crops, tend to animals, manage productions, and take on seasonal challenges."
+      },
+      {
+        "item_key": "4565fff7e959c266",
+        "section": "paid",
+        "title": "Your Only Move Is HUSTLE",
+        "url": "https://store.steampowered.com/app/2212330/",
+        "message_id": "1492908887664365809",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-04-12T15:26:56.148443+00:00",
+        "description": "Master your technique, execute flashy combos, and outsmart opponents across the world, frame-by-frame. Slow down the clock to fine-tune your fighting style in this innovative, turn-based combat simulator. Pulverize your friends and choreograph spectacular fight scenes. No training mode required."
+      },
+      {
+        "item_key": "6dc258cf5c4d4a8f",
+        "section": "instagram",
+        "title": "@gemgamingnetwork",
+        "url": "https://www.instagram.com/p/DWwfImSh9LN/",
+        "message_id": "1492908902579306619",
+        "channel_id": "592534544708796474",
+        "source_type": "instagram",
+        "posted_at": "2026-04-12T15:26:59.762867+00:00",
+        "description": "new co-op game similar to Animal Crossing 🐱  It’s called: Animalkind  💰: $17.99  🌎: PC (Steam) 👥: 1-4 Players 🎮: Open..."
+      },
+      {
+        "item_key": "8b929d39a7bf3be6",
+        "section": "instagram",
+        "title": "@gemgamingnetwork",
+        "url": "https://www.instagram.com/p/DWtzXYzBaph/",
+        "message_id": "1492908910187909231",
+        "channel_id": "592534544708796474",
+        "source_type": "instagram",
+        "posted_at": "2026-04-12T15:27:01.433688+00:00",
+        "description": "5 co-op games on steam to play with friends  1) Kinforge 2) Treasure Hunters 3) Knights End 4) Dead Hikers 5) Endalor..."
+      },
+      {
+        "item_key": "787c2269ae5533eb",
+        "section": "instagram",
+        "title": "@cloudual",
+        "url": "https://www.instagram.com/p/DWrO1u1iKIy/",
+        "message_id": "1492908917712359575",
+        "channel_id": "592534544708796474",
+        "source_type": "instagram",
+        "posted_at": "2026-04-12T15:27:03.269572+00:00",
+        "description": "This Co-Op Game Makes You Share ONE Body… and It’s Friendship-Ending"
+      },
+      {
+        "item_key": "5c3b1ed4c723b93e",
+        "section": "instagram",
+        "title": "@cloudual",
+        "url": "https://www.instagram.com/p/DWocShxj4ln/",
+        "message_id": "1492908925023162509",
+        "channel_id": "592534544708796474",
+        "source_type": "instagram",
+        "posted_at": "2026-04-12T15:27:05.194703+00:00",
+        "description": "3 NEW Coop Games You NEED to Play"
+      },
+      {
+        "item_key": "0ec331f25e7c0870",
+        "section": "instagram",
+        "title": "@mildsoss_official",
+        "url": "https://www.instagram.com/p/DWjOHqrIeJh/",
+        "message_id": "1492908933235343600",
+        "channel_id": "592534544708796474",
+        "source_type": "instagram",
+        "posted_at": "2026-04-12T15:27:07.055602+00:00",
+        "description": "We need more games like this one.  🎮 Voyagers Of Nera 🗓️ Available Now 👥 1-10 Players 🖥️ PC (Steam)  #gaming #whattop..."
+      },
+      {
+        "item_key": "25732e3c2ba426b9",
+        "section": "instagram",
+        "title": "@mildsoss_official",
+        "url": "https://www.instagram.com/p/DWg_RddISl-/",
+        "message_id": "1492908940890083368",
+        "channel_id": "592534544708796474",
+        "source_type": "instagram",
+        "posted_at": "2026-04-12T15:27:08.848550+00:00",
+        "description": "Two French students made this game as a school project.  🎮 A La Mine 🗓️ March 30, 2026 👥 3-6 Players 🖥️ PC (Steam)  #..."
+      },
+      {
+        "item_key": "9d1fc8e5cf65ac21",
+        "section": "instagram",
+        "title": "@sharedxp_official",
+        "url": "https://www.instagram.com/p/DXCFaPRjPnf/",
+        "message_id": "1492908948624511057",
+        "channel_id": "592534544708796474",
+        "source_type": "instagram",
+        "posted_at": "2026-04-12T15:27:10.667881+00:00",
+        "description": "We Were Here Tomorrow is a 2-player asymmetrical co-op puzzle adventure where you’re separated in a mysterious facili..."
+      },
+      {
+        "item_key": "df4ab14442af792b",
+        "section": "instagram",
+        "title": "@sharedxp_official",
+        "url": "https://www.instagram.com/p/DWpBoUfjMO8/",
+        "message_id": "1492908956081848580",
+        "channel_id": "592534544708796474",
+        "source_type": "instagram",
+        "posted_at": "2026-04-12T15:27:12.535259+00:00",
+        "description": "5 co-op Steam sale picks right now: LORT, Biped 2, Roadside Research, ASTRONEER, and The Outlast Trials. Out now!  ✅ ..."
+      },
+      {
+        "item_key": "fe5f8cbd32b88642",
+        "section": "instagram",
+        "title": "@wilfratgaming",
+        "url": "https://www.instagram.com/p/DW_y3XViSPo/",
+        "message_id": "1492908963757555753",
+        "channel_id": "592534544708796474",
+        "source_type": "instagram",
+        "posted_at": "2026-04-12T15:27:14.800627+00:00",
+        "description": "This dark farming sim does NOT go easy on you. #CropGame #videogames #gamestoplay #gaming"
+      },
+      {
+        "item_key": "5b0db657dff36d9e",
+        "section": "instagram",
+        "title": "@wilfratgaming",
+        "url": "https://www.instagram.com/p/DWowJjBDdIA/",
+        "message_id": "1492908973534216253",
+        "channel_id": "592534544708796474",
+        "source_type": "instagram",
+        "posted_at": "2026-04-12T15:27:16.821379+00:00",
+        "description": "aphelion from @dontnod_ent You play as two European Space Agency astronauts with a mission to save humanity. Link in ..."
+      },
+      {
+        "item_key": "c5a4ed9fcfad3f67",
+        "section": "instagram",
+        "title": "@indiegamespotlights",
+        "url": "https://www.instagram.com/p/DW_8si9D_vS/",
+        "message_id": "1492908981813903450",
+        "channel_id": "592534544708796474",
+        "source_type": "instagram",
+        "posted_at": "2026-04-12T15:27:18.501003+00:00",
+        "description": "Co-op horror indie game where up to 2 players manage a Soviet checkpoint in a quarantine zone after a nuclear meltdow..."
+      },
+      {
+        "item_key": "4ba043ee583b6de9",
+        "section": "instagram",
+        "title": "@indiegamespotlights",
+        "url": "https://www.instagram.com/p/DW_8GCUj4Ae/",
+        "message_id": "1492908989145546792",
+        "channel_id": "592534544708796474",
+        "source_type": "instagram",
+        "posted_at": "2026-04-12T15:27:20.336884+00:00",
+        "description": "A checkpoint game with friends? Play as soviet officers, inspect, judge, find mutants, and decide who lives or must b..."
+      },
+      {
+        "item_key": "46440d56acbae2d9",
+        "section": "instagram",
+        "title": "@biffmatictv",
+        "url": "https://www.instagram.com/p/DXAg6bfDQZT/",
+        "message_id": "1492908996711940127",
+        "channel_id": "592534544708796474",
+        "source_type": "instagram",
+        "posted_at": "2026-04-12T15:27:22.067896+00:00",
+        "description": "Type to survive in this BATTLE ROYALE! Final Sentence   #gaming #newgames #typinggame #battleroyale #finalsentence"
+      },
+      {
+        "item_key": "a6d767f012e57416",
+        "section": "instagram",
+        "title": "@biffmatictv",
+        "url": "https://www.instagram.com/p/DWMWkCzDCXC/",
+        "message_id": "1492909003938992230",
+        "channel_id": "592534544708796474",
+        "source_type": "instagram",
+        "posted_at": "2026-04-12T15:27:23.843573+00:00",
+        "description": "This superhero game not only lets you fly freely around Earth, but you can go into deep space and travel the UNIVERSE..."
+      },
+      {
+        "item_key": "472101fb45b84410",
+        "section": "instagram",
+        "title": "@itzjaysasa",
+        "url": "https://www.instagram.com/p/DW_-Rl1jf7M/",
+        "message_id": "1492909011354521660",
+        "channel_id": "592534544708796474",
+        "source_type": "instagram",
+        "posted_at": "2026-04-12T15:27:25.687111+00:00",
+        "description": "This game has a unique take on the battle royale formula | Game: Final Sentence   #pcgaming #multiplayer #whattoplay ..."
+      },
+      {
+        "item_key": "0946fb15e89ec3f4",
+        "section": "instagram",
+        "title": "@itzjaysasa",
+        "url": "https://www.instagram.com/p/DV_l4rBjZT8/",
+        "message_id": "1492909018983825448",
+        "channel_id": "592534544708796474",
+        "source_type": "instagram",
+        "posted_at": "2026-04-12T15:27:27.464139+00:00",
+        "description": "This game is perfect to play with a friend or significant other | Game: Capy Castaway  #indiegame #whattoplay #multip..."
+      }
+    ]
   }
 }
