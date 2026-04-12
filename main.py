@@ -30,6 +30,7 @@ INSTAGRAM_STATE_FILE = "instagram_seen.json"
 DISCORD_DAILY_POSTS_FILE = "discord_daily_posts.json"
 DISCORD_DAILY_POSTS_RETENTION_DAYS = 30
 DAILY_DATE_OVERRIDE_ENV = "DAILY_DATE_UTC"
+FORCE_REFRESH_SAME_DAY_ENV = "FORCE_REFRESH_SAME_DAY"
 DAILY_DEBUG_SUMMARY_FILE = "daily_debug_summary.json"
 
 INSTAGRAM_CREATORS = [
@@ -1561,6 +1562,19 @@ def get_target_day_key() -> str:
     return manual_day
 
 
+def get_force_refresh_same_day() -> bool:
+    raw = (os.getenv(FORCE_REFRESH_SAME_DAY_ENV, "") or "").strip().lower()
+    if not raw:
+        return False
+    if raw in {"1", "true", "yes", "on"}:
+        return True
+    if raw in {"0", "false", "no", "off"}:
+        return False
+    raise RuntimeError(
+        f"{FORCE_REFRESH_SAME_DAY_ENV} must be one of: true/false, 1/0, yes/no, on/off"
+    )
+
+
 def format_daily_picks_footer_date(target_day_key: str) -> str:
     target_day = datetime.fromisoformat(target_day_key).date()
     return f"{target_day:%A, %B} {target_day.day}, {target_day:%Y}"
@@ -1701,6 +1715,8 @@ def post_daily_pick_messages(
     free_items: List[dict],
     paid_items: List[dict],
     instagram_posts: List[dict],
+    *,
+    force_refresh_same_day: bool = False,
 ) -> None:
     if not (demo_playtest_items or free_items or paid_items or instagram_posts):
         return
@@ -1725,10 +1741,12 @@ def post_daily_pick_messages(
     run_state.setdefault("section_headers", {})
     run_state["last_attempt_at_utc"] = utc_now_iso()
 
-    if bool(run_state.get("completed")):
-        print(f"SKIP: daily picks already completed for {day_key}; rerun protection active")
+    if bool(run_state.get("completed")) and not force_refresh_same_day:
+        print(f"SKIP: daily picks already completed for {day_key}; rerun protection active (force_refresh_same_day=false)")
         save_discord_daily_posts(daily_posts)
         return
+    if bool(run_state.get("completed")) and force_refresh_same_day:
+        print(f"REFRESH: daily picks already completed for {day_key}; force_refresh_same_day=true so reconciling posts")
 
     discord_client: Optional[DiscordClient] = None
     if token_available:
@@ -1741,23 +1759,42 @@ def post_daily_pick_messages(
         )
         discord_client = DiscordClient(session)
 
-    def post_or_reuse_simple(message: str, state_key: str, state_obj: dict) -> None:
+    def post_or_reconcile_simple(message: str, state_key: str, state_obj: dict) -> None:
         existing_message_id = state_obj.get("message_id")
         existing_channel_id = state_obj.get("channel_id")
+        should_attempt_edit = bool(force_refresh_same_day)
         if (
             token_available
             and discord_client
             and isinstance(existing_message_id, str)
             and isinstance(existing_channel_id, str)
-            and message_exists(
+        ):
+            if should_attempt_edit:
+                try:
+                    payload = discord_client.edit_message(
+                        existing_channel_id,
+                        existing_message_id,
+                        message,
+                        context=f"edit {state_key} for {day_key}",
+                    )
+                    state_obj["message_id"] = str(payload.get("id") or existing_message_id)
+                    state_obj["channel_id"] = str(payload.get("channel_id") or existing_channel_id)
+                    state_obj["posted_at_utc"] = utc_now_iso()
+                    print(f"REFRESH: updated {state_key} for {day_key} (message_id={state_obj['message_id']})")
+                    save_discord_daily_posts(daily_posts)
+                    return
+                except DiscordMessageNotFoundError:
+                    print(f"RECOVER: stale/deleted {state_key} for {day_key}; posting replacement")
+                except Exception as error:
+                    print(f"WARN: failed to edit {state_key} for {day_key}: {error}; falling back to create")
+            elif message_exists(
                 discord_client,
                 existing_channel_id,
                 existing_message_id,
                 context=f"verify {state_key} for {day_key}",
-            )
-        ):
-            print(f"REUSE: {state_key} for {day_key} (message_id={existing_message_id})")
-            return
+            ):
+                print(f"REUSE: {state_key} for {day_key} (message_id={existing_message_id})")
+                return
 
         metadata = post_to_discord_with_metadata(message, capture_metadata=token_available)
         if metadata and metadata.get("message_id"):
@@ -1770,7 +1807,7 @@ def post_daily_pick_messages(
         save_discord_daily_posts(daily_posts)
 
     intro_state = run_state.setdefault("intro", {})
-    post_or_reuse_simple("🎯 Daily Picks — vote with 👍 on your favorites", "intro", intro_state)
+    post_or_reconcile_simple("🎯 Daily Picks — vote with 👍 on your favorites", "intro", intro_state)
     sleep_briefly()
 
     section_items_by_key = {
@@ -1793,7 +1830,7 @@ def post_daily_pick_messages(
 
         section_headers = run_state.setdefault("section_headers", {})
         section_state = section_headers.setdefault(section_key, {})
-        post_or_reuse_simple(header_message, f"{section_key}_header", section_state)
+        post_or_reconcile_simple(header_message, f"{section_key}_header", section_state)
         sleep_briefly()
 
         existing_items = day_entry.get("items")
@@ -1810,31 +1847,57 @@ def post_daily_pick_messages(
                 None,
             )
 
+            content = (
+                format_instagram_item_message(item, idx)
+                if section_key == "instagram"
+                else format_steam_item_message(item, idx, paid=is_paid, demo_playtest=(section_key == "demo_playtest"))
+            )
+            metadata = None
+            is_new_message = False
             if (
                 token_available
                 and discord_client
                 and isinstance(existing_record, dict)
                 and isinstance(existing_record.get("channel_id"), str)
                 and isinstance(existing_record.get("message_id"), str)
-                and message_exists(
-                    discord_client,
-                    existing_record["channel_id"],
-                    existing_record["message_id"],
-                    context=f"verify {section_key} item for {day_key}",
-                )
             ):
-                print(f"REUSE: {section_key} item {title} for {day_key}")
-                continue
+                existing_channel_id = str(existing_record["channel_id"])
+                existing_message_id = str(existing_record["message_id"])
+                if force_refresh_same_day:
+                    try:
+                        payload = discord_client.edit_message(
+                            existing_channel_id,
+                            existing_message_id,
+                            content,
+                            context=f"edit {section_key} item {title} for {day_key}",
+                        )
+                        metadata = {
+                            "message_id": str(payload.get("id") or existing_message_id),
+                            "channel_id": str(payload.get("channel_id") or existing_channel_id),
+                        }
+                        print(f"REFRESH: updated {section_key} item {title} for {day_key}")
+                    except DiscordMessageNotFoundError:
+                        print(f"RECOVER: stale/deleted {section_key} item {title} for {day_key}; posting replacement")
+                    except Exception as error:
+                        print(
+                            f"WARN: failed to edit {section_key} item {title} for {day_key}: {error}; "
+                            "falling back to create"
+                        )
+                elif message_exists(
+                    discord_client,
+                    existing_channel_id,
+                    existing_message_id,
+                    context=f"verify {section_key} item for {day_key}",
+                ):
+                    metadata = {"message_id": existing_message_id, "channel_id": existing_channel_id}
+                    print(f"REUSE: {section_key} item {title} for {day_key}")
 
-            content = (
-                format_instagram_item_message(item, idx)
-                if section_key == "instagram"
-                else format_steam_item_message(item, idx, paid=is_paid, demo_playtest=(section_key == "demo_playtest"))
-            )
-            metadata = post_to_discord_with_metadata(content, capture_metadata=token_available)
+            if metadata is None:
+                metadata = post_to_discord_with_metadata(content, capture_metadata=token_available)
+                is_new_message = True
             if token_available and metadata and metadata.get("message_id") and metadata.get("channel_id"):
                 try:
-                    if discord_client:
+                    if discord_client and is_new_message:
                         add_thumbs_up_reaction(discord_client, metadata["channel_id"], metadata["message_id"])
                 except Exception as e:
                     print(f"ADD REACTION FAILED: title={title} | error={e}")
@@ -1850,7 +1913,10 @@ def post_daily_pick_messages(
                     channel_id=metadata["channel_id"],
                     description=item.get("caption") if section_key == "instagram" else item.get("description"),
                 )
-                print(f"CREATE: posted {section_key} item {title} for {day_key}")
+                if is_new_message:
+                    print(f"CREATE: posted {section_key} item {title} for {day_key}")
+                else:
+                    print(f"REUSE: persisted existing {section_key} item {title} for {day_key}")
             else:
                 print(f"WARN: missing metadata for {section_key} item title={title}")
             sleep_briefly()
@@ -1858,7 +1924,7 @@ def post_daily_pick_messages(
     footer_state = run_state.setdefault("navigation_footer", {})
     footer_content = build_daily_navigation_footer(run_state, DISCORD_GUILD_ID, day_key, posted_section_keys)
     if footer_content:
-        post_or_reuse_simple(footer_content, "navigation_footer", footer_state)
+        post_or_reconcile_simple(footer_content, "navigation_footer", footer_state)
         sleep_briefly()
 
     run_state["completed"] = True
@@ -2242,7 +2308,16 @@ def main():
         f"kept={instagram_debug['deduped_count']} "
         f"removed={instagram_debug['removed_count']}"
     )
-    post_daily_pick_messages(demo_playtest_items, free_items, paid_items, instagram_posts)
+    force_refresh_same_day = get_force_refresh_same_day()
+    if force_refresh_same_day:
+        print("Daily picks run configured with FORCE_REFRESH_SAME_DAY=true")
+    post_daily_pick_messages(
+        demo_playtest_items,
+        free_items,
+        paid_items,
+        instagram_posts,
+        force_refresh_same_day=force_refresh_same_day,
+    )
 
     if not demo_playtest_items and not free_items and not paid_items:
         print("No qualifying games found from Steam.")
