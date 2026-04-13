@@ -595,3 +595,114 @@ def test_overall_summary_is_green_when_fully_healthy():
 
     assert "🟢 Overall: Healthy" in rendered
     assert "No action needed." in rendered
+
+
+# ---- Issue #169: schedule-missed cases always render as yellow ----
+
+def _make_workflow(name: str, run: dict, recent_runs: list) -> dict:
+    return {"name": name, "staleHours": 36, "run": run, "recentRuns": recent_runs}
+
+
+def test_expected_scheduled_run_missing_renders_yellow():
+    """workflow.expected_scheduled_run_missing must always show 🟡, not 🟢."""
+    now_utc = datetime(2026, 4, 10, 14, 30, tzinfo=timezone.utc)
+    manual_run = {
+        "id": 1,
+        "event": "workflow_dispatch",
+        "created_at": "2026-04-10T14:00:00+00:00",
+        "updated_at": "2026-04-10T14:05:00+00:00",
+        "conclusion": "success",
+    }
+    lines, _ = report.build_workflow_status_lines(
+        [_make_workflow("Daily Steam Picks", manual_run, [manual_run])],
+        now_utc=now_utc,
+    )
+    workflow_line = lines[0]
+    status_line = lines[1]
+    assert workflow_line.startswith("🟡"), f"Expected yellow, got: {workflow_line!r}"
+    assert "scheduled run missed" in status_line
+
+
+def test_latest_manual_run_without_scheduled_run_renders_yellow():
+    """workflow.latest_manual_run with no scheduled run in window must show 🟡."""
+    now_utc = datetime(2026, 4, 10, 23, 30, tzinfo=timezone.utc)
+    manual_run = {
+        "id": 2,
+        "event": "workflow_dispatch",
+        "created_at": "2026-04-10T23:10:00+00:00",
+        "updated_at": "2026-04-10T23:12:00+00:00",
+        "conclusion": "success",
+    }
+    # No scheduled run in recent_runs
+    lines, _ = report.build_workflow_status_lines(
+        [_make_workflow("Evening Winners", manual_run, [manual_run])],
+        now_utc=now_utc,
+    )
+    workflow_line = lines[0]
+    assert workflow_line.startswith("🟡"), f"Expected yellow, got: {workflow_line!r}"
+    assert "scheduled run missed" in lines[1]
+
+
+def test_latest_manual_run_with_scheduled_run_present_renders_green():
+    """workflow.latest_manual_run WITH a scheduled run in window keeps green."""
+    now_utc = datetime(2026, 4, 10, 23, 30, tzinfo=timezone.utc)
+    manual_run = {
+        "id": 3,
+        "event": "workflow_dispatch",
+        "created_at": "2026-04-10T23:20:00+00:00",
+        "updated_at": "2026-04-10T23:22:00+00:00",
+        "conclusion": "success",
+    }
+    scheduled_run = {
+        "id": 2,
+        "event": "schedule",
+        "created_at": "2026-04-10T23:01:00+00:00",
+        "updated_at": "2026-04-10T23:05:00+00:00",
+        "conclusion": "success",
+    }
+    lines, _ = report.build_workflow_status_lines(
+        [_make_workflow("Evening Winners", manual_run, [manual_run, scheduled_run])],
+        now_utc=now_utc,
+    )
+    workflow_line = lines[0]
+    assert workflow_line.startswith("🟢"), f"Expected green (scheduled run present), got: {workflow_line!r}"
+
+
+def test_schedule_missed_counts_as_follow_up_not_action_required_in_overall():
+    """Yellow schedule-missed workflows produce 'Follow-up recommended', not 'Action needed'."""
+    now_utc = datetime(2026, 4, 10, 14, 30, tzinfo=timezone.utc)
+    manual_run = {
+        "id": 4,
+        "event": "workflow_dispatch",
+        "created_at": "2026-04-10T14:00:00+00:00",
+        "updated_at": "2026-04-10T14:05:00+00:00",
+        "conclusion": "success",
+    }
+    lines, _ = report.build_workflow_status_lines(
+        [_make_workflow("Daily Steam Picks", manual_run, [manual_run])],
+        now_utc=now_utc,
+    )
+    rendered = report.render_report(
+        workflow_status_lines=lines,
+        state_issues=[],
+        report_date="Apr 10, 2026",
+    )
+    assert "🔴 Overall: Action needed" not in rendered
+    assert "🟡 Overall: Follow-up recommended" in rendered
+
+
+def test_scheduled_run_succeeded_renders_green():
+    """Normally scheduled and successful run must stay green."""
+    now_utc = datetime(2026, 4, 10, 13, 30, tzinfo=timezone.utc)
+    scheduled_run = {
+        "id": 5,
+        "event": "schedule",
+        "created_at": "2026-04-10T13:00:00+00:00",
+        "updated_at": "2026-04-10T13:10:00+00:00",
+        "conclusion": "success",
+    }
+    lines, _ = report.build_workflow_status_lines(
+        [_make_workflow("Daily Steam Picks", scheduled_run, [scheduled_run])],
+        now_utc=now_utc,
+    )
+    assert lines[0].startswith("🟢"), f"Expected green for successful scheduled run: {lines[0]!r}"

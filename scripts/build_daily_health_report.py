@@ -150,7 +150,12 @@ def _format_ny_timestamp(value: Any) -> str | None:
     return f"{ny_time.strftime('%b')} {ny_time.day}, {hour_12}:{ny_time.minute:02d} {ny_time.strftime('%p')} ET"
 
 
-def evaluate_workflow_status(run: dict[str, Any] | None, stale_hours: int) -> tuple[str, str, bool, str]:
+def evaluate_workflow_status(
+    run: dict[str, Any] | None,
+    stale_hours: int,
+    *,
+    now_utc: datetime | None = None,
+) -> tuple[str, str, bool, str]:
     if not run:
         return "🟡", "no recent run found", False, "no_recent_run"
 
@@ -158,8 +163,9 @@ def evaluate_workflow_status(run: dict[str, Any] | None, stale_hours: int) -> tu
     if not isinstance(updated_at, str):
         return "🟡", "run timestamp missing", True, "timestamp_missing"
 
+    effective_now = now_utc or datetime.now(timezone.utc)
     run_time = datetime.fromisoformat(updated_at.replace("Z", "+00:00"))
-    age_hours = (datetime.now(timezone.utc) - run_time).total_seconds() / 3600
+    age_hours = (effective_now - run_time).total_seconds() / 3600
     recency = _format_age(age_hours)
     conclusion = str(run.get("conclusion") or run.get("status") or "unknown")
 
@@ -372,6 +378,11 @@ def _workflow_guidance(
     if icon == "🟢":
         return None
     run_url = run.get("html_url") if isinstance(run, dict) and isinstance(run.get("html_url"), str) else None
+    if status_reason == "schedule_missed":
+        return (
+            "Action recommended",
+            f"Verify the scheduled trigger for {workflow_name} is still active; manually trigger if needed.",
+        )
     if status_reason == "stale":
         return (
             "Action required",
@@ -800,13 +811,38 @@ def build_workflow_status_lines(
         run = workflow.get("run")
         if not isinstance(run, dict):
             run = recent_runs[0] if isinstance(recent_runs, list) and recent_runs and isinstance(recent_runs[0], dict) else None
-        icon, status_text, include_details, status_reason = evaluate_workflow_status(run, stale_hours)
+        icon, status_text, include_details, status_reason = evaluate_workflow_status(run, stale_hours, now_utc=now_utc)
         schedule_diagnostics = build_schedule_diagnostics(
             workflow["name"],
             latest_run=run if isinstance(run, dict) else None,
             recent_runs=recent_runs if isinstance(recent_runs, list) else ([run] if isinstance(run, dict) else []),
             now_utc=now_utc,
         )
+        # Override icon to yellow for schedule-missed cases even when the run itself succeeded.
+        # Only override when we positively know the latest run was manual/non-scheduled
+        # (latest_run_event is set and not "schedule"). Unknown-event runs are not overridden.
+        if schedule_diagnostics and icon == "🟢":
+            known_manual = (
+                schedule_diagnostics.latest_run_event is not None
+                and schedule_diagnostics.latest_run_event != "schedule"
+            )
+            if (
+                known_manual
+                and schedule_diagnostics.code == "workflow.expected_scheduled_run_missing"
+            ):
+                icon = "🟡"
+                status_text = f"{status_text} — scheduled run missed, recovered manually"
+                status_reason = "schedule_missed"
+                include_details = True
+            elif (
+                known_manual
+                and schedule_diagnostics.code == "workflow.latest_manual_run"
+                and not schedule_diagnostics.found_scheduled_run_in_window
+            ):
+                icon = "🟡"
+                status_text = f"{status_text} — scheduled run missed, recovered manually"
+                status_reason = "schedule_missed"
+                include_details = True
         serialized = _serialize_schedule_diagnostics(workflow["name"], stale_hours, schedule_diagnostics)
         if serialized:
             diagnostics_payload.append(serialized)
