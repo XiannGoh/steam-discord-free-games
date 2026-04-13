@@ -13,6 +13,7 @@ GAMING_LIBRARY_FILE = "gaming_library.json"
 DISCORD_DAILY_POSTS_FILE = "discord_daily_posts.json"
 DISCORD_BOT_TOKEN = os.getenv("DISCORD_BOT_TOKEN")
 DISCORD_GAMING_LIBRARY_CHANNEL_ID = os.getenv("DISCORD_GAMING_LIBRARY_CHANNEL_ID")
+DISCORD_GUILD_ID = os.getenv("DISCORD_GUILD_ID")
 LIBRARY_DATE_OVERRIDE_ENV = "LIBRARY_DATE_UTC"
 
 STATUS_ACTIVE = "active"
@@ -208,6 +209,36 @@ def list_visible_games_for_reminder(state: Dict[str, Any]) -> List[Dict[str, Any
     return visible
 
 
+def _discord_message_link(guild_id: str, channel_id: str, message_id: str) -> str:
+    return f"https://discord.com/channels/{guild_id}/{channel_id}/{message_id}"
+
+
+def build_library_footer(
+    *,
+    day_key: str,
+    header_channel_id: str,
+    header_message_id: str,
+    guild_id: Optional[str],
+) -> Optional[str]:
+    """Build a navigation footer string linking back to the header.
+
+    Returns None when DISCORD_GUILD_ID is absent (footer cannot include a jump link).
+    The footer is still posted without a jump link in that case via the fallback path.
+    """
+    if not isinstance(guild_id, str) or not guild_id.strip():
+        # Post a plain footer without a jump link when guild_id is unavailable.
+        return (
+            f"📚 Gaming Library — {day_key}\n"
+            "React ✅ active · ⏸️ paused · ❌ dropped to update your status."
+        )
+    link = _discord_message_link(guild_id, header_channel_id, header_message_id)
+    return (
+        f"📚 Gaming Library — {day_key}\n"
+        f"React ✅ active · ⏸️ paused · ❌ dropped to update your status.\n"
+        f"↑ Top of list → [Jump]({link})"
+    )
+
+
 def build_daily_library_messages(state: Dict[str, Any], target_day_key: str) -> List[Dict[str, str]]:
     visible_games = list_visible_games_for_reminder(state)
     header = f"📚 Gaming Library — {target_day_key}"
@@ -291,6 +322,51 @@ def post_daily_library_reminder(
                     context=f"add gaming library status reaction {emoji} for {day_key}",
                 )
         reconciled_messages[message_key] = {"message_id": message_id, "channel_id": str(payload.get("channel_id") or channel_id)}
+
+    # --- Footer ---
+    header_info = reconciled_messages.get("header", {})
+    header_ch_id = str(header_info.get("channel_id") or channel_id).strip()
+    header_msg_id = str(header_info.get("message_id") or "").strip()
+    footer_content = build_library_footer(
+        day_key=day_key,
+        header_channel_id=header_ch_id,
+        header_message_id=header_msg_id,
+        guild_id=DISCORD_GUILD_ID,
+    )
+    if footer_content is not None:
+        existing_footer = existing_messages.get("footer")
+        existing_footer_ch_id = str((existing_footer or {}).get("channel_id") or channel_id).strip()
+        existing_footer_msg_id = str((existing_footer or {}).get("message_id") or "").strip()
+        if existing_footer_msg_id:
+            try:
+                footer_payload = client.edit_message(
+                    existing_footer_ch_id,
+                    existing_footer_msg_id,
+                    footer_content,
+                    context=f"edit gaming library footer for {day_key}",
+                )
+                changed = True
+            except DiscordMessageNotFoundError:
+                footer_payload = client.post_message(
+                    channel_id,
+                    footer_content,
+                    context=f"repost missing gaming library footer for {day_key}",
+                )
+                changed = True
+        else:
+            footer_payload = client.post_message(
+                channel_id,
+                footer_content,
+                context=f"post gaming library footer for {day_key}",
+            )
+            changed = True
+        footer_msg_id = str(footer_payload.get("id") or "")
+        if not footer_msg_id:
+            raise RuntimeError("Discord response missing id for gaming library footer")
+        reconciled_messages["footer"] = {
+            "message_id": footer_msg_id,
+            "channel_id": str(footer_payload.get("channel_id") or channel_id),
+        }
 
     day_entry["messages"] = reconciled_messages
     day_entry["completed"] = True

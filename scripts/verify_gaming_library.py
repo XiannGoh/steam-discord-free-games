@@ -193,11 +193,8 @@ def detect_broken_if(
             detected[condition] = "triggered" if has_placeholder else "not_triggered"
 
         elif "missing footer" in c:
-            if result.get("footer_skipped"):
-                detected[condition] = "undetectable"
-            else:
-                triggered = not result.get("footer_found", True)
-                detected[condition] = "triggered" if triggered else "not_triggered"
+            triggered = not result.get("footer_found", True)
+            detected[condition] = "triggered" if triggered else "not_triggered"
 
         elif "duplicate" in c:
             triggered = "duplicate" in errors_text
@@ -242,9 +239,9 @@ def main() -> None:
         "messages_checked": 0,
         "messages_missing": [],
         "header_found": False,
+        "footer_found": False,
         "game_messages_found": [],
         "game_name_warnings": [],
-        "footer_skipped": True,  # footer not implemented in post_daily_library_reminder
         "errors": [],
     }
 
@@ -289,7 +286,7 @@ def main() -> None:
         print("  MISSING  header (no message_id in state)")
 
     # --- Game messages ---
-    game_keys = [k for k in messages if k not in {"header", "intro"}]
+    game_keys = [k for k in messages if k not in {"header", "intro", "footer"}]
     print(f"\n--- Game messages ({len(game_keys)} total) ---")
 
     for identity_key in game_keys:
@@ -335,19 +332,32 @@ def main() -> None:
 
     # --- Footer ---
     print("\n--- Footer ---")
-    print("  SKIPPED  footer (not posted by post_daily_library_reminder — spec aspirational)")
+    footer_info = messages.get("footer") or {}
+    footer_msg_id = str(footer_info.get("message_id") or "").strip()
+    footer_ch_id = str(footer_info.get("channel_id") or "").strip()
+
+    if footer_msg_id and footer_ch_id:
+        if footer_msg_id in seen_message_ids:
+            result["errors"].append(f"Duplicate message_id {footer_msg_id} for footer.")
+        seen_message_ids.append(footer_msg_id)
+        msg = check_message(client, footer_ch_id, footer_msg_id, "gaming library footer", result)
+        result["footer_found"] = msg is not None and bool(msg.get("content"))
+    else:
+        if spec_required["footer_required"]:
+            result["errors"].append("Footer message_id or channel_id missing from daily_posts.")
+        print("  MISSING  footer (no message_id in state)")
 
     # --- Duplicate check ---
     duplicates_found = len(seen_message_ids) != len(set(seen_message_ids))
 
     # --- Pass logic driven by spec ---
-    # footer_required is excluded: code does not post a footer yet.
     intro_ok = not spec_required["intro_required"] or result["header_found"]
+    footer_ok = not spec_required["footer_required"] or result["footer_found"]
     items_ok = result["messages_checked"] >= spec_required["min_items"]
     no_missing = len(result["messages_missing"]) == 0
     no_dupes = not spec_required["no_duplicates"] or not duplicates_found
 
-    result["pass"] = intro_ok and items_ok and no_missing and no_dupes
+    result["pass"] = intro_ok and footer_ok and items_ok and no_missing and no_dupes
 
     # --- Broken-if detection ---
     broken_if = specs.get(CHANNEL_NAME, {}).get("broken_if", [])
@@ -367,7 +377,7 @@ def main() -> None:
     print(f"  messages_missing:      {len(result['messages_missing'])}")
     print(f"  header_found:          {result['header_found']}")
     print(f"  game_messages_found:   {len(result['game_messages_found'])}")
-    print(f"  footer_skipped:        {result['footer_skipped']}")
+    print(f"  footer_found:          {result['footer_found']}")
     if result.get("triggered_broken_if"):
         print(f"  triggered_broken_if ({len(result['triggered_broken_if'])}):")
         for cond in result["triggered_broken_if"]:
