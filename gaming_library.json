@@ -15,16 +15,17 @@
       "assignments": {
         "195462430535581708": {
           "status": "active",
-          "updated_at_utc": "2026-04-13T16:45:31.861583+00:00"
+          "updated_at_utc": "2026-04-13T23:30:52.860225+00:00"
         }
       },
-      "archived": true,
+      "archived": false,
       "created_at_utc": "2026-04-10T09:39:19.389733+00:00",
-      "updated_at_utc": "2026-04-13T16:45:31.861603+00:00"
+      "updated_at_utc": "2026-04-13T23:30:52.860249+00:00",
+      "conflicting_users": []
     },
     "url:https://www.instagram.com/p/dw6y_zjj2tc/": {
       "identity_key": "url:https://www.instagram.com/p/dw6y_zjj2tc/",
-      "canonical_name": "@indiegamespotlights",
+      "canonical_name": "A driving horror game with friends",
       "url": "https://www.instagram.com/p/DW6y_ZJj2tc/",
       "source_type": "instagram",
       "source_section": "instagram",
@@ -35,13 +36,16 @@
       },
       "assignments": {
         "195462430535581708": {
-          "status": "dropped",
-          "updated_at_utc": "2026-04-13T16:45:27.260494+00:00"
+          "status": "active",
+          "updated_at_utc": "2026-04-13T23:30:46.740165+00:00"
         }
       },
-      "archived": true,
+      "archived": false,
       "created_at_utc": "2026-04-10T09:39:31.041650+00:00",
-      "updated_at_utc": "2026-04-13T16:45:27.260514+00:00"
+      "updated_at_utc": "2026-04-13T23:30:46.740190+00:00",
+      "conflicting_users": [
+        "195462430535581708"
+      ]
     },
     "steam:3716600": {
       "identity_key": "steam:3716600",
@@ -57,12 +61,13 @@
       "assignments": {
         "195462430535581708": {
           "status": "paused",
-          "updated_at_utc": "2026-04-13T16:45:37.368102+00:00"
+          "updated_at_utc": "2026-04-13T23:30:58.389786+00:00"
         }
       },
       "archived": false,
       "created_at_utc": "2026-04-13T09:19:36.758638+00:00",
-      "updated_at_utc": "2026-04-13T16:45:37.368122+00:00"
+      "updated_at_utc": "2026-04-13T23:30:58.389810+00:00",
+      "conflicting_users": []
     },
     "steam:408400": {
       "identity_key": "steam:408400",
@@ -77,17 +82,17 @@
       },
       "assignments": {
         "195462430535581708": {
-          "status": "dropped",
-          "updated_at_utc": "2026-04-13T16:45:38.021494+00:00"
+          "status": "active",
+          "updated_at_utc": "2026-04-13T23:30:44.848609+00:00"
         }
       },
-      "archived": true,
+      "archived": false,
       "created_at_utc": "2026-04-13T09:19:36.851684+00:00",
-      "updated_at_utc": "2026-04-13T16:45:38.021512+00:00"
+      "updated_at_utc": "2026-04-13T23:30:44.848623+00:00"
     },
     "url:https://www.instagram.com/p/dwrvg40brws/": {
       "identity_key": "url:https://www.instagram.com/p/dwrvg40brws/",
-      "canonical_name": "@gemgamingnetwork",
+      "canonical_name": "perfect co-op game to play while drunk 😂  It’s called: Friendly Steps   💰: TBD 🌎: PC (Steam) 👥: 1-4 Players 🎮: Ragdol...",
       "url": "https://www.instagram.com/p/DWrVg40BrWs/",
       "source_type": "instagram",
       "source_section": "instagram",
@@ -98,17 +103,17 @@
       },
       "assignments": {
         "195462430535581708": {
-          "status": "dropped",
-          "updated_at_utc": "2026-04-13T16:45:21.916683+00:00"
+          "status": "active",
+          "updated_at_utc": "2026-04-13T23:30:44.953595+00:00"
         }
       },
-      "archived": true,
+      "archived": false,
       "created_at_utc": "2026-04-13T09:19:41.011252+00:00",
-      "updated_at_utc": "2026-04-13T16:45:21.916702+00:00"
+      "updated_at_utc": "2026-04-13T23:30:44.953609+00:00"
     },
     "url:https://www.instagram.com/p/dwrqgefhfmd/": {
       "identity_key": "url:https://www.instagram.com/p/dwrqgefhfmd/",
-      "canonical_name": "@gemgamingnetwork",
+      "canonical_name": "new co-op steam game similar to repo  It’s called: Salty Dogs  💰: FREE PLAYTEST 🌎: PC (Steam) 👥: 1-4 Players 🎮: Under...",
       "url": "https://www.instagram.com/p/DWrqGeFhFMd/",
       "source_type": "instagram",
       "source_section": "instagram",
@@ -119,13 +124,13 @@
       },
       "assignments": {
         "195462430535581708": {
-          "status": "dropped",
-          "updated_at_utc": "2026-04-13T16:45:26.694313+00:00"
+          "status": "active",
+          "updated_at_utc": "2026-04-13T23:30:46.163066+00:00"
         }
       },
-      "archived": true,
+      "archived": false,
       "created_at_utc": "2026-04-13T09:19:41.234758+00:00",
-      "updated_at_utc": "2026-04-13T16:45:26.694337+00:00"
+      "updated_at_utc": "2026-04-13T23:30:46.163078+00:00"
     }
   },
   "daily_posts": {
