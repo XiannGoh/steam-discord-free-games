@@ -34,6 +34,7 @@ DAILY_DATE_OVERRIDE_ENV = "DAILY_DATE_UTC"
 FORCE_REFRESH_SAME_DAY_ENV = "FORCE_REFRESH_SAME_DAY"
 DAILY_DEBUG_SUMMARY_FILE = "daily_debug_summary.json"
 DAILY_VERIFICATION_FILE = "daily_verification.json"
+STOP_GO_RESULT_FILE = "daily_stop_go_result.json"
 MAX_RETRY_ATTEMPTS = 3
 
 INSTAGRAM_CREATORS = [
@@ -2287,6 +2288,46 @@ def verification_passed_for_day(day_key: str, artifact: dict) -> bool:
     return artifact.get("day_key") == day_key and bool(artifact.get("pass"))
 
 
+def export_stop_go_result(
+    *,
+    day_key: str,
+    decision: str,
+    reason: str,
+    attempt: Optional[int] = None,
+    max_attempts: int = MAX_RETRY_ATTEMPTS,
+    verification_file: str = DAILY_VERIFICATION_FILE,
+    path: Optional[str] = None,
+) -> None:
+    """Write a machine-readable stop/go decision artifact for external orchestration."""
+    signal = decision
+    escalation_target = None
+    if decision == "give_up":
+        signal = "escalate_to_fixer"
+        escalation_target = "claude_code"
+
+    result = {
+        "day_key": day_key,
+        "decision": decision,
+        "signal": signal,
+        "reason": reason,
+        "attempt": attempt,
+        "max_attempts": max_attempts,
+        "verification_file": verification_file,
+        "orchestrator": "openhands",
+        "fixer": "claude_code",
+        "escalation_target": escalation_target,
+        "generated_at_utc": utc_now_iso(),
+    }
+    result_path = path or STOP_GO_RESULT_FILE
+    save_json_object_atomic(result_path, result)
+    print(
+        "STOP_GO_RESULT "
+        f"file={result_path} day_key={day_key} decision={decision} signal={signal} "
+        f"attempt={attempt if attempt is not None else 'na'}/{max_attempts} "
+        f"reason={reason}"
+    )
+
+
 def run_daily_workflow(*, force_refresh_same_day: bool = False) -> None:
     state = load_state()
     print(f"Daily run target date (UTC): {get_target_day_key()}")
@@ -2560,6 +2601,12 @@ def main():
     day_key = get_target_day_key()
     artifact = load_daily_verification_artifact()
     if verification_passed_for_day(day_key, artifact):
+        export_stop_go_result(
+            day_key=day_key,
+            decision="stop",
+            reason="verification_pass",
+            attempt=0,
+        )
         print(
             "STOP_GO decision=stop "
             f"reason=verification_pass day_key={day_key} verification_file={DAILY_VERIFICATION_FILE}"
@@ -2568,6 +2615,12 @@ def main():
 
     for attempt in range(1, MAX_RETRY_ATTEMPTS + 1):
         if attempt > 1:
+            export_stop_go_result(
+                day_key=day_key,
+                decision="retry",
+                reason="verification_failed",
+                attempt=attempt,
+            )
             print(
                 "STOP_GO decision=retry "
                 f"reason=verification_failed attempt={attempt}/{MAX_RETRY_ATTEMPTS}"
@@ -2575,12 +2628,24 @@ def main():
         run_daily_workflow(force_refresh_same_day=(attempt > 1))
         artifact = load_daily_verification_artifact()
         if verification_passed_for_day(day_key, artifact):
+            export_stop_go_result(
+                day_key=day_key,
+                decision="stop",
+                reason="verification_pass",
+                attempt=attempt,
+            )
             print(
                 "STOP_GO decision=stop "
                 f"reason=verification_pass attempt={attempt}/{MAX_RETRY_ATTEMPTS}"
             )
             return
 
+    export_stop_go_result(
+        day_key=day_key,
+        decision="give_up",
+        reason="max_retry_attempts_reached",
+        attempt=MAX_RETRY_ATTEMPTS,
+    )
     print(
         "STOP_GO decision=give_up "
         f"reason=max_retry_attempts_reached attempts={MAX_RETRY_ATTEMPTS}/{MAX_RETRY_ATTEMPTS}"

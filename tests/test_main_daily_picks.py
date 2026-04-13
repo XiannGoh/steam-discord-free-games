@@ -990,6 +990,46 @@ def test_main_stop_go_gives_up_after_max_attempts(monkeypatch, capsys):
     assert "STOP_GO decision=give_up" in captured.out
 
 
+def test_export_stop_go_result_uses_escalate_signal_for_give_up(tmp_path):
+    out = tmp_path / "stop_go.json"
+    main.export_stop_go_result(
+        day_key="2026-04-12",
+        decision="give_up",
+        reason="max_retry_attempts_reached",
+        attempt=3,
+        path=str(out),
+    )
+
+    artifact = json.loads(out.read_text(encoding="utf-8"))
+    assert artifact["decision"] == "give_up"
+    assert artifact["signal"] == "escalate_to_fixer"
+    assert artifact["orchestrator"] == "openhands"
+    assert artifact["fixer"] == "claude_code"
+    assert artifact["escalation_target"] == "claude_code"
+
+
+def test_main_stop_go_writes_give_up_artifact(monkeypatch, tmp_path):
+    calls = []
+    out = tmp_path / "stop_go.json"
+    monkeypatch.setattr(main, "STOP_GO_RESULT_FILE", str(out))
+    monkeypatch.setattr(main, "get_target_day_key", lambda: "2026-04-12")
+    monkeypatch.setattr(
+        main,
+        "load_daily_verification_artifact",
+        lambda: {"day_key": "2026-04-12", "pass": False},
+    )
+    monkeypatch.setattr(main, "run_daily_workflow", lambda **kwargs: calls.append(kwargs))
+
+    main.main()
+
+    artifact = json.loads(out.read_text(encoding="utf-8"))
+    assert len(calls) == main.MAX_RETRY_ATTEMPTS
+    assert artifact["decision"] == "give_up"
+    assert artifact["signal"] == "escalate_to_fixer"
+    assert artifact["reason"] == "max_retry_attempts_reached"
+    assert artifact["attempt"] == main.MAX_RETRY_ATTEMPTS
+
+
 def test_post_discord_debug_summary_posts_compact_message(monkeypatch):
     fake_client = FakeDebugClient()
     monkeypatch.setattr(main, "DISCORD_DEBUG_CHANNEL_ID", "debug-chan-1")
