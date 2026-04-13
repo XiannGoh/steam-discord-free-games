@@ -159,43 +159,61 @@ def compute_daily_delta(state: Dict[str, Any]) -> str:
 
     new_games = []
     status_changes = []
-    pending = 0
+    pending_items: List[str] = []
+
+    # Per-player game count: count assignments across all active (non-archived) games.
+    player_game_counts: Dict[str, int] = {}
 
     for key, game in current_games.items():
         if not isinstance(game, dict):
             continue
+        if game.get("archived"):
+            continue
+        curr_assignments = game.get("assignments", {})
+        game_name = game.get("canonical_name", "Untitled")
+
+        # Count this game toward each assigned player.
+        for user_id in curr_assignments:
+            player_game_counts[user_id] = player_game_counts.get(user_id, 0) + 1
+
         if key not in previous_games:
-            new_games.append(game.get("canonical_name", "Untitled"))
+            new_games.append(game_name)
         else:
             prev_assignments = previous_games[key].get("assignments", {})
-            curr_assignments = game.get("assignments", {})
             for user_id, curr_ass in curr_assignments.items():
                 if not isinstance(curr_ass, dict):
                     continue
                 prev_ass = prev_assignments.get(user_id)
                 if isinstance(prev_ass, dict) and curr_ass.get("status") != prev_ass.get("status"):
                     user_mention = f"<@{user_id}>"
-                    game_name = game.get("canonical_name", "Untitled")
                     old_status = prev_ass.get("status", "unknown")
                     new_status = curr_ass.get("status", "unknown")
                     status_changes.append(f"{user_mention} changed {game_name}: {old_status} → {new_status}")
-                # Check pending: assigned but status active and not updated after created
+                # Pending: assigned with active status but never updated (no reaction recorded yet).
                 if curr_ass.get("status") == STATUS_ACTIVE:
                     updated = curr_ass.get("updated_at_utc")
                     created = game.get("created_at_utc")
                     if updated == created:
-                        pending += 1
+                        pending_items.append(f"⏳ <@{user_id}> has not reacted on {game_name}")
 
     lines = []
+
+    # Per-player summary at the top.
+    if player_game_counts:
+        lines.append("👥 Players:")
+        for user_id, count in sorted(player_game_counts.items()):
+            lines.append(f"  • <@{user_id}> — {count} game{'s' if count != 1 else ''} assigned")
+
     if new_games:
         lines.append(f"🎉 {len(new_games)} Games added to library today (bookmarked from Step 2)")
     if status_changes:
         lines.append(f"🔄 {len(status_changes)} Status changes since yesterday:")
         for change in status_changes[:5]:  # limit to 5
             lines.append(f"  • {change}")
-    if pending:
-        lines.append(f"⏳ {pending} Players who have not reacted on a game they are assigned to (pending status)")
-    if not new_games and not status_changes and not pending:
+    if pending_items:
+        for item in pending_items[:10]:  # limit to 10 to avoid message bloat
+            lines.append(item)
+    if not new_games and not status_changes and not pending_items:
         lines.append("No changes since yesterday")
 
     return "\n".join(lines)

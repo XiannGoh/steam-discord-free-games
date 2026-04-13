@@ -544,3 +544,87 @@ def test_header_edited_with_jump_links_after_sections_posted(monkeypatch):
 
     monkeypatch.delenv("DISCORD_GUILD_ID", raising=False)
     importlib.reload(_lib_mod)
+
+
+# --- Issue #184: Per-player counts and pending reactions in daily summary ---
+
+def _make_state_with_games(game_specs):
+    """Build a minimal library state from a list of (name, url, assignments) tuples.
+    assignments is a dict of {user_id: {status, updated_at_utc}} or None for no assignments.
+    Sets previous_day_games to an empty dict so all games are treated as new.
+    """
+    state = lib.load_gaming_library(path="/tmp/does-not-exist.json")
+    for name, url, assignments in game_specs:
+        game = lib.ensure_game_entry(state, canonical_name=name, url=url)
+        if assignments:
+            for user_id, ass_data in assignments.items():
+                game.setdefault("assignments", {})[user_id] = ass_data
+    state["previous_day_games"] = {}
+    return state
+
+
+def test_per_player_summary_included_when_players_assigned():
+    state = _make_state_with_games([
+        ("Alpha", "https://store.steampowered.com/app/1/alpha/", {"u1": {"status": "active", "updated_at_utc": "t1"}, "u2": {"status": "active", "updated_at_utc": "t1"}}),
+        ("Beta", "https://store.steampowered.com/app/2/beta/", {"u1": {"status": "active", "updated_at_utc": "t1"}}),
+    ])
+    result = lib.compute_daily_delta(state)
+    assert "👥 Players:" in result
+    assert "<@u1> — 2 games assigned" in result
+    assert "<@u2> — 1 game assigned" in result
+
+
+def test_per_player_summary_absent_when_no_assignments():
+    state = _make_state_with_games([
+        ("No Players Game", "https://store.steampowered.com/app/3/noplayers/", None),
+    ])
+    result = lib.compute_daily_delta(state)
+    assert "👥 Players:" not in result
+
+
+def test_per_player_summary_skips_archived_games():
+    state = _make_state_with_games([
+        ("Active Game", "https://store.steampowered.com/app/4/active/", {"u1": {"status": "active", "updated_at_utc": "t1"}}),
+        ("Archived Game", "https://store.steampowered.com/app/5/archived/", {"u1": {"status": "active", "updated_at_utc": "t1"}}),
+    ])
+    state["games"]["steam:5"]["archived"] = True
+    result = lib.compute_daily_delta(state)
+    assert "<@u1> — 1 game assigned" in result
+
+
+def test_pending_reaction_flags_specific_user_and_game():
+    """A player with status=active and updated_at_utc == game's created_at_utc is flagged as pending."""
+    state = lib.load_gaming_library(path="/tmp/does-not-exist.json")
+    game = lib.ensure_game_entry(state, canonical_name="Pending Game", url="https://store.steampowered.com/app/6/pending/")
+    created_ts = game["created_at_utc"]
+    # Simulate assignment with updated_at == game.created_at (no reaction yet)
+    game["assignments"]["u99"] = {"status": lib.STATUS_ACTIVE, "updated_at_utc": created_ts}
+    state["previous_day_games"] = {list(state["games"].keys())[0]: game.copy()}
+    result = lib.compute_daily_delta(state)
+    assert "⏳ <@u99> has not reacted on Pending Game" in result
+
+
+def test_pending_not_flagged_when_status_updated():
+    """A player whose assignment was updated after game creation is NOT flagged as pending."""
+    state = lib.load_gaming_library(path="/tmp/does-not-exist.json")
+    game = lib.ensure_game_entry(state, canonical_name="Updated Game", url="https://store.steampowered.com/app/7/updated/")
+    game["assignments"]["u88"] = {"status": lib.STATUS_ACTIVE, "updated_at_utc": "2099-01-01T00:00:00+00:00"}
+    state["previous_day_games"] = {list(state["games"].keys())[0]: game.copy()}
+    result = lib.compute_daily_delta(state)
+    assert "⏳" not in result
+
+
+def test_new_games_still_reported_alongside_per_player_summary():
+    state = _make_state_with_games([
+        ("New Addition", "https://store.steampowered.com/app/8/new/", {"u1": {"status": "active", "updated_at_utc": "t1"}}),
+    ])
+    result = lib.compute_daily_delta(state)
+    assert "🎉 1 Games added to library today" in result
+    assert "👥 Players:" in result
+
+
+def test_no_changes_message_shown_when_empty_library():
+    state = lib.load_gaming_library(path="/tmp/does-not-exist.json")
+    state["previous_day_games"] = {}
+    result = lib.compute_daily_delta(state)
+    assert "No changes since yesterday" in result
