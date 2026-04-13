@@ -294,6 +294,7 @@ def verify_step1(
     else:
         print("  SKIPPED  footer (no message_id in state — DISCORD_GUILD_ID may not be set)")
         ch["footer_found"] = False
+        ch["footer_skipped"] = True
 
     # --- Item messages ---
     print(f"\n--- Step-1 item messages ({len(items)} total) ---")
@@ -319,12 +320,27 @@ def verify_step1(
 
     # --- Pass logic driven by spec ---
     intro_ok = not spec_required["intro_required"] or ch["intro_found"]
-    footer_ok = not spec_required["footer_required"] or ch["footer_found"]
+    # Footer is optional when GUILD_ID was absent at post time (footer_skipped=True).
+    footer_ok = not spec_required["footer_required"] or ch["footer_found"] or ch.get("footer_skipped", False)
     items_ok = ch["messages_checked"] >= max(spec_required["min_items"], 1) if spec_required["min_items"] > 0 else True
     no_missing = len(ch["messages_missing"]) == 0
     no_dupes = not spec_required["no_duplicates"] or not duplicates_found
 
     ch["pass"] = intro_ok and footer_ok and items_ok and no_missing and no_dupes
+
+    if not ch["pass"] and not ch["errors"]:
+        reasons = []
+        if not intro_ok:
+            reasons.append("intro not found")
+        if not footer_ok:
+            reasons.append("footer not found (and not skipped)")
+        if not items_ok:
+            reasons.append(f"insufficient items ({ch['messages_checked']} < {spec_required['min_items']})")
+        if not no_missing:
+            reasons.append(f"missing messages: {ch['messages_missing']}")
+        if not no_dupes:
+            reasons.append("duplicate message IDs found")
+        print(f"  WARN  pass=False with 0 errors — failing conditions: {'; '.join(reasons) or 'unknown'}")
 
     if specs is not None:
         apply_broken_if(ch, specs, CHANNEL_STEP1)
@@ -407,6 +423,7 @@ def verify_step2(
     else:
         print("  SKIPPED  winners footer (no message_id in state — DISCORD_GUILD_ID may not have been set at post time)")
         ch["footer_found"] = False
+        ch["footer_skipped"] = True
 
     # --- Winner item messages ---
     winner_messages = winners_state.get("winner_messages") or {}
@@ -434,12 +451,27 @@ def verify_step2(
 
     # --- Pass logic driven by spec ---
     intro_ok = not spec_required["intro_required"] or ch["intro_found"]
-    footer_ok = not spec_required["footer_required"] or ch["footer_found"]
+    # Footer is optional when GUILD_ID was absent at post time (footer_skipped=True).
+    footer_ok = not spec_required["footer_required"] or ch["footer_found"] or ch.get("footer_skipped", False)
     items_ok = ch["messages_checked"] >= spec_required["min_items"] if spec_required["min_items"] > 0 else True
     no_missing = len(ch["messages_missing"]) == 0
     no_dupes = not spec_required["no_duplicates"] or not duplicates_found
 
     ch["pass"] = intro_ok and footer_ok and items_ok and no_missing and no_dupes
+
+    if not ch["pass"] and not ch["errors"]:
+        reasons = []
+        if not intro_ok:
+            reasons.append("intro not found")
+        if not footer_ok:
+            reasons.append("footer not found (and not skipped)")
+        if not items_ok:
+            reasons.append(f"insufficient items ({ch['messages_checked']} < {spec_required['min_items']})")
+        if not no_missing:
+            reasons.append(f"missing messages: {ch['messages_missing']}")
+        if not no_dupes:
+            reasons.append("duplicate message IDs found")
+        print(f"  WARN  pass=False with 0 errors — failing conditions: {'; '.join(reasons) or 'unknown'}")
 
     if specs is not None:
         apply_broken_if(ch, specs, CHANNEL_STEP2)
