@@ -101,17 +101,28 @@ def test_winners_channel_posts_intro_sections_games_and_footer_in_order(monkeypa
     winners.main()
 
     posted = [content for _, content, _, _ in fake.posts]
-    assert posted[0].startswith("🏆 Daily Game Picks — Winners")
+    # Header placeholder posted first (date + subtitle, no jump links yet)
+    assert posted[0].startswith("🏆 Daily Winners - ")
+    assert "bookmark to keep permanently" in posted[0]
     assert posted[1] == "🧪 Demo & Playtest Winners"
     assert "Demo Winner" in posted[2]
     assert posted[3] == "🎮 Free Winners"
     assert "Late Voted Earlier Day" in posted[4]
     assert posted[5] == "💸 Paid Winners"
     assert "Current Paid Winner" in posted[6]
-    assert posted[-1].startswith("🗓️ Daily Winners for")
-    assert "Demo & Playtest Winners → [Jump](https://discord.com/channels/guild-1/wchan/w-2)" in posted[-1]
-    assert "Free Winners → [Jump](https://discord.com/channels/guild-1/wchan/w-4)" in posted[-1]
-    assert "Paid Winners → [Jump](https://discord.com/channels/guild-1/wchan/w-6)" in posted[-1]
+    # Footer uses new format
+    assert posted[-1].startswith("🏆 Daily Winners - ")
+    assert "Top of Post ⟹ [Jump](https://discord.com/channels/guild-1/wchan/w-1)" in posted[-1]
+    assert "Demo & Playtest Winners ⟹ [Jump](https://discord.com/channels/guild-1/wchan/w-2)" in posted[-1]
+    assert "Free Winners ⟹ [Jump](https://discord.com/channels/guild-1/wchan/w-4)" in posted[-1]
+    assert "Paid Winners ⟹ [Jump](https://discord.com/channels/guild-1/wchan/w-6)" in posted[-1]
+    # Header edited with jump links after sections posted
+    header_edits = [(mid, content) for _, mid, content, _ in fake.edits if mid == "w-1"]
+    assert header_edits, "Header message should be edited with jump links"
+    _, header_final = header_edits[-1]
+    assert "Demo & Playtest Winners ⟹ [Jump]" in header_final
+    assert "Free Winners ⟹ [Jump]" in header_final
+    assert "Paid Winners ⟹ [Jump]" in header_final
 
 
 def test_winners_footer_omits_missing_sections(monkeypatch, tmp_path):
@@ -129,6 +140,93 @@ def test_winners_footer_omits_missing_sections(monkeypatch, tmp_path):
     assert "Free Winners" in footer
     assert "Paid Winners" not in footer
     assert "Creator Winners" not in footer
+
+
+def test_winners_header_shows_date_and_subtitle(monkeypatch, tmp_path):
+    day_key = "2026-04-13"
+    path = tmp_path / "daily.json"
+    data = {day_key: {"items": [{"section": "free", "title": "G1", "url": "u1", "channel_id": "c", "message_id": "m-free"}]}}
+    path.write_text(json.dumps(data), encoding="utf-8")
+    fake = FakeDiscordClient(
+        {"m-free": {"reactions": [{"emoji": {"name": "👍"}, "count": 2}]}},
+        {"m-free": [{"id": "bot-1"}, {"id": "u1", "username": "u1"}]},
+    )
+    _patch_common(monkeypatch, path, fake, day_key)
+    winners.main()
+
+    # First posted message is header placeholder
+    first_post = fake.posts[0][1]
+    assert "🏆 Daily Winners - Monday, April 13, 2026" in first_post
+    assert "bookmark to keep permanently" in first_post
+
+    # Header is subsequently edited with jump links
+    header_edits = [(mid, content) for _, mid, content, _ in fake.edits]
+    assert any("Free Winners ⟹ [Jump]" in content for _, content in header_edits)
+
+
+def test_winners_header_no_jump_links_when_guild_id_missing(monkeypatch, tmp_path):
+    day_key = "2026-04-13"
+    path = tmp_path / "daily.json"
+    data = {day_key: {"items": [{"section": "free", "title": "G1", "url": "u1", "channel_id": "c", "message_id": "m-free"}]}}
+    path.write_text(json.dumps(data), encoding="utf-8")
+    fake = FakeDiscordClient(
+        {"m-free": {"reactions": [{"emoji": {"name": "👍"}, "count": 2}]}},
+        {"m-free": [{"id": "bot-1"}, {"id": "u1", "username": "u1"}]},
+    )
+    monkeypatch.setattr(winners, "DISCORD_DAILY_POSTS_FILE", str(path))
+    monkeypatch.setattr(winners.requests, "Session", FakeSession)
+    monkeypatch.setattr(winners, "DiscordClient", lambda session: fake)
+    monkeypatch.setattr(winners, "DISCORD_BOT_TOKEN", "x")
+    monkeypatch.setattr(winners, "DISCORD_WINNERS_CHANNEL_ID", "wchan")
+    monkeypatch.setattr(winners, "DISCORD_GUILD_ID", None)
+    monkeypatch.setenv(winners.WINNERS_DATE_OVERRIDE_ENV, day_key)
+
+    winners.main()
+
+    # No footer when guild ID missing
+    all_content = "\n".join(p[1] for p in fake.posts)
+    assert "Top of Post" not in all_content
+    # Header still posted with date
+    first_post = fake.posts[0][1]
+    assert "🏆 Daily Winners -" in first_post
+
+
+def test_winners_header_footer_reused_on_same_day_rerun(monkeypatch, tmp_path):
+    day_key = "2026-04-08"
+    path = tmp_path / "daily.json"
+    data = {
+        day_key: {
+            "items": [
+                {"section": "free", "title": "Free G", "url": "free-url", "channel_id": "c", "message_id": "m-free"}
+            ],
+            "winners_state": {
+                "intro": {"channel_id": "wchan", "message_id": "intro-1"},
+                "section_headers": {"free": {"channel_id": "wchan", "message_id": "header-free-1"}},
+                "winner_messages": {"free-url": {"channel_id": "wchan", "message_id": "winner-1"}},
+                "footer": {"channel_id": "wchan", "message_id": "footer-1"},
+                "winner_keys": ["free-url"],
+                "winner_vote_counts": {"free-url": 1},
+                "winner_entries": [
+                    {"winner_key": "free-url", "section": "free", "title": "Free G", "url": "free-url", "human_votes": 1, "voter_names": ["u1"]}
+                ],
+            },
+        }
+    }
+    path.write_text(json.dumps(data), encoding="utf-8")
+    fake = FakeDiscordClient(
+        {
+            "m-free": {"reactions": [{"emoji": {"name": "👍"}, "count": 2}]},
+            "intro-1": {},
+            "header-free-1": {},
+            "winner-1": {},
+            "footer-1": {},
+        },
+        {"m-free": [{"id": "bot-1"}, {"id": "u1", "username": "u1"}]},
+    )
+    _patch_common(monkeypatch, path, fake, day_key)
+    winners.main()
+    # No new posts — everything reused
+    assert fake.posts == []
 
 
 def test_bookmark_added_to_winners_game_messages_not_daily_messages(monkeypatch, tmp_path):

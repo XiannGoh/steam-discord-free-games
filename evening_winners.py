@@ -72,14 +72,61 @@ def build_discord_message_link(guild_id: str, channel_id: str, message_id: str) 
     return f"https://discord.com/channels/{guild_id}/{channel_id}/{message_id}"
 
 
-def build_winners_intro_message() -> str:
+def build_winners_header_placeholder(target_day_key: str) -> str:
+    date_str = format_winners_footer_date(target_day_key)
     return "\n".join(
         [
-            "🏆 Daily Game Picks — Winners",
-            "",
-            "React with 🔖 on individual winners to promote them into Gaming Library.",
+            f"🏆 Daily Winners - {date_str}",
+            "Games that won the vote in Step 1. Play them and 🔖 bookmark to keep permanently.",
         ]
     )
+
+
+def build_winners_navigation_header(
+    winners_state: dict,
+    *,
+    guild_id: Optional[str],
+    target_day_key: str,
+    posted_section_keys: List[str],
+) -> str:
+    date_str = format_winners_footer_date(target_day_key)
+    lines = [
+        f"🏆 Daily Winners - {date_str}",
+        "Games that won the vote in Step 1. Play them and 🔖 bookmark to keep permanently.",
+    ]
+
+    if not isinstance(guild_id, str) or not guild_id.strip() or not posted_section_keys:
+        return "\n".join(lines)
+
+    section_labels = {
+        "demo_playtest": "🧪 Demo & Playtest Winners",
+        "free": "🎮 Free Winners",
+        "paid": "💸 Paid Winners",
+        "instagram": "📸 Creator Winners",
+    }
+    section_headers = winners_state.get("section_headers", {})
+    jump_lines = []
+    for section_key in SECTION_ORDER:
+        if section_key not in posted_section_keys:
+            continue
+        section_state = section_headers.get(section_key) if isinstance(section_headers, dict) else None
+        if not isinstance(section_state, dict):
+            continue
+        channel_id = str(section_state.get("channel_id") or "").strip()
+        message_id = str(section_state.get("message_id") or "").strip()
+        if not channel_id or not message_id:
+            continue
+        section_label = section_labels.get(section_key)
+        if section_label:
+            jump_lines.append(
+                f"{section_label} ⟹ [Jump]({build_discord_message_link(guild_id, channel_id, message_id)})"
+            )
+
+    if jump_lines:
+        lines.append("")
+        lines.extend(jump_lines)
+
+    return "\n".join(lines)
 
 
 def build_winners_section_header(section: str) -> str:
@@ -129,10 +176,11 @@ def build_winners_navigation_footer(
         "instagram": "📸 Creator Winners",
     }
     section_headers = winners_state.get("section_headers", {})
+    date_str = format_winners_footer_date(target_day_key)
     lines = [
-        f"🗓️ Daily Winners for {format_winners_footer_date(target_day_key)}",
+        f"🏆 Daily Winners - {date_str}",
         "",
-        f"🏆 Intro / Top of Post → [Jump]({build_discord_message_link(guild_id, intro_channel_id, intro_message_id)})",
+        f"🏆 Top of Post ⟹ [Jump]({build_discord_message_link(guild_id, intro_channel_id, intro_message_id)})",
     ]
     for section_key in SECTION_ORDER:
         if section_key not in posted_section_keys:
@@ -146,7 +194,7 @@ def build_winners_navigation_footer(
             return None
         section_label = section_labels.get(section_key)
         if section_label:
-            lines.append(f"{section_label} → [Jump]({build_discord_message_link(guild_id, channel_id, message_id)})")
+            lines.append(f"{section_label} ⟹ [Jump]({build_discord_message_link(guild_id, channel_id, message_id)})")
     return "\n".join(lines)
 
 
@@ -678,11 +726,12 @@ def publish_winners_for_entries(
         winner_messages = {}
         winners_state["winner_messages"] = winner_messages
 
+    # Post header placeholder first (without jump links) — edited after sections post
     _ensure_post_or_edit_message(
         client,
         channel_id=winners_channel_id,
         state_entry=intro_state,
-        content=build_winners_intro_message(),
+        content=build_winners_header_placeholder(day_key),
         context_prefix=f"winners intro for {day_key}",
     )
 
@@ -739,6 +788,28 @@ def publish_winners_for_entries(
                     )
                 except DiscordMessageNotFoundError:
                     pass
+
+    # Edit header to add jump links now that all section messages exist
+    header_content = build_winners_navigation_header(
+        winners_state,
+        guild_id=DISCORD_GUILD_ID,
+        target_day_key=day_key,
+        posted_section_keys=posted_section_keys,
+    )
+    intro_message_id = str(intro_state.get("message_id") or "").strip()
+    intro_channel_id = str(intro_state.get("channel_id") or winners_channel_id).strip()
+    if intro_message_id and intro_channel_id:
+        try:
+            client.edit_message(
+                intro_channel_id,
+                intro_message_id,
+                header_content,
+                context=f"edit winners header with jump links for {day_key}",
+            )
+        except DiscordMessageNotFoundError:
+            print(f"WARN: winners header message missing; skip header jump-link edit for {day_key}")
+        except Exception as e:
+            print(f"WARN: failed to edit winners header for {day_key}: {e}")
 
     footer_content = build_winners_navigation_footer(
         winners_state,
