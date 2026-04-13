@@ -120,9 +120,28 @@ jobs:
                what you changed.
             6. Open a pull request against main with a clear description of the
                failure and the fix.
-            7. Do not merge the PR — leave it open for human review.
 
             Important: use model claude-sonnet-4-6, not Opus.
+
+      - name: Auto-merge PR from attempt 1
+        id: merge_1
+        if: steps.fix_1.outcome == 'success'
+        continue-on-error: true
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          pr_number="$(gh pr list \
+            --head "fix/auto-fix-${{ github.event.workflow_run.id }}-1" \
+            --json number \
+            --jq '.[0].number')"
+
+          if [ -z "$pr_number" ]; then
+            echo "No PR found for branch fix/auto-fix-${{ github.event.workflow_run.id }}-1"
+            exit 1
+          fi
+
+          echo "Found PR #${pr_number} — enabling auto-merge"
+          gh pr merge "${pr_number}" --squash --auto
 
       - name: Fix attempt 2 of 3
         id: fix_2
@@ -156,9 +175,28 @@ jobs:
                what you changed.
             6. Open a pull request against main with a clear description of the
                failure and the fix.
-            7. Do not merge the PR — leave it open for human review.
 
             Important: use model claude-sonnet-4-6, not Opus.
+
+      - name: Auto-merge PR from attempt 2
+        id: merge_2
+        if: steps.fix_2.outcome == 'success'
+        continue-on-error: true
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          pr_number="$(gh pr list \
+            --head "fix/auto-fix-${{ github.event.workflow_run.id }}-2" \
+            --json number \
+            --jq '.[0].number')"
+
+          if [ -z "$pr_number" ]; then
+            echo "No PR found for branch fix/auto-fix-${{ github.event.workflow_run.id }}-2"
+            exit 1
+          fi
+
+          echo "Found PR #${pr_number} — enabling auto-merge"
+          gh pr merge "${pr_number}" --squash --auto
 
       - name: Fix attempt 3 of 3
         id: fix_3
@@ -192,9 +230,28 @@ jobs:
                what you changed.
             6. Open a pull request against main with a clear description of the
                failure and the fix.
-            7. Do not merge the PR — leave it open for human review.
 
             Important: use model claude-sonnet-4-6, not Opus.
+
+      - name: Auto-merge PR from attempt 3
+        id: merge_3
+        if: steps.fix_3.outcome == 'success'
+        continue-on-error: true
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          pr_number="$(gh pr list \
+            --head "fix/auto-fix-${{ github.event.workflow_run.id }}-3" \
+            --json number \
+            --jq '.[0].number')"
+
+          if [ -z "$pr_number" ]; then
+            echo "No PR found for branch fix/auto-fix-${{ github.event.workflow_run.id }}-3"
+            exit 1
+          fi
+
+          echo "Found PR #${pr_number} — enabling auto-merge"
+          gh pr merge "${pr_number}" --squash --auto
 
       # ------------------------------------------------------------------ #
       # Give up after 3 failed attempts — notify the health monitor channel.
