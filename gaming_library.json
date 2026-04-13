@@ -15,12 +15,12 @@
       "assignments": {
         "195462430535581708": {
           "status": "active",
-          "updated_at_utc": "2026-04-11T15:50:32.935592+00:00"
+          "updated_at_utc": "2026-04-13T11:58:38.137162+00:00"
         }
       },
-      "archived": false,
+      "archived": true,
       "created_at_utc": "2026-04-10T09:39:19.389733+00:00",
-      "updated_at_utc": "2026-04-13T09:19:46.887423+00:00"
+      "updated_at_utc": "2026-04-13T11:58:38.137180+00:00"
     },
     "url:https://www.instagram.com/p/dw6y_zjj2tc/": {
       "identity_key": "url:https://www.instagram.com/p/dw6y_zjj2tc/",
@@ -35,13 +35,13 @@
       },
       "assignments": {
         "195462430535581708": {
-          "status": "active",
-          "updated_at_utc": "2026-04-11T15:50:44.746998+00:00"
+          "status": "dropped",
+          "updated_at_utc": "2026-04-13T11:58:32.684186+00:00"
         }
       },
-      "archived": false,
+      "archived": true,
       "created_at_utc": "2026-04-10T09:39:31.041650+00:00",
-      "updated_at_utc": "2026-04-13T09:19:42.477308+00:00"
+      "updated_at_utc": "2026-04-13T11:58:32.684205+00:00"
     },
     "steam:3716600": {
       "identity_key": "steam:3716600",
@@ -56,13 +56,13 @@
       },
       "assignments": {
         "195462430535581708": {
-          "status": "active",
-          "updated_at_utc": "2026-04-13T09:19:36.758657+00:00"
+          "status": "paused",
+          "updated_at_utc": "2026-04-13T11:58:43.583479+00:00"
         }
       },
       "archived": false,
       "created_at_utc": "2026-04-13T09:19:36.758638+00:00",
-      "updated_at_utc": "2026-04-13T09:19:36.758668+00:00"
+      "updated_at_utc": "2026-04-13T11:58:43.583498+00:00"
     },
     "steam:408400": {
       "identity_key": "steam:408400",
@@ -77,13 +77,13 @@
       },
       "assignments": {
         "195462430535581708": {
-          "status": "active",
-          "updated_at_utc": "2026-04-13T09:19:36.851701+00:00"
+          "status": "dropped",
+          "updated_at_utc": "2026-04-13T11:58:43.995497+00:00"
         }
       },
-      "archived": false,
+      "archived": true,
       "created_at_utc": "2026-04-13T09:19:36.851684+00:00",
-      "updated_at_utc": "2026-04-13T09:19:36.851711+00:00"
+      "updated_at_utc": "2026-04-13T11:58:43.995517+00:00"
     },
     "url:https://www.instagram.com/p/dwrvg40brws/": {
       "identity_key": "url:https://www.instagram.com/p/dwrvg40brws/",
@@ -98,13 +98,13 @@
       },
       "assignments": {
         "195462430535581708": {
-          "status": "active",
-          "updated_at_utc": "2026-04-13T09:19:41.011273+00:00"
+          "status": "dropped",
+          "updated_at_utc": "2026-04-13T11:58:26.725607+00:00"
         }
       },
-      "archived": false,
+      "archived": true,
       "created_at_utc": "2026-04-13T09:19:41.011252+00:00",
-      "updated_at_utc": "2026-04-13T09:19:41.011285+00:00"
+      "updated_at_utc": "2026-04-13T11:58:26.725626+00:00"
     },
     "url:https://www.instagram.com/p/dwrqgefhfmd/": {
       "identity_key": "url:https://www.instagram.com/p/dwrqgefhfmd/",
@@ -119,13 +119,13 @@
       },
       "assignments": {
         "195462430535581708": {
-          "status": "active",
-          "updated_at_utc": "2026-04-13T09:19:41.234777+00:00"
+          "status": "dropped",
+          "updated_at_utc": "2026-04-13T11:58:32.365572+00:00"
         }
       },
-      "archived": false,
+      "archived": true,
       "created_at_utc": "2026-04-13T09:19:41.234758+00:00",
-      "updated_at_utc": "2026-04-13T09:19:41.234785+00:00"
+      "updated_at_utc": "2026-04-13T11:58:32.365591+00:00"
     }
   },
   "daily_posts": {
