@@ -64,9 +64,52 @@ def load_discord_daily_posts(path: str = DISCORD_DAILY_POSTS_FILE) -> Dict[str, 
     return load_json_object(path, log=print)
 
 
-def _slugify(text: str) -> str:
-    normalized = re.sub(r"[^a-z0-9]+", "-", text.lower()).strip("-")
-    return normalized or "untitled"
+def compute_daily_delta(state: Dict[str, Any]) -> str:
+    current_games = state.get("games", {})
+    previous_games = state.get("previous_day_games", {})
+
+    new_games = []
+    status_changes = []
+    pending = 0
+
+    for key, game in current_games.items():
+        if not isinstance(game, dict):
+            continue
+        if key not in previous_games:
+            new_games.append(game.get("canonical_name", "Untitled"))
+        else:
+            prev_assignments = previous_games[key].get("assignments", {})
+            curr_assignments = game.get("assignments", {})
+            for user_id, curr_ass in curr_assignments.items():
+                if not isinstance(curr_ass, dict):
+                    continue
+                prev_ass = prev_assignments.get(user_id)
+                if isinstance(prev_ass, dict) and curr_ass.get("status") != prev_ass.get("status"):
+                    user_mention = f"<@{user_id}>"
+                    game_name = game.get("canonical_name", "Untitled")
+                    old_status = prev_ass.get("status", "unknown")
+                    new_status = curr_ass.get("status", "unknown")
+                    status_changes.append(f"{user_mention} changed {game_name}: {old_status} → {new_status}")
+                # Check pending: assigned but status active and not updated after created
+                if curr_ass.get("status") == STATUS_ACTIVE:
+                    updated = curr_ass.get("updated_at_utc")
+                    created = game.get("created_at_utc")
+                    if updated == created:
+                        pending += 1
+
+    lines = []
+    if new_games:
+        lines.append(f"🎉 {len(new_games)} Games added to library today (bookmarked from Step 2)")
+    if status_changes:
+        lines.append(f"🔄 {len(status_changes)} Status changes since yesterday:")
+        for change in status_changes[:5]:  # limit to 5
+            lines.append(f"  • {change}")
+    if pending:
+        lines.append(f"⏳ {pending} Players who have not reacted on a game they are assigned to (pending status)")
+    if not new_games and not status_changes and not pending:
+        lines.append("No changes since yesterday")
+
+    return "\n".join(lines)
 
 
 def _extract_steam_app_id(url: str) -> Optional[str]:
@@ -243,24 +286,29 @@ def build_daily_library_messages(state: Dict[str, Any], target_day_key: str) -> 
     visible_games = list_visible_games_for_reminder(state)
     header = f"📚 Gaming Library — {target_day_key}"
     if not visible_games:
-        return [{"type": "header", "content": header + "\n\n_No active library games for today._"}]
+        messages = [{"type": "header", "content": header + "\n\n_No active library games for today._"}]
+    else:
+        messages: List[Dict[str, str]] = [{"type": "header", "content": header + "\n\nReact on each game: ✅ active · ⏸️ paused · ❌ dropped"}]
+        for game in visible_games:
+            lines = [f"🎮 {game.get('canonical_name', 'Untitled')}"]
+            url = str(game.get("url") or "").strip()
+            if url:
+                lines.append(url)
+            lines.append("Assigned:")
+            visible_assignments = game.get("visible_assignments", {})
+            if visible_assignments:
+                for user_id, assignment in visible_assignments.items():
+                    status = str(assignment.get("status") or STATUS_ACTIVE)
+                    emoji = STATUS_TO_EMOJI.get(status, "✅")
+                    lines.append(f"- <@{user_id}> {emoji} ({status})")
+            else:
+                lines.append("- _No non-dropped assignees_")
+            messages.append({"type": "game", "identity_key": game["identity_key"], "content": "\n".join(lines)})
 
-    messages: List[Dict[str, str]] = [{"type": "header", "content": header + "\n\nReact on each game: ✅ active · ⏸️ paused · ❌ dropped"}]
-    for game in visible_games:
-        lines = [f"🎮 {game.get('canonical_name', 'Untitled')}"]
-        url = str(game.get("url") or "").strip()
-        if url:
-            lines.append(url)
-        lines.append("Assigned:")
-        visible_assignments = game.get("visible_assignments", {})
-        if visible_assignments:
-            for user_id, assignment in visible_assignments.items():
-                status = str(assignment.get("status") or STATUS_ACTIVE)
-                emoji = STATUS_TO_EMOJI.get(status, "✅")
-                lines.append(f"- <@{user_id}> {emoji} ({status})")
-        else:
-            lines.append("- _No non-dropped assignees_")
-        messages.append({"type": "game", "identity_key": game["identity_key"], "content": "\n".join(lines)})
+    # Add delta summary
+    delta_content = compute_daily_delta(state)
+    messages.append({"type": "delta", "content": f"📊 Daily Delta Summary\n\n{delta_content}"})
+
     return messages
 
 
@@ -558,6 +606,9 @@ def run_daily_post(state_path: str = GAMING_LIBRARY_FILE) -> bool:
     channel_id = DISCORD_GAMING_LIBRARY_CHANNEL_ID
     if not channel_id:
         raise RuntimeError("DISCORD_GAMING_LIBRARY_CHANNEL_ID is not set")
+
+    # Save previous day's games for delta comparison
+    state["previous_day_games"] = dict(state.get("games", {}))
 
     with requests.Session() as session:
         session.headers.update({

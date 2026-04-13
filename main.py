@@ -1206,7 +1206,7 @@ def export_verification_artifact(
         seen_keys.add(k)
     duplicate_item_keys = dup_keys
 
-    footer_state = run_state.get("navigation_footer") if isinstance(run_state.get("navigation_footer"), dict) else {}
+    footer_state = run_state.get("footer") if isinstance(run_state.get("footer"), dict) else {}
     footer_present = bool(footer_state.get("message_id"))
 
     skipped = run_counts.get("skipped", 0)
@@ -1891,6 +1891,46 @@ def build_daily_navigation_footer(
     return "\n".join(lines)
 
 
+def build_daily_picks_navigation_content(
+    run_state: dict,
+    guild_id: Optional[str],
+    target_day_key: str,
+    posted_section_keys: List[str],
+) -> Optional[str]:
+    if not isinstance(guild_id, str) or not guild_id.strip():
+        return None
+
+    lines = [
+        f"📅 Daily Picks - {format_daily_picks_footer_date(target_day_key)}",
+        "Vote 👍 on any game you want to try. Every vote advances to Step 2.",
+    ]
+
+    section_labels = {
+        "demo_playtest": "🧪 Demo & Playtest Picks",
+        "free": "🎮 Free Picks",
+        "paid": "💸 Paid Picks",
+        "instagram": "📸 Creator Picks",
+    }
+    section_headers = run_state.get("section_headers", {})
+
+    for section_key in DAILY_SECTION_ORDER:
+        if section_key not in posted_section_keys:
+            continue
+        section_state = section_headers.get(section_key) if isinstance(section_headers, dict) else None
+        if not isinstance(section_state, dict):
+            continue
+        channel_id = section_state.get("channel_id")
+        message_id = section_state.get("message_id")
+        if not (isinstance(channel_id, str) and isinstance(message_id, str)):
+            continue
+        section_label = section_labels.get(section_key)
+        if not section_label:
+            continue
+        lines.append(f"{section_label} ⟹ [Jump]({build_discord_message_link(guild_id, channel_id, message_id)})")
+
+    return "\n".join(lines)
+
+
 def post_daily_pick_messages(
     demo_playtest_items: List[dict],
     free_items: List[dict],
@@ -1993,6 +2033,11 @@ def post_daily_pick_messages(
             run_counts["skipped"] += 1
         save_discord_daily_posts(daily_posts)
 
+    header_state = run_state.setdefault("header", {})
+    placeholder_content = f"📅 Daily Picks - {format_daily_picks_footer_date(day_key)}\nVote 👍 on any game you want to try. Every vote advances to Step 2."
+    post_or_reconcile_simple(placeholder_content, "header", header_state)
+    sleep_briefly()
+
     intro_state = run_state.setdefault("intro", {})
     post_or_reconcile_simple("🎯 Daily Picks — vote with 👍 on your favorites", "intro", intro_state)
     sleep_briefly()
@@ -2064,6 +2109,9 @@ def post_daily_pick_messages(
                         }
                         print(f"REFRESH: updated {section_key} item {title} for {day_key}")
                         run_counts["updated"] += 1
+                        # Update the existing record
+                        existing_record["description"] = item.get("caption") if section_key == "instagram" else item.get("description")
+                        existing_record["posted_at"] = utc_now_iso()
                     except DiscordMessageNotFoundError:
                         print(f"RECOVER: stale/deleted {section_key} item {title} for {day_key}; posting replacement")
                     except Exception as error:
@@ -2080,6 +2128,9 @@ def post_daily_pick_messages(
                     metadata = {"message_id": existing_message_id, "channel_id": existing_channel_id}
                     print(f"REUSE: {section_key} item {title} for {day_key}")
                     run_counts["reused"] += 1
+                    # Update the existing record
+                    existing_record["description"] = item.get("caption") if section_key == "instagram" else item.get("description")
+                    existing_record["posted_at"] = utc_now_iso()
 
             if metadata is None:
                 metadata = post_to_discord_with_metadata(content, capture_metadata=token_available)
@@ -2090,19 +2141,19 @@ def post_daily_pick_messages(
                         add_thumbs_up_reaction(discord_client, metadata["channel_id"], metadata["message_id"])
                 except Exception as e:
                     print(f"ADD REACTION FAILED: title={title} | error={e}")
-                record_posted_item(
-                    daily_posts=daily_posts,
-                    day_key=day_key,
-                    section=section_key,
-                    title=title,
-                    url=url,
-                    source_type=source_type,
-                    item_key=item_key,
-                    message_id=metadata["message_id"],
-                    channel_id=metadata["channel_id"],
-                    description=item.get("caption") if section_key == "instagram" else item.get("description"),
-                )
                 if is_new_message:
+                    record_posted_item(
+                        daily_posts=daily_posts,
+                        day_key=day_key,
+                        section=section_key,
+                        title=title,
+                        url=url,
+                        source_type=source_type,
+                        item_key=item_key,
+                        message_id=metadata["message_id"],
+                        channel_id=metadata["channel_id"],
+                        description=item.get("caption") if section_key == "instagram" else item.get("description"),
+                    )
                     print(f"CREATE: posted {section_key} item {title} for {day_key}")
                     run_counts["created"] += 1
                 else:
@@ -2112,10 +2163,23 @@ def post_daily_pick_messages(
                 run_counts["skipped"] += 1
             sleep_briefly()
 
-    footer_state = run_state.setdefault("navigation_footer", {})
-    footer_content = build_daily_navigation_footer(run_state, DISCORD_GUILD_ID, day_key, posted_section_keys)
+    # Edit header with jump links now that sections are posted
+    if token_available and discord_client:
+        header_content = build_daily_picks_navigation_content(run_state, DISCORD_GUILD_ID, day_key, posted_section_keys)
+        existing_message_id = header_state.get("message_id")
+        existing_channel_id = header_state.get("channel_id")
+        if existing_message_id and existing_channel_id:
+            try:
+                discord_client.edit_message(existing_channel_id, existing_message_id, header_content, context=f"edit header for {day_key}")
+                header_state["posted_at_utc"] = utc_now_iso()
+                print(f"EDIT: updated header for {day_key}")
+            except Exception as e:
+                print(f"WARN: failed to edit header for {day_key}: {e}")
+
+    footer_state = run_state.setdefault("footer", {})
+    footer_content = build_daily_picks_navigation_content(run_state, DISCORD_GUILD_ID, day_key, posted_section_keys)
     if footer_content:
-        post_or_reconcile_simple(footer_content, "navigation_footer", footer_state)
+        post_or_reconcile_simple(footer_content, "footer", footer_state)
         sleep_briefly()
 
     run_state["completed"] = True
