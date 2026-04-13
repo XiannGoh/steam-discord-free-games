@@ -23,6 +23,7 @@ DISCORD_BOT_TOKEN = os.getenv("DISCORD_BOT_TOKEN")
 DISCORD_GAMING_LIBRARY_CHANNEL_ID = os.getenv("DISCORD_GAMING_LIBRARY_CHANNEL_ID")
 DISCORD_GUILD_ID = os.getenv("DISCORD_GUILD_ID")
 DISCORD_HEALTH_MONITOR_WEBHOOK_URL = os.getenv("DISCORD_HEALTH_MONITOR_WEBHOOK_URL")
+GITHUB_EVENT_NAME_ENV = "GITHUB_EVENT_NAME"
 LIBRARY_DATE_OVERRIDE_ENV = "LIBRARY_DATE_UTC"
 
 STATUS_ACTIVE = "active"
@@ -77,6 +78,16 @@ COMMAND_REFERENCE_MESSAGE = """\
 React on any game message to update your status:
 ✅ Playing · ⏸️ Paused · ❌ Dropped\
 """
+
+
+def is_manual_run() -> bool:
+    """Return True when triggered by workflow_dispatch (manual/test run).
+
+    Manual runs post to Discord but do NOT mark the day as completed so that
+    the subsequent scheduled run always executes cleanly.
+    """
+    event = (os.getenv(GITHUB_EVENT_NAME_ENV, "") or "").strip().lower()
+    return event == "workflow_dispatch"
 
 
 def utc_now_iso() -> str:
@@ -506,6 +517,7 @@ def post_daily_library_reminder(
     day_key: str,
     channel_id: str,
     client: DiscordClient,
+    manual_run: bool = False,
 ) -> bool:
     daily_posts = state.setdefault("daily_posts", {})
     day_entry = daily_posts.setdefault(day_key, {})
@@ -579,8 +591,11 @@ def post_daily_library_reminder(
     }
 
     day_entry["messages"] = reconciled_messages
-    day_entry["completed"] = True
-    day_entry["completed_at_utc"] = utc_now_iso()
+    if manual_run:
+        print(f"MANUAL RUN: gaming library daily post done for {day_key}; skipping completed=True to preserve scheduled run eligibility")
+    else:
+        day_entry["completed"] = True
+        day_entry["completed_at_utc"] = utc_now_iso()
     return changed
 
 
@@ -1095,6 +1110,10 @@ def run_daily_post(state_path: str = GAMING_LIBRARY_FILE) -> bool:
     if not channel_id:
         raise RuntimeError("DISCORD_GAMING_LIBRARY_CHANNEL_ID is not set")
 
+    manual_run = is_manual_run()
+    if manual_run:
+        print("Gaming library daily post is a manual (workflow_dispatch) run — completed flag will not be set")
+
     # Save previous day's games for delta comparison
     state["previous_day_games"] = dict(state.get("games", {}))
 
@@ -1108,7 +1127,7 @@ def run_daily_post(state_path: str = GAMING_LIBRARY_FILE) -> bool:
             _check_channel_permissions(
                 client, channel_id, DISCORD_GUILD_ID, "gaming library daily post",
             )
-        posted = post_daily_library_reminder(state, day_key=day_key, channel_id=channel_id, client=client)
+        posted = post_daily_library_reminder(state, day_key=day_key, channel_id=channel_id, client=client, manual_run=manual_run)
 
     save_gaming_library(state, state_path)
     return posted

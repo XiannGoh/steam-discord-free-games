@@ -2048,12 +2048,13 @@ def post_daily_pick_messages(
     run_state.setdefault("section_headers", {})
     run_state["last_attempt_at_utc"] = utc_now_iso()
 
-    if bool(run_state.get("completed")) and not force_refresh_same_day:
+    if bool(run_state.get("completed")) and not force_refresh_same_day and not manual_run:
         print(f"SKIP: daily picks already completed for {day_key}; rerun protection active (force_refresh_same_day=false)")
         save_discord_daily_posts(daily_posts)
         return run_counts, True, {}
-    if bool(run_state.get("completed")) and force_refresh_same_day:
-        print(f"REFRESH: daily picks already completed for {day_key}; force_refresh_same_day=true so reconciling posts")
+    if bool(run_state.get("completed")) and (force_refresh_same_day or manual_run):
+        label = "force_refresh_same_day=true" if force_refresh_same_day else "manual_run=true"
+        print(f"REFRESH: daily picks already completed for {day_key}; {label} so reconciling posts")
 
     discord_client: Optional[DiscordClient] = None
     if token_available:
@@ -2069,7 +2070,7 @@ def post_daily_pick_messages(
     def post_or_reconcile_simple(message: str, state_key: str, state_obj: dict) -> None:
         existing_message_id = state_obj.get("message_id")
         existing_channel_id = state_obj.get("channel_id")
-        should_attempt_edit = bool(force_refresh_same_day)
+        should_attempt_edit = bool(force_refresh_same_day) or bool(manual_run)
         if (
             token_available
             and discord_client
@@ -2179,7 +2180,7 @@ def post_daily_pick_messages(
             ):
                 existing_channel_id = str(existing_record["channel_id"])
                 existing_message_id = str(existing_record["message_id"])
-                if force_refresh_same_day:
+                if force_refresh_same_day or manual_run:
                     try:
                         payload = discord_client.edit_message(
                             existing_channel_id,

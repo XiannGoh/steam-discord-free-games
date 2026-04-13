@@ -350,6 +350,90 @@ def test_cross_day_duplicate_suppression_and_section_order(monkeypatch, tmp_path
     assert body.index("🧪 Demo & Playtest Winners") < body.index("💸 Paid Winners")
 
 
+def test_manual_run_bypasses_skip_when_winners_unchanged(monkeypatch, tmp_path):
+    """workflow_dispatch run must re-post even when winners keys and vote counts are unchanged."""
+    day_key, path = _setup_daily(tmp_path)
+    data = json.loads(path.read_text(encoding="utf-8"))
+    # Pre-populate winners_state so it looks like a same-day rerun with no changes
+    data[day_key]["winners_state"] = {
+        "intro": {"channel_id": "wchan", "message_id": "intro-1"},
+        "section_headers": {"free": {"channel_id": "wchan", "message_id": "hdr-free-1"}},
+        "winner_messages": {"shared-dupe": {"channel_id": "wchan", "message_id": "wm-1"}},
+        "footer": {"channel_id": "wchan", "message_id": "footer-1"},
+        "winner_keys": ["shared-dupe"],
+        "winner_vote_counts": {"shared-dupe": 1},
+        "winner_entries": [
+            {"winner_key": "shared-dupe", "section": "free", "title": "Late Voted Earlier Day",
+             "url": "shared-dupe", "human_votes": 1, "voter_names": ["jan"]}
+        ],
+    }
+    path.write_text(json.dumps(data), encoding="utf-8")
+
+    fake = FakeDiscordClient(
+        {
+            "m-late": {"reactions": [{"emoji": {"name": "👍"}, "count": 2}]},
+            "intro-1": {}, "hdr-free-1": {}, "wm-1": {}, "footer-1": {},
+        },
+        {"m-late": [{"id": "bot-1"}, {"id": "u1", "username": "jan"}]},
+    )
+    _patch_common(monkeypatch, path, fake, day_key)
+    monkeypatch.setenv(winners.GITHUB_EVENT_NAME_ENV, "workflow_dispatch")
+
+    winners.main()
+
+    # Manual run must produce Discord activity (edits to existing messages at minimum)
+    assert fake.posts or fake.edits, "manual run produced no Discord activity"
+
+
+def test_scheduled_run_skips_when_winners_unchanged(monkeypatch, tmp_path):
+    """Scheduled runs must still skip when winners keys and vote counts are unchanged."""
+    day_key, path = _setup_daily(tmp_path)
+    data = json.loads(path.read_text(encoding="utf-8"))
+    data[day_key]["winners_state"] = {
+        "intro": {"channel_id": "wchan", "message_id": "intro-1"},
+        "section_headers": {"free": {"channel_id": "wchan", "message_id": "hdr-free-1"}},
+        "winner_messages": {"shared-dupe": {"channel_id": "wchan", "message_id": "wm-1"}},
+        "footer": {"channel_id": "wchan", "message_id": "footer-1"},
+        "winner_keys": ["shared-dupe"],
+        "winner_vote_counts": {"shared-dupe": 1},
+        "winner_entries": [
+            {"winner_key": "shared-dupe", "section": "free", "title": "Late Voted Earlier Day",
+             "url": "shared-dupe", "human_votes": 1, "voter_names": ["jan"]}
+        ],
+    }
+    path.write_text(json.dumps(data), encoding="utf-8")
+
+    fake = FakeDiscordClient(
+        {
+            "m-late": {"reactions": [{"emoji": {"name": "👍"}, "count": 2}]},
+            "intro-1": {}, "hdr-free-1": {}, "wm-1": {}, "footer-1": {},
+        },
+        {"m-late": [{"id": "bot-1"}, {"id": "u1", "username": "jan"}]},
+    )
+    _patch_common(monkeypatch, path, fake, day_key)
+    monkeypatch.setenv(winners.GITHUB_EVENT_NAME_ENV, "schedule")
+
+    winners.main()
+
+    assert fake.posts == []
+    assert fake.edits == []
+
+
+def test_is_manual_run_detects_workflow_dispatch(monkeypatch):
+    monkeypatch.setenv(winners.GITHUB_EVENT_NAME_ENV, "workflow_dispatch")
+    assert winners.is_manual_run() is True
+
+
+def test_is_manual_run_returns_false_for_schedule(monkeypatch):
+    monkeypatch.setenv(winners.GITHUB_EVENT_NAME_ENV, "schedule")
+    assert winners.is_manual_run() is False
+
+
+def test_is_manual_run_returns_false_when_env_unset(monkeypatch):
+    monkeypatch.delenv(winners.GITHUB_EVENT_NAME_ENV, raising=False)
+    assert winners.is_manual_run() is False
+
+
 def test_instagram_fallback_description_is_preserved():
     msg = winners.build_winner_game_message(
         {

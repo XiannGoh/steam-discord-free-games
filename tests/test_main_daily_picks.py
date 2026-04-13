@@ -655,6 +655,50 @@ def test_manual_run_followed_by_scheduled_run_executes_normally(monkeypatch, tmp
     assert saved[day_key]["run_state"]["completed"] is True
 
 
+def test_manual_run_bypasses_completed_skip(monkeypatch, tmp_path):
+    """A manual run must post even when completed=True (bypass scheduled-run idempotency skip)."""
+    daily_path = tmp_path / "daily.json"
+    day_key = "2026-04-08"
+    daily_path.write_text(json.dumps({day_key: {"run_state": {"completed": True}}}), encoding="utf-8")
+    posted = []
+
+    monkeypatch.setattr(main, "DISCORD_DAILY_POSTS_FILE", str(daily_path))
+    monkeypatch.setattr(main, "DISCORD_BOT_TOKEN", "token")
+    monkeypatch.setattr(main, "post_to_discord_with_metadata", lambda message, capture_metadata=False: posted.append(message))
+    monkeypatch.setattr(main, "sleep_briefly", lambda: None)
+    monkeypatch.setenv(main.DAILY_DATE_OVERRIDE_ENV, day_key)
+
+    _, rerun_protection_active, _ = main.post_daily_pick_messages(
+        [], [{"title": "Free", "url": "https://store.steampowered.com/app/12", "score": 10}], [], [],
+        manual_run=True,
+    )
+
+    assert not rerun_protection_active  # was NOT skipped
+    assert len(posted) > 0  # posts actually happened
+
+
+def test_scheduled_run_still_skips_when_completed(monkeypatch, tmp_path):
+    """Scheduled runs must still skip when completed=True (unchanged behavior)."""
+    daily_path = tmp_path / "daily.json"
+    day_key = "2026-04-08"
+    daily_path.write_text(json.dumps({day_key: {"run_state": {"completed": True}}}), encoding="utf-8")
+    posted = []
+
+    monkeypatch.setattr(main, "DISCORD_DAILY_POSTS_FILE", str(daily_path))
+    monkeypatch.setattr(main, "DISCORD_BOT_TOKEN", "token")
+    monkeypatch.setattr(main, "post_to_discord_with_metadata", lambda message, capture_metadata=False: posted.append(message))
+    monkeypatch.setattr(main, "sleep_briefly", lambda: None)
+    monkeypatch.setenv(main.DAILY_DATE_OVERRIDE_ENV, day_key)
+
+    _, rerun_protection_active, _ = main.post_daily_pick_messages(
+        [], [{"title": "Free", "url": "https://store.steampowered.com/app/12", "score": 10}], [], [],
+        manual_run=False,
+    )
+
+    assert rerun_protection_active  # was skipped
+    assert posted == []  # nothing posted
+
+
 def test_is_manual_run_detects_workflow_dispatch(monkeypatch):
     monkeypatch.setenv(main.GITHUB_EVENT_NAME_ENV, "workflow_dispatch")
     assert main.is_manual_run() is True
