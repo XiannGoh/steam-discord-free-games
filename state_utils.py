@@ -3,8 +3,15 @@
 import json
 import os
 import tempfile
-from datetime import datetime
+from datetime import datetime, timezone
 from typing import Any, Callable
+
+try:
+    from zoneinfo import ZoneInfo
+
+    _ET = ZoneInfo("America/New_York")
+except Exception:
+    _ET = None  # type: ignore[assignment]
 
 
 LogFn = Callable[[str], None]
@@ -12,6 +19,28 @@ LogFn = Callable[[str], None]
 
 def _default_log(message: str) -> None:
     print(message)
+
+
+def format_et_timestamp(value: Any) -> str | None:
+    """Format an ISO UTC timestamp string as 'Dec 15, 2024 at 7:00 AM ET'.
+
+    Returns None if the value is not a valid timestamp string.
+    Falls back to UTC label if the Eastern timezone is unavailable.
+    """
+    if not isinstance(value, str) or not value.strip():
+        return None
+    text = value.strip().replace("Z", "+00:00")
+    try:
+        parsed = datetime.fromisoformat(text)
+    except ValueError:
+        return None
+    if parsed.tzinfo is None:
+        parsed = parsed.replace(tzinfo=timezone.utc)
+    if _ET is None:
+        return parsed.astimezone(timezone.utc).strftime("%b %-d, %Y at %-I:%M %p UTC")
+    et = parsed.astimezone(_ET)
+    hour_12 = (et.hour % 12) or 12
+    return f"{et.strftime('%b')} {et.day}, {et.year} at {hour_12}:{et.minute:02d} {et.strftime('%p')} ET"
 
 
 def ensure_parent_dir(path: str) -> None:

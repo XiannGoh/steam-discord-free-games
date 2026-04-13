@@ -1,6 +1,6 @@
 import json
 
-from state_utils import load_json_object, prune_latest_iso_dates, prune_latest_keys, save_json_object_atomic
+from state_utils import format_et_timestamp, load_json_object, prune_latest_iso_dates, prune_latest_keys, save_json_object_atomic
 
 
 def test_load_json_object_returns_default_for_invalid_json(tmp_path):
@@ -32,6 +32,37 @@ def test_prune_latest_keys_keeps_newest_keys():
     assert len(pruned) == 12
     assert "week-01" not in pruned
     assert "week-15" in pruned
+
+
+def test_format_et_timestamp_basic_utc_noon():
+    # 2024-12-15T17:00:00Z is noon ET (UTC-5 in December)
+    result = format_et_timestamp("2024-12-15T17:00:00Z")
+    assert result == "Dec 15, 2024 at 12:00 PM ET"
+
+
+def test_format_et_timestamp_z_suffix_handled():
+    result = format_et_timestamp("2026-04-10T13:10:00Z")
+    # UTC-4 in April (EDT), so 13:10 UTC = 9:10 AM ET
+    assert result == "Apr 10, 2026 at 9:10 AM ET"
+
+
+def test_format_et_timestamp_returns_none_for_empty_string():
+    assert format_et_timestamp("") is None
+
+
+def test_format_et_timestamp_returns_none_for_non_string():
+    assert format_et_timestamp(None) is None
+    assert format_et_timestamp(12345) is None
+
+
+def test_format_et_timestamp_returns_none_for_invalid_iso():
+    assert format_et_timestamp("not-a-date") is None
+
+
+def test_format_et_timestamp_midnight_utc():
+    # 2026-01-01T00:00:00Z is Dec 31, 2025 at 7:00 PM ET (UTC-5 in January)
+    result = format_et_timestamp("2026-01-01T00:00:00Z")
+    assert result == "Dec 31, 2025 at 7:00 PM ET"
 
 
 def test_prune_latest_iso_dates_handles_mixed_keys_safely():

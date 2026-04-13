@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import sys
 from dataclasses import asdict, dataclass, field
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
@@ -11,6 +12,8 @@ from typing import Any
 from zoneinfo import ZoneInfo
 
 ROOT = Path(__file__).resolve().parent.parent
+sys.path.insert(0, str(ROOT))
+from state_utils import format_et_timestamp as _format_et_timestamp_util  # noqa: E402
 WEEKLY_PATHS = {
     "messages": ROOT / "data/scheduling/weekly_schedule_messages.json",
     "responses": ROOT / "data/scheduling/weekly_schedule_responses.json",
@@ -142,12 +145,7 @@ def _parse_iso_utc(value: Any) -> datetime | None:
 
 
 def _format_ny_timestamp(value: Any) -> str | None:
-    parsed = _parse_iso_utc(value)
-    if parsed is None:
-        return None
-    ny_time = parsed.astimezone(NEW_YORK_TZ)
-    hour_12 = ((ny_time.hour - 1) % 12) + 1
-    return f"{ny_time.strftime('%b')} {ny_time.day}, {hour_12}:{ny_time.minute:02d} {ny_time.strftime('%p')} ET"
+    return _format_et_timestamp_util(value)
 
 
 def evaluate_workflow_status(
