@@ -41,6 +41,12 @@ jobs:
         run: |
           echo "${{ secrets.INSTAGRAM_SESSION_B64 }}" | base64 -d > instaloader.session
 
+      - name: Sanity-check state files
+        continue-on-error: true
+        env:
+          PYTHONPATH: .
+        run: python scripts/check_state_sanity.py
+
       - name: Run Steam script
         env:
           DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}

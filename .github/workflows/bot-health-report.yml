@@ -19,6 +19,14 @@ jobs:
       - name: Check out repository
         uses: actions/checkout@v5
 
+      - name: Install Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: "3.11"
+
+      - name: Install packages
+        run: pip install -r requirements.txt
+
       - name: Collect workflow run status
         id: collect-workflows
         uses: actions/github-script@v7

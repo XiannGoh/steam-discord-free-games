@@ -27,7 +27,7 @@ jobs:
       #    Claude has full repo context available for all fix attempts.
       # ------------------------------------------------------------------ #
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       # ------------------------------------------------------------------ #
       # 2. Download the daily_verification.json artifact from the triggering
