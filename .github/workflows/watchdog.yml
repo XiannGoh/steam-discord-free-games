@@ -1,0 +1,259 @@
+name: Missed-Run Watchdog
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "0 * * * *"
+
+permissions:
+  actions: write
+  contents: read
+
+jobs:
+  watchdog:
+    runs-on: ubuntu-latest
+
+    steps:
+      # ------------------------------------------------------------------ #
+      # Check each scheduled workflow for missed runs and trigger if overdue.
+      #
+      # Two detection modes:
+      #
+      # SAME-DAY: used when 1.5× the expected interval exceeds 24 hours.
+      #   Triggers if no successful run has completed since 00:00 UTC today.
+      #   weekly-scheduling-bot additionally requires today to be Saturday.
+      #
+      # ELAPSED-TIME: used for short-interval workflows (1.5× ≤ 24 h).
+      #   Triggers if now − last_completed_run > 1.5× expected interval.
+      #
+      # Per-workflow try/catch isolates failures so one bad check cannot
+      # block the others.
+      # ------------------------------------------------------------------ #
+      - name: Check workflows and trigger overdue ones
+        id: check
+        continue-on-error: true
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const WATCHED = [
+              // --- Same-day mode (1.5× interval > 24 h) ---
+              {
+                file: "evening-winners.yml",
+                name: "Daily Game Picks Winners",
+                mode: "same-day",
+              },
+              {
+                file: "gaming-library-daily.yml",
+                name: "Gaming Library Daily Reminder",
+                mode: "same-day",
+              },
+              {
+                file: "weekly-scheduling-bot.yml",
+                name: "Weekly Scheduling Bot",
+                mode: "saturday-only",
+              },
+
+              // --- Elapsed-time mode (1.5× interval ≤ 24 h) ---
+              {
+                file: "daily.yml",
+                name: "Steam Free Games",
+                mode: "elapsed",
+                intervalMs: 12 * 60 * 60 * 1000,   // 12 h → threshold 18 h
+              },
+              {
+                file: "gaming-library-sync.yml",
+                name: "Gaming Library Sync",
+                mode: "elapsed",
+                intervalMs: 1 * 60 * 60 * 1000,    // 1 h → threshold 90 min
+              },
+              {
+                file: "weekly-scheduling-responses-sync.yml",
+                name: "Weekly Scheduling Responses Sync",
+                mode: "elapsed",
+                intervalMs: 3 * 60 * 60 * 1000,    // 3 h → threshold 4.5 h
+              },
+            ];
+
+            const now = new Date();
+
+            // 00:00 UTC today
+            const todayUtcMidnight = new Date(
+              now.toISOString().slice(0, 10) + "T00:00:00Z"
+            );
+
+            const isSaturday = now.getUTCDay() === 6;
+
+            const alerts = [];
+
+            for (const wf of WATCHED) {
+              try {
+                // saturday-only: skip on non-Saturday entirely
+                if (wf.mode === "saturday-only" && !isSaturday) {
+                  core.info(`SKIP ${wf.name}: today is not Saturday`);
+                  continue;
+                }
+
+                const runsResp = await github.rest.actions.listWorkflowRuns({
+                  owner: context.repo.owner,
+                  repo: context.repo.repo,
+                  workflow_id: wf.file,
+                  per_page: 10,
+                  exclude_pull_requests: true,
+                });
+                const runs = runsResp.data.workflow_runs || [];
+
+                let shouldTrigger = false;
+                let reason = "";
+
+                if (wf.mode === "same-day" || wf.mode === "saturday-only") {
+                  // Look for any successful run since 00:00 UTC today.
+                  const successToday = runs.find(
+                    (r) =>
+                      r.conclusion === "success" &&
+                      new Date(r.updated_at) >= todayUtcMidnight
+                  );
+                  if (successToday) {
+                    core.info(
+                      `OK ${wf.name}: successful run today at ${successToday.updated_at}`
+                    );
+                  } else {
+                    shouldTrigger = true;
+                    reason = `no successful run since ${todayUtcMidnight.toISOString()}`;
+                  }
+                } else {
+                  // Elapsed-time mode: compare now against last completed run.
+                  const thresholdMs = wf.intervalMs * 1.5;
+                  const lastCompleted = runs.find((r) => r.status === "completed");
+                  if (!lastCompleted) {
+                    shouldTrigger = true;
+                    reason = "no completed runs found";
+                  } else {
+                    const ageMs = now - new Date(lastCompleted.updated_at);
+                    if (ageMs > thresholdMs) {
+                      shouldTrigger = true;
+                      reason = `last completed run was ${Math.round(ageMs / 60000)} min ago (threshold ${Math.round(thresholdMs / 60000)} min)`;
+                    } else {
+                      core.info(
+                        `OK ${wf.name}: last completed run ${Math.round(ageMs / 60000)} min ago`
+                      );
+                    }
+                  }
+                }
+
+                if (shouldTrigger) {
+                  core.warning(`OVERDUE ${wf.name}: ${reason} — triggering`);
+                  try {
+                    await github.rest.actions.createWorkflowDispatch({
+                      owner: context.repo.owner,
+                      repo: context.repo.repo,
+                      workflow_id: wf.file,
+                      ref: "main",
+                      inputs: {},
+                    });
+                    core.info(`Triggered ${wf.name} via workflow_dispatch`);
+                    alerts.push({
+                      name: wf.name,
+                      reason,
+                      triggeredAt: now.toISOString(),
+                    });
+                  } catch (triggerErr) {
+                    core.error(
+                      `Failed to trigger ${wf.name}: ${triggerErr.message}`
+                    );
+                    alerts.push({
+                      name: wf.name,
+                      reason,
+                      triggeredAt: now.toISOString(),
+                      triggerError: triggerErr.message,
+                    });
+                  }
+                }
+              } catch (checkErr) {
+                core.error(
+                  `Error checking ${wf.name}: ${checkErr.message}`
+                );
+              }
+            }
+
+            core.setOutput("alerts", JSON.stringify(alerts));
+
+      # ------------------------------------------------------------------ #
+      # Post one Discord alert per triggered workflow.
+      # Skipped entirely when no workflows were triggered.
+      # ------------------------------------------------------------------ #
+      - name: Post watchdog alerts to Discord
+        if: steps.check.outputs.alerts != '[]' && steps.check.outputs.alerts != ''
+        continue-on-error: true
+        env:
+          DISCORD_HEALTH_MONITOR_WEBHOOK_URL: ${{ secrets.DISCORD_HEALTH_MONITOR_WEBHOOK_URL }}
+          ALERTS_JSON: ${{ steps.check.outputs.alerts }}
+          RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+        run: |
+          python3 - <<'PY'
+          import json
+          import os
+          import subprocess
+          import sys
+
+          webhook = os.environ.get("DISCORD_HEALTH_MONITOR_WEBHOOK_URL", "")
+          if not webhook:
+              print("DISCORD_HEALTH_MONITOR_WEBHOOK_URL not set — skipping Discord alert")
+              sys.exit(0)
+
+          alerts = json.loads(os.environ.get("ALERTS_JSON", "[]"))
+          run_url = os.environ.get("RUN_URL", "")
+
+          lines = []
+          for alert in alerts:
+              name = alert.get("name", "unknown workflow")
+              triggered_at = alert.get("triggeredAt", "")
+              trigger_error = alert.get("triggerError")
+              reason = alert.get("reason", "")
+
+              if trigger_error:
+                  lines.append(
+                      f"⚠️ Watchdog: **{name}** was overdue ({reason}) "
+                      f"— trigger FAILED: {trigger_error}"
+                  )
+              else:
+                  lines.append(
+                      f"⚠️ Watchdog: **{name}** was overdue ({reason}) "
+                      f"— triggered automatically at {triggered_at}"
+                  )
+
+          if run_url:
+              lines.append(f"Watchdog run: {run_url}")
+
+          content = "\n".join(lines)
+          payload = json.dumps({"content": content})
+
+          response_file = "/tmp/watchdog-discord-response.txt"
+          result = subprocess.run(
+              [
+                  "curl", "--silent", "--show-error",
+                  "--output", response_file,
+                  "--write-out", "%{http_code}",
+                  "--header", "Content-Type: application/json",
+                  "--header", "User-Agent: steam-discord-free-games-watchdog/1.0",
+                  "--data", payload,
+                  "--request", "POST",
+                  webhook,
+              ],
+              check=False,
+              text=True,
+              capture_output=True,
+          )
+          http_status = (result.stdout or "").strip()
+          if http_status.startswith("2"):
+              print(f"Discord alert posted: HTTP {http_status}")
+          else:
+              print(f"Discord alert failed: HTTP {http_status}", file=sys.stderr)
+              try:
+                  with open(response_file, encoding="utf-8") as f:
+                      body = f.read()
+                  if body.strip():
+                      print(body, file=sys.stderr)
+              except OSError:
+                  pass
+              sys.exit(1)
+          PY
