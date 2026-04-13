@@ -1,0 +1,92 @@
+{
+  "step-1-vote-on-games-to-test": {
+    "description": "Morning candidate games and voting",
+    "required": {
+      "intro": true,
+      "min_items": 1,
+      "footer": false,
+      "reactions": ["👍"],
+      "no_duplicates": true
+    },
+    "optional": {
+      "sections": ["Free Picks", "Paid Under $20", "Instagram Creator Picks", "Demos / Playtests"]
+    },
+    "broken_if": [
+      "no games posted",
+      "duplicate game messages",
+      "missing intro",
+      "bot reaction counted in votes"
+    ]
+  },
+  "step-2-test-then-vote-to-keep": {
+    "description": "Evening winners and bookmarkable final picks",
+    "required": {
+      "intro": true,
+      "min_items": 1,
+      "footer": true,
+      "reactions": ["🔖"],
+      "no_duplicates": true
+    },
+    "optional": {
+      "sections": ["Free Picks", "Paid Under $20", "Instagram Creator Picks", "Demos / Playtests"]
+    },
+    "broken_if": [
+      "no winners posted",
+      "duplicate winners",
+      "missing footer",
+      "missing intro",
+      "bot vote counted as human vote"
+    ]
+  },
+  "step-3-review-existing-games": {
+    "description": "Persistent playable backlog with live player status",
+    "required": {
+      "intro": true,
+      "min_items": 0,
+      "footer": true,
+      "reactions": ["✅", "⏸️", "❌"],
+      "no_duplicates": true
+    },
+    "optional": {},
+    "broken_if": [
+      "game entry missing name",
+      "IG Picks entry without actual game name",
+      "missing footer",
+      "duplicate library entries"
+    ]
+  },
+  "update-weekly-schedule-here": {
+    "description": "Availability overlap and session coordination",
+    "required": {
+      "intro": false,
+      "min_items": 0,
+      "footer": false,
+      "reactions": [],
+      "no_duplicates": true
+    },
+    "optional": {
+      "sections": ["Morning", "Afternoon", "Evening", "Late Night"]
+    },
+    "broken_if": [
+      "scheduling post for game not in active library",
+      "ping sent with zero player overlap",
+      "missing availability time bucket"
+    ]
+  },
+  "xiann-gpt-bot-health-monitor": {
+    "description": "Workflow health, debugging, verification, and escalation",
+    "required": {
+      "intro": false,
+      "min_items": 1,
+      "footer": false,
+      "reactions": [],
+      "no_duplicates": false
+    },
+    "optional": {},
+    "broken_if": [
+      "no health report posted after workflow run",
+      "missing workflow status",
+      "missing verification result"
+    ]
+  }
+}
