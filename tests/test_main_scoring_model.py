@@ -264,6 +264,39 @@ def test_paid_game_with_download_demo_signal_allowed_in_demo_playtest(monkeypatc
     assert item["keep"] is True
 
 
+def test_vr_game_detected_from_tags_is_excluded(monkeypatch):
+    html = """
+    <html>
+      <head><meta property="og:title" content="VR Party" /></head>
+      <body>
+        <div id="appHubAppName">VR Party</div>
+        <div class="game_description_snippet">Team up with friends</div>
+        <div class="glance_tags popular_tags">
+          <a class="app_tag">Virtual Reality</a>
+          <a class="app_tag">Multiplayer</a>
+        </div>
+      </body>
+    </html>
+    """
+    stub_app_pages(monkeypatch, {"910": html})
+
+    item = main.inspect_game("steam_demo", "910")
+    assert item is None
+
+
+def test_vr_game_detected_from_description_is_excluded(monkeypatch):
+    html = build_html(
+        "VR Party",
+        "Team up in virtual reality",
+        "Multiplayer Online Co-Op up to 6 players Download Demo",
+        "Very Positive",
+    )
+    stub_app_pages(monkeypatch, {"911": html})
+
+    item = main.inspect_game("steam_demo", "911")
+    assert item is None
+
+
 def test_playtest_request_access_or_join_playtest_allowed(monkeypatch):
     request_access = build_html(
         "Squad Test Playtest",
