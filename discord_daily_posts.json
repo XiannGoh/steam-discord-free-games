@@ -3819,6 +3819,10 @@
         "instagram": {
           "message_id": "1493173550704754699",
           "channel_id": "1491294533751799809"
+        },
+        "free": {
+          "message_id": "1493191148867551272",
+          "channel_id": "1491294533751799809"
         }
       },
       "winner_messages": {
@@ -3837,6 +3841,14 @@
         "https://www.instagram.com/p/DWrqGeFhFMd/": {
           "message_id": "1493173554525503548",
           "channel_id": "1491294533751799809"
+        },
+        "https://store.steampowered.com/app/1568540/": {
+          "message_id": "1493191155867979866",
+          "channel_id": "1491294533751799809"
+        },
+        "https://store.steampowered.com/app/2543810/": {
+          "message_id": "1493191174847205569",
+          "channel_id": "1491294533751799809"
         }
       },
       "footer": {},
@@ -3845,28 +3857,57 @@
         "1493173538625159340",
         "1493173541699326015",
         "1493173543540887654",
+        "1493191148867551272",
+        "1493191155867979866",
         "1493173545675784213",
+        "1493191174847205569",
         "1493173547139469362",
         "1493173550704754699",
         "1493173552428617818",
         "1493173554525503548"
       ],
-      "last_action": "create",
-      "updated_at_utc": "2026-04-13T08:58:37.618360+00:00",
+      "last_action": "edit",
+      "updated_at_utc": "2026-04-13T10:09:03.187702+00:00",
       "posted_at_utc": "2026-04-13T08:58:37.618375+00:00",
       "winner_keys": [
+        "https://store.steampowered.com/app/1568540/",
+        "https://store.steampowered.com/app/2543810/",
         "https://store.steampowered.com/app/3716600/",
         "https://store.steampowered.com/app/408400/",
         "https://www.instagram.com/p/DWrVg40BrWs/",
         "https://www.instagram.com/p/DWrqGeFhFMd/"
       ],
       "winner_vote_counts": {
+        "https://store.steampowered.com/app/1568540/": 1,
+        "https://store.steampowered.com/app/2543810/": 1,
         "https://store.steampowered.com/app/3716600/": 1,
         "https://store.steampowered.com/app/408400/": 1,
         "https://www.instagram.com/p/DWrVg40BrWs/": 1,
         "https://www.instagram.com/p/DWrqGeFhFMd/": 1
       },
       "winner_entries": [
+        {
+          "winner_key": "https://store.steampowered.com/app/1568540/",
+          "section": "free",
+          "title": "Smithworks",
+          "url": "https://store.steampowered.com/app/1568540/",
+          "description": "Smithworks is a first-person 3D cooperative multiplayer game where players play as fledgling blacksmiths. It is a humorous and chaotic experience where players will need to communicate effectively in order to craft these weapons quickly before the customers get angry.",
+          "human_votes": 1,
+          "voter_names": [
+            "Thomas"
+          ]
+        },
+        {
+          "winner_key": "https://store.steampowered.com/app/2543810/",
+          "section": "paid",
+          "title": "American Truck Simulator - Nebraska",
+          "url": "https://store.steampowered.com/app/2543810/",
+          "description": null,
+          "human_votes": 1,
+          "voter_names": [
+            "Thomas"
+          ]
+        },
         {
           "winner_key": "https://store.steampowered.com/app/3716600/",
           "section": "paid",
