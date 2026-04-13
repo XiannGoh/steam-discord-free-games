@@ -41,6 +41,7 @@ jobs:
           DISCORD_SCHEDULING_BOT_TOKEN: ${{ secrets.DISCORD_SCHEDULING_BOT_TOKEN }}
           DISCORD_SCHEDULING_CHANNEL_ID: ${{ secrets.DISCORD_SCHEDULING_CHANNEL_ID }}
           SCHEDULE_WEEK_START: ${{ inputs.schedule_week_start }}
+          GITHUB_EVENT_NAME: ${{ github.event_name }}
         run: python scripts/post_weekly_availability.py
 
       - name: Verify weekly schedule output
