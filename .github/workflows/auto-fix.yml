@@ -47,39 +47,71 @@ jobs:
           path: artifacts/
 
       # ------------------------------------------------------------------ #
-      # 3. Decide whether a fix is needed:
+      # 3. Download the discord_verification.json artifact written by
+      #    scripts/verify_discord_output.py in the triggering daily run.
+      #    Separate step from the daily_verification download so each
+      #    artifact type can fail independently without masking the other.
+      # ------------------------------------------------------------------ #
+      - name: Download Discord verification artifact
+        id: download_discord
+        continue-on-error: true
+        uses: actions/download-artifact@v4
+        with:
+          github-token: ${{ github.token }}
+          run-id: ${{ github.event.workflow_run.id }}
+          pattern: discord-verification-*
+          merge-multiple: true
+          path: artifacts/
+
+      # ------------------------------------------------------------------ #
+      # 4. Decide whether a fix is needed:
       #    - workflow concluded with failure, OR
-      #    - artifact exists and reports pass: false
+      #    - daily_verification.json reports pass: false, OR
+      #    - discord_verification.json reports pass: false
       # Sets should_fix and trigger_reason outputs.
       # ------------------------------------------------------------------ #
       - name: Evaluate fix trigger
         id: check
         run: |
           conclusion="${{ github.event.workflow_run.conclusion }}"
-          pass_value="true"
 
+          daily_pass="true"
           if [ -f artifacts/daily_verification.json ]; then
-            pass_value="$(python3 -c "
+            daily_pass="$(python3 -c "
           import json, sys
           try:
               d = json.load(open('artifacts/daily_verification.json'))
               print(str(d.get('pass', True)).lower())
           except Exception as e:
               print('true')
-              print(f'WARN: could not parse artifact: {e}', file=sys.stderr)
+              print(f'WARN: could not parse daily_verification.json: {e}', file=sys.stderr)
+          ")"
+          fi
+
+          discord_pass="true"
+          if [ -f artifacts/discord_verification.json ]; then
+            discord_pass="$(python3 -c "
+          import json, sys
+          try:
+              d = json.load(open('artifacts/discord_verification.json'))
+              print(str(d.get('pass', True)).lower())
+          except Exception as e:
+              print('true')
+              print(f'WARN: could not parse discord_verification.json: {e}', file=sys.stderr)
           ")"
           fi
 
           echo "Daily workflow conclusion: ${conclusion}"
-          echo "Verification artifact pass value: ${pass_value}"
+          echo "daily_verification pass: ${daily_pass}"
+          echo "discord_verification pass: ${discord_pass}"
 
-          if [ "$conclusion" = "failure" ] || [ "$pass_value" = "false" ]; then
+          if [ "$conclusion" = "failure" ] || [ "$daily_pass" = "false" ] || [ "$discord_pass" = "false" ]; then
             echo "should_fix=true" >> "$GITHUB_OUTPUT"
-            echo "trigger_reason=conclusion=${conclusion}, pass=${pass_value}" >> "$GITHUB_OUTPUT"
+            echo "trigger_reason=conclusion=${conclusion}, daily_pass=${daily_pass}, discord_pass=${discord_pass}" >> "$GITHUB_OUTPUT"
             echo "Fix needed — proceeding with auto-fix attempts."
           else
             echo "should_fix=false" >> "$GITHUB_OUTPUT"
-            echo "No fix needed — conclusion=${conclusion}, pass=${pass_value}. Exiting."
+            echo "No fix needed — conclusion=${conclusion}, daily_pass=${daily_pass}, discord_pass=${discord_pass}. Exiting."
           fi
 
       # ------------------------------------------------------------------ #
