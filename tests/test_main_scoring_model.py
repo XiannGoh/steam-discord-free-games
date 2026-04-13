@@ -42,7 +42,7 @@ def test_unknown_review_sentiment_penalized_and_blocked_for_paid(monkeypatch):
     free_html = build_html("Unknown Free", "friends game", base_text, review_sentiment="")
     paid_html = build_html("Unknown Paid", "friends game", base_text, review_sentiment="")
     stub_app_pages(monkeypatch, {"101": free_html, "102": paid_html})
-    monkeypatch.setattr(main, "get_price_info", lambda app_id: (9.99, False, 0))
+    monkeypatch.setattr(main, "get_price_info", lambda app_id: (9.99, False, 0, "game"))
 
     free_item = main.inspect_game("steam_free", "101")
     paid_item = main.inspect_game("paid_candidate", "102")
@@ -137,7 +137,7 @@ def test_paid_rejects_unknown_and_mixed(monkeypatch):
     unknown = build_html("Paid Unknown", "friends", "Multiplayer Online Co-Op up to 6 players")
     mixed = build_html("Paid Mixed", "friends", "Multiplayer Online Co-Op up to 6 players", "Mixed")
     stub_app_pages(monkeypatch, {"601": unknown, "602": mixed})
-    monkeypatch.setattr(main, "get_price_info", lambda app_id: (15.0, False, 0))
+    monkeypatch.setattr(main, "get_price_info", lambda app_id: (15.0, False, 0, "game"))
 
     unknown_item = main.inspect_game("paid_candidate", "601")
     mixed_item = main.inspect_game("paid_candidate", "602")
@@ -487,10 +487,26 @@ def test_discount_scoring_boosts_paid_games(monkeypatch):
     stub_app_pages(monkeypatch, {"1301": html, "1302": html})
 
     # 50% discount -> +3
-    monkeypatch.setattr(main, "get_price_info", lambda app_id: (10.0, False, 50) if app_id == "1301" else (10.0, False, 0))
+    monkeypatch.setattr(main, "get_price_info", lambda app_id: (10.0, False, 50, "game") if app_id == "1301" else (10.0, False, 0, "game"))
 
     discounted_item = main.inspect_game("paid_candidate", "1301")
     regular_item = main.inspect_game("paid_candidate", "1302")
 
     assert discounted_item is not None and regular_item is not None
     assert discounted_item["score"] == regular_item["score"] + 3
+
+
+def test_dlc_hard_excluded_from_paid_section(monkeypatch):
+    html = build_html(
+        "DLC Pack",
+        "expansion content",
+        "Multiplayer Online Co-Op up to 6 players",
+        "Very Positive",
+    )
+    stub_app_pages(monkeypatch, {"1401": html})
+
+    # DLC type should be excluded
+    monkeypatch.setattr(main, "get_price_info", lambda app_id: (15.0, False, 0, "dlc"))
+
+    item = main.inspect_game("paid_candidate", "1401")
+    assert item is None  # DLC should be excluded

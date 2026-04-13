@@ -714,11 +714,11 @@ def is_vr_content(title: str, description: str, text: str, tags: List[str]) -> b
     return False
 
 
-def get_price_info(app_id: str) -> Tuple[Optional[float], bool, Optional[int]]:
+def get_price_info(app_id: str) -> Tuple[Optional[float], bool, Optional[int], Optional[str]]:
     try:
         url = (
             f"https://store.steampowered.com/api/appdetails"
-            f"?appids={app_id}&cc=us&filters=price_overview,is_free"
+            f"?appids={app_id}&cc=us"
         )
         response = requests.get(url, headers=HEADERS, timeout=30)
         response.raise_for_status()
@@ -726,26 +726,26 @@ def get_price_info(app_id: str) -> Tuple[Optional[float], bool, Optional[int]]:
 
         app_data = data.get(str(app_id), {})
         if not app_data.get("success"):
-            return None, False, None
+            return None, False, None, None
 
         info = app_data.get("data", {})
 
         if info.get("is_free") is True:
-            return 0.0, True, None
+            return 0.0, True, None, info.get("type")
 
         price_info = info.get("price_overview")
         if not price_info:
-            return None, False, None
+            return None, False, None, info.get("type")
 
         final_price_cents = price_info.get("final")
         if final_price_cents is None:
-            return None, False, None
+            return None, False, None, info.get("type")
 
         discount_percent = price_info.get("discount_percent", 0)
-        return round(final_price_cents / 100.0, 2), False, discount_percent
+        return round(final_price_cents / 100.0, 2), False, discount_percent, info.get("type")
     except Exception as e:
         print(f"PRICE API FAILED: app_id={app_id} | error={e}")
-        return None, False, None
+        return None, False, None, None
 
 
 def detect_item_type(source: str, app_id: str, title: str, text: str) -> str:
@@ -762,7 +762,10 @@ def detect_item_type(source: str, app_id: str, title: str, text: str) -> str:
         return "demo"
 
     if source == "paid_candidate":
-        price, is_free, _ = get_price_info(app_id)
+        price, is_free, _, item_type = get_price_info(app_id)
+
+        if item_type == "dlc":
+            return "ignore"
 
         if is_free:
             return "ignore"
@@ -1437,8 +1440,8 @@ def inspect_game(source: str, app_id: str) -> Optional[dict]:
     item_type = detect_item_type(source, app_id, title, page_text)
 
     if source == "paid_candidate":
-        price, is_free, discount_percent = get_price_info(app_id)
-        print(f"PAID CHECK: {title} | price={price} | is_free={is_free} | discount={discount_percent}% | type={item_type}")
+        price, is_free, discount_percent, api_type = get_price_info(app_id)
+        print(f"PAID CHECK: {title} | price={price} | is_free={is_free} | discount={discount_percent}% | api_type={api_type} | item_type={item_type}")
 
     if item_type == "ignore":
         return None
