@@ -3424,5 +3424,383 @@
         "description": "This game is perfect to play with a friend or significant other | Game: Capy Castaway  #indiegame #whattoplay #multip..."
       }
     ]
+  },
+  "2026-04-13": {
+    "run_state": {
+      "section_headers": {
+        "demo_playtest": {
+          "message_id": "1493164458128834693",
+          "channel_id": "592534544708796474",
+          "posted_at_utc": "2026-04-13T08:22:28.939526+00:00"
+        },
+        "free": {
+          "message_id": "1493164507487535174",
+          "channel_id": "592534544708796474",
+          "posted_at_utc": "2026-04-13T08:22:40.387069+00:00"
+        },
+        "paid": {
+          "message_id": "1493164554320875590",
+          "channel_id": "592534544708796474",
+          "posted_at_utc": "2026-04-13T08:22:51.750844+00:00"
+        },
+        "instagram": {
+          "message_id": "1493164600248766505",
+          "channel_id": "592534544708796474",
+          "posted_at_utc": "2026-04-13T08:23:02.634513+00:00"
+        }
+      },
+      "last_attempt_at_utc": "2026-04-13T08:22:26.639521+00:00",
+      "intro": {
+        "message_id": "1493164451074019359",
+        "channel_id": "592534544708796474",
+        "posted_at_utc": "2026-04-13T08:22:27.129371+00:00"
+      },
+      "navigation_footer": {},
+      "completed": true,
+      "completed_at_utc": "2026-04-13T08:23:37.214631+00:00"
+    },
+    "items": [
+      {
+        "item_key": "7a32406d1ee58ee7",
+        "section": "demo_playtest",
+        "title": "Birth of Shadows®",
+        "url": "https://store.steampowered.com/app/401170/",
+        "message_id": "1493164465628381215",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_demo_playtest",
+        "posted_at": "2026-04-13T08:22:31.092597+00:00",
+        "description": "Play as a Shadow Knight with unique rage mechanics. Campaign and Co-op multiplayer. Create new content with powerful map editor."
+      },
+      {
+        "item_key": "f1329e6f740d6690",
+        "section": "demo_playtest",
+        "title": "Climbey",
+        "url": "https://store.steampowered.com/app/520010/",
+        "message_id": "1493164475505705022",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_demo_playtest",
+        "posted_at": "2026-04-13T08:22:32.952802+00:00",
+        "description": "Climbey is a VR-only climbing game! The goal is to climb to the finish as fast as you can, avoiding obstacles and trying not to fall along the way."
+      },
+      {
+        "item_key": "f31be385bd10fa64",
+        "section": "demo_playtest",
+        "title": "Scan Your Heart \"愛情限時批\"",
+        "url": "https://store.steampowered.com/app/1230120/",
+        "message_id": "1493164483177349120",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_demo_playtest",
+        "posted_at": "2026-04-13T08:22:35.341316+00:00",
+        "description": "Scan Your Heart is a game about “Scanner and Barcode”. Using scanner to scan the barcode on your opponent to defeat him. And this game is set in Kaohsiung, Taiwan. Your can experience the beauty of Kaohsiung."
+      },
+      {
+        "item_key": "4a7b66a8acd319b5",
+        "section": "demo_playtest",
+        "title": "Swords and Sorcery - Underworld - Definitive Edition",
+        "url": "https://store.steampowered.com/app/408400/",
+        "message_id": "1493164492672995368",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_demo_playtest",
+        "posted_at": "2026-04-13T08:22:37.066430+00:00",
+        "description": "Swords and Sorcery - Underworld is a party-based, first person view role-playing game with turn-based combat and a square grid 3D environment. The art was made by a professional comics illustrator."
+      },
+      {
+        "item_key": "25c39c6a6e97dec7",
+        "section": "demo_playtest",
+        "title": "Codex of Victory",
+        "url": "https://store.steampowered.com/app/464100/",
+        "message_id": "1493164499841056768",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_demo_playtest",
+        "posted_at": "2026-04-13T08:22:38.838292+00:00",
+        "description": "In this sci-fi turn-based strategy with real-time base-building elements, you’ll be defending human territories against the transhuman Augments. Expand your HQ, and manufacture and upgrade an army of advanced drones to wage interplanetary war for Humanity!"
+      },
+      {
+        "item_key": "2b5681cb41d4d239",
+        "section": "free",
+        "title": "Smithworks",
+        "url": "https://store.steampowered.com/app/1568540/",
+        "message_id": "1493164513829064724",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-04-13T08:22:42.164562+00:00",
+        "description": "Smithworks is a first-person 3D cooperative multiplayer game where players play as fledgling blacksmiths. It is a humorous and chaotic experience where players will need to communicate effectively in order to craft these weapons quickly before the customers get angry."
+      },
+      {
+        "item_key": "b685a0450e71e9ef",
+        "section": "free",
+        "title": "Darwin Project",
+        "url": "https://store.steampowered.com/app/544920/",
+        "message_id": "1493164521244594227",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-04-13T08:22:44.024660+00:00",
+        "description": "In Darwin Project, ten inmates must survive the elements, track each other, fight, craft tools, and use their social skills to be the last one standing. It's a unique take on battle royale with a Show Director to influence the match and Spectator Interactions to create a one-of-a-kind game show."
+      },
+      {
+        "item_key": "845d421cbbe8a934",
+        "section": "free",
+        "title": "Welcome to Dustown",
+        "url": "https://store.steampowered.com/app/2971900/",
+        "message_id": "1493164529222156328",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-04-13T08:22:46.001286+00:00",
+        "description": "Welcome to Dustown is a single-player or cooperative horror game for up to 4 players. Play as field scientists exploring vast labyrinthine cornfields, collecting samples and evidence for a mysterious corporation. Make sure you don't get killed at the crossroads."
+      },
+      {
+        "item_key": "a2e9956aa2e44f40",
+        "section": "free",
+        "title": "Pizza Panic!",
+        "url": "https://store.steampowered.com/app/3468170/",
+        "message_id": "1493164537833197648",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-04-13T08:22:48.096496+00:00",
+        "description": "Pizza Panic! Is a 1-4-player co-op cooking game where you and your friends try to keep your pizza parlor running for as long as possible. Work together, bake pizzas, earn money, buy upgrades and ensure you have the greatest pizza parlor of all time!"
+      },
+      {
+        "item_key": "32c154a1e10ecc15",
+        "section": "free",
+        "title": "GPRO - Classic racing manager",
+        "url": "https://store.steampowered.com/app/2169220/",
+        "message_id": "1493164546355892375",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-04-13T08:22:50.008518+00:00",
+        "description": "Manage your racing team, driver and a car, prepare setups and strategy for every race, plan your season and budget, analyze race telemetry."
+      },
+      {
+        "item_key": "1539e47edf8a892e",
+        "section": "paid",
+        "title": "Lugh World",
+        "url": "https://store.steampowered.com/app/3234720/",
+        "message_id": "1493164561413574728",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-04-13T08:22:53.909658+00:00",
+        "description": "Lugh World is an action monster-taming MMORPG set in a living, ever-evolving open world. Capture and evolve unique beings called Lughs, explore a vast world, and face epic challenges in real-time battles. Uncover secrets, forge your own path, and live the game you’ve always dreamed of!"
+      },
+      {
+        "item_key": "b8868830e8c42c2a",
+        "section": "paid",
+        "title": "Mage Arena",
+        "url": "https://store.steampowered.com/app/3716600/",
+        "message_id": "1493164570569740369",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-04-13T08:22:55.722770+00:00",
+        "description": "A co-op PvP experience about using your voice to cast spells in the Mage Arena to settle an ages-old feud between sorcerers and warlocks."
+      },
+      {
+        "item_key": "b83f717bd4db8bdf",
+        "section": "paid",
+        "title": "Shotgun Farmers",
+        "url": "https://store.steampowered.com/app/604240/",
+        "message_id": "1493164577599524916",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-04-13T08:22:57.567801+00:00",
+        "description": "Shotgun Farmers is the multplayer shooter where missed shots grow guns. Fire your bullets into the ground to plant your ammo. The longer a gun plant grows the more ammo you will get!"
+      },
+      {
+        "item_key": "923dd7809fc13d68",
+        "section": "paid",
+        "title": "Old World - Wonders and Dynasties",
+        "url": "https://store.steampowered.com/app/2587430/",
+        "message_id": "1493164585732280340",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-04-13T08:22:59.326310+00:00",
+        "description": "History is shaped by fountainheads of great dynasties that leave their mark on the world - forge the foundations of powerful empires and build legendary wonders that will stand the test of time."
+      },
+      {
+        "item_key": "95c2c096baa0949f",
+        "section": "paid",
+        "title": "Warhammer 40,000: Darktide - Arbites Class",
+        "url": "https://store.steampowered.com/app/3710910/",
+        "message_id": "1493164593307062372",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-04-13T08:23:01.063634+00:00",
+        "description": "You are justice. The Adeptus Arbites enforce the Lex Imperialis – the Imperial Law. Utterly unforgiving, they persecute heretics and traitors throughout the Emperor’s realm. Restore order to Tertium with your Cyber-Mastiff and a devastating array of new weaponry."
+      },
+      {
+        "item_key": "3303ca6f894ace28",
+        "section": "instagram",
+        "title": "@gemgamingnetwork",
+        "url": "https://www.instagram.com/p/DWrqGeFhFMd/",
+        "message_id": "1493164607165042869",
+        "channel_id": "592534544708796474",
+        "source_type": "instagram",
+        "posted_at": "2026-04-13T08:23:06.631203+00:00",
+        "description": "new co-op steam game similar to repo  It’s called: Salty Dogs  💰: FREE PLAYTEST 🌎: PC (Steam) 👥: 1-4 Players 🎮: Under..."
+      },
+      {
+        "item_key": "c2b2a6ac1173b5be",
+        "section": "instagram",
+        "title": "@gemgamingnetwork",
+        "url": "https://www.instagram.com/p/DWrVg40BrWs/",
+        "message_id": "1493164623921283246",
+        "channel_id": "592534544708796474",
+        "source_type": "instagram",
+        "posted_at": "2026-04-13T08:23:09.206350+00:00",
+        "description": "perfect co-op game to play while drunk 😂  It’s called: Friendly Steps   💰: TBD 🌎: PC (Steam) 👥: 1-4 Players 🎮: Ragdol..."
+      },
+      {
+        "item_key": "043e7e4761108296",
+        "section": "instagram",
+        "title": "@cloudual",
+        "url": "https://www.instagram.com/p/DXC1aBMAHEm/",
+        "message_id": "1493164634876674078",
+        "channel_id": "592534544708796474",
+        "source_type": "instagram",
+        "posted_at": "2026-04-13T08:23:11.151635+00:00",
+        "description": "This Co-Op Submarine Game Turns Your Friends Into Harpoon Targets #saltydogs #saltydogspartner"
+      },
+      {
+        "item_key": "b35f4e6ea441f6f0",
+        "section": "instagram",
+        "title": "@cloudual",
+        "url": "https://www.instagram.com/p/DXCg7QkAOIA/",
+        "message_id": "1493164643445637150",
+        "channel_id": "592534544708796474",
+        "source_type": "instagram",
+        "posted_at": "2026-04-13T08:23:13.145966+00:00",
+        "description": "This Roguelike Lets You Cheat Against the Grim Reaper #cheatdeath #cheatdeathpartner"
+      },
+      {
+        "item_key": "c69fed4415102600",
+        "section": "instagram",
+        "title": "@mildsoss_official",
+        "url": "https://www.instagram.com/p/DWec216Ifgu/",
+        "message_id": "1493164651280601209",
+        "channel_id": "592534544708796474",
+        "source_type": "instagram",
+        "posted_at": "2026-04-13T08:23:14.895732+00:00",
+        "description": "5 sossy co-op games on sale right now   #gaming #whattoplay #multiplayer #steamgames #lortpartner"
+      },
+      {
+        "item_key": "ee073af47736fdaf",
+        "section": "instagram",
+        "title": "@mildsoss_official",
+        "url": "https://www.instagram.com/p/DWeN4oFovxU/",
+        "message_id": "1493164658557714563",
+        "channel_id": "592534544708796474",
+        "source_type": "instagram",
+        "posted_at": "2026-04-13T08:23:16.699213+00:00",
+        "description": "Two gaming legends just walked away from AAA to build the game their dream game.  🎮 Kinforge 🗓️ TBA 🖥️ PC (Steam) @ki..."
+      },
+      {
+        "item_key": "bc6ee21e66cffb40",
+        "section": "instagram",
+        "title": "@sharedxp_official",
+        "url": "https://www.instagram.com/p/DXCrj08jJja/",
+        "message_id": "1493164666325827666",
+        "channel_id": "592534544708796474",
+        "source_type": "instagram",
+        "posted_at": "2026-04-13T08:23:18.828980+00:00",
+        "description": "STARVAULT is a VR MOBA shooter where you pick a hero, push lanes, clear jungle camps, and fight in 5v5 matches from a..."
+      },
+      {
+        "item_key": "6183720cf50c1817",
+        "section": "instagram",
+        "title": "@sharedxp_official",
+        "url": "https://www.instagram.com/p/DWop6YwjBIj/",
+        "message_id": "1493164674579959859",
+        "channel_id": "592534544708796474",
+        "source_type": "instagram",
+        "posted_at": "2026-04-13T08:23:20.695576+00:00",
+        "description": "Pokémon Scarlet and Violet is an open-world Pokémon adventure where up to 4 players can explore Paldea together, but ..."
+      },
+      {
+        "item_key": "5d04d4163e0863e9",
+        "section": "instagram",
+        "title": "@wilfratgaming",
+        "url": "https://www.instagram.com/p/DXCWk7eDfSV/",
+        "message_id": "1493164682695938120",
+        "channel_id": "592534544708796474",
+        "source_type": "instagram",
+        "posted_at": "2026-04-13T08:23:22.573570+00:00",
+        "description": "Road to Vostok does NOT care about you! #horrortok #gaming #gamestoplay #videogames"
+      },
+      {
+        "item_key": "9c2c714b4ca6521d",
+        "section": "instagram",
+        "title": "@wilfratgaming",
+        "url": "https://www.instagram.com/p/DWoZuhfDU6d/",
+        "message_id": "1493164690849796127",
+        "channel_id": "592534544708796474",
+        "source_type": "instagram",
+        "posted_at": "2026-04-13T08:23:24.437865+00:00",
+        "description": "Open-world Arctic driving simulator with realistic snow physics, off-road exploration, and survival gameplay. Drive, ..."
+      },
+      {
+        "item_key": "4ed3e79abe323188",
+        "section": "instagram",
+        "title": "@indiegamespotlights",
+        "url": "https://www.instagram.com/p/DXCgJYajz99/",
+        "message_id": "1493164703030050826",
+        "channel_id": "592534544708796474",
+        "source_type": "instagram",
+        "posted_at": "2026-04-13T08:23:27.387296+00:00",
+        "description": "Co-op submarine indie game where up to 4 players work together to dive into the Bermuda Triangle, collect valuable tr..."
+      },
+      {
+        "item_key": "ed1e7c7dca35f71a",
+        "section": "instagram",
+        "title": "@indiegamespotlights",
+        "url": "https://www.instagram.com/p/DXCf9zeD8jE/",
+        "message_id": "1493164710902890587",
+        "channel_id": "592534544708796474",
+        "source_type": "instagram",
+        "posted_at": "2026-04-13T08:23:29.123615+00:00",
+        "description": "A submarine game with friends? Play with up to 4 players, dive into the Bermuda Triangle, collect treasure, and survi..."
+      },
+      {
+        "item_key": "412db0cecbaad09f",
+        "section": "instagram",
+        "title": "@biffmatictv",
+        "url": "https://www.instagram.com/p/DWJ9WdIDU5B/",
+        "message_id": "1493164718322483360",
+        "channel_id": "592534544708796474",
+        "source_type": "instagram",
+        "posted_at": "2026-04-13T08:23:30.923410+00:00",
+        "description": "The co-creator of Darkwood is leading the team behind this horror game and it looks terrifying! Hoarder  #gaming #hor..."
+      },
+      {
+        "item_key": "2afb02733868911d",
+        "section": "instagram",
+        "title": "@biffmatictv",
+        "url": "https://www.instagram.com/p/DWFD2jkDVZf/",
+        "message_id": "1493164725771567175",
+        "channel_id": "592534544708796474",
+        "source_type": "instagram",
+        "posted_at": "2026-04-13T08:23:32.670193+00:00",
+        "description": "Build a World War 2 airfield, manage your pilots, and prepare for missions! Ground of Aces!  #gaming #simulationgame ..."
+      },
+      {
+        "item_key": "72ffbdaf9ac28e2e",
+        "section": "instagram",
+        "title": "@itzjaysasa",
+        "url": "https://www.instagram.com/p/DV9bU_VElWS/",
+        "message_id": "1493164733040300122",
+        "channel_id": "592534544708796474",
+        "source_type": "instagram",
+        "posted_at": "2026-04-13T08:23:34.338253+00:00",
+        "description": "This new co-op game is like megabonk with multiplayer but in an anime inspired world | Game: Kage   #indiegame #multi..."
+      },
+      {
+        "item_key": "30c35a4e27f0e23d",
+        "section": "instagram",
+        "title": "@itzjaysasa",
+        "url": "https://www.instagram.com/p/DV18r26gQgf/",
+        "message_id": "1493164740091056218",
+        "channel_id": "592534544708796474",
+        "source_type": "instagram",
+        "posted_at": "2026-04-13T08:23:36.009289+00:00",
+        "description": "This is a new horror game looks terrifying. Is this the next Mortuary’s Assistant? | Game: Donut Panic   #indiegame #..."
+      }
+    ]
   }
 }
