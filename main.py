@@ -49,6 +49,7 @@ INSTAGRAM_CREATORS = [
 ]
 
 MAX_INSTAGRAM_POSTS_PER_ACCOUNT = 2
+INSTAGRAM_MAX_POST_AGE_DAYS = 7
 INSTAGRAM_SEEN_RETENTION_PER_CREATOR = 50
 INSTAGRAM_GAME_KEY_BOILERPLATE_PATTERNS = [
     r"\bdemo\b",
@@ -2398,6 +2399,8 @@ def fetch_instagram_posts():
         print(f"Instagram session load failed: {e}")
         return []
 
+    cutoff_utc = datetime.now(timezone.utc) - timedelta(days=INSTAGRAM_MAX_POST_AGE_DAYS)
+
     for username in INSTAGRAM_CREATORS:
         try:
             if username not in seen:
@@ -2407,6 +2410,12 @@ def fetch_instagram_posts():
             count = 0
 
             for post in profile.get_posts():
+                # Posts are returned newest-first; stop as soon as we pass the age cutoff.
+                post_date = post.date_utc.replace(tzinfo=timezone.utc)
+                if post_date < cutoff_utc:
+                    print(f"INSTAGRAM AGE FILTER: @{username} post {post.shortcode} is older than {INSTAGRAM_MAX_POST_AGE_DAYS}d; stopping")
+                    break
+
                 shortcode = post.shortcode
 
                 if shortcode in seen[username]:
