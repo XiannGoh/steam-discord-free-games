@@ -19,6 +19,10 @@ on:
 permissions:
   contents: write
 
+concurrency:
+  group: weekly-schedule-state
+  cancel-in-progress: false
+
 jobs:
   post-weekly-availability:
     runs-on: ubuntu-latest

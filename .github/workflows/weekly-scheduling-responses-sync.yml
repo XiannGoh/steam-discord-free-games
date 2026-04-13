@@ -25,7 +25,7 @@ permissions:
   contents: write
 
 concurrency:
-  group: weekly-scheduling-responses-sync
+  group: weekly-schedule-state
   cancel-in-progress: false
 
 jobs:
@@ -85,6 +85,9 @@ jobs:
           fi
 
           git commit -m "chore: update weekly schedule responses state"
+          git stash --include-untracked || true
+          git pull --rebase origin main
+          git stash pop || true
           git push
 
       - name: Notify Discord health monitor on failure
