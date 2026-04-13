@@ -745,6 +745,19 @@ def sync_statuses_from_library_posts(state: Dict[str, Any], client: DiscordClien
                     set_user_status(game, user_id, statuses[0])
                     updates += 1
             game["conflicting_users"] = conflict_users
+
+            # E5: Default any assigned player with no valid status to Active.
+            # This covers players assigned before they react, and any legacy data
+            # where a status field is missing or empty.
+            assignments = game.get("assignments", {})
+            if isinstance(assignments, dict):
+                for user_id, assignment in assignments.items():
+                    if not isinstance(assignment, dict):
+                        continue
+                    if assignment.get("status") not in ALLOWED_STATUSES:
+                        set_user_status(game, user_id, STATUS_ACTIVE)
+                        updates += 1
+
             refresh_archive_state(game)
     return updates
 

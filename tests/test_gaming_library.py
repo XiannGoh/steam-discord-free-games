@@ -628,3 +628,65 @@ def test_no_changes_message_shown_when_empty_library():
     state["previous_day_games"] = {}
     result = lib.compute_daily_delta(state)
     assert "No changes since yesterday" in result
+
+
+# --- Issue #186: Default new library games to Active status on first post ---
+
+def test_assigned_player_with_no_status_defaults_to_active_on_sync():
+    """Players assigned without a status should be defaulted to active during sync."""
+    state = lib.load_gaming_library(path="/tmp/does-not-exist.json")
+    game = lib.ensure_game_entry(state, canonical_name="No Status Game", url="https://store.steampowered.com/app/200/nostatus/")
+    # Manually inject an assignment with no status (simulating legacy or edge-case data)
+    game.setdefault("assignments", {})["u1"] = {"updated_at_utc": "2026-01-01T00:00:00+00:00"}
+
+    client = FakeDiscordClient(reactions={})  # No reactions
+    lib.post_daily_library_reminder(state, day_key="2026-04-10", channel_id="lib-chan", client=client)
+    lib.sync_statuses_from_library_posts(state, client, bot_user_id=None)
+
+    assert game["assignments"]["u1"]["status"] == lib.STATUS_ACTIVE
+
+
+def test_assigned_player_with_none_status_defaults_to_active_on_sync():
+    """Players with status=None should be defaulted to active during sync."""
+    state = lib.load_gaming_library(path="/tmp/does-not-exist.json")
+    game = lib.ensure_game_entry(state, canonical_name="None Status Game", url="https://store.steampowered.com/app/201/nonestatus/")
+    game.setdefault("assignments", {})["u2"] = {"status": None, "updated_at_utc": "2026-01-01T00:00:00+00:00"}
+
+    client = FakeDiscordClient(reactions={})
+    lib.post_daily_library_reminder(state, day_key="2026-04-10", channel_id="lib-chan", client=client)
+    lib.sync_statuses_from_library_posts(state, client, bot_user_id=None)
+
+    assert game["assignments"]["u2"]["status"] == lib.STATUS_ACTIVE
+
+
+def test_existing_status_not_overridden_by_default():
+    """Players with a valid status should not be changed by the default logic."""
+    state = lib.load_gaming_library(path="/tmp/does-not-exist.json")
+    game = lib.ensure_game_entry(state, canonical_name="Has Status Game", url="https://store.steampowered.com/app/202/hasstatus/")
+    lib.assign_user(game, "u3", lib.STATUS_PAUSED)
+
+    # No reactions — but status already set to paused
+    client = FakeDiscordClient(reactions={})
+    lib.post_daily_library_reminder(state, day_key="2026-04-10", channel_id="lib-chan", client=client)
+    lib.sync_statuses_from_library_posts(state, client, bot_user_id=None)
+
+    # Should remain paused, not reset to active
+    assert game["assignments"]["u3"]["status"] == lib.STATUS_PAUSED
+
+
+def test_player_with_no_status_appears_in_library_post_after_sync():
+    """A player defaulted to active should appear in the library post's Players section."""
+    state = lib.load_gaming_library(path="/tmp/does-not-exist.json")
+    game = lib.ensure_game_entry(state, canonical_name="Appear Game", url="https://store.steampowered.com/app/203/appear/")
+    game.setdefault("assignments", {})["u4"] = {"updated_at_utc": "2026-01-01T00:00:00+00:00"}
+
+    client = FakeDiscordClient(reactions={})
+    lib.post_daily_library_reminder(state, day_key="2026-04-10", channel_id="lib-chan", client=client)
+    lib.sync_statuses_from_library_posts(state, client, bot_user_id=None)
+
+    # Re-run the daily reminder post to verify the player shows up
+    client2 = FakeDiscordClient(reactions={})
+    lib.post_daily_library_reminder(state, day_key="2026-04-11", channel_id="lib-chan", client=client2)
+
+    game_posts = [p[1] for p in client2.posts if "Appear Game" in p[1] and "Players:" in p[1]]
+    assert any("<@u4>" in msg for msg in game_posts), "User u4 should appear in library post after status default"
