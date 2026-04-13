@@ -1,0 +1,233 @@
+name: Daily System Briefing
+
+on:
+  workflow_dispatch:
+  schedule:
+    # 04:00 UTC — after all daily workflows have completed.
+    - cron: "0 4 * * *"
+
+permissions:
+  actions: read
+  contents: read
+  pull-requests: read
+
+jobs:
+  briefing:
+    runs-on: ubuntu-latest
+
+    steps:
+      # ------------------------------------------------------------------ #
+      # 1. Checkout so discord_api.py (split_discord_content) is available.
+      # ------------------------------------------------------------------ #
+      - name: Checkout repository
+        uses: actions/checkout@v5
+
+      - name: Install Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: "3.11"
+
+      - name: Install packages
+        run: pip install -r requirements.txt
+
+      # ------------------------------------------------------------------ #
+      # 2. Collect 24h run data via the GitHub API:
+      #    - Most recent run conclusion for each pipeline workflow
+      #    - auto-fix.yml runs in the past 24h
+      #    - Fix PRs (head ref starts with fix/auto-fix) merged in past 24h
+      #    - watchdog.yml runs in the past 24h
+      #    - Run IDs for artifact download (daily, gaming-library, weekly)
+      # ------------------------------------------------------------------ #
+      - name: Collect 24h run data
+        id: collect
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const now = new Date();
+            const cutoff = new Date(now - 24 * 60 * 60 * 1000);
+            const owner = context.repo.owner;
+            const repo  = context.repo.repo;
+
+            async function getRecentRuns(workflowId, perPage = 10) {
+              try {
+                const resp = await github.rest.actions.listWorkflowRuns({
+                  owner, repo,
+                  workflow_id: workflowId,
+                  per_page: perPage,
+                  exclude_pull_requests: true,
+                });
+                return resp.data.workflow_runs || [];
+              } catch (e) {
+                core.warning(`Could not fetch runs for ${workflowId}: ${e.message}`);
+                return [];
+              }
+            }
+
+            // --- Operational workflow statuses ---
+            const OPERATIONAL = [
+              { file: "daily.yml",                name: "Steam Free Games",              channel: "step-1-vote-on-games-to-test"  },
+              { file: "evening-winners.yml",       name: "Daily Game Picks Winners",      channel: "step-2-test-then-vote-to-keep" },
+              { file: "gaming-library-daily.yml",  name: "Gaming Library Daily Reminder", channel: "step-3-review-existing-games"  },
+              { file: "weekly-scheduling-bot.yml", name: "Weekly Scheduling Bot",         channel: "update-weekly-schedule-here"   },
+            ];
+
+            const operationalWorkflows = [];
+            for (const wf of OPERATIONAL) {
+              const runs = await getRecentRuns(wf.file, 5);
+              // Most recent run in the past 24h (any conclusion).
+              const recent = runs.find(r => new Date(r.created_at) >= cutoff);
+              operationalWorkflows.push({
+                file:       wf.file,
+                name:       wf.name,
+                channel:    wf.channel,
+                conclusion: recent ? recent.conclusion : null,
+                html_url:   recent ? recent.html_url   : null,
+                created_at: recent ? recent.created_at : null,
+              });
+            }
+
+            // --- auto-fix.yml runs in past 24h ---
+            const autoFixAll = await getRecentRuns("auto-fix.yml", 20);
+            const autoFixRuns = autoFixAll
+              .filter(r => new Date(r.created_at) >= cutoff)
+              .map(r => ({
+                run_id:     r.id,
+                conclusion: r.conclusion,
+                html_url:   r.html_url,
+                created_at: r.created_at,
+              }));
+
+            // --- Fix PRs merged in past 24h (head ref starts with fix/auto-fix) ---
+            let fixPrs = [];
+            try {
+              const pullsResp = await github.rest.pulls.list({
+                owner, repo,
+                state:     "closed",
+                per_page:  50,
+                sort:      "updated",
+                direction: "desc",
+              });
+              fixPrs = (pullsResp.data || [])
+                .filter(pr =>
+                  pr.merged_at &&
+                  new Date(pr.merged_at) >= cutoff &&
+                  (pr.head.ref || "").startsWith("fix/auto-fix")
+                )
+                .map(pr => ({
+                  number:      pr.number,
+                  title:       pr.title,
+                  mergedAt:    pr.merged_at,
+                  headRefName: pr.head.ref,
+                }));
+            } catch (e) {
+              core.warning(`Could not fetch fix PRs: ${e.message}`);
+            }
+
+            // --- watchdog.yml runs in past 24h ---
+            const watchdogAll = await getRecentRuns("watchdog.yml", 30);
+            const watchdogRuns = watchdogAll
+              .filter(r => new Date(r.created_at) >= cutoff)
+              .map(r => ({
+                run_id:     r.id,
+                conclusion: r.conclusion,
+                created_at: r.created_at,
+              }));
+
+            // --- Run IDs for artifact download ---
+            const dailyRuns  = await getRecentRuns("daily.yml",               3);
+            const gamingRuns  = await getRecentRuns("gaming-library-daily.yml", 3);
+            const weeklyRuns  = await getRecentRuns("weekly-scheduling-bot.yml", 3);
+
+            const latestCompleted = runs => runs.find(r => r.status === "completed");
+            const dailyRunId  = String((latestCompleted(dailyRuns)  || {}).id || "");
+            const gamingRunId = String((latestCompleted(gamingRuns)  || {}).id || "");
+            const weeklyRunId = String((latestCompleted(weeklyRuns)  || {}).id || "");
+
+            const runData = {
+              generated_at:          now.toISOString(),
+              cutoff:                cutoff.toISOString(),
+              operational_workflows: operationalWorkflows,
+              auto_fix_runs:         autoFixRuns,
+              fix_prs:               fixPrs,
+              watchdog_runs:         watchdogRuns,
+            };
+
+            core.setOutput("run_data",      JSON.stringify(runData));
+            core.setOutput("daily_run_id",  dailyRunId);
+            core.setOutput("gaming_run_id", gamingRunId);
+            core.setOutput("weekly_run_id", weeklyRunId);
+
+      # ------------------------------------------------------------------ #
+      # 3–7. Download verification artifacts from their source runs.
+      #      All continue-on-error — missing artifacts are handled gracefully
+      #      in build_daily_briefing.py ("not available").
+      # ------------------------------------------------------------------ #
+      - name: Download daily verification artifact
+        id: dl-daily-ver
+        continue-on-error: true
+        if: steps.collect.outputs.daily_run_id != ''
+        uses: actions/download-artifact@v4
+        with:
+          github-token: ${{ github.token }}
+          run-id: ${{ steps.collect.outputs.daily_run_id }}
+          pattern: daily-verification-*
+          merge-multiple: true
+
+      - name: Download Discord verification artifact
+        id: dl-discord-ver
+        continue-on-error: true
+        if: steps.collect.outputs.daily_run_id != ''
+        uses: actions/download-artifact@v4
+        with:
+          github-token: ${{ github.token }}
+          run-id: ${{ steps.collect.outputs.daily_run_id }}
+          pattern: discord-verification-*
+          merge-multiple: true
+
+      - name: Download state sanity artifact
+        id: dl-state-sanity
+        continue-on-error: true
+        if: steps.collect.outputs.daily_run_id != ''
+        uses: actions/download-artifact@v4
+        with:
+          github-token: ${{ github.token }}
+          run-id: ${{ steps.collect.outputs.daily_run_id }}
+          pattern: state-sanity-*
+          merge-multiple: true
+
+      - name: Download gaming library verification artifact
+        id: dl-gaming-ver
+        continue-on-error: true
+        if: steps.collect.outputs.gaming_run_id != ''
+        uses: actions/download-artifact@v4
+        with:
+          github-token: ${{ github.token }}
+          run-id: ${{ steps.collect.outputs.gaming_run_id }}
+          pattern: gaming-library-verification-*
+          merge-multiple: true
+
+      - name: Download weekly schedule verification artifact
+        id: dl-weekly-ver
+        continue-on-error: true
+        if: steps.collect.outputs.weekly_run_id != ''
+        uses: actions/download-artifact@v4
+        with:
+          github-token: ${{ github.token }}
+          run-id: ${{ steps.collect.outputs.weekly_run_id }}
+          pattern: weekly-schedule-verification-*
+          merge-multiple: true
+
+      # ------------------------------------------------------------------ #
+      # 8. Write run_data.json and invoke the briefing script.
+      #    printf '%s' avoids shell interpretation of special characters in
+      #    the JSON (same pattern as bot-health-report.yml).
+      # ------------------------------------------------------------------ #
+      - name: Build and post daily briefing
+        if: ${{ env.DISCORD_HEALTH_MONITOR_WEBHOOK_URL != '' }}
+        env:
+          PYTHONPATH: .
+          DISCORD_HEALTH_MONITOR_WEBHOOK_URL: ${{ secrets.DISCORD_HEALTH_MONITOR_WEBHOOK_URL }}
+          RUN_DATA_JSON: ${{ steps.collect.outputs.run_data }}
+        run: |
+          printf '%s' "${RUN_DATA_JSON}" > run_data.json
+          python scripts/build_daily_briefing.py --run-data-json run_data.json
