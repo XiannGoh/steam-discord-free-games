@@ -4,8 +4,8 @@ on:
   workflow_dispatch:
   schedule:
     # GitHub Actions cron uses UTC only (no timezone/DST support).
-    # 03:10 UTC is ~11:10 PM New York during EDT, ~10:10 PM during EST.
-    - cron: "10 3 * * *"
+    # 03:00 UTC is ~11:00 PM New York during EDT, ~10:00 PM during EST.
+    - cron: "0 3 * * *"
 
 permissions:
   actions: read
@@ -66,7 +66,7 @@ jobs:
               { file: "daily.yml", name: "Daily Steam Picks", staleHours: 20 },
               { file: "evening-winners.yml", name: "Evening Winners", staleHours: 12 },
               { file: "gaming-library-daily.yml", name: "Gaming Library Daily Reminder", staleHours: 20 },
-              { file: "gaming-library-sync.yml", name: "Gaming Library Sync", staleHours: 2 },
+              { file: "gaming-library-sync.yml", name: "Gaming Library Sync", staleHours: 4 },
             ];
 
             const output = [];
@@ -207,3 +207,50 @@ jobs:
                   print(result.stderr, file=sys.stderr)
               sys.exit(1)
           PY
+
+      - name: Notify Discord health monitor on failure
+        if: ${{ failure() && env.DISCORD_HEALTH_MONITOR_WEBHOOK_URL != '' }}
+        env:
+          DISCORD_HEALTH_MONITOR_WEBHOOK_URL: ${{ secrets.DISCORD_HEALTH_MONITOR_WEBHOOK_URL }}
+          WORKFLOW_NAME: ${{ github.workflow }}
+          JOB_NAME: post-health-report
+          RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+        run: |
+          payload="$(python - <<'PY'
+          import json
+          import os
+
+          print(json.dumps({
+              "content": (
+                  "🔴 XiannGPT Bot Failure\n\n"
+                  f"Workflow: {os.environ['WORKFLOW_NAME']}\n"
+                  f"Job: {os.environ['JOB_NAME']}\n"
+                  "Status: failed\n"
+                  f"Run: {os.environ['RUN_URL']}"
+              )
+          }))
+          PY
+          )"
+
+          response_file="$(mktemp)"
+          http_status="$(curl --silent --show-error \
+            --output "${response_file}" \
+            --write-out "%{http_code}" \
+            --header "Content-Type: application/json" \
+            --header "User-Agent: steam-discord-free-games-health-monitor/1.0" \
+            --data "${payload}" \
+            --request POST \
+            "${DISCORD_HEALTH_MONITOR_WEBHOOK_URL}")"
+
+          if [[ "${http_status}" =~ ^2[0-9][0-9]$ ]]; then
+            echo "Discord webhook POST succeeded: HTTP ${http_status}"
+          else
+            echo "Discord webhook POST failed: HTTP ${http_status}" >&2
+            if [[ -s "${response_file}" ]]; then
+              cat "${response_file}" >&2
+            fi
+            rm -f "${response_file}"
+            exit 1
+          fi
+
+          rm -f "${response_file}"
