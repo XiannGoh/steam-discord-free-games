@@ -46,6 +46,7 @@ jobs:
           DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
           DISCORD_BOT_TOKEN: ${{ secrets.DISCORD_BOT_TOKEN }}
           DISCORD_GUILD_ID: ${{ secrets.DISCORD_GUILD_ID }}
+          DISCORD_DEBUG_CHANNEL_ID: ${{ secrets.DISCORD_DEBUG_CHANNEL_ID }}
           INSTAGRAM_USERNAME: ${{ secrets.INSTAGRAM_USERNAME }}
           DAILY_DATE_UTC: ${{ inputs.daily_date_utc }}
           FORCE_REFRESH_SAME_DAY: ${{ inputs.force_refresh_same_day || false }}

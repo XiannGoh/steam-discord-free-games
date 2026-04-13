@@ -738,3 +738,140 @@ def test_debug_export_fails_gracefully(monkeypatch, capsys):
     main.export_daily_debug_summary([], ["RUN SUMMARY"], path="ignored.json")
     captured = capsys.readouterr()
     assert "WARN: failed to write debug summary" in captured.out
+
+
+class FakeDebugClient:
+    def __init__(self):
+        self.posts = []
+
+    def post_message(self, channel_id, content, *, context):
+        self.posts.append((channel_id, content, context))
+        return {"id": "debug-1", "channel_id": channel_id}
+
+
+def test_post_discord_debug_summary_posts_compact_message(monkeypatch):
+    fake_client = FakeDebugClient()
+    monkeypatch.setattr(main, "DISCORD_DEBUG_CHANNEL_ID", "debug-chan-1")
+    monkeypatch.setattr(main, "DISCORD_BOT_TOKEN", "token")
+    monkeypatch.setattr(main, "DiscordClient", lambda session: fake_client)
+
+    run_counts = {"created": 3, "updated": 1, "reused": 2, "skipped": 0}
+    main.post_discord_debug_summary(
+        day_key="2026-04-12",
+        run_counts=run_counts,
+        rerun_protection_active=False,
+        force_refresh_same_day=False,
+    )
+
+    assert len(fake_client.posts) == 1
+    channel_id, content, _ctx = fake_client.posts[0]
+    assert channel_id == "debug-chan-1"
+    assert "2026-04-12" in content
+    assert "Created: 3" in content
+    assert "Updated: 1" in content
+    assert "Reused: 2" in content
+    assert "Skipped: 0" in content
+    assert "inactive" in content
+
+
+def test_post_discord_debug_summary_rerun_protection_active(monkeypatch):
+    fake_client = FakeDebugClient()
+    monkeypatch.setattr(main, "DISCORD_DEBUG_CHANNEL_ID", "debug-chan-1")
+    monkeypatch.setattr(main, "DISCORD_BOT_TOKEN", "token")
+    monkeypatch.setattr(main, "DiscordClient", lambda session: fake_client)
+
+    run_counts = {"created": 0, "updated": 0, "reused": 0, "skipped": 0}
+    main.post_discord_debug_summary(
+        day_key="2026-04-12",
+        run_counts=run_counts,
+        rerun_protection_active=True,
+        force_refresh_same_day=False,
+    )
+
+    assert len(fake_client.posts) == 1
+    _, content, _ = fake_client.posts[0]
+    assert "active" in content
+
+
+def test_post_discord_debug_summary_skips_when_no_channel(monkeypatch):
+    fake_client = FakeDebugClient()
+    monkeypatch.setattr(main, "DISCORD_DEBUG_CHANNEL_ID", "")
+    monkeypatch.setattr(main, "DISCORD_BOT_TOKEN", "token")
+    monkeypatch.setattr(main, "DiscordClient", lambda session: fake_client)
+
+    main.post_discord_debug_summary(
+        day_key="2026-04-12",
+        run_counts={"created": 1, "updated": 0, "reused": 0, "skipped": 0},
+        rerun_protection_active=False,
+        force_refresh_same_day=False,
+    )
+
+    assert len(fake_client.posts) == 0
+
+
+def test_post_discord_debug_summary_skips_when_no_token(monkeypatch):
+    fake_client = FakeDebugClient()
+    monkeypatch.setattr(main, "DISCORD_DEBUG_CHANNEL_ID", "debug-chan-1")
+    monkeypatch.setattr(main, "DISCORD_BOT_TOKEN", "")
+    monkeypatch.setattr(main, "DiscordClient", lambda session: fake_client)
+
+    main.post_discord_debug_summary(
+        day_key="2026-04-12",
+        run_counts={"created": 1, "updated": 0, "reused": 0, "skipped": 0},
+        rerun_protection_active=False,
+        force_refresh_same_day=False,
+    )
+
+    assert len(fake_client.posts) == 0
+
+
+def test_post_daily_pick_messages_returns_counts(monkeypatch, tmp_path):
+    daily_path = tmp_path / "daily.json"
+    daily_path.write_text("{}", encoding="utf-8")
+    day_key = "2026-04-12"
+
+    counter = {"i": 0}
+
+    def fake_post(message, capture_metadata=False):
+        counter["i"] += 1
+        return {"message_id": f"new-{counter['i']}", "channel_id": "chan-1"}
+
+    fake_client = FakeDiscordClient()
+
+    monkeypatch.setattr(main, "DISCORD_DAILY_POSTS_FILE", str(daily_path))
+    monkeypatch.setattr(main, "DISCORD_BOT_TOKEN", "token")
+    monkeypatch.setattr(main, "DiscordClient", lambda session: fake_client)
+    monkeypatch.setattr(main, "post_to_discord_with_metadata", fake_post)
+    monkeypatch.setattr(main, "sleep_briefly", lambda: None)
+    monkeypatch.setenv(main.DAILY_DATE_OVERRIDE_ENV, day_key)
+
+    free_items = [{"title": "Game A", "url": "https://store.steampowered.com/app/1", "price": "Free", "score": 9}]
+    run_counts, rerun_protection_active = main.post_daily_pick_messages([], free_items, [], [])
+
+    assert rerun_protection_active is False
+    # intro + free_header + 1 item = 3 created
+    assert run_counts["created"] == 3
+    assert run_counts["updated"] == 0
+    assert run_counts["reused"] == 0
+
+
+def test_post_daily_pick_messages_rerun_protection_returns_flag(monkeypatch, tmp_path):
+    daily_path = tmp_path / "daily.json"
+    day_key = "2026-04-12"
+    daily_path.write_text(
+        __import__("json").dumps({day_key: {"run_state": {"completed": True}, "items": []}}),
+        encoding="utf-8",
+    )
+
+    fake_client = FakeDiscordClient()
+    monkeypatch.setattr(main, "DISCORD_DAILY_POSTS_FILE", str(daily_path))
+    monkeypatch.setattr(main, "DISCORD_BOT_TOKEN", "token")
+    monkeypatch.setattr(main, "DiscordClient", lambda session: fake_client)
+    monkeypatch.setattr(main, "sleep_briefly", lambda: None)
+    monkeypatch.setenv(main.DAILY_DATE_OVERRIDE_ENV, day_key)
+
+    free_items = [{"title": "Game A", "url": "https://store.steampowered.com/app/1", "price": "Free", "score": 9}]
+    run_counts, rerun_protection_active = main.post_daily_pick_messages([], free_items, [], [])
+
+    assert rerun_protection_active is True
+    assert run_counts["created"] == 0
