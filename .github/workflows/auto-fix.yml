@@ -237,12 +237,21 @@ jobs:
                If this stash pattern is missing, add it and apply the same fix to all
                other workflows that use git pull --rebase.
             4. Fix only the root cause. Do not refactor unrelated code.
-            4. Create a new branch named fix/auto-fix-${{ github.event.workflow_run.id }}-1
+            5. Create a new branch named fix/auto-fix-${{ github.event.workflow_run.id }}-1
                branched from main.
-            5. Commit your changes with a message that explains what failed and
+            6. Commit your changes with a message that explains what failed and
                what you changed.
-            6. Open a pull request against main with a clear description of the
+            7. Open a pull request against main with a clear description of the
                failure and the fix.
+
+            IMPORTANT — 403 Forbidden errors are NOT code bugs: If the failure was
+            caused by a Discord 403 Forbidden response (e.g. the bot is missing
+            Send Messages, Add Reactions, Read Message History, or Manage Messages
+            permissions in a channel), this is a Discord server configuration issue,
+            not a code defect. Do NOT open a code PR. Instead, post a message to
+            the xiann-gpt-bot-health-monitor Discord channel (using the
+            DISCORD_HEALTH_MONITOR_WEBHOOK_URL secret) explaining which channel and
+            permission is missing, then exit without making any code changes.
 
             Important: use model claude-sonnet-4-6, not Opus.
 
@@ -299,12 +308,21 @@ jobs:
                If this stash pattern is missing, add it and apply the same fix to all
                other workflows that use git pull --rebase.
             4. Fix only the root cause. Do not refactor unrelated code.
-            4. Create a new branch named fix/auto-fix-${{ github.event.workflow_run.id }}-2
+            5. Create a new branch named fix/auto-fix-${{ github.event.workflow_run.id }}-2
                branched from main.
-            5. Commit your changes with a message that explains what failed and
+            6. Commit your changes with a message that explains what failed and
                what you changed.
-            6. Open a pull request against main with a clear description of the
+            7. Open a pull request against main with a clear description of the
                failure and the fix.
+
+            IMPORTANT — 403 Forbidden errors are NOT code bugs: If the failure was
+            caused by a Discord 403 Forbidden response (e.g. the bot is missing
+            Send Messages, Add Reactions, Read Message History, or Manage Messages
+            permissions in a channel), this is a Discord server configuration issue,
+            not a code defect. Do NOT open a code PR. Instead, post a message to
+            the xiann-gpt-bot-health-monitor Discord channel (using the
+            DISCORD_HEALTH_MONITOR_WEBHOOK_URL secret) explaining which channel and
+            permission is missing, then exit without making any code changes.
 
             Important: use model claude-sonnet-4-6, not Opus.
 
@@ -361,12 +379,21 @@ jobs:
                If this stash pattern is missing, add it and apply the same fix to all
                other workflows that use git pull --rebase.
             4. Fix only the root cause. Do not refactor unrelated code.
-            4. Create a new branch named fix/auto-fix-${{ github.event.workflow_run.id }}-3
+            5. Create a new branch named fix/auto-fix-${{ github.event.workflow_run.id }}-3
                branched from main.
-            5. Commit your changes with a message that explains what failed and
+            6. Commit your changes with a message that explains what failed and
                what you changed.
-            6. Open a pull request against main with a clear description of the
+            7. Open a pull request against main with a clear description of the
                failure and the fix.
+
+            IMPORTANT — 403 Forbidden errors are NOT code bugs: If the failure was
+            caused by a Discord 403 Forbidden response (e.g. the bot is missing
+            Send Messages, Add Reactions, Read Message History, or Manage Messages
+            permissions in a channel), this is a Discord server configuration issue,
+            not a code defect. Do NOT open a code PR. Instead, post a message to
+            the xiann-gpt-bot-health-monitor Discord channel (using the
+            DISCORD_HEALTH_MONITOR_WEBHOOK_URL secret) explaining which channel and
+            permission is missing, then exit without making any code changes.
 
             Important: use model claude-sonnet-4-6, not Opus.
 
