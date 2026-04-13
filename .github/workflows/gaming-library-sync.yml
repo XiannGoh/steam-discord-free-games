@@ -8,6 +8,10 @@ on:
 permissions:
   contents: write
 
+concurrency:
+  group: gaming-library-state
+  cancel-in-progress: false
+
 jobs:
   run-gaming-library-sync:
     runs-on: ubuntu-latest
