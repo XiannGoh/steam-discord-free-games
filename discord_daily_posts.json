@@ -3801,6 +3801,117 @@
         "posted_at": "2026-04-13T08:23:36.009289+00:00",
         "description": "This is a new horror game looks terrifying. Is this the next Mortuary’s Assistant? | Game: Donut Panic   #indiegame #..."
       }
-    ]
+    ],
+    "winners_state": {
+      "intro": {
+        "message_id": "1493173538625159340",
+        "channel_id": "1491294533751799809"
+      },
+      "section_headers": {
+        "demo_playtest": {
+          "message_id": "1493173541699326015",
+          "channel_id": "1491294533751799809"
+        },
+        "paid": {
+          "message_id": "1493173545675784213",
+          "channel_id": "1491294533751799809"
+        },
+        "instagram": {
+          "message_id": "1493173550704754699",
+          "channel_id": "1491294533751799809"
+        }
+      },
+      "winner_messages": {
+        "https://store.steampowered.com/app/408400/": {
+          "message_id": "1493173543540887654",
+          "channel_id": "1491294533751799809"
+        },
+        "https://store.steampowered.com/app/3716600/": {
+          "message_id": "1493173547139469362",
+          "channel_id": "1491294533751799809"
+        },
+        "https://www.instagram.com/p/DWrVg40BrWs/": {
+          "message_id": "1493173552428617818",
+          "channel_id": "1491294533751799809"
+        },
+        "https://www.instagram.com/p/DWrqGeFhFMd/": {
+          "message_id": "1493173554525503548",
+          "channel_id": "1491294533751799809"
+        }
+      },
+      "footer": {},
+      "message_id": "1493173538625159340",
+      "message_ids": [
+        "1493173538625159340",
+        "1493173541699326015",
+        "1493173543540887654",
+        "1493173545675784213",
+        "1493173547139469362",
+        "1493173550704754699",
+        "1493173552428617818",
+        "1493173554525503548"
+      ],
+      "last_action": "create",
+      "updated_at_utc": "2026-04-13T08:58:37.618360+00:00",
+      "posted_at_utc": "2026-04-13T08:58:37.618375+00:00",
+      "winner_keys": [
+        "https://store.steampowered.com/app/3716600/",
+        "https://store.steampowered.com/app/408400/",
+        "https://www.instagram.com/p/DWrVg40BrWs/",
+        "https://www.instagram.com/p/DWrqGeFhFMd/"
+      ],
+      "winner_vote_counts": {
+        "https://store.steampowered.com/app/3716600/": 1,
+        "https://store.steampowered.com/app/408400/": 1,
+        "https://www.instagram.com/p/DWrVg40BrWs/": 1,
+        "https://www.instagram.com/p/DWrqGeFhFMd/": 1
+      },
+      "winner_entries": [
+        {
+          "winner_key": "https://store.steampowered.com/app/3716600/",
+          "section": "paid",
+          "title": "Mage Arena",
+          "url": "https://store.steampowered.com/app/3716600/",
+          "description": "A co-op PvP experience about using your voice to cast spells in the Mage Arena to settle an ages-old feud between sorcerers and warlocks.",
+          "human_votes": 1,
+          "voter_names": [
+            "Thomas"
+          ]
+        },
+        {
+          "winner_key": "https://store.steampowered.com/app/408400/",
+          "section": "demo_playtest",
+          "title": "Swords and Sorcery - Underworld - Definitive Edition",
+          "url": "https://store.steampowered.com/app/408400/",
+          "description": "Swords and Sorcery - Underworld is a party-based, first person view role-playing game with turn-based combat and a square grid 3D environment. The art was made by a professional comics illustrator.",
+          "human_votes": 1,
+          "voter_names": [
+            "Thomas"
+          ]
+        },
+        {
+          "winner_key": "https://www.instagram.com/p/DWrVg40BrWs/",
+          "section": "instagram",
+          "title": "@gemgamingnetwork",
+          "url": "https://www.instagram.com/p/DWrVg40BrWs/",
+          "description": "perfect co-op game to play while drunk 😂  It’s called: Friendly Steps   💰: TBD 🌎: PC (Steam) 👥: 1-4 Players 🎮: Ragdol...",
+          "human_votes": 1,
+          "voter_names": [
+            "Thomas"
+          ]
+        },
+        {
+          "winner_key": "https://www.instagram.com/p/DWrqGeFhFMd/",
+          "section": "instagram",
+          "title": "@gemgamingnetwork",
+          "url": "https://www.instagram.com/p/DWrqGeFhFMd/",
+          "description": "new co-op steam game similar to repo  It’s called: Salty Dogs  💰: FREE PLAYTEST 🌎: PC (Steam) 👥: 1-4 Players 🎮: Under...",
+          "human_votes": 1,
+          "voter_names": [
+            "Thomas"
+          ]
+        }
+      ]
+    }
   }
 }
