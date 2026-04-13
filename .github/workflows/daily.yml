@@ -47,6 +47,14 @@ jobs:
           PYTHONPATH: .
         run: python scripts/check_state_sanity.py
 
+      - name: Upload state sanity artifact
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: state-sanity-${{ github.run_id }}
+          path: state_sanity.json
+          if-no-files-found: ignore
+
       - name: Run Steam script
         env:
           DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
