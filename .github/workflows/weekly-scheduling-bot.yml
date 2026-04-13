@@ -38,6 +38,22 @@ jobs:
           SCHEDULE_WEEK_START: ${{ inputs.schedule_week_start }}
         run: python scripts/post_weekly_availability.py
 
+      - name: Verify weekly schedule output
+        continue-on-error: true
+        env:
+          PYTHONPATH: .
+          DISCORD_SCHEDULING_BOT_TOKEN: ${{ secrets.DISCORD_SCHEDULING_BOT_TOKEN }}
+          TARGET_WEEK_KEY: ${{ inputs.schedule_week_start }}
+        run: python scripts/verify_weekly_schedule.py
+
+      - name: Upload weekly schedule verification artifact
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: weekly-schedule-verification-${{ github.run_id }}
+          path: weekly_schedule_verification.json
+          if-no-files-found: ignore
+
       - name: Commit weekly schedule state
         run: |
           git config user.name "github-actions[bot]"
