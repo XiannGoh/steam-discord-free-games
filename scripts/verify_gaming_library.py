@@ -164,6 +164,51 @@ def is_placeholder_name(canonical_name: str, source_type: str) -> bool:
     return name.startswith("@") or not name
 
 
+def detect_broken_if(
+    broken_if_conditions: List[str],
+    result: Dict[str, Any],
+) -> Dict[str, str]:
+    """Map broken_if spec conditions to their detected state.
+
+    Returns {condition: "triggered" | "not_triggered" | "undetectable"}.
+    """
+    detected: Dict[str, str] = {}
+    errors_text = " ".join(result.get("errors", [])).lower()
+
+    for condition in broken_if_conditions:
+        c = condition.lower()
+
+        if "missing name" in c:
+            has_empty_name = any(
+                "canonical_name is empty" in w
+                for w in result.get("game_name_warnings", [])
+            )
+            detected[condition] = "triggered" if has_empty_name else "not_triggered"
+
+        elif "without actual game name" in c or "ig picks" in c:
+            has_placeholder = any(
+                "@" in w
+                for w in result.get("game_name_warnings", [])
+            )
+            detected[condition] = "triggered" if has_placeholder else "not_triggered"
+
+        elif "missing footer" in c:
+            if result.get("footer_skipped"):
+                detected[condition] = "undetectable"
+            else:
+                triggered = not result.get("footer_found", True)
+                detected[condition] = "triggered" if triggered else "not_triggered"
+
+        elif "duplicate" in c:
+            triggered = "duplicate" in errors_text
+            detected[condition] = "triggered" if triggered else "not_triggered"
+
+        else:
+            detected[condition] = "undetectable"
+
+    return detected
+
+
 # ---------------------------------------------------------------------------
 # Main
 # ---------------------------------------------------------------------------
@@ -304,6 +349,15 @@ def main() -> None:
 
     result["pass"] = intro_ok and items_ok and no_missing and no_dupes
 
+    # --- Broken-if detection ---
+    broken_if = specs.get(CHANNEL_NAME, {}).get("broken_if", [])
+    result["broken_if_spec"] = broken_if
+    detected = detect_broken_if(broken_if, result)
+    result["broken_if_detected"] = detected
+    result["triggered_broken_if"] = [
+        c for c, s in detected.items() if s == "triggered"
+    ]
+
     # --- Write and summarise ---
     write_verification(result)
 
@@ -314,6 +368,10 @@ def main() -> None:
     print(f"  header_found:          {result['header_found']}")
     print(f"  game_messages_found:   {len(result['game_messages_found'])}")
     print(f"  footer_skipped:        {result['footer_skipped']}")
+    if result.get("triggered_broken_if"):
+        print(f"  triggered_broken_if ({len(result['triggered_broken_if'])}):")
+        for cond in result["triggered_broken_if"]:
+            print(f"    - {cond}")
     if result["game_name_warnings"]:
         print(f"  game_name_warnings ({len(result['game_name_warnings'])}):")
         for w in result["game_name_warnings"]:
