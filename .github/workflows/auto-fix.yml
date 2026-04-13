@@ -101,6 +101,8 @@ jobs:
       # ------------------------------------------------------------------ #
       - name: Evaluate fix trigger
         id: check
+        env:
+          GH_TOKEN: ${{ github.token }}
         run: |
           conclusion="${{ github.event.workflow_run.conclusion }}"
 
@@ -162,11 +164,35 @@ jobs:
           echo "gaming_library_verification pass: ${gaming_library_pass}"
           echo "weekly_schedule_verification pass: ${weekly_schedule_pass}"
 
+          # When the workflow failed, try to identify the specific failing step
+          # so Claude Code knows where to look first.
+          failing_step=""
+          if [ "$conclusion" = "failure" ]; then
+            failing_step="$(gh api \
+              "repos/${{ github.repository }}/actions/runs/${{ github.event.workflow_run.id }}/jobs" \
+              --jq '
+                .jobs[]
+                | select(.conclusion == "failure")
+                | .steps[]
+                | select(.conclusion == "failure")
+                | "\(.name // \"unknown\")"
+              ' 2>/dev/null | head -1 || true)"
+            if [ -n "$failing_step" ]; then
+              echo "Detected failing step: ${failing_step}"
+            else
+              echo "Could not determine failing step from API"
+            fi
+          fi
+
           triggering_workflow="${{ github.event.workflow_run.name }}"
           if [ "$conclusion" = "failure" ] || [ "$daily_pass" = "false" ] || [ "$discord_pass" = "false" ] || [ "$gaming_library_pass" = "false" ] || [ "$weekly_schedule_pass" = "false" ]; then
             echo "should_fix=true" >> "$GITHUB_OUTPUT"
-            echo "trigger_reason=workflow=${triggering_workflow}, conclusion=${conclusion}, daily_pass=${daily_pass}, discord_pass=${discord_pass}, gaming_library_pass=${gaming_library_pass}, weekly_schedule_pass=${weekly_schedule_pass}" >> "$GITHUB_OUTPUT"
-            echo "Fix needed — workflow=${triggering_workflow}, conclusion=${conclusion}, daily_pass=${daily_pass}, discord_pass=${discord_pass}, gaming_library_pass=${gaming_library_pass}, weekly_schedule_pass=${weekly_schedule_pass}."
+            failing_step_part=""
+            if [ -n "$failing_step" ]; then
+              failing_step_part=", failing_step=${failing_step}"
+            fi
+            echo "trigger_reason=workflow=${triggering_workflow}, conclusion=${conclusion}, daily_pass=${daily_pass}, discord_pass=${discord_pass}, gaming_library_pass=${gaming_library_pass}, weekly_schedule_pass=${weekly_schedule_pass}${failing_step_part}" >> "$GITHUB_OUTPUT"
+            echo "Fix needed — workflow=${triggering_workflow}, conclusion=${conclusion}, daily_pass=${daily_pass}, discord_pass=${discord_pass}, gaming_library_pass=${gaming_library_pass}, weekly_schedule_pass=${weekly_schedule_pass}${failing_step_part}."
           else
             echo "should_fix=false" >> "$GITHUB_OUTPUT"
             echo "No fix needed — workflow=${triggering_workflow}, conclusion=${conclusion}, daily_pass=${daily_pass}, discord_pass=${discord_pass}, gaming_library_pass=${gaming_library_pass}, weekly_schedule_pass=${weekly_schedule_pass}. Exiting."
@@ -203,7 +229,14 @@ jobs:
             2. Identify the root cause of the failure from the verification artifact
                and from the relevant source files (main.py, discord_api.py,
                daily_section_config.py, state_utils.py, evening_winners.py).
-            3. Fix only the root cause. Do not refactor unrelated code.
+            3. If the failure was in a git push or git pull --rebase step, check the
+               save state pattern in the workflow file. The correct pattern is:
+                 git stash --include-untracked || true
+                 git pull --rebase origin main
+                 git stash pop || true
+               If this stash pattern is missing, add it and apply the same fix to all
+               other workflows that use git pull --rebase.
+            4. Fix only the root cause. Do not refactor unrelated code.
             4. Create a new branch named fix/auto-fix-${{ github.event.workflow_run.id }}-1
                branched from main.
             5. Commit your changes with a message that explains what failed and
@@ -258,7 +291,14 @@ jobs:
             2. Identify the root cause of the failure from the verification artifact
                and from the relevant source files (main.py, discord_api.py,
                daily_section_config.py, state_utils.py, evening_winners.py).
-            3. Fix only the root cause. Do not refactor unrelated code.
+            3. If the failure was in a git push or git pull --rebase step, check the
+               save state pattern in the workflow file. The correct pattern is:
+                 git stash --include-untracked || true
+                 git pull --rebase origin main
+                 git stash pop || true
+               If this stash pattern is missing, add it and apply the same fix to all
+               other workflows that use git pull --rebase.
+            4. Fix only the root cause. Do not refactor unrelated code.
             4. Create a new branch named fix/auto-fix-${{ github.event.workflow_run.id }}-2
                branched from main.
             5. Commit your changes with a message that explains what failed and
@@ -313,7 +353,14 @@ jobs:
             2. Identify the root cause of the failure from the verification artifact
                and from the relevant source files (main.py, discord_api.py,
                daily_section_config.py, state_utils.py, evening_winners.py).
-            3. Fix only the root cause. Do not refactor unrelated code.
+            3. If the failure was in a git push or git pull --rebase step, check the
+               save state pattern in the workflow file. The correct pattern is:
+                 git stash --include-untracked || true
+                 git pull --rebase origin main
+                 git stash pop || true
+               If this stash pattern is missing, add it and apply the same fix to all
+               other workflows that use git pull --rebase.
+            4. Fix only the root cause. Do not refactor unrelated code.
             4. Create a new branch named fix/auto-fix-${{ github.event.workflow_run.id }}-3
                branched from main.
             5. Commit your changes with a message that explains what failed and

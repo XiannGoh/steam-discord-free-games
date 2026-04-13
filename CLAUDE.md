@@ -23,6 +23,7 @@
   - any remaining risks
 - Never merge directly to main.
 - Always create a new branch and PR.
+- All save state steps in workflow files must use `git stash --include-untracked || true` before `git pull --rebase` and `git stash pop || true` after, to prevent unstaged changes from causing rebase failures.
 - Future work should support:
   - debug summaries
   - verification JSON artifacts
