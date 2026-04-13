@@ -38,6 +38,11 @@ jobs:
             const WATCHED = [
               // --- Same-day mode (1.5× interval > 24 h) ---
               {
+                file: "daily.yml",
+                name: "Steam Free Games",
+                mode: "same-day",
+              },
+              {
                 file: "evening-winners.yml",
                 name: "Daily Game Picks Winners",
                 mode: "same-day",
@@ -48,6 +53,16 @@ jobs:
                 mode: "same-day",
               },
               {
+                file: "bot-health-report.yml",
+                name: "Bot Health Report",
+                mode: "same-day",
+              },
+              {
+                file: "daily-briefing.yml",
+                name: "Daily System Briefing",
+                mode: "same-day",
+              },
+              {
                 file: "weekly-scheduling-bot.yml",
                 name: "Weekly Scheduling Bot",
                 mode: "saturday-only",
@@ -55,16 +70,10 @@ jobs:
 
               // --- Elapsed-time mode (1.5× interval ≤ 24 h) ---
               {
-                file: "daily.yml",
-                name: "Steam Free Games",
-                mode: "elapsed",
-                intervalMs: 12 * 60 * 60 * 1000,   // 12 h → threshold 18 h
-              },
-              {
                 file: "gaming-library-sync.yml",
                 name: "Gaming Library Sync",
                 mode: "elapsed",
-                intervalMs: 1 * 60 * 60 * 1000,    // 1 h → threshold 90 min
+                intervalMs: 3 * 60 * 60 * 1000,    // 3 h → threshold 4.5 h
               },
               {
                 file: "weekly-scheduling-responses-sync.yml",
