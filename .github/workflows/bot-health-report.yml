@@ -27,6 +27,34 @@ jobs:
       - name: Install packages
         run: pip install -r requirements.txt
 
+      - name: Find latest daily.yml run ID
+        id: find-daily-run
+        continue-on-error: true
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const runs = await github.rest.actions.listWorkflowRuns({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              workflow_id: "daily.yml",
+              per_page: 5,
+              exclude_pull_requests: true,
+            });
+            const run = (runs.data.workflow_runs || []).find(r => r.status === "completed");
+            if (!run) { core.warning("No completed daily.yml run found"); return; }
+            core.setOutput("run_id", String(run.id));
+
+      - name: Download state sanity artifact
+        id: download-state-sanity
+        continue-on-error: true
+        if: steps.find-daily-run.outputs.run_id != ''
+        uses: actions/download-artifact@v4
+        with:
+          github-token: ${{ github.token }}
+          run-id: ${{ steps.find-daily-run.outputs.run_id }}
+          pattern: state-sanity-*
+          merge-multiple: true
+
       - name: Collect workflow run status
         id: collect-workflows
         uses: actions/github-script@v7

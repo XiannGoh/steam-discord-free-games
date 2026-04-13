@@ -856,6 +856,37 @@ def _report_date_new_york(now_utc: datetime) -> str:
     return f"{ny_time.strftime('%b')} {ny_time.day}, {ny_time.year}"
 
 
+def load_state_sanity_issues(path: Path) -> list[Issue]:
+    """Read state_sanity.json and convert errors/warnings to Issue objects."""
+    if not path.exists():
+        return []
+    try:
+        data = json.loads(path.read_text(encoding="utf-8"))
+    except Exception:
+        return []
+    if not isinstance(data, dict):
+        return []
+
+    issues: list[Issue] = []
+    for msg in data.get("errors") or []:
+        issues.append(Issue(
+            code="STATE_SANITY_ERROR",
+            severity="error",
+            title="State sanity check error",
+            context=str(msg),
+            file_path=None,
+        ))
+    for msg in data.get("warnings") or []:
+        issues.append(Issue(
+            code="STATE_SANITY_WARNING",
+            severity="warning",
+            title="State sanity check warning",
+            context=str(msg),
+            file_path=None,
+        ))
+    return issues
+
+
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--workflow-runs-json", required=True, help="Path to workflow run metadata JSON")
@@ -863,6 +894,11 @@ def main() -> None:
         "--schedule-diagnostics-out",
         default="",
         help="Optional path to write compact workflow schedule diagnostics JSON.",
+    )
+    parser.add_argument(
+        "--state-sanity-json",
+        default="",
+        help="Optional path to state_sanity.json; errors/warnings are surfaced in the report.",
     )
     args = parser.parse_args()
 
@@ -872,6 +908,10 @@ def main() -> None:
     now_utc = datetime.now(timezone.utc)
     workflow_lines, diagnostics_payload = build_workflow_status_lines(workflow_runs, now_utc=now_utc)
     state_issues = compute_state_issues(now_utc=now_utc)
+    if args.state_sanity_json:
+        state_issues.extend(load_state_sanity_issues(Path(args.state_sanity_json)))
+    elif Path("state_sanity.json").exists():
+        state_issues.extend(load_state_sanity_issues(Path("state_sanity.json")))
     report = render_report(
         workflow_status_lines=workflow_lines,
         state_issues=state_issues,

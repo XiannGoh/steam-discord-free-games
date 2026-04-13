@@ -6,10 +6,12 @@ import argparse
 import json
 import re
 import sys
+from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
 
 ROOT = Path(__file__).resolve().parent.parent
+OUTPUT_FILE = ROOT / "state_sanity.json"
 WEEK_KEY_RE = re.compile(r"^\d{4}-\d{2}-\d{2}_to_\d{4}-\d{2}-\d{2}$")
 DATE_KEY_RE = re.compile(r"^\d{4}-\d{2}-\d{2}$")
 
@@ -114,7 +116,9 @@ def build_summary(report: SanityReport) -> dict[str, Any]:
     else:
         status = "passed"
     return {
+        "pass": not bool(report.errors),
         "status": status,
+        "timestamp": datetime.now(timezone.utc).isoformat(),
         "warnings": report.warnings,
         "errors": report.errors,
     }
@@ -131,6 +135,10 @@ def run_checks(*, json_output: bool = False) -> int:
     check_daily_posts(report)
 
     summary = build_summary(report)
+
+    # Always write machine-readable output for artifact upload and health report.
+    with OUTPUT_FILE.open("w", encoding="utf-8") as f:
+        json.dump(summary, f, indent=2)
 
     if json_output:
         print(json.dumps(summary))
