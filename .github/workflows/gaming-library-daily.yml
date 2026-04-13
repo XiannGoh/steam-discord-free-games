@@ -37,6 +37,22 @@ jobs:
           LIBRARY_DATE_UTC: ${{ inputs.library_date_utc }}
         run: python scripts/post_daily_gaming_library.py
 
+      - name: Verify gaming library output
+        continue-on-error: true
+        env:
+          PYTHONPATH: .
+          DISCORD_BOT_TOKEN: ${{ secrets.DISCORD_BOT_TOKEN }}
+          LIBRARY_DATE_UTC: ${{ inputs.library_date_utc }}
+        run: python scripts/verify_gaming_library.py
+
+      - name: Upload gaming library verification artifact
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: gaming-library-verification-${{ github.run_id }}
+          path: gaming_library_verification.json
+          if-no-files-found: ignore
+
       - name: Save updated gaming library state
         run: |
           git config user.name "github-actions[bot]"
