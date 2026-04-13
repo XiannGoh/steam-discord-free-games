@@ -1132,10 +1132,59 @@ def export_verification_artifact(
     day_key: str,
     run_counts: Dict[str, int],
     rerun_protection_active: bool,
+    verification_state: Optional[dict] = None,
     path: str = DAILY_VERIFICATION_FILE,
 ) -> None:
     """Write a JSON verification artifact summarizing the daily workflow run outcome."""
+    vs = verification_state or {}
+    run_state = vs.get("run_state") if isinstance(vs.get("run_state"), dict) else {}
+    items = vs.get("items") if isinstance(vs.get("items"), list) else []
+    posted_section_keys = vs.get("posted_section_keys") if isinstance(vs.get("posted_section_keys"), list) else []
+
+    intro_state = run_state.get("intro") if isinstance(run_state.get("intro"), dict) else {}
+    intro_present = bool(intro_state.get("message_id"))
+    intro_count = 1 if intro_present else 0
+
+    section_headers_state = run_state.get("section_headers") if isinstance(run_state.get("section_headers"), dict) else {}
+    section_header_counts = {
+        sk: (1 if isinstance(v, dict) and v.get("message_id") else 0)
+        for sk, v in section_headers_state.items()
+    }
+
+    item_count = len(items)
+    key_seq = [item.get("item_key") for item in items if isinstance(item, dict) and item.get("item_key")]
+    seen_keys: set = set()
+    dup_keys: List[str] = []
+    for k in key_seq:
+        if k in seen_keys and k not in dup_keys:
+            dup_keys.append(k)
+        seen_keys.add(k)
+    duplicate_item_keys = dup_keys
+
+    footer_state = run_state.get("navigation_footer") if isinstance(run_state.get("navigation_footer"), dict) else {}
+    footer_present = bool(footer_state.get("message_id"))
+
     skipped = run_counts.get("skipped", 0)
+
+    if rerun_protection_active:
+        # Run was intentionally skipped; structural checks belong to the completing run.
+        passes = skipped == 0
+    else:
+        footer_expected = bool(posted_section_keys) and bool(DISCORD_GUILD_ID)
+        footer_ok = footer_present if footer_expected else True
+        headers_ok = all(
+            sk in posted_section_keys
+            for sk, count in section_header_counts.items()
+            if count > 0
+        )
+        passes = (
+            intro_count == 1
+            and not duplicate_item_keys
+            and footer_ok
+            and headers_ok
+            and skipped == 0
+        )
+
     artifact = {
         "day_key": day_key,
         "created": run_counts.get("created", 0),
@@ -1143,7 +1192,14 @@ def export_verification_artifact(
         "reused": run_counts.get("reused", 0),
         "skipped": skipped,
         "rerun_protection_active": rerun_protection_active,
-        "pass": skipped == 0,
+        "intro_present": intro_present,
+        "intro_count": intro_count,
+        "section_header_counts": section_header_counts,
+        "item_count": item_count,
+        "duplicate_item_keys": duplicate_item_keys,
+        "footer_present": footer_present,
+        "posted_section_keys": posted_section_keys,
+        "pass": passes,
         "generated_at_utc": utc_now_iso(),
     }
     try:
@@ -1783,10 +1839,10 @@ def post_daily_pick_messages(
     *,
     force_refresh_same_day: bool = False,
 ) -> Tuple[Dict[str, int], bool]:
-    """Post (or reconcile) daily pick messages. Returns (run_counts, rerun_protection_active)."""
+    """Post (or reconcile) daily pick messages. Returns (run_counts, rerun_protection_active, verification_state)."""
     run_counts: Dict[str, int] = {"created": 0, "updated": 0, "reused": 0, "skipped": 0}
     if not (demo_playtest_items or free_items or paid_items or instagram_posts):
-        return run_counts, False
+        return run_counts, False, {}
 
     token_available = bool(DISCORD_BOT_TOKEN)
     daily_posts = load_discord_daily_posts() if token_available else {}
@@ -1811,7 +1867,7 @@ def post_daily_pick_messages(
     if bool(run_state.get("completed")) and not force_refresh_same_day:
         print(f"SKIP: daily picks already completed for {day_key}; rerun protection active (force_refresh_same_day=false)")
         save_discord_daily_posts(daily_posts)
-        return run_counts, True
+        return run_counts, True, {}
     if bool(run_state.get("completed")) and force_refresh_same_day:
         print(f"REFRESH: daily picks already completed for {day_key}; force_refresh_same_day=true so reconciling posts")
 
@@ -2006,7 +2062,11 @@ def post_daily_pick_messages(
     run_state["completed_at_utc"] = utc_now_iso()
     save_discord_daily_posts(daily_posts)
     print(f"COMPLETE: daily picks state marked completed for {day_key}")
-    return run_counts, False
+    return run_counts, False, {
+        "run_state": run_state,
+        "items": day_entry.get("items") or [],
+        "posted_section_keys": posted_section_keys,
+    }
 
 
 def dedupe_by_app_id(items: List[Tuple[str, str]]) -> List[Tuple[str, str]]:
@@ -2387,7 +2447,7 @@ def main():
     force_refresh_same_day = get_force_refresh_same_day()
     if force_refresh_same_day:
         print("Daily picks run configured with FORCE_REFRESH_SAME_DAY=true")
-    run_counts, rerun_protection_active = post_daily_pick_messages(
+    run_counts, rerun_protection_active, verification_state = post_daily_pick_messages(
         demo_playtest_items,
         free_items,
         paid_items,
@@ -2476,6 +2536,7 @@ def main():
         day_key=get_target_day_key(),
         run_counts=run_counts,
         rerun_protection_active=rerun_protection_active,
+        verification_state=verification_state,
     )
 
     next_start_page = get_next_start_page(start_page)

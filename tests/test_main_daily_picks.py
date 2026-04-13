@@ -749,6 +749,19 @@ class FakeDebugClient:
         return {"id": "debug-1", "channel_id": channel_id}
 
 
+def _make_vs(*, intro_id="intro-1", footer_id="footer-1", section_headers=None, items=None, posted_section_keys=None):
+    """Build a minimal verification_state for tests."""
+    return {
+        "run_state": {
+            "intro": {"message_id": intro_id} if intro_id else {},
+            "navigation_footer": {"message_id": footer_id} if footer_id else {},
+            "section_headers": section_headers or {},
+        },
+        "items": items or [],
+        "posted_section_keys": posted_section_keys or [],
+    }
+
+
 def test_export_verification_artifact_pass_when_no_skipped(tmp_path):
     out = tmp_path / "verification.json"
     run_counts = {"created": 4, "updated": 1, "reused": 2, "skipped": 0}
@@ -756,6 +769,7 @@ def test_export_verification_artifact_pass_when_no_skipped(tmp_path):
         day_key="2026-04-12",
         run_counts=run_counts,
         rerun_protection_active=False,
+        verification_state=_make_vs(),
         path=str(out),
     )
     artifact = json.loads(out.read_text(encoding="utf-8"))
@@ -767,6 +781,13 @@ def test_export_verification_artifact_pass_when_no_skipped(tmp_path):
     assert artifact["rerun_protection_active"] is False
     assert artifact["pass"] is True
     assert artifact["generated_at_utc"]
+    # New structural fields present
+    assert artifact["intro_present"] is True
+    assert artifact["intro_count"] == 1
+    assert artifact["item_count"] == 0
+    assert artifact["duplicate_item_keys"] == []
+    assert artifact["footer_present"] is True
+    assert artifact["posted_section_keys"] == []
 
 
 def test_export_verification_artifact_fail_when_skipped(tmp_path):
@@ -776,6 +797,7 @@ def test_export_verification_artifact_fail_when_skipped(tmp_path):
         day_key="2026-04-12",
         run_counts=run_counts,
         rerun_protection_active=False,
+        verification_state=_make_vs(),
         path=str(out),
     )
     artifact = json.loads(out.read_text(encoding="utf-8"))
@@ -810,6 +832,112 @@ def test_export_verification_artifact_fails_gracefully(monkeypatch, capsys):
     )
     captured = capsys.readouterr()
     assert "WARN: failed to write verification artifact" in captured.out
+
+
+def test_export_verification_artifact_fail_when_no_intro(tmp_path):
+    out = tmp_path / "verification.json"
+    main.export_verification_artifact(
+        day_key="2026-04-12",
+        run_counts={"created": 1, "updated": 0, "reused": 0, "skipped": 0},
+        rerun_protection_active=False,
+        verification_state=_make_vs(intro_id=None),
+        path=str(out),
+    )
+    artifact = json.loads(out.read_text(encoding="utf-8"))
+    assert artifact["intro_present"] is False
+    assert artifact["intro_count"] == 0
+    assert artifact["pass"] is False
+
+
+def test_export_verification_artifact_fail_when_duplicate_item_keys(tmp_path):
+    out = tmp_path / "verification.json"
+    items = [
+        {"item_key": "abc123", "title": "Game A"},
+        {"item_key": "abc123", "title": "Game A duplicate"},
+        {"item_key": "def456", "title": "Game B"},
+    ]
+    main.export_verification_artifact(
+        day_key="2026-04-12",
+        run_counts={"created": 3, "updated": 0, "reused": 0, "skipped": 0},
+        rerun_protection_active=False,
+        verification_state=_make_vs(items=items),
+        path=str(out),
+    )
+    artifact = json.loads(out.read_text(encoding="utf-8"))
+    assert artifact["duplicate_item_keys"] == ["abc123"]
+    assert artifact["item_count"] == 3
+    assert artifact["pass"] is False
+
+
+def test_export_verification_artifact_footer_required_when_guild_id_set(tmp_path, monkeypatch):
+    out = tmp_path / "verification.json"
+    monkeypatch.setattr(main, "DISCORD_GUILD_ID", "guild-123")
+    main.export_verification_artifact(
+        day_key="2026-04-12",
+        run_counts={"created": 2, "updated": 0, "reused": 0, "skipped": 0},
+        rerun_protection_active=False,
+        verification_state=_make_vs(footer_id=None, posted_section_keys=["free"]),
+        path=str(out),
+    )
+    artifact = json.loads(out.read_text(encoding="utf-8"))
+    assert artifact["footer_present"] is False
+    assert artifact["pass"] is False
+
+
+def test_export_verification_artifact_footer_not_required_without_guild_id(tmp_path, monkeypatch):
+    out = tmp_path / "verification.json"
+    monkeypatch.setattr(main, "DISCORD_GUILD_ID", "")
+    main.export_verification_artifact(
+        day_key="2026-04-12",
+        run_counts={"created": 2, "updated": 0, "reused": 0, "skipped": 0},
+        rerun_protection_active=False,
+        verification_state=_make_vs(footer_id=None, posted_section_keys=["free"]),
+        path=str(out),
+    )
+    artifact = json.loads(out.read_text(encoding="utf-8"))
+    assert artifact["footer_present"] is False
+    assert artifact["pass"] is True
+
+
+def test_export_verification_artifact_fail_when_orphan_section_header(tmp_path):
+    # A header exists for "paid" but "paid" was not in posted_section_keys
+    out = tmp_path / "verification.json"
+    vs = _make_vs(
+        section_headers={"paid": {"message_id": "hdr-paid"}},
+        posted_section_keys=["free"],
+    )
+    main.export_verification_artifact(
+        day_key="2026-04-12",
+        run_counts={"created": 2, "updated": 0, "reused": 0, "skipped": 0},
+        rerun_protection_active=False,
+        verification_state=vs,
+        path=str(out),
+    )
+    artifact = json.loads(out.read_text(encoding="utf-8"))
+    assert artifact["section_header_counts"] == {"paid": 1}
+    assert artifact["pass"] is False
+
+
+def test_export_verification_artifact_section_header_counts_by_key(tmp_path):
+    out = tmp_path / "verification.json"
+    vs = _make_vs(
+        section_headers={
+            "free": {"message_id": "hdr-free"},
+            "paid": {},  # no message_id → count 0
+        },
+        posted_section_keys=["free"],
+    )
+    main.export_verification_artifact(
+        day_key="2026-04-12",
+        run_counts={"created": 2, "updated": 0, "reused": 0, "skipped": 0},
+        rerun_protection_active=False,
+        verification_state=vs,
+        path=str(out),
+    )
+    artifact = json.loads(out.read_text(encoding="utf-8"))
+    assert artifact["section_header_counts"] == {"free": 1, "paid": 0}
+    # paid header has count 0 so headers_ok is True (only count>0 headers are checked)
+    assert artifact["pass"] is True
 
 
 def test_post_discord_debug_summary_posts_compact_message(monkeypatch):
@@ -909,7 +1037,7 @@ def test_post_daily_pick_messages_returns_counts(monkeypatch, tmp_path):
     monkeypatch.setenv(main.DAILY_DATE_OVERRIDE_ENV, day_key)
 
     free_items = [{"title": "Game A", "url": "https://store.steampowered.com/app/1", "price": "Free", "score": 9}]
-    run_counts, rerun_protection_active = main.post_daily_pick_messages([], free_items, [], [])
+    run_counts, rerun_protection_active, _ = main.post_daily_pick_messages([], free_items, [], [])
 
     assert rerun_protection_active is False
     # intro + free_header + 1 item = 3 created
@@ -934,7 +1062,7 @@ def test_post_daily_pick_messages_rerun_protection_returns_flag(monkeypatch, tmp
     monkeypatch.setenv(main.DAILY_DATE_OVERRIDE_ENV, day_key)
 
     free_items = [{"title": "Game A", "url": "https://store.steampowered.com/app/1", "price": "Free", "score": 9}]
-    run_counts, rerun_protection_active = main.post_daily_pick_messages([], free_items, [], [])
+    run_counts, rerun_protection_active, _ = main.post_daily_pick_messages([], free_items, [], [])
 
     assert rerun_protection_active is True
     assert run_counts["created"] == 0
