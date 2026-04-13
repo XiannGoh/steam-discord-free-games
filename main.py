@@ -714,7 +714,7 @@ def is_vr_content(title: str, description: str, text: str, tags: List[str]) -> b
     return False
 
 
-def get_price_info(app_id: str) -> Tuple[Optional[float], bool]:
+def get_price_info(app_id: str) -> Tuple[Optional[float], bool, Optional[int]]:
     try:
         url = (
             f"https://store.steampowered.com/api/appdetails"
@@ -726,25 +726,26 @@ def get_price_info(app_id: str) -> Tuple[Optional[float], bool]:
 
         app_data = data.get(str(app_id), {})
         if not app_data.get("success"):
-            return None, False
+            return None, False, None
 
         info = app_data.get("data", {})
 
         if info.get("is_free") is True:
-            return 0.0, True
+            return 0.0, True, None
 
         price_info = info.get("price_overview")
         if not price_info:
-            return None, False
+            return None, False, None
 
         final_price_cents = price_info.get("final")
         if final_price_cents is None:
-            return None, False
+            return None, False, None
 
-        return round(final_price_cents / 100.0, 2), False
+        discount_percent = price_info.get("discount_percent", 0)
+        return round(final_price_cents / 100.0, 2), False, discount_percent
     except Exception as e:
         print(f"PRICE API FAILED: app_id={app_id} | error={e}")
-        return None, False
+        return None, False, None
 
 
 def detect_item_type(source: str, app_id: str, title: str, text: str) -> str:
@@ -761,7 +762,7 @@ def detect_item_type(source: str, app_id: str, title: str, text: str) -> str:
         return "demo"
 
     if source == "paid_candidate":
-        price, is_free = get_price_info(app_id)
+        price, is_free, _ = get_price_info(app_id)
 
         if is_free:
             return "ignore"
@@ -1436,8 +1437,8 @@ def inspect_game(source: str, app_id: str) -> Optional[dict]:
     item_type = detect_item_type(source, app_id, title, page_text)
 
     if source == "paid_candidate":
-        price, is_free = get_price_info(app_id)
-        print(f"PAID CHECK: {title} | price={price} | is_free={is_free} | type={item_type}")
+        price, is_free, discount_percent = get_price_info(app_id)
+        print(f"PAID CHECK: {title} | price={price} | is_free={is_free} | discount={discount_percent}% | type={item_type}")
 
     if item_type == "ignore":
         return None
@@ -1488,6 +1489,15 @@ def inspect_game(source: str, app_id: str) -> Optional[dict]:
         )
         demo_has_free_to_try_signal = has_demo_playtest_free_to_try_signal(title, description, page_text)
 
+    discount_score = 0
+    if item_type == "paid_under_20" and discount_percent is not None:
+        if discount_percent >= 50:
+            discount_score = 3
+        elif discount_percent >= 25:
+            discount_score = 2
+        elif discount_percent >= 10:
+            discount_score = 1
+
     total_score = (
         multiplayer_score
         + player_score
@@ -1496,6 +1506,7 @@ def inspect_game(source: str, app_id: str) -> Optional[dict]:
         + refinement_score
         + type_adjustment
         + demo_section_score
+        + discount_score
     )
 
     has_multiplayer_signal = multiplayer_score > 0
