@@ -25,6 +25,7 @@ WEBHOOK_URL = os.getenv("DISCORD_WEBHOOK_URL")
 DISCORD_BOT_TOKEN = os.getenv("DISCORD_BOT_TOKEN")
 DISCORD_GUILD_ID = os.getenv("DISCORD_GUILD_ID")
 DISCORD_DEBUG_CHANNEL_ID = os.getenv("DISCORD_DEBUG_CHANNEL_ID")
+DISCORD_HEALTH_MONITOR_WEBHOOK_URL = os.getenv("DISCORD_HEALTH_MONITOR_WEBHOOK_URL")
 STATE_FILE = "seen_ids.json"
 PAGE_STATE_FILE = "page_state.json"
 INSTAGRAM_STATE_FILE = "instagram_seen.json"
@@ -469,6 +470,17 @@ def load_state() -> Dict[str, dict]:
         return {}
     except Exception:
         return {}
+
+
+def _notify_health_monitor(message: str) -> None:
+    """Post a warning to the Discord health monitor webhook (best-effort, never raises)."""
+    url = DISCORD_HEALTH_MONITOR_WEBHOOK_URL
+    if not url:
+        return
+    try:
+        requests.post(url, json={"content": message}, timeout=10)
+    except Exception:
+        pass
 
 
 def save_state(state: Dict[str, dict]) -> None:
@@ -2460,7 +2472,26 @@ def fetch_instagram_posts():
         print(f"Loaded Instagram session for {instagram_username}")
     except Exception as e:
         print(f"Instagram session load failed: {e}")
+        _notify_health_monitor(
+            f"⚠️ Instagram session load failed for {instagram_username}: {e}\n"
+            f"Instagram session may have expired — re-authenticate and update INSTAGRAM_SESSION secret."
+        )
         return []
+
+    # Session health check — verify the loaded session is still authenticated.
+    try:
+        session_username = loader.context.username
+        if not session_username:
+            print("WARN: Instagram session health check failed — context.username is empty; session may have expired")
+            _notify_health_monitor(
+                f"⚠️ Instagram session may have expired for {instagram_username}.\n"
+                f"context.username is empty after loading session. "
+                f"Re-authenticate and update the INSTAGRAM_SESSION secret."
+            )
+        else:
+            print(f"Instagram session health check OK: logged in as @{session_username}")
+    except Exception as e:
+        print(f"WARN: Instagram session health check raised an exception: {e}")
 
     cutoff_utc = datetime.now(timezone.utc) - timedelta(days=INSTAGRAM_MAX_POST_AGE_DAYS)
 
@@ -2471,17 +2502,27 @@ def fetch_instagram_posts():
 
             profile = instaloader.Profile.from_username(loader.context, username)
             count = 0
+            skipped_age = 0
+            skipped_seen = 0
 
             for post in profile.get_posts():
                 # Posts are returned newest-first; stop as soon as we pass the age cutoff.
                 post_date = post.date_utc.replace(tzinfo=timezone.utc)
                 if post_date < cutoff_utc:
-                    print(f"INSTAGRAM AGE FILTER: @{username} post {post.shortcode} is older than {INSTAGRAM_MAX_POST_AGE_DAYS}d; stopping")
+                    age_days = (datetime.now(timezone.utc) - post_date).days
+                    print(
+                        f"INSTAGRAM AGE FILTER: @{username} post {post.shortcode} "
+                        f"date={post_date.date().isoformat()} age={age_days}d "
+                        f"(cutoff={INSTAGRAM_MAX_POST_AGE_DAYS}d); stopping iteration"
+                    )
+                    skipped_age += 1
                     break
 
                 shortcode = post.shortcode
 
                 if shortcode in seen[username]:
+                    print(f"INSTAGRAM SEEN: @{username} post {shortcode} already seen; skipping")
+                    skipped_seen += 1
                     continue
 
                 caption = (post.caption or "").replace("\n", " ").strip()
@@ -2501,6 +2542,14 @@ def fetch_instagram_posts():
                     break
 
             seen[username] = seen[username][-INSTAGRAM_SEEN_RETENTION_PER_CREATOR:]
+
+            if count == 0:
+                print(
+                    f"INSTAGRAM ZERO POSTS: @{username} returned 0 new posts "
+                    f"(skipped_seen={skipped_seen}, skipped_age={skipped_age})"
+                )
+            else:
+                print(f"INSTAGRAM: @{username} collected {count} new post(s) (skipped_seen={skipped_seen}, skipped_age={skipped_age})")
 
         except Exception as e:
             print(f"Instagram scrape failed for {username}: {e}")
