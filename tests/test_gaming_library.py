@@ -690,3 +690,55 @@ def test_player_with_no_status_appears_in_library_post_after_sync():
 
     game_posts = [p[1] for p in client2.posts if "Appear Game" in p[1] and "Players:" in p[1]]
     assert any("<@u4>" in msg for msg in game_posts), "User u4 should appear in library post after status default"
+
+
+# --- Manual run vs scheduled run completed flag ---
+
+def test_gaming_library_scheduled_run_sets_completed_flag():
+    """Scheduled runs mark the day_entry as completed."""
+    state = lib.load_gaming_library(path="/tmp/does-not-exist.json")
+    client = FakeDiscordClient()
+    lib.post_daily_library_reminder(state, day_key="2026-04-10", channel_id="lib-chan", client=client)
+    assert state["daily_posts"]["2026-04-10"]["completed"] is True
+
+
+def test_gaming_library_manual_run_does_not_set_completed_flag():
+    """workflow_dispatch runs post content but do not mark the day as completed."""
+    state = lib.load_gaming_library(path="/tmp/does-not-exist.json")
+    client = FakeDiscordClient()
+    lib.post_daily_library_reminder(state, day_key="2026-04-10", channel_id="lib-chan", client=client, manual_run=True)
+    assert state["daily_posts"]["2026-04-10"].get("completed") is not True
+    assert len(client.posts) > 0  # content was still posted
+
+
+def test_gaming_library_manual_run_followed_by_scheduled_run_posts_normally():
+    """After a manual run, the scheduled run still produces output (not blocked by completed flag)."""
+    state = lib.load_gaming_library(path="/tmp/does-not-exist.json")
+
+    # Manual run — completed flag NOT set
+    client1 = FakeDiscordClient()
+    lib.post_daily_library_reminder(state, day_key="2026-04-10", channel_id="lib-chan", client=client1, manual_run=True)
+    assert state["daily_posts"]["2026-04-10"].get("completed") is not True
+    assert len(client1.posts) > 0
+
+    # Scheduled run — completed flag IS set, and it still posts (edits existing messages)
+    client2 = FakeDiscordClient()
+    lib.post_daily_library_reminder(state, day_key="2026-04-10", channel_id="lib-chan", client=client2, manual_run=False)
+    assert state["daily_posts"]["2026-04-10"]["completed"] is True
+    assert len(client2.posts) + len(client2.edits) > 0  # produced Discord activity
+
+
+def test_is_manual_run_detects_workflow_dispatch(monkeypatch):
+    monkeypatch.setenv(lib.GITHUB_EVENT_NAME_ENV, "workflow_dispatch")
+    assert lib.is_manual_run() is True
+
+
+def test_is_manual_run_returns_false_for_schedule(monkeypatch):
+    monkeypatch.setenv(lib.GITHUB_EVENT_NAME_ENV, "schedule")
+    assert lib.is_manual_run() is False
+
+
+def test_is_manual_run_returns_false_when_env_unset(monkeypatch):
+    monkeypatch.delenv(lib.GITHUB_EVENT_NAME_ENV, raising=False)
+    assert lib.is_manual_run() is False
+

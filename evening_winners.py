@@ -20,6 +20,7 @@ DISCORD_BOT_TOKEN = os.getenv("DISCORD_BOT_TOKEN")
 DISCORD_WINNERS_CHANNEL_ID = os.getenv("DISCORD_WINNERS_CHANNEL_ID")
 DISCORD_GUILD_ID = os.getenv("DISCORD_GUILD_ID")
 WINNERS_DATE_OVERRIDE_ENV = "WINNERS_DATE_UTC"
+GITHUB_EVENT_NAME_ENV = "GITHUB_EVENT_NAME"
 WINNERS_LOOKBACK_DAYS = 10
 MAX_VOTERS_SHOWN_PER_GAME = 6
 DISCORD_MESSAGE_CHAR_LIMIT = 2000
@@ -45,6 +46,16 @@ def get_target_day_key() -> str:
         return datetime.now(timezone.utc).date().isoformat()
     datetime.fromisoformat(manual_day)
     return manual_day
+
+
+def is_manual_run() -> bool:
+    """Return True when triggered by workflow_dispatch (manual/test run).
+
+    Manual runs post to Discord but do NOT block subsequent scheduled runs —
+    they always re-post fresh content even when winners are unchanged.
+    """
+    event = (os.getenv(GITHUB_EVENT_NAME_ENV, "") or "").strip().lower()
+    return event == "workflow_dispatch"
 
 
 def get_thumbsup_count(message_payload: dict) -> int:
@@ -855,6 +866,9 @@ def main() -> None:
     if not DISCORD_BOT_TOKEN:
         raise RuntimeError("DISCORD_BOT_TOKEN is not set.")
     day_key = get_target_day_key()
+    manual_run = is_manual_run()
+    if manual_run:
+        print("Evening winners run is a manual (workflow_dispatch) run — idempotency skips bypassed")
     print(f"Starting evening winners for day={day_key}")
 
     daily_posts = load_discord_daily_posts()
@@ -1014,7 +1028,7 @@ def main() -> None:
             for key in current_winner_keys
         ]
 
-        if keys_unchanged and not had_previous_vote_snapshot:
+        if keys_unchanged and not had_previous_vote_snapshot and not manual_run:
             winners_state["winner_vote_counts"] = current_winner_vote_counts
             winners_state["winner_entries"] = current_winner_entries
             winners_state["updated_at_utc"] = datetime.now(timezone.utc).isoformat()
@@ -1029,7 +1043,7 @@ def main() -> None:
             print(f"SKIP: no newly eligible winners for {day_key} (backfilled vote snapshot)")
             return
 
-        if keys_unchanged and vote_counts_unchanged and has_previous_winner_entries:
+        if keys_unchanged and vote_counts_unchanged and has_previous_winner_entries and not manual_run:
             for prior_day in sorted(key for key in prior_days_requiring_updates if key and key != day_key):
                 upsert_winners_messages_for_day(
                     client,
@@ -1042,7 +1056,7 @@ def main() -> None:
             print(f"SKIP: no newly eligible winners for {day_key}")
             return
 
-        if keys_unchanged and vote_counts_unchanged:
+        if keys_unchanged and vote_counts_unchanged and not manual_run:
             winners_state["winner_entries"] = current_winner_entries
             winners_state["updated_at_utc"] = datetime.now(timezone.utc).isoformat()
             for prior_day in sorted(key for key in prior_days_requiring_updates if key and key != day_key):
