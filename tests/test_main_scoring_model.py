@@ -64,7 +64,7 @@ def test_mixed_reviews_are_harder_to_qualify(monkeypatch):
     mixed = main.inspect_game("steam_free", "202")
 
     assert mostly_positive is not None and mixed is not None
-    assert mixed["review_score"] == -6
+    assert mixed["review_score"] == -3
     assert mostly_positive["score"] > mixed["score"]
 
 
@@ -590,3 +590,221 @@ def test_vr_game_with_steamvr_in_description_excluded(monkeypatch):
 
     item = main.inspect_game("steam_demo", "1602")
     assert item is None  # SteamVR in description must be excluded
+
+
+# --- Issue #183 scoring model changes ---
+
+def test_review_score_caps_overwhelmingly_positive(monkeypatch):
+    html = build_html("Great Game", "friends", "Multiplayer Online Co-Op up to 6 players", "Overwhelmingly Positive")
+    stub_app_pages(monkeypatch, {"2001": html})
+    item = main.inspect_game("steam_free", "2001")
+    assert item is not None
+    assert item["review_score"] == 6
+
+
+def test_review_score_caps_very_positive(monkeypatch):
+    html = build_html("Very Good", "friends", "Multiplayer Online Co-Op up to 6 players", "Very Positive")
+    stub_app_pages(monkeypatch, {"2002": html})
+    item = main.inspect_game("steam_free", "2002")
+    assert item is not None
+    assert item["review_score"] == 5
+
+
+def test_review_score_caps_positive(monkeypatch):
+    html = build_html("Good Game", "friends", "Multiplayer Online Co-Op up to 6 players", "Positive")
+    stub_app_pages(monkeypatch, {"2003": html})
+    item = main.inspect_game("steam_free", "2003")
+    assert item is not None
+    assert item["review_score"] == 4
+
+
+def test_review_score_caps_mostly_positive(monkeypatch):
+    html = build_html("Okay Game", "friends", "Multiplayer Online Co-Op up to 6 players", "Mostly Positive")
+    stub_app_pages(monkeypatch, {"2004": html})
+    item = main.inspect_game("steam_free", "2004")
+    assert item is not None
+    assert item["review_score"] == 2
+
+
+def test_review_score_mixed_is_minus_three(monkeypatch):
+    html = build_html("Mixed Game", "friends", "Multiplayer Online Co-Op up to 6 players", "Mixed")
+    stub_app_pages(monkeypatch, {"2005": html})
+    item = main.inspect_game("steam_free", "2005")
+    assert item is not None
+    assert item["review_score"] == -3
+
+
+def test_hard_exclude_mostly_negative_free_game(monkeypatch):
+    html = build_html("Bad Free", "friends", "Multiplayer Online Co-Op up to 6 players", "Mostly Negative")
+    stub_app_pages(monkeypatch, {"2010": html})
+    item = main.inspect_game("steam_free", "2010")
+    assert item is None  # Hard excluded
+
+
+def test_hard_exclude_very_negative_free_game(monkeypatch):
+    html = build_html("Very Bad Free", "friends", "Multiplayer Online Co-Op up to 6 players", "Very Negative")
+    stub_app_pages(monkeypatch, {"2011": html})
+    item = main.inspect_game("steam_free", "2011")
+    assert item is None  # Hard excluded
+
+
+def test_hard_exclude_overwhelmingly_negative_free_game(monkeypatch):
+    html = build_html("Terrible Free", "friends", "Multiplayer Online Co-Op up to 6 players", "Overwhelmingly Negative")
+    stub_app_pages(monkeypatch, {"2012": html})
+    item = main.inspect_game("steam_free", "2012")
+    assert item is None  # Hard excluded
+
+
+def test_hard_exclude_mostly_negative_paid_game(monkeypatch):
+    html = build_html("Bad Paid", "friends", "Multiplayer Online Co-Op up to 6 players", "Mostly Negative")
+    stub_app_pages(monkeypatch, {"2013": html})
+    monkeypatch.setattr(main, "get_price_info", lambda app_id: (9.99, False, 0, "game"))
+    item = main.inspect_game("paid_candidate", "2013")
+    assert item is None  # Hard excluded — applies to all sections
+
+
+def test_hard_exclude_mostly_negative_demo(monkeypatch):
+    html = build_html(
+        "Bad Demo",
+        "team up with friends",
+        "Multiplayer Online Co-Op up to 6 players Download Demo Mostly Negative",
+        "Mostly Negative",
+    )
+    stub_app_pages(monkeypatch, {"2014": html})
+    item = main.inspect_game("steam_demo", "2014")
+    assert item is None  # Hard excluded — applies to demos too
+
+
+def test_massively_multiplayer_score_is_six(monkeypatch):
+    # Verify the constant is set to 6.
+    # Note: score_multiplayer("Massively Multiplayer") also matches "Multiplayer" (+2),
+    # so the total is higher — we test the constant directly.
+    assert main.MULTIPLAYER_TERMS["Massively Multiplayer"] == 6
+
+
+def test_recency_bonus_within_7_days(monkeypatch):
+    from datetime import datetime, timezone, timedelta
+    recent = (datetime.now(timezone.utc) - timedelta(days=3)).strftime("%b %d, %Y")
+    html = build_html(
+        "Brand New Game",
+        "team up",
+        f"Release Date: {recent} Multiplayer Online Co-Op up to 6 players",
+        "Very Positive",
+    )
+    stub_app_pages(monkeypatch, {"2020": html})
+    item = main.inspect_game("steam_free", "2020")
+    assert item is not None
+    assert item["recency_score"] == 6
+    assert any("recency:6" in h for h in item["recency_hits"])
+
+
+def test_recency_bonus_within_30_days(monkeypatch):
+    from datetime import datetime, timezone, timedelta
+    recent = (datetime.now(timezone.utc) - timedelta(days=20)).strftime("%b %d, %Y")
+    html = build_html(
+        "Recent Game",
+        "team up",
+        f"Release Date: {recent} Multiplayer Online Co-Op up to 6 players",
+        "Very Positive",
+    )
+    stub_app_pages(monkeypatch, {"2021": html})
+    item = main.inspect_game("steam_free", "2021")
+    assert item is not None
+    assert item["recency_score"] == 4
+
+
+def test_recency_bonus_within_90_days(monkeypatch):
+    from datetime import datetime, timezone, timedelta
+    recent = (datetime.now(timezone.utc) - timedelta(days=60)).strftime("%b %d, %Y")
+    html = build_html(
+        "Somewhat Recent Game",
+        "team up",
+        f"Release Date: {recent} Multiplayer Online Co-Op up to 6 players",
+        "Very Positive",
+    )
+    stub_app_pages(monkeypatch, {"2022": html})
+    item = main.inspect_game("steam_free", "2022")
+    assert item is not None
+    assert item["recency_score"] == 2
+
+
+def test_recency_bonus_old_game_is_zero(monkeypatch):
+    html = build_html(
+        "Old Game",
+        "team up",
+        "Release Date: Jan 01, 2020 Multiplayer Online Co-Op up to 6 players",
+        "Very Positive",
+    )
+    stub_app_pages(monkeypatch, {"2023": html})
+    item = main.inspect_game("steam_free", "2023")
+    assert item is not None
+    assert item["recency_score"] == 0
+
+
+def test_recency_bonus_not_applied_to_demo(monkeypatch):
+    from datetime import datetime, timezone, timedelta
+    recent = (datetime.now(timezone.utc) - timedelta(days=3)).strftime("%b %d, %Y")
+    html = build_html(
+        "Brand New Demo",
+        "team up with friends",
+        f"Release Date: {recent} Multiplayer Online Co-Op up to 6 players Download Demo",
+        "",
+    )
+    stub_app_pages(monkeypatch, {"2024": html})
+    item = main.inspect_game("steam_demo", "2024")
+    assert item is not None
+    assert item["recency_score"] == 0  # Demos use their own freshness scoring
+
+
+def test_action_genre_no_longer_scores(monkeypatch):
+    action_only = build_html("Action Game", "friends", "Multiplayer Online Co-Op up to 6 players Action", "Mostly Positive")
+    no_action = build_html("Base Game", "friends", "Multiplayer Online Co-Op up to 6 players", "Mostly Positive")
+    stub_app_pages(monkeypatch, {"2030": action_only, "2031": no_action})
+
+    action_item = main.inspect_game("steam_free", "2030")
+    no_action_item = main.inspect_game("steam_free", "2031")
+    assert action_item is not None and no_action_item is not None
+    assert action_item["flavor_hits"] == no_action_item["flavor_hits"] or "Action" not in action_item["flavor_hits"]
+    assert action_item["score"] == no_action_item["score"]
+
+
+def test_rpg_genre_no_longer_scores(monkeypatch):
+    rpg_only = build_html("RPG Game", "friends", "Multiplayer Online Co-Op up to 6 players RPG", "Mostly Positive")
+    no_rpg = build_html("Base Game 2", "friends", "Multiplayer Online Co-Op up to 6 players", "Mostly Positive")
+    stub_app_pages(monkeypatch, {"2032": rpg_only, "2033": no_rpg})
+
+    rpg_item = main.inspect_game("steam_free", "2032")
+    no_rpg_item = main.inspect_game("steam_free", "2033")
+    assert rpg_item is not None and no_rpg_item is not None
+    assert "RPG" not in rpg_item.get("flavor_hits", [])
+    assert rpg_item["score"] == no_rpg_item["score"]
+
+
+def test_action_rpg_still_scores(monkeypatch):
+    action_rpg = build_html("Action RPG", "friends", "Multiplayer Online Co-Op up to 6 players Action RPG", "Mostly Positive")
+    stub_app_pages(monkeypatch, {"2034": action_rpg})
+    item = main.inspect_game("steam_free", "2034")
+    assert item is not None
+    assert "Action RPG" in item.get("flavor_hits", [])
+
+
+def test_hard_multiplayer_minimum_blocks_pvp_only(monkeypatch):
+    # "PvP" alone gives multiplayer_score = 1 — below minimum of 2
+    html = build_html("PvP Only", "friends", "PvP up to 6 players", "Very Positive")
+    stub_app_pages(monkeypatch, {"2040": html})
+    item = main.inspect_game("steam_free", "2040")
+    assert item is not None
+    assert item["keep"] is False  # multiplayer_score < 2
+
+
+def test_hard_multiplayer_minimum_allows_coop(monkeypatch):
+    # Co-Op gives multiplayer_score = 2 — meets minimum
+    html = build_html("Coop Game", "team up", "Multiplayer Online Co-Op up to 6 players", "Very Positive")
+    stub_app_pages(monkeypatch, {"2041": html})
+    item = main.inspect_game("steam_free", "2041")
+    assert item is not None
+    assert item["keep"] is True
+
+
+def test_free_game_threshold_is_eleven(monkeypatch):
+    assert main.MIN_SCORE_TO_POST_FREE == 11

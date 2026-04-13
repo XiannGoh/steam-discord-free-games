@@ -119,7 +119,7 @@ REPOST_COOLDOWN_DAYS = 30
 # - Paid is strictest overall.
 # These thresholds are intentionally conservative; do not tune further without
 # first observing real Discord output over multiple runs.
-MIN_SCORE_TO_POST_FREE = 9
+MIN_SCORE_TO_POST_FREE = 11
 MIN_SCORE_TO_POST_DEMO_PLAYTEST = 6
 MIN_SCORE_TO_POST_PAID = 8
 
@@ -141,7 +141,7 @@ FILTER_REASON_BELOW_THRESHOLD = "below_threshold"
 FILTER_REASON_QUALIFIED = "qualified"
 
 MULTIPLAYER_TERMS = {
-    "Massively Multiplayer": 4,
+    "Massively Multiplayer": 6,
     "MMO": 4,
     "Online Co-Op": 3,
     "Online Co-op": 3,
@@ -158,9 +158,7 @@ MULTIPLAYER_TERMS = {
 GOOD_GENRE_TERMS = {
     "Survival": 2,
     "Shooter": 2,
-    "Action": 1,
     "Action RPG": 2,
-    "RPG": 1,
     "Party": 2,
     "Roguelike": 2,
     "Roguelite": 2,
@@ -358,15 +356,23 @@ PLAYER_COUNT_PATTERNS = [
 ]
 
 REVIEW_SENTIMENT_SCORES = {
-    "Overwhelmingly Positive": 12,
-    "Very Positive": 9,
-    "Positive": 7,
-    "Mostly Positive": 5,
-    "Mixed": -6,
+    "Overwhelmingly Positive": 6,
+    "Very Positive": 5,
+    "Positive": 4,
+    "Mostly Positive": 2,
+    "Mixed": -3,
     "Mostly Negative": -8,
     "Negative": -8,
     "Very Negative": -10,
     "Overwhelmingly Negative": -12,
+}
+
+# Hard-excluded from all sections regardless of other scores.
+# Exception: demos/playtests with no reviews are handled separately (review_sentiment is None).
+HARD_EXCLUDE_REVIEW_SENTIMENTS = {
+    "Mostly Negative",
+    "Very Negative",
+    "Overwhelmingly Negative",
 }
 
 REVIEW_SENTIMENT_PATTERNS = [
@@ -917,6 +923,27 @@ def extract_release_date(page_text: str) -> Optional[datetime]:
         except ValueError:
             continue
     return None
+
+
+# Recency bonus tiers for free and paid games (not applied to demos/playtests).
+RECENCY_BONUS_TIERS = [
+    (7, 6),
+    (30, 4),
+    (90, 2),
+    (180, 1),
+]
+
+
+def score_recency_bonus(page_text: str) -> Tuple[int, List[str]]:
+    """Return a recency bonus for free/paid games based on release date age."""
+    release_date = extract_release_date(page_text)
+    if release_date is None:
+        return 0, []
+    age_days = (datetime.now(timezone.utc) - release_date).days
+    for threshold, bonus in RECENCY_BONUS_TIERS:
+        if age_days <= threshold:
+            return bonus, [f"recency:{bonus}(age={age_days}d)"]
+    return 0, []
 
 
 def score_demo_playtest_friend_group_fit(
@@ -1479,6 +1506,12 @@ def inspect_game(source: str, app_id: str) -> Optional[dict]:
     review_count = extract_review_count(page_text)
     review_score = REVIEW_SENTIMENT_SCORES.get(review_sentiment, UNKNOWN_REVIEW_SCORE_BY_TYPE.get(item_type, 0))
 
+    # Hard exclude: Mostly Negative / Very Negative / Overwhelmingly Negative → skip entirely.
+    # Demos/playtests with no reviews (review_sentiment is None) are exempt.
+    if review_sentiment in HARD_EXCLUDE_REVIEW_SENTIMENTS:
+        print(f"HARD EXCLUDED (negative reviews): {title} | sentiment={review_sentiment}")
+        return None
+
     review_gate_failed = False
     if item_type in ["free_game", "temporarily_free"]:
         review_gate_failed = review_sentiment is None or review_sentiment in FREE_REVIEW_BLOCKLIST
@@ -1527,6 +1560,12 @@ def inspect_game(source: str, app_id: str) -> Optional[dict]:
         elif discount_percent >= 10:
             discount_score = 1
 
+    # Recency bonus applies to free/paid games only — demos/playtests use their own freshness scoring.
+    recency_score = 0
+    recency_hits: List[str] = []
+    if item_type not in {"demo", "playtest"}:
+        recency_score, recency_hits = score_recency_bonus(page_text)
+
     total_score = (
         multiplayer_score
         + player_score
@@ -1536,21 +1575,22 @@ def inspect_game(source: str, app_id: str) -> Optional[dict]:
         + type_adjustment
         + demo_section_score
         + discount_score
+        + recency_score
     )
 
-    has_multiplayer_signal = multiplayer_score > 0
+    has_strong_multiplayer = multiplayer_score >= 2
     has_3plus_signal = player_score > 0
 
     if item_type == "paid_under_20":
         keep = (
-            has_multiplayer_signal and
+            has_strong_multiplayer and
             not rejected and
             not review_gate_failed and
             total_score >= MIN_SCORE_TO_POST_PAID
         )
     elif item_type in ["free_game", "temporarily_free"]:
         keep = (
-            has_multiplayer_signal and
+            has_strong_multiplayer and
             has_3plus_signal and
             not rejected and
             not review_gate_failed and
@@ -1561,7 +1601,7 @@ def inspect_game(source: str, app_id: str) -> Optional[dict]:
         # we only post tests that already show multiplayer viability for group nights.
         keep = (
             demo_has_free_to_try_signal and
-            has_multiplayer_signal and
+            has_strong_multiplayer and
             not rejected and
             not review_gate_failed and
             demo_friend_signal_score >= DEMO_PLAYTEST_MIN_FRIEND_SIGNAL and
@@ -1588,6 +1628,8 @@ def inspect_game(source: str, app_id: str) -> Optional[dict]:
         "review_score": review_score,
         "review_count": review_count,
         "review_gate_failed": review_gate_failed,
+        "recency_score": recency_score,
+        "recency_hits": recency_hits,
         "demo_friend_signal_score": demo_friend_signal_score,
         "demo_freshness_bonus": demo_freshness_bonus,
         "demo_has_free_to_try_signal": demo_has_free_to_try_signal,
