@@ -1029,6 +1029,47 @@ def has_demo_playtest_free_to_try_signal(title: str, description: str, text: str
     return any(phrase in combined for phrase in DEMO_PLAYTEST_LEGIT_PLAYABLE_CUE_SCORES)
 
 
+# Phrases in Steam page text that indicate a demo/playtest is not yet playable.
+DEMO_NOT_YET_AVAILABLE_PHRASES = [
+    "coming soon",
+    "not yet available",
+    "available soon",
+    "wishlist now",
+    "notify me when available",
+]
+
+
+def is_demo_not_yet_available(page_text: str, soup: "BeautifulSoup") -> tuple[bool, str]:
+    """Return (True, reason) if a demo/playtest page indicates it is not yet playable.
+
+    Checks (in order):
+    1. Future release date
+    2. Steam's dedicated coming-soon HTML elements (#game_area_comingsoon, .coming_soon)
+    3. 'Coming Soon' or similar phrases in the purchase/action block only
+    """
+    # 1. Future release date
+    release_date = extract_release_date(page_text)
+    if release_date is not None and release_date > datetime.now(timezone.utc):
+        days_until = (release_date - datetime.now(timezone.utc)).days
+        return True, f"release_date={release_date.date().isoformat()} is in the future ({days_until}d)"
+
+    # 2. Steam's dedicated coming-soon elements (unambiguous structural signals)
+    for selector in ("#game_area_comingsoon", ".coming_soon", "#coming_soon_text"):
+        if soup.select_one(selector):
+            return True, f"Steam coming-soon element '{selector}' present"
+
+    # 3. Purchase/action block text (targeted — not a broad page-text scan)
+    for selector in (".game_purchase_action", ".game_area_purchase_game"):
+        block = soup.select_one(selector)
+        if block:
+            block_text = block.get_text(" ", strip=True).lower()
+            for phrase in DEMO_NOT_YET_AVAILABLE_PHRASES:
+                if phrase in block_text:
+                    return True, f"purchase_block contains '{phrase}'"
+
+    return False, ""
+
+
 def extract_diversity_tags(title: str, description: str, text: str) -> List[str]:
     combined = f"{title} {description} {text}".lower()
     tag_terms = (
@@ -1510,6 +1551,13 @@ def inspect_game(source: str, app_id: str) -> Optional[dict]:
 
     if item_type == "ignore":
         return None
+
+    # Exclude demos/playtests that are not yet available to play.
+    if item_type in {"demo", "playtest"}:
+        not_available, reason = is_demo_not_yet_available(page_text, soup)
+        if not_available:
+            print(f"DEMO NOT YET AVAILABLE: {title} | excluded: demo not yet available to play | reason={reason}")
+            return None
 
     multiplayer_score, multiplayer_hits = score_multiplayer(page_text)
     player_score, player_hits, rejected = score_player_count(page_text)

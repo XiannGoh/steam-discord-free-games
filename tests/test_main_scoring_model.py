@@ -808,3 +808,110 @@ def test_hard_multiplayer_minimum_allows_coop(monkeypatch):
 
 def test_free_game_threshold_is_eleven(monkeypatch):
     assert main.MIN_SCORE_TO_POST_FREE == 11
+
+
+# --- Demo not-yet-available exclusion tests ---
+
+def _build_html_with_extras(title, description, feature_text, review_sentiment="Positive", extra_body=""):
+    """build_html variant that allows injecting extra HTML elements into the body."""
+    return f"""
+    <html>
+      <head><meta property="og:title" content="{title}" /></head>
+      <body>
+        <div id="appHubAppName">{title}</div>
+        <div class="game_description_snippet">{description}</div>
+        <div>{review_sentiment}</div>
+        <div>{feature_text}</div>
+        {extra_body}
+      </body>
+    </html>
+    """
+
+
+def test_demo_excluded_when_release_date_in_future(monkeypatch):
+    """Demo with a future release date is excluded as not yet available."""
+    from datetime import date, timedelta
+    future_date = (date.today() + timedelta(days=30)).strftime("%b %d, %Y")
+    html = _build_html_with_extras(
+        "Future Demo",
+        "multiplayer co-op friends",
+        f"Multiplayer Online Co-Op up to 6 players demo available Release Date: {future_date}",
+        "Positive",
+    )
+    stub_app_pages(monkeypatch, {"9001": html})
+    item = main.inspect_game("steam_demo", "9001")
+    assert item is None
+
+
+def test_demo_excluded_when_coming_soon_element_present(monkeypatch):
+    """Demo with Steam's #game_area_comingsoon element is excluded."""
+    html = _build_html_with_extras(
+        "Coming Soon Demo",
+        "multiplayer friends co-op",
+        "Multiplayer Online Co-Op up to 6 players",
+        "Positive",
+        extra_body='<div id="game_area_comingsoon">Coming Soon</div>',
+    )
+    stub_app_pages(monkeypatch, {"9002": html})
+    item = main.inspect_game("steam_demo", "9002")
+    assert item is None
+
+
+def test_demo_excluded_when_purchase_block_says_coming_soon(monkeypatch):
+    """Demo with 'coming soon' in the purchase action block is excluded."""
+    html = _build_html_with_extras(
+        "Blocked Demo",
+        "multiplayer friends co-op",
+        "Multiplayer Online Co-Op up to 6 players",
+        "Positive",
+        extra_body='<div class="game_purchase_action">Coming Soon</div>',
+    )
+    stub_app_pages(monkeypatch, {"9003": html})
+    item = main.inspect_game("steam_demo", "9003")
+    assert item is None
+
+
+def test_demo_not_excluded_when_release_date_in_past(monkeypatch):
+    """Demo with a past release date is NOT excluded (available to play)."""
+    from datetime import date, timedelta
+    past_date = (date.today() - timedelta(days=30)).strftime("%b %d, %Y")
+    html = _build_html_with_extras(
+        "Past Demo",
+        "multiplayer friends co-op",
+        f"Multiplayer Online Co-Op up to 6 players demo available Release Date: {past_date}",
+        "Positive",
+    )
+    stub_app_pages(monkeypatch, {"9004": html})
+    item = main.inspect_game("steam_demo", "9004")
+    assert item is not None
+    assert item["type"] == "demo"
+
+
+def test_demo_not_excluded_when_no_coming_soon_signals(monkeypatch):
+    """Normal playable demo with no coming-soon signals passes through."""
+    html = build_html(
+        "Normal Demo",
+        "multiplayer friends co-op",
+        "Multiplayer Online Co-Op up to 6 players demo available free to try",
+        "Positive",
+    )
+    stub_app_pages(monkeypatch, {"9005": html})
+    item = main.inspect_game("steam_demo", "9005")
+    assert item is not None
+    assert item["type"] == "demo"
+
+
+def test_non_demo_not_affected_by_coming_soon_check(monkeypatch):
+    """'Coming soon' element does NOT affect free_game type items."""
+    html = _build_html_with_extras(
+        "Free Game",
+        "multiplayer friends co-op",
+        "Multiplayer Online Co-Op up to 6 players",
+        "Positive",
+        extra_body='<div id="game_area_comingsoon">Coming Soon</div>',
+    )
+    stub_app_pages(monkeypatch, {"9006": html})
+    item = main.inspect_game("steam_free", "9006")
+    # free_game items should NOT be filtered by the demo availability check
+    assert item is not None
+    assert item["type"] == "free_game"
