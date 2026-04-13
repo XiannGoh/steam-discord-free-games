@@ -2,7 +2,7 @@ name: Auto Fix Loop
 
 on:
   workflow_run:
-    workflows: ["Steam Free Games"]
+    workflows: ["Steam Free Games", "Daily Game Picks Winners"]
     types: [completed]
 
 # Only one auto-fix may run at a time. Queue rather than cancel so no fix
@@ -105,13 +105,14 @@ jobs:
           echo "daily_verification pass: ${daily_pass}"
           echo "discord_verification pass: ${discord_pass}"
 
+          triggering_workflow="${{ github.event.workflow_run.name }}"
           if [ "$conclusion" = "failure" ] || [ "$daily_pass" = "false" ] || [ "$discord_pass" = "false" ]; then
             echo "should_fix=true" >> "$GITHUB_OUTPUT"
-            echo "trigger_reason=conclusion=${conclusion}, daily_pass=${daily_pass}, discord_pass=${discord_pass}" >> "$GITHUB_OUTPUT"
-            echo "Fix needed — proceeding with auto-fix attempts."
+            echo "trigger_reason=workflow=${triggering_workflow}, conclusion=${conclusion}, daily_pass=${daily_pass}, discord_pass=${discord_pass}" >> "$GITHUB_OUTPUT"
+            echo "Fix needed — workflow=${triggering_workflow}, conclusion=${conclusion}, daily_pass=${daily_pass}, discord_pass=${discord_pass}."
           else
             echo "should_fix=false" >> "$GITHUB_OUTPUT"
-            echo "No fix needed — conclusion=${conclusion}, daily_pass=${daily_pass}, discord_pass=${discord_pass}. Exiting."
+            echo "No fix needed — workflow=${triggering_workflow}, conclusion=${conclusion}, daily_pass=${daily_pass}, discord_pass=${discord_pass}. Exiting."
           fi
 
       # ------------------------------------------------------------------ #
