@@ -6,7 +6,15 @@ from urllib.parse import quote
 
 import requests
 
-from discord_api import DiscordClient, DiscordMessageNotFoundError
+from discord_api import (
+    DiscordClient,
+    DiscordMessageNotFoundError,
+    DiscordPermissionError,
+    PERM_ADD_REACTIONS,
+    PERM_MANAGE_MESSAGES,
+    PERM_READ_MESSAGE_HISTORY,
+    PERM_SEND_MESSAGES,
+)
 from state_utils import load_json_object, save_json_object_atomic
 
 GAMING_LIBRARY_FILE = "gaming_library.json"
@@ -14,6 +22,7 @@ DISCORD_DAILY_POSTS_FILE = "discord_daily_posts.json"
 DISCORD_BOT_TOKEN = os.getenv("DISCORD_BOT_TOKEN")
 DISCORD_GAMING_LIBRARY_CHANNEL_ID = os.getenv("DISCORD_GAMING_LIBRARY_CHANNEL_ID")
 DISCORD_GUILD_ID = os.getenv("DISCORD_GUILD_ID")
+DISCORD_HEALTH_MONITOR_WEBHOOK_URL = os.getenv("DISCORD_HEALTH_MONITOR_WEBHOOK_URL")
 LIBRARY_DATE_OVERRIDE_ENV = "LIBRARY_DATE_UTC"
 
 STATUS_ACTIVE = "active"
@@ -940,6 +949,66 @@ def _find_game_by_name(games: Dict[str, Any], name: str) -> Optional[Dict[str, A
     return None
 
 
+def _notify_health_monitor(message: str) -> None:
+    """Post a warning to the Discord health monitor webhook (best-effort, never raises)."""
+    url = DISCORD_HEALTH_MONITOR_WEBHOOK_URL
+    if not url:
+        return
+    try:
+        requests.post(url, json={"content": message}, timeout=10)
+    except Exception:
+        pass
+
+
+def _check_channel_permissions(
+    client: DiscordClient,
+    channel_id: str,
+    guild_id: str,
+    context: str,
+    *,
+    bot_user_id: str = "",
+) -> None:
+    """Preflight check: warn if the bot is missing required permissions in a channel.
+
+    Logs a warning and notifies the health monitor if any required permission is
+    missing.  Always returns — the caller continues regardless.
+    """
+    required = {
+        "Send Messages": PERM_SEND_MESSAGES,
+        "Add Reactions": PERM_ADD_REACTIONS,
+        "Read Message History": PERM_READ_MESSAGE_HISTORY,
+        "Manage Messages": PERM_MANAGE_MESSAGES,
+    }
+    try:
+        effective = client.check_bot_permissions(channel_id, guild_id, bot_user_id=bot_user_id)
+    except Exception as exc:
+        print(f"WARN: {context} — could not check bot permissions: {exc}")
+        return
+
+    if effective == 0:
+        print(f"WARN: {context} — could not determine bot permissions for channel {channel_id}")
+        return
+
+    missing = [name for name, flag in required.items() if not (effective & flag)]
+    if not missing:
+        return
+
+    warning = (
+        f"⚠️ {context} — Bot is missing Discord permissions in <#{channel_id}>: "
+        + ", ".join(missing)
+        + ". The bot will attempt to continue but errors may occur."
+    )
+    print(f"WARN: {warning}")
+    _notify_health_monitor(
+        f"⚠️ Gaming Library — Missing Discord Permissions\n\n"
+        f"Context: {context}\n"
+        f"Channel: <#{channel_id}>\n"
+        f"Missing: {', '.join(missing)}\n\n"
+        f"The bot will attempt to continue but errors may occur. "
+        f"Please grant the required permissions to the bot in that channel."
+    )
+
+
 def ensure_command_reference_pinned(
     state: Dict[str, Any],
     client: DiscordClient,
@@ -960,6 +1029,23 @@ def ensure_command_reference_pinned(
         if msg_id:
             try:
                 client.pin_message(channel_id, msg_id, context="pin command reference")
+            except DiscordPermissionError as exc:
+                warning = (
+                    f"⚠️ Bot is missing permission to pin messages in <#{channel_id}>. "
+                    f"The command reference was posted (message ID {msg_id}) but could not be pinned. "
+                    f"Please grant the bot 'Manage Messages' permission in this channel."
+                )
+                print(f"WARN: pin command reference — {exc}")
+                try:
+                    client.post_message(channel_id, warning, context="post pin permission warning")
+                except Exception:
+                    pass
+                _notify_health_monitor(
+                    f"⚠️ Gaming Library — Missing Pin Permission\n\n"
+                    f"Channel: <#{channel_id}>\n"
+                    f"The bot posted the command reference (message ID {msg_id}) but cannot pin it. "
+                    f"Please grant 'Manage Messages' permission to the bot in that channel."
+                )
             except Exception:
                 pass
             state["command_reference_message"] = {"message_id": msg_id, "channel_id": channel_id}
@@ -981,6 +1067,12 @@ def run_discord_sync(state_path: str = GAMING_LIBRARY_FILE, daily_posts_path: st
         client = DiscordClient(session)
         bot_user = client.get_current_user(context="fetch bot user for gaming library")
         bot_user_id = str(bot_user.get("id") or "").strip() or None
+
+        if channel_id and DISCORD_GUILD_ID:
+            _check_channel_permissions(
+                client, channel_id, DISCORD_GUILD_ID, "gaming library sync",
+                bot_user_id=bot_user_id or "",
+            )
 
         promotions = sync_promotions_from_winners(state, daily_posts, client, bot_user_id)
         status_updates = sync_statuses_from_library_posts(state, client, bot_user_id)
@@ -1012,6 +1104,10 @@ def run_daily_post(state_path: str = GAMING_LIBRARY_FILE) -> bool:
             "Content-Type": "application/json",
         })
         client = DiscordClient(session)
+        if DISCORD_GUILD_ID:
+            _check_channel_permissions(
+                client, channel_id, DISCORD_GUILD_ID, "gaming library daily post",
+            )
         posted = post_daily_library_reminder(state, day_key=day_key, channel_id=channel_id, client=client)
 
     save_gaming_library(state, state_path)
