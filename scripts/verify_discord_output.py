@@ -165,6 +165,73 @@ def _empty_channel_result() -> Dict[str, Any]:
     }
 
 
+def detect_broken_if(
+    broken_if_conditions: List[str],
+    ch_result: Dict[str, Any],
+) -> Dict[str, str]:
+    """Map broken_if spec conditions to their detected state.
+
+    Returns {condition: "triggered" | "not_triggered" | "undetectable"}.
+    Conditions are matched by keyword against collected result fields so the
+    spec stays human-readable without requiring an exact string registry.
+    """
+    detected: Dict[str, str] = {}
+    errors_text = " ".join(ch_result.get("errors", [])).lower()
+
+    for condition in broken_if_conditions:
+        c = condition.lower()
+
+        if any(k in c for k in ("no games posted", "no winners posted", "no health report")):
+            triggered = ch_result.get("messages_checked", 1) == 0
+            detected[condition] = "triggered" if triggered else "not_triggered"
+
+        elif "duplicate" in c:
+            triggered = "duplicate" in errors_text
+            detected[condition] = "triggered" if triggered else "not_triggered"
+
+        elif "missing intro" in c:
+            triggered = not ch_result.get("intro_found", True)
+            detected[condition] = "triggered" if triggered else "not_triggered"
+
+        elif "missing footer" in c:
+            if ch_result.get("footer_skipped"):
+                detected[condition] = "undetectable"
+            else:
+                triggered = not ch_result.get("footer_found", True)
+                detected[condition] = "triggered" if triggered else "not_triggered"
+
+        elif "bot reaction" in c or "bot vote" in c:
+            # Would require cross-referencing the bot user ID against reaction users.
+            detected[condition] = "undetectable"
+
+        elif "missing name" in c or "without actual game name" in c:
+            triggered = bool(ch_result.get("game_name_warnings"))
+            detected[condition] = "triggered" if triggered else "not_triggered"
+
+        elif "missing workflow status" in c or "missing verification result" in c:
+            detected[condition] = "undetectable"
+
+        else:
+            detected[condition] = "undetectable"
+
+    return detected
+
+
+def apply_broken_if(
+    ch_result: Dict[str, Any],
+    specs: Dict[str, Any],
+    channel_name: str,
+) -> None:
+    """Detect triggered broken_if conditions and annotate ch_result in-place."""
+    broken_if = specs.get(channel_name, {}).get("broken_if", [])
+    ch_result["broken_if_spec"] = broken_if
+    detected = detect_broken_if(broken_if, ch_result)
+    ch_result["broken_if_detected"] = detected
+    ch_result["triggered_broken_if"] = [
+        c for c, s in detected.items() if s == "triggered"
+    ]
+
+
 # ---------------------------------------------------------------------------
 # Step-1 verifier: step-1-vote-on-games-to-test
 # ---------------------------------------------------------------------------
@@ -174,6 +241,7 @@ def verify_step1(
     day_entry: Dict[str, Any],
     spec_required: Dict[str, Any],
     day_key: str,
+    specs: Optional[Dict[str, Any]] = None,
 ) -> Dict[str, Any]:
     """Verify daily picks messages for step-1-vote-on-games-to-test."""
     ch = _empty_channel_result()
@@ -258,6 +326,9 @@ def verify_step1(
 
     ch["pass"] = intro_ok and footer_ok and items_ok and no_missing and no_dupes
 
+    if specs is not None:
+        apply_broken_if(ch, specs, CHANNEL_STEP1)
+
     return ch
 
 
@@ -270,6 +341,7 @@ def verify_step2(
     day_entry: Dict[str, Any],
     spec_required: Dict[str, Any],
     day_key: str,
+    specs: Optional[Dict[str, Any]] = None,
 ) -> Dict[str, Any]:
     """Verify evening winners messages for step-2-test-then-vote-to-keep.
 
@@ -369,6 +441,9 @@ def verify_step2(
 
     ch["pass"] = intro_ok and footer_ok and items_ok and no_missing and no_dupes
 
+    if specs is not None:
+        apply_broken_if(ch, specs, CHANNEL_STEP2)
+
     return ch
 
 
@@ -431,14 +506,14 @@ def main() -> None:
     print(f"\n{'='*60}")
     print(f"Verifying {CHANNEL_STEP1}")
     print(f"  Spec criteria: {step1_required}")
-    result["channels"][CHANNEL_STEP1] = verify_step1(client, day_entry, step1_required, day_key)
+    result["channels"][CHANNEL_STEP1] = verify_step1(client, day_entry, step1_required, day_key, specs=specs)
 
     # Verify step-2
     step2_required = get_spec_required(specs, CHANNEL_STEP2)
     print(f"\n{'='*60}")
     print(f"Verifying {CHANNEL_STEP2}")
     print(f"  Spec criteria: {step2_required}")
-    result["channels"][CHANNEL_STEP2] = verify_step2(client, day_entry, step2_required, day_key)
+    result["channels"][CHANNEL_STEP2] = verify_step2(client, day_entry, step2_required, day_key, specs=specs)
 
     # Overall pass: any checked channel that fails → overall fail
     checked_channels = {
@@ -464,6 +539,9 @@ def main() -> None:
         print(f"    intro_found:      {ch.get('intro_found', False)}")
         print(f"    footer_found:     {ch.get('footer_found', False)}")
         print(f"    sections_found:   {ch.get('sections_found', [])}")
+        if ch.get("triggered_broken_if"):
+            for cond in ch["triggered_broken_if"]:
+                print(f"    BROKEN_IF: {cond}")
         if ch.get("errors"):
             for err in ch["errors"]:
                 print(f"    ERROR: {err}")
