@@ -36,6 +36,7 @@ jobs:
           DISCORD_GAMING_LIBRARY_CHANNEL_ID: ${{ secrets.DISCORD_GAMING_LIBRARY_CHANNEL_ID }}
           DISCORD_GUILD_ID: ${{ secrets.DISCORD_GUILD_ID }}
           LIBRARY_DATE_UTC: ${{ inputs.library_date_utc }}
+          GITHUB_EVENT_NAME: ${{ github.event_name }}
         run: python scripts/post_daily_gaming_library.py
 
       - name: Verify gaming library output

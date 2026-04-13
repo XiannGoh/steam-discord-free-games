@@ -32,6 +32,7 @@ DISCORD_DAILY_POSTS_FILE = "discord_daily_posts.json"
 DISCORD_DAILY_POSTS_RETENTION_DAYS = 30
 DAILY_DATE_OVERRIDE_ENV = "DAILY_DATE_UTC"
 FORCE_REFRESH_SAME_DAY_ENV = "FORCE_REFRESH_SAME_DAY"
+GITHUB_EVENT_NAME_ENV = "GITHUB_EVENT_NAME"
 DAILY_DEBUG_SUMMARY_FILE = "daily_debug_summary.json"
 DAILY_VERIFICATION_FILE = "daily_verification.json"
 STOP_GO_RESULT_FILE = "daily_stop_go_result.json"
@@ -1781,6 +1782,16 @@ def get_force_refresh_same_day() -> bool:
     )
 
 
+def is_manual_run() -> bool:
+    """Return True when triggered by workflow_dispatch (manual/test run).
+
+    Manual runs post to Discord but do NOT mark the day as completed so that
+    the subsequent scheduled run always executes cleanly.
+    """
+    event = (os.getenv(GITHUB_EVENT_NAME_ENV, "") or "").strip().lower()
+    return event == "workflow_dispatch"
+
+
 def format_daily_picks_footer_date(target_day_key: str) -> str:
     target_day = datetime.fromisoformat(target_day_key).date()
     return f"{target_day:%A, %B} {target_day.day}, {target_day:%Y}"
@@ -1963,8 +1974,14 @@ def post_daily_pick_messages(
     instagram_posts: List[dict],
     *,
     force_refresh_same_day: bool = False,
+    manual_run: bool = False,
 ) -> Tuple[Dict[str, int], bool]:
-    """Post (or reconcile) daily pick messages. Returns (run_counts, rerun_protection_active, verification_state)."""
+    """Post (or reconcile) daily pick messages. Returns (run_counts, rerun_protection_active, verification_state).
+
+    When manual_run is True (workflow_dispatch trigger), the run completes normally
+    but does NOT mark the day as completed in state. This ensures the next scheduled
+    run always executes cleanly regardless of prior manual runs.
+    """
     run_counts: Dict[str, int] = {"created": 0, "updated": 0, "reused": 0, "skipped": 0}
     if not (demo_playtest_items or free_items or paid_items or instagram_posts):
         return run_counts, False, {}
@@ -2207,10 +2224,13 @@ def post_daily_pick_messages(
         post_or_reconcile_simple(footer_content, "footer", footer_state)
         sleep_briefly()
 
-    run_state["completed"] = True
-    run_state["completed_at_utc"] = utc_now_iso()
+    if manual_run:
+        print(f"MANUAL RUN: daily picks done for {day_key}; skipping completed=True to preserve scheduled run eligibility")
+    else:
+        run_state["completed"] = True
+        run_state["completed_at_utc"] = utc_now_iso()
+        print(f"COMPLETE: daily picks state marked completed for {day_key}")
     save_discord_daily_posts(daily_posts)
-    print(f"COMPLETE: daily picks state marked completed for {day_key}")
     return run_counts, False, {
         "run_state": run_state,
         "items": day_entry.get("items") or [],
@@ -2497,7 +2517,7 @@ def export_stop_go_result(
     )
 
 
-def run_daily_workflow(*, force_refresh_same_day: bool = False) -> None:
+def run_daily_workflow(*, force_refresh_same_day: bool = False, manual_run: bool = False) -> None:
     state = load_state()
     print(f"Daily run target date (UTC): {get_target_day_key()}")
 
@@ -2668,12 +2688,16 @@ def run_daily_workflow(*, force_refresh_same_day: bool = False) -> None:
     force_refresh_same_day = force_refresh_same_day or get_force_refresh_same_day()
     if force_refresh_same_day:
         print("Daily picks run configured with FORCE_REFRESH_SAME_DAY=true")
+    manual_run = manual_run or is_manual_run()
+    if manual_run:
+        print("Daily picks run is a manual (workflow_dispatch) run — completed flag will not be set")
     run_counts, rerun_protection_active, verification_state = post_daily_pick_messages(
         demo_playtest_items,
         free_items,
         paid_items,
         instagram_posts,
         force_refresh_same_day=force_refresh_same_day,
+        manual_run=manual_run,
     )
 
     if not demo_playtest_items and not free_items and not paid_items:

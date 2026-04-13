@@ -578,6 +578,98 @@ def test_daily_picks_footer_skips_safely_when_guild_id_missing(monkeypatch, tmp_
     assert saved[day_key]["run_state"]["completed"] is True
 
 
+def test_manual_run_does_not_set_completed_flag(monkeypatch, tmp_path):
+    """workflow_dispatch runs post normally but do not mark the day as completed."""
+    daily_path = tmp_path / "daily.json"
+    daily_path.write_text("{}", encoding="utf-8")
+    day_key = "2026-04-09"
+    posted = []
+
+    monkeypatch.setattr(main, "DISCORD_DAILY_POSTS_FILE", str(daily_path))
+    monkeypatch.setattr(main, "DISCORD_BOT_TOKEN", "token")
+    monkeypatch.setattr(main, "post_to_discord_with_metadata", lambda message, capture_metadata=False: posted.append(message))
+    monkeypatch.setattr(main, "sleep_briefly", lambda: None)
+    monkeypatch.setenv(main.DAILY_DATE_OVERRIDE_ENV, day_key)
+
+    main.post_daily_pick_messages(
+        [], [{"title": "Free", "url": "https://store.steampowered.com/app/99", "score": 10}], [], [],
+        manual_run=True,
+    )
+
+    # Posts happened (manual run still posts to Discord)
+    assert len(posted) > 0
+    # But completed flag is NOT set
+    saved = json.loads(daily_path.read_text(encoding="utf-8"))
+    assert saved[day_key]["run_state"].get("completed") is not True
+
+
+def test_scheduled_run_sets_completed_flag(monkeypatch, tmp_path):
+    """schedule-triggered runs mark the day as completed normally."""
+    daily_path = tmp_path / "daily.json"
+    daily_path.write_text("{}", encoding="utf-8")
+    day_key = "2026-04-09"
+    posted = []
+
+    monkeypatch.setattr(main, "DISCORD_DAILY_POSTS_FILE", str(daily_path))
+    monkeypatch.setattr(main, "DISCORD_BOT_TOKEN", "token")
+    monkeypatch.setattr(main, "post_to_discord_with_metadata", lambda message, capture_metadata=False: posted.append(message))
+    monkeypatch.setattr(main, "sleep_briefly", lambda: None)
+    monkeypatch.setenv(main.DAILY_DATE_OVERRIDE_ENV, day_key)
+
+    main.post_daily_pick_messages(
+        [], [{"title": "Free", "url": "https://store.steampowered.com/app/99", "score": 10}], [], [],
+        manual_run=False,
+    )
+
+    saved = json.loads(daily_path.read_text(encoding="utf-8"))
+    assert saved[day_key]["run_state"]["completed"] is True
+
+
+def test_manual_run_followed_by_scheduled_run_executes_normally(monkeypatch, tmp_path):
+    """After a manual run, the scheduled run still runs (not blocked by completed flag)."""
+    daily_path = tmp_path / "daily.json"
+    daily_path.write_text("{}", encoding="utf-8")
+    day_key = "2026-04-09"
+
+    monkeypatch.setattr(main, "DISCORD_DAILY_POSTS_FILE", str(daily_path))
+    monkeypatch.setattr(main, "DISCORD_BOT_TOKEN", "token")
+    monkeypatch.setattr(main, "sleep_briefly", lambda: None)
+    monkeypatch.setenv(main.DAILY_DATE_OVERRIDE_ENV, day_key)
+
+    free_items = [{"title": "Free", "url": "https://store.steampowered.com/app/99", "score": 10}]
+
+    # Manual run first
+    manual_posts = []
+    monkeypatch.setattr(main, "post_to_discord_with_metadata", lambda msg, capture_metadata=False: manual_posts.append(msg))
+    main.post_daily_pick_messages([], free_items, [], [], manual_run=True)
+    assert manual_posts  # posts happened
+
+    # Scheduled run after — must NOT be blocked
+    scheduled_posts = []
+    monkeypatch.setattr(main, "post_to_discord_with_metadata", lambda msg, capture_metadata=False: scheduled_posts.append(msg))
+    _, rerun_protection_active, _ = main.post_daily_pick_messages([], free_items, [], [], manual_run=False)
+    assert not rerun_protection_active  # was not skipped
+    assert scheduled_posts  # posts happened
+    # Now completed is set
+    saved = json.loads(daily_path.read_text(encoding="utf-8"))
+    assert saved[day_key]["run_state"]["completed"] is True
+
+
+def test_is_manual_run_detects_workflow_dispatch(monkeypatch):
+    monkeypatch.setenv(main.GITHUB_EVENT_NAME_ENV, "workflow_dispatch")
+    assert main.is_manual_run() is True
+
+
+def test_is_manual_run_returns_false_for_schedule(monkeypatch):
+    monkeypatch.setenv(main.GITHUB_EVENT_NAME_ENV, "schedule")
+    assert main.is_manual_run() is False
+
+
+def test_is_manual_run_returns_false_when_env_unset(monkeypatch):
+    monkeypatch.delenv(main.GITHUB_EVENT_NAME_ENV, raising=False)
+    assert main.is_manual_run() is False
+
+
 def test_daily_section_order_is_product_invariant():
     assert main.DAILY_SECTION_ORDER == ["demo_playtest", "free", "paid", "instagram"]
     assert [entry["header"] for entry in main.DAILY_SECTION_CONFIG] == [
