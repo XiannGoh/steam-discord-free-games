@@ -64,10 +64,39 @@ jobs:
           path: artifacts/
 
       # ------------------------------------------------------------------ #
-      # 4. Decide whether a fix is needed:
+      # 4. Download gaming_library_verification.json artifact from the
+      #    triggering gaming-library-daily run (absent for other workflows).
+      # ------------------------------------------------------------------ #
+      - name: Download gaming library verification artifact
+        id: download_gaming_library
+        continue-on-error: true
+        uses: actions/download-artifact@v4
+        with:
+          github-token: ${{ github.token }}
+          run-id: ${{ github.event.workflow_run.id }}
+          pattern: gaming-library-verification-*
+          merge-multiple: true
+          path: artifacts/
+
+      # ------------------------------------------------------------------ #
+      # 5. Download weekly_schedule_verification.json artifact from the
+      #    triggering weekly-scheduling-bot run (absent for other workflows).
+      # ------------------------------------------------------------------ #
+      - name: Download weekly schedule verification artifact
+        id: download_weekly_schedule
+        continue-on-error: true
+        uses: actions/download-artifact@v4
+        with:
+          github-token: ${{ github.token }}
+          run-id: ${{ github.event.workflow_run.id }}
+          pattern: weekly-schedule-verification-*
+          merge-multiple: true
+          path: artifacts/
+
+      # ------------------------------------------------------------------ #
+      # 6. Decide whether a fix is needed:
       #    - workflow concluded with failure, OR
-      #    - daily_verification.json reports pass: false, OR
-      #    - discord_verification.json reports pass: false
+      #    - any verification artifact reports pass: false
       # Sets should_fix and trigger_reason outputs.
       # ------------------------------------------------------------------ #
       - name: Evaluate fix trigger
@@ -101,18 +130,46 @@ jobs:
           ")"
           fi
 
+          gaming_library_pass="true"
+          if [ -f artifacts/gaming_library_verification.json ]; then
+            gaming_library_pass="$(python3 -c "
+          import json, sys
+          try:
+              d = json.load(open('artifacts/gaming_library_verification.json'))
+              print(str(d.get('pass', True)).lower())
+          except Exception as e:
+              print('true')
+              print(f'WARN: could not parse gaming_library_verification.json: {e}', file=sys.stderr)
+          ")"
+          fi
+
+          weekly_schedule_pass="true"
+          if [ -f artifacts/weekly_schedule_verification.json ]; then
+            weekly_schedule_pass="$(python3 -c "
+          import json, sys
+          try:
+              d = json.load(open('artifacts/weekly_schedule_verification.json'))
+              print(str(d.get('pass', True)).lower())
+          except Exception as e:
+              print('true')
+              print(f'WARN: could not parse weekly_schedule_verification.json: {e}', file=sys.stderr)
+          ")"
+          fi
+
           echo "Daily workflow conclusion: ${conclusion}"
           echo "daily_verification pass: ${daily_pass}"
           echo "discord_verification pass: ${discord_pass}"
+          echo "gaming_library_verification pass: ${gaming_library_pass}"
+          echo "weekly_schedule_verification pass: ${weekly_schedule_pass}"
 
           triggering_workflow="${{ github.event.workflow_run.name }}"
-          if [ "$conclusion" = "failure" ] || [ "$daily_pass" = "false" ] || [ "$discord_pass" = "false" ]; then
+          if [ "$conclusion" = "failure" ] || [ "$daily_pass" = "false" ] || [ "$discord_pass" = "false" ] || [ "$gaming_library_pass" = "false" ] || [ "$weekly_schedule_pass" = "false" ]; then
             echo "should_fix=true" >> "$GITHUB_OUTPUT"
-            echo "trigger_reason=workflow=${triggering_workflow}, conclusion=${conclusion}, daily_pass=${daily_pass}, discord_pass=${discord_pass}" >> "$GITHUB_OUTPUT"
-            echo "Fix needed — workflow=${triggering_workflow}, conclusion=${conclusion}, daily_pass=${daily_pass}, discord_pass=${discord_pass}."
+            echo "trigger_reason=workflow=${triggering_workflow}, conclusion=${conclusion}, daily_pass=${daily_pass}, discord_pass=${discord_pass}, gaming_library_pass=${gaming_library_pass}, weekly_schedule_pass=${weekly_schedule_pass}" >> "$GITHUB_OUTPUT"
+            echo "Fix needed — workflow=${triggering_workflow}, conclusion=${conclusion}, daily_pass=${daily_pass}, discord_pass=${discord_pass}, gaming_library_pass=${gaming_library_pass}, weekly_schedule_pass=${weekly_schedule_pass}."
           else
             echo "should_fix=false" >> "$GITHUB_OUTPUT"
-            echo "No fix needed — workflow=${triggering_workflow}, conclusion=${conclusion}, daily_pass=${daily_pass}, discord_pass=${discord_pass}. Exiting."
+            echo "No fix needed — workflow=${triggering_workflow}, conclusion=${conclusion}, daily_pass=${daily_pass}, discord_pass=${discord_pass}, gaming_library_pass=${gaming_library_pass}, weekly_schedule_pass=${weekly_schedule_pass}. Exiting."
           fi
 
       # ------------------------------------------------------------------ #
