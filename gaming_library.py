@@ -32,9 +32,98 @@ EMOJI_TO_STATUS = {emoji: status for status, emoji in STATUS_TO_EMOJI.items()}
 EMOJI_TO_STATUS_ENCODED = {quote(emoji, safe=""): status for emoji, status in EMOJI_TO_STATUS.items()}
 MENTION_USER_ID_PATTERN = re.compile(r"^<@!?(\d+)>$")
 
+# Category constants for grouping games in library posts
+CATEGORY_DEMO_PLAYTEST = "demo_playtest"
+CATEGORY_FREE_PICKS = "free_picks"
+CATEGORY_PAID_PICKS = "paid_picks"
+CATEGORY_CREATOR_PICKS = "creator_picks"
+CATEGORY_OTHER = "other"
+
+CATEGORY_DISPLAY = {
+    CATEGORY_DEMO_PLAYTEST: "🧪 Demo & Playtest",
+    CATEGORY_FREE_PICKS: "🎮 Free Picks",
+    CATEGORY_PAID_PICKS: "💸 Paid Picks",
+    CATEGORY_CREATOR_PICKS: "📸 Creator Picks",
+    CATEGORY_OTHER: "🎮 Other",
+}
+
+# Ordered display sequence
+CATEGORY_ORDER = [
+    CATEGORY_DEMO_PLAYTEST,
+    CATEGORY_FREE_PICKS,
+    CATEGORY_PAID_PICKS,
+    CATEGORY_CREATOR_PICKS,
+    CATEGORY_OTHER,
+]
+
+COMMAND_REFERENCE_MESSAGE = """\
+📋 Bot Commands — step-3-review-existing-games
+`!add @user GameName` — assign a player to a game
+`!remove @user GameName` — unassign a player from a game
+`!rename GameName NewName` — rename a game
+`!unassign @user` — remove a player from all games
+`!archive GameName` — manually archive a game
+`!addgame GameName SteamURL @user1 @user2` — add game directly to library
+
+React on any game message to update your status:
+✅ Playing · ⏸️ Paused · ❌ Dropped\
+"""
+
 
 def utc_now_iso() -> str:
     return datetime.now(timezone.utc).isoformat()
+
+
+def classify_game_category(game: Dict[str, Any]) -> str:
+    """Return the display category for a game based on its source type/section."""
+    source_type = str(game.get("source_type") or "").lower()
+    source_section = str(game.get("source_section") or "").lower()
+    if source_type in ("instagram", "creator") or source_section in ("instagram", "creator"):
+        return CATEGORY_CREATOR_PICKS
+    if source_type in ("steam_demo", "demo") or source_section in ("demo", "playtest") or "demo" in source_type or "playtest" in source_type:
+        return CATEGORY_DEMO_PLAYTEST
+    if source_type in ("paid", "paid_candidate") or source_section in ("paid",):
+        return CATEGORY_PAID_PICKS
+    if source_type in ("steam_free", "free", "winner_promotion") or source_section in ("free", "free_picks"):
+        return CATEGORY_FREE_PICKS
+    return CATEGORY_OTHER
+
+
+def _suppress_steam_url(url: str) -> str:
+    """Wrap Steam store URLs in <> to suppress Discord embed cards."""
+    url = url.strip()
+    if url.startswith("https://store.steampowered.com") or url.startswith("http://store.steampowered.com"):
+        return f"<{url}>"
+    return url
+
+
+def _extract_game_name_from_caption(caption: str, steam_url: str) -> Optional[str]:
+    """Try to extract an actual game name from an Instagram post caption or Steam URL.
+
+    Returns the extracted name, or None if one cannot be determined.
+    """
+    if steam_url:
+        match = re.search(r"store\.steampowered\.com/app/\d+/([^/?#]+)", steam_url)
+        if match:
+            raw = match.group(1).replace("_", " ").strip()
+            if raw and raw.lower() not in ("", "app"):
+                return raw
+    if caption:
+        # Look for patterns like "Game Name — check it out" or "New game: Game Name"
+        # Just take first non-empty line up to any separator
+        first_line = caption.strip().splitlines()[0] if caption.strip() else ""
+        # Remove common Instagram fluff from start
+        for prefix in ("new game:", "game:", "check out", "check this out", "play"):
+            if first_line.lower().startswith(prefix):
+                first_line = first_line[len(prefix):].strip()
+                break
+        # Trim at common separators
+        for sep in (" — ", " - ", " | ", "!", "?", "#"):
+            if sep in first_line:
+                first_line = first_line[:first_line.index(sep)].strip()
+        if first_line and len(first_line) >= 3:
+            return first_line
+    return None
 
 
 def get_target_day_key() -> str:
@@ -117,6 +206,10 @@ def _extract_steam_app_id(url: str) -> Optional[str]:
     if match:
         return match.group(1)
     return None
+
+
+def _slugify(name: str) -> str:
+    return re.sub(r"[^a-z0-9]+", "-", name.lower().strip()).strip("-")
 
 
 def build_identity_key(canonical_name: str, url: str) -> str:
@@ -262,54 +355,122 @@ def build_library_footer(
     header_channel_id: str,
     header_message_id: str,
     guild_id: Optional[str],
-) -> Optional[str]:
-    """Build a navigation footer string linking back to the header.
-
-    Returns None when DISCORD_GUILD_ID is absent (footer cannot include a jump link).
-    The footer is still posted without a jump link in that case via the fallback path.
-    """
-    if not isinstance(guild_id, str) or not guild_id.strip():
-        # Post a plain footer without a jump link when guild_id is unavailable.
-        return (
-            f"📚 Gaming Library — {day_key}\n"
-            "React ✅ active · ⏸️ paused · ❌ dropped to update your status."
-        )
-    link = _discord_message_link(guild_id, header_channel_id, header_message_id)
-    return (
+) -> str:
+    """Build a navigation footer string linking back to the header."""
+    base = (
         f"📚 Gaming Library — {day_key}\n"
-        f"React ✅ active · ⏸️ paused · ❌ dropped to update your status.\n"
-        f"↑ Top of list → [Jump]({link})"
+        "React ✅ active · ⏸️ paused · ❌ dropped to update your status."
     )
+    if not isinstance(guild_id, str) or not guild_id.strip() or not header_message_id:
+        return base
+    link = _discord_message_link(guild_id, header_channel_id, header_message_id)
+    return base + f"\n⟹ [Top of Post]({link})"
+
+
+def build_library_header_placeholder(target_day_key: str) -> str:
+    return (
+        f"📚 Gaming Library — {target_day_key}\n"
+        "React on each game: ✅ active · ⏸️ paused · ❌ dropped"
+    )
+
+
+def build_library_navigation_header(
+    target_day_key: str,
+    *,
+    guild_id: Optional[str],
+    channel_id: str,
+    posted_section_keys: Dict[str, str],
+) -> str:
+    """Build header with jump links to each active category section."""
+    base = build_library_header_placeholder(target_day_key)
+    if not isinstance(guild_id, str) or not guild_id.strip():
+        return base
+    jump_parts = []
+    for category in CATEGORY_ORDER:
+        section_key = f"section:{category}"
+        msg_id = posted_section_keys.get(section_key)
+        if msg_id:
+            label = CATEGORY_DISPLAY[category]
+            link = _discord_message_link(guild_id, channel_id, msg_id)
+            jump_parts.append(f"⟹ [{label}]({link})")
+    if not jump_parts:
+        return base
+    return base + "\n" + " · ".join(jump_parts)
 
 
 def build_daily_library_messages(state: Dict[str, Any], target_day_key: str) -> List[Dict[str, str]]:
     visible_games = list_visible_games_for_reminder(state)
-    header = f"📚 Gaming Library — {target_day_key}"
+
+    # Group by category
+    by_category: Dict[str, List[Dict[str, Any]]] = {}
+    for game in visible_games:
+        cat = classify_game_category(game)
+        by_category.setdefault(cat, []).append(game)
+
+    active_categories = [c for c in CATEGORY_ORDER if c in by_category]
+
+    messages: List[Dict[str, str]] = []
+
+    # Header placeholder (will be edited after sections are posted)
+    messages.append({"type": "header", "content": build_library_header_placeholder(target_day_key)})
+
     if not visible_games:
-        messages = [{"type": "header", "content": header + "\n\n_No active library games for today._"}]
+        messages[0]["content"] = f"📚 Gaming Library — {target_day_key}\n\n_No active library games for today._"
     else:
-        messages: List[Dict[str, str]] = [{"type": "header", "content": header + "\n\nReact on each game: ✅ active · ⏸️ paused · ❌ dropped"}]
-        for game in visible_games:
-            lines = [f"🎮 {game.get('canonical_name', 'Untitled')}"]
-            url = str(game.get("url") or "").strip()
-            if url:
-                lines.append(url)
-            lines.append("Assigned:")
-            visible_assignments = game.get("visible_assignments", {})
-            if visible_assignments:
-                for user_id, assignment in visible_assignments.items():
-                    status = str(assignment.get("status") or STATUS_ACTIVE)
-                    emoji = STATUS_TO_EMOJI.get(status, "✅")
-                    lines.append(f"- <@{user_id}> {emoji} ({status})")
-            else:
-                lines.append("- _No non-dropped assignees_")
-            messages.append({"type": "game", "identity_key": game["identity_key"], "content": "\n".join(lines)})
+        for category in active_categories:
+            section_label = CATEGORY_DISPLAY[category]
+            messages.append({
+                "type": "section_header",
+                "section_key": f"section:{category}",
+                "identity_key": f"section:{category}",
+                "content": f"**{section_label}**",
+            })
+            for game in by_category[category]:
+                name = game.get("canonical_name", "Untitled")
+                lines = [f"🎮 {name}"]
+                url = str(game.get("url") or "").strip()
+                if url:
+                    lines.append(_suppress_steam_url(url))
+                lines.append("Players:")
+                visible_assignments = game.get("visible_assignments", {})
+                conflict_users = game.get("conflicting_users", [])
+                if visible_assignments:
+                    for user_id, assignment in visible_assignments.items():
+                        status = str(assignment.get("status") or STATUS_ACTIVE)
+                        emoji = STATUS_TO_EMOJI.get(status, "✅")
+                        lines.append(f"- <@{user_id}> {emoji} ({status})")
+                else:
+                    lines.append("- _No active players_")
+                for user_id in conflict_users:
+                    lines.append(f"- ⚠️ <@{user_id}> — conflicting reactions, defaulted to Active")
+                messages.append({"type": "game", "identity_key": game["identity_key"], "content": "\n".join(lines)})
 
     # Add delta summary
     delta_content = compute_daily_delta(state)
     messages.append({"type": "delta", "content": f"📊 Daily Delta Summary\n\n{delta_content}"})
 
     return messages
+
+
+def _post_or_edit_message(
+    client: DiscordClient,
+    channel_id: str,
+    content: str,
+    *,
+    context: str,
+    existing_info: Optional[Dict[str, str]],
+) -> tuple[Dict[str, Any], bool]:
+    """Post or edit a message. Returns (payload, is_new_message)."""
+    existing_channel_id = str((existing_info or {}).get("channel_id") or channel_id).strip()
+    existing_message_id = str((existing_info or {}).get("message_id") or "").strip()
+    if existing_message_id:
+        try:
+            payload = client.edit_message(existing_channel_id, existing_message_id, content, context=context)
+            return payload, False
+        except DiscordMessageNotFoundError:
+            pass
+    payload = client.post_message(channel_id, content, context=context)
+    return payload, True
 
 
 def post_daily_library_reminder(
@@ -328,35 +489,18 @@ def post_daily_library_reminder(
     messages = build_daily_library_messages(state, day_key)
     reconciled_messages: Dict[str, Dict[str, str]] = {}
     changed = False
+
     for message in messages:
         message_key = str(message.get("identity_key", message["type"]))
         existing_info = existing_messages.get(message_key)
-        existing_channel_id = str((existing_info or {}).get("channel_id") or channel_id).strip()
-        existing_message_id = str((existing_info or {}).get("message_id") or "").strip()
-
-        payload: Dict[str, Any]
-        is_new_message = False
-        if existing_message_id:
-            try:
-                payload = client.edit_message(
-                    existing_channel_id,
-                    existing_message_id,
-                    message["content"],
-                    context=f"edit gaming library {message['type']} for {day_key}",
-                )
-                changed = True
-            except DiscordMessageNotFoundError:
-                payload = client.post_message(
-                    channel_id,
-                    message["content"],
-                    context=f"repost missing gaming library {message['type']} for {day_key}",
-                )
-                is_new_message = True
-                changed = True
-        else:
-            payload = client.post_message(channel_id, message["content"], context=f"post gaming library {message['type']} for {day_key}")
-            is_new_message = True
-            changed = True
+        payload, is_new_message = _post_or_edit_message(
+            client,
+            channel_id,
+            message["content"],
+            context=f"post/edit gaming library {message['type']} for {day_key}",
+            existing_info=existing_info,
+        )
+        changed = True
 
         message_id = str(payload.get("id") or "")
         if not message_id:
@@ -371,50 +515,41 @@ def post_daily_library_reminder(
                 )
         reconciled_messages[message_key] = {"message_id": message_id, "channel_id": str(payload.get("channel_id") or channel_id)}
 
-    # --- Footer ---
+    # --- Edit header with jump links after all sections are posted ---
     header_info = reconciled_messages.get("header", {})
     header_ch_id = str(header_info.get("channel_id") or channel_id).strip()
     header_msg_id = str(header_info.get("message_id") or "").strip()
+    posted_section_keys = {key: info["message_id"] for key, info in reconciled_messages.items() if key.startswith("section:")}
+    if posted_section_keys and header_msg_id:
+        nav_header = build_library_navigation_header(
+            day_key,
+            guild_id=DISCORD_GUILD_ID,
+            channel_id=header_ch_id,
+            posted_section_keys=posted_section_keys,
+        )
+        client.edit_message(header_ch_id, header_msg_id, nav_header, context=f"update gaming library header with jump links for {day_key}")
+
+    # --- Footer ---
     footer_content = build_library_footer(
         day_key=day_key,
         header_channel_id=header_ch_id,
         header_message_id=header_msg_id,
         guild_id=DISCORD_GUILD_ID,
     )
-    if footer_content is not None:
-        existing_footer = existing_messages.get("footer")
-        existing_footer_ch_id = str((existing_footer or {}).get("channel_id") or channel_id).strip()
-        existing_footer_msg_id = str((existing_footer or {}).get("message_id") or "").strip()
-        if existing_footer_msg_id:
-            try:
-                footer_payload = client.edit_message(
-                    existing_footer_ch_id,
-                    existing_footer_msg_id,
-                    footer_content,
-                    context=f"edit gaming library footer for {day_key}",
-                )
-                changed = True
-            except DiscordMessageNotFoundError:
-                footer_payload = client.post_message(
-                    channel_id,
-                    footer_content,
-                    context=f"repost missing gaming library footer for {day_key}",
-                )
-                changed = True
-        else:
-            footer_payload = client.post_message(
-                channel_id,
-                footer_content,
-                context=f"post gaming library footer for {day_key}",
-            )
-            changed = True
-        footer_msg_id = str(footer_payload.get("id") or "")
-        if not footer_msg_id:
-            raise RuntimeError("Discord response missing id for gaming library footer")
-        reconciled_messages["footer"] = {
-            "message_id": footer_msg_id,
-            "channel_id": str(footer_payload.get("channel_id") or channel_id),
-        }
+    footer_payload, _ = _post_or_edit_message(
+        client,
+        channel_id,
+        footer_content,
+        context=f"post/edit gaming library footer for {day_key}",
+        existing_info=existing_messages.get("footer"),
+    )
+    footer_msg_id = str(footer_payload.get("id") or "")
+    if not footer_msg_id:
+        raise RuntimeError("Discord response missing id for gaming library footer")
+    reconciled_messages["footer"] = {
+        "message_id": footer_msg_id,
+        "channel_id": str(footer_payload.get("channel_id") or channel_id),
+    }
 
     day_entry["messages"] = reconciled_messages
     day_entry["completed"] = True
@@ -483,8 +618,20 @@ def sync_promotions_from_winners(state: Dict[str, Any], daily_posts: Dict[str, A
             if not human_user_ids:
                 continue
 
-            canonical_name = str(winner.get("title") or (source_item or {}).get("title") or "Untitled").strip()
+            raw_title = str(winner.get("title") or (source_item or {}).get("title") or "").strip()
             url = str(winner.get("url") or (source_item or {}).get("url") or "").strip()
+            # Enhancement 6: for Instagram sources, try to extract a better game name
+            item_source_type = str((source_item or {}).get("source_type") or "").lower()
+            if item_source_type in ("instagram", "creator"):
+                caption = str((source_item or {}).get("description") or "").strip()
+                extracted = _extract_game_name_from_caption(caption, url)
+                if extracted:
+                    canonical_name = extracted
+                else:
+                    # raw_title is typically the creator's username, not a game name
+                    canonical_name = "⚠️ Name needed — use !rename command"
+            else:
+                canonical_name = raw_title or "Untitled"
             source_metadata = {
                 "winner_key": winner_key,
                 "description": winner.get("description") or (source_item or {}).get("description"),
@@ -540,7 +687,7 @@ def sync_statuses_from_library_posts(state: Dict[str, Any], client: DiscordClien
         if not isinstance(messages, dict):
             continue
         for identity_key, message_info in messages.items():
-            if identity_key in {"header", "intro"}:
+            if identity_key in {"header", "intro", "footer", "delta"} or identity_key.startswith("section:"):
                 continue
             if not isinstance(message_info, dict):
                 continue
@@ -552,7 +699,8 @@ def sync_statuses_from_library_posts(state: Dict[str, Any], client: DiscordClien
             if not isinstance(game, dict):
                 continue
 
-            user_status_map: Dict[str, str] = {}
+            # Collect all status reactions per user
+            user_reactions: Dict[str, List[str]] = {}
             for encoded_emoji, status in EMOJI_TO_STATUS_ENCODED.items():
                 users = client.get_reaction_users(
                     channel_id,
@@ -565,19 +713,232 @@ def sync_statuses_from_library_posts(state: Dict[str, Any], client: DiscordClien
                     user_id = str(user.get("id") or "").strip()
                     if not user_id or user_id == bot_user_id:
                         continue
-                    user_status_map[user_id] = status
+                    user_reactions.setdefault(user_id, []).append(status)
 
-            for user_id, status in user_status_map.items():
-                set_user_status(game, user_id, status)
-                updates += 1
+            # Enhancement 9: detect conflicts (multiple status reactions)
+            conflict_users: List[str] = []
+            for user_id, statuses in user_reactions.items():
+                if len(statuses) > 1:
+                    # Conflicting reactions — reset to active
+                    conflict_users.append(user_id)
+                    set_user_status(game, user_id, STATUS_ACTIVE)
+                    updates += 1
+                else:
+                    set_user_status(game, user_id, statuses[0])
+                    updates += 1
+            game["conflicting_users"] = conflict_users
             refresh_archive_state(game)
     return updates
+
+
+COMMAND_CHECKMARK_ENCODED = quote("✅", safe="")
+
+
+def _parse_command_line(text: str) -> Optional[tuple[str, List[str]]]:
+    """Parse a bot command from a message line. Returns (command, args) or None."""
+    text = text.strip()
+    if not text.startswith("!"):
+        return None
+    parts = text.split()
+    if not parts:
+        return None
+    return parts[0].lower(), parts[1:]
+
+
+def process_library_commands(
+    state: Dict[str, Any],
+    client: DiscordClient,
+    channel_id: str,
+    bot_user_id: Optional[str],
+) -> int:
+    """Read unprocessed !command messages from the channel and apply them to state.
+
+    Returns the number of commands successfully processed.
+    """
+    processed_ids: List[str] = state.setdefault("processed_command_ids", [])
+    processed_set = set(processed_ids)
+    processed_count = 0
+
+    messages = client.get_channel_messages(channel_id, context="library command scan", limit=100)
+    # Messages are returned newest-first; process oldest-first
+    for msg in reversed(messages):
+        msg_id = str(msg.get("id") or "").strip()
+        if not msg_id or msg_id in processed_set:
+            continue
+        author = msg.get("author") or {}
+        author_id = str(author.get("id") or "").strip()
+        if author_id == bot_user_id:
+            continue
+        content = str(msg.get("content") or "").strip()
+        parsed = _parse_command_line(content)
+        if not parsed:
+            continue
+        command, args = parsed
+        ok = False
+        try:
+            ok = _apply_library_command(state, command, args)
+        except Exception:
+            pass
+        if ok:
+            processed_ids.append(msg_id)
+            processed_set.add(msg_id)
+            processed_count += 1
+            try:
+                client.put_reaction(channel_id, msg_id, COMMAND_CHECKMARK_ENCODED, context=f"ack command {msg_id}")
+            except Exception:
+                pass
+
+    return processed_count
+
+
+def _apply_library_command(state: Dict[str, Any], command: str, args: List[str]) -> bool:
+    """Apply a single parsed library command to state. Returns True if applied."""
+    games = state.setdefault("games", {})
+
+    if command == "!add":
+        # !add @user GameName...
+        if len(args) < 2:
+            return False
+        user_token = args[0]
+        user_id = normalize_user_id_token(user_token)
+        if not user_id:
+            return False
+        game_name = " ".join(args[1:])
+        game = _find_game_by_name(games, game_name)
+        if game is None:
+            game = ensure_game_entry(state, canonical_name=game_name, url="", source_type="manual", source_section="manual")
+        assign_user(game, user_id, STATUS_ACTIVE)
+        game["archived"] = False
+        return True
+
+    elif command == "!remove":
+        # !remove @user GameName...
+        if len(args) < 2:
+            return False
+        user_token = args[0]
+        user_id = normalize_user_id_token(user_token)
+        if not user_id:
+            return False
+        game_name = " ".join(args[1:])
+        game = _find_game_by_name(games, game_name)
+        if game is None:
+            return False
+        unassign_user(game, user_id)
+        refresh_archive_state(game)
+        return True
+
+    elif command == "!rename":
+        # !rename OldName NewName (split at last space as new name)
+        if len(args) < 2:
+            return False
+        # Try to match the longest prefix as existing game name
+        game = None
+        new_name = ""
+        for split_at in range(len(args) - 1, 0, -1):
+            candidate_name = " ".join(args[:split_at])
+            candidate_new = " ".join(args[split_at:])
+            found = _find_game_by_name(games, candidate_name)
+            if found is not None:
+                game = found
+                new_name = candidate_new
+                break
+        if game is None or not new_name:
+            return False
+        game["canonical_name"] = new_name
+        game["updated_at_utc"] = utc_now_iso()
+        return True
+
+    elif command == "!unassign":
+        # !unassign @user
+        if not args:
+            return False
+        user_id = normalize_user_id_token(args[0])
+        if not user_id:
+            return False
+        for game in games.values():
+            if isinstance(game, dict):
+                unassign_user(game, user_id)
+                refresh_archive_state(game)
+        return True
+
+    elif command == "!archive":
+        # !archive GameName...
+        if not args:
+            return False
+        game_name = " ".join(args)
+        game = _find_game_by_name(games, game_name)
+        if game is None:
+            return False
+        game["archived"] = True
+        game["updated_at_utc"] = utc_now_iso()
+        return True
+
+    elif command == "!addgame":
+        # !addgame GameName SteamURL @user1 @user2...
+        # First arg that looks like a URL is the steam URL boundary
+        if not args:
+            return False
+        url_idx = None
+        for i, arg in enumerate(args):
+            if arg.startswith("http"):
+                url_idx = i
+                break
+        if url_idx is None or url_idx == 0:
+            return False
+        game_name = " ".join(args[:url_idx])
+        url = args[url_idx]
+        user_tokens = args[url_idx + 1:]
+        user_ids = [normalize_user_id_token(t) for t in user_tokens]
+        user_ids = [u for u in user_ids if u]
+        game = ensure_game_entry(state, canonical_name=game_name, url=url, source_type="manual", source_section="manual")
+        for user_id in user_ids:
+            assign_user(game, user_id, STATUS_ACTIVE)
+        game["archived"] = False
+        refresh_archive_state(game)
+        return True
+
+    return False
+
+
+def _find_game_by_name(games: Dict[str, Any], name: str) -> Optional[Dict[str, Any]]:
+    """Find a game by canonical name (case-insensitive). Returns the game dict or None."""
+    name_lower = name.lower().strip()
+    for game in games.values():
+        if isinstance(game, dict) and game.get("canonical_name", "").lower() == name_lower:
+            return game
+    return None
+
+
+def ensure_command_reference_pinned(
+    state: Dict[str, Any],
+    client: DiscordClient,
+    channel_id: str,
+) -> None:
+    """Post the command reference message and pin it if not already done."""
+    pinned_info = state.get("command_reference_message")
+    existing_msg_id = str((pinned_info or {}).get("message_id") or "").strip()
+    if existing_msg_id:
+        # Already pinned — edit to keep current
+        try:
+            client.edit_message(channel_id, existing_msg_id, COMMAND_REFERENCE_MESSAGE, context="update command reference")
+        except DiscordMessageNotFoundError:
+            existing_msg_id = ""
+    if not existing_msg_id:
+        payload = client.post_message(channel_id, COMMAND_REFERENCE_MESSAGE, context="post command reference")
+        msg_id = str(payload.get("id") or "").strip()
+        if msg_id:
+            try:
+                client.pin_message(channel_id, msg_id, context="pin command reference")
+            except Exception:
+                pass
+            state["command_reference_message"] = {"message_id": msg_id, "channel_id": channel_id}
 
 
 def run_discord_sync(state_path: str = GAMING_LIBRARY_FILE, daily_posts_path: str = DISCORD_DAILY_POSTS_FILE) -> Dict[str, int]:
     if not DISCORD_BOT_TOKEN:
         raise RuntimeError("DISCORD_BOT_TOKEN is not set")
 
+    channel_id = DISCORD_GAMING_LIBRARY_CHANNEL_ID
     state = load_gaming_library(state_path)
     daily_posts = load_discord_daily_posts(daily_posts_path)
 
@@ -592,9 +953,13 @@ def run_discord_sync(state_path: str = GAMING_LIBRARY_FILE, daily_posts_path: st
 
         promotions = sync_promotions_from_winners(state, daily_posts, client, bot_user_id)
         status_updates = sync_statuses_from_library_posts(state, client, bot_user_id)
+        commands_processed = 0
+        if channel_id:
+            commands_processed = process_library_commands(state, client, channel_id, bot_user_id)
+            ensure_command_reference_pinned(state, client, channel_id)
 
     save_gaming_library(state, state_path)
-    return {"promotions": promotions, "status_updates": status_updates}
+    return {"promotions": promotions, "status_updates": status_updates, "commands_processed": commands_processed}
 
 
 def run_daily_post(state_path: str = GAMING_LIBRARY_FILE) -> bool:

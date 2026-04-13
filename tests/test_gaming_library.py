@@ -170,21 +170,23 @@ def test_daily_library_post_records_message_metadata_and_status_sync():
     game = lib.ensure_game_entry(state, canonical_name="Sync Game", url="https://store.steampowered.com/app/9/sync")
     lib.assign_user(game, "u1", lib.STATUS_ACTIVE)
 
+    # Game is now m-3 (header=m-1, section_header=m-2, game=m-3, delta=m-4, footer=m-5)
     client = FakeDiscordClient(
         reactions={
-            ("lib-chan", "m-2", lib.quote("✅", safe="")): [{"id": "u1"}],
-            ("lib-chan", "m-2", lib.quote("❌", safe="")): [{"id": "u2"}],
+            ("lib-chan", "m-3", lib.quote("✅", safe="")): [{"id": "u1"}],
+            ("lib-chan", "m-3", lib.quote("❌", safe="")): [{"id": "u2"}],
         }
     )
     posted = lib.post_daily_library_reminder(state, day_key="2026-04-10", channel_id="lib-chan", client=client)
 
     assert posted is True
     assert state["daily_posts"]["2026-04-10"]["completed"] is True
-    assert len(client.posts) == 4
+    # header, section_header, game, delta, footer = 5 posts
+    assert len(client.posts) == 5
     assert client.put_reactions == [
-        ("lib-chan", "m-2", lib.quote("✅", safe=""), "add gaming library status reaction ✅ for 2026-04-10"),
-        ("lib-chan", "m-2", lib.quote("⏸️", safe=""), "add gaming library status reaction ⏸️ for 2026-04-10"),
-        ("lib-chan", "m-2", lib.quote("❌", safe=""), "add gaming library status reaction ❌ for 2026-04-10"),
+        ("lib-chan", "m-3", lib.quote("✅", safe=""), "add gaming library status reaction ✅ for 2026-04-10"),
+        ("lib-chan", "m-3", lib.quote("⏸️", safe=""), "add gaming library status reaction ⏸️ for 2026-04-10"),
+        ("lib-chan", "m-3", lib.quote("❌", safe=""), "add gaming library status reaction ❌ for 2026-04-10"),
     ]
 
     updates = lib.sync_statuses_from_library_posts(state, client, bot_user_id=None)
@@ -199,6 +201,7 @@ def test_daily_library_rerun_after_promotions_reuses_header_and_adds_missing_gam
 
     first_posted = lib.post_daily_library_reminder(state, day_key="2026-04-10", channel_id="lib-chan", client=client)
 
+    # First run with no games: header, delta, footer = 3 posts (no section headers)
     assert first_posted is True
     assert len(client.posts) == 3
     assert "No active library games for today" in client.posts[0][1]
@@ -209,17 +212,20 @@ def test_daily_library_rerun_after_promotions_reuses_header_and_adds_missing_gam
     second_posted = lib.post_daily_library_reminder(state, day_key="2026-04-10", channel_id="lib-chan", client=client)
 
     assert second_posted is True
-    assert len(client.posts) == 4
-    assert len(client.edits) == 3
+    # Second run: new section_header (m-4) + new game (m-5); header/delta/footer are edits
+    assert len(client.posts) == 5
+    # Edits: header placeholder, delta, footer, then header jump links = 4
+    assert len(client.edits) == 4
+    # First edit is the header being updated with placeholder content
     edited_header = client.edits[0]
     assert edited_header[1] == "m-1"
     assert "React on each game" in edited_header[2]
     assert state["daily_posts"]["2026-04-10"]["messages"]["header"]["message_id"] == "m-1"
     assert "steam:1621690" in state["daily_posts"]["2026-04-10"]["messages"]
     assert client.put_reactions == [
-        ("lib-chan", "m-4", lib.quote("✅", safe=""), "add gaming library status reaction ✅ for 2026-04-10"),
-        ("lib-chan", "m-4", lib.quote("⏸️", safe=""), "add gaming library status reaction ⏸️ for 2026-04-10"),
-        ("lib-chan", "m-4", lib.quote("❌", safe=""), "add gaming library status reaction ❌ for 2026-04-10"),
+        ("lib-chan", "m-5", lib.quote("✅", safe=""), "add gaming library status reaction ✅ for 2026-04-10"),
+        ("lib-chan", "m-5", lib.quote("⏸️", safe=""), "add gaming library status reaction ⏸️ for 2026-04-10"),
+        ("lib-chan", "m-5", lib.quote("❌", safe=""), "add gaming library status reaction ❌ for 2026-04-10"),
     ]
 
 
@@ -230,18 +236,21 @@ def test_daily_library_rerun_updates_existing_game_message_without_duplicate_pos
     client = FakeDiscordClient()
 
     lib.post_daily_library_reminder(state, day_key="2026-04-10", channel_id="lib-chan", client=client)
-    assert len(client.posts) == 4
+    # header=m-1, section_header=m-2, game=m-3, delta=m-4, footer=m-5 + 1 edit (header jump links)
+    assert len(client.posts) == 5
     assert len(client.put_reactions) == 3
 
     lib.set_user_status(game, "u1", lib.STATUS_PAUSED)
     posted_again = lib.post_daily_library_reminder(state, day_key="2026-04-10", channel_id="lib-chan", client=client)
 
     assert posted_again is True
-    assert len(client.posts) == 4
-    assert len(client.put_reactions) == 3
-    assert len(client.edits) == 4
-    game_edit = client.edits[1]
-    assert game_edit[1] == "m-2"
+    assert len(client.posts) == 5  # no new posts
+    assert len(client.put_reactions) == 3  # no new reactions
+    # Second run edits: header placeholder, section_header, game, delta, footer, header jump links = 6
+    assert len(client.edits) == 7  # 1 from first run + 6 from second run
+    # game edit is edits[3] (0=header-placeholder, 1=section:other, 2=game, ...)
+    # Actually order from second run: edits[1]=header-placeholder, edits[2]=section:other, edits[3]=game
+    game_edit = next(e for e in client.edits if e[1] == "m-3")
     assert "(paused)" in game_edit[2]
 
 
@@ -255,12 +264,17 @@ def test_daily_library_reruns_converge_without_duplicate_headers_or_games():
     lib.post_daily_library_reminder(state, day_key="2026-04-10", channel_id="lib-chan", client=client)
     lib.post_daily_library_reminder(state, day_key="2026-04-10", channel_id="lib-chan", client=client)
 
-    assert len(client.posts) == 4
-    assert len(client.edits) == 8
+    # 5 posts on first run; no new posts on reruns
+    assert len(client.posts) == 5
+    # Run 1: 1 edit (header jump links)
+    # Run 2: 6 edits (header-placeholder, section:other, game, delta, footer, header-jumps)
+    # Run 3: same 6 edits
+    assert len(client.edits) == 13
     messages = state["daily_posts"]["2026-04-10"]["messages"]
-    assert sorted(messages.keys()) == ["delta", "footer", "header", "steam:300"]
+    assert sorted(messages.keys()) == ["delta", "footer", "header", "section:other", "steam:300"]
     assert messages["header"]["message_id"] == "m-1"
-    assert messages["steam:300"]["message_id"] == "m-2"
+    assert messages["section:other"]["message_id"] == "m-2"
+    assert messages["steam:300"]["message_id"] == "m-3"
 
 
 def test_manage_library_normalizes_mention_user_ids(tmp_path):
@@ -281,3 +295,252 @@ def test_manage_library_normalizes_mention_user_ids(tmp_path):
 
 def test_manage_script_user_parser_accepts_discord_mentions():
     assert _parse_users("123,<@456>,<@!789>") == ["123", "456", "789"]
+
+
+# --- Enhancement 2: Category grouping ---
+
+def test_games_grouped_by_category_in_library_messages():
+    state = lib.load_gaming_library(path="/tmp/does-not-exist.json")
+    free_game = lib.ensure_game_entry(state, canonical_name="Free Thing", url="https://store.steampowered.com/app/1/free", source_type="steam_free")
+    demo_game = lib.ensure_game_entry(state, canonical_name="Demo Game", url="https://store.steampowered.com/app/2/demo", source_type="steam_demo")
+    lib.assign_user(free_game, "u1", lib.STATUS_ACTIVE)
+    lib.assign_user(demo_game, "u1", lib.STATUS_ACTIVE)
+
+    messages = lib.build_daily_library_messages(state, "2026-04-10")
+    contents = [m["content"] for m in messages]
+    full_text = "\n".join(contents)
+
+    assert "🧪 Demo & Playtest" in full_text
+    assert "🎮 Free Picks" in full_text
+    # Demo section appears before Free Picks (by CATEGORY_ORDER)
+    assert full_text.index("🧪 Demo & Playtest") < full_text.index("🎮 Free Picks")
+
+
+# --- Enhancement 4: Players label ---
+
+def test_game_message_uses_players_label_not_assigned():
+    state = lib.load_gaming_library(path="/tmp/does-not-exist.json")
+    game = lib.ensure_game_entry(state, canonical_name="Label Test", url="https://store.steampowered.com/app/10/label")
+    lib.assign_user(game, "u1", lib.STATUS_ACTIVE)
+
+    messages = lib.build_daily_library_messages(state, "2026-04-10")
+    game_msg = next(m for m in messages if m.get("type") == "game")
+    assert "Players:" in game_msg["content"]
+    assert "Assigned:" not in game_msg["content"]
+
+
+# --- Enhancement 12: Steam URL embed suppression ---
+
+def test_steam_urls_wrapped_in_angle_brackets():
+    state = lib.load_gaming_library(path="/tmp/does-not-exist.json")
+    game = lib.ensure_game_entry(state, canonical_name="Embed Test", url="https://store.steampowered.com/app/42/embed_test/")
+    lib.assign_user(game, "u1", lib.STATUS_ACTIVE)
+
+    messages = lib.build_daily_library_messages(state, "2026-04-10")
+    game_msg = next(m for m in messages if m.get("type") == "game")
+    assert "<https://store.steampowered.com/app/42/embed_test/>" in game_msg["content"]
+
+
+def test_non_steam_urls_not_wrapped():
+    assert lib._suppress_steam_url("https://example.com/game") == "https://example.com/game"
+    assert lib._suppress_steam_url("https://store.steampowered.com/app/1/x") == "<https://store.steampowered.com/app/1/x>"
+
+
+# --- Enhancement 9: Conflict resolution ---
+
+def test_conflicting_status_reactions_reset_to_active():
+    state = lib.load_gaming_library(path="/tmp/does-not-exist.json")
+    game = lib.ensure_game_entry(state, canonical_name="Conflict Game", url="https://store.steampowered.com/app/99/conflict/")
+    lib.assign_user(game, "u1", lib.STATUS_PAUSED)
+
+    # First post to get message IDs in state
+    client = FakeDiscordClient(
+        reactions={
+            # u1 reacted with both ✅ and ❌ (conflict) on m-3 (the game)
+            ("lib-chan", "m-3", lib.quote("✅", safe="")): [{"id": "u1"}],
+            ("lib-chan", "m-3", lib.quote("❌", safe="")): [{"id": "u1"}],
+        }
+    )
+    lib.post_daily_library_reminder(state, day_key="2026-04-10", channel_id="lib-chan", client=client)
+    lib.sync_statuses_from_library_posts(state, client, bot_user_id=None)
+
+    assert game["assignments"]["u1"]["status"] == lib.STATUS_ACTIVE
+    assert "u1" in game.get("conflicting_users", [])
+
+
+def test_single_reaction_sets_status_normally():
+    state = lib.load_gaming_library(path="/tmp/does-not-exist.json")
+    game = lib.ensure_game_entry(state, canonical_name="Single React", url="https://store.steampowered.com/app/88/single/")
+    lib.assign_user(game, "u1", lib.STATUS_ACTIVE)
+
+    client = FakeDiscordClient(
+        reactions={
+            ("lib-chan", "m-3", lib.quote("⏸️", safe="")): [{"id": "u1"}],
+        }
+    )
+    lib.post_daily_library_reminder(state, day_key="2026-04-10", channel_id="lib-chan", client=client)
+    lib.sync_statuses_from_library_posts(state, client, bot_user_id=None)
+
+    assert game["assignments"]["u1"]["status"] == lib.STATUS_PAUSED
+    assert game.get("conflicting_users", []) == []
+
+
+# --- Enhancement 6: Instagram game name extraction ---
+
+def test_instagram_game_name_extracted_from_steam_url():
+    state = lib.load_gaming_library(path="/tmp/does-not-exist.json")
+    daily_posts = {
+        "2026-04-09": {
+            "items": [{
+                "section": "instagram",
+                "source_type": "instagram",
+                "title": "coolcreator",
+                "url": "https://store.steampowered.com/app/555/Night_Signal/",
+                "channel_id": "daily-ch",
+                "message_id": "item-ig",
+                "description": "check this out!",
+            }],
+            "winners_state": {
+                "winner_entries": [{
+                    "winner_key": "https://store.steampowered.com/app/555/Night_Signal/",
+                    "title": "coolcreator",
+                    "url": "https://store.steampowered.com/app/555/Night_Signal/",
+                }],
+                "winner_messages": {
+                    "https://store.steampowered.com/app/555/Night_Signal/": {
+                        "channel_id": "winners-ch",
+                        "message_id": "winner-ig",
+                    }
+                },
+            },
+        }
+    }
+    client = FakeDiscordClient(
+        reactions={
+            ("winners-ch", "winner-ig", lib.BOOKMARK_EMOJI_ENCODED): [{"id": "u1"}],
+        }
+    )
+    lib.sync_promotions_from_winners(state, daily_posts, client, bot_user_id=None)
+
+    game = state["games"]["steam:555"]
+    # Should extract "Night Signal" from Steam URL slug
+    assert game["canonical_name"] == "Night Signal"
+
+
+def test_instagram_game_name_flagged_when_not_extractable():
+    state = lib.load_gaming_library(path="/tmp/does-not-exist.json")
+    daily_posts = {
+        "2026-04-09": {
+            "items": [{
+                "section": "instagram",
+                "source_type": "instagram",
+                "title": "somecreator",
+                "url": "https://www.instagram.com/p/abc/",
+                "channel_id": "daily-ch",
+                "message_id": "item-ig2",
+                "description": "",
+            }],
+            "winners_state": {
+                "winner_entries": [{
+                    "winner_key": "https://www.instagram.com/p/abc/",
+                    "title": "somecreator",
+                    "url": "https://www.instagram.com/p/abc/",
+                }],
+                "winner_messages": {
+                    "https://www.instagram.com/p/abc/": {
+                        "channel_id": "winners-ch",
+                        "message_id": "winner-ig2",
+                    }
+                },
+            },
+        }
+    }
+    client = FakeDiscordClient(
+        reactions={
+            ("winners-ch", "winner-ig2", lib.BOOKMARK_EMOJI_ENCODED): [{"id": "u1"}],
+        }
+    )
+    lib.sync_promotions_from_winners(state, daily_posts, client, bot_user_id=None)
+
+    url_key = "url:https://www.instagram.com/p/abc/"
+    game = state["games"][url_key]
+    assert "⚠️ Name needed" in game["canonical_name"]
+
+
+# --- Enhancement 7: Discord commands ---
+
+def test_command_add_assigns_user_to_existing_game():
+    state = lib.load_gaming_library(path="/tmp/does-not-exist.json")
+    game = lib.ensure_game_entry(state, canonical_name="Star Crew", url="https://store.steampowered.com/app/12345/Star_Crew/")
+
+    class CommandFakeClient(FakeDiscordClient):
+        def get_channel_messages(self, channel_id, *, context, limit=100, before=None, after=None):
+            return [{"id": "msg-1", "author": {"id": "111"}, "content": "!add <@9900> Star Crew"}]
+
+    count = lib.process_library_commands(state, CommandFakeClient(), "lib-chan", bot_user_id="bot-1")
+
+    assert count == 1
+    assert "9900" in game["assignments"]
+    assert "msg-1" in state["processed_command_ids"]
+
+
+def test_command_rename_game():
+    state = lib.load_gaming_library(path="/tmp/does-not-exist.json")
+    lib.ensure_game_entry(state, canonical_name="Old Name", url="https://store.steampowered.com/app/77/old/")
+
+    class CommandFakeClient(FakeDiscordClient):
+        def get_channel_messages(self, channel_id, *, context, limit=100, before=None, after=None):
+            return [{"id": "msg-2", "author": {"id": "admin"}, "content": "!rename Old Name New Name"}]
+
+    count = lib.process_library_commands(state, CommandFakeClient(), "lib-chan", bot_user_id=None)
+    assert count == 1
+    game = state["games"]["steam:77"]
+    assert game["canonical_name"] == "New Name"
+
+
+def test_command_archive_game():
+    state = lib.load_gaming_library(path="/tmp/does-not-exist.json")
+    lib.ensure_game_entry(state, canonical_name="Archive Me", url="https://store.steampowered.com/app/55/archive/")
+
+    class CommandFakeClient(FakeDiscordClient):
+        def get_channel_messages(self, channel_id, *, context, limit=100, before=None, after=None):
+            return [{"id": "msg-3", "author": {"id": "admin"}, "content": "!archive Archive Me"}]
+
+    lib.process_library_commands(state, CommandFakeClient(), "lib-chan", bot_user_id=None)
+    assert state["games"]["steam:55"]["archived"] is True
+
+
+def test_commands_not_reprocessed_on_second_sync():
+    state = lib.load_gaming_library(path="/tmp/does-not-exist.json")
+    lib.ensure_game_entry(state, canonical_name="Dup Game", url="https://store.steampowered.com/app/66/dup/")
+
+    class CommandFakeClient(FakeDiscordClient):
+        def get_channel_messages(self, channel_id, *, context, limit=100, before=None, after=None):
+            return [{"id": "msg-4", "author": {"id": "admin"}, "content": "!archive Dup Game"}]
+
+    lib.process_library_commands(state, CommandFakeClient(), "lib-chan", bot_user_id=None)
+    count2 = lib.process_library_commands(state, CommandFakeClient(), "lib-chan", bot_user_id=None)
+    assert count2 == 0
+
+
+# --- Enhancement 3: Header with jump links ---
+
+def test_header_edited_with_jump_links_after_sections_posted(monkeypatch):
+    monkeypatch.setenv("DISCORD_GUILD_ID", "guild-1")
+    import importlib
+    import gaming_library as _lib_mod
+    importlib.reload(_lib_mod)
+
+    state = _lib_mod.load_gaming_library(path="/tmp/does-not-exist.json")
+    game = _lib_mod.ensure_game_entry(state, canonical_name="Jump Test", url="https://store.steampowered.com/app/111/jump/", source_type="steam_free")
+    _lib_mod.assign_user(game, "u1", _lib_mod.STATUS_ACTIVE)
+    client = FakeDiscordClient()
+
+    _lib_mod.post_daily_library_reminder(state, day_key="2026-04-10", channel_id="lib-chan", client=client)
+
+    # Header should have been edited at least once with a jump link
+    jump_edits = [e for e in client.edits if "⟹" in e[2] and e[1] == "m-1"]
+    assert len(jump_edits) >= 1, "Header was not edited with jump links"
+
+    monkeypatch.delenv("DISCORD_GUILD_ID", raising=False)
+    importlib.reload(_lib_mod)

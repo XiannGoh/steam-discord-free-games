@@ -155,6 +155,26 @@ class DiscordClient:
     def put_reaction(self, channel_id: str, message_id: str, encoded_emoji: str, *, context: str) -> None:
         self.request("PUT", f"{DISCORD_API_BASE}/channels/{channel_id}/messages/{message_id}/reactions/{encoded_emoji}/@me", context=context)
 
+    def get_channel_messages(
+        self,
+        channel_id: str,
+        *,
+        context: str,
+        limit: int = 100,
+        before: str | None = None,
+        after: str | None = None,
+    ) -> list[dict[str, Any]]:
+        params: dict[str, Any] = {"limit": limit}
+        if before:
+            params["before"] = before
+        if after:
+            params["after"] = after
+        response = self.request("GET", f"{DISCORD_API_BASE}/channels/{channel_id}/messages", context=context, params=params)
+        return self._parse_json_array(response, f"{context} JSON")
+
+    def pin_message(self, channel_id: str, message_id: str, *, context: str) -> None:
+        self.request("PUT", f"{DISCORD_API_BASE}/channels/{channel_id}/pins/{message_id}", context=context)
+
     @staticmethod
     def _parse_json_object(response: requests.Response, context: str) -> dict[str, Any]:
         try:
