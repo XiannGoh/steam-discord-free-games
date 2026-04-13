@@ -284,15 +284,15 @@ def verify_step1(
 
     # --- Navigation footer (conditional on GUILD_ID) ---
     print("\n--- Step-1 navigation footer ---")
-    footer_state = run_state.get("navigation_footer") or {}
+    footer_state = run_state.get("footer") or {}
     footer_message_id = footer_state.get("message_id")
     footer_channel_id = footer_state.get("channel_id")
 
     if footer_message_id and footer_channel_id:
-        msg = check_message(client, footer_channel_id, footer_message_id, "navigation_footer", ch)
+        msg = check_message(client, footer_channel_id, footer_message_id, "footer", ch)
         ch["footer_found"] = msg is not None and bool(msg.get("content"))
     else:
-        print("  SKIPPED  navigation_footer (no message_id in state — DISCORD_GUILD_ID may not be set)")
+        print("  SKIPPED  footer (no message_id in state — DISCORD_GUILD_ID may not be set)")
         ch["footer_found"] = False
 
     # --- Item messages ---

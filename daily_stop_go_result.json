@@ -1,0 +1,13 @@
+{
+  "day_key": "2026-04-12",
+  "decision": "give_up",
+  "signal": "escalate_to_fixer",
+  "reason": "max_retry_attempts_reached",
+  "attempt": 3,
+  "max_attempts": 3,
+  "verification_file": "daily_verification.json",
+  "orchestrator": "openhands",
+  "fixer": "claude_code",
+  "escalation_target": "claude_code",
+  "generated_at_utc": "2026-04-13T18:58:02.986252+00:00"
+}

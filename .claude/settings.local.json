@@ -1,0 +1,17 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(git checkout:*)",
+      "Bash(git branch:*)",
+      "Bash(gh pr:*)",
+      "Bash(grep -l \"def.*message\\\\|create.*message\\\\|post_message\" /c/Users/xiann/Documents/GitHub/steam-discord-free-games/*.py /c/Users/xiann/Documents/GitHub/steam-discord-free-games/scripts/*.py)",
+      "Bash(grep -r \"DISCORD_\" /c/Users/xiann/Documents/GitHub/steam-discord-free-games/*.py)",
+      "Bash(grep -r \"os.getenv\\\\|os.environ\" /c/Users/xiann/Documents/GitHub/steam-discord-free-games/*.py)",
+      "Bash(wc -l /c/Users/xiann/Documents/GitHub/steam-discord-free-games/tests/*.py)",
+      "Bash(python:*)",
+      "Bash(where python:*)",
+      "Bash(pip show:*)",
+      "Bash(pip install:*)"
+    ]
+  }
+}

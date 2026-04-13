@@ -4,7 +4,7 @@
     "required": {
       "intro": true,
       "min_items": 1,
-      "footer": false,
+      "footer": true,
       "reactions": ["👍"],
       "no_duplicates": true
     },

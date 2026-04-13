@@ -1,0 +1,14 @@
+{
+  "pass": false,
+  "status": "failed",
+  "timestamp": "2026-04-13T18:58:02.551564+00:00",
+  "warnings": [
+    "unexpected weekly key format in data/scheduling/weekly_schedule_responses.json: bad",
+    "missing file: discord_daily_posts.json"
+  ],
+  "errors": [
+    "expected top-level object in data/scheduling/weekly_schedule_messages.json, got list",
+    "expected object for week bad in data/scheduling/weekly_schedule_responses.json",
+    "expected 'users' object in data/scheduling/expected_schedule_roster.json"
+  ]
+}

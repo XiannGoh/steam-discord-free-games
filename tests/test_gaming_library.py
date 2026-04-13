@@ -147,7 +147,7 @@ def test_dropped_users_hidden_in_daily_reminder_and_all_dropped_archives():
     assert game["archived"] is True
 
     messages_after = lib.build_daily_library_messages(state, "2026-04-11")
-    assert len(messages_after) == 1
+    assert len(messages_after) == 2  # header and delta
     assert "No active library games" in messages_after[0]["content"]
 
 
@@ -180,7 +180,7 @@ def test_daily_library_post_records_message_metadata_and_status_sync():
 
     assert posted is True
     assert state["daily_posts"]["2026-04-10"]["completed"] is True
-    assert len(client.posts) == 2
+    assert len(client.posts) == 4
     assert client.put_reactions == [
         ("lib-chan", "m-2", lib.quote("✅", safe=""), "add gaming library status reaction ✅ for 2026-04-10"),
         ("lib-chan", "m-2", lib.quote("⏸️", safe=""), "add gaming library status reaction ⏸️ for 2026-04-10"),
@@ -200,7 +200,7 @@ def test_daily_library_rerun_after_promotions_reuses_header_and_adds_missing_gam
     first_posted = lib.post_daily_library_reminder(state, day_key="2026-04-10", channel_id="lib-chan", client=client)
 
     assert first_posted is True
-    assert len(client.posts) == 1
+    assert len(client.posts) == 3
     assert "No active library games for today" in client.posts[0][1]
 
     game = lib.ensure_game_entry(state, canonical_name="Core Keeper", url="https://store.steampowered.com/app/1621690/")
@@ -209,17 +209,17 @@ def test_daily_library_rerun_after_promotions_reuses_header_and_adds_missing_gam
     second_posted = lib.post_daily_library_reminder(state, day_key="2026-04-10", channel_id="lib-chan", client=client)
 
     assert second_posted is True
-    assert len(client.posts) == 2
-    assert len(client.edits) == 1
+    assert len(client.posts) == 4
+    assert len(client.edits) == 3
     edited_header = client.edits[0]
     assert edited_header[1] == "m-1"
     assert "React on each game" in edited_header[2]
     assert state["daily_posts"]["2026-04-10"]["messages"]["header"]["message_id"] == "m-1"
     assert "steam:1621690" in state["daily_posts"]["2026-04-10"]["messages"]
     assert client.put_reactions == [
-        ("lib-chan", "m-2", lib.quote("✅", safe=""), "add gaming library status reaction ✅ for 2026-04-10"),
-        ("lib-chan", "m-2", lib.quote("⏸️", safe=""), "add gaming library status reaction ⏸️ for 2026-04-10"),
-        ("lib-chan", "m-2", lib.quote("❌", safe=""), "add gaming library status reaction ❌ for 2026-04-10"),
+        ("lib-chan", "m-4", lib.quote("✅", safe=""), "add gaming library status reaction ✅ for 2026-04-10"),
+        ("lib-chan", "m-4", lib.quote("⏸️", safe=""), "add gaming library status reaction ⏸️ for 2026-04-10"),
+        ("lib-chan", "m-4", lib.quote("❌", safe=""), "add gaming library status reaction ❌ for 2026-04-10"),
     ]
 
 
@@ -230,16 +230,16 @@ def test_daily_library_rerun_updates_existing_game_message_without_duplicate_pos
     client = FakeDiscordClient()
 
     lib.post_daily_library_reminder(state, day_key="2026-04-10", channel_id="lib-chan", client=client)
-    assert len(client.posts) == 2
+    assert len(client.posts) == 4
     assert len(client.put_reactions) == 3
 
     lib.set_user_status(game, "u1", lib.STATUS_PAUSED)
     posted_again = lib.post_daily_library_reminder(state, day_key="2026-04-10", channel_id="lib-chan", client=client)
 
     assert posted_again is True
-    assert len(client.posts) == 2
+    assert len(client.posts) == 4
     assert len(client.put_reactions) == 3
-    assert len(client.edits) == 2
+    assert len(client.edits) == 4
     game_edit = client.edits[1]
     assert game_edit[1] == "m-2"
     assert "(paused)" in game_edit[2]
@@ -255,10 +255,10 @@ def test_daily_library_reruns_converge_without_duplicate_headers_or_games():
     lib.post_daily_library_reminder(state, day_key="2026-04-10", channel_id="lib-chan", client=client)
     lib.post_daily_library_reminder(state, day_key="2026-04-10", channel_id="lib-chan", client=client)
 
-    assert len(client.posts) == 2
-    assert len(client.edits) == 4
+    assert len(client.posts) == 4
+    assert len(client.edits) == 8
     messages = state["daily_posts"]["2026-04-10"]["messages"]
-    assert sorted(messages.keys()) == ["header", "steam:300"]
+    assert sorted(messages.keys()) == ["delta", "footer", "header", "steam:300"]
     assert messages["header"]["message_id"] == "m-1"
     assert messages["steam:300"]["message_id"] == "m-2"
 

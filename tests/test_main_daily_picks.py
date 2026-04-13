@@ -316,7 +316,7 @@ def test_daily_sections_post_in_new_order(monkeypatch, tmp_path):
     ]
 
 
-def test_daily_navigation_footer_is_posted_last_with_expected_links(monkeypatch, tmp_path):
+def test_daily_picks_header_and_footer_are_posted_with_expected_links(monkeypatch, tmp_path):
     daily_path = tmp_path / "daily.json"
     daily_path.write_text("{}", encoding="utf-8")
     day_key = "2026-04-08"
@@ -345,29 +345,38 @@ def test_daily_navigation_footer_is_posted_last_with_expected_links(monkeypatch,
         [],
     )
 
-    expected_footer = "\n".join(
-        [
-            "🗓️ Daily Picks for Wednesday, April 8, 2026",
-            "",
-            "🎯 Intro / Top of Post → [Jump](https://discord.com/channels/guild-1/chan-1/m-1)",
-            "🧪 Demo & Playtest Picks → [Jump](https://discord.com/channels/guild-1/chan-1/m-2)",
-            "🎮 Free Picks → [Jump](https://discord.com/channels/guild-1/chan-1/m-4)",
-        ]
-    )
-    assert posted[-1] == expected_footer
-    assert any("Demo Pick #1" in message for message in posted[:-1])
-    assert any("Free Pick #1" in message for message in posted[:-1])
+    # Check header placeholder posted first
+    expected_placeholder = "📅 Daily Picks - Wednesday, April 8, 2026\nVote 👍 on any game you want to try. Every vote advances to Step 2."
+    assert posted[0] == expected_placeholder
+
+    # Check header was edited with full content
+    expected_full = "\n".join([
+        "📅 Daily Picks - Wednesday, April 8, 2026",
+        "Vote 👍 on any game you want to try. Every vote advances to Step 2.",
+        "🧪 Demo & Playtest Picks ⟹ [Jump](https://discord.com/channels/guild-1/chan-1/m-3)",
+        "🎮 Free Picks ⟹ [Jump](https://discord.com/channels/guild-1/chan-1/m-5)",
+    ])
+    assert len(fake_client.edits) == 1
+    assert fake_client.edits[0][2] == expected_full  # content
+
+    # Check footer posted last with full content
+    assert posted[-1] == expected_full
+
+    # Check other messages are present
+    assert any("Demo Pick #1" in message for message in posted[1:-1])
+    assert any("Free Pick #1" in message for message in posted[1:-1])
 
 
-def test_daily_navigation_footer_rerun_reuses_existing_message(monkeypatch, tmp_path):
+def test_daily_picks_header_and_footer_rerun_reuse_existing_messages(monkeypatch, tmp_path):
     daily_path = tmp_path / "daily.json"
     day_key = "2026-04-08"
     initial = {
         day_key: {
             "run_state": {
+                "header": {"message_id": "header-1", "channel_id": "chan-1"},
                 "intro": {"message_id": "intro-1", "channel_id": "chan-1"},
                 "section_headers": {"free": {"message_id": "header-free-1", "channel_id": "chan-1"}},
-                "navigation_footer": {"message_id": "footer-1", "channel_id": "chan-1"},
+                "footer": {"message_id": "footer-1", "channel_id": "chan-1"},
                 "completed": False,
             },
             "items": [
@@ -393,7 +402,7 @@ def test_daily_navigation_footer_rerun_reuses_existing_message(monkeypatch, tmp_
         posted.append(message)
         return {"message_id": "new-message", "channel_id": "chan-1"}
 
-    fake_client = FakeDiscordClient(existing_ids={"intro-1", "header-free-1", "footer-1", "item-1"})
+    fake_client = FakeDiscordClient(existing_ids={"header-1", "intro-1", "header-free-1", "footer-1", "item-1"})
 
     monkeypatch.setattr(main, "DISCORD_DAILY_POSTS_FILE", str(daily_path))
     monkeypatch.setattr(main, "DISCORD_BOT_TOKEN", "token")
@@ -432,9 +441,10 @@ def test_daily_force_refresh_reconciles_same_day_without_duplicates(monkeypatch,
     initial = {
         day_key: {
             "run_state": {
+                "header": {"message_id": "header-1", "channel_id": "chan-1"},
                 "intro": {"message_id": "intro-1", "channel_id": "chan-1"},
                 "section_headers": {"free": {"message_id": "header-free-1", "channel_id": "chan-1"}},
-                "navigation_footer": {"message_id": "footer-1", "channel_id": "chan-1"},
+                "footer": {"message_id": "footer-1", "channel_id": "chan-1"},
                 "completed": True,
             },
             "items": [
@@ -461,7 +471,7 @@ def test_daily_force_refresh_reconciles_same_day_without_duplicates(monkeypatch,
         counter["i"] += 1
         return {"message_id": f"new-{counter['i']}", "channel_id": "chan-1"}
 
-    fake_client = FakeDiscordClient(existing_ids={"intro-1", "header-free-1", "footer-1", "item-1"})
+    fake_client = FakeDiscordClient(existing_ids={"header-1", "intro-1", "header-free-1", "footer-1", "item-1"})
 
     monkeypatch.setattr(main, "DISCORD_DAILY_POSTS_FILE", str(daily_path))
     monkeypatch.setattr(main, "DISCORD_BOT_TOKEN", "token")
@@ -488,7 +498,7 @@ def test_daily_force_refresh_reconciles_same_day_without_duplicates(monkeypatch,
     main.post_daily_pick_messages([], free_items, [], [], force_refresh_same_day=True)
 
     assert len(posted) == 1
-    assert len(fake_client.edits) == 4  # intro + header + existing free item + footer
+    assert len(fake_client.edits) == 6  # header (refresh) + intro + free header + item + header (manual edit) + footer
     assert len(fake_client.reactions) == 1  # only brand-new item gets 👍
 
     saved = json.loads(daily_path.read_text(encoding="utf-8"))
@@ -502,13 +512,13 @@ def test_daily_force_refresh_reconciles_same_day_without_duplicates(monkeypatch,
     main.post_daily_pick_messages([], free_items, [], [], force_refresh_same_day=True)
 
     assert len(posted) == 1
-    assert len(fake_client.edits) == edits_after_first + 5  # intro + header + two items + footer
+    assert len(fake_client.edits) == edits_after_first + 7  # header + intro + free header + two items + header (manual edit) + footer
     assert len(fake_client.reactions) == reactions_after_first
     saved_after_second = json.loads(daily_path.read_text(encoding="utf-8"))
     assert len(saved_after_second[day_key]["items"]) == 2
 
 
-def test_daily_navigation_footer_uses_target_day_override_for_display(monkeypatch, tmp_path):
+def test_daily_picks_footer_uses_target_day_override_for_display(monkeypatch, tmp_path):
     daily_path = tmp_path / "daily.json"
     daily_path.write_text("{}", encoding="utf-8")
     day_key = "2026-04-10"
@@ -532,10 +542,10 @@ def test_daily_navigation_footer_uses_target_day_override_for_display(monkeypatc
 
     main.post_daily_pick_messages([], [{"title": "Free", "url": "https://store.steampowered.com/app/12", "score": 10}], [], [])
 
-    assert posted[-1].splitlines()[0] == "🗓️ Daily Picks for Friday, April 10, 2026"
+    assert posted[-1].splitlines()[0] == "📅 Daily Picks - Friday, April 10, 2026"
 
 
-def test_daily_navigation_footer_skips_safely_when_guild_or_metadata_missing(monkeypatch, tmp_path):
+def test_daily_picks_footer_skips_safely_when_guild_id_missing(monkeypatch, tmp_path):
     daily_path = tmp_path / "daily.json"
     daily_path.write_text("{}", encoding="utf-8")
     day_key = "2026-04-08"
@@ -562,7 +572,8 @@ def test_daily_navigation_footer_skips_safely_when_guild_or_metadata_missing(mon
     main.post_daily_pick_messages([{"title": "Demo", "url": "https://store.steampowered.com/app/11", "score": 10}], [], [], [])
 
     assert any("Demo Pick #1" in message for message in posted)
-    assert not any("Intro / Top of Post" in message for message in posted)
+    assert len(posted) == 4  # header, intro, demo_header, demo_item; no footer since no guild_id
+    assert "Vote 👍 on any game you want to try" in posted[0]  # header placeholder
     saved = json.loads(daily_path.read_text(encoding="utf-8"))
     assert saved[day_key]["run_state"]["completed"] is True
 
@@ -756,7 +767,7 @@ def _make_vs(*, intro_id="intro-1", footer_id="footer-1", section_headers=None, 
     return {
         "run_state": {
             "intro": {"message_id": intro_id} if intro_id else {},
-            "navigation_footer": {"message_id": footer_id} if footer_id else {},
+            "footer": {"message_id": footer_id} if footer_id else {},
             "section_headers": section_headers or {},
         },
         "items": items or [],
@@ -1132,8 +1143,8 @@ def test_post_daily_pick_messages_returns_counts(monkeypatch, tmp_path):
     run_counts, rerun_protection_active, _ = main.post_daily_pick_messages([], free_items, [], [])
 
     assert rerun_protection_active is False
-    # intro + free_header + 1 item = 3 created
-    assert run_counts["created"] == 3
+    # header + intro + free_header + 1 item = 4 created
+    assert run_counts["created"] == 4
     assert run_counts["updated"] == 0
     assert run_counts["reused"] == 0
 
