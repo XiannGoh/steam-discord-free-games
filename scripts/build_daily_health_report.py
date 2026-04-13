@@ -55,6 +55,22 @@ SCHEDULE_EXPECTATIONS: dict[str, dict[str, Any]] = {
         "minute": 0,
         "window_before_minutes": 90,
     },
+    "Gaming Library Daily Reminder": {
+        "kind": "daily",
+        "cron": "0 14 * * *",
+        "cadence": "daily 14:00 UTC",
+        "hour": 14,
+        "minute": 0,
+        "window_before_minutes": 90,
+    },
+    "Gaming Library Sync": {
+        "kind": "interval",
+        "cron": "15 * * * *",
+        "cadence": "every hour at :15 UTC",
+        "interval_hours": 1,
+        "minute": 15,
+        "window_before_minutes": 30,
+    },
 }
 
 

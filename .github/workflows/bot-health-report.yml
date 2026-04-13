@@ -37,6 +37,8 @@ jobs:
               { file: "weekly-scheduling-responses-sync.yml", name: "Weekly Scheduling Responses Sync", staleHours: 6 },
               { file: "daily.yml", name: "Daily Steam Picks", staleHours: 20 },
               { file: "evening-winners.yml", name: "Evening Winners", staleHours: 12 },
+              { file: "gaming-library-daily.yml", name: "Gaming Library Daily Reminder", staleHours: 20 },
+              { file: "gaming-library-sync.yml", name: "Gaming Library Sync", staleHours: 2 },
             ];
 
             const output = [];
