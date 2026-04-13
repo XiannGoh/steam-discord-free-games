@@ -2207,31 +2207,45 @@ def dedupe_instagram_posts(posts: List[dict]) -> List[dict]:
 
 
 def _dedupe_instagram_posts_with_debug(posts: List[dict]) -> Tuple[List[dict], Dict[str, object]]:
-    seen_keys = set()
-    deduped_posts: List[dict] = []
+    game_posts: Dict[str, dict] = {}
+    no_key_posts: List[dict] = []
     removed_keys: List[str] = []
 
     for post in posts:
         key = derive_instagram_game_key(post.get("caption", ""))
         if key is None:
-            deduped_posts.append(post)
+            no_key_posts.append(post)
             continue
 
-        if key in seen_keys:
+        if key not in game_posts:
+            game_posts[key] = {
+                "usernames": [post["username"]],
+                "caption": post["caption"],
+                "url": post["url"],  # Keep the first URL
+            }
+        else:
+            # Merge usernames
+            if post["username"] not in game_posts[key]["usernames"]:
+                game_posts[key]["usernames"].append(post["username"])
             if len(removed_keys) < 3:
                 removed_keys.append(key)
-            continue
 
-        seen_keys.add(key)
-        deduped_posts.append(post)
+    deduped_posts = []
+    for key, data in game_posts.items():
+        deduped_posts.append({
+            "username": ", ".join(sorted(data["usernames"])),  # Combine usernames
+            "caption": data["caption"],
+            "url": data["url"],
+        })
+
+    # Add posts without keys as-is
+    deduped_posts.extend(no_key_posts)
 
     debug: Dict[str, object] = {
         "fetched_count": len(posts),
         "deduped_count": len(deduped_posts),
         "removed_count": len(posts) - len(deduped_posts),
     }
-    if removed_keys:
-        debug["removed_key_samples"] = removed_keys
     return deduped_posts, debug
 
 
