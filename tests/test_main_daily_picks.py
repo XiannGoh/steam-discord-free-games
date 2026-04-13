@@ -749,6 +749,69 @@ class FakeDebugClient:
         return {"id": "debug-1", "channel_id": channel_id}
 
 
+def test_export_verification_artifact_pass_when_no_skipped(tmp_path):
+    out = tmp_path / "verification.json"
+    run_counts = {"created": 4, "updated": 1, "reused": 2, "skipped": 0}
+    main.export_verification_artifact(
+        day_key="2026-04-12",
+        run_counts=run_counts,
+        rerun_protection_active=False,
+        path=str(out),
+    )
+    artifact = json.loads(out.read_text(encoding="utf-8"))
+    assert artifact["day_key"] == "2026-04-12"
+    assert artifact["created"] == 4
+    assert artifact["updated"] == 1
+    assert artifact["reused"] == 2
+    assert artifact["skipped"] == 0
+    assert artifact["rerun_protection_active"] is False
+    assert artifact["pass"] is True
+    assert artifact["generated_at_utc"]
+
+
+def test_export_verification_artifact_fail_when_skipped(tmp_path):
+    out = tmp_path / "verification.json"
+    run_counts = {"created": 2, "updated": 0, "reused": 1, "skipped": 1}
+    main.export_verification_artifact(
+        day_key="2026-04-12",
+        run_counts=run_counts,
+        rerun_protection_active=False,
+        path=str(out),
+    )
+    artifact = json.loads(out.read_text(encoding="utf-8"))
+    assert artifact["pass"] is False
+    assert artifact["skipped"] == 1
+
+
+def test_export_verification_artifact_pass_when_rerun_protection_active(tmp_path):
+    out = tmp_path / "verification.json"
+    run_counts = {"created": 0, "updated": 0, "reused": 0, "skipped": 0}
+    main.export_verification_artifact(
+        day_key="2026-04-12",
+        run_counts=run_counts,
+        rerun_protection_active=True,
+        path=str(out),
+    )
+    artifact = json.loads(out.read_text(encoding="utf-8"))
+    assert artifact["rerun_protection_active"] is True
+    assert artifact["pass"] is True
+
+
+def test_export_verification_artifact_fails_gracefully(monkeypatch, capsys):
+    def fake_open(*args, **kwargs):
+        raise OSError("disk full")
+
+    monkeypatch.setattr("builtins.open", fake_open)
+    main.export_verification_artifact(
+        day_key="2026-04-12",
+        run_counts={"created": 1, "updated": 0, "reused": 0, "skipped": 0},
+        rerun_protection_active=False,
+        path="ignored.json",
+    )
+    captured = capsys.readouterr()
+    assert "WARN: failed to write verification artifact" in captured.out
+
+
 def test_post_discord_debug_summary_posts_compact_message(monkeypatch):
     fake_client = FakeDebugClient()
     monkeypatch.setattr(main, "DISCORD_DEBUG_CHANNEL_ID", "debug-chan-1")

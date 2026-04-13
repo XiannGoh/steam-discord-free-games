@@ -52,6 +52,14 @@ jobs:
           FORCE_REFRESH_SAME_DAY: ${{ inputs.force_refresh_same_day || false }}
         run: python main.py
 
+      - name: Upload verification artifact
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: daily-verification-${{ github.run_id }}
+          path: daily_verification.json
+          if-no-files-found: ignore
+
       - name: Save updated state files
         run: |
           git config user.name "github-actions[bot]"

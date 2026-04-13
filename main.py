@@ -33,6 +33,7 @@ DISCORD_DAILY_POSTS_RETENTION_DAYS = 30
 DAILY_DATE_OVERRIDE_ENV = "DAILY_DATE_UTC"
 FORCE_REFRESH_SAME_DAY_ENV = "FORCE_REFRESH_SAME_DAY"
 DAILY_DEBUG_SUMMARY_FILE = "daily_debug_summary.json"
+DAILY_VERIFICATION_FILE = "daily_verification.json"
 
 INSTAGRAM_CREATORS = [
     "gemgamingnetwork",
@@ -1125,6 +1126,32 @@ def export_daily_debug_summary(
         print(f"DEBUG EXPORT: wrote {path} ({len(records)} records)")
     except Exception as e:
         print(f"WARN: failed to write debug summary ({path}): {e}")
+
+
+def export_verification_artifact(
+    day_key: str,
+    run_counts: Dict[str, int],
+    rerun_protection_active: bool,
+    path: str = DAILY_VERIFICATION_FILE,
+) -> None:
+    """Write a JSON verification artifact summarizing the daily workflow run outcome."""
+    skipped = run_counts.get("skipped", 0)
+    artifact = {
+        "day_key": day_key,
+        "created": run_counts.get("created", 0),
+        "updated": run_counts.get("updated", 0),
+        "reused": run_counts.get("reused", 0),
+        "skipped": skipped,
+        "rerun_protection_active": rerun_protection_active,
+        "pass": skipped == 0,
+        "generated_at_utc": utc_now_iso(),
+    }
+    try:
+        with open(path, "w", encoding="utf-8") as f:
+            json.dump(artifact, f, indent=2, ensure_ascii=False)
+        print(f"VERIFICATION: wrote {path}")
+    except Exception as e:
+        print(f"WARN: failed to write verification artifact ({path}): {e}")
 
 
 def post_discord_debug_summary(
@@ -2444,6 +2471,11 @@ def main():
         run_counts=run_counts,
         rerun_protection_active=rerun_protection_active,
         force_refresh_same_day=force_refresh_same_day,
+    )
+    export_verification_artifact(
+        day_key=get_target_day_key(),
+        run_counts=run_counts,
+        rerun_protection_active=rerun_protection_active,
     )
 
     next_start_page = get_next_start_page(start_page)
