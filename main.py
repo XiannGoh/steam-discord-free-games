@@ -34,6 +34,7 @@ DAILY_DATE_OVERRIDE_ENV = "DAILY_DATE_UTC"
 FORCE_REFRESH_SAME_DAY_ENV = "FORCE_REFRESH_SAME_DAY"
 DAILY_DEBUG_SUMMARY_FILE = "daily_debug_summary.json"
 DAILY_VERIFICATION_FILE = "daily_verification.json"
+MAX_RETRY_ATTEMPTS = 3
 
 INSTAGRAM_CREATORS = [
     "gemgamingnetwork",
@@ -2276,7 +2277,17 @@ def fetch_instagram_posts():
     print(f"Instagram posts found this run: {len(all_new_posts)}")
     return all_new_posts
     
-def main():
+def load_daily_verification_artifact(path: str = DAILY_VERIFICATION_FILE) -> dict:
+    return load_json_object(path, default={})
+
+
+def verification_passed_for_day(day_key: str, artifact: dict) -> bool:
+    if not isinstance(artifact, dict):
+        return False
+    return artifact.get("day_key") == day_key and bool(artifact.get("pass"))
+
+
+def run_daily_workflow(*, force_refresh_same_day: bool = False) -> None:
     state = load_state()
     print(f"Daily run target date (UTC): {get_target_day_key()}")
 
@@ -2444,7 +2455,7 @@ def main():
         f"kept={instagram_debug['deduped_count']} "
         f"removed={instagram_debug['removed_count']}"
     )
-    force_refresh_same_day = get_force_refresh_same_day()
+    force_refresh_same_day = force_refresh_same_day or get_force_refresh_same_day()
     if force_refresh_same_day:
         print("Daily picks run configured with FORCE_REFRESH_SAME_DAY=true")
     run_counts, rerun_protection_active, verification_state = post_daily_pick_messages(
@@ -2543,6 +2554,37 @@ def main():
     save_page_state(next_start_page)
     next_end_page = min(next_start_page + PAGE_WINDOW_SIZE - 1, MAX_PAGE_LIMIT)
     print(f"Next rotating page window saved: {next_start_page}-{next_end_page}")
+
+
+def main():
+    day_key = get_target_day_key()
+    artifact = load_daily_verification_artifact()
+    if verification_passed_for_day(day_key, artifact):
+        print(
+            "STOP_GO decision=stop "
+            f"reason=verification_pass day_key={day_key} verification_file={DAILY_VERIFICATION_FILE}"
+        )
+        return
+
+    for attempt in range(1, MAX_RETRY_ATTEMPTS + 1):
+        if attempt > 1:
+            print(
+                "STOP_GO decision=retry "
+                f"reason=verification_failed attempt={attempt}/{MAX_RETRY_ATTEMPTS}"
+            )
+        run_daily_workflow(force_refresh_same_day=(attempt > 1))
+        artifact = load_daily_verification_artifact()
+        if verification_passed_for_day(day_key, artifact):
+            print(
+                "STOP_GO decision=stop "
+                f"reason=verification_pass attempt={attempt}/{MAX_RETRY_ATTEMPTS}"
+            )
+            return
+
+    print(
+        "STOP_GO decision=give_up "
+        f"reason=max_retry_attempts_reached attempts={MAX_RETRY_ATTEMPTS}/{MAX_RETRY_ATTEMPTS}"
+    )
 
 if __name__ == "__main__":
     main()

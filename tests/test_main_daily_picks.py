@@ -940,6 +940,56 @@ def test_export_verification_artifact_section_header_counts_by_key(tmp_path):
     assert artifact["pass"] is True
 
 
+def test_main_stop_go_stops_immediately_when_verification_passes(monkeypatch):
+    calls = []
+    monkeypatch.setattr(main, "get_target_day_key", lambda: "2026-04-12")
+    monkeypatch.setattr(
+        main,
+        "load_daily_verification_artifact",
+        lambda: {"day_key": "2026-04-12", "pass": True},
+    )
+    monkeypatch.setattr(main, "run_daily_workflow", lambda **kwargs: calls.append(kwargs))
+
+    main.main()
+
+    assert calls == []
+
+
+def test_main_stop_go_retries_until_verification_passes(monkeypatch):
+    calls = []
+    artifacts = iter(
+        [
+            {"day_key": "2026-04-12", "pass": False},
+            {"day_key": "2026-04-12", "pass": False},
+            {"day_key": "2026-04-12", "pass": True},
+        ]
+    )
+    monkeypatch.setattr(main, "get_target_day_key", lambda: "2026-04-12")
+    monkeypatch.setattr(main, "load_daily_verification_artifact", lambda: next(artifacts))
+    monkeypatch.setattr(main, "run_daily_workflow", lambda **kwargs: calls.append(kwargs))
+
+    main.main()
+
+    assert calls == [{"force_refresh_same_day": False}, {"force_refresh_same_day": True}]
+
+
+def test_main_stop_go_gives_up_after_max_attempts(monkeypatch, capsys):
+    calls = []
+    monkeypatch.setattr(main, "get_target_day_key", lambda: "2026-04-12")
+    monkeypatch.setattr(
+        main,
+        "load_daily_verification_artifact",
+        lambda: {"day_key": "2026-04-12", "pass": False},
+    )
+    monkeypatch.setattr(main, "run_daily_workflow", lambda **kwargs: calls.append(kwargs))
+
+    main.main()
+
+    captured = capsys.readouterr()
+    assert len(calls) == main.MAX_RETRY_ATTEMPTS
+    assert "STOP_GO decision=give_up" in captured.out
+
+
 def test_post_discord_debug_summary_posts_compact_message(monkeypatch):
     fake_client = FakeDebugClient()
     monkeypatch.setattr(main, "DISCORD_DEBUG_CHANNEL_ID", "debug-chan-1")
