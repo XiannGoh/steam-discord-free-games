@@ -305,6 +305,23 @@ DEMO_PLAYTEST_LEGIT_PLAYABLE_CUE_SCORES = {
     "play now": 1,
 }
 
+VR_INDICATOR_PHRASES = [
+    "virtual reality",
+    "vr headset",
+    "requires vr",
+    "requires a vr",
+    "requires virtual reality",
+    "supports vr",
+    "play in vr",
+    "vr only",
+    "vr supported",
+    "oculus rift",
+    "oculus quest",
+    "htc vive",
+    "valve index",
+    "steam vr",
+]
+
 TITLE_LOW_SIGNAL_KEYWORD_SCORES = {
     "simulator": -1,
     "clicker": -2,
@@ -673,6 +690,28 @@ def parse_description(soup: BeautifulSoup) -> str:
         return clean_text(meta_desc["content"])
 
     return ""
+
+
+def extract_steam_tags(soup: BeautifulSoup) -> List[str]:
+    tags = []
+    for tag_el in soup.select(".glance_tags.popular_tags a.app_tag"):
+        text = clean_text(tag_el.get_text(" ", strip=True))
+        if text:
+            tags.append(text.lower())
+    return tags
+
+
+def is_vr_content(title: str, description: str, text: str, tags: List[str]) -> bool:
+    lower_combined = normalize_text_lower(title, description, text)
+    if any(phrase in lower_combined for phrase in VR_INDICATOR_PHRASES):
+        return True
+
+    for tag in tags:
+        if any(phrase in tag for phrase in VR_INDICATOR_PHRASES):
+            return True
+        if tag == "vr" or tag.startswith("vr ") or tag.endswith(" vr"):
+            return True
+    return False
 
 
 def get_price_info(app_id: str) -> Tuple[Optional[float], bool]:
@@ -1388,6 +1427,11 @@ def inspect_game(source: str, app_id: str) -> Optional[dict]:
 
     description = parse_description(soup)
     page_text = clean_text(soup.get_text(" ", strip=True))
+    steam_tags = extract_steam_tags(soup)
+
+    if is_vr_content(title, description, page_text, steam_tags):
+        print(f"VR GAME DETECTED: {title}")
+        return None
 
     item_type = detect_item_type(source, app_id, title, page_text)
 
