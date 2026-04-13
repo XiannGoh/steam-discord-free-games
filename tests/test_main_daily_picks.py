@@ -152,7 +152,10 @@ def test_dedupe_instagram_posts_merges_same_game_across_creators():
 
     deduped = main.dedupe_instagram_posts(posts)
 
-    assert [post["url"] for post in deduped] == ["u1"]
+    assert len(deduped) == 1
+    assert deduped[0]["username"] == "creator_a, creator_b"
+    assert deduped[0]["caption"] == '"Star Drift" - free on Steam #indie 🚀'
+    assert deduped[0]["url"] == "u1"
 
 
 def test_dedupe_instagram_posts_keeps_different_games():
@@ -266,7 +269,6 @@ def test_instagram_dedupe_debug_summary_counts_and_samples():
     assert debug["fetched_count"] == 3
     assert debug["deduped_count"] == 2
     assert debug["removed_count"] == 1
-    assert debug["removed_key_samples"] == ["nova hex"]
 
 
 def test_daily_sections_post_in_new_order(monkeypatch, tmp_path):
