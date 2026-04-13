@@ -104,3 +104,55 @@ jobs:
             git pull --rebase origin main
           fi
           git push
+
+      - name: Notify Discord health monitor on failure
+        if: ${{ failure() && env.DISCORD_HEALTH_MONITOR_WEBHOOK_URL != '' }}
+        env:
+          DISCORD_HEALTH_MONITOR_WEBHOOK_URL: ${{ secrets.DISCORD_HEALTH_MONITOR_WEBHOOK_URL }}
+          WORKFLOW_NAME: ${{ github.workflow }}
+          JOB_NAME: run-gaming-library-manage
+          RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+          OPERATION: ${{ inputs.operation }}
+          CANONICAL_NAME: ${{ inputs.canonical_name || '' }}
+        run: |
+          payload="$(python - <<'PY'
+          import json
+          import os
+
+          operation = os.environ.get("OPERATION", "(unknown)")
+          canonical_name = os.environ.get("CANONICAL_NAME") or "(none)"
+          print(json.dumps({
+              "content": (
+                  "🔴 XiannGPT Bot Failure\n\n"
+                  f"Workflow: {os.environ['WORKFLOW_NAME']}\n"
+                  f"Job: {os.environ['JOB_NAME']}\n"
+                  "Status: failed\n"
+                  f"Context: operation={operation}, canonical_name={canonical_name}\n"
+                  f"Run: {os.environ['RUN_URL']}"
+              )
+          }))
+          PY
+          )"
+
+          response_file="$(mktemp)"
+          http_status="$(curl --silent --show-error \
+            --output "${response_file}" \
+            --write-out "%{http_code}" \
+            --header "Content-Type: application/json" \
+            --header "User-Agent: steam-discord-free-games-health-monitor/1.0" \
+            --data "${payload}" \
+            --request POST \
+            "${DISCORD_HEALTH_MONITOR_WEBHOOK_URL}")"
+
+          if [[ "${http_status}" =~ ^2[0-9][0-9]$ ]]; then
+            echo "Discord webhook POST succeeded: HTTP ${http_status}"
+          else
+            echo "Discord webhook POST failed: HTTP ${http_status}" >&2
+            if [[ -s "${response_file}" ]]; then
+              cat "${response_file}" >&2
+            fi
+            rm -f "${response_file}"
+            exit 1
+          fi
+
+          rm -f "${response_file}"
