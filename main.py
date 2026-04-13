@@ -24,6 +24,7 @@ from state_utils import (
 WEBHOOK_URL = os.getenv("DISCORD_WEBHOOK_URL")
 DISCORD_BOT_TOKEN = os.getenv("DISCORD_BOT_TOKEN")
 DISCORD_GUILD_ID = os.getenv("DISCORD_GUILD_ID")
+DISCORD_DEBUG_CHANNEL_ID = os.getenv("DISCORD_DEBUG_CHANNEL_ID")
 STATE_FILE = "seen_ids.json"
 PAGE_STATE_FILE = "page_state.json"
 INSTAGRAM_STATE_FILE = "instagram_seen.json"
@@ -1126,6 +1127,43 @@ def export_daily_debug_summary(
         print(f"WARN: failed to write debug summary ({path}): {e}")
 
 
+def post_discord_debug_summary(
+    day_key: str,
+    run_counts: Dict[str, int],
+    rerun_protection_active: bool,
+    force_refresh_same_day: bool,
+) -> None:
+    """Post a compact debug summary message to DISCORD_DEBUG_CHANNEL_ID after a daily workflow run."""
+    if not DISCORD_DEBUG_CHANNEL_ID or not DISCORD_BOT_TOKEN:
+        return
+    try:
+        day_label = datetime.strptime(day_key, "%Y-%m-%d").strftime("%Y-%m-%d (%a)")
+    except ValueError:
+        day_label = day_key
+    created = run_counts.get("created", 0)
+    updated = run_counts.get("updated", 0)
+    reused = run_counts.get("reused", 0)
+    skipped = run_counts.get("skipped", 0)
+    lines = [
+        f"🛠 Debug | Daily Picks | {day_label}",
+        f"Created: {created} | Updated: {updated} | Reused: {reused} | Skipped: {skipped}",
+        f"Rerun protection: {'active' if rerun_protection_active else 'inactive'}"
+        + (" | Force refresh: on" if force_refresh_same_day else ""),
+    ]
+    content = "\n".join(lines)
+    try:
+        session = requests.Session()
+        session.headers.update({
+            "Authorization": f"Bot {DISCORD_BOT_TOKEN}",
+            "Content-Type": "application/json",
+        })
+        client = DiscordClient(session)
+        client.post_message(DISCORD_DEBUG_CHANNEL_ID, content, context="daily picks debug summary")
+        print(f"DEBUG SUMMARY: posted to channel {DISCORD_DEBUG_CHANNEL_ID}")
+    except Exception as e:
+        print(f"WARN: failed to post debug summary to Discord: {e}")
+
+
 def score_quality_refinements(
     title: str,
     description: str,
@@ -1717,9 +1755,11 @@ def post_daily_pick_messages(
     instagram_posts: List[dict],
     *,
     force_refresh_same_day: bool = False,
-) -> None:
+) -> Tuple[Dict[str, int], bool]:
+    """Post (or reconcile) daily pick messages. Returns (run_counts, rerun_protection_active)."""
+    run_counts: Dict[str, int] = {"created": 0, "updated": 0, "reused": 0, "skipped": 0}
     if not (demo_playtest_items or free_items or paid_items or instagram_posts):
-        return
+        return run_counts, False
 
     token_available = bool(DISCORD_BOT_TOKEN)
     daily_posts = load_discord_daily_posts() if token_available else {}
@@ -1744,7 +1784,7 @@ def post_daily_pick_messages(
     if bool(run_state.get("completed")) and not force_refresh_same_day:
         print(f"SKIP: daily picks already completed for {day_key}; rerun protection active (force_refresh_same_day=false)")
         save_discord_daily_posts(daily_posts)
-        return
+        return run_counts, True
     if bool(run_state.get("completed")) and force_refresh_same_day:
         print(f"REFRESH: daily picks already completed for {day_key}; force_refresh_same_day=true so reconciling posts")
 
@@ -1781,6 +1821,7 @@ def post_daily_pick_messages(
                     state_obj["channel_id"] = str(payload.get("channel_id") or existing_channel_id)
                     state_obj["posted_at_utc"] = utc_now_iso()
                     print(f"REFRESH: updated {state_key} for {day_key} (message_id={state_obj['message_id']})")
+                    run_counts["updated"] += 1
                     save_discord_daily_posts(daily_posts)
                     return
                 except DiscordMessageNotFoundError:
@@ -1794,6 +1835,7 @@ def post_daily_pick_messages(
                 context=f"verify {state_key} for {day_key}",
             ):
                 print(f"REUSE: {state_key} for {day_key} (message_id={existing_message_id})")
+                run_counts["reused"] += 1
                 return
 
         metadata = post_to_discord_with_metadata(message, capture_metadata=token_available)
@@ -1802,8 +1844,10 @@ def post_daily_pick_messages(
             state_obj["channel_id"] = metadata.get("channel_id")
             state_obj["posted_at_utc"] = utc_now_iso()
             print(f"CREATE: posted {state_key} for {day_key} (message_id={metadata['message_id']})")
+            run_counts["created"] += 1
         else:
             print(f"WARN: missing metadata for {state_key} on {day_key}")
+            run_counts["skipped"] += 1
         save_discord_daily_posts(daily_posts)
 
     intro_state = run_state.setdefault("intro", {})
@@ -1876,6 +1920,7 @@ def post_daily_pick_messages(
                             "channel_id": str(payload.get("channel_id") or existing_channel_id),
                         }
                         print(f"REFRESH: updated {section_key} item {title} for {day_key}")
+                        run_counts["updated"] += 1
                     except DiscordMessageNotFoundError:
                         print(f"RECOVER: stale/deleted {section_key} item {title} for {day_key}; posting replacement")
                     except Exception as error:
@@ -1891,6 +1936,7 @@ def post_daily_pick_messages(
                 ):
                     metadata = {"message_id": existing_message_id, "channel_id": existing_channel_id}
                     print(f"REUSE: {section_key} item {title} for {day_key}")
+                    run_counts["reused"] += 1
 
             if metadata is None:
                 metadata = post_to_discord_with_metadata(content, capture_metadata=token_available)
@@ -1915,10 +1961,12 @@ def post_daily_pick_messages(
                 )
                 if is_new_message:
                     print(f"CREATE: posted {section_key} item {title} for {day_key}")
+                    run_counts["created"] += 1
                 else:
                     print(f"REUSE: persisted existing {section_key} item {title} for {day_key}")
             else:
                 print(f"WARN: missing metadata for {section_key} item title={title}")
+                run_counts["skipped"] += 1
             sleep_briefly()
 
     footer_state = run_state.setdefault("navigation_footer", {})
@@ -1931,6 +1979,7 @@ def post_daily_pick_messages(
     run_state["completed_at_utc"] = utc_now_iso()
     save_discord_daily_posts(daily_posts)
     print(f"COMPLETE: daily picks state marked completed for {day_key}")
+    return run_counts, False
 
 
 def dedupe_by_app_id(items: List[Tuple[str, str]]) -> List[Tuple[str, str]]:
@@ -2311,7 +2360,7 @@ def main():
     force_refresh_same_day = get_force_refresh_same_day()
     if force_refresh_same_day:
         print("Daily picks run configured with FORCE_REFRESH_SAME_DAY=true")
-    post_daily_pick_messages(
+    run_counts, rerun_protection_active = post_daily_pick_messages(
         demo_playtest_items,
         free_items,
         paid_items,
@@ -2389,6 +2438,12 @@ def main():
         run_summary_lines,
         target_day_key=get_target_day_key(),
         instagram_debug=instagram_debug,
+    )
+    post_discord_debug_summary(
+        day_key=get_target_day_key(),
+        run_counts=run_counts,
+        rerun_protection_active=rerun_protection_active,
+        force_refresh_same_day=force_refresh_same_day,
     )
 
     next_start_page = get_next_start_page(start_page)
