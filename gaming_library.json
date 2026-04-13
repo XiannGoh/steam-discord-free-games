@@ -20,7 +20,7 @@
       },
       "archived": false,
       "created_at_utc": "2026-04-10T09:39:19.389733+00:00",
-      "updated_at_utc": "2026-04-13T07:29:25.464387+00:00"
+      "updated_at_utc": "2026-04-13T09:19:46.887423+00:00"
     },
     "url:https://www.instagram.com/p/dw6y_zjj2tc/": {
       "identity_key": "url:https://www.instagram.com/p/dw6y_zjj2tc/",
@@ -41,7 +41,91 @@
       },
       "archived": false,
       "created_at_utc": "2026-04-10T09:39:31.041650+00:00",
-      "updated_at_utc": "2026-04-13T07:29:19.980551+00:00"
+      "updated_at_utc": "2026-04-13T09:19:42.477308+00:00"
+    },
+    "steam:3716600": {
+      "identity_key": "steam:3716600",
+      "canonical_name": "Mage Arena",
+      "url": "https://store.steampowered.com/app/3716600/",
+      "source_type": "paid_under_20",
+      "source_section": "paid",
+      "source_metadata": {
+        "winner_key": "https://store.steampowered.com/app/3716600/",
+        "description": "A co-op PvP experience about using your voice to cast spells in the Mage Arena to settle an ages-old feud between sorcerers and warlocks.",
+        "daily_section": "paid"
+      },
+      "assignments": {
+        "195462430535581708": {
+          "status": "active",
+          "updated_at_utc": "2026-04-13T09:19:36.758657+00:00"
+        }
+      },
+      "archived": false,
+      "created_at_utc": "2026-04-13T09:19:36.758638+00:00",
+      "updated_at_utc": "2026-04-13T09:19:36.758668+00:00"
+    },
+    "steam:408400": {
+      "identity_key": "steam:408400",
+      "canonical_name": "Swords and Sorcery - Underworld - Definitive Edition",
+      "url": "https://store.steampowered.com/app/408400/",
+      "source_type": "steam_demo_playtest",
+      "source_section": "demo_playtest",
+      "source_metadata": {
+        "winner_key": "https://store.steampowered.com/app/408400/",
+        "description": "Swords and Sorcery - Underworld is a party-based, first person view role-playing game with turn-based combat and a square grid 3D environment. The art was made by a professional comics illustrator.",
+        "daily_section": "demo_playtest"
+      },
+      "assignments": {
+        "195462430535581708": {
+          "status": "active",
+          "updated_at_utc": "2026-04-13T09:19:36.851701+00:00"
+        }
+      },
+      "archived": false,
+      "created_at_utc": "2026-04-13T09:19:36.851684+00:00",
+      "updated_at_utc": "2026-04-13T09:19:36.851711+00:00"
+    },
+    "url:https://www.instagram.com/p/dwrvg40brws/": {
+      "identity_key": "url:https://www.instagram.com/p/dwrvg40brws/",
+      "canonical_name": "@gemgamingnetwork",
+      "url": "https://www.instagram.com/p/DWrVg40BrWs/",
+      "source_type": "instagram",
+      "source_section": "instagram",
+      "source_metadata": {
+        "winner_key": "https://www.instagram.com/p/DWrVg40BrWs/",
+        "description": "perfect co-op game to play while drunk 😂  It’s called: Friendly Steps   💰: TBD 🌎: PC (Steam) 👥: 1-4 Players 🎮: Ragdol...",
+        "daily_section": "instagram"
+      },
+      "assignments": {
+        "195462430535581708": {
+          "status": "active",
+          "updated_at_utc": "2026-04-13T09:19:41.011273+00:00"
+        }
+      },
+      "archived": false,
+      "created_at_utc": "2026-04-13T09:19:41.011252+00:00",
+      "updated_at_utc": "2026-04-13T09:19:41.011285+00:00"
+    },
+    "url:https://www.instagram.com/p/dwrqgefhfmd/": {
+      "identity_key": "url:https://www.instagram.com/p/dwrqgefhfmd/",
+      "canonical_name": "@gemgamingnetwork",
+      "url": "https://www.instagram.com/p/DWrqGeFhFMd/",
+      "source_type": "instagram",
+      "source_section": "instagram",
+      "source_metadata": {
+        "winner_key": "https://www.instagram.com/p/DWrqGeFhFMd/",
+        "description": "new co-op steam game similar to repo  It’s called: Salty Dogs  💰: FREE PLAYTEST 🌎: PC (Steam) 👥: 1-4 Players 🎮: Under...",
+        "daily_section": "instagram"
+      },
+      "assignments": {
+        "195462430535581708": {
+          "status": "active",
+          "updated_at_utc": "2026-04-13T09:19:41.234777+00:00"
+        }
+      },
+      "archived": false,
+      "created_at_utc": "2026-04-13T09:19:41.234758+00:00",
+      "updated_at_utc": "2026-04-13T09:19:41.234785+00:00"
     }
   },
   "daily_posts": {
