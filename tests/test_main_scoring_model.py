@@ -510,3 +510,83 @@ def test_dlc_hard_excluded_from_paid_section(monkeypatch):
 
     item = main.inspect_game("paid_candidate", "1401")
     assert item is None  # DLC should be excluded
+
+
+def test_paid_game_mentioning_demo_in_text_is_excluded_from_demo_section(monkeypatch):
+    # Paid games that mention "demo" in their page text (e.g. "watch the demo trailer")
+    # should NOT be classified as demo — they should be excluded entirely from free sections.
+    html = build_html(
+        "Birth of Shadows",
+        "dark adventure",
+        "Multiplayer Co-Op up to 4 players watch the demo trailer wishlist",
+        "Mostly Positive",
+    )
+    stub_app_pages(monkeypatch, {"1501": html})
+    monkeypatch.setattr(main, "get_price_info", lambda app_id: (14.99, False, 0, "game"))
+
+    item = main.inspect_game("steam_free", "1501")
+    assert item is None  # Paid game should not appear in demo section
+
+
+def test_paid_game_mentioning_playtest_in_text_is_excluded(monkeypatch):
+    html = build_html(
+        "Codex of Victory",
+        "strategy game",
+        "Multiplayer Online Co-Op up to 6 players playtest feedback welcome",
+        "Mostly Positive",
+    )
+    stub_app_pages(monkeypatch, {"1502": html})
+    monkeypatch.setattr(main, "get_price_info", lambda app_id: (9.99, False, 0, "game"))
+
+    item = main.inspect_game("steam_free", "1502")
+    assert item is None  # Paid game should not appear in playtest section
+
+
+def test_free_game_mentioning_demo_in_text_is_allowed(monkeypatch):
+    # A genuinely free game that happens to mention "demo" should still pass through.
+    html = build_html(
+        "Free Co-op Game",
+        "team up with friends",
+        "Multiplayer Online Co-Op up to 6 players free demo available",
+        "Very Positive",
+    )
+    stub_app_pages(monkeypatch, {"1503": html})
+    # is_free=True means price check allows it through
+    monkeypatch.setattr(main, "get_price_info", lambda app_id: (0.0, True, 0, "game"))
+
+    item = main.inspect_game("steam_free", "1503")
+    assert item is not None
+    assert item["type"] == "demo"
+
+
+def test_vr_game_with_steamvr_tag_excluded(monkeypatch):
+    html = """
+    <html>
+      <head><meta property="og:title" content="SteamVR Arena" /></head>
+      <body>
+        <div id="appHubAppName">SteamVR Arena</div>
+        <div class="game_description_snippet">Multiplayer Co-Op up to 4 players</div>
+        <div class="glance_tags popular_tags">
+          <a class="app_tag">SteamVR</a>
+          <a class="app_tag">Multiplayer</a>
+        </div>
+      </body>
+    </html>
+    """
+    stub_app_pages(monkeypatch, {"1601": html})
+
+    item = main.inspect_game("steam_demo", "1601")
+    assert item is None  # SteamVR-tagged game must be excluded
+
+
+def test_vr_game_with_steamvr_in_description_excluded(monkeypatch):
+    html = build_html(
+        "Arena Fighters",
+        "Play with friends in SteamVR",
+        "Multiplayer Online Co-Op up to 6 players Download Demo",
+        "",
+    )
+    stub_app_pages(monkeypatch, {"1602": html})
+
+    item = main.inspect_game("steam_demo", "1602")
+    assert item is None  # SteamVR in description must be excluded

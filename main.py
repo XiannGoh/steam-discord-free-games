@@ -320,7 +320,14 @@ VR_INDICATOR_PHRASES = [
     "htc vive",
     "valve index",
     "steam vr",
+    "steamvr",
+    "vr game",
+    "vr experience",
+    "mixed reality",
+    "windows mixed reality",
 ]
+
+VR_TAG_EXACT = {"vr", "virtual reality", "steamvr", "room-scale vr", "vr only", "vr supported"}
 
 TITLE_LOW_SIGNAL_KEYWORD_SCORES = {
     "simulator": -1,
@@ -707,6 +714,8 @@ def is_vr_content(title: str, description: str, text: str, tags: List[str]) -> b
         return True
 
     for tag in tags:
+        if tag in VR_TAG_EXACT:
+            return True
         if any(phrase in tag for phrase in VR_INDICATOR_PHRASES):
             return True
         if tag == "vr" or tag.startswith("vr ") or tag.endswith(" vr"):
@@ -755,11 +764,26 @@ def detect_item_type(source: str, app_id: str, title: str, text: str) -> str:
     if source == "steamdb_promo" or "free to keep" in lower_text or "100% off" in lower_text:
         return "temporarily_free"
 
-    if "playtest" in lower_title or "playtest" in lower_text:
-        return "playtest"
+    # Paid candidates are only ever evaluated as paid_under_20 — skip demo/playtest paths.
+    if source != "paid_candidate":
+        if "playtest" in lower_title or "playtest" in lower_text:
+            # Verify the app is actually free — paid games sometimes mention
+            # "playtest" in their page text without offering a free trial.
+            price, is_free, _, _ = get_price_info(app_id)
+            if price is not None and price > 0 and not is_free:
+                print(f"DEMO/PLAYTEST PAID SKIP: app_id={app_id} | price={price} | classified as playtest but is paid")
+                return "ignore"
+            return "playtest"
 
-    if source == "steam_demo" or "demo" in lower_title or "demo" in lower_text:
-        return "demo"
+        if source == "steam_demo" or "demo" in lower_title or "demo" in lower_text:
+            # For non-steam_demo sources, verify the app is actually free before
+            # classifying as demo — paid games can mention "demo" anywhere in page text.
+            if source != "steam_demo":
+                price, is_free, _, _ = get_price_info(app_id)
+                if price is not None and price > 0 and not is_free:
+                    print(f"DEMO/PLAYTEST PAID SKIP: app_id={app_id} | price={price} | classified as demo but is paid")
+                    return "ignore"
+            return "demo"
 
     if source == "paid_candidate":
         price, is_free, _, item_type = get_price_info(app_id)
