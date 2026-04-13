@@ -240,5 +240,58 @@
         }
       }
     }
+  },
+  "2026-04-20_to_2026-04-26": {
+    "date_range": "Apr 20–26, 2026",
+    "users": {
+      "195462430535581708": {
+        "username": "thomasgoh",
+        "global_name": "Thomas",
+        "days": {
+          "Monday": {
+            "reactions": [
+              "🌙"
+            ],
+            "custom_reply": null
+          },
+          "Tuesday": {
+            "reactions": [
+              "🌙"
+            ],
+            "custom_reply": null
+          },
+          "Wednesday": {
+            "reactions": [
+              "🌙"
+            ],
+            "custom_reply": null
+          },
+          "Thursday": {
+            "reactions": [
+              "🌙"
+            ],
+            "custom_reply": null
+          },
+          "Friday": {
+            "reactions": [
+              "🌙"
+            ],
+            "custom_reply": null
+          },
+          "Saturday": {
+            "reactions": [
+              "🌙"
+            ],
+            "custom_reply": null
+          },
+          "Sunday": {
+            "reactions": [
+              "🌙"
+            ],
+            "custom_reply": null
+          }
+        }
+      }
+    }
   }
 }

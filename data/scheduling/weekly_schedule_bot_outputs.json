@@ -17,5 +17,35 @@
     "summary_message_content": "📊 Availability Summary — Apr 13–19, 2026\n\n*5 of 14 people responded • 9 still missing*\n*Last updated: Apr 9, 2:08 AM ET*\n\n**Monday 4/13**\n✅ 1 — Janithan\n🌙 4 — TheMonkeyKing, Chocolie, Thomas, DatVNguyen\n\n**Tuesday 4/14**\n✅ 1 — Janithan\n🌅 1 — TheMonkeyKing\n☀️ 1 — TheMonkeyKing\n🌙 2 — Thomas, DatVNguyen\n\n**Wednesday 4/15**\n✅ 1 — TheMonkeyKing\n🌙 3 — Chocolie, Thomas, DatVNguyen\n\n**Thursday 4/16**\n✅ 1 — TheMonkeyKing\n🌙 2 — Thomas, DatVNguyen\n\n**Friday 4/17**\n☀️ 1 — TheMonkeyKing\n🌙 4 — Janithan, Chocolie, Thomas, DatVNguyen\n\n**Saturday 4/18**\n☀️ 2 — TheMonkeyKing, DatVNguyen\n🌙 1 — Thomas\n\n**Sunday 4/19**\n✅ 1 — TheMonkeyKing\n☀️ 1 — DatVNguyen\n🌙 1 — Thomas",
     "last_reminder_local_date": "2026-04-09",
     "summary_data_signature": "d774d899b54540fb728e780d24c39154fa055f11e4a707013ac177f76b19684b"
+  },
+  "2026-04-20_to_2026-04-26": {
+    "summary_last_synced_at_utc": "2026-04-13T12:14:01.519659+00:00",
+    "summary_data_signature": "703451a6906be16c6c4a041d54db9449bb3f92a6c58f0d8d8fb57d3db059ccd6",
+    "summary_posted": true,
+    "summary_message_id": "1493222730345218228",
+    "summary_message_ids": [
+      "1493222730345218228"
+    ],
+    "summary_message_content": "📊 Availability Summary — Apr 20–26, 2026\n\n*1 of 14 people responded • 13 still missing*\n*Last updated: Apr 13, 8:14 AM ET*\n\n**Monday 4/20**\n🌙 1 — Thomas\n\n**Tuesday 4/21**\n🌙 1 — Thomas\n\n**Wednesday 4/22**\n🌙 1 — Thomas\n\n**Thursday 4/23**\n🌙 1 — Thomas\n\n**Friday 4/24**\n🌙 1 — Thomas\n\n**Saturday 4/25**\n🌙 1 — Thomas\n\n**Sunday 4/26**\n🌙 1 — Thomas",
+    "reminder_message_id": "1493222731896852550",
+    "reminder_message_ids": [
+      "1493222731896852550"
+    ],
+    "reminder_missing_users": [
+      "137123568952672257",
+      "150522802292785152",
+      "161248274970443776",
+      "162382481369071617",
+      "164270274928181248",
+      "204517030395641856",
+      "239951450082377740",
+      "245393360490201089",
+      "277285824935231488",
+      "321367835525775381",
+      "412746386271109130",
+      "711603470544797747",
+      "740065988812341280"
+    ],
+    "last_reminder_local_date": "2026-04-13"
   }
 }
