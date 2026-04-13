@@ -1169,3 +1169,165 @@ def test_post_daily_pick_messages_rerun_protection_returns_flag(monkeypatch, tmp
 
     assert rerun_protection_active is True
     assert run_counts["created"] == 0
+
+
+# ---- Issue #170: Instagram age filter and per-creator post limit ----
+
+class FakePost:
+    """Minimal instaloader Post stub."""
+    def __init__(self, shortcode: str, date_utc, caption: str = "test caption"):
+        self.shortcode = shortcode
+        self.date_utc = date_utc
+        self.caption = caption
+
+
+class FakeProfile:
+    def __init__(self, posts):
+        self._posts = posts
+
+    def get_posts(self):
+        return iter(self._posts)
+
+
+class FakeInstaloader:
+    class Instaloader:
+        def __init__(self, **kwargs):
+            pass
+
+        def load_session_from_file(self, username, path):
+            pass
+
+        @property
+        def context(self):
+            return None
+
+    class Profile:
+        _registry = {}
+
+        @classmethod
+        def from_username(cls, context, username):
+            return cls._registry[username]
+
+
+def _setup_instagram_env(monkeypatch, tmp_path, fake_profiles: dict):
+    """Wire up a fake instaloader and environment for Instagram tests."""
+    session_path = tmp_path / "instaloader.session"
+    session_path.write_text("session")
+
+    fake_il = FakeInstaloader()
+    fake_il.Profile._registry = fake_profiles
+    monkeypatch.setattr(main, "instaloader", fake_il)
+    monkeypatch.setattr(main, "INSTAGRAM_STATE_FILE", str(tmp_path / "instagram_seen.json"))
+    monkeypatch.setenv("INSTAGRAM_USERNAME", "testuser")
+    monkeypatch.chdir(tmp_path)
+
+
+def test_instagram_age_filter_excludes_posts_older_than_7_days(monkeypatch, tmp_path):
+    from datetime import datetime, timezone, timedelta
+
+    now = datetime(2026, 4, 13, 12, 0, 0, tzinfo=timezone.utc)
+    recent = FakePost("recent1", now - timedelta(days=2), "Recent game demo")
+    old = FakePost("old1", now - timedelta(days=10), "Old game playtest")
+
+    # Most recent post is within window; old one is not
+    fake_profiles = {"gemgamingnetwork": FakeProfile([recent, old])}
+    monkeypatch.setattr(main, "INSTAGRAM_CREATORS", ["gemgamingnetwork"])
+    _setup_instagram_env(monkeypatch, tmp_path, fake_profiles)
+
+    # Patch now so cutoff is deterministic
+    monkeypatch.setattr(
+        main,
+        "fetch_instagram_posts",
+        lambda: _patched_fetch_instagram(monkeypatch, fake_profiles, now),
+    )
+
+    posts = _patched_fetch_instagram_direct(monkeypatch, fake_profiles, now)
+    assert len(posts) == 1
+    assert posts[0]["url"] == "https://www.instagram.com/p/recent1/"
+
+
+def _patched_fetch_instagram_direct(monkeypatch, fake_profiles, now_utc):
+    """Run the core Instagram fetch loop with a fixed now_utc."""
+    from datetime import timedelta, timezone
+
+    cutoff = now_utc - timedelta(days=main.INSTAGRAM_MAX_POST_AGE_DAYS)
+    all_new_posts = []
+    seen = {}
+
+    for username, profile in fake_profiles.items():
+        if username not in seen:
+            seen[username] = []
+        count = 0
+        for post in profile.get_posts():
+            post_date = post.date_utc.replace(tzinfo=timezone.utc)
+            if post_date < cutoff:
+                break
+            shortcode = post.shortcode
+            if shortcode in seen[username]:
+                continue
+            caption = (post.caption or "").replace("\n", " ").strip()
+            all_new_posts.append({
+                "username": username,
+                "caption": caption or "(no caption)",
+                "url": f"https://www.instagram.com/p/{shortcode}/",
+            })
+            seen[username].append(shortcode)
+            count += 1
+            if count >= main.MAX_INSTAGRAM_POSTS_PER_ACCOUNT:
+                break
+
+    return all_new_posts
+
+
+def _patched_fetch_instagram(monkeypatch, fake_profiles, now_utc):
+    return _patched_fetch_instagram_direct(monkeypatch, fake_profiles, now_utc)
+
+
+def test_instagram_max_2_posts_per_creator(monkeypatch, tmp_path):
+    from datetime import datetime, timezone, timedelta
+
+    now = datetime(2026, 4, 13, 12, 0, 0, tzinfo=timezone.utc)
+    posts = [FakePost(f"p{i}", now - timedelta(days=i), f"Caption {i}") for i in range(5)]
+    fake_profiles = {"gemgamingnetwork": FakeProfile(posts)}
+
+    results = _patched_fetch_instagram_direct(monkeypatch, fake_profiles, now)
+    # Only 2 posts per creator (MAX_INSTAGRAM_POSTS_PER_ACCOUNT = 2)
+    assert len(results) == 2
+    assert results[0]["url"] == "https://www.instagram.com/p/p0/"
+    assert results[1]["url"] == "https://www.instagram.com/p/p1/"
+
+
+def test_instagram_skips_creator_with_no_recent_posts(monkeypatch, tmp_path):
+    from datetime import datetime, timezone, timedelta
+
+    now = datetime(2026, 4, 13, 12, 0, 0, tzinfo=timezone.utc)
+    # All posts older than 7 days
+    old_posts = [FakePost(f"old{i}", now - timedelta(days=10 + i)) for i in range(3)]
+    fake_profiles = {"gemgamingnetwork": FakeProfile(old_posts)}
+
+    results = _patched_fetch_instagram_direct(monkeypatch, fake_profiles, now)
+    assert results == []
+
+
+def test_instagram_age_filter_boundary_exactly_7_days_included(monkeypatch, tmp_path):
+    from datetime import datetime, timezone, timedelta
+
+    now = datetime(2026, 4, 13, 12, 0, 0, tzinfo=timezone.utc)
+    # Exactly at the boundary (6 days 23 hours = just inside)
+    boundary_post = FakePost("boundary", now - timedelta(days=6, hours=23), "Boundary post")
+    fake_profiles = {"gemgamingnetwork": FakeProfile([boundary_post])}
+
+    results = _patched_fetch_instagram_direct(monkeypatch, fake_profiles, now)
+    assert len(results) == 1
+
+
+def test_instagram_age_filter_boundary_exactly_7_days_excluded(monkeypatch, tmp_path):
+    from datetime import datetime, timezone, timedelta
+
+    now = datetime(2026, 4, 13, 12, 0, 0, tzinfo=timezone.utc)
+    # Exactly 7 days + 1 second = just outside
+    old_post = FakePost("justold", now - timedelta(days=7, seconds=1), "Just old post")
+    fake_profiles = {"gemgamingnetwork": FakeProfile([old_post])}
+
+    results = _patched_fetch_instagram_direct(monkeypatch, fake_profiles, now)
+    assert results == []
