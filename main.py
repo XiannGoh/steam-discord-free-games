@@ -360,7 +360,7 @@ REVIEW_SENTIMENT_SCORES = {
     "Overwhelmingly Positive": 6,
     "Very Positive": 5,
     "Positive": 4,
-    "Mostly Positive": 2,
+    "Mostly Positive": -1,
     "Mixed": -3,
     "Mostly Negative": -8,
     "Negative": -8,
@@ -389,6 +389,7 @@ REVIEW_SENTIMENT_PATTERNS = [
 ]
 
 FREE_REVIEW_BLOCKLIST = {
+    "Mostly Positive",
     "Mostly Negative",
     "Negative",
     "Very Negative",
@@ -396,7 +397,6 @@ FREE_REVIEW_BLOCKLIST = {
 }
 
 PAID_MINIMUM_REVIEW_SENTIMENTS = {
-    "Mostly Positive",
     "Positive",
     "Very Positive",
     "Overwhelmingly Positive",

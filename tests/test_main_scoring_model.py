@@ -618,12 +618,12 @@ def test_review_score_caps_positive(monkeypatch):
     assert item["review_score"] == 4
 
 
-def test_review_score_caps_mostly_positive(monkeypatch):
+def test_review_score_mostly_positive_is_minus_one(monkeypatch):
     html = build_html("Okay Game", "friends", "Multiplayer Online Co-Op up to 6 players", "Mostly Positive")
     stub_app_pages(monkeypatch, {"2004": html})
     item = main.inspect_game("steam_free", "2004")
     assert item is not None
-    assert item["review_score"] == 2
+    assert item["review_score"] == -1
 
 
 def test_review_score_mixed_is_minus_three(monkeypatch):
@@ -808,6 +808,65 @@ def test_hard_multiplayer_minimum_allows_coop(monkeypatch):
 
 def test_free_game_threshold_is_eleven(monkeypatch):
     assert main.MIN_SCORE_TO_POST_FREE == 11
+
+
+# --- Mostly Positive scoring rebalance tests ---
+
+def test_mostly_positive_score_is_minus_one():
+    assert main.REVIEW_SENTIMENT_SCORES["Mostly Positive"] == -1
+
+
+def test_mostly_positive_in_free_review_blocklist():
+    assert "Mostly Positive" in main.FREE_REVIEW_BLOCKLIST
+
+
+def test_mostly_positive_not_in_paid_minimum_review_sentiments():
+    assert "Mostly Positive" not in main.PAID_MINIMUM_REVIEW_SENTIMENTS
+
+
+def test_mostly_positive_free_game_does_not_qualify(monkeypatch):
+    """Armored Warfare scenario — Mostly Positive free game must not qualify even with high score."""
+    html = build_html(
+        "Armored Warfare",
+        "team up with friends",
+        "Multiplayer Online Co-Op up to 6 players party game",
+        "Mostly Positive",
+    )
+    stub_app_pages(monkeypatch, {"9901": html})
+    item = main.inspect_game("steam_free", "9901")
+    assert item is not None
+    assert item["review_gate_failed"] is True
+    assert item["keep"] is False
+
+
+def test_mostly_positive_paid_game_does_not_qualify(monkeypatch):
+    """Mostly Positive paid game must not qualify."""
+    html = build_html(
+        "Mostly Positive Paid",
+        "team up with friends",
+        "Multiplayer Online Co-Op up to 6 players party game",
+        "Mostly Positive",
+    )
+    stub_app_pages(monkeypatch, {"9902": html})
+    monkeypatch.setattr(main, "get_price_info", lambda app_id: (9.99, False, 50, "game"))
+    item = main.inspect_game("paid_candidate", "9902")
+    assert item is not None
+    assert item["review_gate_failed"] is True
+    assert item["keep"] is False
+
+
+def test_positive_free_game_still_qualifies(monkeypatch):
+    """Positive (not just Mostly Positive) free game should still qualify."""
+    html = build_html(
+        "Positive Free Game",
+        "team up with friends",
+        "Multiplayer Online Co-Op up to 6 players party game",
+        "Positive",
+    )
+    stub_app_pages(monkeypatch, {"9903": html})
+    item = main.inspect_game("steam_free", "9903")
+    assert item is not None
+    assert item["review_gate_failed"] is False
 
 
 # --- Demo not-yet-available exclusion tests ---
