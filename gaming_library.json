@@ -173,18 +173,6 @@
           "message_id": "1493179226671546421",
           "channel_id": "1492038691248410676"
         },
-        "url:https://www.instagram.com/p/dwrvg40brws/": {
-          "message_id": "1493179229414752309",
-          "channel_id": "1492038691248410676"
-        },
-        "url:https://www.instagram.com/p/dwrqgefhfmd/": {
-          "message_id": "1493179243545231360",
-          "channel_id": "1492038691248410676"
-        },
-        "url:https://www.instagram.com/p/dw6y_zjj2tc/": {
-          "message_id": "1493179257461936139",
-          "channel_id": "1492038691248410676"
-        },
         "steam:1621690": {
           "message_id": "1493179271106003095",
           "channel_id": "1492038691248410676"
@@ -193,17 +181,13 @@
           "message_id": "1493179294082535524",
           "channel_id": "1492038691248410676"
         },
-        "steam:408400": {
-          "message_id": "1493179307907092570",
-          "channel_id": "1492038691248410676"
-        },
         "footer": {
           "message_id": "1493179317587542036",
           "channel_id": "1492038691248410676"
         }
       },
       "completed": true,
-      "completed_at_utc": "2026-04-13T09:21:31.536466+00:00"
+      "completed_at_utc": "2026-04-13T17:41:02.383118+00:00"
     }
   }
 }
