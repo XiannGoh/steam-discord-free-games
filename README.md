@@ -28,8 +28,8 @@ Section order and labels are intentionally centralized, threshold comments are i
 ## Current Discord Channels
 
 - Weekly scheduling channel: `update-weekly-schedule-here` (`1491294381418741870`)
-- Daily picks channel: `xianngpt-bot-daily-vote-here` (`1491294533751799809`)
-- Winners destination channel: configured by `DISCORD_WINNERS_CHANNEL_ID` (currently `daily-game-picks`)
+- Daily picks channel: `step-1-vote-on-games-to-test` (`1491294533751799809`)
+- Winners destination channel: configured by `DISCORD_WINNERS_CHANNEL_ID` (currently `step-2-test-then-vote-to-keep`)
 - Health monitor channel: `xiann-gpt-bot-health-monitor` (`1491520649917628536`)
 
 ---
@@ -264,7 +264,7 @@ Operator controls (`workflow_dispatch` / env passthrough):
 - **Schedule:** `0 13 * * *` (13:00 UTC daily, ~9:00 AM New York during EDT)
 - **Script:** `main.py`
 
-Posting behavior in `xianngpt-bot-daily-vote-here`:
+Posting behavior in `step-1-vote-on-games-to-test`:
 - Intro message
 - Section headers:
   - New Demos & Playtests
@@ -344,7 +344,7 @@ Behavior:
   - raw 👍 = 1 → excluded (0 human votes)
   - raw 👍 = 2 → included (1 human vote)
   - raw 👍 = 3 → included (2 human votes)
-- Posts winners to the channel configured by `DISCORD_WINNERS_CHANNEL_ID` (currently `daily-game-picks`)
+- Posts winners to the channel configured by `DISCORD_WINNERS_CHANNEL_ID` (currently `step-2-test-then-vote-to-keep`)
 - Winners intentionally inherit the same section order as daily picks (`demo_playtest`, `free`, `paid`, `instagram`).
 
 Rerun/idempotency behavior:
