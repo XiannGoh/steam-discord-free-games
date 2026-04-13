@@ -31,6 +31,9 @@ def _seed_healthy_state(root: Path, *, now_utc: datetime):
     _write_json(root / "data/scheduling/weekly_schedule_messages.json", {week: {"intro_message_id": "123"}})
     _write_json(root / "data/scheduling/weekly_schedule_responses.json", {week: {"users": {"1": {"days": {}}}}})
     _write_json(root / "data/scheduling/weekly_schedule_summary.json", {week: {"summary": {"day_counts": {}}}})
+    # summary_last_synced_at_utc must use the actual OS time (not the test's fixed now_utc)
+    # because the staleness check compares this value against file mtime on disk.
+    # Using now_utc (a past fixed date) would always cause a >20-minute gap with the real mtime.
     _write_json(
         root / "data/scheduling/weekly_schedule_bot_outputs.json",
         {
@@ -38,7 +41,7 @@ def _seed_healthy_state(root: Path, *, now_utc: datetime):
                 "summary_message_id": "123",
                 "summary_message_content": "hello",
                 "summary_data_signature": "sig",
-                "summary_last_synced_at_utc": now_utc.isoformat(),
+                "summary_last_synced_at_utc": datetime.now(timezone.utc).isoformat(),
             }
         },
     )
