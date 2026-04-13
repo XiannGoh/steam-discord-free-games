@@ -1,0 +1,56 @@
+name: Claude Issue Worker
+
+on:
+  workflow_dispatch:
+    inputs:
+      issue_number:
+        description: "GitHub issue number for Claude to work on"
+        required: true
+        type: string
+
+permissions:
+  contents: write
+  pull-requests: write
+  issues: write
+  id-token: write
+  actions: read
+
+jobs:
+  work-issue:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v5
+
+      - name: Run Claude Code
+        uses: anthropics/claude-code-action@v1
+        with:
+          claude_code_oauth_token: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
+          claude_args: '--model claude-sonnet-4-6'
+          prompt: |
+            You are working autonomously on GitHub issue #${{ inputs.issue_number }} in this repository.
+
+            Your task:
+            1. Read CLAUDE.md first and follow every rule there.
+            2. Fetch the full issue with: gh issue view ${{ inputs.issue_number }} --json title,body,labels,comments
+            3. Understand exactly what is being asked. If the issue references other files,
+               read them before making any changes.
+            4. Implement the task described in the issue. Make only the changes needed —
+               do not refactor unrelated code, add unrequested features, or clean up
+               surrounding style.
+            5. Create a new branch named claude/issue-${{ inputs.issue_number }} from main.
+            6. Commit your changes with a clear message that explains what was done and why.
+            7. Open a pull request against main with:
+               - A concise title summarising the change
+               - A body that describes what changed and includes "Closes #${{ inputs.issue_number }}"
+            8. Post a comment on issue #${{ inputs.issue_number }} with a link to the PR.
+            9. Close issue #${{ inputs.issue_number }} with: gh issue close ${{ inputs.issue_number }}
+
+            Important rules:
+            - Use model claude-sonnet-4-6, not Opus.
+            - Never commit directly to main — always create a branch and open a PR.
+            - If the issue is ambiguous, contradicts existing code, or cannot be safely
+              implemented without human clarification, do NOT attempt a partial fix.
+              Instead, post a comment on the issue explaining exactly what is unclear
+              and what information is needed, then stop without closing the issue.
