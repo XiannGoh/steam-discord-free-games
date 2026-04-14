@@ -193,6 +193,193 @@
       },
       "completed": true,
       "completed_at_utc": "2026-04-13T17:41:02.383118+00:00"
+    },
+    "2026-04-14": {
+      "messages": {
+        "header": {
+          "message_id": "1493496287465574472",
+          "channel_id": "1492038691248410676"
+        },
+        "section:demo_playtest": {
+          "message_id": "1493496289457868840",
+          "channel_id": "1492038691248410676"
+        },
+        "steam:408400": {
+          "message_id": "1493496295883669595",
+          "channel_id": "1492038691248410676"
+        },
+        "section:paid_picks": {
+          "message_id": "1493496308940668928",
+          "channel_id": "1492038691248410676"
+        },
+        "steam:1621690": {
+          "message_id": "1493496321276117005",
+          "channel_id": "1492038691248410676"
+        },
+        "steam:3716600": {
+          "message_id": "1493496331438657667",
+          "channel_id": "1492038691248410676"
+        },
+        "section:creator_picks": {
+          "message_id": "1493496340863254589",
+          "channel_id": "1492038691248410676"
+        },
+        "url:https://www.instagram.com/p/dw6y_zjj2tc/": {
+          "message_id": "1493496342914273373",
+          "channel_id": "1492038691248410676"
+        },
+        "url:https://www.instagram.com/p/dwrqgefhfmd/": {
+          "message_id": "1493496354419380337",
+          "channel_id": "1492038691248410676"
+        },
+        "url:https://www.instagram.com/p/dwrvg40brws/": {
+          "message_id": "1493496367069265971",
+          "channel_id": "1492038691248410676"
+        },
+        "delta": {
+          "message_id": "1493496379308511334",
+          "channel_id": "1492038691248410676"
+        },
+        "footer": {
+          "message_id": "1493496386778300478",
+          "channel_id": "1492038691248410676"
+        }
+      },
+      "completed": true,
+      "completed_at_utc": "2026-04-14T06:21:26.884709+00:00"
+    }
+  },
+  "previous_day_games": {
+    "steam:1621690": {
+      "identity_key": "steam:1621690",
+      "canonical_name": "Core Keeper",
+      "url": "https://store.steampowered.com/app/1621690/",
+      "source_type": "paid_under_20",
+      "source_section": "paid",
+      "source_metadata": {
+        "winner_key": "https://store.steampowered.com/app/1621690/",
+        "description": null,
+        "daily_section": "paid"
+      },
+      "assignments": {
+        "195462430535581708": {
+          "status": "active",
+          "updated_at_utc": "2026-04-14T06:20:39.111285+00:00"
+        }
+      },
+      "archived": false,
+      "created_at_utc": "2026-04-10T09:39:19.389733+00:00",
+      "updated_at_utc": "2026-04-14T06:20:39.111310+00:00",
+      "conflicting_users": []
+    },
+    "url:https://www.instagram.com/p/dw6y_zjj2tc/": {
+      "identity_key": "url:https://www.instagram.com/p/dw6y_zjj2tc/",
+      "canonical_name": "A driving horror game with friends",
+      "url": "https://www.instagram.com/p/DW6y_ZJj2tc/",
+      "source_type": "instagram",
+      "source_section": "instagram",
+      "source_metadata": {
+        "winner_key": "https://www.instagram.com/p/DW6y_ZJj2tc/",
+        "description": "A driving horror game with friends? In this co-op open world, your car is the only way out, drive, fix, loot, and sur...",
+        "daily_section": "instagram"
+      },
+      "assignments": {
+        "195462430535581708": {
+          "status": "active",
+          "updated_at_utc": "2026-04-14T06:20:34.497626+00:00"
+        }
+      },
+      "archived": false,
+      "created_at_utc": "2026-04-10T09:39:31.041650+00:00",
+      "updated_at_utc": "2026-04-14T06:20:34.497651+00:00",
+      "conflicting_users": [
+        "195462430535581708"
+      ]
+    },
+    "steam:3716600": {
+      "identity_key": "steam:3716600",
+      "canonical_name": "Mage Arena",
+      "url": "https://store.steampowered.com/app/3716600/",
+      "source_type": "paid_under_20",
+      "source_section": "paid",
+      "source_metadata": {
+        "winner_key": "https://store.steampowered.com/app/3716600/",
+        "description": "A co-op PvP experience about using your voice to cast spells in the Mage Arena to settle an ages-old feud between sorcerers and warlocks.",
+        "daily_section": "paid"
+      },
+      "assignments": {
+        "195462430535581708": {
+          "status": "paused",
+          "updated_at_utc": "2026-04-14T06:20:43.921177+00:00"
+        }
+      },
+      "archived": false,
+      "created_at_utc": "2026-04-13T09:19:36.758638+00:00",
+      "updated_at_utc": "2026-04-14T06:20:43.921202+00:00",
+      "conflicting_users": []
+    },
+    "steam:408400": {
+      "identity_key": "steam:408400",
+      "canonical_name": "Swords and Sorcery - Underworld - Definitive Edition",
+      "url": "https://store.steampowered.com/app/408400/",
+      "source_type": "steam_demo_playtest",
+      "source_section": "demo_playtest",
+      "source_metadata": {
+        "winner_key": "https://store.steampowered.com/app/408400/",
+        "description": "Swords and Sorcery - Underworld is a party-based, first person view role-playing game with turn-based combat and a square grid 3D environment. The art was made by a professional comics illustrator.",
+        "daily_section": "demo_playtest"
+      },
+      "assignments": {
+        "195462430535581708": {
+          "status": "active",
+          "updated_at_utc": "2026-04-13T23:30:44.848609+00:00"
+        }
+      },
+      "archived": false,
+      "created_at_utc": "2026-04-13T09:19:36.851684+00:00",
+      "updated_at_utc": "2026-04-14T06:20:26.384749+00:00"
+    },
+    "url:https://www.instagram.com/p/dwrvg40brws/": {
+      "identity_key": "url:https://www.instagram.com/p/dwrvg40brws/",
+      "canonical_name": "perfect co-op game to play while drunk 😂  It’s called: Friendly Steps   💰: TBD 🌎: PC (Steam) 👥: 1-4 Players 🎮: Ragdol...",
+      "url": "https://www.instagram.com/p/DWrVg40BrWs/",
+      "source_type": "instagram",
+      "source_section": "instagram",
+      "source_metadata": {
+        "winner_key": "https://www.instagram.com/p/DWrVg40BrWs/",
+        "description": "perfect co-op game to play while drunk 😂  It’s called: Friendly Steps   💰: TBD 🌎: PC (Steam) 👥: 1-4 Players 🎮: Ragdol...",
+        "daily_section": "instagram"
+      },
+      "assignments": {
+        "195462430535581708": {
+          "status": "active",
+          "updated_at_utc": "2026-04-13T23:30:44.953595+00:00"
+        }
+      },
+      "archived": false,
+      "created_at_utc": "2026-04-13T09:19:41.011252+00:00",
+      "updated_at_utc": "2026-04-14T06:20:26.556583+00:00"
+    },
+    "url:https://www.instagram.com/p/dwrqgefhfmd/": {
+      "identity_key": "url:https://www.instagram.com/p/dwrqgefhfmd/",
+      "canonical_name": "new co-op steam game similar to repo  It’s called: Salty Dogs  💰: FREE PLAYTEST 🌎: PC (Steam) 👥: 1-4 Players 🎮: Under...",
+      "url": "https://www.instagram.com/p/DWrqGeFhFMd/",
+      "source_type": "instagram",
+      "source_section": "instagram",
+      "source_metadata": {
+        "winner_key": "https://www.instagram.com/p/DWrqGeFhFMd/",
+        "description": "new co-op steam game similar to repo  It’s called: Salty Dogs  💰: FREE PLAYTEST 🌎: PC (Steam) 👥: 1-4 Players 🎮: Under...",
+        "daily_section": "instagram"
+      },
+      "assignments": {
+        "195462430535581708": {
+          "status": "active",
+          "updated_at_utc": "2026-04-13T23:30:46.163066+00:00"
+        }
+      },
+      "archived": false,
+      "created_at_utc": "2026-04-13T09:19:41.234758+00:00",
+      "updated_at_utc": "2026-04-14T06:20:26.765740+00:00"
     }
   }
 }
