@@ -4488,9 +4488,14 @@
           "message_id": "1493410965977436201",
           "channel_id": "592534544708796474",
           "posted_at_utc": "2026-04-14T00:42:00.682606+00:00"
+        },
+        "instagram": {
+          "message_id": "1493659298386153472",
+          "channel_id": "592534544708796474",
+          "posted_at_utc": "2026-04-14T17:08:48.027153+00:00"
         }
       },
-      "last_attempt_at_utc": "2026-04-14T00:41:30.724468+00:00",
+      "last_attempt_at_utc": "2026-04-14T17:08:10.304121+00:00",
       "header": {
         "message_id": "1493410842614693930",
         "channel_id": "592534544708796474",
@@ -4505,7 +4510,9 @@
         "message_id": "1493411024739766342",
         "channel_id": "592534544708796474",
         "posted_at_utc": "2026-04-14T00:42:16.091285+00:00"
-      }
+      },
+      "completed": true,
+      "completed_at_utc": "2026-04-14T17:08:53.393060+00:00"
     },
     "items": [
       {
@@ -4837,6 +4844,138 @@
         "source_type": "paid_under_20",
         "posted_at": "2026-04-14T00:42:11.610244+00:00",
         "description": "Gather coins, build defenses and reclaim your fallen Kingdom. Explore and uncover secrets, unlock new technologies and protect your crown versus waves of Greed monsters that come at night. Kingdom is a solo or co-op micro-strategy and tower defense game set in an atmospheric pixel world."
+      },
+      {
+        "item_key": "62d3c06b1343acde",
+        "section": "demo_playtest",
+        "title": "Mobbers",
+        "url": "https://store.steampowered.com/app/2452590/",
+        "message_id": "1493659160414523515",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_demo_playtest",
+        "posted_at": "2026-04-14T17:08:17.969164+00:00",
+        "description": "Mobbers is a roguelike dungeon shooter with randomised items, rooms, themes and enemies. Choose to play as the Goblin, Skeleton, Slime or Kobold and turn against the other mobs in the dungeon to escape, gear up and then fight against the approaching heroes trying to loot your home."
+      },
+      {
+        "item_key": "996dd1fff34588e1",
+        "section": "free",
+        "title": "Freestyle 2: Street Basketball",
+        "url": "https://store.steampowered.com/app/339610/",
+        "message_id": "1493659185441931435",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-04-14T17:08:21.004786+00:00",
+        "description": "Freestyle 2: Street Basketball is a fast paced online arcade basketball game. Create your own unique player and compete in the online street league! Use variety of b-ball moves and customize your player! Team up with the best street ballers online and rise to the top!"
+      },
+      {
+        "item_key": "70ece899d34064dd",
+        "section": "free",
+        "title": "Mighty Party",
+        "url": "https://store.steampowered.com/app/575720/",
+        "message_id": "1493659192899141765",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-04-14T17:08:23.040676+00:00",
+        "description": "Lead your MIGHTY PARTY to victory! Fast 3-MINUTE BATTLES will not let you get bored! Dozens of heroes reveal THOUSANDS of unique tactics to defeat all the opponents! Play Imperial Archer, protect him with Wind Ninja, strengthen them with Magic of Divinity and destroy opponent’s forces!"
+      },
+      {
+        "item_key": "eeb623a042e4108c",
+        "section": "free",
+        "title": "Deadswitch Combat",
+        "url": "https://store.steampowered.com/app/3408170/",
+        "message_id": "1493659201073971341",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-04-14T17:08:25.213167+00:00",
+        "description": "DEADSWITCH COMBAT is a fast-paced 2D multiplayer shooter. Experience action-packed combat with hundreds of weapons, vehicle combat, and plenty of team-based game modes."
+      },
+      {
+        "item_key": "28e68ab9b5609c38",
+        "section": "free",
+        "title": "America's Army: Proving Grounds",
+        "url": "https://store.steampowered.com/app/203290/",
+        "message_id": "1493659210091859998",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-04-14T17:08:27.154670+00:00",
+        "description": "America’s Army: Proving Grounds is the official game of the U.S. Army and part of the highly acclaimed America’s Army game series. This free military game focuses on small unit tactical maneuvers and puts you to the test in a wide variety of new America’s Army maps and AA fan favorites."
+      },
+      {
+        "item_key": "5a9891a252b8d794",
+        "section": "free",
+        "title": "Dungeon Crusher: Soul Hunters",
+        "url": "https://store.steampowered.com/app/842980/",
+        "message_id": "1493659224549359727",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-04-14T17:08:31.320775+00:00",
+        "description": "A social multiplayer incremental idle rpg with clans, PvP arenas, a wonderful 3d fantasy world with a story/missions and much more."
+      },
+      {
+        "item_key": "87da3489835d60c7",
+        "section": "paid",
+        "title": "Animal Shelter 2",
+        "url": "https://store.steampowered.com/app/2658510/",
+        "message_id": "1493659241448476942",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-04-14T17:08:35.785815+00:00",
+        "description": "Welcome back to the heartwarming world of Animal Shelter 2! Provide a loving home for every four-legged friend in need – play with them, pet them, even dress them up! Get to know them and find them a loving family. Play with your friends and manage your shelter together in co-op!"
+      },
+      {
+        "item_key": "819f45c7a9d812ab",
+        "section": "paid",
+        "title": "Castle Crashers®",
+        "url": "https://store.steampowered.com/app/204360/",
+        "message_id": "1493659254748479552",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-04-14T17:08:39.755797+00:00",
+        "description": "Hack, slash, and smash your way to victory in this award winning 2D arcade adventure from The Behemoth!"
+      },
+      {
+        "item_key": "b402f094e955dcb3",
+        "section": "paid",
+        "title": "LEGO® Batman™ 3: Beyond Gotham",
+        "url": "https://store.steampowered.com/app/313690/",
+        "message_id": "1493659273400553564",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-04-14T17:08:42.290729+00:00",
+        "description": "The Caped Crusader joins forces with the super heroes of the DC Comics universe and blasts off to outer space to stop the evil Brainiac from destroying Earth."
+      },
+      {
+        "item_key": "92557af546b8a19f",
+        "section": "paid",
+        "title": "LEGO® MARVEL's Avengers",
+        "url": "https://store.steampowered.com/app/405310/",
+        "message_id": "1493659282221301780",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-04-14T17:08:44.250788+00:00",
+        "description": "Avengers Assemble! The best-selling LEGO® MARVEL videogame franchise returns with a new action-packed, Super Hero adventure."
+      },
+      {
+        "item_key": "6ab4a008cf259a07",
+        "section": "paid",
+        "title": "LEGO® The Lord of the Rings™",
+        "url": "https://store.steampowered.com/app/214510/",
+        "message_id": "1493659289968050297",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-04-14T17:08:46.218984+00:00",
+        "description": "Based on The Lord of the Rings motion picture trilogy, LEGO® The Lord of the Rings follows the original story-lines of The Lord of the Rings: The Fellowship of the Ring, The Lord of the Rings: The Two Towers, and The Lord of the Rings: The Return of the King, taking players through the epic story events re-imagined with the humor and endl"
+      },
+      {
+        "item_key": "f255f260e17c3ee7",
+        "section": "instagram",
+        "title": "@sharedxp_official",
+        "url": "https://www.instagram.com/p/DXHqSoQjHuu/",
+        "message_id": "1493659305893691553",
+        "channel_id": "592534544708796474",
+        "source_type": "instagram",
+        "posted_at": "2026-04-14T17:08:50.753109+00:00",
+        "description": "We Gotta Go is a co-op horror comedy where you race through a haunted mansion, scavenge items, dodge ghosts, and try ..."
       }
     ],
     "winners_state": {
