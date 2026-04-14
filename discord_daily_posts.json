@@ -4838,6 +4838,139 @@
         "posted_at": "2026-04-14T00:42:11.610244+00:00",
         "description": "Gather coins, build defenses and reclaim your fallen Kingdom. Explore and uncover secrets, unlock new technologies and protect your crown versus waves of Greed monsters that come at night. Kingdom is a solo or co-op micro-strategy and tower defense game set in an atmospheric pixel world."
       }
-    ]
+    ],
+    "winners_state": {
+      "intro": {
+        "message_id": "1493495873865383976",
+        "channel_id": "1491294533751799809"
+      },
+      "section_headers": {
+        "demo_playtest": {
+          "message_id": "1493495876042100877",
+          "channel_id": "1491294533751799809"
+        },
+        "paid": {
+          "message_id": "1493495880056307742",
+          "channel_id": "1491294533751799809"
+        },
+        "instagram": {
+          "message_id": "1493495890370101299",
+          "channel_id": "1491294533751799809"
+        }
+      },
+      "winner_messages": {
+        "https://store.steampowered.com/app/1285690/": {
+          "message_id": "1493495877749440612",
+          "channel_id": "1491294533751799809"
+        },
+        "https://store.steampowered.com/app/2904000/": {
+          "message_id": "1493495881553678418",
+          "channel_id": "1491294533751799809"
+        },
+        "https://store.steampowered.com/app/3400930/": {
+          "message_id": "1493495885173231617",
+          "channel_id": "1491294533751799809"
+        },
+        "https://store.steampowered.com/app/3645890/": {
+          "message_id": "1493495887492808785",
+          "channel_id": "1491294533751799809"
+        },
+        "https://www.instagram.com/p/DXFrXcxAb1u/": {
+          "message_id": "1493495892161069127",
+          "channel_id": "1491294533751799809"
+        }
+      },
+      "footer": {
+        "message_id": "1493495916030722160",
+        "channel_id": "1491294533751799809"
+      },
+      "message_id": "1493495873865383976",
+      "message_ids": [
+        "1493495873865383976",
+        "1493495876042100877",
+        "1493495877749440612",
+        "1493495880056307742",
+        "1493495881553678418",
+        "1493495885173231617",
+        "1493495887492808785",
+        "1493495890370101299",
+        "1493495892161069127",
+        "1493495916030722160"
+      ],
+      "last_action": "create",
+      "updated_at_utc": "2026-04-14T06:19:34.514768+00:00",
+      "posted_at_utc": "2026-04-14T06:19:34.514783+00:00",
+      "winner_keys": [
+        "https://store.steampowered.com/app/1285690/",
+        "https://store.steampowered.com/app/2904000/",
+        "https://store.steampowered.com/app/3400930/",
+        "https://store.steampowered.com/app/3645890/",
+        "https://www.instagram.com/p/DXFrXcxAb1u/"
+      ],
+      "winner_vote_counts": {
+        "https://store.steampowered.com/app/1285690/": 1,
+        "https://store.steampowered.com/app/2904000/": 1,
+        "https://store.steampowered.com/app/3400930/": 1,
+        "https://store.steampowered.com/app/3645890/": 1,
+        "https://www.instagram.com/p/DXFrXcxAb1u/": 1
+      },
+      "winner_entries": [
+        {
+          "winner_key": "https://store.steampowered.com/app/1285690/",
+          "section": "demo_playtest",
+          "title": "Adrorium",
+          "url": "https://store.steampowered.com/app/1285690/",
+          "description": "Build your ship, defend against drone waves and explore hundreds of sectors filled with stations, asteroids and planets with lots of POIs. The ship systems can be controlled via consoles with several hundred buttons. Craft equipment and blocks, loot the POIs and disabled drones.",
+          "human_votes": 1,
+          "voter_names": [
+            "Thomas"
+          ]
+        },
+        {
+          "winner_key": "https://store.steampowered.com/app/2904000/",
+          "section": "paid",
+          "title": "The Spell Brigade",
+          "url": "https://store.steampowered.com/app/2904000/",
+          "description": "Survivors-like with ONLINE CO-OP for 1-4 players. Team up with your wizard friends to slay hordes of dark creatures. Complete team-based objectives, unlock new upgrades and create overpowered spell synergies. Friend nor foe is safe in this friendly fire bullet hell!",
+          "human_votes": 1,
+          "voter_names": [
+            "Thomas"
+          ]
+        },
+        {
+          "winner_key": "https://store.steampowered.com/app/3400930/",
+          "section": "paid",
+          "title": "Guilty as Sock!",
+          "url": "https://store.steampowered.com/app/3400930/",
+          "description": "Enter a chaotic courtroom where socks play lawyers, prosecutors, and judges! Use absurd evidence, craft wild arguments, and deliver verdicts in this hilarious online party game. Improvise, strategize, and shout \"Objection!\"—because in Guilty as Sock!, chaos always wins!",
+          "human_votes": 1,
+          "voter_names": [
+            "Thomas"
+          ]
+        },
+        {
+          "winner_key": "https://store.steampowered.com/app/3645890/",
+          "section": "paid",
+          "title": "GONE Fishing",
+          "url": "https://store.steampowered.com/app/3645890/",
+          "description": "GONE Fishing is a 1-8 player survival horror game where you and your friends must work together to stay alive, by fishing. The only way to survive is to keep feeding the lake’s insatiable hunger before it feeds on you. Can you satisfy the hunger... or will you become the next offering?",
+          "human_votes": 1,
+          "voter_names": [
+            "Thomas"
+          ]
+        },
+        {
+          "winner_key": "https://www.instagram.com/p/DXFrXcxAb1u/",
+          "section": "instagram",
+          "title": "@itzjaysasa",
+          "url": "https://www.instagram.com/p/DXFrXcxAb1u/",
+          "description": "Here’s a fun chaotic scary game to play with your friends | Game Name: Night Shippers   #pcgaming #multiplayer #whatt...",
+          "human_votes": 1,
+          "voter_names": [
+            "Thomas"
+          ]
+        }
+      ]
+    }
   }
 }
