@@ -5111,5 +5111,236 @@
         }
       ]
     }
+  },
+  "2026-04-15": {
+    "run_state": {
+      "section_headers": {
+        "demo_playtest": {
+          "message_id": "1493862288615014440",
+          "channel_id": "592534544708796474",
+          "posted_at_utc": "2026-04-15T06:35:25.618335+00:00"
+        },
+        "free": {
+          "message_id": "1493862348296032299",
+          "channel_id": "592534544708796474",
+          "posted_at_utc": "2026-04-15T06:35:38.868389+00:00"
+        },
+        "paid": {
+          "message_id": "1493862396089995384",
+          "channel_id": "592534544708796474",
+          "posted_at_utc": "2026-04-15T06:35:50.237635+00:00"
+        },
+        "instagram": {
+          "message_id": "1493862446572638260",
+          "channel_id": "592534544708796474",
+          "posted_at_utc": "2026-04-15T06:36:03.666602+00:00"
+        }
+      },
+      "last_attempt_at_utc": "2026-04-15T06:35:20.674231+00:00",
+      "header": {
+        "message_id": "1493862274446655588",
+        "channel_id": "592534544708796474",
+        "posted_at_utc": "2026-04-15T06:35:21.347177+00:00"
+      },
+      "intro": {
+        "message_id": "1493862282181214250",
+        "channel_id": "592534544708796474",
+        "posted_at_utc": "2026-04-15T06:35:22.897414+00:00"
+      },
+      "footer": {
+        "message_id": "1493862478017462322",
+        "channel_id": "592534544708796474",
+        "posted_at_utc": "2026-04-15T06:36:09.678364+00:00"
+      }
+    },
+    "items": [
+      {
+        "item_key": "abde9f43829a5e81",
+        "section": "demo_playtest",
+        "title": "Silverfall",
+        "url": "https://store.steampowered.com/app/4420/",
+        "message_id": "1493862300459864105",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_demo_playtest",
+        "posted_at": "2026-04-15T06:35:27.690621+00:00",
+        "description": "Silverfall, a once glorious city, lies in the fantastical Kingdom of Nelwë, where the forces of Technology and Nature are strongly opposed. Symptoms of this terrible conflict have begun to manifest physically as melded cyberbiologic organics and living steam-driven automatons."
+      },
+      {
+        "item_key": "dfea2e57ea5bb9f1",
+        "section": "demo_playtest",
+        "title": "Cobalt",
+        "url": "https://store.steampowered.com/app/357340/",
+        "message_id": "1493862308978495598",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_demo_playtest",
+        "posted_at": "2026-04-15T06:35:30.704478+00:00",
+        "description": "Forget everything you’ve learned about combat. Cobalt’s slo-mo mechanic lets you perform moves that other games can’t comprehend. Discover the secrets of a distant colony in a cosmic campaign, take on challenges and rule the leaderboards, or face off against others in local and online multiplayer."
+      },
+      {
+        "item_key": "af76247ec3ba91d0",
+        "section": "demo_playtest",
+        "title": "Bob Was Hungry",
+        "url": "https://store.steampowered.com/app/343560/",
+        "message_id": "1493862321364402300",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_demo_playtest",
+        "posted_at": "2026-04-15T06:35:32.372224+00:00",
+        "description": "Bob Was Hungry is a challenging precision platformer with many levels designed to truly test your platforming skills. Play alone or online with 2-8 player co-op and make your way through countless perils to feed your bob!"
+      },
+      {
+        "item_key": "d35a5e53f930bf78",
+        "section": "demo_playtest",
+        "title": "Aurora Dusk: Steam Age",
+        "url": "https://store.steampowered.com/app/397160/",
+        "message_id": "1493862328297586718",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_demo_playtest",
+        "posted_at": "2026-04-15T06:35:34.097165+00:00",
+        "description": "An amazing mix of RPG, strategy, simulation, sandbox and survival game. Aurora Dusk looks like many other games, but instead of being alone, you live in a community. You can play one or more villagers and evolve from the Wood Age to the Steam Age."
+      },
+      {
+        "item_key": "f0fa4bd731648b90",
+        "section": "demo_playtest",
+        "title": "SURVIVAL: Postapocalypse Now",
+        "url": "https://store.steampowered.com/app/351290/",
+        "message_id": "1493862340905533540",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_demo_playtest",
+        "posted_at": "2026-04-15T06:35:37.186701+00:00",
+        "description": "Want to survive? - Arm yourself and survive. Crafting, shooting, transport and much more awaits you in the Survival game. What happened to the world around and why he died - you may find out. But is this the main question now?"
+      },
+      {
+        "item_key": "27aa756894abc3cb",
+        "section": "free",
+        "title": "Military Tanks",
+        "url": "https://store.steampowered.com/app/2342030/",
+        "message_id": "1493862355606569063",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-04-15T06:35:40.629810+00:00",
+        "description": "Do you like tanks game? Are you ready to feel the full power of a tank games?"
+      },
+      {
+        "item_key": "b9d5d7beb36faa1d",
+        "section": "free",
+        "title": "Escape Room - Der kranke Kollege",
+        "url": "https://store.steampowered.com/app/1301720/",
+        "message_id": "1493862363235881061",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-04-15T06:35:42.728353+00:00",
+        "description": "You only wanted to make a visit to your sick colleague, but what you encounter is beyond your imagination. Discover the secrets of your colleague and find a way to escape the trap."
+      },
+      {
+        "item_key": "40d9e5f3ba62ec44",
+        "section": "free",
+        "title": "Tobacco Shop Simulator: Prologue",
+        "url": "https://store.steampowered.com/app/3211690/",
+        "message_id": "1493862371922411540",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-04-15T06:35:44.703110+00:00",
+        "description": "Run your tobacco shop in this free prologue version of the game. Sign contracts with leading brands, order products, and meet customer needs. Play with friends or go solo, and enjoy the growth of your shop."
+      },
+      {
+        "item_key": "54f4f3b502e550a1",
+        "section": "free",
+        "title": "Mobile Dungeon",
+        "url": "https://store.steampowered.com/app/707710/",
+        "message_id": "1493862380122411172",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-04-15T06:35:46.695826+00:00",
+        "description": "From the universe of Shakes & Fidget, the NEW Team Battle RPG dungeon crawler!"
+      },
+      {
+        "item_key": "c35ea6a9dae18954",
+        "section": "free",
+        "title": "GraalOnline Era",
+        "url": "https://store.steampowered.com/app/2358050/",
+        "message_id": "1493862388506820628",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-04-15T06:35:48.470586+00:00",
+        "description": "Era is a modern 2D action MMO RPG. Purchase weapons and work with a gang to compete in activities such as special events, base capturing and PvP battles in the Spar Complex, or start your own gang and chart your own path!"
+      },
+      {
+        "item_key": "d307868883e1679b",
+        "section": "paid",
+        "title": "Demonologist",
+        "url": "https://store.steampowered.com/app/1929610/",
+        "message_id": "1493862403258056714",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-04-15T06:35:51.917437+00:00",
+        "description": "Demonologist is a Co-Op horror game that can be played with at least 1 and up to 4 players. Your goal is to identify the type of evil spirit in cursed places and exorcise it using your equipment, either alone or with your team."
+      },
+      {
+        "item_key": "a0405212838070fe",
+        "section": "paid",
+        "title": "ShellShock Live",
+        "url": "https://store.steampowered.com/app/326460/",
+        "message_id": "1493862410295967814",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-04-15T06:35:53.768351+00:00",
+        "description": "Demolish your friends with hundreds of upgradable weapons shot from your customizable tank in this action-packed online multiplayer tanks game. Earn XP to level up and unlock new tanks, weapons, and gear. Fight against or alongside your friends for strategic team or free-for-all matches."
+      },
+      {
+        "item_key": "04fe4e3bbb2f3bd8",
+        "section": "paid",
+        "title": "Untitled Goose Game",
+        "url": "https://store.steampowered.com/app/837470/",
+        "message_id": "1493862418181263421",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-04-15T06:35:55.623315+00:00",
+        "description": "It's a lovely morning in the village and you are a horrible goose."
+      },
+      {
+        "item_key": "70a7078fa903c77d",
+        "section": "paid",
+        "title": "Shadow Empire",
+        "url": "https://store.steampowered.com/app/1154840/",
+        "message_id": "1493862425467031583",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-04-15T06:35:57.459705+00:00",
+        "description": "Shadow Empire is a deep turn-based 4X wargame with a unique blend of military focus, procedurally generated content and role-playing features. Players take the seat of the supreme ruler of a small nation, with the goal of reconquering a devastated planet."
+      },
+      {
+        "item_key": "ee9a7cc71c72903d",
+        "section": "paid",
+        "title": "Euro Truck Simulator 2",
+        "url": "https://store.steampowered.com/app/227300/",
+        "message_id": "1493862433515638864",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-04-15T06:36:00.478072+00:00",
+        "description": "Travel across Europe as king of the road, a trucker who delivers important cargo across impressive distances! With dozens of cities to explore, your endurance, skill and speed will all be pushed to their limits."
+      },
+      {
+        "item_key": "3ddd62f7d09a83c6",
+        "section": "instagram",
+        "title": "@itzjaysasa",
+        "url": "https://www.instagram.com/p/DXHvRseCZRz/",
+        "message_id": "1493862459348484157",
+        "channel_id": "592534544708796474",
+        "source_type": "instagram",
+        "posted_at": "2026-04-15T06:36:06.225734+00:00",
+        "description": "Here’s another fun chaotic co-op game to play with friends | Game Name: We Gotta Go   #pcgaming #multiplayer #indiega..."
+      },
+      {
+        "item_key": "358ce2173001eaa6",
+        "section": "instagram",
+        "title": "@sharedxp_official",
+        "url": "https://www.instagram.com/p/DXH6U7QDKxw/",
+        "message_id": "1493862470316589056",
+        "channel_id": "592534544708796474",
+        "source_type": "instagram",
+        "posted_at": "2026-04-15T06:36:07.906235+00:00",
+        "description": "Last Flag is a 5v5 capture-the-flag hero shooter where each team hides its own flag, hunts for the enemy’s, and wins ..."
+      }
+    ]
   }
 }
