@@ -5136,7 +5136,7 @@
           "posted_at_utc": "2026-04-15T06:36:03.666602+00:00"
         }
       },
-      "last_attempt_at_utc": "2026-04-15T06:35:20.674231+00:00",
+      "last_attempt_at_utc": "2026-04-15T17:02:23.136956+00:00",
       "header": {
         "message_id": "1493862274446655588",
         "channel_id": "592534544708796474",
@@ -5151,7 +5151,9 @@
         "message_id": "1493862478017462322",
         "channel_id": "592534544708796474",
         "posted_at_utc": "2026-04-15T06:36:09.678364+00:00"
-      }
+      },
+      "completed": true,
+      "completed_at_utc": "2026-04-15T17:03:37.127194+00:00"
     },
     "items": [
       {
@@ -5340,6 +5342,182 @@
         "source_type": "instagram",
         "posted_at": "2026-04-15T06:36:07.906235+00:00",
         "description": "Last Flag is a 5v5 capture-the-flag hero shooter where each team hides its own flag, hunts for the enemy’s, and wins ..."
+      },
+      {
+        "item_key": "f333ea8c633067d9",
+        "section": "demo_playtest",
+        "title": "Underling Uprising",
+        "url": "https://store.steampowered.com/app/1896760/",
+        "message_id": "1494020093045379092",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_demo_playtest",
+        "posted_at": "2026-04-15T17:02:29.346668+00:00",
+        "description": "Relive the glory of '90s cartoons in this vibrant Beat 'Em Up! Unleash the powers of the Underlings, scientifically enhanced experiments, in exciting 1-4 coop battles. Fight across the globe, master your abilities and take revenge on the mad scientist who created you!"
+      },
+      {
+        "item_key": "f75ce515a3b7052e",
+        "section": "demo_playtest",
+        "title": "Hammer of Virtue",
+        "url": "https://store.steampowered.com/app/1840820/",
+        "message_id": "1494020105422770330",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_demo_playtest",
+        "posted_at": "2026-04-15T17:02:32.178420+00:00",
+        "description": "A hammer-smashing action game with fully destructible environments. use your hammer for combat or smash the environment to launch debris towards your enemy to create emergent and chaotic gameplay interactions in a wild adventure."
+      },
+      {
+        "item_key": "ecdf2818117ad339",
+        "section": "demo_playtest",
+        "title": "TrapLand",
+        "url": "https://store.steampowered.com/app/871670/",
+        "message_id": "1494020117363949568",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_demo_playtest",
+        "posted_at": "2026-04-15T17:02:34.116216+00:00",
+        "description": "Completely new game experience in adventure games with a unique coop-mode."
+      },
+      {
+        "item_key": "9981e40aa816657a",
+        "section": "demo_playtest",
+        "title": "Delta Zero",
+        "url": "https://store.steampowered.com/app/1742750/",
+        "message_id": "1494020132169715848",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_demo_playtest",
+        "posted_at": "2026-04-15T17:03:04.238167+00:00",
+        "description": "A fast-paced action platformer with non-linear world progression and level design! Challenging gameplay with 3 difficulty modes, 2 playable characters and local co-op! Fight bosses in any order and experience the world change with each victory, enemies become harder, faster and smarter!"
+      },
+      {
+        "item_key": "56c07b7c68ecde19",
+        "section": "free",
+        "title": "H.I.A: Horror Investigation Agency",
+        "url": "https://store.steampowered.com/app/2363590/",
+        "message_id": "1494020257273217077",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-04-15T17:03:07.294177+00:00",
+        "description": "H.I.A: Horror Investigation Agency is a fun multiplayer horror game in which you and co-players have to investigate exciting horror cases. Among finding victims and evidence of the horror event that has taken place, you will be faced with jumpscares and scary monsters along your investigation."
+      },
+      {
+        "item_key": "f068cbcc6224605c",
+        "section": "free",
+        "title": "Godzilla x Kong: Titan Chasers",
+        "url": "https://store.steampowered.com/app/3670140/",
+        "message_id": "1494020264751665382",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-04-15T17:03:09.427172+00:00",
+        "description": "Hunt, capture, and command the monsters of the Monsterverse. Build your base, recruit elite Titan Chasers, and lead squads into tactical turn-based battles. Expand your territory in a shared online world, forge alliances, and face colossal threats like Godzilla, Kong, and Skullcrawlers."
+      },
+      {
+        "item_key": "2d73e8db0227f3b0",
+        "section": "free",
+        "title": "Tank Team",
+        "url": "https://store.steampowered.com/app/2587450/",
+        "message_id": "1494020273475682364",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-04-15T17:03:11.097477+00:00",
+        "description": "A team based PVP game where groups of up to 8 players must work together to operate a tank!"
+      },
+      {
+        "item_key": "47b9695f3f72f0a5",
+        "section": "free",
+        "title": "Anarchy Online",
+        "url": "https://store.steampowered.com/app/396280/",
+        "message_id": "1494020280580968698",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-04-15T17:03:13.265845+00:00",
+        "description": "Anarchy Online – the first ever science fiction MMO – is now on Steam! Compete and cooperate with thousands of players simultaneously on a vast, alien world. Join humanity nearly 30,000 years in the future in a world of perpetual conflict and scientific marvel."
+      },
+      {
+        "item_key": "decc0ede01fbe397",
+        "section": "free",
+        "title": "Florensia",
+        "url": "https://store.steampowered.com/app/384030/",
+        "message_id": "1494020289854443642",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-04-15T17:03:15.223254+00:00",
+        "description": "Florensia is a Free-to-Play MMORPG and shows you its legendary worlds ashore and at sea with its 3D anime style. Mysterious islands, the great ocean, dungeons, picturesque pirates and dangerous monsters are waiting to be discovered."
+      },
+      {
+        "item_key": "6506dcfc4a166092",
+        "section": "paid",
+        "title": "Whisper Mountain Outbreak",
+        "url": "https://store.steampowered.com/app/1953230/",
+        "message_id": "1494020303460892822",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-04-15T17:03:18.507983+00:00",
+        "description": "Escape room meets co-op survival horror. The year is 1998, and an ancient curse has been unleashed, trapping everyone on Mount Bisik. Alone or with up to 4 players, you must explore, find clues, figure out a way to escape...and survive the horror."
+      },
+      {
+        "item_key": "34ce8602a3f1a782",
+        "section": "paid",
+        "title": "Alchemy Factory",
+        "url": "https://store.steampowered.com/app/3669570/",
+        "message_id": "1494020311530606646",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-04-15T17:03:21.300099+00:00",
+        "description": "Craft your workshop as an alchemist!‌ Harness arcane devices to automate crafting. Sell alchemical goods, fulfill commissions, and rise to become a renowned alchemy magnate. ‌Multiplayer Supported!‌ Invite master designers to (ahem) contribute their expertise—let them optimize your production lines!"
+      },
+      {
+        "item_key": "5470eebda8f2f9ac",
+        "section": "paid",
+        "title": "Brick Rigs",
+        "url": "https://store.steampowered.com/app/552100/",
+        "message_id": "1494020323501408459",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-04-15T17:03:23.443953+00:00",
+        "description": "Build your own vehicles or download one of the more than 200,000 creations already uploaded to the Workshop and experience the dynamic driving and destruction physics of Brick Rigs!"
+      },
+      {
+        "item_key": "342f3251e1957585",
+        "section": "paid",
+        "title": "Void Crew",
+        "url": "https://store.steampowered.com/app/1063420/",
+        "message_id": "1494020332401459321",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-04-15T17:03:26.483881+00:00",
+        "description": "Void Crew is a Chaotic, Co-op Roguelite game for 1 to 6 players: Outfit your spaceship and crew for thrilling quests, brave fierce enemies in Space Battles... and try not to panic!"
+      },
+      {
+        "item_key": "41eb6e6b204f7d73",
+        "section": "paid",
+        "title": "LEGO® Jurassic World",
+        "url": "https://store.steampowered.com/app/352400/",
+        "message_id": "1494020345131438111",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-04-15T17:03:28.362450+00:00",
+        "description": "Following the epic storylines of Jurassic Park, The Lost World: Jurassic Park and Jurassic Park III, as well as the highly anticipated Jurassic World, LEGO Jurassic World™ is the first videogame where players will be able to relive and experience all four Jurassic films."
+      },
+      {
+        "item_key": "c0cee5a4f32c0d39",
+        "section": "instagram",
+        "title": "@sharedxp_official",
+        "url": "https://www.instagram.com/p/DXKNhnFDIjw/",
+        "message_id": "1494020358842617866",
+        "channel_id": "592534544708796474",
+        "source_type": "instagram",
+        "posted_at": "2026-04-15T17:03:31.882728+00:00",
+        "description": "5 great up-and-coming co-op games to watch  ✅ KinForge ✅ Thief Simulator 3 ✅ Commie Bobrs ✅ Stormforge ✅ Aniimo  #wha..."
+      },
+      {
+        "item_key": "e51b93cc8d9ecbf9",
+        "section": "instagram",
+        "title": "@biffmatictv",
+        "url": "https://www.instagram.com/p/DXKL_OcjcG9/",
+        "message_id": "1494020367646457957",
+        "channel_id": "592534544708796474",
+        "source_type": "instagram",
+        "posted_at": "2026-04-15T17:03:34.368014+00:00",
+        "description": "This minibus simulator doesn’t end when your shift does…   #gaming #newgames #minibussimulator #simulatorgame #simula..."
       }
     ],
     "winners_state": {
