@@ -5341,6 +5341,57 @@
         "posted_at": "2026-04-15T06:36:07.906235+00:00",
         "description": "Last Flag is a 5v5 capture-the-flag hero shooter where each team hides its own flag, hunts for the enemy’s, and wins ..."
       }
-    ]
+    ],
+    "winners_state": {
+      "intro": {
+        "message_id": "1493927501574176798",
+        "channel_id": "1491294533751799809"
+      },
+      "section_headers": {
+        "paid": {
+          "message_id": "1493927505877532883",
+          "channel_id": "1491294533751799809"
+        }
+      },
+      "winner_messages": {
+        "https://store.steampowered.com/app/204360/": {
+          "message_id": "1493927507471237300",
+          "channel_id": "1491294533751799809"
+        }
+      },
+      "footer": {
+        "message_id": "1493927510147207248",
+        "channel_id": "1491294533751799809"
+      },
+      "message_id": "1493927501574176798",
+      "message_ids": [
+        "1493927501574176798",
+        "1493927505877532883",
+        "1493927507471237300",
+        "1493927510147207248"
+      ],
+      "last_action": "create",
+      "updated_at_utc": "2026-04-15T10:54:34.585618+00:00",
+      "posted_at_utc": "2026-04-15T10:54:34.585632+00:00",
+      "winner_keys": [
+        "https://store.steampowered.com/app/204360/"
+      ],
+      "winner_vote_counts": {
+        "https://store.steampowered.com/app/204360/": 1
+      },
+      "winner_entries": [
+        {
+          "winner_key": "https://store.steampowered.com/app/204360/",
+          "section": "paid",
+          "title": "Castle Crashers®",
+          "url": "https://store.steampowered.com/app/204360/",
+          "description": "Hack, slash, and smash your way to victory in this award winning 2D arcade adventure from The Behemoth!",
+          "human_votes": 1,
+          "voter_names": [
+            "lambda"
+          ]
+        }
+      ]
+    }
   }
 }
