@@ -14,7 +14,6 @@
           },
           "Tuesday": {
             "reactions": [
-              "✅",
               "❌"
             ],
             "custom_reply": null
@@ -204,7 +203,7 @@
           },
           "Tuesday": {
             "reactions": [
-              "🌙"
+              "❌"
             ],
             "custom_reply": null
           },
