@@ -101,28 +101,31 @@ def test_winners_channel_posts_intro_sections_games_and_footer_in_order(monkeypa
     winners.main()
 
     posted = [content for _, content, _, _ in fake.posts]
-    # Header placeholder posted first (date + subtitle, no jump links yet)
-    assert posted[0].startswith("🏆 Daily Winners - ")
+    # Header placeholder posted first (new format with em-dash and divider)
+    assert posted[0].startswith("🏆 Daily Winners — ")
     assert "bookmark to keep permanently" in posted[0]
+    assert posted[0].endswith(winners.WINNERS_INTRO_DIVIDER)
     assert posted[1] == "🧪 Demo & Playtest Winners"
     assert "Demo Winner" in posted[2]
     assert posted[3] == "🎮 Free Winners"
     assert "Late Voted Earlier Day" in posted[4]
     assert posted[5] == "💸 Paid Winners"
     assert "Current Paid Winner" in posted[6]
-    # Footer uses new format
-    assert posted[-1].startswith("🏆 Daily Winners - ")
-    assert "Top of Post ⟹ [Jump](https://discord.com/channels/guild-1/wchan/w-1)" in posted[-1]
-    assert "Demo & Playtest Winners ⟹ [Jump](https://discord.com/channels/guild-1/wchan/w-2)" in posted[-1]
-    assert "Free Winners ⟹ [Jump](https://discord.com/channels/guild-1/wchan/w-4)" in posted[-1]
-    assert "Paid Winners ⟹ [Jump](https://discord.com/channels/guild-1/wchan/w-6)" in posted[-1]
+    # Footer uses new format: single date+links line + End separator
+    footer = posted[-1]
+    assert footer.startswith("📅 ")
+    assert "⬆️ Top" in footer
+    assert footer.endswith(winners.WINNERS_FOOTER_SEPARATOR)
+    # Footer must not be a copy of intro
+    assert footer != posted[0]
     # Header edited with jump links after sections posted
     header_edits = [(mid, content) for _, mid, content, _ in fake.edits if mid == "w-1"]
     assert header_edits, "Header message should be edited with jump links"
     _, header_final = header_edits[-1]
-    assert "Demo & Playtest Winners ⟹ [Jump]" in header_final
-    assert "Free Winners ⟹ [Jump]" in header_final
-    assert "Paid Winners ⟹ [Jump]" in header_final
+    assert "Demo & Playtest Winners" in header_final
+    assert "Free Winners" in header_final
+    assert "Paid Winners" in header_final
+    assert header_final.endswith(winners.WINNERS_INTRO_DIVIDER)
 
 
 def test_winners_footer_omits_missing_sections(monkeypatch, tmp_path):
@@ -137,9 +140,10 @@ def test_winners_footer_omits_missing_sections(monkeypatch, tmp_path):
     _patch_common(monkeypatch, path, fake, day_key)
     winners.main()
     footer = fake.posts[-1][1]
-    assert "Free Winners" in footer
-    assert "Paid Winners" not in footer
-    assert "Creator Winners" not in footer
+    assert "Free" in footer
+    assert "Paid" not in footer
+    assert "Creator" not in footer
+    assert "⬆️ Top" in footer
 
 
 def test_winners_header_shows_date_and_subtitle(monkeypatch, tmp_path):
@@ -154,14 +158,15 @@ def test_winners_header_shows_date_and_subtitle(monkeypatch, tmp_path):
     _patch_common(monkeypatch, path, fake, day_key)
     winners.main()
 
-    # First posted message is header placeholder
+    # First posted message is header placeholder (new format)
     first_post = fake.posts[0][1]
-    assert "🏆 Daily Winners - Monday, April 13, 2026" in first_post
+    assert "🏆 Daily Winners — Monday, April 13, 2026" in first_post
     assert "bookmark to keep permanently" in first_post
+    assert first_post.endswith(winners.WINNERS_INTRO_DIVIDER)
 
-    # Header is subsequently edited with jump links
+    # Header is subsequently edited with jump links and divider
     header_edits = [(mid, content) for _, mid, content, _ in fake.edits]
-    assert any("Free Winners ⟹ [Jump]" in content for _, content in header_edits)
+    assert any("Free Winners" in content and content.endswith(winners.WINNERS_INTRO_DIVIDER) for _, content in header_edits)
 
 
 def test_winners_header_no_jump_links_when_guild_id_missing(monkeypatch, tmp_path):
@@ -185,10 +190,11 @@ def test_winners_header_no_jump_links_when_guild_id_missing(monkeypatch, tmp_pat
 
     # No footer when guild ID missing
     all_content = "\n".join(p[1] for p in fake.posts)
-    assert "Top of Post" not in all_content
-    # Header still posted with date
+    assert "⬆️ Top" not in all_content
+    # Header still posted with date (new format)
     first_post = fake.posts[0][1]
-    assert "🏆 Daily Winners -" in first_post
+    assert "🏆 Daily Winners —" in first_post
+    assert first_post.endswith(winners.WINNERS_INTRO_DIVIDER)
 
 
 def test_winners_header_footer_reused_on_same_day_rerun(monkeypatch, tmp_path):
@@ -446,3 +452,120 @@ def test_instagram_fallback_description_is_preserved():
     )
     assert "Instagram post from @creator" in msg
     assert "caption unavailable in legacy state" in msg
+
+
+# ---------------------------------------------------------------------------
+# Issue #216 — Step 2 intro/footer formatting contract tests
+# ---------------------------------------------------------------------------
+
+class TestStep2IntroFooterFormatting:
+    """Contract tests for the new Step 2 intro/footer spec from Issue #216."""
+
+    def test_intro_placeholder_uses_em_dash(self):
+        placeholder = winners.build_winners_header_placeholder("2026-04-15")
+        assert "🏆 Daily Winners — Wednesday, April 15, 2026" in placeholder
+
+    def test_intro_placeholder_has_divider_as_last_line(self):
+        placeholder = winners.build_winners_header_placeholder("2026-04-15")
+        assert placeholder.endswith(winners.WINNERS_INTRO_DIVIDER)
+
+    def test_intro_placeholder_has_correct_subtitle(self):
+        placeholder = winners.build_winners_header_placeholder("2026-04-15")
+        assert "These games won the Step 1 vote" in placeholder
+        assert "🔖 bookmark to keep permanently" in placeholder
+
+    def test_navigation_header_with_links_has_divider_as_last_line(self):
+        winners_state = {
+            "section_headers": {
+                "free": {"channel_id": "wchan", "message_id": "hdr-1"},
+            }
+        }
+        header = winners.build_winners_navigation_header(
+            winners_state,
+            guild_id="guild-1",
+            target_day_key="2026-04-15",
+            posted_section_keys=["free"],
+        )
+        assert header.endswith(winners.WINNERS_INTRO_DIVIDER)
+        assert "Free Winners" in header
+
+    def test_navigation_header_without_guild_id_has_divider(self):
+        winners_state = {"section_headers": {}}
+        header = winners.build_winners_navigation_header(
+            winners_state,
+            guild_id=None,
+            target_day_key="2026-04-15",
+            posted_section_keys=[],
+        )
+        assert header.endswith(winners.WINNERS_INTRO_DIVIDER)
+
+    def test_footer_is_not_a_copy_of_intro(self):
+        winners_state = {
+            "intro": {"channel_id": "wchan", "message_id": "intro-1"},
+            "section_headers": {
+                "free": {"channel_id": "wchan", "message_id": "hdr-1"},
+            },
+        }
+        intro = winners.build_winners_navigation_header(
+            winners_state,
+            guild_id="guild-1",
+            target_day_key="2026-04-15",
+            posted_section_keys=["free"],
+        )
+        footer = winners.build_winners_navigation_footer(
+            winners_state,
+            guild_id="guild-1",
+            target_day_key="2026-04-15",
+            posted_section_keys=["free"],
+        )
+        assert intro != footer
+
+    def test_footer_has_end_separator_as_last_line(self):
+        winners_state = {
+            "intro": {"channel_id": "wchan", "message_id": "intro-1"},
+            "section_headers": {
+                "free": {"channel_id": "wchan", "message_id": "hdr-1"},
+            },
+        }
+        footer = winners.build_winners_navigation_footer(
+            winners_state,
+            guild_id="guild-1",
+            target_day_key="2026-04-15",
+            posted_section_keys=["free"],
+        )
+        assert footer is not None
+        assert footer.endswith(winners.WINNERS_FOOTER_SEPARATOR)
+
+    def test_footer_contains_top_link(self):
+        winners_state = {
+            "intro": {"channel_id": "wchan", "message_id": "intro-1"},
+            "section_headers": {
+                "free": {"channel_id": "wchan", "message_id": "hdr-1"},
+            },
+        }
+        footer = winners.build_winners_navigation_footer(
+            winners_state,
+            guild_id="guild-1",
+            target_day_key="2026-04-15",
+            posted_section_keys=["free"],
+        )
+        assert footer is not None
+        assert "⬆️ Top" in footer
+
+    def test_footer_jump_links_only_include_posted_sections(self):
+        winners_state = {
+            "intro": {"channel_id": "wchan", "message_id": "intro-1"},
+            "section_headers": {
+                "free": {"channel_id": "wchan", "message_id": "hdr-free"},
+            },
+        }
+        footer = winners.build_winners_navigation_footer(
+            winners_state,
+            guild_id="guild-1",
+            target_day_key="2026-04-15",
+            posted_section_keys=["free"],
+        )
+        assert footer is not None
+        assert "Free" in footer
+        assert "Paid" not in footer
+        assert "Demo & Playtest" not in footer

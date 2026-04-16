@@ -299,20 +299,18 @@ def test_daily_sections_post_in_new_order(monkeypatch, tmp_path):
         [{"username": "creator", "caption": "caption", "url": "https://www.instagram.com/p/a/"}],
     )
 
-    headers = [
+    # Intro is the single first message; sections follow in order
+    assert posted[0].startswith("📅 Daily Picks — ")
+    assert "Vote 👍 on anything you want to try" in posted[0]
+    section_headers = [
         message for message in posted
-        if message in {
-            "🎯 Daily Picks — vote with 👍 on your favorites",
-            "🧪 New Demos & Playtests",
-            "🎮 Free Picks",
-            "💸 Paid Under $20",
-        }
+        if message in {"🧪 New Demos & Playtests", "🎮 Free Picks", "💸 Paid Under $20", "📸 Instagram Creator Picks"}
     ]
-    assert headers[:4] == [
-        "🎯 Daily Picks — vote with 👍 on your favorites",
+    assert section_headers == [
         "🧪 New Demos & Playtests",
         "🎮 Free Picks",
         "💸 Paid Under $20",
+        "📸 Instagram Creator Picks",
     ]
 
 
@@ -345,22 +343,30 @@ def test_daily_picks_header_and_footer_are_posted_with_expected_links(monkeypatc
         [],
     )
 
-    # Check header placeholder posted first
-    expected_placeholder = "📅 Daily Picks - Wednesday, April 8, 2026\nVote 👍 on any game you want to try. Every vote advances to Step 2."
-    assert posted[0] == expected_placeholder
+    # Intro placeholder posted first (single message — no separate "header" + "intro")
+    assert posted[0].startswith("📅 Daily Picks — Wednesday, April 8, 2026")
+    assert "Vote 👍 on anything you want to try" in posted[0]
+    assert posted[0].endswith(main.DAILY_INTRO_DIVIDER)
+    # No second simple "intro" message before sections
+    assert not any(msg == "🎯 Daily Picks — vote with 👍 on your favorites" for msg in posted)
 
-    # Check header was edited with full content
-    expected_full = "\n".join([
-        "📅 Daily Picks - Wednesday, April 8, 2026",
-        "Vote 👍 on any game you want to try. Every vote advances to Step 2.",
-        "🧪 Demo & Playtest Picks ⟹ [Jump](https://discord.com/channels/guild-1/chan-1/m-3)",
-        "🎮 Free Picks ⟹ [Jump](https://discord.com/channels/guild-1/chan-1/m-5)",
-    ])
+    # Intro edited with jump links after sections posted
+    # posted[0] gets message id "m-1"; sections get m-2,m-3,m-4,m-5 → demo_header=m-2, paid_item=m-3, free_header=m-4, free_item=m-5
     assert len(fake_client.edits) == 1
-    assert fake_client.edits[0][2] == expected_full  # content
+    edited_content = fake_client.edits[0][2]
+    assert "📅 Daily Picks — Wednesday, April 8, 2026" in edited_content
+    assert "Vote 👍 on anything you want to try" in edited_content
+    assert "Demos & Playtests" in edited_content
+    assert "Free Picks" in edited_content
+    assert edited_content.endswith(main.DAILY_INTRO_DIVIDER)
 
-    # Check footer posted last with full content
-    assert posted[-1] == expected_full
+    # Footer posted last — new format: single date+links line + End separator
+    footer = posted[-1]
+    assert footer.startswith("📅 Wednesday, April 8, 2026 · Jump to:")
+    assert "⬆️ Top" in footer
+    assert footer.endswith(main.DAILY_FOOTER_SEPARATOR)
+    # Footer must not be a copy of intro
+    assert footer != edited_content
 
     # Check other messages are present
     assert any("Demo Pick #1" in message for message in posted[1:-1])
@@ -373,7 +379,6 @@ def test_daily_picks_header_and_footer_rerun_reuse_existing_messages(monkeypatch
     initial = {
         day_key: {
             "run_state": {
-                "header": {"message_id": "header-1", "channel_id": "chan-1"},
                 "intro": {"message_id": "intro-1", "channel_id": "chan-1"},
                 "section_headers": {"free": {"message_id": "header-free-1", "channel_id": "chan-1"}},
                 "footer": {"message_id": "footer-1", "channel_id": "chan-1"},
@@ -441,7 +446,6 @@ def test_daily_force_refresh_reconciles_same_day_without_duplicates(monkeypatch,
     initial = {
         day_key: {
             "run_state": {
-                "header": {"message_id": "header-1", "channel_id": "chan-1"},
                 "intro": {"message_id": "intro-1", "channel_id": "chan-1"},
                 "section_headers": {"free": {"message_id": "header-free-1", "channel_id": "chan-1"}},
                 "footer": {"message_id": "footer-1", "channel_id": "chan-1"},
@@ -471,7 +475,7 @@ def test_daily_force_refresh_reconciles_same_day_without_duplicates(monkeypatch,
         counter["i"] += 1
         return {"message_id": f"new-{counter['i']}", "channel_id": "chan-1"}
 
-    fake_client = FakeDiscordClient(existing_ids={"header-1", "intro-1", "header-free-1", "footer-1", "item-1"})
+    fake_client = FakeDiscordClient(existing_ids={"intro-1", "header-free-1", "footer-1", "item-1"})
 
     monkeypatch.setattr(main, "DISCORD_DAILY_POSTS_FILE", str(daily_path))
     monkeypatch.setattr(main, "DISCORD_BOT_TOKEN", "token")
@@ -498,7 +502,7 @@ def test_daily_force_refresh_reconciles_same_day_without_duplicates(monkeypatch,
     main.post_daily_pick_messages([], free_items, [], [], force_refresh_same_day=True)
 
     assert len(posted) == 1
-    assert len(fake_client.edits) == 6  # header (refresh) + intro + free header + item + header (manual edit) + footer
+    assert len(fake_client.edits) == 5  # intro (refresh) + free header + item + intro (jump-links edit) + footer
     assert len(fake_client.reactions) == 1  # only brand-new item gets 👍
 
     saved = json.loads(daily_path.read_text(encoding="utf-8"))
@@ -512,7 +516,7 @@ def test_daily_force_refresh_reconciles_same_day_without_duplicates(monkeypatch,
     main.post_daily_pick_messages([], free_items, [], [], force_refresh_same_day=True)
 
     assert len(posted) == 1
-    assert len(fake_client.edits) == edits_after_first + 7  # header + intro + free header + two items + header (manual edit) + footer
+    assert len(fake_client.edits) == edits_after_first + 6  # intro + free header + two items + intro (jump-links edit) + footer
     assert len(fake_client.reactions) == reactions_after_first
     saved_after_second = json.loads(daily_path.read_text(encoding="utf-8"))
     assert len(saved_after_second[day_key]["items"]) == 2
@@ -542,7 +546,7 @@ def test_daily_picks_footer_uses_target_day_override_for_display(monkeypatch, tm
 
     main.post_daily_pick_messages([], [{"title": "Free", "url": "https://store.steampowered.com/app/12", "score": 10}], [], [])
 
-    assert posted[-1].splitlines()[0] == "📅 Daily Picks - Friday, April 10, 2026"
+    assert posted[-1].startswith("📅 Friday, April 10, 2026 · Jump to:")
 
 
 def test_daily_picks_footer_skips_safely_when_guild_id_missing(monkeypatch, tmp_path):
@@ -572,8 +576,8 @@ def test_daily_picks_footer_skips_safely_when_guild_id_missing(monkeypatch, tmp_
     main.post_daily_pick_messages([{"title": "Demo", "url": "https://store.steampowered.com/app/11", "score": 10}], [], [], [])
 
     assert any("Demo Pick #1" in message for message in posted)
-    assert len(posted) == 4  # header, intro, demo_header, demo_item; no footer since no guild_id
-    assert "Vote 👍 on any game you want to try" in posted[0]  # header placeholder
+    assert len(posted) == 3  # intro, demo_header, demo_item; no footer since no guild_id
+    assert "Vote 👍 on anything you want to try" in posted[0]  # intro placeholder
     saved = json.loads(daily_path.read_text(encoding="utf-8"))
     assert saved[day_key]["run_state"]["completed"] is True
 
@@ -1279,8 +1283,8 @@ def test_post_daily_pick_messages_returns_counts(monkeypatch, tmp_path):
     run_counts, rerun_protection_active, _ = main.post_daily_pick_messages([], free_items, [], [])
 
     assert rerun_protection_active is False
-    # header + intro + free_header + 1 item = 4 created
-    assert run_counts["created"] == 4
+    # intro + free_header + 1 item = 3 created (single intro message, no separate header)
+    assert run_counts["created"] == 3
     assert run_counts["updated"] == 0
     assert run_counts["reused"] == 0
 
@@ -1467,3 +1471,101 @@ def test_instagram_age_filter_boundary_exactly_7_days_excluded(monkeypatch, tmp_
 
     results = _patched_fetch_instagram_direct(monkeypatch, fake_profiles, now)
     assert results == []
+
+
+# ---------------------------------------------------------------------------
+# Issue #216 — Step 1 intro/footer formatting contract tests
+# ---------------------------------------------------------------------------
+
+class TestStep1IntroFooterFormatting:
+    """Contract tests for the new intro/footer spec from Issue #216."""
+
+    def _run_post(self, monkeypatch, tmp_path, items_by_section, guild_id="guild-1"):
+        daily_path = tmp_path / "daily.json"
+        daily_path.write_text("{}", encoding="utf-8")
+        day_key = "2026-04-15"
+        posted = []
+        counter = {"i": 0}
+
+        def fake_post(message, capture_metadata=False):
+            posted.append(message)
+            counter["i"] += 1
+            return {"message_id": f"m-{counter['i']}", "channel_id": "chan-1"}
+
+        fake_client = FakeDiscordClient()
+
+        monkeypatch.setattr(main, "DISCORD_DAILY_POSTS_FILE", str(daily_path))
+        monkeypatch.setattr(main, "DISCORD_BOT_TOKEN", "token")
+        monkeypatch.setattr(main, "DISCORD_GUILD_ID", guild_id)
+        monkeypatch.setattr(main, "DiscordClient", lambda session: fake_client)
+        monkeypatch.setattr(main, "post_to_discord_with_metadata", fake_post)
+        monkeypatch.setattr(main, "sleep_briefly", lambda: None)
+        monkeypatch.setenv(main.DAILY_DATE_OVERRIDE_ENV, day_key)
+
+        main.post_daily_pick_messages(
+            items_by_section.get("demo_playtest", []),
+            items_by_section.get("free", []),
+            items_by_section.get("paid", []),
+            items_by_section.get("instagram", []),
+        )
+        return posted, fake_client
+
+    def test_intro_contains_exactly_one_voting_instruction(self, monkeypatch, tmp_path):
+        items = {"free": [{"title": "G", "url": "https://store.steampowered.com/app/1", "score": 9}]}
+        posted, _ = self._run_post(monkeypatch, tmp_path, items)
+        intro = posted[0]
+        vote_occurrences = intro.count("Vote 👍")
+        assert vote_occurrences == 1, f"Expected 1 voting instruction, found {vote_occurrences}"
+
+    def test_footer_is_not_a_copy_of_intro(self, monkeypatch, tmp_path):
+        items = {"free": [{"title": "G", "url": "https://store.steampowered.com/app/1", "score": 9}]}
+        posted, _ = self._run_post(monkeypatch, tmp_path, items)
+        intro = posted[0]
+        footer = posted[-1]
+        assert intro != footer, "Footer must not be a copy of the intro"
+
+    def test_intro_has_divider_as_last_line(self, monkeypatch, tmp_path):
+        items = {"free": [{"title": "G", "url": "https://store.steampowered.com/app/1", "score": 9}]}
+        posted, _ = self._run_post(monkeypatch, tmp_path, items)
+        intro = posted[0]
+        assert intro.endswith(main.DAILY_INTRO_DIVIDER), "Divider must be last line of intro"
+
+    def test_footer_has_end_separator_as_last_line(self, monkeypatch, tmp_path):
+        items = {"free": [{"title": "G", "url": "https://store.steampowered.com/app/1", "score": 9}]}
+        posted, _ = self._run_post(monkeypatch, tmp_path, items)
+        footer = posted[-1]
+        assert footer.endswith(main.DAILY_FOOTER_SEPARATOR), "End separator must be last line of footer"
+
+    def test_jump_links_only_include_sections_with_content(self, monkeypatch, tmp_path):
+        items = {"free": [{"title": "G", "url": "https://store.steampowered.com/app/1", "score": 9}]}
+        posted, fake_client = self._run_post(monkeypatch, tmp_path, items)
+        # Intro edited with jump links — check only free section is present
+        assert fake_client.edits, "Intro should be edited with jump links"
+        edited_intro = fake_client.edits[0][2]
+        assert "Free Picks" in edited_intro
+        assert "Demos & Playtests" not in edited_intro
+        assert "Paid Under $20" not in edited_intro
+        assert "Instagram Picks" not in edited_intro
+
+    def test_jump_links_include_all_present_sections(self, monkeypatch, tmp_path):
+        items = {
+            "demo_playtest": [{"title": "D", "url": "https://store.steampowered.com/app/1", "score": 9}],
+            "free": [{"title": "G", "url": "https://store.steampowered.com/app/2", "score": 9}],
+        }
+        posted, fake_client = self._run_post(monkeypatch, tmp_path, items)
+        edited_intro = fake_client.edits[0][2]
+        assert "Demos & Playtests" in edited_intro
+        assert "Free Picks" in edited_intro
+
+    def test_footer_skipped_when_guild_id_missing(self, monkeypatch, tmp_path):
+        items = {"free": [{"title": "G", "url": "https://store.steampowered.com/app/1", "score": 9}]}
+        posted, _ = self._run_post(monkeypatch, tmp_path, items, guild_id="")
+        # Without guild_id, footer should not be posted
+        for msg in posted:
+            assert "End of Daily Picks" not in msg
+
+    def test_footer_contains_top_link(self, monkeypatch, tmp_path):
+        items = {"free": [{"title": "G", "url": "https://store.steampowered.com/app/1", "score": 9}]}
+        posted, _ = self._run_post(monkeypatch, tmp_path, items)
+        footer = posted[-1]
+        assert "⬆️ Top" in footer

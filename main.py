@@ -2070,6 +2070,103 @@ def build_daily_picks_navigation_content(
     return "\n".join(lines)
 
 
+DAILY_INTRO_DIVIDER = "─────────────────────────────────────────"
+DAILY_FOOTER_SEPARATOR = "─────────────────── End of Daily Picks ───────────────────"
+
+_DAILY_INTRO_SECTION_LABELS = {
+    "demo_playtest": ("🎮", "Demos & Playtests"),
+    "free": ("🆓", "Free Picks"),
+    "paid": ("💰", "Paid Under $20"),
+    "instagram": ("📸", "Instagram Picks"),
+}
+_DAILY_FOOTER_SECTION_LABELS = {
+    "demo_playtest": "Demos",
+    "free": "Free Picks",
+    "paid": "Paid",
+    "instagram": "Instagram",
+}
+
+
+def build_daily_picks_intro_content(
+    run_state: dict,
+    guild_id: Optional[str],
+    target_day_key: str,
+    posted_section_keys: List[str],
+) -> str:
+    """Build the Step 1 intro message with optional jump links and trailing divider."""
+    date_str = format_daily_picks_footer_date(target_day_key)
+    lines = [
+        f"📅 Daily Picks — {date_str}",
+        "",
+        "Vote 👍 on anything you want to try. Top picks move to Step 2.",
+    ]
+
+    if isinstance(guild_id, str) and guild_id.strip() and posted_section_keys:
+        section_headers = run_state.get("section_headers", {})
+        parts = []
+        for section_key in DAILY_SECTION_ORDER:
+            if section_key not in posted_section_keys:
+                continue
+            section_state = section_headers.get(section_key) if isinstance(section_headers, dict) else None
+            if not isinstance(section_state, dict):
+                continue
+            channel_id = section_state.get("channel_id")
+            message_id = section_state.get("message_id")
+            if not (isinstance(channel_id, str) and isinstance(message_id, str)):
+                continue
+            emoji, label = _DAILY_INTRO_SECTION_LABELS.get(section_key, ("", section_key))
+            link = build_discord_message_link(guild_id, channel_id, message_id)
+            parts.append(f"{emoji} [{label}]({link})")
+        if parts:
+            lines.append("")
+            lines.append(" · ".join(parts))
+
+    lines.append("")
+    lines.append(DAILY_INTRO_DIVIDER)
+    return "\n".join(lines)
+
+
+def build_daily_picks_footer_content(
+    run_state: dict,
+    guild_id: Optional[str],
+    target_day_key: str,
+    posted_section_keys: List[str],
+) -> Optional[str]:
+    """Build the Step 1 footer: single date+jump line followed by End separator."""
+    if not isinstance(guild_id, str) or not guild_id.strip():
+        return None
+
+    intro_state = run_state.get("intro")
+    if not isinstance(intro_state, dict):
+        return None
+    intro_channel_id = str(intro_state.get("channel_id") or "").strip()
+    intro_message_id = str(intro_state.get("message_id") or "").strip()
+    if not intro_channel_id or not intro_message_id:
+        return None
+
+    date_str = format_daily_picks_footer_date(target_day_key)
+    section_headers = run_state.get("section_headers", {})
+    link_parts: List[str] = []
+    for section_key in DAILY_SECTION_ORDER:
+        if section_key not in posted_section_keys:
+            continue
+        section_state = section_headers.get(section_key) if isinstance(section_headers, dict) else None
+        if not isinstance(section_state, dict):
+            continue
+        channel_id = section_state.get("channel_id")
+        message_id = section_state.get("message_id")
+        if not (isinstance(channel_id, str) and isinstance(message_id, str)):
+            continue
+        label = _DAILY_FOOTER_SECTION_LABELS.get(section_key, section_key)
+        link_parts.append(f"[{label}]({build_discord_message_link(guild_id, channel_id, message_id)})")
+
+    top_link = build_discord_message_link(guild_id, intro_channel_id, intro_message_id)
+    link_parts.append(f"[⬆️ Top]({top_link})")
+
+    first_line = f"📅 {date_str} · Jump to: {' · '.join(link_parts)}"
+    return f"{first_line}\n{DAILY_FOOTER_SEPARATOR}"
+
+
 def post_daily_pick_messages(
     demo_playtest_items: List[dict],
     free_items: List[dict],
@@ -2186,13 +2283,15 @@ def post_daily_pick_messages(
             run_counts["skipped"] += 1
         save_discord_daily_posts(daily_posts)
 
-    header_state = run_state.setdefault("header", {})
-    placeholder_content = f"📅 Daily Picks - {format_daily_picks_footer_date(day_key)}\nVote 👍 on any game you want to try. Every vote advances to Step 2."
-    post_or_reconcile_simple(placeholder_content, "header", header_state)
-    sleep_briefly()
-
     intro_state = run_state.setdefault("intro", {})
-    post_or_reconcile_simple("🎯 Daily Picks — vote with 👍 on your favorites", "intro", intro_state)
+    intro_placeholder = "\n".join([
+        f"📅 Daily Picks — {format_daily_picks_footer_date(day_key)}",
+        "",
+        "Vote 👍 on anything you want to try. Top picks move to Step 2.",
+        "",
+        DAILY_INTRO_DIVIDER,
+    ])
+    post_or_reconcile_simple(intro_placeholder, "intro", intro_state)
     sleep_briefly()
 
     section_items_by_key = {
@@ -2316,21 +2415,21 @@ def post_daily_pick_messages(
                 run_counts["skipped"] += 1
             sleep_briefly()
 
-    # Edit header with jump links now that sections are posted
+    # Edit intro with jump links now that sections are posted
     if token_available and discord_client:
-        header_content = build_daily_picks_navigation_content(run_state, DISCORD_GUILD_ID, day_key, posted_section_keys)
-        existing_message_id = header_state.get("message_id")
-        existing_channel_id = header_state.get("channel_id")
+        intro_content = build_daily_picks_intro_content(run_state, DISCORD_GUILD_ID, day_key, posted_section_keys)
+        existing_message_id = intro_state.get("message_id")
+        existing_channel_id = intro_state.get("channel_id")
         if existing_message_id and existing_channel_id:
             try:
-                discord_client.edit_message(existing_channel_id, existing_message_id, header_content, context=f"edit header for {day_key}")
-                header_state["posted_at_utc"] = utc_now_iso()
-                print(f"EDIT: updated header for {day_key}")
+                discord_client.edit_message(existing_channel_id, existing_message_id, intro_content, context=f"edit intro for {day_key}")
+                intro_state["posted_at_utc"] = utc_now_iso()
+                print(f"EDIT: updated intro for {day_key}")
             except Exception as e:
-                print(f"WARN: failed to edit header for {day_key}: {e}")
+                print(f"WARN: failed to edit intro for {day_key}: {e}")
 
     footer_state = run_state.setdefault("footer", {})
-    footer_content = build_daily_picks_navigation_content(run_state, DISCORD_GUILD_ID, day_key, posted_section_keys)
+    footer_content = build_daily_picks_footer_content(run_state, DISCORD_GUILD_ID, day_key, posted_section_keys)
     if footer_content:
         post_or_reconcile_simple(footer_content, "footer", footer_state)
         sleep_briefly()
