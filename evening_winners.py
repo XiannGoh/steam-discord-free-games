@@ -41,6 +41,12 @@ _WINNERS_FOOTER_SECTION_LABELS = {
     "paid": "💰 Paid",
     "instagram": "📸 Creator",
 }
+_WINNERS_MISSING_SECTION_LABELS = {
+    "demo_playtest": "Demo & Playtest Winners",
+    "free": "Free Winners",
+    "paid": "Paid Winners",
+    "instagram": "Creator Winners",
+}
 
 # Winners intentionally mirror daily section ordering as product behavior,
 # not an incidental implementation detail.
@@ -146,6 +152,16 @@ def build_winners_navigation_header(
             lines.append("")
             for part in parts:
                 lines.append(part)
+
+        missing_sections = [
+            key for key in SECTION_ORDER
+            if key not in posted_section_keys
+        ]
+        if missing_sections:
+            lines.append("")
+            for key in missing_sections:
+                label = _WINNERS_MISSING_SECTION_LABELS.get(key, key)
+                lines.append(f"_(No {label} today)_")
 
     lines.append("")
     lines.append(WINNERS_INTRO_DIVIDER)

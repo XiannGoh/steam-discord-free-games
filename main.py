@@ -2124,6 +2124,12 @@ _DAILY_FOOTER_SECTION_LABELS = {
     "paid": "💰 Paid",
     "instagram": "📸 Instagram",
 }
+_DAILY_MISSING_SECTION_LABELS = {
+    "demo_playtest": "Demos & Playtests",
+    "free": "Free Picks",
+    "paid": "Paid Under $20",
+    "instagram": "Instagram Picks",
+}
 
 
 def build_daily_picks_intro_content(
@@ -2160,6 +2166,17 @@ def build_daily_picks_intro_content(
             lines.append("")
             for part in parts:
                 lines.append(part)
+
+        all_section_keys = list(DAILY_SECTION_ORDER)
+        missing_sections = [
+            key for key in all_section_keys
+            if key not in posted_section_keys
+        ]
+        if missing_sections:
+            lines.append("")
+            for key in missing_sections:
+                label = _DAILY_MISSING_SECTION_LABELS.get(key, key)
+                lines.append(f"_(No {label} today)_")
 
     lines.append("")
     lines.append(DAILY_INTRO_DIVIDER)
