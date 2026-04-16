@@ -15,7 +15,7 @@ from discord_api import (
     PERM_READ_MESSAGE_HISTORY,
     PERM_SEND_MESSAGES,
 )
-from state_utils import load_json_object, save_json_object_atomic
+from state_utils import is_today_verified, load_json_object, save_json_object_atomic
 
 GAMING_LIBRARY_FILE = "gaming_library.json"
 DISCORD_DAILY_POSTS_FILE = "discord_daily_posts.json"
@@ -1109,6 +1109,14 @@ def run_daily_post(state_path: str = GAMING_LIBRARY_FILE) -> bool:
     channel_id = DISCORD_GAMING_LIBRARY_CHANNEL_ID
     if not channel_id:
         raise RuntimeError("DISCORD_GAMING_LIBRARY_CHANNEL_ID is not set")
+
+    # Rule 1 & 5: If already completed AND discord_verification.json shows pass=True
+    # for today, suppress all re-triggers (watchdog, manual) — nothing to do.
+    _day_entry_check = state.get("daily_posts", {}).get(day_key, {})
+    if isinstance(_day_entry_check, dict) and bool(_day_entry_check.get("completed")):
+        if is_today_verified(day_key):
+            print(f"Run already completed and verified — watchdog re-trigger suppressed for {day_key}")
+            return False
 
     manual_run = is_manual_run()
     if manual_run:

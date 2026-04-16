@@ -8,7 +8,7 @@ import requests
 
 from daily_section_config import DAILY_SECTION_DISPLAY_LABELS, DAILY_SECTION_ORDER
 from discord_api import DiscordClient, DiscordMessageNotFoundError
-from state_utils import load_json_object, save_json_object_atomic
+from state_utils import is_today_verified, load_json_object, save_json_object_atomic
 
 DISCORD_DAILY_POSTS_FILE = "discord_daily_posts.json"
 THUMBS_UP_EMOJI = "👍"
@@ -876,6 +876,15 @@ def main() -> None:
     if not isinstance(today_entry, dict):
         today_entry = {}
         daily_posts[day_key] = today_entry
+
+    # Rule 1 & 5: If winners already posted AND discord_verification.json shows pass=True
+    # for today, suppress all re-triggers (watchdog, manual) — nothing to do.
+    _winners_state_check = today_entry.get("winners_state") or {}
+    if isinstance(_winners_state_check, dict) and _winners_state_check.get("winner_messages"):
+        if is_today_verified(day_key):
+            print(f"Run already completed and verified — watchdog re-trigger suppressed for {day_key}")
+            return
+
     lookback_day_keys = get_lookback_day_keys(day_key)
     items: List[dict] = []
     for bucket_key in lookback_day_keys:
