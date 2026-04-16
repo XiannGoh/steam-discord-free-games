@@ -505,9 +505,15 @@ jobs:
           mkdir -p post_fix_artifacts_1
           gh run download "${new_run_id}" --pattern "discord-verification-*" -D post_fix_artifacts_1/ 2>/dev/null || true
           gh run download "${new_run_id}" --pattern "daily-verification-*" -D post_fix_artifacts_1/ 2>/dev/null || true
+          gh run download "${new_run_id}" --pattern "gaming-library-verification-*" -D post_fix_artifacts_1/ 2>/dev/null || true
+          gh run download "${new_run_id}" --pattern "weekly-schedule-verification-*" -D post_fix_artifacts_1/ 2>/dev/null || true
 
           new_fail_count=0
-          for artifact in post_fix_artifacts_1/discord_verification.json post_fix_artifacts_1/daily_verification.json; do
+          for artifact in \
+            post_fix_artifacts_1/discord_verification.json \
+            post_fix_artifacts_1/daily_verification.json \
+            post_fix_artifacts_1/gaming_library_verification.json \
+            post_fix_artifacts_1/weekly_schedule_verification.json; do
             if [ -f "$artifact" ]; then
               pass_val="$(python3 -c "
           import json
@@ -743,9 +749,15 @@ Run: ${RUN_URL}"
           mkdir -p post_fix_artifacts_2
           gh run download "${new_run_id}" --pattern "discord-verification-*" -D post_fix_artifacts_2/ 2>/dev/null || true
           gh run download "${new_run_id}" --pattern "daily-verification-*" -D post_fix_artifacts_2/ 2>/dev/null || true
+          gh run download "${new_run_id}" --pattern "gaming-library-verification-*" -D post_fix_artifacts_2/ 2>/dev/null || true
+          gh run download "${new_run_id}" --pattern "weekly-schedule-verification-*" -D post_fix_artifacts_2/ 2>/dev/null || true
 
           new_fail_count=0
-          for artifact in post_fix_artifacts_2/discord_verification.json post_fix_artifacts_2/daily_verification.json; do
+          for artifact in \
+            post_fix_artifacts_2/discord_verification.json \
+            post_fix_artifacts_2/daily_verification.json \
+            post_fix_artifacts_2/gaming_library_verification.json \
+            post_fix_artifacts_2/weekly_schedule_verification.json; do
             if [ -f "$artifact" ]; then
               pass_val="$(python3 -c "
           import json
@@ -981,9 +993,15 @@ Run: ${RUN_URL}"
           mkdir -p post_fix_artifacts_3
           gh run download "${new_run_id}" --pattern "discord-verification-*" -D post_fix_artifacts_3/ 2>/dev/null || true
           gh run download "${new_run_id}" --pattern "daily-verification-*" -D post_fix_artifacts_3/ 2>/dev/null || true
+          gh run download "${new_run_id}" --pattern "gaming-library-verification-*" -D post_fix_artifacts_3/ 2>/dev/null || true
+          gh run download "${new_run_id}" --pattern "weekly-schedule-verification-*" -D post_fix_artifacts_3/ 2>/dev/null || true
 
           new_fail_count=0
-          for artifact in post_fix_artifacts_3/discord_verification.json post_fix_artifacts_3/daily_verification.json; do
+          for artifact in \
+            post_fix_artifacts_3/discord_verification.json \
+            post_fix_artifacts_3/daily_verification.json \
+            post_fix_artifacts_3/gaming_library_verification.json \
+            post_fix_artifacts_3/weekly_schedule_verification.json; do
             if [ -f "$artifact" ]; then
               pass_val="$(python3 -c "
           import json
