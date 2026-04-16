@@ -730,13 +730,13 @@ def build_actions_minutes_lines(billing_data: dict[str, Any] | None) -> list[str
     Thresholds: >95% → 🔴, >80% → ⚠️, missing data → ℹ️, otherwise 🟢.
     """
     if not billing_data:
-        return ["ℹ️ GitHub Actions billing data unavailable"]
+        return ["ℹ️ Actions minutes data unavailable for this account type"]
 
     total = billing_data.get("total_minutes_used")
     included = billing_data.get("included_minutes")
 
     if total is None or included is None:
-        return ["ℹ️ GitHub Actions billing data unavailable"]
+        return ["ℹ️ Actions minutes data unavailable for this account type"]
 
     if included == 0:
         return [f"ℹ️ GitHub Actions: {total:,} minutes used (unlimited plan)"]
@@ -801,7 +801,7 @@ def render_report(
     lines.extend(_render_section("State / Artifact Health", state_lines))
     lines.extend(_render_section("Instagram Fetch", build_instagram_summary_lines()))
     if actions_minutes_lines is not None:
-        lines.extend(_render_section("GitHub Actions Usage", actions_minutes_lines))
+        lines.extend(_render_section("GitHub Actions Minutes", actions_minutes_lines))
 
     return "\n".join(lines).strip()
 
