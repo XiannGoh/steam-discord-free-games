@@ -740,3 +740,21 @@ def test_is_manual_run_returns_false_when_env_unset(monkeypatch):
     monkeypatch.delenv(lib.GITHUB_EVENT_NAME_ENV, raising=False)
     assert lib.is_manual_run() is False
 
+
+
+# --- FIX 6: Step 3 footer separator and section label contract tests ---
+
+def test_library_footer_ends_with_exact_separator_string():
+    footer = lib.build_library_footer(
+        day_key="2026-04-15",
+        header_channel_id="",
+        header_message_id="",
+        guild_id=None,
+    )
+    assert footer.endswith("─────────────────── End of Gaming Library ───────────────────")
+
+
+def test_library_footer_section_labels_include_emojis():
+    assert lib._LIBRARY_FOOTER_SECTION_LABELS[lib.CATEGORY_DEMO_PLAYTEST] == "🎮 Demo & Playtest"
+    assert lib._LIBRARY_FOOTER_SECTION_LABELS[lib.CATEGORY_PAID_PICKS] == "💰 Paid"
+    assert lib._LIBRARY_FOOTER_SECTION_LABELS[lib.CATEGORY_CREATOR_PICKS] == "📸 Creator"
