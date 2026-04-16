@@ -7,7 +7,7 @@ on:
 
 permissions:
   actions: write
-  contents: read
+  contents: write
 
 jobs:
   watchdog:
@@ -93,7 +93,26 @@ jobs:
             const isSaturday = now.getUTCDay() === 6;
 
             const alerts = [];
-            const retriggerCounts = {};
+
+            // Load persisted retrigger counts from file (survives across hourly runs)
+            let retriggerCounts = {};
+            try {
+              const fs = require('fs');
+              const raw = fs.readFileSync(
+                'data/watchdog_retrigger_counts.json', 'utf8'
+              );
+              retriggerCounts = JSON.parse(raw);
+            } catch (e) {
+              retriggerCounts = {};
+            }
+
+            // Prune stale keys from previous days to keep the file small
+            const todayKey = now.toISOString().slice(0, 10);
+            for (const key of Object.keys(retriggerCounts)) {
+              if (!key.endsWith(todayKey)) {
+                delete retriggerCounts[key];
+              }
+            }
 
             for (const wf of WATCHED) {
               try {
@@ -151,7 +170,6 @@ jobs:
                 }
 
                 if (shouldTrigger) {
-                  const todayKey = now.toISOString().slice(0, 10);
                   const retriggerKey = `${wf.file}:${todayKey}`;
                   const currentCount = retriggerCounts[retriggerKey] || 0;
 
@@ -205,7 +223,38 @@ jobs:
               }
             }
 
+            // Persist updated counts so the cap survives across hourly runs
+            try {
+              const fs = require('fs');
+              fs.writeFileSync(
+                'data/watchdog_retrigger_counts.json',
+                JSON.stringify(retriggerCounts, null, 2)
+              );
+            } catch (e) {
+              core.warning(`Could not write retrigger counts: ${e.message}`);
+            }
+
             core.setOutput("alerts", JSON.stringify(alerts));
+
+      # ------------------------------------------------------------------ #
+      # Commit the updated retrigger counts back to main so the cap
+      # persists across hourly runs.
+      # ------------------------------------------------------------------ #
+      - name: Save retrigger counts
+        if: always()
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          if [ -f data/watchdog_retrigger_counts.json ]; then
+            git add data/watchdog_retrigger_counts.json
+            if ! git diff --cached --quiet; then
+              git commit -m "chore: update watchdog retrigger counts"
+              git stash --include-untracked || true
+              git pull --rebase origin main
+              git stash pop || true
+              git push
+            fi
+          fi
 
       # ------------------------------------------------------------------ #
       # Post one Discord alert per triggered workflow.
