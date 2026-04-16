@@ -16,6 +16,7 @@ except ImportError:
 from discord_api import DiscordClient, DiscordMessageNotFoundError
 from daily_section_config import DAILY_SECTION_CONFIG, DAILY_SECTION_ORDER
 from state_utils import (
+    is_today_verified,
     load_json_object,
     prune_latest_iso_dates,
     save_json_object_atomic,
@@ -2107,6 +2108,13 @@ def post_daily_pick_messages(
         day_entry["run_state"] = run_state
     run_state.setdefault("section_headers", {})
     run_state["last_attempt_at_utc"] = utc_now_iso()
+
+    # Rule 1 & 5: If already completed AND discord_verification.json shows pass=True
+    # for today, suppress all re-triggers (watchdog, force_refresh, manual) — nothing to do.
+    if bool(run_state.get("completed")) and is_today_verified(day_key):
+        print(f"Run already completed and verified — watchdog re-trigger suppressed for {day_key}")
+        save_discord_daily_posts(daily_posts)
+        return run_counts, True, {}
 
     if bool(run_state.get("completed")) and not force_refresh_same_day and not manual_run:
         print(f"SKIP: daily picks already completed for {day_key}; rerun protection active (force_refresh_same_day=false)")

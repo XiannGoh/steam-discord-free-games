@@ -90,6 +90,23 @@ def save_json_object_atomic(path: str, data: dict[str, Any]) -> None:
             os.remove(temp_path)
 
 
+DISCORD_VERIFICATION_FILE = "discord_verification.json"
+
+
+def is_today_verified(day_key: str, *, verification_file: str = DISCORD_VERIFICATION_FILE) -> bool:
+    """Return True if discord_verification.json shows pass=True for day_key.
+
+    Used by workflow entry-points to detect when today's run is already
+    completed and fully verified, so watchdog or manual re-triggers can be
+    suppressed without doing any Discord work.
+
+    Returns False (not verified) when the file is absent, unreadable, or
+    covers a different date — callers should treat False as "safe to run".
+    """
+    data = load_json_object(verification_file)
+    return bool(data.get("date") == day_key and data.get("pass") is True)
+
+
 def prune_latest_keys(data: dict[str, Any], keep_last: int) -> dict[str, Any]:
     if len(data) <= keep_last:
         return data
