@@ -5037,7 +5037,7 @@
         "1493495916030722160"
       ],
       "last_action": "create",
-      "updated_at_utc": "2026-04-14T06:19:34.514768+00:00",
+      "updated_at_utc": "2026-04-16T06:30:25.593004+00:00",
       "posted_at_utc": "2026-04-14T06:19:34.514783+00:00",
       "winner_keys": [
         "https://store.steampowered.com/app/1285690/",
@@ -5048,7 +5048,7 @@
       ],
       "winner_vote_counts": {
         "https://store.steampowered.com/app/1285690/": 1,
-        "https://store.steampowered.com/app/2904000/": 1,
+        "https://store.steampowered.com/app/2904000/": 2,
         "https://store.steampowered.com/app/3400930/": 1,
         "https://store.steampowered.com/app/3645890/": 1,
         "https://www.instagram.com/p/DXFrXcxAb1u/": 1
@@ -5071,8 +5071,9 @@
           "title": "The Spell Brigade",
           "url": "https://store.steampowered.com/app/2904000/",
           "description": "Survivors-like with ONLINE CO-OP for 1-4 players. Team up with your wizard friends to slay hordes of dark creatures. Complete team-based objectives, unlock new upgrades and create overpowered spell synergies. Friend nor foe is safe in this friendly fire bullet hell!",
-          "human_votes": 1,
+          "human_votes": 2,
           "voter_names": [
+            "Chocolie",
             "Thomas"
           ]
         },
