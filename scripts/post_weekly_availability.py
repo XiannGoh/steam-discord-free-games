@@ -153,6 +153,19 @@ def main() -> None:
                 fail("Discord response JSON did not include intro message id")
             print(f"CREATE: intro message for {week_key} (message_id={intro_message_id})")
 
+        # Pin the intro message; unpin any stale weekly availability posts.
+        pinned_messages = client.get_pinned_messages(channel_id, context=f"fetch pinned for {week_key}")
+        already_pinned_ids = {str(p.get("id") or "") for p in pinned_messages}
+        for pinned in pinned_messages:
+            pinned_id = str(pinned.get("id") or "")
+            pinned_content = str(pinned.get("content") or "")
+            if pinned_id and pinned_id != intro_message_id and pinned_content.startswith("🗓️ Weekly Availability"):
+                client.unpin_message(channel_id, pinned_id, context=f"unpin old weekly availability {pinned_id}")
+                print(f"UNPIN: old weekly availability message {pinned_id}")
+        if intro_message_id not in already_pinned_ids:
+            client.pin_message(channel_id, intro_message_id, context=f"pin intro for {week_key}")
+            print(f"PIN: intro message for {week_key} (message_id={intro_message_id})")
+
         existing_days = existing_week_state.get("days")
         if not isinstance(existing_days, dict):
             existing_days = {}
