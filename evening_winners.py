@@ -26,6 +26,22 @@ MAX_VOTERS_SHOWN_PER_GAME = 6
 DISCORD_MESSAGE_CHAR_LIMIT = 2000
 WINNERS_MESSAGE_TARGET_MAX = 1900
 
+WINNERS_INTRO_DIVIDER = "─────────────────────────────────────────"
+WINNERS_FOOTER_SEPARATOR = "─────────────────── End of Daily Winners ───────────────────"
+
+_WINNERS_INTRO_SECTION_LABELS = {
+    "demo_playtest": ("🎮", "Demo & Playtest Winners"),
+    "free": ("🆓", "Free Winners"),
+    "paid": ("💰", "Paid Winners"),
+    "instagram": ("📸", "Creator Winners"),
+}
+_WINNERS_FOOTER_SECTION_LABELS = {
+    "demo_playtest": "Demo & Playtest",
+    "free": "Free",
+    "paid": "Paid",
+    "instagram": "Creator",
+}
+
 # Winners intentionally mirror daily section ordering as product behavior,
 # not an incidental implementation detail.
 SECTION_CONFIG = DAILY_SECTION_DISPLAY_LABELS
@@ -87,8 +103,11 @@ def build_winners_header_placeholder(target_day_key: str) -> str:
     date_str = format_winners_footer_date(target_day_key)
     return "\n".join(
         [
-            f"🏆 Daily Winners - {date_str}",
-            "Games that won the vote in Step 1. Play them and 🔖 bookmark to keep permanently.",
+            f"🏆 Daily Winners — {date_str}",
+            "",
+            "These games won the Step 1 vote. Play them and 🔖 bookmark to keep permanently.",
+            "",
+            WINNERS_INTRO_DIVIDER,
         ]
     )
 
@@ -102,41 +121,33 @@ def build_winners_navigation_header(
 ) -> str:
     date_str = format_winners_footer_date(target_day_key)
     lines = [
-        f"🏆 Daily Winners - {date_str}",
-        "Games that won the vote in Step 1. Play them and 🔖 bookmark to keep permanently.",
+        f"🏆 Daily Winners — {date_str}",
+        "",
+        "These games won the Step 1 vote. Play them and 🔖 bookmark to keep permanently.",
     ]
 
-    if not isinstance(guild_id, str) or not guild_id.strip() or not posted_section_keys:
-        return "\n".join(lines)
+    if isinstance(guild_id, str) and guild_id.strip() and posted_section_keys:
+        section_headers = winners_state.get("section_headers", {})
+        parts = []
+        for section_key in SECTION_ORDER:
+            if section_key not in posted_section_keys:
+                continue
+            section_state = section_headers.get(section_key) if isinstance(section_headers, dict) else None
+            if not isinstance(section_state, dict):
+                continue
+            channel_id = str(section_state.get("channel_id") or "").strip()
+            message_id = str(section_state.get("message_id") or "").strip()
+            if not channel_id or not message_id:
+                continue
+            emoji, label = _WINNERS_INTRO_SECTION_LABELS.get(section_key, ("", section_key))
+            link = build_discord_message_link(guild_id, channel_id, message_id)
+            parts.append(f"{emoji} [{label}]({link})")
+        if parts:
+            lines.append("")
+            lines.append(" · ".join(parts))
 
-    section_labels = {
-        "demo_playtest": "🧪 Demo & Playtest Winners",
-        "free": "🎮 Free Winners",
-        "paid": "💸 Paid Winners",
-        "instagram": "📸 Creator Winners",
-    }
-    section_headers = winners_state.get("section_headers", {})
-    jump_lines = []
-    for section_key in SECTION_ORDER:
-        if section_key not in posted_section_keys:
-            continue
-        section_state = section_headers.get(section_key) if isinstance(section_headers, dict) else None
-        if not isinstance(section_state, dict):
-            continue
-        channel_id = str(section_state.get("channel_id") or "").strip()
-        message_id = str(section_state.get("message_id") or "").strip()
-        if not channel_id or not message_id:
-            continue
-        section_label = section_labels.get(section_key)
-        if section_label:
-            jump_lines.append(
-                f"{section_label} ⟹ [Jump]({build_discord_message_link(guild_id, channel_id, message_id)})"
-            )
-
-    if jump_lines:
-        lines.append("")
-        lines.extend(jump_lines)
-
+    lines.append("")
+    lines.append(WINNERS_INTRO_DIVIDER)
     return "\n".join(lines)
 
 
@@ -180,19 +191,9 @@ def build_winners_navigation_footer(
     if not intro_channel_id or not intro_message_id:
         return None
 
-    section_labels = {
-        "demo_playtest": "🧪 Demo & Playtest Winners",
-        "free": "🎮 Free Winners",
-        "paid": "💸 Paid Winners",
-        "instagram": "📸 Creator Winners",
-    }
     section_headers = winners_state.get("section_headers", {})
     date_str = format_winners_footer_date(target_day_key)
-    lines = [
-        f"🏆 Daily Winners - {date_str}",
-        "",
-        f"🏆 Top of Post ⟹ [Jump]({build_discord_message_link(guild_id, intro_channel_id, intro_message_id)})",
-    ]
+    link_parts: List[str] = []
     for section_key in SECTION_ORDER:
         if section_key not in posted_section_keys:
             continue
@@ -203,10 +204,14 @@ def build_winners_navigation_footer(
         message_id = str(section_state.get("message_id") or "").strip()
         if not channel_id or not message_id:
             return None
-        section_label = section_labels.get(section_key)
-        if section_label:
-            lines.append(f"{section_label} ⟹ [Jump]({build_discord_message_link(guild_id, channel_id, message_id)})")
-    return "\n".join(lines)
+        label = _WINNERS_FOOTER_SECTION_LABELS.get(section_key, section_key)
+        link_parts.append(f"[{label}]({build_discord_message_link(guild_id, channel_id, message_id)})")
+
+    top_link = build_discord_message_link(guild_id, intro_channel_id, intro_message_id)
+    link_parts.append(f"[⬆️ Top]({top_link})")
+
+    first_line = f"📅 {date_str} · Jump to: {' · '.join(link_parts)}"
+    return f"{first_line}\n{WINNERS_FOOTER_SEPARATOR}"
 
 
 def build_winners_message(winners_by_section: Dict[str, List[dict]]) -> str:
