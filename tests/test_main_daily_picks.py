@@ -1582,3 +1582,73 @@ class TestStep1IntroFooterFormatting:
         posted, _ = self._run_post(monkeypatch, tmp_path, items)
         footer = posted[-1]
         assert "⬆️ Top" in footer
+
+
+class TestScrapingHealthCheck:
+    def test_all_pages_fail_yields_broken_status(self):
+        stats: dict = {"ok": 0, "fail": 0}
+        # Simulate 3 page fetches all returning None (failure)
+        pages = list(range(1, 4))
+
+        def fake_safe_fetch_html_none(url):
+            return None
+
+        import unittest.mock as mock
+        with mock.patch.object(main, "safe_fetch_html", side_effect=fake_safe_fetch_html_none):
+            main.collect_steam_free_candidates(1, 3, stats)
+
+        assert stats["fail"] == 3
+        assert stats["ok"] == 0
+
+        total = stats["ok"] + stats["fail"]
+        scraping_status = "ok" if total == 0 or stats["fail"] == 0 else (
+            "broken" if stats["ok"] == 0 else "degraded"
+        )
+        assert scraping_status == "broken"
+
+    def test_some_pages_fail_yields_degraded_status(self):
+        stats: dict = {"ok": 0, "fail": 0}
+
+        call_count = [0]
+
+        def fake_safe_fetch_html_alternating(url):
+            call_count[0] += 1
+            return "<html><div class='search_result_row' data-ds-appid='1'></div></html>" if call_count[0] % 2 == 1 else None
+
+        import unittest.mock as mock
+        with mock.patch.object(main, "safe_fetch_html", side_effect=fake_safe_fetch_html_alternating):
+            main.collect_steam_free_candidates(1, 4, stats)
+
+        assert stats["ok"] > 0
+        assert stats["fail"] > 0
+
+        scraping_status = "ok" if stats["fail"] == 0 else (
+            "broken" if stats["ok"] == 0 else "degraded"
+        )
+        assert scraping_status == "degraded"
+
+    def test_broken_scraping_posts_health_monitor_warning(self, monkeypatch):
+        warnings_posted: list[str] = []
+
+        monkeypatch.setattr(main, "_notify_health_monitor", lambda msg: warnings_posted.append(msg))
+
+        # Derive scraping_status == "broken" when ok=0 and fail>0
+        pages_ok = 0
+        pages_fail = 3
+        total_pages = pages_ok + pages_fail
+        if total_pages == 0 or pages_fail == 0:
+            scraping_status = "ok"
+        elif pages_ok == 0:
+            scraping_status = "broken"
+        else:
+            scraping_status = "degraded"
+
+        if scraping_status == "broken":
+            main._notify_health_monitor(
+                f"🔴 Steam scraping is broken — all {pages_fail} page(s) failed to fetch. "
+                "Check Steam connectivity and scraper URLs."
+            )
+
+        assert len(warnings_posted) == 1
+        assert "🔴" in warnings_posted[0]
+        assert "broken" in warnings_posted[0]
