@@ -938,7 +938,7 @@ def extract_release_date(page_text: str) -> Optional[datetime]:
     return None
 
 
-# Recency bonus tiers for free and paid games (not applied to demos/playtests).
+# Recency bonus tiers for free and paid games.
 RECENCY_BONUS_TIERS = [
     (7, 6),
     (30, 4),
@@ -946,14 +946,24 @@ RECENCY_BONUS_TIERS = [
     (180, 1),
 ]
 
+# Ramped recency bonus tiers for demos and playtests (higher than standard).
+DEMO_PLAYTEST_RECENCY_BONUS_TIERS = [
+    (7, 10),
+    (30, 7),
+    (90, 3),
+    (180, 1),
+]
 
-def score_recency_bonus(page_text: str) -> Tuple[int, List[str]]:
-    """Return a recency bonus for free/paid games based on release date age."""
+
+def score_recency_bonus(page_text: str, tiers=None) -> Tuple[int, List[str]]:
+    """Return a recency bonus based on release date age, using the provided tier set."""
+    if tiers is None:
+        tiers = RECENCY_BONUS_TIERS
     release_date = extract_release_date(page_text)
     if release_date is None:
         return 0, []
     age_days = (datetime.now(timezone.utc) - release_date).days
-    for threshold, bonus in RECENCY_BONUS_TIERS:
+    for threshold, bonus in tiers:
         if age_days <= threshold:
             return bonus, [f"recency:{bonus}(age={age_days}d)"]
     return 0, []
@@ -1559,6 +1569,11 @@ def inspect_game(source: str, app_id: str) -> Optional[dict]:
         if not_available:
             print(f"DEMO NOT YET AVAILABLE: {title} | excluded: demo not yet available to play | reason={reason}")
             return None
+        # Hard age cutoff: demos/playtests older than 180 days are excluded.
+        _release_date = extract_release_date(page_text)
+        if _release_date is None or (datetime.now(timezone.utc) - _release_date).days > 180:
+            print(f"EXCLUDE: {title} — demo/playtest older than 180 days (or no release date)")
+            return None
 
     multiplayer_score, multiplayer_hits = score_multiplayer(page_text)
     player_score, player_hits, rejected = score_player_count(page_text)
@@ -1621,11 +1636,9 @@ def inspect_game(source: str, app_id: str) -> Optional[dict]:
         elif discount_percent >= 10:
             discount_score = 1
 
-    # Recency bonus applies to free/paid games only — demos/playtests use their own freshness scoring.
-    recency_score = 0
-    recency_hits: List[str] = []
-    if item_type not in {"demo", "playtest"}:
-        recency_score, recency_hits = score_recency_bonus(page_text)
+    # Recency bonus applies to all item types; demos/playtests use a ramped tier set.
+    recency_tiers = DEMO_PLAYTEST_RECENCY_BONUS_TIERS if item_type in {"demo", "playtest"} else RECENCY_BONUS_TIERS
+    recency_score, recency_hits = score_recency_bonus(page_text, tiers=recency_tiers)
 
     total_score = (
         multiplayer_score
