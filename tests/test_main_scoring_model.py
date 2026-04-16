@@ -147,7 +147,7 @@ def test_paid_rejects_unknown_and_mixed(monkeypatch):
 
 
 def test_demo_pick_scoring_tracks_friend_group_signals(monkeypatch):
-    shared = "Multiplayer Online Co-Op up to 6 players party game Very Positive Download Demo"
+    shared = "Release Date: Dec 01, 2025 Multiplayer Online Co-Op up to 6 players party game Very Positive Download Demo"
     full_html = build_html("Full Game", "friends", shared, "Very Positive")
     demo_html = build_html("Demo Game", "friends", shared, "Very Positive")
     stub_app_pages(monkeypatch, {"701": full_html, "702": demo_html})
@@ -160,8 +160,8 @@ def test_demo_pick_scoring_tracks_friend_group_signals(monkeypatch):
 
 
 def test_demo_and_playtest_detected_and_routed(monkeypatch):
-    demo_html = build_html("Demo Game", "friends", "Multiplayer Online Co-Op up to 6 players", "Mostly Positive")
-    playtest_html = build_html("Squad Rush Playtest", "team up", "Multiplayer squad up to 6 players", "")
+    demo_html = build_html("Demo Game", "friends", "Release Date: Dec 01, 2025 Multiplayer Online Co-Op up to 6 players", "Mostly Positive")
+    playtest_html = build_html("Squad Rush Playtest", "team up", "Release Date: Dec 01, 2025 Multiplayer squad up to 6 players", "")
     stub_app_pages(monkeypatch, {"730": demo_html, "731": playtest_html})
 
     demo_item = main.inspect_game("steam_demo", "730")
@@ -176,13 +176,13 @@ def test_demo_group_play_fit_beats_solo_demo(monkeypatch):
     group_html = build_html(
         "Group Demo",
         "team up with friends",
-        "Multiplayer Online Co-Op up to 6 players squad loot runs progression Download Demo",
+        "Release Date: Dec 01, 2025 Multiplayer Online Co-Op up to 6 players squad loot runs progression Download Demo",
         "",
     )
     solo_html = build_html(
         "Solo Story Demo",
         "single-player narrative",
-        "single-player only story-rich demo",
+        "Release Date: Dec 01, 2025 single-player only story-rich demo",
         "",
     )
     stub_app_pages(monkeypatch, {"740": group_html, "741": solo_html})
@@ -199,13 +199,13 @@ def test_demo_legit_playable_cues_help_score(monkeypatch):
     with_cues = build_html(
         "Cue Demo",
         "team up with friends",
-        "Multiplayer Online Co-Op up to 6 players demo available request access play now",
+        "Release Date: Dec 01, 2025 Multiplayer Online Co-Op up to 6 players demo available request access play now",
         "",
     )
     without_cues = build_html(
         "Base Demo",
         "team up with friends",
-        "Multiplayer Online Co-Op up to 6 players",
+        "Release Date: Dec 01, 2025 Multiplayer Online Co-Op up to 6 players",
         "",
     )
     stub_app_pages(monkeypatch, {"742": with_cues, "743": without_cues})
@@ -218,7 +218,7 @@ def test_demo_legit_playable_cues_help_score(monkeypatch):
 
 
 def test_demo_missing_reviews_more_tolerant_than_free_game(monkeypatch):
-    demo_text = "Multiplayer Online Co-Op up to 6 players party game loot runs Demo Available"
+    demo_text = "Release Date: Dec 01, 2025 Multiplayer Online Co-Op up to 6 players party game loot runs Demo Available"
     free_text = "Multiplayer Online Co-Op up to 6 players party game loot runs"
     demo_html = build_html("Co-op Demo", "friends", demo_text, "")
     free_html = build_html("Co-op Full", "friends", free_text, "")
@@ -234,7 +234,8 @@ def test_demo_missing_reviews_more_tolerant_than_free_game(monkeypatch):
 
 def test_demo_newness_bonus_is_small_and_optional(monkeypatch):
     recent_text = "Release Date: Apr 01, 2026 Multiplayer Online Co-Op up to 6 players Request Access"
-    older_text = "Release Date: Jan 01, 2024 Multiplayer Online Co-Op up to 6 players squad loot runs progression Join Playtest"
+    # Within 180-day cutoff (Dec 01, 2025 is ~135 days before Apr 15, 2026) but beyond 45-day freshness window
+    older_text = "Release Date: Dec 01, 2025 Multiplayer Online Co-Op up to 6 players squad loot runs progression Join Playtest"
     recent_html = build_html("Recent Demo", "friends", recent_text, "")
     older_html = build_html("Older Strong Demo", "team up with friends", older_text, "")
     stub_app_pages(monkeypatch, {"760": recent_html, "761": older_html})
@@ -248,11 +249,45 @@ def test_demo_newness_bonus_is_small_and_optional(monkeypatch):
     assert older_item["keep"] is True
 
 
+def test_demo_older_than_180_days_is_excluded(monkeypatch):
+    old_html = build_html(
+        "Old Demo",
+        "team up with friends",
+        "Release Date: Jan 01, 2024 Multiplayer Online Co-Op up to 6 players Download Demo",
+        "",
+    )
+    stub_app_pages(monkeypatch, {"980": old_html})
+    result = main.inspect_game("steam_demo", "980")
+    assert result is None
+
+
+def test_demo_within_180_days_gets_ramped_recency_bonus(monkeypatch):
+    # Dec 01, 2025 is ~135 days before Apr 15, 2026 — within 180-day cutoff, hits (180, 1) tier
+    html = build_html(
+        "Recent Enough Demo",
+        "team up with friends",
+        "Release Date: Dec 01, 2025 Multiplayer Online Co-Op up to 6 players Download Demo",
+        "",
+    )
+    stub_app_pages(monkeypatch, {"981": html})
+    result = main.inspect_game("steam_demo", "981")
+    assert result is not None
+    assert result["recency_score"] > 0
+
+
+def test_non_demo_uses_original_recency_tiers():
+    # ~45 days ago hits tier (90, 2) for standard and tier (90, 3) for demo
+    page_text = "Release Date: Mar 01, 2026"
+    demo_score, _ = main.score_recency_bonus(page_text, tiers=main.DEMO_PLAYTEST_RECENCY_BONUS_TIERS)
+    std_score, _ = main.score_recency_bonus(page_text, tiers=main.RECENCY_BONUS_TIERS)
+    assert demo_score > std_score
+
+
 def test_paid_game_with_download_demo_signal_allowed_in_demo_playtest(monkeypatch):
     html = build_html(
         "Paid Game Demo",
         "team up with friends",
-        "Multiplayer Online Co-Op up to 6 players Download Demo",
+        "Release Date: Dec 01, 2025 Multiplayer Online Co-Op up to 6 players Download Demo",
         "Mostly Positive",
     )
     stub_app_pages(monkeypatch, {"900": html})
@@ -301,13 +336,13 @@ def test_playtest_request_access_or_join_playtest_allowed(monkeypatch):
     request_access = build_html(
         "Squad Test Playtest",
         "team up",
-        "Multiplayer squad up to 6 players Request Access",
+        "Release Date: Dec 01, 2025 Multiplayer squad up to 6 players Request Access",
         "",
     )
     join_playtest = build_html(
         "Squad Test Playtest 2",
         "team up",
-        "Multiplayer squad up to 6 players Join Playtest",
+        "Release Date: Dec 01, 2025 Multiplayer squad up to 6 players Join Playtest",
         "",
     )
     stub_app_pages(monkeypatch, {"901": request_access, "902": join_playtest})
@@ -328,7 +363,7 @@ def test_paid_game_with_demo_wording_but_without_access_signal_excluded(monkeypa
     html = build_html(
         "Upcoming Paid Demo",
         "wishlist now",
-        "Multiplayer Online Co-Op up to 6 players demo coming soon",
+        "Release Date: Dec 01, 2025 Multiplayer Online Co-Op up to 6 players demo coming soon",
         "Mostly Positive",
     )
     stub_app_pages(monkeypatch, {"903": html})
@@ -403,13 +438,13 @@ def test_demo_replayability_terms_help_when_friend_fit_exists(monkeypatch):
     replayable = build_html(
         "Replay Demo",
         "team up with friends",
-        "Multiplayer Online Co-Op up to 6 players runs loot progression procedural replayable",
+        "Release Date: Dec 01, 2025 Multiplayer Online Co-Op up to 6 players runs loot progression procedural replayable",
         "",
     )
     basic = build_html(
         "Basic Demo",
         "team up with friends",
-        "Multiplayer Online Co-Op up to 6 players",
+        "Release Date: Dec 01, 2025 Multiplayer Online Co-Op up to 6 players",
         "",
     )
     stub_app_pages(monkeypatch, {"1005": replayable, "1006": basic})
@@ -547,7 +582,7 @@ def test_free_game_mentioning_demo_in_text_is_allowed(monkeypatch):
     html = build_html(
         "Free Co-op Game",
         "team up with friends",
-        "Multiplayer Online Co-Op up to 6 players free demo available",
+        "Release Date: Dec 01, 2025 Multiplayer Online Co-Op up to 6 players free demo available",
         "Very Positive",
     )
     stub_app_pages(monkeypatch, {"1503": html})
@@ -741,7 +776,7 @@ def test_recency_bonus_old_game_is_zero(monkeypatch):
     assert item["recency_score"] == 0
 
 
-def test_recency_bonus_not_applied_to_demo(monkeypatch):
+def test_recency_bonus_applied_to_demo_with_ramped_tiers(monkeypatch):
     from datetime import datetime, timezone, timedelta
     recent = (datetime.now(timezone.utc) - timedelta(days=3)).strftime("%b %d, %Y")
     html = build_html(
@@ -753,7 +788,7 @@ def test_recency_bonus_not_applied_to_demo(monkeypatch):
     stub_app_pages(monkeypatch, {"2024": html})
     item = main.inspect_game("steam_demo", "2024")
     assert item is not None
-    assert item["recency_score"] == 0  # Demos use their own freshness scoring
+    assert item["recency_score"] == 10  # Demos use ramped tiers: (7, 10)
 
 
 def test_action_genre_no_longer_scores(monkeypatch):
@@ -947,11 +982,11 @@ def test_demo_not_excluded_when_release_date_in_past(monkeypatch):
 
 
 def test_demo_not_excluded_when_no_coming_soon_signals(monkeypatch):
-    """Normal playable demo with no coming-soon signals passes through."""
+    """Normal playable demo with no coming-soon signals and a recent release date passes through."""
     html = build_html(
         "Normal Demo",
         "multiplayer friends co-op",
-        "Multiplayer Online Co-Op up to 6 players demo available free to try",
+        "Release Date: Dec 01, 2025 Multiplayer Online Co-Op up to 6 players demo available free to try",
         "Positive",
     )
     stub_app_pages(monkeypatch, {"9005": html})
