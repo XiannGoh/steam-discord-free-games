@@ -188,7 +188,7 @@ Order must be:
 2. `scripts/ensure_pinned_messages.py`
 3. `python evening_winners.py`
 4. `python scripts/read_discord_channel.py`
-5. verification step(s)
+5. `python scripts/verify_discord_output.py`
 6. upload artifacts
 7. save state
 8. health monitor failure notification
@@ -199,7 +199,7 @@ Order must be:
 2. `scripts/ensure_pinned_messages.py`
 3. `python scripts/post_daily_gaming_library.py`
 4. `python scripts/read_discord_channel.py`
-5. verification step(s)
+5. `python scripts/verify_discord_output.py`
 6. upload artifacts
 7. save state
 8. health monitor failure notification
@@ -223,7 +223,12 @@ Order must be:
 - `weekly-scheduling-bot.yml`
 
 ### Snapshot workflow requirements
-`scripts/read_discord_channel.py` must run after every posting workflow and before verification. Snapshot files must be uploaded as artifacts.
+`scripts/read_discord_channel.py` must run after every posting workflow and before verification. The following snapshot files must be uploaded as a single artifact named `discord-snapshots-{run_id}`:
+- `data/snapshot_step1.json`
+- `data/snapshot_step2.json`
+- `data/snapshot_step3.json`
+- `data/snapshot_schedule.json`
+- `data/snapshot_health.json`
 
 ## Step 3 Discord Commands
 
@@ -245,20 +250,22 @@ Processed command message IDs are tracked in `gaming_library.json` under `proces
 - `scripts/verify_discord_output.py` must verify Steps 1, 2, and 3.
 - Step 1 verification must include:
   - intro exists
+  - intro ends with the divider line ─────────────────────────────────────────
   - footer exists
-  - footer ends with End of Daily Picks
+  - footer ends with the exact line: ─────────────────── End of Daily Picks ───────────────────
   - intro does not contain Steam URLs
   - demo/playtest items are not older than 180 days
 - Step 2 verification must include:
   - intro exists
   - footer exists
-  - footer ends with End of Daily Winners
+  - footer ends with the exact line: ─────────────────── End of Daily Winners ───────────────────
   - intro does not contain Steam URLs
 - Step 3 verification must include:
   - intro exists
   - footer exists
-  - footer ends with End of Gaming Library
+  - footer ends with the exact line: ─────────────────── End of Gaming Library ───────────────────
   - intro contains either 📊 Today's Changes or No changes since yesterday
+  - delta summary is inside the intro message, not posted as a separate Discord message
   - game cards satisfy min_items rules from channel_specs.json
 
 ## Automation Loop
@@ -266,6 +273,7 @@ Processed command message IDs are tracked in `gaming_library.json` under `proces
 `auto-fix.yml` triggers automatically when any of these workflows complete: Steam Free Games, Daily Game Picks Winners, Gaming Library Daily Reminder, Gaming Library Sync, Weekly Scheduling Responses Sync. It fires a fix attempt when any relevant verification artifact reports pass: false or when the triggering workflow itself fails.
 
 - Claude Code is the fixer — it reads verification artifacts, Discord snapshot artifacts, and channel_specs.json to diagnose the root cause before making any change
+- `auto-fix.yml` must download Discord snapshot artifacts (`discord-snapshots-*`) before invoking Claude Code so Claude Code can read the actual Discord output
 - Fix branches are named fix/auto-fix-{workflow-run-id}-{attempt}
 - PRs are auto-merged when checks pass
 - Maximum 3 attempts; if all fail, an escalation alert is posted to xiann-gpt-bot-health-monitor
