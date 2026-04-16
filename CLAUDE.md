@@ -278,6 +278,10 @@ Processed command message IDs are tracked in `gaming_library.json` under `proces
 - PRs are auto-merged when checks pass
 - Maximum 3 attempts; if all fail, an escalation alert is posted to xiann-gpt-bot-health-monitor
 - Success notifications must be posted to the health monitor channel when an auto-fix succeeds
+- If the bot encounters a 403 Forbidden error when attempting to pin a message, it must NOT treat this as a code bug. Instead it must:
+  - Post a warning to `xiann-gpt-bot-health-monitor` explaining which channel is missing Manage Messages permission
+  - Continue execution without failing the workflow
+  - The auto-fix loop must NOT attempt to fix 403 permission errors via code changes
 
 ## Workflow Schedule (all times ET)
 
