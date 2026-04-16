@@ -607,6 +607,7 @@ def format_summary_message(
     responded_count: int,
     active_user_count: int,
     synced_at_utc: datetime,
+    missing_user_ids: list[str] | None = None,
 ) -> str:
     """Build a richer deterministic summary message from weekly summary data."""
     summary = week_summary.get("summary")
@@ -708,10 +709,16 @@ def format_summary_message(
         f"{missing_count} still missing*"
     )
     last_updated_line = format_summary_last_updated_line(synced_at_utc)
+    missing_mentions_line = ""
+    if missing_user_ids:
+        missing_mentions_line = "Missing: " + " ".join(
+            f"<@{uid}>" for uid in missing_user_ids
+        )
     lines = [
         f"📊 Availability Summary — {date_range}",
         "",
         response_status_line,
+        *([ missing_mentions_line ] if missing_mentions_line else []),
         last_updated_line,
         "",
         *chronological_day_lines,
@@ -1043,6 +1050,7 @@ def main() -> None:
                 responded_count=responded_active_user_count,
                 active_user_count=active_user_count,
                 synced_at_utc=effective_summary_synced_at_utc,
+                missing_user_ids=missing_user_ids,
             )
 
         week_outputs["summary_data_signature"] = current_summary_data_signature
