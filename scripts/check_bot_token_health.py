@@ -79,13 +79,23 @@ def main() -> None:
     if bot_token:
         tokens.append((bot_token, "DISCORD_BOT_TOKEN"))
     else:
-        print("SKIP: DISCORD_BOT_TOKEN is not set")
+        print("WARN: DISCORD_BOT_TOKEN is not set", file=sys.stderr)
+        _post_health_monitor_warning(
+            "⚠️ DISCORD_BOT_TOKEN is not set\n"
+            "The bot token secret is missing from this environment. "
+            "Daily picks and library posts will fail without it."
+        )
 
     scheduling_token = os.getenv("DISCORD_SCHEDULING_BOT_TOKEN", "")
     if scheduling_token:
         tokens.append((scheduling_token, "DISCORD_SCHEDULING_BOT_TOKEN"))
     else:
-        print("SKIP: DISCORD_SCHEDULING_BOT_TOKEN is not set")
+        print("WARN: DISCORD_SCHEDULING_BOT_TOKEN is not set", file=sys.stderr)
+        _post_health_monitor_warning(
+            "⚠️ DISCORD_SCHEDULING_BOT_TOKEN is not set\n"
+            "The scheduling bot token secret is missing from this environment. "
+            "Weekly scheduling posts will fail without it."
+        )
 
     for token, label in tokens:
         check_token(token, label)
