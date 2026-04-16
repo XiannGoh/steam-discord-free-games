@@ -17,6 +17,10 @@ on:
     # This runs at 13:00 UTC year-round: 9:00 AM in New York during EDT, 8:00 AM during EST.
     - cron: "0 13 * * *"
 
+concurrency:
+  group: daily-picks-state
+  cancel-in-progress: false
+
 permissions:
   contents: write
 
