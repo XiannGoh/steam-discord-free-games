@@ -2119,10 +2119,10 @@ _DAILY_INTRO_SECTION_LABELS = {
     "instagram": ("📸", "Instagram Picks"),
 }
 _DAILY_FOOTER_SECTION_LABELS = {
-    "demo_playtest": "Demos",
-    "free": "Free Picks",
-    "paid": "Paid",
-    "instagram": "Instagram",
+    "demo_playtest": "🎮 Demos",
+    "free": "🆓 Free",
+    "paid": "💰 Paid",
+    "instagram": "📸 Instagram",
 }
 
 
@@ -2158,7 +2158,8 @@ def build_daily_picks_intro_content(
             parts.append(f"{emoji} [{label}]({link})")
         if parts:
             lines.append("")
-            lines.append(" · ".join(parts))
+            for part in parts:
+                lines.append(part)
 
     lines.append("")
     lines.append(DAILY_INTRO_DIVIDER)
