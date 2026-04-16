@@ -108,6 +108,7 @@ jobs:
           git add seen_ids.json page_state.json instagram_seen.json
           if [ -f discord_daily_posts.json ]; then git add discord_daily_posts.json; fi
           if [ -f data/pinned_messages.json ]; then git add data/pinned_messages.json; fi
+          if [ -f instagram_fetch_summary.json ]; then git add instagram_fetch_summary.json; fi
 
           if ! git diff --cached --quiet; then
             git commit -m "Update bot state"

@@ -30,6 +30,7 @@ DISCORD_HEALTH_MONITOR_WEBHOOK_URL = os.getenv("DISCORD_HEALTH_MONITOR_WEBHOOK_U
 STATE_FILE = "seen_ids.json"
 PAGE_STATE_FILE = "page_state.json"
 INSTAGRAM_STATE_FILE = "instagram_seen.json"
+INSTAGRAM_FETCH_SUMMARY_FILE = "instagram_fetch_summary.json"
 DISCORD_DAILY_POSTS_FILE = "discord_daily_posts.json"
 DISCORD_DAILY_POSTS_RETENTION_DAYS = 30
 DAILY_DATE_OVERRIDE_ENV = "DAILY_DATE_UTC"
@@ -2663,7 +2664,10 @@ def fetch_instagram_posts():
 
     cutoff_utc = datetime.now(timezone.utc) - timedelta(days=INSTAGRAM_MAX_POST_AGE_DAYS)
 
+    creator_stats: Dict[str, Dict] = {}
+
     for username in INSTAGRAM_CREATORS:
+        creator_stats[username] = {"collected": 0, "skipped_seen": 0, "skipped_age": 0, "failed": False, "failure_reason": None}
         try:
             if username not in seen:
                 seen[username] = []
@@ -2711,6 +2715,10 @@ def fetch_instagram_posts():
 
             seen[username] = seen[username][-INSTAGRAM_SEEN_RETENTION_PER_CREATOR:]
 
+            creator_stats[username]["collected"] = count
+            creator_stats[username]["skipped_seen"] = skipped_seen
+            creator_stats[username]["skipped_age"] = skipped_age
+
             if count == 0:
                 print(
                     f"INSTAGRAM ZERO POSTS: @{username} returned 0 new posts "
@@ -2721,10 +2729,31 @@ def fetch_instagram_posts():
 
         except Exception as e:
             print(f"Instagram scrape failed for {username}: {e}")
+            creator_stats[username]["failed"] = True
+            creator_stats[username]["failure_reason"] = str(e)
             continue
 
     save_instagram_seen(seen)
-    print(f"Instagram posts found this run: {len(all_new_posts)}")
+    total_posts = len(all_new_posts)
+    total_skipped_seen = sum(s["skipped_seen"] for s in creator_stats.values())
+    creators_with_posts = sum(1 for s in creator_stats.values() if s["collected"] > 0)
+    failed_creators = [u for u, s in creator_stats.items() if s["failed"]]
+    print(f"Instagram posts found this run: {total_posts}")
+
+    fetch_summary = {
+        "run_at": datetime.now(timezone.utc).replace(microsecond=0).isoformat().replace("+00:00", "Z"),
+        "total_creators": len(INSTAGRAM_CREATORS),
+        "creators_with_posts": creators_with_posts,
+        "total_posts_collected": total_posts,
+        "total_skipped_seen": total_skipped_seen,
+        "failed_creators": failed_creators,
+        "creators": creator_stats,
+    }
+    try:
+        save_json_object_atomic(INSTAGRAM_FETCH_SUMMARY_FILE, fetch_summary)
+    except Exception as e:
+        print(f"WARN: could not save instagram_fetch_summary.json: {e}")
+
     return all_new_posts
     
 def load_daily_verification_artifact(path: str = DAILY_VERIFICATION_FILE) -> dict:

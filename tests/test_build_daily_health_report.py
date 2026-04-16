@@ -709,3 +709,46 @@ def test_scheduled_run_succeeded_renders_green():
         now_utc=now_utc,
     )
     assert lines[0].startswith("🟢"), f"Expected green for successful scheduled run: {lines[0]!r}"
+
+
+def test_instagram_summary_included_in_report(monkeypatch, tmp_path):
+    """Instagram Fetch section appears in the daily health report."""
+    fake_summary = tmp_path / "instagram_fetch_summary.json"
+    fake_summary.write_text(
+        '{"total_creators": 8, "creators_with_posts": 1, "total_posts_collected": 1, '
+        '"total_skipped_seen": 13, "failed_creators": [], "run_at": "2026-04-16T06:37:00Z"}',
+        encoding="utf-8",
+    )
+    monkeypatch.setattr(report, "INSTAGRAM_FETCH_SUMMARY_PATH", fake_summary)
+
+    lines = report.build_instagram_summary_lines()
+    rendered = "\n".join(lines)
+    assert "1 of 8 creators" in rendered
+    assert "Posts collected: 1" in rendered
+    assert "Skipped (already seen): 13" in rendered
+
+
+def test_instagram_summary_shows_failed_creators(monkeypatch, tmp_path):
+    """Failed creators are listed by name in the Instagram section."""
+    fake_summary = tmp_path / "instagram_fetch_summary.json"
+    fake_summary.write_text(
+        '{"total_creators": 8, "creators_with_posts": 0, "total_posts_collected": 0, '
+        '"total_skipped_seen": 0, "failed_creators": ["gemgamingnetwork", "cloudual"], '
+        '"run_at": "2026-04-16T06:37:00Z"}',
+        encoding="utf-8",
+    )
+    monkeypatch.setattr(report, "INSTAGRAM_FETCH_SUMMARY_PATH", fake_summary)
+
+    lines = report.build_instagram_summary_lines()
+    rendered = "\n".join(lines)
+    assert "@gemgamingnetwork" in rendered
+    assert "@cloudual" in rendered
+    assert "🔴" in rendered
+
+
+def test_instagram_summary_missing_file_shows_placeholder(monkeypatch, tmp_path):
+    """If the summary file does not exist, a placeholder is shown."""
+    monkeypatch.setattr(report, "INSTAGRAM_FETCH_SUMMARY_PATH", tmp_path / "nonexistent.json")
+
+    lines = report.build_instagram_summary_lines()
+    assert any("No Instagram" in line for line in lines)
