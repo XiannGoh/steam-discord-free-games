@@ -66,6 +66,24 @@ CATEGORY_ORDER = [
     CATEGORY_OTHER,
 ]
 
+LIBRARY_INTRO_DIVIDER = "─────────────────────────────────────────"
+LIBRARY_FOOTER_SEPARATOR = "─────────────────── End of Gaming Library ───────────────────"
+
+_LIBRARY_INTRO_SECTION_LABELS = {
+    CATEGORY_DEMO_PLAYTEST: ("🎮", "Demo & Playtest"),
+    CATEGORY_FREE_PICKS: ("🎮", "Free Picks"),
+    CATEGORY_PAID_PICKS: ("💰", "Paid Picks"),
+    CATEGORY_CREATOR_PICKS: ("📸", "Creator Picks"),
+    CATEGORY_OTHER: ("🎮", "Other"),
+}
+_LIBRARY_FOOTER_SECTION_LABELS = {
+    CATEGORY_DEMO_PLAYTEST: "Demo & Playtest",
+    CATEGORY_FREE_PICKS: "Free Picks",
+    CATEGORY_PAID_PICKS: "Paid",
+    CATEGORY_CREATOR_PICKS: "Creator",
+    CATEGORY_OTHER: "Other",
+}
+
 COMMAND_REFERENCE_MESSAGE = """\
 📋 Bot Commands — step-3-review-existing-games
 `!add @user GameName` — assign a player to a game
@@ -146,6 +164,11 @@ def _extract_game_name_from_caption(caption: str, steam_url: str) -> Optional[st
     return None
 
 
+def format_library_date(target_day_key: str) -> str:
+    d = datetime.fromisoformat(target_day_key).date()
+    return f"{d:%A, %B} {d.day}, {d:%Y}"
+
+
 def get_target_day_key() -> str:
     manual_day = (os.getenv(LIBRARY_DATE_OVERRIDE_ENV, "") or "").strip()
     if manual_day:
@@ -174,69 +197,87 @@ def load_discord_daily_posts(path: str = DISCORD_DAILY_POSTS_FILE) -> Dict[str, 
 
 
 def compute_daily_delta(state: Dict[str, Any]) -> str:
+    """Return formatted delta lines for embedding in the Step 3 intro message."""
     current_games = state.get("games", {})
     previous_games = state.get("previous_day_games", {})
 
-    new_games = []
-    status_changes = []
-    pending_items: List[str] = []
-
-    # Per-player game count: count assignments across all active (non-archived) games.
-    player_game_counts: Dict[str, int] = {}
+    lines: List[str] = []
 
     for key, game in current_games.items():
         if not isinstance(game, dict):
             continue
-        if game.get("archived"):
-            continue
-        curr_assignments = game.get("assignments", {})
         game_name = game.get("canonical_name", "Untitled")
-
-        # Count this game toward each assigned player.
-        for user_id in curr_assignments:
-            player_game_counts[user_id] = player_game_counts.get(user_id, 0) + 1
+        curr_assignments = game.get("assignments", {})
+        if not isinstance(curr_assignments, dict):
+            curr_assignments = {}
 
         if key not in previous_games:
-            new_games.append(game_name)
+            if not game.get("archived"):
+                category = classify_game_category(game)
+                section_label = CATEGORY_DISPLAY.get(category, "library")
+                section_clean = section_label.lstrip("🧪🎮💸📸 ")
+                lines.append(f"🆕 **{game_name}** added to {section_clean}")
         else:
-            prev_assignments = previous_games[key].get("assignments", {})
+            prev_game = previous_games[key]
+            if not isinstance(prev_game, dict):
+                prev_game = {}
+            prev_assignments = prev_game.get("assignments", {})
+            if not isinstance(prev_assignments, dict):
+                prev_assignments = {}
+
+            # Check if newly archived
+            if game.get("archived") and not prev_game.get("archived"):
+                lines.append(f"🗄️ **{game_name}** archived")
+                continue
+
+            if game.get("archived"):
+                continue
+
+            # Check if all active/paused players are now dropped
+            non_dropped_before = {
+                uid for uid, ass in prev_assignments.items()
+                if isinstance(ass, dict) and ass.get("status") in (STATUS_ACTIVE, STATUS_PAUSED)
+            }
+            all_now_dropped = bool(curr_assignments) and all(
+                isinstance(ass, dict) and ass.get("status") == STATUS_DROPPED
+                for ass in curr_assignments.values()
+            )
+            if non_dropped_before and all_now_dropped:
+                lines.append(f"❌ **{game_name}** dropped by all players")
+                continue
+
+            # Per-user status changes and new assignments
             for user_id, curr_ass in curr_assignments.items():
                 if not isinstance(curr_ass, dict):
                     continue
                 prev_ass = prev_assignments.get(user_id)
-                if isinstance(prev_ass, dict) and curr_ass.get("status") != prev_ass.get("status"):
-                    user_mention = f"<@{user_id}>"
-                    old_status = prev_ass.get("status", "unknown")
-                    new_status = curr_ass.get("status", "unknown")
-                    status_changes.append(f"{user_mention} changed {game_name}: {old_status} → {new_status}")
-                # Pending: assigned with active status but never updated (no reaction recorded yet).
-                if curr_ass.get("status") == STATUS_ACTIVE:
-                    updated = curr_ass.get("updated_at_utc")
-                    created = game.get("created_at_utc")
-                    if updated == created:
-                        pending_items.append(f"⏳ <@{user_id}> has not reacted on {game_name}")
+                if prev_ass is None:
+                    lines.append(f"👤 <@{user_id}> added to **{game_name}**")
+                elif isinstance(prev_ass, dict):
+                    prev_status = str(prev_ass.get("status") or "")
+                    curr_status = str(curr_ass.get("status") or "")
+                    if curr_status != prev_status:
+                        if curr_status == STATUS_ACTIVE:
+                            lines.append(f"✅ **{game_name}** marked active by <@{user_id}>")
+                        elif curr_status == STATUS_PAUSED:
+                            lines.append(f"⏸️ **{game_name}** paused by <@{user_id}>")
+                        elif curr_status == STATUS_DROPPED:
+                            lines.append(f"❌ **{game_name}** dropped by <@{user_id}>")
+                    # Pending: active but never reacted
+                    if curr_status == STATUS_ACTIVE:
+                        updated = curr_ass.get("updated_at_utc")
+                        created = game.get("created_at_utc")
+                        if updated == created:
+                            lines.append(f"⏳ <@{user_id}> has not reacted on {game_name}")
 
-    lines = []
+            # Check for users removed
+            for user_id in prev_assignments:
+                if user_id not in curr_assignments:
+                    lines.append(f"👤 <@{user_id}> removed from **{game_name}**")
 
-    # Per-player summary at the top.
-    if player_game_counts:
-        lines.append("👥 Players:")
-        for user_id, count in sorted(player_game_counts.items()):
-            lines.append(f"  • <@{user_id}> — {count} game{'s' if count != 1 else ''} assigned")
-
-    if new_games:
-        lines.append(f"🎉 {len(new_games)} Games added to library today (bookmarked from Step 2)")
-    if status_changes:
-        lines.append(f"🔄 {len(status_changes)} Status changes since yesterday:")
-        for change in status_changes[:5]:  # limit to 5
-            lines.append(f"  • {change}")
-    if pending_items:
-        for item in pending_items[:10]:  # limit to 10 to avoid message bloat
-            lines.append(item)
-    if not new_games and not status_changes and not pending_items:
-        lines.append("No changes since yesterday")
-
-    return "\n".join(lines)
+    if not lines:
+        return "• No changes since yesterday"
+    return "\n".join(f"- {line}" for line in lines[:15])
 
 
 def _extract_steam_app_id(url: str) -> Optional[str]:
@@ -284,6 +325,7 @@ def ensure_game_entry(
             "archived": archived,
             "created_at_utc": utc_now_iso(),
             "updated_at_utc": utc_now_iso(),
+            "last_activity_date": utc_now_iso()[:10],
         }
         games[identity_key] = game
     else:
@@ -311,6 +353,7 @@ def assign_user(game: Dict[str, Any], user_id: str, status: str = STATUS_ACTIVE)
     assignments = game.setdefault("assignments", {})
     assignments[str(user_id)] = {"status": status, "updated_at_utc": utc_now_iso()}
     game["updated_at_utc"] = utc_now_iso()
+    game["last_activity_date"] = utc_now_iso()[:10]
 
 
 def assign_user_if_changed(game: Dict[str, Any], user_id: str, status: str = STATUS_ACTIVE) -> bool:
@@ -326,6 +369,7 @@ def unassign_user(game: Dict[str, Any], user_id: str) -> None:
     assignments = game.setdefault("assignments", {})
     assignments.pop(str(user_id), None)
     game["updated_at_utc"] = utc_now_iso()
+    game["last_activity_date"] = utc_now_iso()[:10]
 
 
 def set_user_status(game: Dict[str, Any], user_id: str, status: str) -> None:
@@ -339,6 +383,7 @@ def set_user_status(game: Dict[str, Any], user_id: str, status: str) -> None:
     current["updated_at_utc"] = utc_now_iso()
     assignments[str(user_id)] = current
     game["updated_at_utc"] = utc_now_iso()
+    game["last_activity_date"] = utc_now_iso()[:10]
 
 
 def refresh_archive_state(game: Dict[str, Any]) -> None:
@@ -393,23 +438,47 @@ def build_library_footer(
     header_channel_id: str,
     header_message_id: str,
     guild_id: Optional[str],
+    channel_id: str = "",
+    posted_section_keys: Optional[Dict[str, str]] = None,
 ) -> str:
-    """Build a navigation footer string linking back to the header."""
-    base = (
-        f"📚 Gaming Library — {day_key}\n"
-        "React ✅ active · ⏸️ paused · ❌ dropped to update your status."
-    )
+    """Build the Step 3 footer: date+jump line followed by End separator."""
+    date_str = format_library_date(day_key)
     if not isinstance(guild_id, str) or not guild_id.strip() or not header_message_id:
-        return base
-    link = _discord_message_link(guild_id, header_channel_id, header_message_id)
-    return base + f"\n⟹ [Top of Post]({link})"
+        return f"📅 {date_str}\n{LIBRARY_FOOTER_SEPARATOR}"
+
+    link_parts: List[str] = []
+    if posted_section_keys and channel_id:
+        for category in CATEGORY_ORDER:
+            section_key = f"section:{category}"
+            msg_id = posted_section_keys.get(section_key)
+            if not msg_id:
+                continue
+            label = _LIBRARY_FOOTER_SECTION_LABELS.get(category, category)
+            link_parts.append(f"[{label}]({_discord_message_link(guild_id, channel_id, msg_id)})")
+
+    top_link = _discord_message_link(guild_id, header_channel_id, header_message_id)
+    link_parts.append(f"[⬆️ Top]({top_link})")
+
+    first_line = f"📅 {date_str} · Jump to: {' · '.join(link_parts)}"
+    return f"{first_line}\n{LIBRARY_FOOTER_SEPARATOR}"
 
 
-def build_library_header_placeholder(target_day_key: str) -> str:
-    return (
-        f"📚 Gaming Library — {target_day_key}\n"
-        "React on each game: ✅ active · ⏸️ paused · ❌ dropped"
-    )
+def build_library_header_placeholder(target_day_key: str, state: Optional[Dict[str, Any]] = None) -> str:
+    date_str = format_library_date(target_day_key)
+    lines = [
+        f"📚 Gaming Library — {date_str}",
+        "",
+        "React to each game: ✅ active · ⏸️ paused · ❌ dropped",
+    ]
+    delta_content = compute_daily_delta(state) if state is not None else "• No changes since yesterday"
+    lines += [
+        "",
+        LIBRARY_INTRO_DIVIDER,
+        "📊 Today's Changes",
+        delta_content,
+        LIBRARY_INTRO_DIVIDER,
+    ]
+    return "\n".join(lines)
 
 
 def build_library_navigation_header(
@@ -418,22 +487,39 @@ def build_library_navigation_header(
     guild_id: Optional[str],
     channel_id: str,
     posted_section_keys: Dict[str, str],
+    state: Optional[Dict[str, Any]] = None,
 ) -> str:
-    """Build header with jump links to each active category section."""
-    base = build_library_header_placeholder(target_day_key)
-    if not isinstance(guild_id, str) or not guild_id.strip():
-        return base
-    jump_parts = []
-    for category in CATEGORY_ORDER:
-        section_key = f"section:{category}"
-        msg_id = posted_section_keys.get(section_key)
-        if msg_id:
-            label = CATEGORY_DISPLAY[category]
+    """Build header with jump links, delta summary, and dividers."""
+    date_str = format_library_date(target_day_key)
+    lines = [
+        f"📚 Gaming Library — {date_str}",
+        "",
+        "React to each game: ✅ active · ⏸️ paused · ❌ dropped",
+    ]
+
+    if isinstance(guild_id, str) and guild_id.strip() and posted_section_keys:
+        parts = []
+        for category in CATEGORY_ORDER:
+            section_key = f"section:{category}"
+            msg_id = posted_section_keys.get(section_key)
+            if not msg_id:
+                continue
+            emoji, label = _LIBRARY_INTRO_SECTION_LABELS.get(category, ("🎮", category))
             link = _discord_message_link(guild_id, channel_id, msg_id)
-            jump_parts.append(f"⟹ [{label}]({link})")
-    if not jump_parts:
-        return base
-    return base + "\n" + " · ".join(jump_parts)
+            parts.append(f"{emoji} [{label}]({link})")
+        if parts:
+            lines.append("")
+            lines.append(" · ".join(parts))
+
+    delta_content = compute_daily_delta(state) if state is not None else "• No changes since yesterday"
+    lines += [
+        "",
+        LIBRARY_INTRO_DIVIDER,
+        "📊 Today's Changes",
+        delta_content,
+        LIBRARY_INTRO_DIVIDER,
+    ]
+    return "\n".join(lines)
 
 
 def build_daily_library_messages(state: Dict[str, Any], target_day_key: str) -> List[Dict[str, str]]:
@@ -450,10 +536,20 @@ def build_daily_library_messages(state: Dict[str, Any], target_day_key: str) -> 
     messages: List[Dict[str, str]] = []
 
     # Header placeholder (will be edited after sections are posted)
-    messages.append({"type": "header", "content": build_library_header_placeholder(target_day_key)})
+    messages.append({"type": "header", "content": build_library_header_placeholder(target_day_key, state)})
 
     if not visible_games:
-        messages[0]["content"] = f"📚 Gaming Library — {target_day_key}\n\n_No active library games for today._"
+        delta_content = compute_daily_delta(state)
+        messages[0]["content"] = "\n".join([
+            f"📚 Gaming Library — {format_library_date(target_day_key)}",
+            "",
+            "_No active library games for today._",
+            "",
+            LIBRARY_INTRO_DIVIDER,
+            "📊 Today's Changes",
+            delta_content,
+            LIBRARY_INTRO_DIVIDER,
+        ])
     else:
         for category in active_categories:
             section_label = CATEGORY_DISPLAY[category]
@@ -469,6 +565,13 @@ def build_daily_library_messages(state: Dict[str, Any], target_day_key: str) -> 
                 url = str(game.get("url") or "").strip()
                 if url:
                     lines.append(_suppress_steam_url(url))
+                last_act = game.get("last_activity_date")
+                if last_act:
+                    try:
+                        d = datetime.fromisoformat(last_act).date()
+                        lines.append(f"Last activity: {d:%b} {d.day}, {d:%Y}")
+                    except (ValueError, AttributeError):
+                        pass
                 lines.append("Players:")
                 visible_assignments = game.get("visible_assignments", {})
                 conflict_users = game.get("conflicting_users", [])
@@ -482,10 +585,6 @@ def build_daily_library_messages(state: Dict[str, Any], target_day_key: str) -> 
                 for user_id in conflict_users:
                     lines.append(f"- ⚠️ <@{user_id}> — conflicting reactions, defaulted to Active")
                 messages.append({"type": "game", "identity_key": game["identity_key"], "content": "\n".join(lines)})
-
-    # Add delta summary
-    delta_content = compute_daily_delta(state)
-    messages.append({"type": "delta", "content": f"📊 Daily Delta Summary\n\n{delta_content}"})
 
     return messages
 
@@ -565,6 +664,7 @@ def post_daily_library_reminder(
             guild_id=DISCORD_GUILD_ID,
             channel_id=header_ch_id,
             posted_section_keys=posted_section_keys,
+            state=state,
         )
         client.edit_message(header_ch_id, header_msg_id, nav_header, context=f"update gaming library header with jump links for {day_key}")
 
@@ -574,6 +674,8 @@ def post_daily_library_reminder(
         header_channel_id=header_ch_id,
         header_message_id=header_msg_id,
         guild_id=DISCORD_GUILD_ID,
+        channel_id=channel_id,
+        posted_section_keys=posted_section_keys,
     )
     footer_payload, _ = _post_or_edit_message(
         client,
