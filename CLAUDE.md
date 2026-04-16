@@ -1,13 +1,14 @@
 # Repo Rules
 
 - Always review recent merged PRs before making changes.
-- Prefer patterns already used in the repo over inventing new ones.
+- Prefer patterns already used in the repo unless a newer explicit rule in this file supersedes an older pattern.
 - Never create duplicate Discord messages if an existing message can be reused or edited.
 - Preserve idempotency and same-day rerun safety.
+- Re-triggers for the same day must edit or reuse existing messages. They must never post new intro, footer, or item messages alongside already-tracked messages for the same logical post.
 - Run targeted tests before suggesting a change.
 - Prefer editing existing messages over recreating them.
 - For Discord workflow changes, always preserve:
-  - intro message
+  - exactly one intro message per day per channel post
   - section headers
   - one message per item
   - footer
@@ -35,8 +36,126 @@
 - **DLC hard exclusion** — items detected as DLC are always excluded, no exceptions.
 - **Instagram 7-day filter** — posts older than 7 days (`INSTAGRAM_MAX_POST_AGE_DAYS = 7`) are skipped during Instagram fetch. Posts are newest-first; stop iterating when a post exceeds the cutoff.
 - **Steam URL embed suppression** — all Steam store URLs in Discord messages must be wrapped in `<>` (e.g. `<https://store.steampowered.com/app/123/>`). Use `_suppress_steam_url()` from `gaming_library.py`.
-- **ET timestamps** — all human-readable timestamps in Discord messages must use `format_et_timestamp()` from `state_utils.py`. Format: `Dec 15, 2024 at 7:00 AM ET`.
+- **ET time formatting** — all human-readable timestamps in Discord messages that include time must use `format_et_timestamp()` from `state_utils.py`. Format: `Dec 15, 2024 at 7:00 AM ET`.
+- **Full-date header formatting** — daily intro and footer messages that show only a date must use a full date string such as `Wednesday, April 15, 2026`. Use a dedicated helper function for this — do not use `format_et_timestamp()` for date-only strings.
 - **Demo/playtest source gating** — paid games that mention "demo" or "playtest" in title/text are excluded (`detect_item_type()` in `main.py`). Free items pass through.
+- **Demo/playtest freshness cutoff** — demo and playtest items in Step 1 must be excluded if their release date is older than 180 days.
+- **Demo/playtest review hard exclusion** — demo and playtest items must be excluded if their review sentiment is one of: Overwhelmingly Negative, Very Negative, Mostly Negative, Negative. Reuse `HARD_EXCLUDE_REVIEW_SENTIMENTS` where possible.
+- **Instagram unavailable-title filtering** — Instagram picks must be excluded if the caption indicates the item is not yet available, including phrases such as: coming soon, not yet available, wishlist now, Coming 2025, Coming 2026, Coming 2027.
+
+## Discord Message Format Rules
+
+### Step 1 — `step-1-vote-on-games-to-test`
+
+- Step 1 must have a single unified intro message.
+- The old separate Step 1 `header` + `intro` pattern is obsolete.
+- The old `header` state key must be renamed to `intro`.
+- The separate one-line intro message must be removed.
+- The Step 1 intro must be posted once, then edited in place after section links are known.
+- Same-day reruns must edit or reuse the existing Step 1 intro and footer instead of creating new ones.
+
+Required Step 1 intro format:
+
+```
+📅 Daily Picks — Wednesday, April 15, 2026
+
+Vote 👍 on anything you want to try. Top picks move to Step 2.
+
+🆓 [Free Picks](...)
+🎮 [Demos & Playtests](...)
+💰 [Paid Under $20](...)
+📸 [Instagram Picks](...)
+
+─────────────────────────────────────────
+```
+
+Placeholder version before all sections are posted:
+
+```
+📅 Daily Picks — Wednesday, April 15, 2026
+
+Vote 👍 on anything you want to try. Top picks move to Step 2.
+
+Loading sections...
+
+─────────────────────────────────────────
+```
+
+Rules:
+- Exactly one voting instruction line
+- Jump links must be vertical, one per line
+- Only include section links for sections that actually have content that day
+- The divider line must be the last line of the intro
+- The Step 1 intro content must not contain Steam item card content
+
+Required Step 1 footer format:
+
+```
+📅 Wednesday, April 15, 2026 · Jump to: 🆓 Free · 🎮 Demos · 💰 Paid · 📸 Instagram · ⬆️ Top
+─────────────────── End of Daily Picks ───────────────────
+```
+
+Rules:
+- Footer must be lean and must not duplicate the intro body
+- Only include sections that actually exist that day
+- Must include a Top jump link to the intro message
+- Must end with End of Daily Picks
+
+### Step 2 — `step-2-test-then-vote-to-keep`
+
+- Step 2 footer must be lean and must not be a copy of the header or intro.
+- Same-day reruns must edit or reuse the existing Step 2 intro and footer instead of creating new ones.
+
+Required Step 2 footer format:
+
+```
+📅 Wednesday, April 15, 2026 · Jump to: 🆓 Free · 🎮 Demo & Playtest · 💰 Paid · 📸 Creator · ⬆️ Top
+─────────────────── End of Daily Winners ───────────────────
+```
+
+Rules:
+- First line contains date and jump links
+- Second line contains only the end separator
+- Must include a Top jump link to the intro message
+- Only include sections that actually have winners that day
+- Must end with End of Daily Winners
+
+### Step 3 — `step-3-review-existing-games`
+
+- Step 3 intro must use a full date format.
+- The daily delta summary must be inside the intro message, not as a separate message.
+- Step 3 must have a footer.
+- Same-day reruns must edit or reuse the existing Step 3 intro and footer instead of creating new ones.
+
+Required Step 3 intro format:
+
+```
+📚 Gaming Library — Wednesday, April 15, 2026
+React on each game: ✅ active · ⏸️ paused · ❌ dropped
+...jump links if present...
+
+─────────────────────────────────────────
+📊 Today's Changes
+- ...
+- ...
+─────────────────────────────────────────
+```
+
+If there are no changes, the delta block must contain:
+```
+• No changes since yesterday
+```
+
+Required Step 3 footer format:
+
+```
+📅 Wednesday, April 15, 2026 · Jump to: 🎮 Demo & Playtest · 💰 Paid · 📸 Creator · ⬆️ Top
+─────────────────── End of Gaming Library ───────────────────
+```
+
+Rules:
+- Footer must include Top jump link to the intro message
+- Must end with End of Gaming Library
 
 ## System Architecture
 
@@ -49,6 +168,62 @@ This repo runs a 5-channel Discord pipeline for multiplayer game discovery. Each
 - `xiann-gpt-bot-health-monitor` — workflow health, verification results, and escalation alerts
 
 `channel_specs.json` at the repo root defines the correct output spec for each channel (required fields, reactions, failure conditions). Always read it before diagnosing or fixing any Discord-related issue.
+
+## Workflow Execution Order Rules
+
+### `daily.yml`
+Order must be:
+1. install packages
+2. `scripts/ensure_pinned_messages.py`
+3. `python main.py`
+4. `python scripts/read_discord_channel.py`
+5. `python scripts/verify_discord_output.py`
+6. upload artifacts
+7. save state
+8. health monitor failure notification
+
+### `evening-winners.yml`
+Order must be:
+1. install packages
+2. `scripts/ensure_pinned_messages.py`
+3. `python evening_winners.py`
+4. `python scripts/read_discord_channel.py`
+5. verification step(s)
+6. upload artifacts
+7. save state
+8. health monitor failure notification
+
+### `gaming-library-daily.yml`
+Order must be:
+1. install packages
+2. `scripts/ensure_pinned_messages.py`
+3. `python scripts/post_daily_gaming_library.py`
+4. `python scripts/read_discord_channel.py`
+5. verification step(s)
+6. upload artifacts
+7. save state
+8. health monitor failure notification
+
+### `weekly-scheduling-bot.yml`
+Order must be:
+1. install packages
+2. `scripts/ensure_pinned_messages.py`
+3. `python scripts/post_weekly_availability.py`
+4. `python scripts/read_discord_channel.py`
+5. `python scripts/verify_weekly_schedule.py`
+6. upload artifacts
+7. save state
+8. health monitor failure notification
+
+### Pinned-message workflow requirements
+`scripts/ensure_pinned_messages.py` must run at the start of:
+- `daily.yml`
+- `evening-winners.yml`
+- `gaming-library-daily.yml`
+- `weekly-scheduling-bot.yml`
+
+### Snapshot workflow requirements
+`scripts/read_discord_channel.py` must run after every posting workflow and before verification. Snapshot files must be uploaded as artifacts.
 
 ## Step 3 Discord Commands
 
@@ -65,14 +240,36 @@ Players can type commands in `step-3-review-existing-games`. Commands are proces
 
 Processed command message IDs are tracked in `gaming_library.json` under `processed_command_ids` to prevent reprocessing. The pinned command reference message is tracked under `command_reference_message`.
 
+## Verification Rules
+
+- `scripts/verify_discord_output.py` must verify Steps 1, 2, and 3.
+- Step 1 verification must include:
+  - intro exists
+  - footer exists
+  - footer ends with End of Daily Picks
+  - intro does not contain Steam URLs
+  - demo/playtest items are not older than 180 days
+- Step 2 verification must include:
+  - intro exists
+  - footer exists
+  - footer ends with End of Daily Winners
+  - intro does not contain Steam URLs
+- Step 3 verification must include:
+  - intro exists
+  - footer exists
+  - footer ends with End of Gaming Library
+  - intro contains either 📊 Today's Changes or No changes since yesterday
+  - game cards satisfy min_items rules from channel_specs.json
+
 ## Automation Loop
 
-`auto-fix.yml` triggers automatically when any of these workflows complete: **Steam Free Games**, **Daily Game Picks Winners**, **Gaming Library Daily Reminder**. It fires a fix attempt when either `daily_verification.json` or `discord_verification.json` reports `pass: false`.
+`auto-fix.yml` triggers automatically when any of these workflows complete: Steam Free Games, Daily Game Picks Winners, Gaming Library Daily Reminder, Gaming Library Sync, Weekly Scheduling Responses Sync. It fires a fix attempt when any relevant verification artifact reports pass: false or when the triggering workflow itself fails.
 
-- Claude Code is the fixer — it reads both verification artifacts and `channel_specs.json` to diagnose the root cause before making any change
-- Fix branches are named `fix/auto-fix-{workflow-run-id}-{attempt}` (e.g. `fix/auto-fix-12345678-1`)
+- Claude Code is the fixer — it reads verification artifacts, Discord snapshot artifacts, and channel_specs.json to diagnose the root cause before making any change
+- Fix branches are named fix/auto-fix-{workflow-run-id}-{attempt}
 - PRs are auto-merged when checks pass
-- Maximum 3 attempts; if all fail, an escalation alert is posted to `xiann-gpt-bot-health-monitor`
+- Maximum 3 attempts; if all fail, an escalation alert is posted to xiann-gpt-bot-health-monitor
+- Success notifications must be posted to the health monitor channel when an auto-fix succeeds
 
 ## Workflow Schedule (all times ET)
 
@@ -89,37 +286,48 @@ Processed command message IDs are tracked in `gaming_library.json` under `proces
 | `watchdog.yml` | Missed-Run Watchdog | Every hour |
 | `auto-fix.yml` | Auto-Fix | Triggered by workflow_run |
 
-Every workflow has a `Notify Discord health monitor on failure` step that posts to `DISCORD_HEALTH_MONITOR_WEBHOOK_URL` on failure.
+Every workflow has a Notify Discord health monitor on failure step that posts to DISCORD_HEALTH_MONITOR_WEBHOOK_URL on failure.
 
 ## Key Files
 
 | File | Purpose |
 |------|---------|
 | `main.py` | Step 1 — Steam scraping, scoring model, demo/playtest/VR detection, Instagram fetch |
-| `evening_winners.py` | Step 2 — winners channel management with header/footer jump links |
+| `evening_winners.py` | Step 2 — winners channel management with footer jump links |
 | `gaming_library.py` | Step 3 — library state, daily post, Discord command processing, sync |
-| `state_utils.py` | Shared helpers: atomic JSON writes, `format_et_timestamp()`, prune utilities |
+| `state_utils.py` | Shared helpers: atomic JSON writes, ET timestamp helpers, prune utilities |
 | `discord_api.py` | Discord REST client — post, edit, react, pin, get channel messages |
 | `daily_section_config.py` | Section definitions for Step 1 daily post categories |
 | `channel_specs.json` | Per-channel correctness spec — required fields, reactions, and failure conditions |
-| `daily_verification.json` | Runtime artifact from `main.py` — structural checks on what was posted |
-| `discord_verification.json` | Runtime artifact from `scripts/verify_discord_output.py` — live Discord read-back checks |
+| `daily_verification.json` | Runtime artifact from main.py — structural checks on what was posted |
+| `discord_verification.json` | Runtime artifact from scripts/verify_discord_output.py — live Discord read-back checks |
 | `discord_daily_posts.json` | Message ID state store — maps each day's posts to their Discord message and channel IDs |
-| `gaming_library.json` | Library state — persistent backlog of games tracked in `step-3-review-existing-games` |
+| `gaming_library.json` | Library state — persistent backlog of games tracked in step-3-review-existing-games |
 | `seen_ids.json` | Deduplication store for Step 1 Steam items |
 | `instagram_seen.json` | Deduplication store for Instagram posts |
 | `page_state.json` | Pagination state for Steam free games scraper |
-| `state_sanity.json` | Output of `scripts/check_state_sanity.py` — cross-file consistency checks |
+| `state_sanity.json` | Output of scripts/check_state_sanity.py — cross-file state consistency checks |
+| `data/pinned_messages.json` | Pinned-message state store by channel slug |
+| `data/instagram_fetch_summary.json` | Instagram fetch summary state |
+| `data/snapshot_step1.json` | Discord snapshot artifact for Step 1 |
+| `data/snapshot_step2.json` | Discord snapshot artifact for Step 2 |
+| `data/snapshot_step3.json` | Discord snapshot artifact for Step 3 |
+| `data/snapshot_schedule.json` | Discord snapshot artifact for weekly scheduling |
+| `data/snapshot_health.json` | Discord snapshot artifact for health monitor |
+| `data/health_monitor_log.json` | Failure tracking database for recursive self-healing loop |
 
 ## Key Scripts
 
 | Script | Purpose |
 |--------|---------|
 | `scripts/sync_gaming_library.py` | Syncs Step 2 bookmarks → Step 3 library, reads reactions, processes !commands |
-| `scripts/post_daily_gaming_library.py` | Posts daily Step 3 library reminder with category grouping and jump links |
+| `scripts/post_daily_gaming_library.py` | Posts daily Step 3 library reminder with intro/footer and embedded delta summary |
 | `scripts/build_daily_health_report.py` | Builds the bot health report with workflow schedule diagnostics |
 | `scripts/build_daily_briefing.py` | Builds the daily system briefing with 24h run summary |
-| `scripts/verify_discord_output.py` | Live Discord read-back verification against `channel_specs.json` |
-| `scripts/verify_gaming_library.py` | Structural verification of `gaming_library.json` |
+| `scripts/verify_discord_output.py` | Live Discord read-back verification against channel_specs.json for Steps 1, 2, and 3 |
+| `scripts/verify_gaming_library.py` | Structural verification of gaming_library.json |
 | `scripts/check_state_sanity.py` | Cross-file state consistency checks |
 | `scripts/manage_gaming_library.py` | CLI tool for manual library operations |
+| `scripts/read_discord_channel.py` | Reads Discord channels and writes snapshot artifacts for all 5 channels |
+| `scripts/ensure_pinned_messages.py` | Ensures pinned how-it-works messages exist and are updated in all channels |
+| `scripts/update_health_log.py` | Reads and writes the failure tracking database for the health monitor loop |
