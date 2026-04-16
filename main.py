@@ -612,7 +612,7 @@ def extract_appids_from_html(html: str, from_search_results: bool = False) -> Li
     return result
 
 
-def collect_steam_free_candidates(start_page: int, end_page: int) -> List[Tuple[str, str]]:
+def collect_steam_free_candidates(start_page: int, end_page: int, scraping_stats: Optional[dict] = None) -> List[Tuple[str, str]]:
     results = []
     seen = set()
 
@@ -620,7 +620,11 @@ def collect_steam_free_candidates(start_page: int, end_page: int) -> List[Tuple[
         url = STEAM_FREE_SEARCH_URL.format(page)
         html = safe_fetch_html(url)
         if not html:
+            if scraping_stats is not None:
+                scraping_stats["fail"] = scraping_stats.get("fail", 0) + 1
             continue
+        if scraping_stats is not None:
+            scraping_stats["ok"] = scraping_stats.get("ok", 0) + 1
 
         page_ids = extract_appids_from_html(html, from_search_results=True)
         print(f"FREE PAGE {page}: extracted {len(page_ids)} app ids")
@@ -636,7 +640,7 @@ def collect_steam_free_candidates(start_page: int, end_page: int) -> List[Tuple[
     return results
 
 
-def collect_steam_demo_candidates(start_page: int, end_page: int) -> List[Tuple[str, str]]:
+def collect_steam_demo_candidates(start_page: int, end_page: int, scraping_stats: Optional[dict] = None) -> List[Tuple[str, str]]:
     results = []
     seen = set()
 
@@ -644,7 +648,11 @@ def collect_steam_demo_candidates(start_page: int, end_page: int) -> List[Tuple[
         url = STEAM_DEMO_SEARCH_URL.format(page)
         html = safe_fetch_html(url)
         if not html:
+            if scraping_stats is not None:
+                scraping_stats["fail"] = scraping_stats.get("fail", 0) + 1
             continue
+        if scraping_stats is not None:
+            scraping_stats["ok"] = scraping_stats.get("ok", 0) + 1
 
         page_ids = extract_appids_from_html(html, from_search_results=True)
         print(f"DEMO PAGE {page}: extracted {len(page_ids)} app ids")
@@ -660,7 +668,7 @@ def collect_steam_demo_candidates(start_page: int, end_page: int) -> List[Tuple[
     return results
 
 
-def collect_paid_candidates(start_page: int, end_page: int) -> List[Tuple[str, str]]:
+def collect_paid_candidates(start_page: int, end_page: int, scraping_stats: Optional[dict] = None) -> List[Tuple[str, str]]:
     results = []
     seen = set()
 
@@ -668,7 +676,11 @@ def collect_paid_candidates(start_page: int, end_page: int) -> List[Tuple[str, s
         url = STEAM_TOPSELLERS_URL.format(page)
         html = safe_fetch_html(url)
         if not html:
+            if scraping_stats is not None:
+                scraping_stats["fail"] = scraping_stats.get("fail", 0) + 1
             continue
+        if scraping_stats is not None:
+            scraping_stats["ok"] = scraping_stats.get("ok", 0) + 1
 
         page_ids = extract_appids_from_html(html, from_search_results=True)
         print(f"PAID PAGE {page}: extracted {len(page_ids)} app ids")
@@ -1298,6 +1310,9 @@ def export_verification_artifact(
     rerun_protection_active: bool,
     verification_state: Optional[dict] = None,
     path: str = DAILY_VERIFICATION_FILE,
+    pages_fetched_successfully: int = 0,
+    pages_failed: int = 0,
+    scraping_status: str = "ok",
 ) -> None:
     """Write a JSON verification artifact summarizing the daily workflow run outcome."""
     vs = verification_state or {}
@@ -1365,6 +1380,9 @@ def export_verification_artifact(
         "posted_section_keys": posted_section_keys,
         "pass": passes,
         "generated_at_utc": utc_now_iso(),
+        "pages_fetched_successfully": pages_fetched_successfully,
+        "pages_failed": pages_failed,
+        "scraping_status": scraping_status,
     }
     try:
         with open(path, "w", encoding="utf-8") as f:
@@ -2837,15 +2855,37 @@ def run_daily_workflow(*, force_refresh_same_day: bool = False, manual_run: bool
     start_page, end_page = get_page_window()
     print(f"Current rotating page window: {start_page}-{end_page}")
 
+    scraping_stats: dict = {"ok": 0, "fail": 0}
     free_candidates = (
-        collect_steam_free_candidates(start_page, end_page) +
-        collect_steam_demo_candidates(start_page, end_page) +
+        collect_steam_free_candidates(start_page, end_page, scraping_stats) +
+        collect_steam_demo_candidates(start_page, end_page, scraping_stats) +
         collect_steamdb_promo_candidates()
     )
     free_candidates = dedupe_by_app_id(free_candidates)
 
-    paid_candidates = collect_paid_candidates(start_page, end_page)
+    paid_candidates = collect_paid_candidates(start_page, end_page, scraping_stats)
     paid_candidates = dedupe_by_app_id(paid_candidates)
+
+    pages_ok = scraping_stats.get("ok", 0)
+    pages_fail = scraping_stats.get("fail", 0)
+    total_pages = pages_ok + pages_fail
+    if total_pages == 0 or pages_fail == 0:
+        scraping_status = "ok"
+    elif pages_ok == 0:
+        scraping_status = "broken"
+    else:
+        scraping_status = "degraded"
+
+    if scraping_status == "broken":
+        _notify_health_monitor(
+            f"🔴 Steam scraping is broken — all {pages_fail} page(s) failed to fetch. "
+            "Check Steam connectivity and scraper URLs."
+        )
+    elif scraping_status == "degraded":
+        _notify_health_monitor(
+            f"⚠️ Steam scraping is degraded — {pages_fail} of {total_pages} page(s) failed. "
+            "Some candidates may be missing."
+        )
 
     print(f"Free candidates collected: {len(free_candidates)}")
     print(f"Paid candidates collected: {len(paid_candidates)}")
@@ -3095,6 +3135,9 @@ def run_daily_workflow(*, force_refresh_same_day: bool = False, manual_run: bool
         run_counts=run_counts,
         rerun_protection_active=rerun_protection_active,
         verification_state=verification_state,
+        pages_fetched_successfully=pages_ok,
+        pages_failed=pages_fail,
+        scraping_status=scraping_status,
     )
 
     next_start_page = get_next_start_page(start_page)
