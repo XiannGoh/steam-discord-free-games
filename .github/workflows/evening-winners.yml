@@ -95,6 +95,14 @@ jobs:
           WINNERS_DATE_UTC: ${{ inputs.winners_date_utc }}
         run: python scripts/verify_discord_output.py
 
+      - name: Upload Discord verification artifact
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: discord-verification-${{ github.run_id }}
+          path: discord_verification.json
+          if-no-files-found: ignore
+
       - name: Save updated winners state
         run: |
           git config user.name "github-actions[bot]"
