@@ -1583,6 +1583,39 @@ class TestStep1IntroFooterFormatting:
         footer = posted[-1]
         assert "⬆️ Top" in footer
 
+    def test_intro_jump_links_are_vertical_not_horizontal(self, monkeypatch, tmp_path):
+        items = {
+            "demo_playtest": [{"title": "D", "url": "https://store.steampowered.com/app/1", "score": 9}],
+            "free": [{"title": "G", "url": "https://store.steampowered.com/app/2", "score": 9}],
+        }
+        posted, fake_client = self._run_post(monkeypatch, tmp_path, items)
+        edited_intro = fake_client.edits[0][2]
+        assert " · " not in edited_intro, "Jump links must be vertical, not joined with ' · '"
+
+    def test_intro_each_section_link_on_own_line(self, monkeypatch, tmp_path):
+        items = {
+            "demo_playtest": [{"title": "D", "url": "https://store.steampowered.com/app/1", "score": 9}],
+            "free": [{"title": "G", "url": "https://store.steampowered.com/app/2", "score": 9}],
+            "paid": [{"title": "P", "url": "https://store.steampowered.com/app/3", "score": 8, "price": "$9.99"}],
+        }
+        posted, fake_client = self._run_post(monkeypatch, tmp_path, items)
+        edited_intro = fake_client.edits[0][2]
+        intro_lines = edited_intro.split("\n")
+        link_lines = [line for line in intro_lines if "](https://discord.com/" in line]
+        assert len(link_lines) == 3, f"Expected 3 link lines, got {len(link_lines)}: {link_lines}"
+
+    def test_footer_section_labels_include_emojis(self, monkeypatch, tmp_path):
+        items = {
+            "demo_playtest": [{"title": "D", "url": "https://store.steampowered.com/app/1", "score": 9}],
+            "free": [{"title": "G", "url": "https://store.steampowered.com/app/2", "score": 9}],
+            "paid": [{"title": "P", "url": "https://store.steampowered.com/app/3", "score": 8, "price": "$9.99"}],
+        }
+        posted, _ = self._run_post(monkeypatch, tmp_path, items)
+        footer = posted[-1]
+        assert "🎮 Demos" in footer
+        assert "🆓 Free" in footer
+        assert "💰 Paid" in footer
+
 
 class TestScrapingHealthCheck:
     def test_all_pages_fail_yields_broken_status(self):
