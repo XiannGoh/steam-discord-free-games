@@ -1,0 +1,66 @@
+{
+  "run_at": "2026-04-16T19:04:46Z",
+  "total_creators": 8,
+  "creators_with_posts": 1,
+  "total_posts_collected": 1,
+  "total_skipped_seen": 28,
+  "failed_creators": [],
+  "creators": {
+    "gemgamingnetwork": {
+      "collected": 0,
+      "skipped_seen": 0,
+      "skipped_age": 1,
+      "failed": false,
+      "failure_reason": null
+    },
+    "cloudual": {
+      "collected": 0,
+      "skipped_seen": 0,
+      "skipped_age": 1,
+      "failed": false,
+      "failure_reason": null
+    },
+    "mildsoss_official": {
+      "collected": 0,
+      "skipped_seen": 0,
+      "skipped_age": 1,
+      "failed": false,
+      "failure_reason": null
+    },
+    "sharedxp_official": {
+      "collected": 1,
+      "skipped_seen": 13,
+      "skipped_age": 1,
+      "failed": false,
+      "failure_reason": null
+    },
+    "wilfratgaming": {
+      "collected": 0,
+      "skipped_seen": 6,
+      "skipped_age": 1,
+      "failed": false,
+      "failure_reason": null
+    },
+    "indiegamespotlights": {
+      "collected": 0,
+      "skipped_seen": 0,
+      "skipped_age": 1,
+      "failed": false,
+      "failure_reason": null
+    },
+    "biffmatictv": {
+      "collected": 0,
+      "skipped_seen": 5,
+      "skipped_age": 1,
+      "failed": false,
+      "failure_reason": null
+    },
+    "itzjaysasa": {
+      "collected": 0,
+      "skipped_seen": 4,
+      "skipped_age": 1,
+      "failed": false,
+      "failure_reason": null
+    }
+  }
+}
