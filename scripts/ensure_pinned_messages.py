@@ -96,6 +96,15 @@ CHANNEL_ENV_MAP: dict[str, str] = {
     "step-5": "DISCORD_HEALTH_MONITOR_CHANNEL_ID",
 }
 
+# Map of (channel_slug → token_env_var_name) — step-4 uses the scheduling bot token
+CHANNEL_TOKEN_MAP: dict[str, str] = {
+    "step-1": "DISCORD_BOT_TOKEN",
+    "step-2": "DISCORD_BOT_TOKEN",
+    "step-3": "DISCORD_BOT_TOKEN",
+    "step-4": "DISCORD_SCHEDULING_BOT_TOKEN",
+    "step-5": "DISCORD_BOT_TOKEN",
+}
+
 
 def _require_bot_token() -> str:
     token = os.getenv("DISCORD_BOT_TOKEN", "").strip()
@@ -103,6 +112,19 @@ def _require_bot_token() -> str:
         print("ERROR: DISCORD_BOT_TOKEN is not set", file=sys.stderr)
         sys.exit(1)
     return token
+
+
+def _make_client(token: str) -> DiscordClient:
+    """Create a new DiscordClient authenticated with the given bot token."""
+    session = requests.Session()
+    session.headers.update(
+        {
+            "Authorization": f"Bot {token}",
+            "Content-Type": "application/json",
+            "User-Agent": USER_AGENT,
+        }
+    )
+    return DiscordClient(session)
 
 
 def _try_get_message(client: DiscordClient, channel_id: str, message_id: str, slug: str) -> bool:
@@ -117,28 +139,43 @@ def _try_get_message(client: DiscordClient, channel_id: str, message_id: str, sl
         return False
 
 
-def ensure_pinned_messages(client: DiscordClient, state: dict) -> dict:
-    """Process all configured channels. Returns updated state dict."""
+def ensure_pinned_messages(
+    client: DiscordClient,
+    state: dict,
+    *,
+    scheduling_client: "DiscordClient | None" = None,
+) -> dict:
+    """Process all configured channels. Returns updated state dict.
+
+    ``scheduling_client`` is used for the step-4 scheduling channel when provided.
+    If omitted, ``client`` is used for all channels (backward-compatible fallback).
+    """
     for slug, env_var in CHANNEL_ENV_MAP.items():
         channel_id = os.getenv(env_var, "").strip()
         if not channel_id:
             continue
 
+        active_client = (
+            scheduling_client
+            if slug == "step-4" and scheduling_client is not None
+            else client
+        )
+
         content = PINNED_CONTENT[slug]
         existing_id = state.get(slug, {}).get("message_id", "")
 
-        if existing_id and _try_get_message(client, channel_id, existing_id, slug):
-            client.edit_message(channel_id, existing_id, content, context=f"edit pinned {slug}")
+        if existing_id and _try_get_message(active_client, channel_id, existing_id, slug):
+            active_client.edit_message(channel_id, existing_id, content, context=f"edit pinned {slug}")
             print(f"EDIT: pinned message for {slug} (message_id={existing_id})")
             # message_id unchanged — just update channel_id in case it changed
             state[slug] = {"channel_id": channel_id, "message_id": existing_id}
         else:
-            payload = client.post_message(channel_id, content, context=f"post pinned {slug}")
+            payload = active_client.post_message(channel_id, content, context=f"post pinned {slug}")
             new_id = str(payload.get("id", ""))
             if not new_id:
                 print(f"ERROR: Discord did not return message ID for {slug}", file=sys.stderr)
                 continue
-            client.pin_message(channel_id, new_id, context=f"pin {slug}")
+            active_client.pin_message(channel_id, new_id, context=f"pin {slug}")
             print(f"CREATE+PIN: pinned message for {slug} (message_id={new_id})")
             state[slug] = {"channel_id": channel_id, "message_id": new_id}
 
@@ -147,6 +184,7 @@ def ensure_pinned_messages(client: DiscordClient, state: dict) -> dict:
 
 def main() -> None:
     token = _require_bot_token()
+    scheduling_token = os.getenv("DISCORD_SCHEDULING_BOT_TOKEN", "").strip()
 
     configured = [slug for slug, ev in CHANNEL_ENV_MAP.items() if os.getenv(ev, "").strip()]
     if not configured:
@@ -154,6 +192,8 @@ def main() -> None:
         return
 
     print(f"ensure_pinned_messages: channels={configured}")
+    if not scheduling_token and "step-4" in configured:
+        print("WARN: DISCORD_SCHEDULING_BOT_TOKEN not set — step-4 will use DISCORD_BOT_TOKEN")
 
     state = load_json_object(PINNED_MESSAGES_FILE, log=print)
 
@@ -166,7 +206,20 @@ def main() -> None:
             }
         )
         client = DiscordClient(session)
-        state = ensure_pinned_messages(client, state)
+
+        if scheduling_token:
+            with requests.Session() as sched_session:
+                sched_session.headers.update(
+                    {
+                        "Authorization": f"Bot {scheduling_token}",
+                        "Content-Type": "application/json",
+                        "User-Agent": USER_AGENT,
+                    }
+                )
+                scheduling_client = DiscordClient(sched_session)
+                state = ensure_pinned_messages(client, state, scheduling_client=scheduling_client)
+        else:
+            state = ensure_pinned_messages(client, state)
 
     save_json_object_atomic(PINNED_MESSAGES_FILE, state)
     print(f"Saved pinned message state to {PINNED_MESSAGES_FILE}")
