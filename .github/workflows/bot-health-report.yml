@@ -27,6 +27,14 @@ jobs:
       - name: Install packages
         run: pip install -r requirements.txt
 
+      - name: Check Discord bot token health
+        continue-on-error: true
+        env:
+          DISCORD_BOT_TOKEN: ${{ secrets.DISCORD_BOT_TOKEN }}
+          DISCORD_SCHEDULING_BOT_TOKEN: ${{ secrets.DISCORD_SCHEDULING_BOT_TOKEN }}
+          DISCORD_HEALTH_MONITOR_WEBHOOK_URL: ${{ secrets.DISCORD_HEALTH_MONITOR_WEBHOOK_URL }}
+        run: python scripts/check_bot_token_health.py
+
       - name: Find latest daily.yml run ID
         id: find-daily-run
         continue-on-error: true
