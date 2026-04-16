@@ -1556,9 +1556,10 @@ class TestStep1IntroFooterFormatting:
         assert fake_client.edits, "Intro should be edited with jump links"
         edited_intro = fake_client.edits[0][2]
         assert "Free Picks" in edited_intro
-        assert "Demos & Playtests" not in edited_intro
-        assert "Paid Under $20" not in edited_intro
-        assert "Instagram Picks" not in edited_intro
+        # Jump links for absent sections should not appear (missing-section notices may appear)
+        assert "[🎮 Demos" not in edited_intro
+        assert "[💰 Paid" not in edited_intro
+        assert "[📸 Instagram" not in edited_intro
 
     def test_jump_links_include_all_present_sections(self, monkeypatch, tmp_path):
         items = {
@@ -1615,6 +1616,52 @@ class TestStep1IntroFooterFormatting:
         assert "🎮 Demos" in footer
         assert "🆓 Free" in footer
         assert "💰 Paid" in footer
+
+
+class TestStep1MissingSectionNotices:
+    def _run_post(self, monkeypatch, tmp_path, items_by_section, guild_id="guild-1"):
+        daily_path = tmp_path / "daily.json"
+        daily_path.write_text("{}", encoding="utf-8")
+        day_key = "2026-04-15"
+        posted = []
+        counter = {"i": 0}
+
+        def fake_post(message, capture_metadata=False):
+            posted.append(message)
+            counter["i"] += 1
+            return {"message_id": f"m-{counter['i']}", "channel_id": "chan-1"}
+
+        fake_client = FakeDiscordClient()
+        monkeypatch.setattr(main, "DISCORD_DAILY_POSTS_FILE", str(daily_path))
+        monkeypatch.setattr(main, "DISCORD_BOT_TOKEN", "token")
+        monkeypatch.setattr(main, "DISCORD_GUILD_ID", guild_id)
+        monkeypatch.setattr(main, "DiscordClient", lambda session: fake_client)
+        monkeypatch.setattr(main, "post_to_discord_with_metadata", fake_post)
+        monkeypatch.setattr(main, "sleep_briefly", lambda: None)
+        monkeypatch.setenv(main.DAILY_DATE_OVERRIDE_ENV, day_key)
+
+        main.post_daily_pick_messages(
+            items_by_section.get("demo_playtest", []),
+            items_by_section.get("free", []),
+            items_by_section.get("paid", []),
+            items_by_section.get("instagram", []),
+        )
+        return posted, fake_client
+
+    def test_missing_section_shows_notice_in_intro(self, monkeypatch, tmp_path):
+        # Only free section posted — other 3 sections should show notices
+        items = {"free": [{"title": "G", "url": "https://store.steampowered.com/app/1", "score": 9}]}
+        posted, fake_client = self._run_post(monkeypatch, tmp_path, items)
+        edited_intro = fake_client.edits[0][2]
+        assert "_(No Demos & Playtests today)_" in edited_intro
+        assert "_(No Paid Under $20 today)_" in edited_intro
+        assert "_(No Instagram Picks today)_" in edited_intro
+
+    def test_present_section_does_not_show_missing_notice(self, monkeypatch, tmp_path):
+        items = {"free": [{"title": "G", "url": "https://store.steampowered.com/app/1", "score": 9}]}
+        posted, fake_client = self._run_post(monkeypatch, tmp_path, items)
+        edited_intro = fake_client.edits[0][2]
+        assert "_(No Free Picks today)_" not in edited_intro
 
 
 class TestScrapingHealthCheck:

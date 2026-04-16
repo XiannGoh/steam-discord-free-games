@@ -625,3 +625,30 @@ class TestStep2IntroFooterFormatting:
         assert "Free" in footer
         assert "Paid" not in footer
         assert "Demo & Playtest" not in footer
+
+
+class TestStep2MissingSectionNotices:
+    def _build_header(self, posted_section_keys):
+        winners_state = {
+            "section_headers": {
+                key: {"channel_id": "wchan", "message_id": f"hdr-{key}"}
+                for key in posted_section_keys
+            },
+        }
+        return winners.build_winners_navigation_header(
+            winners_state,
+            guild_id="guild-1",
+            target_day_key="2026-04-15",
+            posted_section_keys=posted_section_keys,
+        )
+
+    def test_missing_winner_section_shows_notice(self):
+        # Only free winners posted — other 3 should show notices
+        header = self._build_header(["free"])
+        assert "_(No Demo & Playtest Winners today)_" in header
+        assert "_(No Paid Winners today)_" in header
+        assert "_(No Creator Winners today)_" in header
+
+    def test_present_winner_section_does_not_show_missing_notice(self):
+        header = self._build_header(["free"])
+        assert "_(No Free Winners today)_" not in header

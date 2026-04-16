@@ -65,6 +65,13 @@ CATEGORY_ORDER = [
     CATEGORY_CREATOR_PICKS,
     CATEGORY_OTHER,
 ]
+_LIBRARY_MISSING_CATEGORY_LABELS = {
+    CATEGORY_DEMO_PLAYTEST: "Demo & Playtest",
+    CATEGORY_FREE_PICKS: "Free Picks",
+    CATEGORY_PAID_PICKS: "Paid Picks",
+    CATEGORY_CREATOR_PICKS: "Creator Picks",
+    CATEGORY_OTHER: "Other",
+}
 
 LIBRARY_INTRO_DIVIDER = "─────────────────────────────────────────"
 LIBRARY_FOOTER_SEPARATOR = "─────────────────── End of Gaming Library ───────────────────"
@@ -585,6 +592,16 @@ def build_daily_library_messages(state: Dict[str, Any], target_day_key: str) -> 
                 for user_id in conflict_users:
                     lines.append(f"- ⚠️ <@{user_id}> — conflicting reactions, defaulted to Active")
                 messages.append({"type": "game", "identity_key": game["identity_key"], "content": "\n".join(lines)})
+
+        for category in CATEGORY_ORDER:
+            if category in active_categories:
+                continue
+            label = _LIBRARY_MISSING_CATEGORY_LABELS.get(category, category)
+            messages.append({
+                "type": "empty_section",
+                "identity_key": f"empty:{category}",
+                "content": f"**{label}**\n_No games in this category_",
+            })
 
     return messages
 

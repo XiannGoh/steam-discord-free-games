@@ -181,8 +181,8 @@ def test_daily_library_post_records_message_metadata_and_status_sync():
 
     assert posted is True
     assert state["daily_posts"]["2026-04-10"]["completed"] is True
-    # header, section_header, game, footer = 4 posts (delta embedded in header)
-    assert len(client.posts) == 4
+    # header, section_header, game, 4 empty_sections, footer = 8 posts (delta embedded in header)
+    assert len(client.posts) == 8
     assert client.put_reactions == [
         ("lib-chan", "m-3", lib.quote("✅", safe=""), "add gaming library status reaction ✅ for 2026-04-10"),
         ("lib-chan", "m-3", lib.quote("⏸️", safe=""), "add gaming library status reaction ⏸️ for 2026-04-10"),
@@ -212,8 +212,8 @@ def test_daily_library_rerun_after_promotions_reuses_header_and_adds_missing_gam
     second_posted = lib.post_daily_library_reminder(state, day_key="2026-04-10", channel_id="lib-chan", client=client)
 
     assert second_posted is True
-    # Second run: new section_header (m-3) + new game (m-4); header/footer are edits
-    assert len(client.posts) == 4
+    # Second run: new section_header (m-3) + new game (m-4) + 4 empty sections (m-5..m-8); header/footer are edits
+    assert len(client.posts) == 8
     # Edits: header placeholder, footer, then header jump links = 3
     assert len(client.edits) == 3
     # First edit is the header being updated with placeholder content
@@ -236,18 +236,18 @@ def test_daily_library_rerun_updates_existing_game_message_without_duplicate_pos
     client = FakeDiscordClient()
 
     lib.post_daily_library_reminder(state, day_key="2026-04-10", channel_id="lib-chan", client=client)
-    # header=m-1, section_header=m-2, game=m-3, footer=m-4 + 1 edit (header jump links)
-    assert len(client.posts) == 4
+    # header=m-1, section_header=m-2, game=m-3, 4 empty_sections=m-4..m-7, footer=m-8 + 1 edit (header jump links)
+    assert len(client.posts) == 8
     assert len(client.put_reactions) == 3
 
     lib.set_user_status(game, "u1", lib.STATUS_PAUSED)
     posted_again = lib.post_daily_library_reminder(state, day_key="2026-04-10", channel_id="lib-chan", client=client)
 
     assert posted_again is True
-    assert len(client.posts) == 4  # no new posts
+    assert len(client.posts) == 8  # no new posts
     assert len(client.put_reactions) == 3  # no new reactions
-    # Second run edits: header placeholder, section_header, game, footer, header jump links = 5
-    assert len(client.edits) == 6  # 1 from first run + 5 from second run
+    # Second run edits: header placeholder, section_header, game, 4 empty_sections, footer, header jump links = 9
+    assert len(client.edits) == 10  # 1 from first run + 9 from second run
     game_edit = next(e for e in client.edits if e[1] == "m-3")
     assert "(paused)" in game_edit[2]
 
@@ -262,14 +262,17 @@ def test_daily_library_reruns_converge_without_duplicate_headers_or_games():
     lib.post_daily_library_reminder(state, day_key="2026-04-10", channel_id="lib-chan", client=client)
     lib.post_daily_library_reminder(state, day_key="2026-04-10", channel_id="lib-chan", client=client)
 
-    # 4 posts on first run; no new posts on reruns
-    assert len(client.posts) == 4
+    # 8 posts on first run (header, section:other, game, 4 empty_sections, footer); no new posts on reruns
+    assert len(client.posts) == 8
     # Run 1: 1 edit (header jump links)
-    # Run 2: 5 edits (header-placeholder, section:other, game, footer, header-jumps)
-    # Run 3: same 5 edits
-    assert len(client.edits) == 11
+    # Run 2: 9 edits (header-placeholder, section:other, game, 4 empty_sections, footer, header-jumps)
+    # Run 3: same 9 edits
+    assert len(client.edits) == 19
     messages = state["daily_posts"]["2026-04-10"]["messages"]
-    assert sorted(messages.keys()) == ["footer", "header", "section:other", "steam:300"]
+    assert sorted(messages.keys()) == [
+        "empty:creator_picks", "empty:demo_playtest", "empty:free_picks", "empty:paid_picks",
+        "footer", "header", "section:other", "steam:300",
+    ]
     assert messages["header"]["message_id"] == "m-1"
     assert messages["section:other"]["message_id"] == "m-2"
     assert messages["steam:300"]["message_id"] == "m-3"
@@ -758,3 +761,48 @@ def test_library_footer_section_labels_include_emojis():
     assert lib._LIBRARY_FOOTER_SECTION_LABELS[lib.CATEGORY_DEMO_PLAYTEST] == "🎮 Demo & Playtest"
     assert lib._LIBRARY_FOOTER_SECTION_LABELS[lib.CATEGORY_PAID_PICKS] == "💰 Paid"
     assert lib._LIBRARY_FOOTER_SECTION_LABELS[lib.CATEGORY_CREATOR_PICKS] == "📸 Creator"
+
+
+class TestStep3EmptyCategoryPlaceholders:
+    def _make_state_with_games(self, games):
+        """Build minimal gaming_library state with the given game dicts."""
+        return {
+            "games": {g["identity_key"]: g for g in games},
+            "archived_game_keys": [],
+        }
+
+    def test_missing_category_shows_placeholder(self):
+        # Only a free_picks game — other categories should produce empty_section messages
+        state = self._make_state_with_games([
+            {
+                "identity_key": "free|app1",
+                "canonical_name": "Game A",
+                "status": "active",
+                "source_type": "steam_free",
+                "url": "",
+                "assignments": {},
+                "conflicting_users": [],
+            }
+        ])
+        messages = lib.build_daily_library_messages(state, "2026-04-15")
+        empty_msgs = [m for m in messages if m.get("type") == "empty_section"]
+        empty_keys = [m["identity_key"] for m in empty_msgs]
+        assert f"empty:{lib.CATEGORY_DEMO_PLAYTEST}" in empty_keys
+        assert f"empty:{lib.CATEGORY_PAID_PICKS}" in empty_keys
+        assert f"empty:{lib.CATEGORY_CREATOR_PICKS}" in empty_keys
+
+    def test_present_category_does_not_produce_empty_placeholder(self):
+        state = self._make_state_with_games([
+            {
+                "identity_key": "free|app1",
+                "canonical_name": "Game A",
+                "status": "active",
+                "source_type": "steam_free",
+                "url": "",
+                "assignments": {},
+                "conflicting_users": [],
+            }
+        ])
+        messages = lib.build_daily_library_messages(state, "2026-04-15")
+        empty_keys = [m["identity_key"] for m in messages if m.get("type") == "empty_section"]
+        assert f"empty:{lib.CATEGORY_FREE_PICKS}" not in empty_keys
