@@ -5,6 +5,10 @@ on:
   schedule:
     - cron: "0 * * * *"
 
+concurrency:
+  group: watchdog
+  cancel-in-progress: false
+
 permissions:
   actions: write
   contents: write
