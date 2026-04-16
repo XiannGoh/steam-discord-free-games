@@ -147,7 +147,7 @@ def test_dropped_users_hidden_in_daily_reminder_and_all_dropped_archives():
     assert game["archived"] is True
 
     messages_after = lib.build_daily_library_messages(state, "2026-04-11")
-    assert len(messages_after) == 2  # header and delta
+    assert len(messages_after) == 1  # header only (delta embedded in header)
     assert "No active library games" in messages_after[0]["content"]
 
 
@@ -170,7 +170,7 @@ def test_daily_library_post_records_message_metadata_and_status_sync():
     game = lib.ensure_game_entry(state, canonical_name="Sync Game", url="https://store.steampowered.com/app/9/sync")
     lib.assign_user(game, "u1", lib.STATUS_ACTIVE)
 
-    # Game is now m-3 (header=m-1, section_header=m-2, game=m-3, delta=m-4, footer=m-5)
+    # Game is now m-3 (header=m-1, section_header=m-2, game=m-3, footer=m-4)
     client = FakeDiscordClient(
         reactions={
             ("lib-chan", "m-3", lib.quote("✅", safe="")): [{"id": "u1"}],
@@ -181,8 +181,8 @@ def test_daily_library_post_records_message_metadata_and_status_sync():
 
     assert posted is True
     assert state["daily_posts"]["2026-04-10"]["completed"] is True
-    # header, section_header, game, delta, footer = 5 posts
-    assert len(client.posts) == 5
+    # header, section_header, game, footer = 4 posts (delta embedded in header)
+    assert len(client.posts) == 4
     assert client.put_reactions == [
         ("lib-chan", "m-3", lib.quote("✅", safe=""), "add gaming library status reaction ✅ for 2026-04-10"),
         ("lib-chan", "m-3", lib.quote("⏸️", safe=""), "add gaming library status reaction ⏸️ for 2026-04-10"),
@@ -201,9 +201,9 @@ def test_daily_library_rerun_after_promotions_reuses_header_and_adds_missing_gam
 
     first_posted = lib.post_daily_library_reminder(state, day_key="2026-04-10", channel_id="lib-chan", client=client)
 
-    # First run with no games: header, delta, footer = 3 posts (no section headers)
+    # First run with no games: header, footer = 2 posts (delta embedded in header)
     assert first_posted is True
-    assert len(client.posts) == 3
+    assert len(client.posts) == 2
     assert "No active library games for today" in client.posts[0][1]
 
     game = lib.ensure_game_entry(state, canonical_name="Core Keeper", url="https://store.steampowered.com/app/1621690/")
@@ -212,20 +212,20 @@ def test_daily_library_rerun_after_promotions_reuses_header_and_adds_missing_gam
     second_posted = lib.post_daily_library_reminder(state, day_key="2026-04-10", channel_id="lib-chan", client=client)
 
     assert second_posted is True
-    # Second run: new section_header (m-4) + new game (m-5); header/delta/footer are edits
-    assert len(client.posts) == 5
-    # Edits: header placeholder, delta, footer, then header jump links = 4
-    assert len(client.edits) == 4
+    # Second run: new section_header (m-3) + new game (m-4); header/footer are edits
+    assert len(client.posts) == 4
+    # Edits: header placeholder, footer, then header jump links = 3
+    assert len(client.edits) == 3
     # First edit is the header being updated with placeholder content
     edited_header = client.edits[0]
     assert edited_header[1] == "m-1"
-    assert "React on each game" in edited_header[2]
+    assert "React to each game" in edited_header[2]
     assert state["daily_posts"]["2026-04-10"]["messages"]["header"]["message_id"] == "m-1"
     assert "steam:1621690" in state["daily_posts"]["2026-04-10"]["messages"]
     assert client.put_reactions == [
-        ("lib-chan", "m-5", lib.quote("✅", safe=""), "add gaming library status reaction ✅ for 2026-04-10"),
-        ("lib-chan", "m-5", lib.quote("⏸️", safe=""), "add gaming library status reaction ⏸️ for 2026-04-10"),
-        ("lib-chan", "m-5", lib.quote("❌", safe=""), "add gaming library status reaction ❌ for 2026-04-10"),
+        ("lib-chan", "m-4", lib.quote("✅", safe=""), "add gaming library status reaction ✅ for 2026-04-10"),
+        ("lib-chan", "m-4", lib.quote("⏸️", safe=""), "add gaming library status reaction ⏸️ for 2026-04-10"),
+        ("lib-chan", "m-4", lib.quote("❌", safe=""), "add gaming library status reaction ❌ for 2026-04-10"),
     ]
 
 
@@ -236,20 +236,18 @@ def test_daily_library_rerun_updates_existing_game_message_without_duplicate_pos
     client = FakeDiscordClient()
 
     lib.post_daily_library_reminder(state, day_key="2026-04-10", channel_id="lib-chan", client=client)
-    # header=m-1, section_header=m-2, game=m-3, delta=m-4, footer=m-5 + 1 edit (header jump links)
-    assert len(client.posts) == 5
+    # header=m-1, section_header=m-2, game=m-3, footer=m-4 + 1 edit (header jump links)
+    assert len(client.posts) == 4
     assert len(client.put_reactions) == 3
 
     lib.set_user_status(game, "u1", lib.STATUS_PAUSED)
     posted_again = lib.post_daily_library_reminder(state, day_key="2026-04-10", channel_id="lib-chan", client=client)
 
     assert posted_again is True
-    assert len(client.posts) == 5  # no new posts
+    assert len(client.posts) == 4  # no new posts
     assert len(client.put_reactions) == 3  # no new reactions
-    # Second run edits: header placeholder, section_header, game, delta, footer, header jump links = 6
-    assert len(client.edits) == 7  # 1 from first run + 6 from second run
-    # game edit is edits[3] (0=header-placeholder, 1=section:other, 2=game, ...)
-    # Actually order from second run: edits[1]=header-placeholder, edits[2]=section:other, edits[3]=game
+    # Second run edits: header placeholder, section_header, game, footer, header jump links = 5
+    assert len(client.edits) == 6  # 1 from first run + 5 from second run
     game_edit = next(e for e in client.edits if e[1] == "m-3")
     assert "(paused)" in game_edit[2]
 
@@ -264,14 +262,14 @@ def test_daily_library_reruns_converge_without_duplicate_headers_or_games():
     lib.post_daily_library_reminder(state, day_key="2026-04-10", channel_id="lib-chan", client=client)
     lib.post_daily_library_reminder(state, day_key="2026-04-10", channel_id="lib-chan", client=client)
 
-    # 5 posts on first run; no new posts on reruns
-    assert len(client.posts) == 5
+    # 4 posts on first run; no new posts on reruns
+    assert len(client.posts) == 4
     # Run 1: 1 edit (header jump links)
-    # Run 2: 6 edits (header-placeholder, section:other, game, delta, footer, header-jumps)
-    # Run 3: same 6 edits
-    assert len(client.edits) == 13
+    # Run 2: 5 edits (header-placeholder, section:other, game, footer, header-jumps)
+    # Run 3: same 5 edits
+    assert len(client.edits) == 11
     messages = state["daily_posts"]["2026-04-10"]["messages"]
-    assert sorted(messages.keys()) == ["delta", "footer", "header", "section:other", "steam:300"]
+    assert sorted(messages.keys()) == ["footer", "header", "section:other", "steam:300"]
     assert messages["header"]["message_id"] == "m-1"
     assert messages["section:other"]["message_id"] == "m-2"
     assert messages["steam:300"]["message_id"] == "m-3"
@@ -538,8 +536,8 @@ def test_header_edited_with_jump_links_after_sections_posted(monkeypatch):
 
     _lib_mod.post_daily_library_reminder(state, day_key="2026-04-10", channel_id="lib-chan", client=client)
 
-    # Header should have been edited at least once with a jump link
-    jump_edits = [e for e in client.edits if "⟹" in e[2] and e[1] == "m-1"]
+    # Header should have been edited at least once with a jump link (new badge format)
+    jump_edits = [e for e in client.edits if "discord.com/channels/guild-1" in e[2] and e[1] == "m-1"]
     assert len(jump_edits) >= 1, "Header was not edited with jump links"
 
     monkeypatch.delenv("DISCORD_GUILD_ID", raising=False)
@@ -563,33 +561,34 @@ def _make_state_with_games(game_specs):
     return state
 
 
-def test_per_player_summary_included_when_players_assigned():
+def test_new_games_reported_in_delta():
     state = _make_state_with_games([
         ("Alpha", "https://store.steampowered.com/app/1/alpha/", {"u1": {"status": "active", "updated_at_utc": "t1"}, "u2": {"status": "active", "updated_at_utc": "t1"}}),
         ("Beta", "https://store.steampowered.com/app/2/beta/", {"u1": {"status": "active", "updated_at_utc": "t1"}}),
     ])
     result = lib.compute_daily_delta(state)
-    assert "👥 Players:" in result
-    assert "<@u1> — 2 games assigned" in result
-    assert "<@u2> — 1 game assigned" in result
+    assert "🆕 **Alpha**" in result
+    assert "🆕 **Beta**" in result
 
 
-def test_per_player_summary_absent_when_no_assignments():
+def test_game_with_no_assignments_still_reported_as_new():
     state = _make_state_with_games([
         ("No Players Game", "https://store.steampowered.com/app/3/noplayers/", None),
     ])
     result = lib.compute_daily_delta(state)
+    assert "🆕 **No Players Game**" in result
     assert "👥 Players:" not in result
 
 
-def test_per_player_summary_skips_archived_games():
+def test_archived_games_excluded_from_new_game_delta():
     state = _make_state_with_games([
         ("Active Game", "https://store.steampowered.com/app/4/active/", {"u1": {"status": "active", "updated_at_utc": "t1"}}),
         ("Archived Game", "https://store.steampowered.com/app/5/archived/", {"u1": {"status": "active", "updated_at_utc": "t1"}}),
     ])
     state["games"]["steam:5"]["archived"] = True
     result = lib.compute_daily_delta(state)
-    assert "<@u1> — 1 game assigned" in result
+    assert "🆕 **Active Game**" in result
+    assert "Archived Game" not in result
 
 
 def test_pending_reaction_flags_specific_user_and_game():
@@ -614,13 +613,12 @@ def test_pending_not_flagged_when_status_updated():
     assert "⏳" not in result
 
 
-def test_new_games_still_reported_alongside_per_player_summary():
+def test_new_game_with_assignment_reported_in_delta():
     state = _make_state_with_games([
         ("New Addition", "https://store.steampowered.com/app/8/new/", {"u1": {"status": "active", "updated_at_utc": "t1"}}),
     ])
     result = lib.compute_daily_delta(state)
-    assert "🎉 1 Games added to library today" in result
-    assert "👥 Players:" in result
+    assert "🆕 **New Addition**" in result
 
 
 def test_no_changes_message_shown_when_empty_library():
