@@ -76,6 +76,35 @@ jobs:
           GITHUB_EVENT_NAME: ${{ github.event_name }}
         run: python main.py
 
+      - name: Read Discord channel snapshots
+        continue-on-error: true
+        env:
+          PYTHONPATH: .
+          DISCORD_BOT_TOKEN: ${{ secrets.DISCORD_BOT_TOKEN }}
+          DISCORD_SCHEDULING_BOT_TOKEN: ${{ secrets.DISCORD_SCHEDULING_BOT_TOKEN }}
+          DISCORD_GUILD_ID: ${{ secrets.DISCORD_GUILD_ID }}
+          DISCORD_STEP1_CHANNEL_ID: ${{ secrets.DISCORD_STEP1_CHANNEL_ID }}
+          DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
+          DISCORD_WINNERS_CHANNEL_ID: ${{ secrets.DISCORD_WINNERS_CHANNEL_ID }}
+          DISCORD_GAMING_LIBRARY_CHANNEL_ID: ${{ secrets.DISCORD_GAMING_LIBRARY_CHANNEL_ID }}
+          DISCORD_SCHEDULING_CHANNEL_ID: ${{ secrets.DISCORD_SCHEDULING_CHANNEL_ID }}
+          DISCORD_HEALTH_MONITOR_CHANNEL_ID: ${{ secrets.DISCORD_HEALTH_MONITOR_CHANNEL_ID }}
+          DISCORD_HEALTH_MONITOR_WEBHOOK_URL: ${{ secrets.DISCORD_HEALTH_MONITOR_WEBHOOK_URL }}
+        run: python scripts/read_discord_channel.py
+
+      - name: Upload Discord snapshot artifact
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: discord-snapshots-${{ github.run_id }}
+          path: |
+            data/snapshot_step1.json
+            data/snapshot_step2.json
+            data/snapshot_step3.json
+            data/snapshot_schedule.json
+            data/snapshot_health.json
+          if-no-files-found: ignore
+
       - name: Verify Discord output
         continue-on-error: true
         env:

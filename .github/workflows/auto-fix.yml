@@ -94,7 +94,22 @@ jobs:
           path: artifacts/
 
       # ------------------------------------------------------------------ #
-      # 6. Decide whether a fix is needed:
+      # 6. Download Discord snapshot artifacts so Claude Code can read
+      #    the actual Discord output when diagnosing failures.
+      # ------------------------------------------------------------------ #
+      - name: Download Discord snapshot artifact
+        id: download_snapshots
+        continue-on-error: true
+        uses: actions/download-artifact@v4
+        with:
+          github-token: ${{ github.token }}
+          run-id: ${{ github.event.workflow_run.id }}
+          pattern: discord-snapshots-*
+          merge-multiple: true
+          path: artifacts/
+
+      # ------------------------------------------------------------------ #
+      # 7. Decide whether a fix is needed:
       #    - workflow concluded with failure, OR
       #    - any verification artifact reports pass: false
       # Sets should_fix and trigger_reason outputs.
