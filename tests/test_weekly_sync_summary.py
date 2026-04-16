@@ -700,3 +700,50 @@ def test_main_reminder_uses_multi_message_ids_when_content_is_long(monkeypatch, 
     reminder_ids = outputs[week_key].get("reminder_message_ids")
     assert isinstance(reminder_ids, list) and len(reminder_ids) >= 2
     assert outputs[week_key]["reminder_message_id"] == reminder_ids[0]
+
+
+# --- FIX 8: missing @mentions in availability summary ---
+
+def _make_week_summary():
+    return {
+        "week_key": "2026-04-13_to_2026-04-19",
+        "date_range": "Apr 13\u201319, 2026",
+        "summary": {
+            "day_counts": {d: 0 for d in sync.DAY_NAMES},
+            "slot_counts": {d: {slot: 0 for slot in sync.SUMMARY_DISPLAY_ORDER} for d in sync.DAY_NAMES},
+            "slot_voters": {},
+        },
+    }
+
+
+def test_missing_user_ids_shows_at_mentions_in_summary():
+    from datetime import datetime, timezone
+
+    week_summary = _make_week_summary()
+    message = sync.format_summary_message(
+        "Apr 13\u201319, 2026",
+        week_summary,
+        responded_count=1,
+        active_user_count=3,
+        synced_at_utc=datetime(2026, 4, 13, 12, 0, tzinfo=timezone.utc),
+        missing_user_ids=["111", "222"],
+    )
+    assert "Missing:" in message
+    assert "<@111>" in message
+    assert "<@222>" in message
+
+
+def test_empty_missing_user_ids_shows_no_mention_line_in_summary():
+    from datetime import datetime, timezone
+
+    week_summary = _make_week_summary()
+    message = sync.format_summary_message(
+        "Apr 13\u201319, 2026",
+        week_summary,
+        responded_count=2,
+        active_user_count=2,
+        synced_at_utc=datetime(2026, 4, 13, 12, 0, tzinfo=timezone.utc),
+        missing_user_ids=[],
+    )
+    assert "Missing:" not in message
+    assert "<@" not in message
