@@ -1732,3 +1732,75 @@ class TestScrapingHealthCheck:
         assert len(warnings_posted) == 1
         assert "🔴" in warnings_posted[0]
         assert "broken" in warnings_posted[0]
+
+
+class TestInstagramSessionAgeInMain:
+    """Tests for main._check_instagram_session_age().
+
+    Mirrors TestInstagramSessionAge in test_check_bot_token_health.py but
+    exercises the main.py implementation directly using monkeypatching of
+    os.path.getmtime rather than file-system manipulation.
+    """
+
+    def test_session_over_50_days_warns_health_monitor(self, monkeypatch, capsys):
+        posted: list[str] = []
+
+        monkeypatch.setattr(main, "_notify_health_monitor", lambda msg: posted.append(msg))
+        monkeypatch.setattr(
+            main.os.path, "getmtime",
+            lambda path: main.datetime.now().timestamp() - 55 * 86400,
+        )
+
+        main._check_instagram_session_age("instaloader.session")
+
+        assert len(posted) == 1
+        assert "⚠️" in posted[0]
+        captured = capsys.readouterr()
+        assert "WARN" in captured.out
+
+    def test_session_30_to_50_days_logs_info_only(self, monkeypatch, capsys):
+        posted: list[str] = []
+
+        monkeypatch.setattr(main, "_notify_health_monitor", lambda msg: posted.append(msg))
+        monkeypatch.setattr(
+            main.os.path, "getmtime",
+            lambda path: main.datetime.now().timestamp() - 40 * 86400,
+        )
+
+        main._check_instagram_session_age("instaloader.session")
+
+        assert len(posted) == 0
+        captured = capsys.readouterr()
+        assert "INFO" in captured.out
+
+    def test_session_under_30_days_no_action(self, monkeypatch, capsys):
+        posted: list[str] = []
+
+        monkeypatch.setattr(main, "_notify_health_monitor", lambda msg: posted.append(msg))
+        monkeypatch.setattr(
+            main.os.path, "getmtime",
+            lambda path: main.datetime.now().timestamp() - 10 * 86400,
+        )
+
+        main._check_instagram_session_age("instaloader.session")
+
+        assert len(posted) == 0
+        captured = capsys.readouterr()
+        assert "WARN" not in captured.out
+        assert "INFO" not in captured.out
+
+    def test_missing_session_file_skips_gracefully(self, monkeypatch, capsys):
+        posted: list[str] = []
+
+        monkeypatch.setattr(main, "_notify_health_monitor", lambda msg: posted.append(msg))
+        monkeypatch.setattr(
+            main.os.path, "getmtime",
+            lambda path: (_ for _ in ()).throw(OSError("no such file")),
+        )
+
+        main._check_instagram_session_age("instaloader.session")
+
+        assert len(posted) == 0
+        captured = capsys.readouterr()
+        assert captured.out == ""
+        assert captured.err == ""
