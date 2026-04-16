@@ -11,11 +11,38 @@
     "optional": {
       "sections": ["Free Picks", "Paid Under $20", "Instagram Creator Picks", "Demos / Playtests"]
     },
+    "intro_rules": {
+      "must_contain_exactly_one_voting_instruction": true,
+      "must_contain_jump_links_to_sections": true,
+      "must_end_with_divider": "─────────────────────────────────",
+      "must_not_contain_game_cards": true,
+      "must_not_repeat_voting_instruction": true,
+      "must_not_be_duplicate_for_same_day": true
+    },
+    "footer_rules": {
+      "must_be_single_line_with_separator": true,
+      "must_contain_full_date": true,
+      "must_contain_jump_links": true,
+      "must_contain_top_link": true,
+      "must_end_with_separator": "─────────────── End of Daily Picks ───────────────",
+      "must_not_be_copy_of_intro": true
+    },
+    "section_rules": {
+      "valid_sections": ["free_picks", "paid_under_20", "instagram_creator_picks", "demo_playtest"],
+      "each_section_must_be_separate_message": true,
+      "demo_playtest_max_age_days": 180
+    },
     "broken_if": [
       "no games posted",
       "duplicate game messages",
       "missing intro",
-      "bot reaction counted in votes"
+      "bot reaction counted in votes",
+      "intro contains game content",
+      "footer is missing end separator",
+      "footer is a copy of the intro",
+      "demo_playtest contains game older than 180 days",
+      "duplicate intro messages for same day",
+      "second run posted new messages instead of editing existing ones"
     ]
   },
   "step-2-test-then-vote-to-keep": {
@@ -30,12 +57,34 @@
     "optional": {
       "sections": ["Free Picks", "Paid Under $20", "Instagram Creator Picks", "Demos / Playtests"]
     },
+    "intro_rules": {
+      "must_say_winners_won_step1_vote": true,
+      "must_contain_bookmark_instruction": true,
+      "must_contain_jump_links_to_sections": true,
+      "must_end_with_divider": "─────────────────────────────────",
+      "must_not_contain_game_cards": true
+    },
+    "footer_rules": {
+      "must_be_single_line_with_separator": true,
+      "must_contain_full_date": true,
+      "must_contain_jump_links": true,
+      "must_contain_top_link": true,
+      "must_end_with_separator": "─────────────── End of Daily Winners ───────────────",
+      "must_not_be_copy_of_intro": true
+    },
+    "section_rules": {
+      "valid_sections": ["free_picks", "demo_playtest", "paid_under_20", "instagram_creator_picks"],
+      "each_section_must_be_separate_message": true
+    },
     "broken_if": [
       "no winners posted",
       "duplicate winners",
       "missing footer",
       "missing intro",
-      "bot vote counted as human vote"
+      "bot vote counted as human vote",
+      "section content bleeding into intro message",
+      "footer is copy of intro",
+      "free_picks section missing from valid sections"
     ]
   },
   "step-3-review-existing-games": {
@@ -48,11 +97,42 @@
       "no_duplicates": true
     },
     "optional": {},
+    "intro_rules": {
+      "must_contain_delta_summary": true,
+      "delta_summary_must_be_inside_intro": true,
+      "delta_must_track_new_games": true,
+      "delta_must_track_dropped_games": true,
+      "delta_must_track_status_changes": true,
+      "delta_must_track_player_changes": true,
+      "delta_must_say_no_changes_if_nothing": true,
+      "must_end_with_divider": "─────────────────────────────────"
+    },
+    "game_card_rules": {
+      "must_include_name": true,
+      "must_include_steam_url_suppressed": true,
+      "must_include_players_list": true,
+      "must_include_last_activity_date": true,
+      "last_activity_date_format": "Last activity: {Mon DD, YYYY}"
+    },
+    "footer_rules": {
+      "must_be_single_line_with_separator": true,
+      "must_contain_full_date": true,
+      "must_contain_jump_links": true,
+      "must_contain_top_link": true,
+      "must_end_with_separator": "─────────────── End of Gaming Library ───────────────"
+    },
+    "pinned_message_rules": {
+      "command_reference_must_exist_and_be_pinned": true
+    },
     "broken_if": [
       "game entry missing name",
       "IG Picks entry without actual game name",
       "missing footer",
-      "duplicate library entries"
+      "duplicate library entries",
+      "delta summary missing from intro",
+      "delta summary posted as separate message instead of inside intro",
+      "game card missing last activity date",
+      "command reference not pinned"
     ]
   },
   "update-weekly-schedule-here": {
@@ -67,10 +147,35 @@
     "optional": {
       "sections": ["Morning", "Afternoon", "Evening", "Late Night"]
     },
+    "availability_summary_rules": {
+      "day_entries_must_include_dates": true,
+      "day_date_format": "Monday 4/13",
+      "must_mention_missing_members": true,
+      "total_server_members": 15,
+      "must_show_response_count": true,
+      "response_count_format": "X of 15 responded · Y still missing"
+    },
+    "delta_rules": {
+      "only_post_if_changed": true,
+      "silent_if_no_changes": true
+    },
+    "sync_rules": {
+      "must_process_current_and_previous_week_reactions": true
+    },
+    "pinning_rules": {
+      "current_week_must_be_pinned": true,
+      "previous_week_must_be_unpinned_when_new_week_posts": true,
+      "only_one_week_pinned_at_a_time": true
+    },
     "broken_if": [
       "scheduling post for game not in active library",
       "ping sent with zero player overlap",
-      "missing availability time bucket"
+      "missing availability time bucket",
+      "day entries missing dates",
+      "missing members not @mentioned",
+      "current week post not pinned",
+      "previous week still pinned when new week exists",
+      "delta posted when nothing changed"
     ]
   },
   "xiann-gpt-bot-health-monitor": {
@@ -83,10 +188,28 @@
       "no_duplicates": false
     },
     "optional": {},
+    "report_rules": {
+      "must_post_after_every_workflow_run": true,
+      "failure_report_must_include_workflow_name": true,
+      "failure_report_must_include_issue_type": true,
+      "failure_report_must_include_attempt_number": true,
+      "failure_report_must_include_previous_occurrence_count": true,
+      "failure_report_must_include_fix_branch_name": true,
+      "fix_outcome_must_include_resolution_summary": true,
+      "fix_outcome_must_include_pr_number": true,
+      "fix_outcome_must_include_rerun_result": true,
+      "fix_outcome_must_include_discord_validation_result": true,
+      "recurring_issue_threshold_days": 7,
+      "recurring_issue_threshold_count": 2,
+      "daily_summary_required": true
+    },
     "broken_if": [
       "no health report posted after workflow run",
       "missing workflow status",
-      "missing verification result"
+      "missing verification result",
+      "failure report missing attempt count",
+      "failure report missing previous occurrence count",
+      "no daily summary posted"
     ]
   }
 }

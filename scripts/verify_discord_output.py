@@ -185,6 +185,10 @@ def detect_broken_if(
             triggered = ch_result.get("messages_checked", 1) == 0
             detected[condition] = "triggered" if triggered else "not_triggered"
 
+        elif "duplicate intro" in c or ("duplicate" in c and "intro" in c):
+            triggered = "duplicate" in errors_text and "intro" in errors_text
+            detected[condition] = "triggered" if triggered else "not_triggered"
+
         elif "duplicate" in c:
             triggered = "duplicate" in errors_text
             detected[condition] = "triggered" if triggered else "not_triggered"
@@ -199,6 +203,78 @@ def detect_broken_if(
             else:
                 triggered = not ch_result.get("footer_found", True)
                 detected[condition] = "triggered" if triggered else "not_triggered"
+
+        elif "footer is missing end separator" in c:
+            triggered = bool(ch_result.get("footer_missing_separator"))
+            detected[condition] = "triggered" if triggered else "not_triggered"
+
+        elif "footer is a copy of the intro" in c or "footer is copy of intro" in c:
+            triggered = bool(ch_result.get("footer_is_copy_of_intro"))
+            detected[condition] = "triggered" if triggered else "not_triggered"
+
+        elif "intro contains game content" in c:
+            triggered = bool(ch_result.get("intro_contains_game_content"))
+            detected[condition] = "triggered" if triggered else "not_triggered"
+
+        elif "delta summary missing from intro" in c:
+            triggered = bool(ch_result.get("delta_missing_from_intro"))
+            detected[condition] = "triggered" if triggered else "not_triggered"
+
+        elif "delta summary posted as separate message" in c:
+            triggered = bool(ch_result.get("delta_posted_separately"))
+            detected[condition] = "triggered" if triggered else "not_triggered"
+
+        elif "game card missing last activity date" in c:
+            triggered = bool(ch_result.get("game_card_missing_activity_date"))
+            detected[condition] = "triggered" if triggered else "not_triggered"
+
+        elif "command reference not pinned" in c:
+            triggered = bool(ch_result.get("command_reference_not_pinned"))
+            detected[condition] = "triggered" if triggered else "not_triggered"
+
+        elif "day entries missing dates" in c:
+            triggered = bool(ch_result.get("day_entries_missing_dates"))
+            detected[condition] = "triggered" if triggered else "not_triggered"
+
+        elif "missing members not @mentioned" in c:
+            triggered = bool(ch_result.get("missing_members_not_mentioned"))
+            detected[condition] = "triggered" if triggered else "not_triggered"
+
+        elif "current week post not pinned" in c:
+            triggered = bool(ch_result.get("current_week_not_pinned"))
+            detected[condition] = "triggered" if triggered else "not_triggered"
+
+        elif "previous week still pinned" in c:
+            triggered = bool(ch_result.get("previous_week_still_pinned"))
+            detected[condition] = "triggered" if triggered else "not_triggered"
+
+        elif "delta posted when nothing changed" in c:
+            triggered = bool(ch_result.get("delta_posted_when_nothing_changed"))
+            detected[condition] = "triggered" if triggered else "not_triggered"
+
+        elif "failure report missing attempt count" in c:
+            triggered = bool(ch_result.get("failure_report_missing_attempt_count"))
+            detected[condition] = "triggered" if triggered else "not_triggered"
+
+        elif "failure report missing previous occurrence count" in c:
+            triggered = bool(ch_result.get("failure_report_missing_occurrence_count"))
+            detected[condition] = "triggered" if triggered else "not_triggered"
+
+        elif "no daily summary posted" in c:
+            triggered = bool(ch_result.get("no_daily_summary"))
+            detected[condition] = "triggered" if triggered else "not_triggered"
+
+        elif "second run posted new messages instead of editing" in c:
+            triggered = bool(ch_result.get("new_messages_on_rerun"))
+            detected[condition] = "triggered" if triggered else "not_triggered"
+
+        elif "demo_playtest contains game older than 180 days" in c:
+            triggered = bool(ch_result.get("demo_playtest_stale_game"))
+            detected[condition] = "triggered" if triggered else "not_triggered"
+
+        elif "section content bleeding into intro" in c:
+            triggered = bool(ch_result.get("section_content_in_intro"))
+            detected[condition] = "triggered" if triggered else "not_triggered"
 
         elif "bot reaction" in c or "bot vote" in c:
             # Would require cross-referencing the bot user ID against reaction users.
