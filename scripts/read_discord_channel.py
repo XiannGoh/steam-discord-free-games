@@ -8,19 +8,30 @@ structured JSON file under data/:
   - data/snapshot_schedule.json
   - data/snapshot_health.json
 
+There are two separate bot tokens in this repo:
+  DISCORD_BOT_TOKEN           — used for step-1, step-2, step-3, and health-monitor reads
+  DISCORD_SCHEDULING_BOT_TOKEN — used for the weekly schedule channel
+
 Channel IDs are resolved from environment variables:
-  DISCORD_BOT_TOKEN            — required for all reads
+  DISCORD_BOT_TOKEN            — required for step-1/step-2/step-3 reads
+  DISCORD_SCHEDULING_BOT_TOKEN — required for schedule channel read
   DISCORD_STEP1_CHANNEL_ID     — step-1 channel; falls back to webhook lookup
   DISCORD_WEBHOOK_URL          — used to look up step-1 channel if DISCORD_STEP1_CHANNEL_ID unset
   DISCORD_WINNERS_CHANNEL_ID   — step-2
   DISCORD_GAMING_LIBRARY_CHANNEL_ID — step-3
   DISCORD_SCHEDULING_CHANNEL_ID — schedule channel
-  DISCORD_HEALTH_MONITOR_CHANNEL_ID — health monitor channel; falls back to webhook lookup
-  DISCORD_HEALTH_MONITOR_WEBHOOK_URL — used if DISCORD_HEALTH_MONITOR_CHANNEL_ID unset
+  DISCORD_HEALTH_MONITOR_CHANNEL_ID — health monitor channel (read via DISCORD_BOT_TOKEN)
+  DISCORD_HEALTH_MONITOR_WEBHOOK_URL — used to look up health monitor channel_id if
+                                        DISCORD_HEALTH_MONITOR_CHANNEL_ID unset
+
+Note on health monitor: the health monitor channel can only be posted to via webhook.
+Reading requires the main bot token (DISCORD_BOT_TOKEN) to have read access to the
+channel. If the bot lacks access, the health snapshot is skipped with a warning.
 
 Usage:
     # Fetch all 5 channels
-    PYTHONPATH=. DISCORD_BOT_TOKEN=<token> python scripts/read_discord_channel.py
+    PYTHONPATH=. DISCORD_BOT_TOKEN=<token> DISCORD_SCHEDULING_BOT_TOKEN=<token2> \\
+        python scripts/read_discord_channel.py
 
     # Fetch a specific channel by name
     PYTHONPATH=. DISCORD_BOT_TOKEN=<token> python scripts/read_discord_channel.py --channel step1
@@ -80,6 +91,30 @@ CHANNEL_NAMES = {
     "health": CHANNEL_HEALTH,
 }
 
+# Which bot token each channel key uses
+# step-1/step-2/step-3/health: DISCORD_BOT_TOKEN
+# schedule: DISCORD_SCHEDULING_BOT_TOKEN
+CHANNEL_TOKEN_ENV = {
+    "step1": "DISCORD_BOT_TOKEN",
+    "step2": "DISCORD_BOT_TOKEN",
+    "step3": "DISCORD_BOT_TOKEN",
+    "schedule": "DISCORD_SCHEDULING_BOT_TOKEN",
+    "health": "DISCORD_BOT_TOKEN",
+}
+
+
+# ---------------------------------------------------------------------------
+# Client factory
+# ---------------------------------------------------------------------------
+
+def _make_client(token: str) -> DiscordClient:
+    session = requests.Session()
+    session.headers.update({
+        "Authorization": f"Bot {token}",
+        "Content-Type": "application/json",
+    })
+    return DiscordClient(session)
+
 
 # ---------------------------------------------------------------------------
 # Channel ID resolution
@@ -105,22 +140,30 @@ def _resolve_webhook_channel_id(webhook_url: str, client: DiscordClient) -> str 
     return None
 
 
-def resolve_channel_ids(client: DiscordClient) -> dict[str, str | None]:
-    """Return a dict mapping channel key → channel_id (or None if unresolvable)."""
+def resolve_channel_ids(clients: dict[str, DiscordClient]) -> dict[str, str | None]:
+    """Return a dict mapping channel key → channel_id (or None if unresolvable).
+
+    `clients` maps token env-var name → DiscordClient (may be empty for tokens
+    that weren't set).
+    """
     ids: dict[str, str | None] = {}
+    main_client = clients.get("DISCORD_BOT_TOKEN")
+    sched_client = clients.get("DISCORD_SCHEDULING_BOT_TOKEN")
 
     # Step 1 — prefer explicit env var; fall back to webhook lookup
     step1_channel = (os.getenv("DISCORD_STEP1_CHANNEL_ID") or "").strip() or None
-    if not step1_channel:
+    if not step1_channel and main_client:
         webhook_url = (os.getenv("DISCORD_WEBHOOK_URL") or "").strip()
         if webhook_url:
-            step1_channel = _resolve_webhook_channel_id(webhook_url, client)
+            step1_channel = _resolve_webhook_channel_id(webhook_url, main_client)
             if step1_channel:
                 print(f"INFO: resolved step-1 channel_id={step1_channel} from DISCORD_WEBHOOK_URL")
             else:
                 print("WARN: DISCORD_STEP1_CHANNEL_ID not set and webhook lookup failed — step-1 will be skipped")
         else:
             print("WARN: DISCORD_STEP1_CHANNEL_ID and DISCORD_WEBHOOK_URL not set — step-1 will be skipped")
+    elif not step1_channel:
+        print("WARN: DISCORD_BOT_TOKEN not set — step-1 will be skipped")
     ids["step1"] = step1_channel
 
     ids["step2"] = (os.getenv("DISCORD_WINNERS_CHANNEL_ID") or "").strip() or None
@@ -134,19 +177,24 @@ def resolve_channel_ids(client: DiscordClient) -> dict[str, str | None]:
     ids["schedule"] = (os.getenv("DISCORD_SCHEDULING_CHANNEL_ID") or "").strip() or None
     if not ids["schedule"]:
         print("WARN: DISCORD_SCHEDULING_CHANNEL_ID not set — schedule will be skipped")
+    elif not sched_client:
+        print("WARN: DISCORD_SCHEDULING_BOT_TOKEN not set — schedule will be skipped")
+        ids["schedule"] = None
 
     # Health monitor — prefer explicit channel ID; fall back to webhook lookup
     health_channel = (os.getenv("DISCORD_HEALTH_MONITOR_CHANNEL_ID") or "").strip() or None
-    if not health_channel:
+    if not health_channel and main_client:
         health_webhook_url = (os.getenv("DISCORD_HEALTH_MONITOR_WEBHOOK_URL") or "").strip()
         if health_webhook_url:
-            health_channel = _resolve_webhook_channel_id(health_webhook_url, client)
+            health_channel = _resolve_webhook_channel_id(health_webhook_url, main_client)
             if health_channel:
                 print(f"INFO: resolved health-monitor channel_id={health_channel} from DISCORD_HEALTH_MONITOR_WEBHOOK_URL")
             else:
                 print("WARN: DISCORD_HEALTH_MONITOR_CHANNEL_ID not set and webhook lookup failed — health will be skipped")
         else:
             print("WARN: DISCORD_HEALTH_MONITOR_CHANNEL_ID and DISCORD_HEALTH_MONITOR_WEBHOOK_URL not set — health will be skipped")
+    elif not health_channel:
+        print("WARN: DISCORD_BOT_TOKEN not set — health will be skipped")
     ids["health"] = health_channel
 
     return ids
@@ -242,17 +290,21 @@ def build_arg_parser() -> argparse.ArgumentParser:
 def main() -> None:
     args = build_arg_parser().parse_args()
 
-    token = os.getenv("DISCORD_BOT_TOKEN", "").strip()
-    if not token:
+    main_token = (os.getenv("DISCORD_BOT_TOKEN") or "").strip()
+    if not main_token:
         print("ERROR: DISCORD_BOT_TOKEN is not set.")
         sys.exit(1)
 
-    session = requests.Session()
-    session.headers.update({
-        "Authorization": f"Bot {token}",
-        "Content-Type": "application/json",
-    })
-    client = DiscordClient(session)
+    sched_token = (os.getenv("DISCORD_SCHEDULING_BOT_TOKEN") or "").strip()
+    if not sched_token:
+        print("WARN: DISCORD_SCHEDULING_BOT_TOKEN not set — schedule channel will be skipped")
+
+    # Build one client per distinct token
+    clients: dict[str, DiscordClient] = {
+        "DISCORD_BOT_TOKEN": _make_client(main_token),
+    }
+    if sched_token:
+        clients["DISCORD_SCHEDULING_BOT_TOKEN"] = _make_client(sched_token)
 
     # Determine which channels to fetch
     if args.channel:
@@ -261,7 +313,7 @@ def main() -> None:
         channels_to_fetch = list(SNAPSHOT_FILES.keys())
 
     print("Resolving channel IDs...")
-    channel_ids = resolve_channel_ids(client)
+    channel_ids = resolve_channel_ids(clients)
 
     errors: list[str] = []
 
@@ -269,6 +321,12 @@ def main() -> None:
         channel_id = channel_ids.get(key)
         if not channel_id:
             print(f"SKIP: {key} — no channel_id available")
+            continue
+
+        token_env = CHANNEL_TOKEN_ENV[key]
+        client = clients.get(token_env)
+        if not client:
+            print(f"SKIP: {key} — token {token_env} not set")
             continue
 
         print(f"\nFetching {key}...")

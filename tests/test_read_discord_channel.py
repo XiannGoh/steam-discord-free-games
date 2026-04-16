@@ -23,6 +23,7 @@ if str(ROOT) not in sys.path:
 
 from scripts.read_discord_channel import (
     CHANNEL_NAMES,
+    CHANNEL_TOKEN_ENV,
     SNAPSHOT_FILES,
     _format_message,
     _format_reaction,
@@ -151,6 +152,21 @@ class TestFetchChannelSnapshot:
 # ---------------------------------------------------------------------------
 
 class TestResolveChannelIds:
+    """resolve_channel_ids now takes a dict of {token_env: DiscordClient}."""
+
+    def _make_clients(
+        self,
+        *,
+        main: bool = True,
+        sched: bool = True,
+    ) -> dict[str, MagicMock]:
+        clients: dict[str, MagicMock] = {}
+        if main:
+            clients["DISCORD_BOT_TOKEN"] = MagicMock(spec=DiscordClient)
+        if sched:
+            clients["DISCORD_SCHEDULING_BOT_TOKEN"] = MagicMock(spec=DiscordClient)
+        return clients
+
     def test_all_env_vars_set(self) -> None:
         env = {
             "DISCORD_STEP1_CHANNEL_ID": "ch1",
@@ -159,14 +175,26 @@ class TestResolveChannelIds:
             "DISCORD_SCHEDULING_CHANNEL_ID": "ch4",
             "DISCORD_HEALTH_MONITOR_CHANNEL_ID": "ch5",
         }
-        client = MagicMock(spec=DiscordClient)
+        clients = self._make_clients()
         with patch.dict("os.environ", env, clear=False):
-            ids = resolve_channel_ids(client)
+            ids = resolve_channel_ids(clients)
         assert ids["step1"] == "ch1"
         assert ids["step2"] == "ch2"
         assert ids["step3"] == "ch3"
         assert ids["schedule"] == "ch4"
         assert ids["health"] == "ch5"
+
+    def test_schedule_skipped_when_sched_token_missing(self) -> None:
+        """Schedule channel resolves to None when scheduling bot token absent."""
+        env = {
+            "DISCORD_STEP1_CHANNEL_ID": "ch1",
+            "DISCORD_SCHEDULING_CHANNEL_ID": "ch4",
+        }
+        # Only main client — no scheduling client
+        clients = self._make_clients(sched=False)
+        with patch.dict("os.environ", env, clear=False):
+            ids = resolve_channel_ids(clients)
+        assert ids["schedule"] is None
 
     def test_missing_step2_returns_none(self) -> None:
         env = {
@@ -175,16 +203,15 @@ class TestResolveChannelIds:
             "DISCORD_SCHEDULING_CHANNEL_ID": "ch4",
             "DISCORD_HEALTH_MONITOR_CHANNEL_ID": "ch5",
         }
-        client = MagicMock(spec=DiscordClient)
-        with patch.dict("os.environ", env, clear=False):
-            # Remove DISCORD_WINNERS_CHANNEL_ID from environment
-            import os as _os
-            orig = _os.environ.pop("DISCORD_WINNERS_CHANNEL_ID", None)
-            try:
-                ids = resolve_channel_ids(client)
-            finally:
-                if orig is not None:
-                    _os.environ["DISCORD_WINNERS_CHANNEL_ID"] = orig
+        clients = self._make_clients()
+        import os as _os
+        orig = _os.environ.pop("DISCORD_WINNERS_CHANNEL_ID", None)
+        try:
+            with patch.dict("os.environ", env, clear=False):
+                ids = resolve_channel_ids(clients)
+        finally:
+            if orig is not None:
+                _os.environ["DISCORD_WINNERS_CHANNEL_ID"] = orig
         assert ids["step2"] is None
 
     def test_all_env_vars_missing_returns_all_none(self) -> None:
@@ -200,9 +227,9 @@ class TestResolveChannelIds:
         ]
         import os as _os
         originals = {k: _os.environ.pop(k, None) for k in keys_to_clear}
-        client = MagicMock(spec=DiscordClient)
+        clients = self._make_clients()
         try:
-            ids = resolve_channel_ids(client)
+            ids = resolve_channel_ids(clients)
         finally:
             for k, v in originals.items():
                 if v is not None:
@@ -217,12 +244,13 @@ class TestResolveChannelIds:
         orig_step1 = _os.environ.pop("DISCORD_STEP1_CHANNEL_ID", None)
         orig_webhook = _os.environ.get("DISCORD_WEBHOOK_URL")
         _os.environ["DISCORD_WEBHOOK_URL"] = "https://discord.com/api/webhooks/123/abc"
-        client = MagicMock(spec=DiscordClient)
+        main_client = MagicMock(spec=DiscordClient)
         mock_response = MagicMock()
         mock_response.json.return_value = {"channel_id": "from_webhook"}
-        client.request.return_value = mock_response
+        main_client.request.return_value = mock_response
+        clients = {"DISCORD_BOT_TOKEN": main_client, "DISCORD_SCHEDULING_BOT_TOKEN": MagicMock(spec=DiscordClient)}
         try:
-            ids = resolve_channel_ids(client)
+            ids = resolve_channel_ids(clients)
         finally:
             if orig_step1 is not None:
                 _os.environ["DISCORD_STEP1_CHANNEL_ID"] = orig_step1
@@ -241,10 +269,11 @@ class TestResolveChannelIds:
         orig_step1 = _os.environ.pop("DISCORD_STEP1_CHANNEL_ID", None)
         orig_webhook = _os.environ.get("DISCORD_WEBHOOK_URL")
         _os.environ["DISCORD_WEBHOOK_URL"] = "https://discord.com/api/webhooks/bad/url"
-        client = MagicMock(spec=DiscordClient)
-        client.request.side_effect = DiscordApiError("bad webhook")
+        main_client = MagicMock(spec=DiscordClient)
+        main_client.request.side_effect = DiscordApiError("bad webhook")
+        clients = {"DISCORD_BOT_TOKEN": main_client}
         try:
-            ids = resolve_channel_ids(client)
+            ids = resolve_channel_ids(clients)
         finally:
             if orig_step1 is not None:
                 _os.environ["DISCORD_STEP1_CHANNEL_ID"] = orig_step1
@@ -256,6 +285,14 @@ class TestResolveChannelIds:
                 del _os.environ["DISCORD_WEBHOOK_URL"]
 
         assert ids["step1"] is None
+
+    def test_channel_token_env_mapping(self) -> None:
+        """Confirm step1/step2/step3/health use main token; schedule uses scheduling token."""
+        assert CHANNEL_TOKEN_ENV["step1"] == "DISCORD_BOT_TOKEN"
+        assert CHANNEL_TOKEN_ENV["step2"] == "DISCORD_BOT_TOKEN"
+        assert CHANNEL_TOKEN_ENV["step3"] == "DISCORD_BOT_TOKEN"
+        assert CHANNEL_TOKEN_ENV["health"] == "DISCORD_BOT_TOKEN"
+        assert CHANNEL_TOKEN_ENV["schedule"] == "DISCORD_SCHEDULING_BOT_TOKEN"
 
 
 # ---------------------------------------------------------------------------
