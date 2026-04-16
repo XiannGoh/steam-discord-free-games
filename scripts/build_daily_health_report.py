@@ -76,6 +76,14 @@ SCHEDULE_EXPECTATIONS: dict[str, dict[str, Any]] = {
         "minute": 15,
         "window_before_minutes": 30,
     },
+    "Missed-Run Watchdog": {
+        "kind": "interval",
+        "cron": "0 * * * *",
+        "cadence": "every hour",
+        "interval_hours": 1,
+        "minute": 0,
+        "window_before_minutes": 90,
+    },
 }
 
 
