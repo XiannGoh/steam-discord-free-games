@@ -53,7 +53,7 @@ jobs:
             data/scheduling/weekly_schedule_bot_outputs.json \
             2>/dev/null || true
 
-          git add \
+          for f in \
             seen_ids.json \
             instagram_seen.json \
             page_state.json \
@@ -61,9 +61,21 @@ jobs:
             gaming_library.json \
             data/health_monitor_log.json \
             data/pinned_messages.json \
-            data/instagram_fetch_summary.json \
-            data/scheduling/ \
-            2>/dev/null || true
+            data/instagram_fetch_summary.json; do
+            if [ -f "$f" ]; then
+              git add "$f"
+              echo "Added: $f"
+            else
+              echo "SKIP: $f not found"
+            fi
+          done
+
+          if [ -d "data/scheduling" ]; then
+            git add data/scheduling/
+            echo "Added: data/scheduling/"
+          else
+            echo "SKIP: data/scheduling/ not found"
+          fi
 
           if ! git diff --cached --quiet; then
             git commit -m "backup: state files ${ET_TIMESTAMP}"
