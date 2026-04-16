@@ -1009,3 +1009,61 @@ def test_non_demo_not_affected_by_coming_soon_check(monkeypatch):
     # free_game items should NOT be filtered by the demo availability check
     assert item is not None
     assert item["type"] == "free_game"
+
+
+# --- FIX 11: HARD_EXCLUDE_REVIEW_SENTIMENTS "Negative" and Instagram caption filter ---
+
+def test_negative_review_sentiment_excludes_demo(monkeypatch):
+    shared = "Release Date: Dec 01, 2025 Multiplayer Online Co-Op up to 6 players Download Demo"
+    html = build_html("Bad Demo", "bad game", shared, "Negative")
+    stub_app_pages(monkeypatch, {"9100": html})
+
+    item = main.inspect_game("steam_demo", "9100")
+    assert item is None
+
+
+def test_instagram_coming_2026_caption_skipped(monkeypatch, tmp_path):
+    from datetime import datetime, timezone, timedelta
+    from tests.test_main_daily_picks import (
+        FakePost, FakeProfile, _patched_fetch_instagram_direct
+    )
+
+    now = datetime(2026, 4, 13, 12, 0, 0, tzinfo=timezone.utc)
+    blocked = FakePost("block1", now - timedelta(days=1), "Coming 2026 to all platforms")
+    allowed = FakePost("allow1", now - timedelta(days=1), "Play now on Steam")
+
+    fake_profiles = {"gemgamingnetwork": FakeProfile([blocked, allowed])}
+    monkeypatch.setattr(main, "INSTAGRAM_CREATORS", ["gemgamingnetwork"])
+
+    results = _patched_fetch_instagram_direct(monkeypatch, fake_profiles, now)
+    # _patched_fetch_instagram_direct doesn't apply caption filter — test the real function
+    monkeypatch.setattr(main, "INSTAGRAM_STATE_FILE", str(tmp_path / "seen.json"))
+    monkeypatch.setenv("INSTAGRAM_USERNAME", "testuser")
+
+    import sys
+    sys.path.insert(0, ".")
+    from tests.test_main_daily_picks import _setup_instagram_env
+    _setup_instagram_env(monkeypatch, tmp_path, fake_profiles)
+
+    posts = main.fetch_instagram_posts()
+    urls = [p["url"] for p in posts]
+    assert "https://www.instagram.com/p/block1/" not in urls
+    assert "https://www.instagram.com/p/allow1/" in urls
+
+
+def test_instagram_wishlist_now_caption_skipped(monkeypatch, tmp_path):
+    from datetime import datetime, timezone, timedelta
+    from tests.test_main_daily_picks import FakeProfile, FakePost, _setup_instagram_env
+
+    now = datetime(2026, 4, 13, 12, 0, 0, tzinfo=timezone.utc)
+    blocked = FakePost("wl1", now - timedelta(days=1), "Wishlist now on Steam!")
+    allowed = FakePost("ok1", now - timedelta(days=1), "Available now - grab it!")
+
+    fake_profiles = {"gemgamingnetwork": FakeProfile([blocked, allowed])}
+    monkeypatch.setattr(main, "INSTAGRAM_CREATORS", ["gemgamingnetwork"])
+    _setup_instagram_env(monkeypatch, tmp_path, fake_profiles)
+
+    posts = main.fetch_instagram_posts()
+    urls = [p["url"] for p in posts]
+    assert "https://www.instagram.com/p/wl1/" not in urls
+    assert "https://www.instagram.com/p/ok1/" in urls

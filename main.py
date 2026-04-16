@@ -376,6 +376,7 @@ HARD_EXCLUDE_REVIEW_SENTIMENTS = {
     "Mostly Negative",
     "Very Negative",
     "Overwhelmingly Negative",
+    "Negative",
 }
 
 REVIEW_SENTIMENT_PATTERNS = [
@@ -1576,10 +1577,16 @@ def inspect_game(source: str, app_id: str) -> Optional[dict]:
             print(f"EXCLUDE: {title} — demo/playtest older than 180 days (or no release date)")
             return None
 
+    review_sentiment = extract_review_sentiment(soup)
+
+    if item_type in {"demo", "playtest"}:
+        if review_sentiment in HARD_EXCLUDE_REVIEW_SENTIMENTS:
+            print(f"EXCLUDE: {title} — blocked review: {review_sentiment}")
+            return None
+
     multiplayer_score, multiplayer_hits = score_multiplayer(page_text)
     player_score, player_hits, rejected = score_player_count(page_text)
     flavor_score, flavor_hits = score_genres_and_description(title, description, page_text)
-    review_sentiment = extract_review_sentiment(soup)
     review_count = extract_review_count(page_text)
     review_score = REVIEW_SENTIMENT_SCORES.get(review_sentiment, UNKNOWN_REVIEW_SCORE_BY_TYPE.get(item_type, 0))
 
@@ -2700,6 +2707,23 @@ def fetch_instagram_posts():
                 caption = (post.caption or "").replace("\n", " ").strip()
                 if len(caption) > 120:
                     caption = caption[:117] + "..."
+
+                blocked_caption_phrases = [
+                    "coming soon",
+                    "not yet available",
+                    "wishlist now",
+                ]
+                blocked_caption_patterns = [
+                    r"coming\s+202[5-9]",
+                    r"coming\s+203[0-9]",
+                ]
+                caption_lower = caption.lower()
+                if any(phrase in caption_lower for phrase in blocked_caption_phrases):
+                    print(f"INSTAGRAM SKIP: @{username} — unavailable caption")
+                    continue
+                if any(re.search(p, caption_lower) for p in blocked_caption_patterns):
+                    print(f"INSTAGRAM SKIP: @{username} — future release caption")
+                    continue
 
                 all_new_posts.append({
                     "username": username,
