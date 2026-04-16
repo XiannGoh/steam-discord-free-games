@@ -22,6 +22,8 @@ WEEKLY_PATHS = {
     "roster": ROOT / "data/scheduling/expected_schedule_roster.json",
 }
 DAILY_POSTS_PATH = ROOT / "discord_daily_posts.json"
+INSTAGRAM_FETCH_SUMMARY_PATH = ROOT / "instagram_fetch_summary.json"
+INSTAGRAM_TOTAL_CREATORS = 8
 
 NEW_YORK_TZ = ZoneInfo("America/New_York")
 SCHEDULE_EXPECTATIONS: dict[str, dict[str, Any]] = {
@@ -764,6 +766,7 @@ def render_report(
                 state_lines.append("")
 
     lines.extend(_render_section("State / Artifact Health", state_lines))
+    lines.extend(_render_section("Instagram Fetch", build_instagram_summary_lines()))
 
     return "\n".join(lines).strip()
 
@@ -883,6 +886,30 @@ def build_workflow_status_lines(
             lines.append(f"Next step: {next_step}")
         lines.append("")
     return lines, diagnostics_payload
+
+
+def build_instagram_summary_lines() -> list[str]:
+    """Return lines for the Instagram Fetch section of the daily health report."""
+    data = _load_json(INSTAGRAM_FETCH_SUMMARY_PATH)
+    if not isinstance(data, dict):
+        return ["_No Instagram fetch summary available for today_"]
+
+    total = data.get("total_creators", INSTAGRAM_TOTAL_CREATORS)
+    with_posts = data.get("creators_with_posts", 0)
+    collected = data.get("total_posts_collected", 0)
+    skipped_seen = data.get("total_skipped_seen", 0)
+    failed = data.get("failed_creators", [])
+    run_at = data.get("run_at", "")
+
+    lines: list[str] = []
+    icon = "🟢" if not failed else "🔴"
+    lines.append(f"{icon} {with_posts} of {total} creators fetched new posts")
+    lines.append(f"Posts collected: {collected}  |  Skipped (already seen): {skipped_seen}")
+    if failed:
+        lines.append(f"⚠️ Failed creators: {', '.join('@' + u for u in failed)}")
+    if run_at:
+        lines.append(f"Last fetch: {run_at}")
+    return lines
 
 
 def _report_date_new_york(now_utc: datetime) -> str:
