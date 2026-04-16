@@ -315,7 +315,7 @@ jobs:
         uses: anthropics/claude-code-action@v1
         with:
           claude_code_oauth_token: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
-          claude_args: '--model claude-sonnet-4-6'
+          claude_args: '--model claude-sonnet-4-6 --max-turns 10'
           prompt: |
             This is auto-fix attempt 1 of 3.
 
@@ -408,7 +408,7 @@ jobs:
         uses: anthropics/claude-code-action@v1
         with:
           claude_code_oauth_token: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
-          claude_args: '--model claude-sonnet-4-6'
+          claude_args: '--model claude-sonnet-4-6 --max-turns 10'
           prompt: |
             This is auto-fix attempt 2 of 3. Attempt 1 failed.
 
@@ -501,7 +501,7 @@ jobs:
         uses: anthropics/claude-code-action@v1
         with:
           claude_code_oauth_token: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
-          claude_args: '--model claude-sonnet-4-6'
+          claude_args: '--model claude-sonnet-4-6 --max-turns 10'
           prompt: |
             This is auto-fix attempt 3 of 3. Attempts 1 and 2 both failed.
 
