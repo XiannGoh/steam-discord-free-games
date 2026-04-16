@@ -7,7 +7,7 @@ on:
 
 permissions:
   actions: write
-  contents: read
+  contents: write
 
 jobs:
   watchdog:
@@ -94,6 +94,26 @@ jobs:
 
             const alerts = [];
 
+            // Load persisted retrigger counts from file (survives across hourly runs)
+            let retriggerCounts = {};
+            try {
+              const fs = require('fs');
+              const raw = fs.readFileSync(
+                'data/watchdog_retrigger_counts.json', 'utf8'
+              );
+              retriggerCounts = JSON.parse(raw);
+            } catch (e) {
+              retriggerCounts = {};
+            }
+
+            // Prune stale keys from previous days to keep the file small
+            const todayKey = now.toISOString().slice(0, 10);
+            for (const key of Object.keys(retriggerCounts)) {
+              if (!key.endsWith(todayKey)) {
+                delete retriggerCounts[key];
+              }
+            }
+
             for (const wf of WATCHED) {
               try {
                 // saturday-only: skip on non-Saturday entirely
@@ -150,6 +170,24 @@ jobs:
                 }
 
                 if (shouldTrigger) {
+                  const retriggerKey = `${wf.file}:${todayKey}`;
+                  const currentCount = retriggerCounts[retriggerKey] || 0;
+
+                  if (currentCount >= 3) {
+                    core.warning(
+                      `WATCHDOG CAP: ${wf.name} has been re-triggered ` +
+                      `${currentCount} times today — skipping to prevent ` +
+                      `quota exhaustion`
+                    );
+                    alerts.push({
+                      name: wf.name,
+                      reason: `re-trigger cap reached (${currentCount} today)`,
+                      triggeredAt: now.toISOString(),
+                      capReached: true,
+                    });
+                    continue;
+                  }
+
                   core.warning(`OVERDUE ${wf.name}: ${reason} — triggering`);
                   try {
                     await github.rest.actions.createWorkflowDispatch({
@@ -160,6 +198,7 @@ jobs:
                       inputs: {},
                     });
                     core.info(`Triggered ${wf.name} via workflow_dispatch`);
+                    retriggerCounts[retriggerKey] = currentCount + 1;
                     alerts.push({
                       name: wf.name,
                       reason,
@@ -184,7 +223,38 @@ jobs:
               }
             }
 
+            // Persist updated counts so the cap survives across hourly runs
+            try {
+              const fs = require('fs');
+              fs.writeFileSync(
+                'data/watchdog_retrigger_counts.json',
+                JSON.stringify(retriggerCounts, null, 2)
+              );
+            } catch (e) {
+              core.warning(`Could not write retrigger counts: ${e.message}`);
+            }
+
             core.setOutput("alerts", JSON.stringify(alerts));
+
+      # ------------------------------------------------------------------ #
+      # Commit the updated retrigger counts back to main so the cap
+      # persists across hourly runs.
+      # ------------------------------------------------------------------ #
+      - name: Save retrigger counts
+        if: always()
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          if [ -f data/watchdog_retrigger_counts.json ]; then
+            git add data/watchdog_retrigger_counts.json
+            if ! git diff --cached --quiet; then
+              git commit -m "chore: update watchdog retrigger counts"
+              git stash --include-untracked || true
+              git pull --rebase origin main
+              git stash pop || true
+              git push
+            fi
+          fi
 
       # ------------------------------------------------------------------ #
       # Post one Discord alert per triggered workflow.
@@ -218,8 +288,15 @@ jobs:
               triggered_at = alert.get("triggeredAt", "")
               trigger_error = alert.get("triggerError")
               reason = alert.get("reason", "")
+              cap_reached = alert.get("capReached", False)
 
-              if trigger_error:
+              if cap_reached:
+                  lines.append(
+                      f"🚫 Watchdog cap reached: **{name}** "
+                      f"has been re-triggered 3 times today. "
+                      f"Manual investigation may be needed."
+                  )
+              elif trigger_error:
                   lines.append(
                       f"⚠️ Watchdog: **{name}** was overdue ({reason}) "
                       f"— trigger FAILED: {trigger_error}"
