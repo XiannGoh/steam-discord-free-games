@@ -574,6 +574,40 @@ class TestStep2IntroFooterFormatting:
         assert winners._WINNERS_FOOTER_SECTION_LABELS["paid"] == "💰 Paid"
         assert winners._WINNERS_FOOTER_SECTION_LABELS["instagram"] == "📸 Creator"
 
+    def test_intro_jump_links_are_vertical_not_horizontal(self):
+        winners_state = {
+            "section_headers": {
+                "free": {"channel_id": "wchan", "message_id": "hdr-free"},
+                "paid": {"channel_id": "wchan", "message_id": "hdr-paid"},
+            }
+        }
+        header = winners.build_winners_navigation_header(
+            winners_state,
+            guild_id="guild-1",
+            target_day_key="2026-04-15",
+            posted_section_keys=["free", "paid"],
+        )
+        # Links must NOT be joined with " · " on one line
+        assert " · " not in header
+
+    def test_intro_each_section_link_on_own_line(self):
+        winners_state = {
+            "section_headers": {
+                "free": {"channel_id": "wchan", "message_id": "hdr-free"},
+                "demo_playtest": {"channel_id": "wchan", "message_id": "hdr-demo"},
+                "paid": {"channel_id": "wchan", "message_id": "hdr-paid"},
+            }
+        }
+        header = winners.build_winners_navigation_header(
+            winners_state,
+            guild_id="guild-1",
+            target_day_key="2026-04-15",
+            posted_section_keys=["demo_playtest", "free", "paid"],
+        )
+        lines = header.split("\n")
+        link_lines = [ln for ln in lines if "](https://" in ln]
+        assert len(link_lines) == 3
+
     def test_footer_jump_links_only_include_posted_sections(self):
         winners_state = {
             "intro": {"channel_id": "wchan", "message_id": "intro-1"},
