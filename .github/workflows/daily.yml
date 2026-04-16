@@ -55,6 +55,15 @@ jobs:
           path: state_sanity.json
           if-no-files-found: ignore
 
+      - name: Ensure pinned how-it-works messages
+        continue-on-error: true
+        env:
+          PYTHONPATH: .
+          DISCORD_BOT_TOKEN: ${{ secrets.DISCORD_BOT_TOKEN }}
+          DISCORD_STEP1_CHANNEL_ID: ${{ secrets.DISCORD_STEP1_CHANNEL_ID }}
+          DISCORD_HEALTH_MONITOR_CHANNEL_ID: ${{ secrets.DISCORD_HEALTH_MONITOR_CHANNEL_ID }}
+        run: python scripts/ensure_pinned_messages.py
+
       - name: Run Steam script
         env:
           DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
@@ -98,6 +107,7 @@ jobs:
 
           git add seen_ids.json page_state.json instagram_seen.json
           if [ -f discord_daily_posts.json ]; then git add discord_daily_posts.json; fi
+          if [ -f data/pinned_messages.json ]; then git add data/pinned_messages.json; fi
 
           if ! git diff --cached --quiet; then
             git commit -m "Update bot state"

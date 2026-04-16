@@ -33,6 +33,14 @@ jobs:
       - name: Install packages
         run: pip install -r requirements.txt
 
+      - name: Ensure pinned how-it-works messages
+        continue-on-error: true
+        env:
+          PYTHONPATH: .
+          DISCORD_BOT_TOKEN: ${{ secrets.DISCORD_BOT_TOKEN }}
+          DISCORD_GAMING_LIBRARY_CHANNEL_ID: ${{ secrets.DISCORD_GAMING_LIBRARY_CHANNEL_ID }}
+        run: python scripts/ensure_pinned_messages.py
+
       - name: Post daily gaming library reminder
         env:
           PYTHONPATH: .
@@ -65,6 +73,7 @@ jobs:
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
 
           if [ -f gaming_library.json ]; then git add gaming_library.json; fi
+          if [ -f data/pinned_messages.json ]; then git add data/pinned_messages.json; fi
 
           if ! git diff --cached --quiet; then
             git commit -m "Update gaming library daily state"
