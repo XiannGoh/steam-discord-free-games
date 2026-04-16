@@ -1,0 +1,111 @@
+name: Pattern Analysis
+
+on:
+  schedule:
+    # Runs every Sunday at midnight UTC
+    - cron: "0 0 * * 0"
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+  pull-requests: write
+  id-token: write
+
+jobs:
+  analyze-patterns:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v5
+
+      - name: Install Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: "3.11"
+
+      - name: Install packages
+        run: pip install -r requirements.txt
+
+      - name: Run pattern analysis with Claude Code
+        uses: anthropics/claude-code-action@v1
+        with:
+          claude_code_oauth_token: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
+          claude_args: '--model claude-sonnet-4-6'
+          prompt: |
+            You are performing weekly pattern analysis for the bot health monitor.
+
+            Your tasks:
+            1. Read data/health_monitor_log.json to review all failures and patterns.
+            2. Identify recurring patterns: same issue_type repeating, same workflow always
+               failing, failures clustering at certain times of day, etc.
+            3. For each pattern identified:
+               a. Check if it's already recorded in the "patterns" array of the log.
+               b. If new: add a pattern entry with id, description, first_detected,
+                  occurrence_count, last_occurrence, root_cause fields.
+               c. If existing: update occurrence_count and last_occurrence.
+            4. If any pattern suggests a systemic fix (e.g. a workflow step always fails
+               after a state file update), investigate the root cause and fix it:
+               - Create a branch named fix/pattern-{short-description}
+               - Open a PR with a clear description of the pattern and the fix
+            5. Post a pattern report to the health monitor channel via webhook.
+               Use DISCORD_HEALTH_MONITOR_WEBHOOK_URL secret.
+               Format:
+               🔍 Weekly Pattern Analysis — {date}
+
+               Patterns reviewed: {count}
+               New patterns: {count}
+               Patterns resolved: {count}
+               Active recurring issues: {count}
+
+               [For each active pattern:]
+               • {description}: {occurrence_count} occurrences, last: {date}
+            6. Save the updated data/health_monitor_log.json by committing directly to main
+               (no PR needed for just updating the log, only if fixing code).
+
+            Read CLAUDE.md before making any code changes. Use model claude-sonnet-4-6.
+
+      - name: Notify Discord health monitor on failure
+        if: ${{ failure() && env.DISCORD_HEALTH_MONITOR_WEBHOOK_URL != '' }}
+        env:
+          DISCORD_HEALTH_MONITOR_WEBHOOK_URL: ${{ secrets.DISCORD_HEALTH_MONITOR_WEBHOOK_URL }}
+          WORKFLOW_NAME: ${{ github.workflow }}
+          JOB_NAME: analyze-patterns
+          RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+        run: |
+          payload="$(python3 - <<'PY'
+          import json, os
+          print(json.dumps({
+              "content": (
+                  "🔴 XiannGPT Bot Failure\n\n"
+                  f"Workflow: {os.environ['WORKFLOW_NAME']}\n"
+                  f"Job: {os.environ['JOB_NAME']}\n"
+                  "Status: failed\n"
+                  f"Run: {os.environ['RUN_URL']}"
+              )
+          }))
+          PY
+          )"
+
+          response_file="$(mktemp)"
+          http_status="$(curl --silent --show-error \
+            --output "${response_file}" \
+            --write-out "%{http_code}" \
+            --header "Content-Type: application/json" \
+            --header "User-Agent: steam-discord-free-games-health-monitor/1.0" \
+            --data "${payload}" \
+            --request POST \
+            "${DISCORD_HEALTH_MONITOR_WEBHOOK_URL}")"
+
+          if [[ "${http_status}" =~ ^2[0-9][0-9]$ ]]; then
+            echo "Discord webhook POST succeeded: HTTP ${http_status}"
+          else
+            echo "Discord webhook POST failed: HTTP ${http_status}" >&2
+            if [[ -s "${response_file}" ]]; then
+              cat "${response_file}" >&2
+            fi
+            rm -f "${response_file}"
+            exit 1
+          fi
+
+          rm -f "${response_file}"

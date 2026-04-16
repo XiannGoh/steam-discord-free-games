@@ -199,6 +199,110 @@ jobs:
           fi
 
       # ------------------------------------------------------------------ #
+      # 6. Log the failure to health_monitor_log.json, detect recurrence,
+      #    and post appropriate Discord notifications.
+      # ------------------------------------------------------------------ #
+      - name: Log failure and check recurrence
+        id: health_log
+        if: steps.check.outputs.should_fix == 'true'
+        continue-on-error: true
+        env:
+          PYTHONPATH: .
+        run: |
+          pip install -r requirements.txt -q
+
+          triggering_workflow="${{ github.event.workflow_run.name }}"
+          trigger_reason="${{ steps.check.outputs.trigger_reason }}"
+
+          # Derive issue_type from trigger_reason
+          issue_type="workflow_execution_failed"
+          if echo "$trigger_reason" | grep -q "discord_pass=false"; then
+            issue_type="discord_verification_failed"
+          elif echo "$trigger_reason" | grep -q "daily_pass=false"; then
+            issue_type="daily_verification_failed"
+          elif echo "$trigger_reason" | grep -q "gaming_library_pass=false"; then
+            issue_type="gaming_library_verification_failed"
+          elif echo "$trigger_reason" | grep -q "weekly_schedule_pass=false"; then
+            issue_type="weekly_schedule_verification_failed"
+          fi
+
+          result="$(python3 scripts/update_health_log.py log-failure \
+            --workflow "${triggering_workflow}" \
+            --issue-type "${issue_type}" \
+            --issue-description "${trigger_reason}" \
+            --run-id "${{ github.event.workflow_run.id }}")"
+
+          echo "health_log_result=${result}"
+          failure_id="$(echo "$result" | python3 -c "import json,sys; d=json.load(sys.stdin); print(d['failure_id'])")"
+          recurrence_count="$(echo "$result" | python3 -c "import json,sys; d=json.load(sys.stdin); print(d['recurrence_count'])")"
+          is_recurring="$(echo "$result" | python3 -c "import json,sys; d=json.load(sys.stdin); print(d['is_recurring'])")"
+          lifetime_count="$(echo "$result" | python3 -c "import json,sys; d=json.load(sys.stdin); print(d['lifetime_count'])")"
+          manual_review="$(echo "$result" | python3 -c "import json,sys; d=json.load(sys.stdin); print(d['manual_review_recommended'])")"
+
+          echo "failure_id=${failure_id}" >> "$GITHUB_OUTPUT"
+          echo "recurrence_count=${recurrence_count}" >> "$GITHUB_OUTPUT"
+          echo "is_recurring=${is_recurring}" >> "$GITHUB_OUTPUT"
+          echo "lifetime_count=${lifetime_count}" >> "$GITHUB_OUTPUT"
+          echo "issue_type=${issue_type}" >> "$GITHUB_OUTPUT"
+          echo "manual_review=${manual_review}" >> "$GITHUB_OUTPUT"
+
+      - name: Post failure detection to Discord
+        if: steps.check.outputs.should_fix == 'true'
+        continue-on-error: true
+        env:
+          DISCORD_HEALTH_MONITOR_WEBHOOK_URL: ${{ secrets.DISCORD_HEALTH_MONITOR_WEBHOOK_URL }}
+          TRIGGER_REASON: ${{ steps.check.outputs.trigger_reason }}
+          TRIGGERING_WORKFLOW: ${{ github.event.workflow_run.name }}
+          RECURRENCE_COUNT: ${{ steps.health_log.outputs.recurrence_count }}
+          IS_RECURRING: ${{ steps.health_log.outputs.is_recurring }}
+          RUN_DATE: ${{ github.event.workflow_run.created_at }}
+        run: |
+          payload="$(python3 - <<'PY'
+          import json, os
+          from datetime import datetime, timezone
+
+          workflow = os.environ.get("TRIGGERING_WORKFLOW", "unknown")
+          reason = os.environ.get("TRIGGER_REASON", "")
+          recurrence_count = int(os.environ.get("RECURRENCE_COUNT", "0") or "0")
+          is_recurring = os.environ.get("IS_RECURRING", "False").lower() == "true"
+          date_str = datetime.now(timezone.utc).strftime("%b %-d, %Y")
+
+          content_lines = [
+              f"🔴 Failure Detected — {workflow} — {date_str}",
+              "",
+              f"Issue: {reason}",
+              "Attempt: 1 of 3",
+              "Status: Auto-fix triggered",
+              f"Fix branch: fix/auto-fix-${{ github.event.workflow_run.id }}-1",
+              f"Previous occurrences in last 7 days: {recurrence_count}",
+          ]
+          if is_recurring:
+              content_lines.append("")
+              content_lines.append(f"⚠️ Recurring issue — has failed {recurrence_count + 1} times in 7 days")
+
+          print(json.dumps({"content": "\n".join(content_lines)}))
+          PY
+          )"
+
+          response_file="$(mktemp)"
+          http_status="$(curl --silent --show-error \
+            --output "${response_file}" \
+            --write-out "%{http_code}" \
+            --header "Content-Type: application/json" \
+            --header "User-Agent: steam-discord-free-games-auto-fix/1.0" \
+            --data "${payload}" \
+            --request POST \
+            "${DISCORD_HEALTH_MONITOR_WEBHOOK_URL}")"
+
+          if [[ "${http_status}" =~ ^2[0-9][0-9]$ ]]; then
+            echo "Discord failure-detected notification posted: HTTP ${http_status}"
+          else
+            echo "WARN: Discord notification failed: HTTP ${http_status}" >&2
+            if [[ -s "${response_file}" ]]; then cat "${response_file}" >&2; fi
+          fi
+          rm -f "${response_file}"
+
+      # ------------------------------------------------------------------ #
       # Shared prompt template (inlined per-step — GitHub Actions does not
       # support YAML anchors, so the prompt is repeated with the attempt
       # number changed). All attempts use claude-sonnet-4-6.
@@ -219,6 +323,12 @@ jobs:
             invalid verification artifact.
 
             Trigger context: ${{ steps.check.outputs.trigger_reason }}
+
+            BEFORE FIXING: Read data/health_monitor_log.json and check if this
+            issue_type (${{ steps.health_log.outputs.issue_type }}) has appeared
+            before. If is_recurring is true (${{ steps.health_log.outputs.is_recurring }}),
+            do not just fix the symptom — investigate and fix the root cause.
+            Recurrence count in last 7 days: ${{ steps.health_log.outputs.recurrence_count }}
 
             If the file artifacts/daily_verification.json exists in the workspace,
             read it to understand exactly what failed (intro_present, section_header_counts,
@@ -275,6 +385,22 @@ jobs:
           echo "Found PR #${pr_number} — enabling auto-merge"
           gh pr merge "${pr_number}" --squash --auto
 
+      - name: Update health log — attempt 1 success
+        if: steps.fix_1.outcome == 'success' && steps.health_log.outputs.failure_id != ''
+        continue-on-error: true
+        env:
+          PYTHONPATH: .
+        run: |
+          pr_number="$(gh pr list \
+            --head "fix/auto-fix-${{ github.event.workflow_run.id }}-1" \
+            --json number --jq '.[0].number' 2>/dev/null || echo "")"
+          python3 scripts/update_health_log.py update-outcome \
+            --failure-id "${{ steps.health_log.outputs.failure_id }}" \
+            --outcome success \
+            --branch "fix/auto-fix-${{ github.event.workflow_run.id }}-1" \
+            --attempt 1 \
+            ${pr_number:+--pr-number "$pr_number"}
+
       - name: Fix attempt 2 of 3
         id: fix_2
         if: steps.check.outputs.should_fix == 'true' && steps.fix_1.outcome == 'failure'
@@ -290,6 +416,12 @@ jobs:
             invalid verification artifact.
 
             Trigger context: ${{ steps.check.outputs.trigger_reason }}
+
+            BEFORE FIXING: Read data/health_monitor_log.json and check if this
+            issue_type (${{ steps.health_log.outputs.issue_type }}) has appeared
+            before. If is_recurring is true (${{ steps.health_log.outputs.is_recurring }}),
+            do not just fix the symptom — investigate and fix the root cause.
+            Recurrence count in last 7 days: ${{ steps.health_log.outputs.recurrence_count }}
 
             If the file artifacts/daily_verification.json exists in the workspace,
             read it to understand exactly what failed (intro_present, section_header_counts,
@@ -346,6 +478,22 @@ jobs:
           echo "Found PR #${pr_number} — enabling auto-merge"
           gh pr merge "${pr_number}" --squash --auto
 
+      - name: Update health log — attempt 2 success
+        if: steps.fix_2.outcome == 'success' && steps.health_log.outputs.failure_id != ''
+        continue-on-error: true
+        env:
+          PYTHONPATH: .
+        run: |
+          pr_number="$(gh pr list \
+            --head "fix/auto-fix-${{ github.event.workflow_run.id }}-2" \
+            --json number --jq '.[0].number' 2>/dev/null || echo "")"
+          python3 scripts/update_health_log.py update-outcome \
+            --failure-id "${{ steps.health_log.outputs.failure_id }}" \
+            --outcome success \
+            --branch "fix/auto-fix-${{ github.event.workflow_run.id }}-2" \
+            --attempt 2 \
+            ${pr_number:+--pr-number "$pr_number"}
+
       - name: Fix attempt 3 of 3
         id: fix_3
         if: steps.check.outputs.should_fix == 'true' && steps.fix_2.outcome == 'failure'
@@ -361,6 +509,12 @@ jobs:
             invalid verification artifact.
 
             Trigger context: ${{ steps.check.outputs.trigger_reason }}
+
+            BEFORE FIXING: Read data/health_monitor_log.json and check if this
+            issue_type (${{ steps.health_log.outputs.issue_type }}) has appeared
+            before. If is_recurring is true (${{ steps.health_log.outputs.is_recurring }}),
+            do not just fix the symptom — investigate and fix the root cause.
+            Recurrence count in last 7 days: ${{ steps.health_log.outputs.recurrence_count }}
 
             If the file artifacts/daily_verification.json exists in the workspace,
             read it to understand exactly what failed (intro_present, section_header_counts,
@@ -417,10 +571,43 @@ jobs:
           echo "Found PR #${pr_number} — enabling auto-merge"
           gh pr merge "${pr_number}" --squash --auto
 
+      - name: Update health log — attempt 3 success
+        if: steps.fix_3.outcome == 'success' && steps.health_log.outputs.failure_id != ''
+        continue-on-error: true
+        env:
+          PYTHONPATH: .
+        run: |
+          pr_number="$(gh pr list \
+            --head "fix/auto-fix-${{ github.event.workflow_run.id }}-3" \
+            --json number --jq '.[0].number' 2>/dev/null || echo "")"
+          python3 scripts/update_health_log.py update-outcome \
+            --failure-id "${{ steps.health_log.outputs.failure_id }}" \
+            --outcome success \
+            --branch "fix/auto-fix-${{ github.event.workflow_run.id }}-3" \
+            --attempt 3 \
+            ${pr_number:+--pr-number "$pr_number"}
+
       # ------------------------------------------------------------------ #
-      # Give up after 3 failed attempts — notify the health monitor channel.
+      # All 3 attempts exhausted — log failure, notify Discord, keep iterating.
+      # Per system design: auto-fix never permanently stops; lifetime_count
+      # is tracked and manual review is flagged if it exceeds 10.
       # ------------------------------------------------------------------ #
-      - name: Give up — notify Discord health monitor
+      - name: Update health log — all attempts failed
+        if: |
+          steps.check.outputs.should_fix == 'true' &&
+          steps.fix_3.outcome == 'failure' &&
+          steps.health_log.outputs.failure_id != ''
+        continue-on-error: true
+        env:
+          PYTHONPATH: .
+        run: |
+          python3 scripts/update_health_log.py update-outcome \
+            --failure-id "${{ steps.health_log.outputs.failure_id }}" \
+            --outcome failed \
+            --branch "fix/auto-fix-${{ github.event.workflow_run.id }}-3" \
+            --attempt 3
+
+      - name: Notify Discord — max attempts reached
         if: |
           steps.check.outputs.should_fix == 'true' &&
           steps.fix_3.outcome == 'failure'
@@ -429,19 +616,35 @@ jobs:
           RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
           DAILY_RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.event.workflow_run.id }}
           TRIGGER_REASON: ${{ steps.check.outputs.trigger_reason }}
+          LIFETIME_COUNT: ${{ steps.health_log.outputs.lifetime_count }}
+          MANUAL_REVIEW: ${{ steps.health_log.outputs.manual_review }}
+          TRIGGERING_WORKFLOW: ${{ github.event.workflow_run.name }}
         run: |
           payload="$(python3 - <<'PY'
           import json, os
-          print(json.dumps({
-              "content": (
-                  "🔴 Auto Fix Loop — Human Help Required\n\n"
-                  "The daily Steam Free Games workflow failed and all 3 automated "
-                  "fix attempts were unsuccessful.\n\n"
-                  f"Trigger: {os.environ.get('TRIGGER_REASON', '(see run)')}\n"
-                  f"Failed daily run: {os.environ['DAILY_RUN_URL']}\n"
-                  f"Auto-fix run: {os.environ['RUN_URL']}"
-              )
-          }))
+          from datetime import datetime, timezone
+
+          workflow = os.environ.get("TRIGGERING_WORKFLOW", "unknown")
+          reason = os.environ.get("TRIGGER_REASON", "(see run)")
+          lifetime_count = int(os.environ.get("LIFETIME_COUNT", "0") or "0")
+          manual_review = os.environ.get("MANUAL_REVIEW", "False").lower() == "true"
+          daily_run_url = os.environ["DAILY_RUN_URL"]
+          run_url = os.environ["RUN_URL"]
+          date_str = datetime.now(timezone.utc).strftime("%b %-d, %Y")
+
+          lines = [
+              f"🚨 Auto-fix Exhausted — {workflow} — {date_str}",
+              "",
+              f"Issue: {reason}",
+              "All 3 attempts failed",
+              f"Total fix attempts ever for this issue: {lifetime_count}",
+              "Status: Continuing to iterate — next attempt scheduled on next workflow run",
+          ]
+          if manual_review:
+              lines.append("")
+              lines.append(f"⚠️ Action required: lifetime_count ({lifetime_count}) exceeds 10 — manual review strongly recommended")
+          lines += ["", f"Failed run: {daily_run_url}", f"Auto-fix run: {run_url}"]
+          print(json.dumps({"content": "\n".join(lines)}))
           PY
           )"
 
@@ -456,14 +659,29 @@ jobs:
             "${DISCORD_HEALTH_MONITOR_WEBHOOK_URL}")"
 
           if [[ "${http_status}" =~ ^2[0-9][0-9]$ ]]; then
-            echo "Give-up alert posted to Discord: HTTP ${http_status}"
+            echo "Max-attempts alert posted to Discord: HTTP ${http_status}"
           else
-            echo "Failed to post give-up alert: HTTP ${http_status}" >&2
-            if [[ -s "${response_file}" ]]; then
-              cat "${response_file}" >&2
-            fi
-            rm -f "${response_file}"
-            exit 1
+            echo "WARN: Discord notification failed: HTTP ${http_status}" >&2
+            if [[ -s "${response_file}" ]]; then cat "${response_file}" >&2; fi
           fi
-
           rm -f "${response_file}"
+
+      # ------------------------------------------------------------------ #
+      # Commit health log state so it persists across runs.
+      # ------------------------------------------------------------------ #
+      - name: Save health log state
+        if: steps.check.outputs.should_fix == 'true'
+        continue-on-error: true
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          if [ -f data/health_monitor_log.json ]; then
+            git add data/health_monitor_log.json
+          fi
+          if ! git diff --cached --quiet; then
+            git commit -m "chore: update health monitor log"
+            git stash --include-untracked || true
+            git pull --rebase origin main
+            git stash pop || true
+            git push
+          fi
