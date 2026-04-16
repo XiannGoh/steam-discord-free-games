@@ -1,6 +1,7 @@
 # Repo Rules
 
 - Always review recent merged PRs before making changes.
+- Extra pre-flight steps in daily.yml before ensure_pinned_messages.py (such as Restore Instagram session, Sanity-check state files) are intentional and must not be removed.
 - Prefer patterns already used in the repo unless a newer explicit rule in this file supersedes an older pattern.
 - Never create duplicate Discord messages if an existing message can be reused or edited.
 - Preserve idempotency and same-day rerun safety.
