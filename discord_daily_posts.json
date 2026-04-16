@@ -5572,5 +5572,187 @@
         }
       ]
     }
+  },
+  "2026-04-16": {
+    "run_state": {
+      "section_headers": {
+        "demo_playtest": {
+          "message_id": "1494225107759927346",
+          "channel_id": "592534544708796474",
+          "posted_at_utc": "2026-04-16T06:37:07.402903+00:00"
+        },
+        "free": {
+          "message_id": "1494225139846352916",
+          "channel_id": "592534544708796474",
+          "posted_at_utc": "2026-04-16T06:37:14.998936+00:00"
+        },
+        "paid": {
+          "message_id": "1494225182066348123",
+          "channel_id": "592534544708796474",
+          "posted_at_utc": "2026-04-16T06:37:24.948786+00:00"
+        },
+        "instagram": {
+          "message_id": "1494225233060565064",
+          "channel_id": "592534544708796474",
+          "posted_at_utc": "2026-04-16T06:37:37.371677+00:00"
+        }
+      },
+      "last_attempt_at_utc": "2026-04-16T06:37:05.478506+00:00",
+      "intro": {
+        "message_id": "1494225101581979708",
+        "channel_id": "592534544708796474",
+        "posted_at_utc": "2026-04-16T06:37:05.733228+00:00"
+      },
+      "footer": {
+        "message_id": "1494225248445534329",
+        "channel_id": "592534544708796474",
+        "posted_at_utc": "2026-04-16T06:37:40.842457+00:00"
+      }
+    },
+    "items": [
+      {
+        "item_key": "691d39e3252cdff5",
+        "section": "demo_playtest",
+        "title": "Samurai Forge",
+        "url": "https://store.steampowered.com/app/617350/",
+        "message_id": "1494225114940702750",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_demo_playtest",
+        "posted_at": "2026-04-16T06:37:10.051339+00:00",
+        "description": "Samurai Forge is a Collectible Card Game unlike anything you have ever played before!"
+      },
+      {
+        "item_key": "8799a4284599eff8",
+        "section": "demo_playtest",
+        "title": "BidKing",
+        "url": "https://store.steampowered.com/app/4128580/",
+        "message_id": "1494225126231642222",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_demo_playtest",
+        "posted_at": "2026-04-16T06:37:13.377167+00:00",
+        "description": "Bid King is a multiplayer tactical strategy game of bid auctions and collectible appraisal. Read your rivals, judge through uncertainty, score valuable items at low prices, and bluff others into overpaying for junk. In this auction house of deception, only one thing matters: your wits."
+      },
+      {
+        "item_key": "95d2dba89cd570be",
+        "section": "free",
+        "title": "March of Empires",
+        "url": "https://store.steampowered.com/app/702320/",
+        "message_id": "1494225146511228948",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-04-16T06:37:16.618337+00:00",
+        "description": "Claim your title as Shogun, Highland King, Northern Tsar or Desert Sultan and join this genre-redefining strategy game where you will wage constant war for real territorial conquest! Fortify your castle, fuel a massive army, and enter the ultimate fight for realm domination!"
+      },
+      {
+        "item_key": "6ee3ff270f8026a2",
+        "section": "free",
+        "title": "IdleOn",
+        "url": "https://store.steampowered.com/app/1476970/",
+        "message_id": "1494225152987234306",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-04-16T06:37:18.261883+00:00",
+        "description": "The management RPG where your heroes keep fighting even when you're gone! Spend their loot on upgrades, unlock classes from Elemental Wizard to Cannon Pirate, and level up 19 unique skills like Farming, Sailing, and even Construction!"
+      },
+      {
+        "item_key": "641caeaae7bc0892",
+        "section": "free",
+        "title": "Paladins®",
+        "url": "https://store.steampowered.com/app/444090/",
+        "message_id": "1494225160440647720",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-04-16T06:37:20.093159+00:00",
+        "description": "Paladins is the ultimate fantasy team-based shooter experience, with over 50 customizable Champions fighting in 5v5 action across a diverse Realm of modes and maps!"
+      },
+      {
+        "item_key": "3eb172c367772b5b",
+        "section": "free",
+        "title": "SMITE 2",
+        "url": "https://store.steampowered.com/app/2437170/",
+        "message_id": "1494225167734276189",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-04-16T06:37:21.781896+00:00",
+        "description": "Become a god and wage war in SMITE 2, the free-to-play Unreal Engine 5-powered sequel to the legendary third-person action MOBA. If you love challenging competition, intense action, ability-driven combat, rewarding teamwork, or godly mythology, you’ll see why 40+ million players love SMITE."
+      },
+      {
+        "item_key": "4a5d3b0c4bae7e21",
+        "section": "free",
+        "title": "SMITE®",
+        "url": "https://store.steampowered.com/app/386360/",
+        "message_id": "1494225174810329100",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-04-16T06:37:23.465573+00:00",
+        "description": "Join 40+ million players in SMITE, the Battleground of the Gods! Wield Thor’s hammer, turn your foes to stone as Medusa, or flex your divine power as one of 100+ other mythological icons. Become a God and play FREE today!"
+      },
+      {
+        "item_key": "fc0fcef30cd200d4",
+        "section": "paid",
+        "title": "American Truck Simulator",
+        "url": "https://store.steampowered.com/app/270880/",
+        "message_id": "1494225188269588610",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-04-16T06:37:26.616305+00:00",
+        "description": "Experience legendary American trucks and deliver various cargoes across sunny California, sandy Nevada, and the Grand Canyon State of Arizona. American Truck Simulator takes you on a journey through the breathtaking landscapes and widely recognized landmarks around the States."
+      },
+      {
+        "item_key": "1ee8998f87df0ff7",
+        "section": "paid",
+        "title": "Divinity: Original Sin 2 - Definitive Edition",
+        "url": "https://store.steampowered.com/app/435150/",
+        "message_id": "1494225195152707656",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-04-16T06:37:28.244757+00:00",
+        "description": "The critically acclaimed RPG that raised the bar, from the creators of Baldur's Gate 3. Gather your party. Master deep, tactical combat. Venture as a party of up to four - but know that only one of you will have the chance to become a God."
+      },
+      {
+        "item_key": "37028586d980d9a3",
+        "section": "paid",
+        "title": "Dome Keeper",
+        "url": "https://store.steampowered.com/app/1637320/",
+        "message_id": "1494225202324705340",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-04-16T06:37:30.157063+00:00",
+        "description": "Defend against waves of alien monsters in this unique roguelike action miner. Dig for resources, collect useful gadgets, and upgrade equipment to increase odds of survival – just hurry back before your dome is destroyed!"
+      },
+      {
+        "item_key": "232eb0fc15980c86",
+        "section": "paid",
+        "title": "My Time at Sandrock",
+        "url": "https://store.steampowered.com/app/1084600/",
+        "message_id": "1494225210134499378",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-04-16T06:37:32.955988+00:00",
+        "description": "Travel to the desert community of Sandrock and take on the role of a fledgling Builder. Use your trusty toolset to gather resources, construct machines, and turn your run-down workshop into a well-oiled production facility to save the town from the jaws of economic ruin!"
+      },
+      {
+        "item_key": "7ef96cbe59abad95",
+        "section": "paid",
+        "title": "Grim Dawn",
+        "url": "https://store.steampowered.com/app/219990/",
+        "message_id": "1494225221832540250",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-04-16T06:37:35.676271+00:00",
+        "description": "Enter an apocalyptic fantasy world where humanity is on the brink of extinction, iron is valued above gold and trust is hard earned. This ARPG features complex character development, hundreds of unique items, crafting and quests with choice & consequence."
+      },
+      {
+        "item_key": "f3dc6bb60edcc1a6",
+        "section": "instagram",
+        "title": "@sharedxp_official",
+        "url": "https://www.instagram.com/p/DXKgnDGDEbd/",
+        "message_id": "1494225240534945843",
+        "channel_id": "592534544708796474",
+        "source_type": "instagram",
+        "posted_at": "2026-04-16T06:37:39.221445+00:00",
+        "description": "Thief Simulator 3 is a 2-player co-op stealth sim where one of you scouts and distracts while the other sneaks in, gr..."
+      }
+    ]
   }
 }
