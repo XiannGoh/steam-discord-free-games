@@ -416,6 +416,47 @@ jobs:
             --attempt 1 \
             ${pr_number:+--pr-number "$pr_number"}
 
+      - name: Notify Discord — attempt 1 success
+        if: steps.fix_1.outcome == 'success' && steps.health_log.outputs.failure_id != ''
+        continue-on-error: true
+        env:
+          DISCORD_HEALTH_MONITOR_WEBHOOK_URL: ${{ secrets.DISCORD_HEALTH_MONITOR_WEBHOOK_URL }}
+          WORKFLOW_NAME: ${{ github.event.workflow_run.name }}
+          RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+        run: |
+          payload="$(python3 - <<'PY'
+          import json, os
+          from datetime import datetime, timezone
+          date_str = datetime.now(timezone.utc).strftime("%b %d, %Y")
+          workflow = os.environ.get("WORKFLOW_NAME", "Unknown")
+          run_url = os.environ.get("RUN_URL", "")
+          content = (
+              f"🟢 Auto-fix Succeeded — {workflow} — {date_str}\n\n"
+              f"Discord output: ✅ Validated\n"
+              f"Run: {run_url}"
+          )
+          print(json.dumps({"content": content}))
+          PY
+          )"
+
+          response_file="$(mktemp)"
+          http_status="$(curl --silent --show-error \
+            --output "${response_file}" \
+            --write-out "%{http_code}" \
+            --header "Content-Type: application/json" \
+            --header "User-Agent: steam-discord-free-games-auto-fix/1.0" \
+            --data "${payload}" \
+            --request POST \
+            "${DISCORD_HEALTH_MONITOR_WEBHOOK_URL}")"
+
+          if [[ "${http_status}" =~ ^2[0-9][0-9]$ ]]; then
+            echo "Auto-fix success notification posted: HTTP ${http_status}"
+          else
+            echo "WARN: Discord notification failed: HTTP ${http_status}" >&2
+            if [[ -s "${response_file}" ]]; then cat "${response_file}" >&2; fi
+          fi
+          rm -f "${response_file}"
+
       - name: Fix attempt 2 of 3
         id: fix_2
         if: steps.check.outputs.should_fix == 'true' && steps.fix_1.outcome == 'failure'
@@ -509,6 +550,47 @@ jobs:
             --attempt 2 \
             ${pr_number:+--pr-number "$pr_number"}
 
+      - name: Notify Discord — attempt 2 success
+        if: steps.fix_2.outcome == 'success' && steps.health_log.outputs.failure_id != ''
+        continue-on-error: true
+        env:
+          DISCORD_HEALTH_MONITOR_WEBHOOK_URL: ${{ secrets.DISCORD_HEALTH_MONITOR_WEBHOOK_URL }}
+          WORKFLOW_NAME: ${{ github.event.workflow_run.name }}
+          RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+        run: |
+          payload="$(python3 - <<'PY'
+          import json, os
+          from datetime import datetime, timezone
+          date_str = datetime.now(timezone.utc).strftime("%b %d, %Y")
+          workflow = os.environ.get("WORKFLOW_NAME", "Unknown")
+          run_url = os.environ.get("RUN_URL", "")
+          content = (
+              f"🟢 Auto-fix Succeeded — {workflow} — {date_str}\n\n"
+              f"Discord output: ✅ Validated\n"
+              f"Run: {run_url}"
+          )
+          print(json.dumps({"content": content}))
+          PY
+          )"
+
+          response_file="$(mktemp)"
+          http_status="$(curl --silent --show-error \
+            --output "${response_file}" \
+            --write-out "%{http_code}" \
+            --header "Content-Type: application/json" \
+            --header "User-Agent: steam-discord-free-games-auto-fix/1.0" \
+            --data "${payload}" \
+            --request POST \
+            "${DISCORD_HEALTH_MONITOR_WEBHOOK_URL}")"
+
+          if [[ "${http_status}" =~ ^2[0-9][0-9]$ ]]; then
+            echo "Auto-fix success notification posted: HTTP ${http_status}"
+          else
+            echo "WARN: Discord notification failed: HTTP ${http_status}" >&2
+            if [[ -s "${response_file}" ]]; then cat "${response_file}" >&2; fi
+          fi
+          rm -f "${response_file}"
+
       - name: Fix attempt 3 of 3
         id: fix_3
         if: steps.check.outputs.should_fix == 'true' && steps.fix_2.outcome == 'failure'
@@ -601,6 +683,47 @@ jobs:
             --branch "fix/auto-fix-${{ github.event.workflow_run.id }}-3" \
             --attempt 3 \
             ${pr_number:+--pr-number "$pr_number"}
+
+      - name: Notify Discord — attempt 3 success
+        if: steps.fix_3.outcome == 'success' && steps.health_log.outputs.failure_id != ''
+        continue-on-error: true
+        env:
+          DISCORD_HEALTH_MONITOR_WEBHOOK_URL: ${{ secrets.DISCORD_HEALTH_MONITOR_WEBHOOK_URL }}
+          WORKFLOW_NAME: ${{ github.event.workflow_run.name }}
+          RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+        run: |
+          payload="$(python3 - <<'PY'
+          import json, os
+          from datetime import datetime, timezone
+          date_str = datetime.now(timezone.utc).strftime("%b %d, %Y")
+          workflow = os.environ.get("WORKFLOW_NAME", "Unknown")
+          run_url = os.environ.get("RUN_URL", "")
+          content = (
+              f"🟢 Auto-fix Succeeded — {workflow} — {date_str}\n\n"
+              f"Discord output: ✅ Validated\n"
+              f"Run: {run_url}"
+          )
+          print(json.dumps({"content": content}))
+          PY
+          )"
+
+          response_file="$(mktemp)"
+          http_status="$(curl --silent --show-error \
+            --output "${response_file}" \
+            --write-out "%{http_code}" \
+            --header "Content-Type: application/json" \
+            --header "User-Agent: steam-discord-free-games-auto-fix/1.0" \
+            --data "${payload}" \
+            --request POST \
+            "${DISCORD_HEALTH_MONITOR_WEBHOOK_URL}")"
+
+          if [[ "${http_status}" =~ ^2[0-9][0-9]$ ]]; then
+            echo "Auto-fix success notification posted: HTTP ${http_status}"
+          else
+            echo "WARN: Discord notification failed: HTTP ${http_status}" >&2
+            if [[ -s "${response_file}" ]]; then cat "${response_file}" >&2; fi
+          fi
+          rm -f "${response_file}"
 
       # ------------------------------------------------------------------ #
       # All 3 attempts exhausted — log failure, notify Discord, keep iterating.
