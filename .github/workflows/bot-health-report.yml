@@ -105,15 +105,44 @@ jobs:
 
             core.setOutput("workflows", JSON.stringify(output));
 
+      - name: Fetch GitHub Actions billing
+        id: actions_billing
+        continue-on-error: true
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          echo "Attempting to fetch Actions billing data..."
+
+          minutes_json="$(gh api \
+            /repos/${{ github.repository }}/actions/billing \
+            2>/dev/null || echo '{}')"
+
+          if [ "$minutes_json" = "{}" ]; then
+            minutes_json="$(gh api \
+              /orgs/${{ github.repository_owner }}/settings/billing/actions \
+              2>/dev/null || echo '{}')"
+          fi
+
+          if [ "$minutes_json" = "{}" ]; then
+            echo "actions_billing_json={}" >> "$GITHUB_OUTPUT"
+            echo "INFO: Actions billing data unavailable for this account type"
+          else
+            echo "actions_billing_json=${minutes_json}" >> "$GITHUB_OUTPUT"
+            echo "INFO: Actions billing data fetched successfully"
+          fi
+
       - name: Build daily health report
         id: build-report
         env:
           WORKFLOW_RUNS_JSON: ${{ steps.collect-workflows.outputs.workflows }}
+          ACTIONS_BILLING_JSON: ${{ steps.actions_billing.outputs.actions_billing_json }}
         run: |
           printf '%s' "${WORKFLOW_RUNS_JSON}" > workflow-runs.json
+          printf '%s' "${ACTIONS_BILLING_JSON:-{}}" > actions-billing.json
           python scripts/build_daily_health_report.py \
             --workflow-runs-json workflow-runs.json \
             --schedule-diagnostics-out workflow-schedule-diagnostics.json \
+            --actions-billing-json actions-billing.json \
             > health-report.txt
           {
             echo "content<<EOF"

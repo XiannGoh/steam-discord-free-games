@@ -724,12 +724,45 @@ def render_overall_summary(summary: OverallHealthSummary) -> list[str]:
     ]
 
 
+def build_actions_minutes_lines(billing_data: dict[str, Any] | None) -> list[str]:
+    """Return a one-line summary of GitHub Actions minutes consumption.
+
+    Thresholds: >95% → 🔴, >80% → ⚠️, missing data → ℹ️, otherwise 🟢.
+    """
+    if not billing_data:
+        return ["ℹ️ Actions minutes data unavailable for this account type"]
+
+    total = billing_data.get("total_minutes_used")
+    included = billing_data.get("included_minutes")
+
+    if total is None or included is None:
+        return ["ℹ️ Actions minutes data unavailable for this account type"]
+
+    if included == 0:
+        return [f"ℹ️ GitHub Actions: {total:,} minutes used (unlimited plan)"]
+
+    pct = total / included * 100
+
+    if pct > 95:
+        icon = "🔴"
+        label = "critical"
+    elif pct > 80:
+        icon = "⚠️"
+        label = "warning"
+    else:
+        icon = "🟢"
+        label = "ok"
+
+    return [f"{icon} GitHub Actions minutes: {total:,} / {included:,} ({pct:.0f}%) — {label}"]
+
+
 def render_report(
     *,
     workflow_status_lines: list[str],
     state_issues: list[Issue],
     report_date: str,
     state_check_label: str = "Bot Data Health Check (consolidated)",
+    actions_minutes_lines: list[str] | None = None,
 ) -> str:
     lines = [f"🚦 XiannGPT Bot Daily Health — {report_date}"]
     summary = summarize_overall_health(workflow_status_lines=workflow_status_lines, state_issues=state_issues)
@@ -767,6 +800,8 @@ def render_report(
 
     lines.extend(_render_section("State / Artifact Health", state_lines))
     lines.extend(_render_section("Instagram Fetch", build_instagram_summary_lines()))
+    if actions_minutes_lines is not None:
+        lines.extend(_render_section("GitHub Actions Minutes", actions_minutes_lines))
 
     return "\n".join(lines).strip()
 
@@ -961,6 +996,11 @@ def main() -> None:
         default="",
         help="Optional path to state_sanity.json; errors/warnings are surfaced in the report.",
     )
+    parser.add_argument(
+        "--actions-billing-json",
+        default="",
+        help="Optional path to GitHub Actions billing JSON; used to show minutes consumption.",
+    )
     args = parser.parse_args()
 
     payload = _load_json(Path(args.workflow_runs_json))
@@ -973,10 +1013,18 @@ def main() -> None:
         state_issues.extend(load_state_sanity_issues(Path(args.state_sanity_json)))
     elif Path("state_sanity.json").exists():
         state_issues.extend(load_state_sanity_issues(Path("state_sanity.json")))
+
+    billing_data: dict[str, Any] | None = None
+    if args.actions_billing_json and Path(args.actions_billing_json).exists():
+        raw = _load_json(Path(args.actions_billing_json))
+        billing_data = raw if isinstance(raw, dict) else None
+    actions_minutes = build_actions_minutes_lines(billing_data)
+
     report = render_report(
         workflow_status_lines=workflow_lines,
         state_issues=state_issues,
         report_date=_report_date_new_york(now_utc),
+        actions_minutes_lines=actions_minutes,
     )
     if args.schedule_diagnostics_out:
         Path(args.schedule_diagnostics_out).write_text(
