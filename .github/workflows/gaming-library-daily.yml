@@ -38,7 +38,13 @@ jobs:
         env:
           PYTHONPATH: .
           DISCORD_BOT_TOKEN: ${{ secrets.DISCORD_BOT_TOKEN }}
+          DISCORD_STEP1_CHANNEL_ID: ${{ secrets.DISCORD_STEP1_CHANNEL_ID }}
+          DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
+          DISCORD_WINNERS_CHANNEL_ID: ${{ secrets.DISCORD_WINNERS_CHANNEL_ID }}
           DISCORD_GAMING_LIBRARY_CHANNEL_ID: ${{ secrets.DISCORD_GAMING_LIBRARY_CHANNEL_ID }}
+          DISCORD_HEALTH_MONITOR_CHANNEL_ID: ${{ secrets.DISCORD_HEALTH_MONITOR_CHANNEL_ID }}
+          DISCORD_HEALTH_MONITOR_WEBHOOK_URL: ${{ secrets.DISCORD_HEALTH_MONITOR_WEBHOOK_URL }}
+          DISCORD_GUILD_ID: ${{ secrets.DISCORD_GUILD_ID }}
         run: python scripts/ensure_pinned_messages.py
 
       - name: Post daily gaming library reminder
