@@ -144,7 +144,8 @@ def build_winners_navigation_header(
             parts.append(f"{emoji} [{label}]({link})")
         if parts:
             lines.append("")
-            lines.append(" · ".join(parts))
+            for part in parts:
+                lines.append(part)
 
     lines.append("")
     lines.append(WINNERS_INTRO_DIVIDER)
