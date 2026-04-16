@@ -203,6 +203,13 @@ class DiscordClient:
     def pin_message(self, channel_id: str, message_id: str, *, context: str) -> None:
         self.request("PUT", f"{DISCORD_API_BASE}/channels/{channel_id}/pins/{message_id}", context=context)
 
+    def unpin_message(self, channel_id: str, message_id: str, *, context: str) -> None:
+        self.request("DELETE", f"{DISCORD_API_BASE}/channels/{channel_id}/pins/{message_id}", context=context)
+
+    def get_pinned_messages(self, channel_id: str, *, context: str) -> list:
+        response = self.request("GET", f"{DISCORD_API_BASE}/channels/{channel_id}/pins", context=context)
+        return self._parse_json_array(response, f"{context} JSON")
+
     def check_bot_permissions(self, channel_id: str, guild_id: str, *, bot_user_id: str = "") -> int:
         """Return the bot's effective permission bitfield for the given channel.
 

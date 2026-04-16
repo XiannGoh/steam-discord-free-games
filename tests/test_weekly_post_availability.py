@@ -16,11 +16,14 @@ class FakeSession:
 
 
 class FakeClient:
-    def __init__(self, existing_message_ids=None, stale_ids=None):
+    def __init__(self, existing_message_ids=None, stale_ids=None, pinned_messages=None):
         self.existing = set(existing_message_ids or [])
         self.stale = set(stale_ids or [])
         self.created_messages = []
         self.reaction_calls = []
+        self.pin_calls = []
+        self.unpin_calls = []
+        self._pinned_messages = pinned_messages or []
 
     def get_message(self, channel_id, message_id, *, context):
         if message_id in self.stale:
@@ -36,6 +39,15 @@ class FakeClient:
 
     def put_reaction(self, channel_id, message_id, encoded_emoji, *, context):
         self.reaction_calls.append((message_id, encoded_emoji))
+
+    def pin_message(self, channel_id, message_id, *, context):
+        self.pin_calls.append(message_id)
+
+    def unpin_message(self, channel_id, message_id, *, context):
+        self.unpin_calls.append(message_id)
+
+    def get_pinned_messages(self, channel_id, *, context):
+        return list(self._pinned_messages)
 
 
 def _run_main(monkeypatch, tmp_path, *, existing_state, fake_client):
@@ -124,6 +136,53 @@ def test_format_day_message_uses_no_leading_zeros():
         == scheduling_labels.format_day_label("Monday", weekly.date(2026, 4, 3), include_emoji=True)
         == "🇲 Monday — 4/3"
     )
+
+
+def test_pin_message_called_after_weekly_post(monkeypatch, tmp_path):
+    """A freshly posted intro message should be pinned."""
+    fake = FakeClient()
+
+    _run_main(monkeypatch, tmp_path, existing_state={}, fake_client=fake)
+
+    assert len(fake.pin_calls) == 1
+    assert fake.pin_calls[0].startswith("new-")
+
+
+def test_previous_week_unpinned_when_new_week_posted(monkeypatch, tmp_path):
+    """When a new week is posted, any previously pinned weekly availability message is unpinned."""
+    old_pinned_id = "old-intro-99"
+    pinned = [{"id": old_pinned_id, "content": "🗓️ Weekly Availability — react below for next week\nWeek of Apr 6–12, 2026"}]
+    fake = FakeClient(pinned_messages=pinned)
+
+    _run_main(monkeypatch, tmp_path, existing_state={}, fake_client=fake)
+
+    assert old_pinned_id in fake.unpin_calls
+    assert len(fake.pin_calls) == 1  # new intro pinned
+
+
+def test_already_pinned_intro_not_pinned_again(monkeypatch, tmp_path):
+    """If the current week's intro is already pinned, pin_message is not called again."""
+    week_key = "2026-04-13_to_2026-04-19"
+    intro_id = "intro-1"
+    pinned = [{"id": intro_id, "content": "🗓️ Weekly Availability — react below for next week\nWeek of Apr 13–19, 2026"}]
+    existing = {
+        week_key: {
+            "channel_id": "chan-1",
+            "date_range": "Apr 13–19, 2026",
+            "created_at_utc": "2026-04-13T00:00:00Z",
+            "intro_message_id": intro_id,
+            "days": {day: f"id-{day}" for day, _, _ in weekly.DAY_MESSAGE_TEMPLATES},
+        }
+    }
+    fake = FakeClient(
+        existing_message_ids={intro_id, *[f"id-{day}" for day, _, _ in weekly.DAY_MESSAGE_TEMPLATES]},
+        pinned_messages=pinned,
+    )
+
+    _run_main(monkeypatch, tmp_path, existing_state=existing, fake_client=fake)
+
+    assert fake.pin_calls == []
+    assert fake.unpin_calls == []
 
 
 def test_legacy_state_shape_loads_and_upgrades(monkeypatch, tmp_path, load_fixture_json):
