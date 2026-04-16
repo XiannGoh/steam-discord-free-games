@@ -36,10 +36,10 @@ _WINNERS_INTRO_SECTION_LABELS = {
     "instagram": ("📸", "Creator Winners"),
 }
 _WINNERS_FOOTER_SECTION_LABELS = {
-    "demo_playtest": "Demo & Playtest",
-    "free": "Free",
-    "paid": "Paid",
-    "instagram": "Creator",
+    "demo_playtest": "🎮 Demo & Playtest",
+    "free": "🆓 Free",
+    "paid": "💰 Paid",
+    "instagram": "📸 Creator",
 }
 
 # Winners intentionally mirror daily section ordering as product behavior,

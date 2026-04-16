@@ -552,6 +552,28 @@ class TestStep2IntroFooterFormatting:
         assert footer is not None
         assert "⬆️ Top" in footer
 
+    def test_footer_ends_with_exact_separator_string(self):
+        winners_state = {
+            "intro": {"channel_id": "wchan", "message_id": "intro-1"},
+            "section_headers": {
+                "free": {"channel_id": "wchan", "message_id": "hdr-1"},
+            },
+        }
+        footer = winners.build_winners_navigation_footer(
+            winners_state,
+            guild_id="guild-1",
+            target_day_key="2026-04-15",
+            posted_section_keys=["free"],
+        )
+        assert footer is not None
+        assert footer.endswith("─────────────────── End of Daily Winners ───────────────────")
+
+    def test_footer_section_labels_include_emojis(self):
+        assert winners._WINNERS_FOOTER_SECTION_LABELS["free"] == "🆓 Free"
+        assert winners._WINNERS_FOOTER_SECTION_LABELS["demo_playtest"] == "🎮 Demo & Playtest"
+        assert winners._WINNERS_FOOTER_SECTION_LABELS["paid"] == "💰 Paid"
+        assert winners._WINNERS_FOOTER_SECTION_LABELS["instagram"] == "📸 Creator"
+
     def test_footer_jump_links_only_include_posted_sections(self):
         winners_state = {
             "intro": {"channel_id": "wchan", "message_id": "intro-1"},
