@@ -67,3 +67,43 @@ class TestCheckToken:
         captured = capsys.readouterr()
         assert "Bot token OK: @ScheduleBot" in captured.out
         assert "DISCORD_SCHEDULING_BOT_TOKEN" in captured.out
+
+
+class TestMissingTokenWarnings:
+    def test_missing_bot_token_posts_health_monitor_warning(self, monkeypatch, capsys):
+        posted_messages: list[str] = []
+
+        def fake_post_warning(message: str) -> None:
+            posted_messages.append(message)
+
+        monkeypatch.setattr(health, "_post_health_monitor_warning", fake_post_warning)
+        monkeypatch.delenv("DISCORD_BOT_TOKEN", raising=False)
+        monkeypatch.delenv("DISCORD_SCHEDULING_BOT_TOKEN", raising=False)
+
+        health.main()
+
+        assert any("DISCORD_BOT_TOKEN" in m for m in posted_messages), "Expected warning for missing DISCORD_BOT_TOKEN"
+        captured = capsys.readouterr()
+        assert "WARN" in captured.err
+        assert "DISCORD_BOT_TOKEN" in captured.err
+
+    def test_missing_scheduling_token_posts_health_monitor_warning(self, monkeypatch, capsys):
+        posted_messages: list[str] = []
+
+        def fake_post_warning(message: str) -> None:
+            posted_messages.append(message)
+
+        monkeypatch.setattr(health, "_post_health_monitor_warning", fake_post_warning)
+        monkeypatch.setenv("DISCORD_BOT_TOKEN", "some-token")
+        monkeypatch.delenv("DISCORD_SCHEDULING_BOT_TOKEN", raising=False)
+
+        with patch("scripts.check_bot_token_health.requests.Session") as mock_session_cls:
+            mock_session = MagicMock()
+            mock_session_cls.return_value = mock_session
+            mock_session.get.return_value = _make_response(200, {"username": "Bot", "id": "1"})
+            health.main()
+
+        assert any("DISCORD_SCHEDULING_BOT_TOKEN" in m for m in posted_messages), \
+            "Expected warning for missing DISCORD_SCHEDULING_BOT_TOKEN"
+        captured = capsys.readouterr()
+        assert "DISCORD_SCHEDULING_BOT_TOKEN" in captured.err
