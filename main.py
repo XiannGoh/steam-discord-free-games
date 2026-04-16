@@ -2635,6 +2635,28 @@ def save_instagram_seen(data):
         json.dump(prune_instagram_seen_state(data), f, indent=2)
 
 
+def _check_instagram_session_age(session_file: str) -> None:
+    """Warn if the Instagram session file is old (proxy for session expiry).
+
+    >50 days: print WARN and post to health monitor
+    >30 days: print INFO only
+    <30 days: no action
+    Missing file: skip gracefully
+    """
+    try:
+        age_days = (datetime.now().timestamp() - os.path.getmtime(session_file)) / 86400
+    except OSError:
+        return
+    if age_days > 50:
+        print(f"WARN: Instagram session file is {age_days:.0f} days old — session may have expired", flush=True)
+        _notify_health_monitor(
+            f"⚠️ Instagram session file is {age_days:.0f} days old.\n"
+            "The session may have expired — re-authenticate and update the INSTAGRAM_SESSION secret."
+        )
+    elif age_days > 30:
+        print(f"INFO: Instagram session file is {age_days:.0f} days old — consider refreshing soon", flush=True)
+
+
 def fetch_instagram_posts():
     if instaloader is None:
         return []
@@ -2661,6 +2683,8 @@ def fetch_instagram_posts():
     if not os.path.exists(session_file):
         print("instaloader.session missing; skipping Instagram")
         return []
+
+    _check_instagram_session_age(session_file)
 
     try:
         loader.load_session_from_file(instagram_username, session_file)

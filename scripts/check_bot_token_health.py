@@ -8,8 +8,13 @@ from __future__ import annotations
 
 import os
 import sys
+import time
 
 import requests
+
+INSTAGRAM_SESSION_FILE = "instaloader.session"
+_INSTAGRAM_SESSION_WARN_DAYS = 50
+_INSTAGRAM_SESSION_INFO_DAYS = 30
 
 DISCORD_HEALTH_MONITOR_WEBHOOK_URL = os.getenv("DISCORD_HEALTH_MONITOR_WEBHOOK_URL", "")
 
@@ -72,6 +77,27 @@ def check_token(token: str, label: str) -> bool:
     return True
 
 
+def check_instagram_session_age(session_file: str = INSTAGRAM_SESSION_FILE) -> None:
+    """Warn if the Instagram session file is old (proxy for session expiry).
+
+    >50 days: print WARN and post to health monitor
+    >30 days: print INFO only
+    <30 days or missing: no action
+    """
+    try:
+        age_days = (time.time() - os.path.getmtime(session_file)) / 86400
+    except OSError:
+        return
+    if age_days > _INSTAGRAM_SESSION_WARN_DAYS:
+        print(f"WARN: Instagram session file is {age_days:.0f} days old — session may have expired", file=sys.stderr)
+        _post_health_monitor_warning(
+            f"⚠️ Instagram session file is {age_days:.0f} days old.\n"
+            "The session may have expired — re-authenticate and update the INSTAGRAM_SESSION secret."
+        )
+    elif age_days > _INSTAGRAM_SESSION_INFO_DAYS:
+        print(f"INFO: Instagram session file is {age_days:.0f} days old — consider refreshing soon")
+
+
 def main() -> None:
     tokens: list[tuple[str, str]] = []
 
@@ -99,6 +125,8 @@ def main() -> None:
 
     for token, label in tokens:
         check_token(token, label)
+
+    check_instagram_session_age()
 
 
 if __name__ == "__main__":

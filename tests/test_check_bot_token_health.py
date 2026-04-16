@@ -1,4 +1,5 @@
 import sys
+import time
 from unittest.mock import MagicMock, patch
 
 import pytest
@@ -107,3 +108,77 @@ class TestMissingTokenWarnings:
             "Expected warning for missing DISCORD_SCHEDULING_BOT_TOKEN"
         captured = capsys.readouterr()
         assert "DISCORD_SCHEDULING_BOT_TOKEN" in captured.err
+
+
+class TestInstagramSessionAge:
+    def _make_session_file(self, tmp_path, age_days: float) -> str:
+        path = tmp_path / "instaloader.session"
+        path.write_text("session", encoding="utf-8")
+        mtime = time.time() - age_days * 86400
+        import os
+        os.utime(str(path), (mtime, mtime))
+        return str(path)
+
+    def test_session_over_50_days_posts_health_monitor_warning(self, tmp_path, capsys, monkeypatch):
+        posted_messages: list[str] = []
+
+        def fake_post_warning(message: str) -> None:
+            posted_messages.append(message)
+
+        monkeypatch.setattr(health, "_post_health_monitor_warning", fake_post_warning)
+        session_file = self._make_session_file(tmp_path, age_days=55)
+
+        health.check_instagram_session_age(session_file)
+
+        assert len(posted_messages) == 1
+        assert "55" in posted_messages[0] or "day" in posted_messages[0]
+        captured = capsys.readouterr()
+        assert "WARN" in captured.err
+
+    def test_session_between_30_and_50_days_prints_info_only(self, tmp_path, capsys, monkeypatch):
+        posted_messages: list[str] = []
+
+        def fake_post_warning(message: str) -> None:
+            posted_messages.append(message)
+
+        monkeypatch.setattr(health, "_post_health_monitor_warning", fake_post_warning)
+        session_file = self._make_session_file(tmp_path, age_days=40)
+
+        health.check_instagram_session_age(session_file)
+
+        assert len(posted_messages) == 0
+        captured = capsys.readouterr()
+        assert "INFO" in captured.out
+        assert "WARN" not in captured.err
+
+    def test_session_under_30_days_no_output(self, tmp_path, capsys, monkeypatch):
+        posted_messages: list[str] = []
+
+        def fake_post_warning(message: str) -> None:
+            posted_messages.append(message)
+
+        monkeypatch.setattr(health, "_post_health_monitor_warning", fake_post_warning)
+        session_file = self._make_session_file(tmp_path, age_days=10)
+
+        health.check_instagram_session_age(session_file)
+
+        assert len(posted_messages) == 0
+        captured = capsys.readouterr()
+        assert captured.out == ""
+        assert captured.err == ""
+
+    def test_missing_session_file_skips_gracefully(self, tmp_path, capsys, monkeypatch):
+        posted_messages: list[str] = []
+
+        def fake_post_warning(message: str) -> None:
+            posted_messages.append(message)
+
+        monkeypatch.setattr(health, "_post_health_monitor_warning", fake_post_warning)
+        missing_path = str(tmp_path / "no_such_file.session")
+
+        health.check_instagram_session_age(missing_path)
+
+        assert len(posted_messages) == 0
+        captured = capsys.readouterr()
+        assert captured.out == ""
+        assert captured.err == ""
