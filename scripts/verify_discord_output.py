@@ -23,7 +23,7 @@ Exit codes:
 import json
 import os
 import sys
-from datetime import datetime, timezone
+from datetime import datetime, timedelta, timezone
 from typing import Any, Dict, List, Optional
 
 import requests
@@ -40,6 +40,9 @@ DISCORD_VERIFICATION_FILE = "discord_verification.json"
 
 CHANNEL_STEP1 = "step-1-vote-on-games-to-test"
 CHANNEL_STEP2 = "step-2-test-then-vote-to-keep"
+CHANNEL_STEP3 = "step-3-review-existing-games"
+
+GAMING_LIBRARY_FILE = "gaming_library.json"
 
 THUMBS_UP_EMOJI = "\U0001f44d"   # 👍
 BOOKMARK_EMOJI = "\U0001f516"    # 🔖
@@ -78,6 +81,19 @@ def load_daily_posts() -> Dict[str, Any]:
         return data if isinstance(data, dict) else {}
     except Exception as e:
         print(f"WARN: failed to load {DISCORD_DAILY_POSTS_FILE}: {e}")
+        return {}
+
+
+def load_gaming_library() -> Dict[str, Any]:
+    """Load gaming_library.json. Returns empty dict if missing or invalid."""
+    if not os.path.exists(GAMING_LIBRARY_FILE):
+        return {}
+    try:
+        with open(GAMING_LIBRARY_FILE, "r", encoding="utf-8") as f:
+            data = json.load(f)
+        return data if isinstance(data, dict) else {}
+    except Exception as e:
+        print(f"WARN: failed to load {GAMING_LIBRARY_FILE}: {e}")
         return {}
 
 
@@ -338,6 +354,8 @@ def verify_step1(
     if intro_message_id and intro_channel_id:
         msg = check_message(client, intro_channel_id, intro_message_id, "intro", ch)
         ch["intro_found"] = msg is not None and bool(msg.get("content"))
+        if msg is not None:
+            ch["section_content_in_intro"] = "store.steampowered.com" in msg.get("content", "").lower()
     else:
         ch["errors"].append("Intro message_id or channel_id missing from run_state.")
         print("  MISSING  intro (no message_id in state)")
@@ -367,6 +385,10 @@ def verify_step1(
     if footer_message_id and footer_channel_id:
         msg = check_message(client, footer_channel_id, footer_message_id, "footer", ch)
         ch["footer_found"] = msg is not None and bool(msg.get("content"))
+        if msg is not None:
+            ch["footer_missing_separator"] = not msg.get("content", "").strip().endswith(
+                "End of Daily Picks ───────────────────"
+            )
     else:
         print("  SKIPPED  footer (no message_id in state — DISCORD_GUILD_ID may not be set)")
         ch["footer_found"] = False
@@ -390,6 +412,25 @@ def verify_step1(
             ch["errors"].append(f"Duplicate message_id {msg_id} for item '{title}'.")
         seen_message_ids.append(msg_id)
         check_message(client, ch_id, msg_id, f"[{section}] {title}", ch, check_emoji=reaction_emoji)
+
+    # --- Demo/playtest freshness check ---
+    _cutoff = datetime.now(timezone.utc) - timedelta(days=180)
+    ch["demo_playtest_stale_game"] = False
+    for item in items:
+        if not isinstance(item, dict) or item.get("section") != "demo_playtest":
+            continue
+        release_date_str = item.get("release_date", "")
+        if not release_date_str:
+            continue
+        try:
+            release_dt = datetime.fromisoformat(release_date_str)
+            if release_dt.tzinfo is None:
+                release_dt = release_dt.replace(tzinfo=timezone.utc)
+            if release_dt < _cutoff:
+                ch["demo_playtest_stale_game"] = True
+                print(f"  STALE  demo/playtest item (release_date={release_date_str})")
+        except (ValueError, TypeError):
+            pass
 
     # Duplicate check
     duplicates_found = len(seen_message_ids) != len(set(seen_message_ids))
@@ -467,6 +508,8 @@ def verify_step2(
     if intro_message_id and intro_channel_id:
         msg = check_message(client, intro_channel_id, intro_message_id, "winners intro", ch)
         ch["intro_found"] = msg is not None and bool(msg.get("content"))
+        if msg is not None:
+            ch["section_content_in_intro"] = "store.steampowered.com" in msg.get("content", "").lower()
     else:
         ch["errors"].append("Winners intro message_id or channel_id missing from winners_state.")
         print("  MISSING  winners intro (no message_id in state)")
@@ -496,6 +539,10 @@ def verify_step2(
     if footer_message_id and footer_channel_id:
         msg = check_message(client, footer_channel_id, footer_message_id, "winners footer", ch)
         ch["footer_found"] = msg is not None and bool(msg.get("content"))
+        if msg is not None:
+            ch["footer_missing_separator"] = not msg.get("content", "").strip().endswith(
+                "End of Daily Winners ───────────────────"
+            )
     else:
         print("  SKIPPED  winners footer (no message_id in state — DISCORD_GUILD_ID may not have been set at post time)")
         ch["footer_found"] = False
@@ -551,6 +598,119 @@ def verify_step2(
 
     if specs is not None:
         apply_broken_if(ch, specs, CHANNEL_STEP2)
+
+    return ch
+
+
+# ---------------------------------------------------------------------------
+# Step-3 verifier: step-3-review-existing-games
+# ---------------------------------------------------------------------------
+
+def verify_step3(
+    client: DiscordClient,
+    gaming_library_state: Dict[str, Any],
+    specs: Optional[Dict[str, Any]],
+    day_key: str,
+) -> Dict[str, Any]:
+    """Verify today's gaming library intro and footer for step-3-review-existing-games."""
+    ch: Dict[str, Any] = {
+        "pass": False,
+        "checked": True,
+        "intro_found": False,
+        "footer_found": False,
+        "footer_missing_separator": False,
+        "delta_missing_from_intro": False,
+        "item_count": 0,
+        "messages_missing": [],
+        "errors": [],
+    }
+
+    daily_posts = gaming_library_state.get("daily_posts", {})
+    day_entry = daily_posts.get(day_key)
+
+    if not isinstance(day_entry, dict):
+        ch["checked"] = False
+        ch["pass"] = True
+        ch["skipped_reason"] = f"No daily_posts entry for {day_key} in gaming_library.json."
+        print(f"\n--- Step-3 skipped: no entry for {day_key} in gaming_library.json ---")
+        return ch
+
+    messages = day_entry.get("messages", {})
+
+    # --- Intro (may be stored as "intro" or legacy "header") ---
+    print("\n--- Step-3 intro ---")
+    intro_state = messages.get("intro") or messages.get("header") or {}
+    intro_message_id = str(intro_state.get("message_id") or "").strip()
+    intro_channel_id = str(intro_state.get("channel_id") or "").strip()
+
+    intro_content = ""
+    if intro_message_id and intro_channel_id:
+        try:
+            msg = client.get_message(intro_channel_id, intro_message_id, context="verify step-3 intro")
+            ch["intro_found"] = bool(msg.get("content"))
+            intro_content = msg.get("content", "")
+            print(f"  OK  intro (message_id={intro_message_id})")
+        except DiscordMessageNotFoundError:
+            ch["messages_missing"].append({"label": "intro", "message_id": intro_message_id})
+            ch["errors"].append(f"intro: message {intro_message_id} not found (deleted or wrong ID)")
+            print(f"  MISSING  intro (message_id={intro_message_id})")
+        except DiscordApiError as e:
+            ch["errors"].append(f"intro: API error — {e}")
+            print(f"  ERROR  intro: {e}")
+    else:
+        ch["errors"].append("Intro message_id or channel_id missing from gaming_library daily_posts.")
+        print("  MISSING  intro (no message_id in state)")
+
+    ch["delta_missing_from_intro"] = not (
+        "📊 Today's Changes" in intro_content
+        or "No changes since yesterday" in intro_content
+    )
+
+    # --- Footer ---
+    print("\n--- Step-3 footer ---")
+    footer_state = messages.get("footer") or {}
+    footer_message_id = str(footer_state.get("message_id") or "").strip()
+    footer_channel_id = str(footer_state.get("channel_id") or "").strip()
+
+    if footer_message_id and footer_channel_id:
+        try:
+            msg = client.get_message(footer_channel_id, footer_message_id, context="verify step-3 footer")
+            ch["footer_found"] = bool(msg.get("content"))
+            footer_content = msg.get("content", "").strip()
+            ch["footer_missing_separator"] = not footer_content.endswith(
+                "End of Gaming Library ───────────────────"
+            )
+            print(f"  OK  footer (message_id={footer_message_id})")
+        except DiscordMessageNotFoundError:
+            ch["messages_missing"].append({"label": "footer", "message_id": footer_message_id})
+            ch["errors"].append(f"footer: message {footer_message_id} not found (deleted or wrong ID)")
+            print(f"  MISSING  footer (message_id={footer_message_id})")
+        except DiscordApiError as e:
+            ch["errors"].append(f"footer: API error — {e}")
+            print(f"  ERROR  footer: {e}")
+    else:
+        ch["footer_found"] = False
+        print("  SKIPPED  footer (no message_id in state)")
+
+    # --- Item count (library size) ---
+    games = gaming_library_state.get("games", {})
+    ch["item_count"] = len(games) if isinstance(games, dict) else 0
+
+    # --- Pass logic ---
+    spec_required = get_spec_required(specs or {}, CHANNEL_STEP3)
+    min_items = spec_required.get("min_items", 0)
+
+    intro_ok = ch["intro_found"]
+    footer_ok = ch["footer_found"]
+    items_ok = ch["item_count"] >= min_items if min_items > 0 else True
+    no_missing = len(ch["messages_missing"]) == 0
+    no_separator_issue = not ch["footer_missing_separator"]
+    no_delta_issue = not ch["delta_missing_from_intro"]
+
+    ch["pass"] = intro_ok and footer_ok and items_ok and no_missing and no_separator_issue and no_delta_issue
+
+    if specs is not None:
+        apply_broken_if(ch, specs, CHANNEL_STEP3)
 
     return ch
 
@@ -622,6 +782,12 @@ def main() -> None:
     print(f"Verifying {CHANNEL_STEP2}")
     print(f"  Spec criteria: {step2_required}")
     result["channels"][CHANNEL_STEP2] = verify_step2(client, day_entry, step2_required, day_key, specs=specs)
+
+    # Verify step-3
+    gaming_library_state = load_gaming_library()
+    print(f"\n{'='*60}")
+    print(f"Verifying {CHANNEL_STEP3}")
+    result["channels"][CHANNEL_STEP3] = verify_step3(client, gaming_library_state, specs, day_key)
 
     # Overall pass: any checked channel that fails → overall fail
     checked_channels = {
