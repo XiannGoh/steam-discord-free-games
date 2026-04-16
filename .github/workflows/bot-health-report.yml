@@ -97,6 +97,16 @@ jobs:
 
             core.setOutput("workflows", JSON.stringify(output));
 
+      - name: Fetch GitHub Actions billing
+        id: actions-billing
+        continue-on-error: true
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh api /users/${{ github.repository_owner }}/settings/billing/actions \
+            > actions-billing.json 2>/dev/null \
+            || echo '{}' > actions-billing.json
+
       - name: Build daily health report
         id: build-report
         env:
@@ -106,6 +116,7 @@ jobs:
           python scripts/build_daily_health_report.py \
             --workflow-runs-json workflow-runs.json \
             --schedule-diagnostics-out workflow-schedule-diagnostics.json \
+            --actions-billing-json actions-billing.json \
             > health-report.txt
           {
             echo "content<<EOF"

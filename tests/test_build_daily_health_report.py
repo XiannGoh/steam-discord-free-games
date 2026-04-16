@@ -752,3 +752,41 @@ def test_instagram_summary_missing_file_shows_placeholder(monkeypatch, tmp_path)
 
     lines = report.build_instagram_summary_lines()
     assert any("No Instagram" in line for line in lines)
+
+
+class TestActionsMinutesLines:
+    def test_over_95_percent_shows_red(self):
+        billing = {"total_minutes_used": 1960, "included_minutes": 2000}
+        lines = report.build_actions_minutes_lines(billing)
+        assert len(lines) == 1
+        assert "🔴" in lines[0]
+        assert "critical" in lines[0]
+        assert "98%" in lines[0]
+
+    def test_over_80_percent_shows_warning(self):
+        billing = {"total_minutes_used": 1700, "included_minutes": 2000}
+        lines = report.build_actions_minutes_lines(billing)
+        assert len(lines) == 1
+        assert "⚠️" in lines[0]
+        assert "warning" in lines[0]
+        assert "85%" in lines[0]
+
+    def test_under_80_percent_shows_ok(self):
+        billing = {"total_minutes_used": 1000, "included_minutes": 2000}
+        lines = report.build_actions_minutes_lines(billing)
+        assert len(lines) == 1
+        assert "🟢" in lines[0]
+        assert "ok" in lines[0]
+        assert "50%" in lines[0]
+
+    def test_missing_data_shows_info(self):
+        lines = report.build_actions_minutes_lines(None)
+        assert len(lines) == 1
+        assert "ℹ️" in lines[0]
+        assert "unavailable" in lines[0]
+
+    def test_empty_dict_shows_info(self):
+        lines = report.build_actions_minutes_lines({})
+        assert len(lines) == 1
+        assert "ℹ️" in lines[0]
+        assert "unavailable" in lines[0]
