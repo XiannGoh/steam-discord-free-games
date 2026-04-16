@@ -93,6 +93,7 @@ jobs:
             const isSaturday = now.getUTCDay() === 6;
 
             const alerts = [];
+            const retriggerCounts = {};
 
             for (const wf of WATCHED) {
               try {
@@ -150,6 +151,25 @@ jobs:
                 }
 
                 if (shouldTrigger) {
+                  const todayKey = now.toISOString().slice(0, 10);
+                  const retriggerKey = `${wf.file}:${todayKey}`;
+                  const currentCount = retriggerCounts[retriggerKey] || 0;
+
+                  if (currentCount >= 3) {
+                    core.warning(
+                      `WATCHDOG CAP: ${wf.name} has been re-triggered ` +
+                      `${currentCount} times today — skipping to prevent ` +
+                      `quota exhaustion`
+                    );
+                    alerts.push({
+                      name: wf.name,
+                      reason: `re-trigger cap reached (${currentCount} today)`,
+                      triggeredAt: now.toISOString(),
+                      capReached: true,
+                    });
+                    continue;
+                  }
+
                   core.warning(`OVERDUE ${wf.name}: ${reason} — triggering`);
                   try {
                     await github.rest.actions.createWorkflowDispatch({
@@ -160,6 +180,7 @@ jobs:
                       inputs: {},
                     });
                     core.info(`Triggered ${wf.name} via workflow_dispatch`);
+                    retriggerCounts[retriggerKey] = currentCount + 1;
                     alerts.push({
                       name: wf.name,
                       reason,
@@ -218,8 +239,15 @@ jobs:
               triggered_at = alert.get("triggeredAt", "")
               trigger_error = alert.get("triggerError")
               reason = alert.get("reason", "")
+              cap_reached = alert.get("capReached", False)
 
-              if trigger_error:
+              if cap_reached:
+                  lines.append(
+                      f"🚫 Watchdog cap reached: **{name}** "
+                      f"has been re-triggered 3 times today. "
+                      f"Manual investigation may be needed."
+                  )
+              elif trigger_error:
                   lines.append(
                       f"⚠️ Watchdog: **{name}** was overdue ({reason}) "
                       f"— trigger FAILED: {trigger_error}"
