@@ -199,6 +199,14 @@ jobs:
             fi
           fi
 
+          # Count failing checks to enable post-fix regression detection
+          pre_fix_fail_count=0
+          [ "$daily_pass" = "false" ] && pre_fix_fail_count=$((pre_fix_fail_count + 1))
+          [ "$discord_pass" = "false" ] && pre_fix_fail_count=$((pre_fix_fail_count + 1))
+          [ "$gaming_library_pass" = "false" ] && pre_fix_fail_count=$((pre_fix_fail_count + 1))
+          [ "$weekly_schedule_pass" = "false" ] && pre_fix_fail_count=$((pre_fix_fail_count + 1))
+          echo "pre_fix_fail_count=${pre_fix_fail_count}" >> "$GITHUB_OUTPUT"
+
           triggering_workflow="${{ github.event.workflow_run.name }}"
           if [ "$conclusion" = "failure" ] || [ "$daily_pass" = "false" ] || [ "$discord_pass" = "false" ] || [ "$gaming_library_pass" = "false" ] || [ "$weekly_schedule_pass" = "false" ]; then
             echo "should_fix=true" >> "$GITHUB_OUTPUT"
@@ -457,6 +465,110 @@ jobs:
           fi
           rm -f "${response_file}"
 
+      - name: Verify post-fix and rollback if worse — attempt 1
+        id: verify_rollback_1
+        if: steps.fix_1.outcome == 'success' && steps.merge_1.outcome == 'success'
+        continue-on-error: true
+        env:
+          GH_TOKEN: ${{ github.token }}
+          DISCORD_HEALTH_MONITOR_WEBHOOK_URL: ${{ secrets.DISCORD_HEALTH_MONITOR_WEBHOOK_URL }}
+          TRIGGERING_WORKFLOW: ${{ github.event.workflow_run.name }}
+          RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+          PRE_FIX_FAIL_COUNT: ${{ steps.check.outputs.pre_fix_fail_count }}
+          WORKFLOW_RUN_ID: ${{ github.event.workflow_run.id }}
+        run: |
+          triggering_workflow="${TRIGGERING_WORKFLOW}"
+          pr_branch="fix/auto-fix-${WORKFLOW_RUN_ID}-1"
+          pr_number="$(gh pr list --head "${pr_branch}" --state merged --json number --jq '.[0].number' 2>/dev/null || echo "")"
+          merge_time="$(date -u +%Y-%m-%dT%H:%M:%SZ)"
+
+          echo "Polling for post-fix run of '${triggering_workflow}' (up to 5 minutes)..."
+          new_run_id=""
+          for attempt in $(seq 1 30); do
+            new_run_id="$(gh run list \
+              --workflow "${triggering_workflow}" \
+              --status completed \
+              --json databaseId,createdAt \
+              --jq "[.[] | select(.createdAt >= \"${merge_time}\")] | .[0].databaseId" \
+              2>/dev/null || echo "")"
+            [ -n "$new_run_id" ] && [ "$new_run_id" != "null" ] && break
+            echo "No new completed run yet (attempt ${attempt}/30); waiting 10s..."
+            sleep 10
+          done
+
+          if [ -z "$new_run_id" ] || [ "$new_run_id" = "null" ]; then
+            echo "No post-fix run found within 5 minutes; skipping rollback check"
+            exit 0
+          fi
+          echo "Found post-fix run: ${new_run_id}"
+
+          mkdir -p post_fix_artifacts_1
+          gh run download "${new_run_id}" --pattern "discord-verification-*" -D post_fix_artifacts_1/ 2>/dev/null || true
+          gh run download "${new_run_id}" --pattern "daily-verification-*" -D post_fix_artifacts_1/ 2>/dev/null || true
+
+          new_fail_count=0
+          for artifact in post_fix_artifacts_1/discord_verification.json post_fix_artifacts_1/daily_verification.json; do
+            if [ -f "$artifact" ]; then
+              pass_val="$(python3 -c "
+          import json
+          try:
+              d = json.load(open('$artifact'))
+              print(str(d.get('pass', True)).lower())
+          except:
+              print('true')
+          " 2>/dev/null || echo "true")"
+              [ "$pass_val" = "false" ] && new_fail_count=$((new_fail_count + 1))
+            fi
+          done
+
+          pre_fix_fail_count="${PRE_FIX_FAIL_COUNT:-0}"
+          echo "Pre-fix fail count: ${pre_fix_fail_count} | Post-fix fail count: ${new_fail_count}"
+
+          post_discord() {
+            local content="$1"
+            curl --silent --show-error \
+              --header "Content-Type: application/json" \
+              --header "User-Agent: steam-discord-free-games-auto-fix/1.0" \
+              --data "$(python3 -c "import json,sys; print(json.dumps({'content': sys.argv[1]}))" "$content")" \
+              --request POST "${DISCORD_HEALTH_MONITOR_WEBHOOK_URL}" >/dev/null || true
+          }
+
+          date_str="$(python3 -c "from datetime import datetime, timezone; print(datetime.now(timezone.utc).strftime('%b %d, %Y'))")"
+
+          if [ "$new_fail_count" -eq 0 ]; then
+            echo "Post-fix verification passed — no rollback needed"
+          elif [ "$new_fail_count" -gt "$pre_fix_fail_count" ]; then
+            echo "Post-fix verification WORSE — reverting"
+            merge_commit="$(gh pr view "${pr_number}" --json mergeCommit --jq '.mergeCommit.oid' 2>/dev/null || echo "")"
+            if [ -n "$merge_commit" ] && [ "$merge_commit" != "null" ]; then
+              git config user.name "github-actions[bot]"
+              git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+              git pull origin main
+              revert_branch="revert/auto-fix-${WORKFLOW_RUN_ID}-1"
+              git checkout -b "${revert_branch}"
+              git revert --no-edit "${merge_commit}" || true
+              git push origin "${revert_branch}" || true
+              gh pr create \
+                --title "revert: auto-fix attempt 1 made things worse" \
+                --body "Automatic revert: post-fix verification showed ${new_fail_count} failures vs ${pre_fix_fail_count} before the fix." \
+                --base main --head "${revert_branch}" || true
+              revert_pr="$(gh pr list --head "${revert_branch}" --json number --jq '.[0].number' 2>/dev/null || echo "")"
+              [ -n "$revert_pr" ] && gh pr merge "${revert_pr}" --squash --auto || true
+            fi
+            post_discord "🔴 Auto-fix Reverted — ${triggering_workflow} — ${date_str}
+
+Reason: Post-fix verification showed more failures
+Reverted PR: #${pr_number}
+Run: ${RUN_URL}"
+          else
+            echo "Post-fix verification still failing but not worse — inconclusive"
+            post_discord "🟡 Auto-fix Inconclusive — ${triggering_workflow} — ${date_str}
+
+Fix merged but verification still failing
+Next attempt will try a different approach
+Run: ${RUN_URL}"
+          fi
+
       - name: Fix attempt 2 of 3
         id: fix_2
         if: steps.check.outputs.should_fix == 'true' && steps.fix_1.outcome == 'failure'
@@ -591,6 +703,110 @@ jobs:
           fi
           rm -f "${response_file}"
 
+      - name: Verify post-fix and rollback if worse — attempt 2
+        id: verify_rollback_2
+        if: steps.fix_2.outcome == 'success' && steps.merge_2.outcome == 'success'
+        continue-on-error: true
+        env:
+          GH_TOKEN: ${{ github.token }}
+          DISCORD_HEALTH_MONITOR_WEBHOOK_URL: ${{ secrets.DISCORD_HEALTH_MONITOR_WEBHOOK_URL }}
+          TRIGGERING_WORKFLOW: ${{ github.event.workflow_run.name }}
+          RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+          PRE_FIX_FAIL_COUNT: ${{ steps.check.outputs.pre_fix_fail_count }}
+          WORKFLOW_RUN_ID: ${{ github.event.workflow_run.id }}
+        run: |
+          triggering_workflow="${TRIGGERING_WORKFLOW}"
+          pr_branch="fix/auto-fix-${WORKFLOW_RUN_ID}-2"
+          pr_number="$(gh pr list --head "${pr_branch}" --state merged --json number --jq '.[0].number' 2>/dev/null || echo "")"
+          merge_time="$(date -u +%Y-%m-%dT%H:%M:%SZ)"
+
+          echo "Polling for post-fix run of '${triggering_workflow}' (up to 5 minutes)..."
+          new_run_id=""
+          for attempt in $(seq 1 30); do
+            new_run_id="$(gh run list \
+              --workflow "${triggering_workflow}" \
+              --status completed \
+              --json databaseId,createdAt \
+              --jq "[.[] | select(.createdAt >= \"${merge_time}\")] | .[0].databaseId" \
+              2>/dev/null || echo "")"
+            [ -n "$new_run_id" ] && [ "$new_run_id" != "null" ] && break
+            echo "No new completed run yet (attempt ${attempt}/30); waiting 10s..."
+            sleep 10
+          done
+
+          if [ -z "$new_run_id" ] || [ "$new_run_id" = "null" ]; then
+            echo "No post-fix run found within 5 minutes; skipping rollback check"
+            exit 0
+          fi
+          echo "Found post-fix run: ${new_run_id}"
+
+          mkdir -p post_fix_artifacts_2
+          gh run download "${new_run_id}" --pattern "discord-verification-*" -D post_fix_artifacts_2/ 2>/dev/null || true
+          gh run download "${new_run_id}" --pattern "daily-verification-*" -D post_fix_artifacts_2/ 2>/dev/null || true
+
+          new_fail_count=0
+          for artifact in post_fix_artifacts_2/discord_verification.json post_fix_artifacts_2/daily_verification.json; do
+            if [ -f "$artifact" ]; then
+              pass_val="$(python3 -c "
+          import json
+          try:
+              d = json.load(open('$artifact'))
+              print(str(d.get('pass', True)).lower())
+          except:
+              print('true')
+          " 2>/dev/null || echo "true")"
+              [ "$pass_val" = "false" ] && new_fail_count=$((new_fail_count + 1))
+            fi
+          done
+
+          pre_fix_fail_count="${PRE_FIX_FAIL_COUNT:-0}"
+          echo "Pre-fix fail count: ${pre_fix_fail_count} | Post-fix fail count: ${new_fail_count}"
+
+          post_discord() {
+            local content="$1"
+            curl --silent --show-error \
+              --header "Content-Type: application/json" \
+              --header "User-Agent: steam-discord-free-games-auto-fix/1.0" \
+              --data "$(python3 -c "import json,sys; print(json.dumps({'content': sys.argv[1]}))" "$content")" \
+              --request POST "${DISCORD_HEALTH_MONITOR_WEBHOOK_URL}" >/dev/null || true
+          }
+
+          date_str="$(python3 -c "from datetime import datetime, timezone; print(datetime.now(timezone.utc).strftime('%b %d, %Y'))")"
+
+          if [ "$new_fail_count" -eq 0 ]; then
+            echo "Post-fix verification passed — no rollback needed"
+          elif [ "$new_fail_count" -gt "$pre_fix_fail_count" ]; then
+            echo "Post-fix verification WORSE — reverting"
+            merge_commit="$(gh pr view "${pr_number}" --json mergeCommit --jq '.mergeCommit.oid' 2>/dev/null || echo "")"
+            if [ -n "$merge_commit" ] && [ "$merge_commit" != "null" ]; then
+              git config user.name "github-actions[bot]"
+              git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+              git pull origin main
+              revert_branch="revert/auto-fix-${WORKFLOW_RUN_ID}-2"
+              git checkout -b "${revert_branch}"
+              git revert --no-edit "${merge_commit}" || true
+              git push origin "${revert_branch}" || true
+              gh pr create \
+                --title "revert: auto-fix attempt 2 made things worse" \
+                --body "Automatic revert: post-fix verification showed ${new_fail_count} failures vs ${pre_fix_fail_count} before the fix." \
+                --base main --head "${revert_branch}" || true
+              revert_pr="$(gh pr list --head "${revert_branch}" --json number --jq '.[0].number' 2>/dev/null || echo "")"
+              [ -n "$revert_pr" ] && gh pr merge "${revert_pr}" --squash --auto || true
+            fi
+            post_discord "🔴 Auto-fix Reverted — ${triggering_workflow} — ${date_str}
+
+Reason: Post-fix verification showed more failures
+Reverted PR: #${pr_number}
+Run: ${RUN_URL}"
+          else
+            echo "Post-fix verification still failing but not worse — inconclusive"
+            post_discord "🟡 Auto-fix Inconclusive — ${triggering_workflow} — ${date_str}
+
+Fix merged but verification still failing
+Next attempt will try a different approach
+Run: ${RUN_URL}"
+          fi
+
       - name: Fix attempt 3 of 3
         id: fix_3
         if: steps.check.outputs.should_fix == 'true' && steps.fix_2.outcome == 'failure'
@@ -724,6 +940,110 @@ jobs:
             if [[ -s "${response_file}" ]]; then cat "${response_file}" >&2; fi
           fi
           rm -f "${response_file}"
+
+      - name: Verify post-fix and rollback if worse — attempt 3
+        id: verify_rollback_3
+        if: steps.fix_3.outcome == 'success' && steps.merge_3.outcome == 'success'
+        continue-on-error: true
+        env:
+          GH_TOKEN: ${{ github.token }}
+          DISCORD_HEALTH_MONITOR_WEBHOOK_URL: ${{ secrets.DISCORD_HEALTH_MONITOR_WEBHOOK_URL }}
+          TRIGGERING_WORKFLOW: ${{ github.event.workflow_run.name }}
+          RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+          PRE_FIX_FAIL_COUNT: ${{ steps.check.outputs.pre_fix_fail_count }}
+          WORKFLOW_RUN_ID: ${{ github.event.workflow_run.id }}
+        run: |
+          triggering_workflow="${TRIGGERING_WORKFLOW}"
+          pr_branch="fix/auto-fix-${WORKFLOW_RUN_ID}-3"
+          pr_number="$(gh pr list --head "${pr_branch}" --state merged --json number --jq '.[0].number' 2>/dev/null || echo "")"
+          merge_time="$(date -u +%Y-%m-%dT%H:%M:%SZ)"
+
+          echo "Polling for post-fix run of '${triggering_workflow}' (up to 5 minutes)..."
+          new_run_id=""
+          for attempt in $(seq 1 30); do
+            new_run_id="$(gh run list \
+              --workflow "${triggering_workflow}" \
+              --status completed \
+              --json databaseId,createdAt \
+              --jq "[.[] | select(.createdAt >= \"${merge_time}\")] | .[0].databaseId" \
+              2>/dev/null || echo "")"
+            [ -n "$new_run_id" ] && [ "$new_run_id" != "null" ] && break
+            echo "No new completed run yet (attempt ${attempt}/30); waiting 10s..."
+            sleep 10
+          done
+
+          if [ -z "$new_run_id" ] || [ "$new_run_id" = "null" ]; then
+            echo "No post-fix run found within 5 minutes; skipping rollback check"
+            exit 0
+          fi
+          echo "Found post-fix run: ${new_run_id}"
+
+          mkdir -p post_fix_artifacts_3
+          gh run download "${new_run_id}" --pattern "discord-verification-*" -D post_fix_artifacts_3/ 2>/dev/null || true
+          gh run download "${new_run_id}" --pattern "daily-verification-*" -D post_fix_artifacts_3/ 2>/dev/null || true
+
+          new_fail_count=0
+          for artifact in post_fix_artifacts_3/discord_verification.json post_fix_artifacts_3/daily_verification.json; do
+            if [ -f "$artifact" ]; then
+              pass_val="$(python3 -c "
+          import json
+          try:
+              d = json.load(open('$artifact'))
+              print(str(d.get('pass', True)).lower())
+          except:
+              print('true')
+          " 2>/dev/null || echo "true")"
+              [ "$pass_val" = "false" ] && new_fail_count=$((new_fail_count + 1))
+            fi
+          done
+
+          pre_fix_fail_count="${PRE_FIX_FAIL_COUNT:-0}"
+          echo "Pre-fix fail count: ${pre_fix_fail_count} | Post-fix fail count: ${new_fail_count}"
+
+          post_discord() {
+            local content="$1"
+            curl --silent --show-error \
+              --header "Content-Type: application/json" \
+              --header "User-Agent: steam-discord-free-games-auto-fix/1.0" \
+              --data "$(python3 -c "import json,sys; print(json.dumps({'content': sys.argv[1]}))" "$content")" \
+              --request POST "${DISCORD_HEALTH_MONITOR_WEBHOOK_URL}" >/dev/null || true
+          }
+
+          date_str="$(python3 -c "from datetime import datetime, timezone; print(datetime.now(timezone.utc).strftime('%b %d, %Y'))")"
+
+          if [ "$new_fail_count" -eq 0 ]; then
+            echo "Post-fix verification passed — no rollback needed"
+          elif [ "$new_fail_count" -gt "$pre_fix_fail_count" ]; then
+            echo "Post-fix verification WORSE — reverting"
+            merge_commit="$(gh pr view "${pr_number}" --json mergeCommit --jq '.mergeCommit.oid' 2>/dev/null || echo "")"
+            if [ -n "$merge_commit" ] && [ "$merge_commit" != "null" ]; then
+              git config user.name "github-actions[bot]"
+              git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+              git pull origin main
+              revert_branch="revert/auto-fix-${WORKFLOW_RUN_ID}-3"
+              git checkout -b "${revert_branch}"
+              git revert --no-edit "${merge_commit}" || true
+              git push origin "${revert_branch}" || true
+              gh pr create \
+                --title "revert: auto-fix attempt 3 made things worse" \
+                --body "Automatic revert: post-fix verification showed ${new_fail_count} failures vs ${pre_fix_fail_count} before the fix." \
+                --base main --head "${revert_branch}" || true
+              revert_pr="$(gh pr list --head "${revert_branch}" --json number --jq '.[0].number' 2>/dev/null || echo "")"
+              [ -n "$revert_pr" ] && gh pr merge "${revert_pr}" --squash --auto || true
+            fi
+            post_discord "🔴 Auto-fix Reverted — ${triggering_workflow} — ${date_str}
+
+Reason: Post-fix verification showed more failures
+Reverted PR: #${pr_number}
+Run: ${RUN_URL}"
+          else
+            echo "Post-fix verification still failing but not worse — inconclusive"
+            post_discord "🟡 Auto-fix Inconclusive — ${triggering_workflow} — ${date_str}
+
+Fix merged but verification still failing
+Next attempt will try a different approach
+Run: ${RUN_URL}"
+          fi
 
       # ------------------------------------------------------------------ #
       # All 3 attempts exhausted — log failure, notify Discord, keep iterating.
