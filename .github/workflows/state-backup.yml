@@ -1,0 +1,119 @@
+name: State Backup
+
+on:
+  schedule:
+    # 03:45 UTC = ~11:45 PM ET (EDT) / ~10:45 PM ET (EST)
+    - cron: "45 3 * * *"
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+jobs:
+  backup-state:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v5
+        with:
+          ref: main
+          fetch-depth: 0
+
+      - name: Configure git
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+      - name: Create or update state-backup branch
+        run: |
+          ET_TIMESTAMP=$(TZ='America/New_York' date '+%b %-d, %Y at %-I:%M %p ET')
+
+          # Switch to state-backup branch (create if it doesn't exist yet)
+          if git fetch origin state-backup:refs/remotes/origin/state-backup 2>/dev/null; then
+            git checkout -B state-backup origin/state-backup
+          else
+            git checkout -b state-backup
+          fi
+
+          # Bring state files in from main
+          git checkout origin/main -- \
+            seen_ids.json \
+            instagram_seen.json \
+            page_state.json \
+            discord_daily_posts.json \
+            gaming_library.json \
+            data/health_monitor_log.json \
+            data/pinned_messages.json \
+            data/instagram_fetch_summary.json \
+            data/scheduling/expected_schedule_roster.json \
+            data/scheduling/weekly_schedule_messages.json \
+            data/scheduling/weekly_schedule_responses.json \
+            data/scheduling/weekly_schedule_summary.json \
+            data/scheduling/weekly_schedule_bot_outputs.json \
+            2>/dev/null || true
+
+          git add \
+            seen_ids.json \
+            instagram_seen.json \
+            page_state.json \
+            discord_daily_posts.json \
+            gaming_library.json \
+            data/health_monitor_log.json \
+            data/pinned_messages.json \
+            data/instagram_fetch_summary.json \
+            data/scheduling/ \
+            2>/dev/null || true
+
+          if ! git diff --cached --quiet; then
+            git commit -m "backup: state files ${ET_TIMESTAMP}"
+          else
+            echo "No state file changes since last backup — skipping commit"
+          fi
+
+          git push origin state-backup
+
+      - name: Notify Discord health monitor on failure
+        if: ${{ failure() && env.DISCORD_HEALTH_MONITOR_WEBHOOK_URL != '' }}
+        env:
+          DISCORD_HEALTH_MONITOR_WEBHOOK_URL: ${{ secrets.DISCORD_HEALTH_MONITOR_WEBHOOK_URL }}
+          WORKFLOW_NAME: ${{ github.workflow }}
+          JOB_NAME: backup-state
+          RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+        run: |
+          payload="$(python3 - <<'PY'
+          import json, os
+          print(json.dumps({
+              "content": (
+                  "🔴 XiannGPT Bot Failure\n\n"
+                  f"Workflow: {os.environ['WORKFLOW_NAME']}\n"
+                  f"Job: {os.environ['JOB_NAME']}\n"
+                  "Status: failed\n"
+                  f"Run: {os.environ['RUN_URL']}"
+              )
+          }))
+          PY
+          )"
+
+          response_file="$(mktemp)"
+          http_status="$(curl --silent --show-error \
+            --output "${response_file}" \
+            --write-out "%{http_code}" \
+            --header "Content-Type: application/json" \
+            --header "User-Agent: steam-discord-free-games-health-monitor/1.0" \
+            --data "${payload}" \
+            --request POST \
+            "${DISCORD_HEALTH_MONITOR_WEBHOOK_URL}")"
+
+          if [[ "${http_status}" =~ ^2[0-9][0-9]$ ]]; then
+            echo "Discord webhook POST succeeded: HTTP ${http_status}"
+          else
+            echo "Discord webhook POST failed: HTTP ${http_status}" >&2
+            if [[ -s "${response_file}" ]]; then
+              cat "${response_file}" >&2
+            fi
+            rm -f "${response_file}"
+            exit 1
+          fi
+
+          rm -f "${response_file}"
