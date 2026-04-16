@@ -1,6 +1,19 @@
 import json
 
+import pytest
+
 import main
+
+
+def test_format_daily_picks_footer_date_full_format():
+    """format_daily_picks_footer_date returns full weekday+month+day+year format."""
+    assert main.format_daily_picks_footer_date("2026-04-15") == "Wednesday, April 15, 2026"
+
+
+def test_format_daily_picks_footer_date_single_digit_day():
+    """Single-digit day is not zero-padded in the output."""
+    result = main.format_daily_picks_footer_date("2026-04-01")
+    assert result == "Wednesday, April 1, 2026"
 
 
 class FakeDiscordClient:
