@@ -105,11 +105,11 @@ def test_winners_channel_posts_intro_sections_games_and_footer_in_order(monkeypa
     assert posted[0].startswith("🏆 Daily Winners — ")
     assert "bookmark to keep permanently" in posted[0]
     assert posted[0].endswith(winners.WINNERS_INTRO_DIVIDER)
-    assert posted[1] == "🧪 Demo & Playtest Winners"
+    assert posted[1] == "🎮 Demo & Playtest Winners"
     assert "Demo Winner" in posted[2]
-    assert posted[3] == "🎮 Free Winners"
+    assert posted[3] == "🆓 Free Winners"
     assert "Late Voted Earlier Day" in posted[4]
-    assert posted[5] == "💸 Paid Winners"
+    assert posted[5] == "💰 Paid Winners"
     assert "Current Paid Winner" in posted[6]
     # Footer uses new format: single date+links line + End separator
     footer = posted[-1]
@@ -353,7 +353,7 @@ def test_cross_day_duplicate_suppression_and_section_order(monkeypatch, tmp_path
 
     body = "\n".join([p[1] for p in fake.posts])
     assert "Old Repeat" not in body
-    assert body.index("🧪 Demo & Playtest Winners") < body.index("💸 Paid Winners")
+    assert body.index("🎮 Demo & Playtest Winners") < body.index("💰 Paid Winners")
 
 
 def test_manual_run_bypasses_skip_when_winners_unchanged(monkeypatch, tmp_path):

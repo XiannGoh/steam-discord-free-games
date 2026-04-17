@@ -317,12 +317,12 @@ def test_daily_sections_post_in_new_order(monkeypatch, tmp_path):
     assert "Vote 👍 on anything you want to try" in posted[0]
     section_headers = [
         message for message in posted
-        if message in {"🧪 New Demos & Playtests", "🎮 Free Picks", "💸 Paid Under $20", "📸 Instagram Creator Picks"}
+        if message in {"🎮 New Demos & Playtests", "🆓 Free Picks", "💰 Paid Under $20", "📸 Instagram Creator Picks"}
     ]
     assert section_headers == [
-        "🧪 New Demos & Playtests",
-        "🎮 Free Picks",
-        "💸 Paid Under $20",
+        "🎮 New Demos & Playtests",
+        "🆓 Free Picks",
+        "💰 Paid Under $20",
         "📸 Instagram Creator Picks",
     ]
 
@@ -734,9 +734,9 @@ def test_is_manual_run_returns_false_when_env_unset(monkeypatch):
 def test_daily_section_order_is_product_invariant():
     assert main.DAILY_SECTION_ORDER == ["demo_playtest", "free", "paid", "instagram"]
     assert [entry["header"] for entry in main.DAILY_SECTION_CONFIG] == [
-        "🧪 New Demos & Playtests",
-        "🎮 Free Picks",
-        "💸 Paid Under $20",
+        "🎮 New Demos & Playtests",
+        "🆓 Free Picks",
+        "💰 Paid Under $20",
         "📸 Instagram Creator Picks",
     ]
 

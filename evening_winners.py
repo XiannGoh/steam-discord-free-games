@@ -170,9 +170,9 @@ def build_winners_navigation_header(
 
 def build_winners_section_header(section: str) -> str:
     header_map = {
-        "demo_playtest": "🧪 Demo & Playtest Winners",
-        "free": "🎮 Free Winners",
-        "paid": "💸 Paid Winners",
+        "demo_playtest": "🎮 Demo & Playtest Winners",
+        "free": "🆓 Free Winners",
+        "paid": "💰 Paid Winners",
         "instagram": "📸 Creator Winners",
     }
     return header_map.get(section, SECTION_CONFIG.get(section, section))
