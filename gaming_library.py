@@ -50,9 +50,9 @@ CATEGORY_CREATOR_PICKS = "creator_picks"
 CATEGORY_OTHER = "other"
 
 CATEGORY_DISPLAY = {
-    CATEGORY_DEMO_PLAYTEST: "🧪 Demo & Playtest",
-    CATEGORY_FREE_PICKS: "🎮 Free Picks",
-    CATEGORY_PAID_PICKS: "💸 Paid Picks",
+    CATEGORY_DEMO_PLAYTEST: "🎮 Demo & Playtest",
+    CATEGORY_FREE_PICKS: "🆓 Free Picks",
+    CATEGORY_PAID_PICKS: "💰 Paid Picks",
     CATEGORY_CREATOR_PICKS: "📸 Creator Picks",
     CATEGORY_OTHER: "🎮 Other",
 }
@@ -78,14 +78,14 @@ LIBRARY_FOOTER_SEPARATOR = "─────────────────�
 
 _LIBRARY_INTRO_SECTION_LABELS = {
     CATEGORY_DEMO_PLAYTEST: ("🎮", "Demo & Playtest"),
-    CATEGORY_FREE_PICKS: ("🎮", "Free Picks"),
+    CATEGORY_FREE_PICKS: ("🆓", "Free Picks"),
     CATEGORY_PAID_PICKS: ("💰", "Paid Picks"),
     CATEGORY_CREATOR_PICKS: ("📸", "Creator Picks"),
     CATEGORY_OTHER: ("🎮", "Other"),
 }
 _LIBRARY_FOOTER_SECTION_LABELS = {
     CATEGORY_DEMO_PLAYTEST: "🎮 Demo & Playtest",
-    CATEGORY_FREE_PICKS: "🎮 Free Picks",
+    CATEGORY_FREE_PICKS: "🆓 Free Picks",
     CATEGORY_PAID_PICKS: "💰 Paid",
     CATEGORY_CREATOR_PICKS: "📸 Creator",
     CATEGORY_OTHER: "🎮 Other",

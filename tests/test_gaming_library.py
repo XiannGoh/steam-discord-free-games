@@ -311,10 +311,12 @@ def test_games_grouped_by_category_in_library_messages():
     contents = [m["content"] for m in messages]
     full_text = "\n".join(contents)
 
-    assert "🧪 Demo & Playtest" in full_text
-    assert "🎮 Free Picks" in full_text
-    # Demo section appears before Free Picks (by CATEGORY_ORDER)
-    assert full_text.index("🧪 Demo & Playtest") < full_text.index("🎮 Free Picks")
+    assert "🎮 Demo & Playtest" in full_text
+    assert "🆓 Free Picks" in full_text
+    # Demo section appears before Free Picks — verify by CATEGORY_ORDER position
+    demo_idx = lib.CATEGORY_ORDER.index(lib.CATEGORY_DEMO_PLAYTEST)
+    free_idx = lib.CATEGORY_ORDER.index(lib.CATEGORY_FREE_PICKS)
+    assert demo_idx < free_idx
 
 
 # --- Enhancement 4: Players label ---
@@ -761,6 +763,41 @@ def test_library_footer_section_labels_include_emojis():
     assert lib._LIBRARY_FOOTER_SECTION_LABELS[lib.CATEGORY_DEMO_PLAYTEST] == "🎮 Demo & Playtest"
     assert lib._LIBRARY_FOOTER_SECTION_LABELS[lib.CATEGORY_PAID_PICKS] == "💰 Paid"
     assert lib._LIBRARY_FOOTER_SECTION_LABELS[lib.CATEGORY_CREATOR_PICKS] == "📸 Creator"
+
+
+# ---------------------------------------------------------------------------
+# Emoji standardization contract tests (FIX 4)
+# ---------------------------------------------------------------------------
+
+def test_category_display_uses_standard_emojis():
+    """CATEGORY_DISPLAY uses the agreed emoji standard for all three key categories."""
+    assert lib.CATEGORY_DISPLAY[lib.CATEGORY_DEMO_PLAYTEST].startswith("🎮"), (
+        "Demo & Playtest must use 🎮, not 🧪"
+    )
+    assert lib.CATEGORY_DISPLAY[lib.CATEGORY_FREE_PICKS].startswith("🆓"), (
+        "Free Picks must use 🆓, not 🎮"
+    )
+    assert lib.CATEGORY_DISPLAY[lib.CATEGORY_PAID_PICKS].startswith("💰"), (
+        "Paid Picks must use 💰, not 💸"
+    )
+
+
+def test_free_picks_uses_box_emoji_not_gamepad():
+    """Free Picks uses 🆓, never 🎮 (which belongs to Demos)."""
+    assert "🆓" in lib.CATEGORY_DISPLAY[lib.CATEGORY_FREE_PICKS]
+    assert "🎮" not in lib.CATEGORY_DISPLAY[lib.CATEGORY_FREE_PICKS]
+
+
+def test_demos_uses_gamepad_emoji_not_test_tube():
+    """Demo & Playtest uses 🎮, never 🧪."""
+    assert "🎮" in lib.CATEGORY_DISPLAY[lib.CATEGORY_DEMO_PLAYTEST]
+    assert "🧪" not in lib.CATEGORY_DISPLAY[lib.CATEGORY_DEMO_PLAYTEST]
+
+
+def test_paid_uses_money_bag_not_flying_money():
+    """Paid Picks uses 💰, never 💸."""
+    assert "💰" in lib.CATEGORY_DISPLAY[lib.CATEGORY_PAID_PICKS]
+    assert "💸" not in lib.CATEGORY_DISPLAY[lib.CATEGORY_PAID_PICKS]
 
 
 class TestStep3EmptyCategoryPlaceholders:
