@@ -46,6 +46,19 @@
 
 ## Discord Message Format Rules
 
+### Emoji Standard (mandatory — never change)
+These emojis are standardized across all steps and must never be changed:
+- Free Picks → 🆓
+- Demos & Playtests → 🎮
+- Paid Under $20 → 💰
+- Instagram/Creator Picks → 📸
+
+Must be consistent across:
+- Section headers in daily_section_config.py
+- build_winners_section_header() in evening_winners.py
+- CATEGORY_DISPLAY in gaming_library.py
+- All intro and footer section label dicts
+
 ### Step 1 — `step-1-vote-on-games-to-test`
 
 - Step 1 must have a single unified intro message.
@@ -92,7 +105,8 @@ Rules:
 Required Step 1 footer format:
 
 ```
-📅 Wednesday, April 15, 2026 · Jump to: 🆓 Free · 🎮 Demos · 💰 Paid · 📸 Instagram · ⬆️ Top
+📅 End of Daily Picks — Wednesday, April 15, 2026 · Jump to: 🆓 Free · 🎮 Demos · 💰 Paid · 📸 Instagram · ⬆️ Top
+_(No Demos & Playtests today)_  ← only shown if that category is missing
 ─────────────────── End of Daily Picks ───────────────────
 ```
 
@@ -101,6 +115,23 @@ Rules:
 - Only include sections that actually exist that day
 - Must include a Top jump link to the intro message
 - Must end with End of Daily Picks
+- First line must start with "📅 End of Daily Picks —"
+- Missing categories must appear as "_(No X today)_" between the jump links line and the separator
+- Separator must always be the last line
+
+### Intro placeholder rules (mandatory)
+- The intro placeholder must NEVER be re-posted or re-edited if intro_state already has a message_id
+- Only post the placeholder on the very first run when message_id is absent
+- On re-runs, skip directly to the jump links edit
+- This applies to both main.py Step 1 intro and gaming_library.py Step 3 header
+
+### Missing category notices (mandatory)
+Both intros AND footers must show notices for categories that have no content that day:
+- Intro format: "_(No {Category} today)_"
+- Footer format Steps 1+2: "_(No {Category} today)_"
+- Footer format Step 3: "_(No {Category} in library)_"
+- Notices are dynamic — computed at runtime from which sections actually have content
+- Never hardcode which categories are missing
 
 ### Step 2 — `step-2-test-then-vote-to-keep`
 
@@ -110,16 +141,28 @@ Rules:
 Required Step 2 footer format:
 
 ```
-📅 Wednesday, April 15, 2026 · Jump to: 🆓 Free · 🎮 Demo & Playtest · 💰 Paid · 📸 Creator · ⬆️ Top
+📅 End of Daily Winners — Wednesday, April 15, 2026 · Jump to: 🆓 Free · 🎮 Demo & Playtest · 💰 Paid · 📸 Creator · ⬆️ Top
+_(No Demo & Playtest Winners today)_  ← only shown if that category is missing
 ─────────────────── End of Daily Winners ───────────────────
 ```
 
 Rules:
 - First line contains date and jump links
-- Second line contains only the end separator
+- Second line (if any categories are missing) contains missing category notices
+- Final line contains only the end separator
 - Must include a Top jump link to the intro message
 - Only include sections that actually have winners that day
 - Must end with End of Daily Winners
+- First line must start with "📅 End of Daily Winners —"
+- Missing winner categories must appear as "_(No X Winners today)_" between jump links and separator
+
+### Missing category notices (mandatory)
+Both intros AND footers must show notices for categories that have no content that day:
+- Intro format: "_(No {Category} today)_"
+- Footer format Steps 1+2: "_(No {Category} today)_"
+- Footer format Step 3: "_(No {Category} in library)_"
+- Notices are dynamic — computed at runtime from which sections actually have content
+- Never hardcode which categories are missing
 
 ### Step 3 — `step-3-review-existing-games`
 
@@ -150,13 +193,16 @@ If there are no changes, the delta block must contain:
 Required Step 3 footer format:
 
 ```
-📅 Wednesday, April 15, 2026 · Jump to: 🎮 Demo & Playtest · 💰 Paid · 📸 Creator · ⬆️ Top
+📅 End of Gaming Library — Wednesday, April 15, 2026 · Jump to: 🎮 Demo & Playtest · 💰 Paid · 📸 Creator · ⬆️ Top
+_(No Free Picks in library)_  ← only shown if that category is missing
 ─────────────────── End of Gaming Library ───────────────────
 ```
 
 Rules:
 - Footer must include Top jump link to the intro message
 - Must end with End of Gaming Library
+- First line must start with "📅 End of Gaming Library —"
+- Missing categories must appear as "_(No X in library)_" between jump links and separator
 
 ## System Architecture
 
@@ -230,6 +276,10 @@ Order must be:
 - `data/snapshot_step3.json`
 - `data/snapshot_schedule.json`
 - `data/snapshot_health.json`
+
+### Section header state cleanup (mandatory)
+Before the section posting loop in post_daily_pick_messages(), always prune stale section_headers from run_state that are not in posted_section_keys for today's run.
+This prevents ghost section headers from previous runs appearing in jump links.
 
 ## Step 3 Discord Commands
 
