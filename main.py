@@ -2220,7 +2220,17 @@ def build_daily_picks_footer_content(
     top_link = build_discord_message_link(guild_id, intro_channel_id, intro_message_id)
     link_parts.append(f"[⬆️ Top]({top_link})")
 
-    first_line = f"📅 {date_str} · Jump to: {' · '.join(link_parts)}"
+    all_section_keys = list(DAILY_SECTION_ORDER)
+    missing_sections = [k for k in all_section_keys if k not in posted_section_keys]
+    missing_lines = []
+    for key in missing_sections:
+        label = _DAILY_MISSING_SECTION_LABELS.get(key, key)
+        missing_lines.append(f"_(No {label} today)_")
+
+    first_line = f"📅 End of Daily Picks — {date_str} · Jump to: {' · '.join(link_parts)}"
+    if missing_lines:
+        missing_block = "\n".join(missing_lines)
+        return f"{first_line}\n{missing_block}\n{DAILY_FOOTER_SEPARATOR}"
     return f"{first_line}\n{DAILY_FOOTER_SEPARATOR}"
 
 

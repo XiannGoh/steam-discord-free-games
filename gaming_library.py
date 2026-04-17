@@ -90,6 +90,12 @@ _LIBRARY_FOOTER_SECTION_LABELS = {
     CATEGORY_CREATOR_PICKS: "📸 Creator",
     CATEGORY_OTHER: "🎮 Other",
 }
+_LIBRARY_FOOTER_MISSING_LABELS = {
+    CATEGORY_DEMO_PLAYTEST: "Demo & Playtest",
+    CATEGORY_FREE_PICKS: "Free Picks",
+    CATEGORY_PAID_PICKS: "Paid Picks",
+    CATEGORY_CREATOR_PICKS: "Creator Picks",
+}
 
 COMMAND_REFERENCE_MESSAGE = """\
 📋 Bot Commands — step-3-review-existing-games
@@ -451,7 +457,7 @@ def build_library_footer(
     """Build the Step 3 footer: date+jump line followed by End separator."""
     date_str = format_library_date(day_key)
     if not isinstance(guild_id, str) or not guild_id.strip() or not header_message_id:
-        return f"📅 {date_str}\n{LIBRARY_FOOTER_SEPARATOR}"
+        return f"📅 End of Gaming Library — {date_str}\n{LIBRARY_FOOTER_SEPARATOR}"
 
     link_parts: List[str] = []
     if posted_section_keys and channel_id:
@@ -466,7 +472,25 @@ def build_library_footer(
     top_link = _discord_message_link(guild_id, header_channel_id, header_message_id)
     link_parts.append(f"[⬆️ Top]({top_link})")
 
-    first_line = f"📅 {date_str} · Jump to: {' · '.join(link_parts)}"
+    active_categories = set()
+    if posted_section_keys:
+        for category in CATEGORY_ORDER:
+            section_key = f"section:{category}"
+            if posted_section_keys.get(section_key):
+                active_categories.add(category)
+
+    missing_lines = []
+    for category in CATEGORY_ORDER:
+        if category == CATEGORY_OTHER:
+            continue
+        if category not in active_categories:
+            label = _LIBRARY_FOOTER_MISSING_LABELS.get(category, category)
+            missing_lines.append(f"_(No {label} in library)_")
+
+    first_line = f"📅 End of Gaming Library — {date_str} · Jump to: {' · '.join(link_parts)}"
+    if missing_lines:
+        missing_block = "\n".join(missing_lines)
+        return f"{first_line}\n{missing_block}\n{LIBRARY_FOOTER_SEPARATOR}"
     return f"{first_line}\n{LIBRARY_FOOTER_SEPARATOR}"
 
 

@@ -897,3 +897,37 @@ def test_gaming_library_header_placeholder_not_re_edited_on_rerun(capsys):
     assert "📊 Today's Changes" in final_content, (
         "nav_header edit on rerun must still include delta"
     )
+
+
+# ---------------------------------------------------------------------------
+# FIX: Step 3 footer first-line format and missing category notices
+# ---------------------------------------------------------------------------
+
+def test_step3_footer_first_line_starts_with_end_of_gaming_library():
+    """Step 3 footer first line must start with '📅 End of Gaming Library —'."""
+    footer = lib.build_library_footer(
+        day_key="2026-04-15",
+        header_channel_id="hchan",
+        header_message_id="hdr-1",
+        guild_id="guild-1",
+        channel_id="lchan",
+        posted_section_keys={f"section:{lib.CATEGORY_FREE_PICKS}": "m-free"},
+    )
+    first_line = footer.split("\n")[0]
+    assert first_line.startswith("📅 End of Gaming Library — Wednesday, April 15, 2026")
+
+
+def test_step3_footer_shows_missing_category_notices():
+    """Footer includes _(No X in library)_ for each category not in posted_section_keys."""
+    footer = lib.build_library_footer(
+        day_key="2026-04-15",
+        header_channel_id="hchan",
+        header_message_id="hdr-1",
+        guild_id="guild-1",
+        channel_id="lchan",
+        posted_section_keys={f"section:{lib.CATEGORY_FREE_PICKS}": "m-free"},
+    )
+    assert "_(No Demo & Playtest in library)_" in footer
+    assert "_(No Paid Picks in library)_" in footer
+    assert "_(No Creator Picks in library)_" in footer
+    assert "_(No Free Picks in library)_" not in footer

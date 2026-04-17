@@ -216,18 +216,28 @@ def build_winners_navigation_footer(
             continue
         section_state = section_headers.get(section_key) if isinstance(section_headers, dict) else None
         if not isinstance(section_state, dict):
-            return None
+            continue
         channel_id = str(section_state.get("channel_id") or "").strip()
         message_id = str(section_state.get("message_id") or "").strip()
         if not channel_id or not message_id:
-            return None
+            continue
         label = _WINNERS_FOOTER_SECTION_LABELS.get(section_key, section_key)
         link_parts.append(f"[{label}]({build_discord_message_link(guild_id, channel_id, message_id)})")
 
     top_link = build_discord_message_link(guild_id, intro_channel_id, intro_message_id)
     link_parts.append(f"[⬆️ Top]({top_link})")
 
-    first_line = f"📅 {date_str} · Jump to: {' · '.join(link_parts)}"
+    all_section_keys = list(SECTION_ORDER)
+    missing_sections = [k for k in all_section_keys if k not in posted_section_keys]
+    missing_lines = []
+    for key in missing_sections:
+        label = _WINNERS_MISSING_SECTION_LABELS.get(key, key)
+        missing_lines.append(f"_(No {label} today)_")
+
+    first_line = f"📅 End of Daily Winners — {date_str} · Jump to: {' · '.join(link_parts)}"
+    if missing_lines:
+        missing_block = "\n".join(missing_lines)
+        return f"{first_line}\n{missing_block}\n{WINNERS_FOOTER_SEPARATOR}"
     return f"{first_line}\n{WINNERS_FOOTER_SEPARATOR}"
 
 

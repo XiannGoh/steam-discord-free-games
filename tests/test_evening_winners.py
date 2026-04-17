@@ -141,9 +141,13 @@ def test_winners_footer_omits_missing_sections(monkeypatch, tmp_path):
     winners.main()
     footer = fake.posts[-1][1]
     assert "Free" in footer
-    assert "Paid" not in footer
-    assert "Creator" not in footer
     assert "⬆️ Top" in footer
+    # Jump links only include posted sections (no [Paid] or [Creator] links)
+    assert "[💰 Paid]" not in footer
+    assert "[📸 Creator]" not in footer
+    # Missing section notices ARE present
+    assert "_(No Paid Winners today)_" in footer
+    assert "_(No Creator Winners today)_" in footer
 
 
 def test_winners_header_shows_date_and_subtitle(monkeypatch, tmp_path):
@@ -623,8 +627,12 @@ class TestStep2IntroFooterFormatting:
         )
         assert footer is not None
         assert "Free" in footer
-        assert "Paid" not in footer
-        assert "Demo & Playtest" not in footer
+        # Jump links only include posted sections
+        assert "[💰 Paid]" not in footer
+        assert "[🎮 Demo & Playtest]" not in footer
+        # Missing section notices ARE present
+        assert "_(No Paid Winners today)_" in footer
+        assert "_(No Demo & Playtest Winners today)_" in footer
 
 
 class TestStep2MissingSectionNotices:
@@ -652,3 +660,40 @@ class TestStep2MissingSectionNotices:
     def test_present_winner_section_does_not_show_missing_notice(self):
         header = self._build_header(["free"])
         assert "_(No Free Winners today)_" not in header
+
+
+# ---------------------------------------------------------------------------
+# FIX: Step 2 footer first-line format and missing section notices
+# ---------------------------------------------------------------------------
+
+class TestStep2FooterFormat:
+    def _build_footer(self, posted_section_keys):
+        winners_state = {
+            "intro": {"channel_id": "wchan", "message_id": "intro-1"},
+            "section_headers": {
+                key: {"channel_id": "wchan", "message_id": f"hdr-{key}"}
+                for key in posted_section_keys
+            },
+        }
+        return winners.build_winners_navigation_footer(
+            winners_state,
+            guild_id="guild-1",
+            target_day_key="2026-04-15",
+            posted_section_keys=posted_section_keys,
+        )
+
+    def test_step2_footer_first_line_starts_with_end_of_daily_winners(self):
+        """Step 2 footer first line must start with '📅 End of Daily Winners —'."""
+        footer = self._build_footer(["free"])
+        assert footer is not None
+        first_line = footer.split("\n")[0]
+        assert first_line.startswith("📅 End of Daily Winners — Wednesday, April 15, 2026")
+
+    def test_step2_footer_shows_missing_winner_notices(self):
+        """Footer includes _(No X Winners today)_ for each section not posted."""
+        footer = self._build_footer(["free"])
+        assert footer is not None
+        assert "_(No Demo & Playtest Winners today)_" in footer
+        assert "_(No Paid Winners today)_" in footer
+        assert "_(No Creator Winners today)_" in footer
+        assert "_(No Free Winners today)_" not in footer
