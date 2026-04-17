@@ -187,7 +187,7 @@ Required Step 3 footer format:
 
 ```
 📅 End of Gaming Library — Wednesday, April 15, 2026 · Jump to: 🎮 Demo & Playtest · 💰 Paid · 📸 Creator · ⬆️ Top
-_(No Free Picks in library)_  ← only shown if that category is missing
+_(No Demo & Playtest in library)_  ← only shown if that category is missing
 ─────────────────── End of Gaming Library ───────────────────
 ```
 
