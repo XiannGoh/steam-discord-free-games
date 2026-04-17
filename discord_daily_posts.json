@@ -6139,7 +6139,7 @@
           "posted_at_utc": "2026-04-17T06:15:21.554952+00:00"
         }
       },
-      "last_attempt_at_utc": "2026-04-17T06:14:53.735261+00:00",
+      "last_attempt_at_utc": "2026-04-17T16:37:55.436417+00:00",
       "intro": {
         "message_id": "1494581903993475174",
         "channel_id": "592534544708796474",
@@ -6149,7 +6149,9 @@
         "message_id": "1494582050378879007",
         "channel_id": "592534544708796474",
         "posted_at_utc": "2026-04-17T06:15:29.189704+00:00"
-      }
+      },
+      "completed": true,
+      "completed_at_utc": "2026-04-17T16:38:25.459509+00:00"
     },
     "items": [
       {
@@ -6283,6 +6285,127 @@
         "source_type": "instagram",
         "posted_at": "2026-04-17T06:15:27.403627+00:00",
         "description": "Drunkslop: Pub Crawl COOP is a chaotic pub crawl party game where staying drunk is the win condition and one bad nigh..."
+      },
+      {
+        "item_key": "6035eb1b54c2c81a",
+        "section": "free",
+        "title": "Myth of Empires: Throne",
+        "url": "https://store.steampowered.com/app/4510830/",
+        "message_id": "1494738701740281868",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-04-17T16:37:58.079703+00:00",
+        "description": "Myth of Empires: Throne is a free seasonal multiplayer warfare sandbox. Explore vast lands inspired by multiple civilizations, tame creatures, forge powerful weapons, and build your guild. Lead cross-server expeditions, conquer territories, and compete with players worldwide for the ultimate throne!"
+      },
+      {
+        "item_key": "91b32cc2fe0eb3c4",
+        "section": "free",
+        "title": "Infinity Kingdom",
+        "url": "https://store.steampowered.com/app/1573360/",
+        "message_id": "1494738710149988454",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-04-17T16:37:59.829758+00:00",
+        "description": "Conquer the city, discover the Infinity! Infinity Kingdom is a cartoon-style mmo strategy game. As a resourceful lord, you must defend the land of Norheim against the evil gnomes while protecting yourself from other invading players!"
+      },
+      {
+        "item_key": "b24b9c3bcb992985",
+        "section": "free",
+        "title": "Russian Fishing 4",
+        "url": "https://store.steampowered.com/app/766570/",
+        "message_id": "1494738717137440819",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-04-17T16:38:01.695331+00:00",
+        "description": "Russian Fishing 4 is a fishing simulator with RPG elements. There is no story line and the whole process is based on the concept of an open, free to roam and free to play game."
+      },
+      {
+        "item_key": "4324e4b0d4be1bec",
+        "section": "free",
+        "title": "RISK: Global Domination",
+        "url": "https://store.steampowered.com/app/1128810/",
+        "message_id": "1494738725291294931",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-04-17T16:38:03.644508+00:00",
+        "description": "Take over the world in RISK: Global Domination, the iconic strategy board game with 100+ original and classic maps and millions of players"
+      },
+      {
+        "item_key": "42ae2f0804bce9f8",
+        "section": "free",
+        "title": "Shakes and Fidget",
+        "url": "https://store.steampowered.com/app/438040/",
+        "message_id": "1494738733507809372",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-04-17T16:38:05.522114+00:00",
+        "description": "Shakes & Fidget is a hilarious fantasy role-playing satire and at the same time, an award-winning RPG! Sounds crazy? With over 50 million enthusiastic players, it ranks among the most celebrated online role-playing games worldwide!"
+      },
+      {
+        "item_key": "21cd21780355d74f",
+        "section": "paid",
+        "title": "WARNO",
+        "url": "https://store.steampowered.com/app/1611600/",
+        "message_id": "1494738747013468333",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-04-17T16:38:08.681628+00:00",
+        "description": "Realistic, immersive, breathtaking. WARNO is the ultimate World War III battle simulator from the masters of strategy, Eugen Systems. A Cold War turns decisively hot as you command hundreds of units on a beautiful and brutal battlefield. Outsmart, outfight, and lead your forces to total victory."
+      },
+      {
+        "item_key": "0fa97ea9f5fbcd51",
+        "section": "paid",
+        "title": "Sea of Thieves: 2026 Edition",
+        "url": "https://store.steampowered.com/app/1172620/",
+        "message_id": "1494738754664136827",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-04-17T16:38:10.687834+00:00",
+        "description": "Sea of Thieves is a smash-hit pirate adventure game, offering the quintessential pirate experience of plundering lost treasures, intense battles, vanquishing sea monsters and more. Dive in with this revised edition of the game, which includes access to digital bonus media."
+      },
+      {
+        "item_key": "5251ea1e076b8b10",
+        "section": "paid",
+        "title": "DRAGON BALL FighterZ",
+        "url": "https://store.steampowered.com/app/678950/",
+        "message_id": "1494738763145023629",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-04-17T16:38:12.375058+00:00",
+        "description": "DRAGON BALL FighterZ is born from what makes the DRAGON BALL series so loved and famous: endless spectacular fights with its all-powerful fighters."
+      },
+      {
+        "item_key": "86df5967f03c3395",
+        "section": "paid",
+        "title": "Metro: Last Light Redux",
+        "url": "https://store.steampowered.com/app/287390/",
+        "message_id": "1494738770153701579",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-04-17T16:38:14.317555+00:00",
+        "description": "It is the year 2034. Beneath the ruins of post-apocalyptic Moscow, in the tunnels of the Metro, the remnants of mankind are besieged by deadly threats from outside – and within. Mutants stalk the catacombs beneath the desolate surface, and hunt amidst the poisoned skies above."
+      },
+      {
+        "item_key": "8fcd2b071ad40ef7",
+        "section": "paid",
+        "title": "Age of Empires II: Definitive Edition",
+        "url": "https://store.steampowered.com/app/813780/",
+        "message_id": "1494738778273747048",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-04-17T16:38:16.500957+00:00",
+        "description": "42 Civilizations, 229 Campaign Missions, Singleplayer, Co-Op, Multiplayer, In-Game Editor, Mods, Cross-play...It is good to be the king."
+      },
+      {
+        "item_key": "4cbc848e76693f8a",
+        "section": "instagram",
+        "title": "@wilfratgaming",
+        "url": "https://www.instagram.com/p/DXOwTAmjb0W/",
+        "message_id": "1494738794887385190",
+        "channel_id": "592534544708796474",
+        "source_type": "instagram",
+        "posted_at": "2026-04-17T16:38:20.390748+00:00",
+        "description": "Anyone else kinda done with open world games? #gaming #gamestoplay #metrogame"
       }
     ],
     "winners_state": {
