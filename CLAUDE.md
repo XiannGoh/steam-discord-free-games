@@ -379,7 +379,6 @@ Every workflow has a Notify Discord health monitor on failure step that posts to
 | `scripts/sync_gaming_library.py` | Syncs Step 2 bookmarks → Step 3 library, reads reactions, processes !commands |
 | `scripts/post_daily_gaming_library.py` | Posts daily Step 3 library reminder with intro/footer and embedded delta summary |
 | `scripts/build_daily_health_report.py` | Builds the bot health report with workflow schedule diagnostics |
-| `scripts/build_daily_briefing.py` | Builds the daily system briefing with 24h run summary |
 | `scripts/verify_discord_output.py` | Live Discord read-back verification against channel_specs.json for Steps 1, 2, and 3 |
 | `scripts/verify_gaming_library.py` | Structural verification of gaming_library.json |
 | `scripts/check_state_sanity.py` | Cross-file state consistency checks |

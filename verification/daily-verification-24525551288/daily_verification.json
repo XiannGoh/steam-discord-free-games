@@ -1,0 +1,26 @@
+{
+  "day_key": "2026-04-16",
+  "created": 16,
+  "updated": 0,
+  "reused": 0,
+  "skipped": 0,
+  "rerun_protection_active": false,
+  "intro_present": true,
+  "intro_count": 1,
+  "section_header_counts": {
+    "demo_playtest": 1,
+    "free": 1,
+    "paid": 1,
+    "instagram": 1
+  },
+  "item_count": 46,
+  "duplicate_item_keys": [],
+  "footer_present": true,
+  "posted_section_keys": [
+    "free",
+    "paid",
+    "instagram"
+  ],
+  "pass": false,
+  "generated_at_utc": "2026-04-16T19:05:21.636573+00:00"
+}

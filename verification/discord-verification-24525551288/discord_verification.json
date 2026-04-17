@@ -1,0 +1,113 @@
+{
+  "date": "2026-04-16",
+  "timestamp": "2026-04-16T19:05:25.075948+00:00",
+  "pass": false,
+  "channels": {
+    "step-1-vote-on-games-to-test": {
+      "pass": true,
+      "checked": true,
+      "messages_checked": 52,
+      "messages_missing": [],
+      "intro_found": true,
+      "footer_found": true,
+      "sections_found": [
+        "demo_playtest",
+        "free",
+        "paid",
+        "instagram"
+      ],
+      "errors": [],
+      "spec_criteria": {
+        "intro_required": true,
+        "footer_required": true,
+        "min_items": 1,
+        "no_duplicates": true,
+        "reactions": [
+          "👍"
+        ]
+      },
+      "section_content_in_intro": false,
+      "footer_missing_separator": false,
+      "demo_playtest_stale_game": false,
+      "broken_if_spec": [
+        "no games posted",
+        "duplicate game messages",
+        "missing intro",
+        "bot reaction counted in votes",
+        "intro contains game content",
+        "footer is missing end separator",
+        "footer is a copy of the intro",
+        "demo_playtest contains game older than 180 days",
+        "duplicate intro messages for same day",
+        "second run posted new messages instead of editing existing ones"
+      ],
+      "broken_if_detected": {
+        "no games posted": "not_triggered",
+        "duplicate game messages": "not_triggered",
+        "missing intro": "not_triggered",
+        "bot reaction counted in votes": "undetectable",
+        "intro contains game content": "not_triggered",
+        "footer is missing end separator": "not_triggered",
+        "footer is a copy of the intro": "not_triggered",
+        "demo_playtest contains game older than 180 days": "not_triggered",
+        "duplicate intro messages for same day": "not_triggered",
+        "second run posted new messages instead of editing existing ones": "not_triggered"
+      },
+      "triggered_broken_if": []
+    },
+    "step-2-test-then-vote-to-keep": {
+      "pass": true,
+      "checked": false,
+      "messages_checked": 0,
+      "messages_missing": [],
+      "intro_found": false,
+      "footer_found": false,
+      "sections_found": [],
+      "errors": [],
+      "spec_criteria": {
+        "intro_required": true,
+        "footer_required": true,
+        "min_items": 1,
+        "no_duplicates": true,
+        "reactions": [
+          "🔖"
+        ]
+      },
+      "skipped_reason": "No winners_state in discord_daily_posts.json for 2026-04-16."
+    },
+    "step-3-review-existing-games": {
+      "pass": false,
+      "checked": true,
+      "intro_found": true,
+      "footer_found": true,
+      "footer_missing_separator": true,
+      "delta_missing_from_intro": true,
+      "item_count": 6,
+      "messages_missing": [],
+      "errors": [],
+      "broken_if_spec": [
+        "game entry missing name",
+        "IG Picks entry without actual game name",
+        "missing footer",
+        "duplicate library entries",
+        "delta summary missing from intro",
+        "delta summary posted as separate message instead of inside intro",
+        "game card missing last activity date",
+        "command reference not pinned"
+      ],
+      "broken_if_detected": {
+        "game entry missing name": "not_triggered",
+        "IG Picks entry without actual game name": "not_triggered",
+        "missing footer": "not_triggered",
+        "duplicate library entries": "not_triggered",
+        "delta summary missing from intro": "triggered",
+        "delta summary posted as separate message instead of inside intro": "not_triggered",
+        "game card missing last activity date": "not_triggered",
+        "command reference not pinned": "not_triggered"
+      },
+      "triggered_broken_if": [
+        "delta summary missing from intro"
+      ]
+    }
+  }
+}
