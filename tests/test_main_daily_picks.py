@@ -1862,3 +1862,93 @@ class TestInstagramSessionAgeInMain:
         captured = capsys.readouterr()
         assert captured.out == ""
         assert captured.err == ""
+
+
+class TestStaleSectionHeaderPruning:
+    """Tests for stale section_header pruning before the section posting loop."""
+
+    def _run_post_with_existing_state(self, monkeypatch, tmp_path, items_by_section, existing_run_state):
+        import json
+
+        day_key = "2026-04-15"
+        daily_path = tmp_path / "daily.json"
+        daily_path.write_text(
+            json.dumps({day_key: {"run_state": existing_run_state, "items": []}}),
+            encoding="utf-8",
+        )
+
+        posted = []
+        counter = {"i": 0}
+
+        def fake_post(message, capture_metadata=False):
+            posted.append(message)
+            counter["i"] += 1
+            return {"message_id": f"m-{counter['i']}", "channel_id": "chan-1"}
+
+        fake_client = FakeDiscordClient(existing_ids=set(
+            v.get("message_id", "") for v in existing_run_state.get("section_headers", {}).values()
+            if v.get("message_id")
+        ))
+        monkeypatch.setattr(main, "DISCORD_DAILY_POSTS_FILE", str(daily_path))
+        monkeypatch.setattr(main, "DISCORD_BOT_TOKEN", "token")
+        monkeypatch.setattr(main, "DISCORD_GUILD_ID", "guild-1")
+        monkeypatch.setattr(main, "DiscordClient", lambda session: fake_client)
+        monkeypatch.setattr(main, "post_to_discord_with_metadata", fake_post)
+        monkeypatch.setattr(main, "sleep_briefly", lambda: None)
+        monkeypatch.setenv(main.DAILY_DATE_OVERRIDE_ENV, day_key)
+
+        main.post_daily_pick_messages(
+            items_by_section.get("demo_playtest", []),
+            items_by_section.get("free", []),
+            items_by_section.get("paid", []),
+            items_by_section.get("instagram", []),
+        )
+
+        import json as _json
+        saved_state = _json.loads(daily_path.read_text(encoding="utf-8"))
+        return saved_state[day_key]["run_state"], fake_client
+
+    def test_stale_section_headers_removed_when_section_absent(self, monkeypatch, tmp_path, capsys):
+        """section_headers entries for sections with no items today are pruned."""
+        existing_run_state = {
+            "intro": {"message_id": "intro-1", "channel_id": "chan-1"},
+            "section_headers": {
+                "demo_playtest": {"message_id": "hdr-demo-1", "channel_id": "chan-1"},
+                "free": {"message_id": "hdr-free-1", "channel_id": "chan-1"},
+            },
+        }
+        # Today only has free items — demo_playtest should be pruned
+        items = {"free": [{"title": "G", "url": "https://store.steampowered.com/app/1", "score": 9}]}
+
+        saved_run_state, _ = self._run_post_with_existing_state(
+            monkeypatch, tmp_path, items, existing_run_state
+        )
+
+        assert "demo_playtest" not in saved_run_state.get("section_headers", {}), (
+            "Stale demo_playtest header must be pruned when section has no items"
+        )
+        assert "free" in saved_run_state.get("section_headers", {}), (
+            "Present free header must be retained"
+        )
+
+        captured = capsys.readouterr()
+        assert "CLEANUP" in captured.out
+        assert "demo_playtest" in captured.out
+
+    def test_present_section_headers_not_removed(self, monkeypatch, tmp_path):
+        """section_headers entries for sections that DO have items today are preserved."""
+        existing_run_state = {
+            "intro": {"message_id": "intro-1", "channel_id": "chan-1"},
+            "section_headers": {
+                "free": {"message_id": "hdr-free-1", "channel_id": "chan-1"},
+            },
+        }
+        items = {"free": [{"title": "G", "url": "https://store.steampowered.com/app/1", "score": 9}]}
+
+        saved_run_state, _ = self._run_post_with_existing_state(
+            monkeypatch, tmp_path, items, existing_run_state
+        )
+
+        assert "free" in saved_run_state.get("section_headers", {}), (
+            "Active free section header must not be pruned"
+        )
