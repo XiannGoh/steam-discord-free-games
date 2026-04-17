@@ -186,7 +186,7 @@ If there are no changes, the delta block must contain:
 Required Step 3 footer format:
 
 ```
-📅 End of Gaming Library — Wednesday, April 15, 2026 · Jump to: 🎮 Demo & Playtest · 💰 Paid · 📸 Creator · ⬆️ Top
+📅 End of Gaming Library — Wednesday, April 15, 2026 · Jump to: 💰 Paid · 📸 Creator · ⬆️ Top
 _(No Demo & Playtest in library)_  ← only shown if that category is missing
 ─────────────────── End of Gaming Library ───────────────────
 ```
