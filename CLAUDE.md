@@ -123,12 +123,13 @@ Rules:
 - The intro placeholder must NEVER be re-posted or re-edited if intro_state already has a message_id
 - Only post the placeholder on the very first run when message_id is absent
 - On re-runs, skip directly to the jump links edit
-- This applies to both main.py Step 1 intro and gaming_library.py Step 3 header
+- This applies to both main.py Step 1 intro and gaming_library.py Step 3 intro
 
 ### Missing category notices (mandatory)
 Both intros AND footers must show notices for categories that have no content that day:
 - Intro format: "_(No {Category} today)_"
-- Footer format Steps 1+2: "_(No {Category} today)_"
+- Footer format Step 1: "_(No {Category} today)_"
+- Footer format Step 2: "_(No {Category} Winners today)_"
 - Footer format Step 3: "_(No {Category} in library)_"
 - Notices are dynamic — computed at runtime from which sections actually have content
 - Never hardcode which categories are missing
@@ -155,14 +156,6 @@ Rules:
 - Must end with End of Daily Winners
 - First line must start with "📅 End of Daily Winners —"
 - Missing winner categories must appear as "_(No X Winners today)_" between jump links and separator
-
-### Missing category notices (mandatory)
-Both intros AND footers must show notices for categories that have no content that day:
-- Intro format: "_(No {Category} today)_"
-- Footer format Steps 1+2: "_(No {Category} today)_"
-- Footer format Step 3: "_(No {Category} in library)_"
-- Notices are dynamic — computed at runtime from which sections actually have content
-- Never hardcode which categories are missing
 
 ### Step 3 — `step-3-review-existing-games`
 
@@ -203,6 +196,7 @@ Rules:
 - Must end with End of Gaming Library
 - First line must start with "📅 End of Gaming Library —"
 - Missing categories must appear as "_(No X in library)_" between jump links and separator
+- Separator must always be the last line of the footer
 
 ## System Architecture
 
