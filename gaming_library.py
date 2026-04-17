@@ -648,6 +648,14 @@ def post_daily_library_reminder(
     for message in messages:
         message_key = str(message.get("identity_key", message["type"]))
         existing_info = existing_messages.get(message_key)
+
+        # Skip placeholder re-edit for the header when it already has a message_id.
+        # The nav_header edit below will update it with jump links + delta anyway.
+        if message_key == "header" and isinstance(existing_info, dict) and existing_info.get("message_id"):
+            print(f"REUSE: gaming library header already posted for {day_key} — skipping placeholder re-edit")
+            reconciled_messages[message_key] = dict(existing_info)
+            continue
+
         payload, is_new_message = _post_or_edit_message(
             client,
             channel_id,

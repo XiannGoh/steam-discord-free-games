@@ -214,12 +214,9 @@ def test_daily_library_rerun_after_promotions_reuses_header_and_adds_missing_gam
     assert second_posted is True
     # Second run: new section_header (m-3) + new game (m-4) + 4 empty sections (m-5..m-8); header/footer are edits
     assert len(client.posts) == 8
-    # Edits: header placeholder, footer, then header jump links = 3
-    assert len(client.edits) == 3
-    # First edit is the header being updated with placeholder content
-    edited_header = client.edits[0]
-    assert edited_header[1] == "m-1"
-    assert "React to each game" in edited_header[2]
+    # Edits: footer + header jump links = 2 (header placeholder skipped since message_id exists)
+    assert len(client.edits) == 2
+    # Header jump-links edit is the last edit; message_id must be preserved
     assert state["daily_posts"]["2026-04-10"]["messages"]["header"]["message_id"] == "m-1"
     assert "steam:1621690" in state["daily_posts"]["2026-04-10"]["messages"]
     assert client.put_reactions == [
@@ -246,8 +243,8 @@ def test_daily_library_rerun_updates_existing_game_message_without_duplicate_pos
     assert posted_again is True
     assert len(client.posts) == 8  # no new posts
     assert len(client.put_reactions) == 3  # no new reactions
-    # Second run edits: header placeholder, section_header, game, 4 empty_sections, footer, header jump links = 9
-    assert len(client.edits) == 10  # 1 from first run + 9 from second run
+    # Second run edits: section_header, game, 4 empty_sections, footer, header jump links = 8 (header placeholder skipped)
+    assert len(client.edits) == 9  # 1 from first run + 8 from second run
     game_edit = next(e for e in client.edits if e[1] == "m-3")
     assert "(paused)" in game_edit[2]
 
@@ -265,9 +262,9 @@ def test_daily_library_reruns_converge_without_duplicate_headers_or_games():
     # 8 posts on first run (header, section:other, game, 4 empty_sections, footer); no new posts on reruns
     assert len(client.posts) == 8
     # Run 1: 1 edit (header jump links)
-    # Run 2: 9 edits (header-placeholder, section:other, game, 4 empty_sections, footer, header-jumps)
-    # Run 3: same 9 edits
-    assert len(client.edits) == 19
+    # Run 2: 8 edits (section:other, game, 4 empty_sections, footer, header-jumps) — header placeholder skipped
+    # Run 3: same 8 edits
+    assert len(client.edits) == 17
     messages = state["daily_posts"]["2026-04-10"]["messages"]
     assert sorted(messages.keys()) == [
         "empty:creator_picks", "empty:demo_playtest", "empty:free_picks", "empty:paid_picks",
@@ -843,3 +840,60 @@ class TestStep3EmptyCategoryPlaceholders:
         messages = lib.build_daily_library_messages(state, "2026-04-15")
         empty_keys = [m["identity_key"] for m in messages if m.get("type") == "empty_section"]
         assert f"empty:{lib.CATEGORY_FREE_PICKS}" not in empty_keys
+
+
+# ---------------------------------------------------------------------------
+# FIX 5 — Library header placeholder skip on rerun
+# ---------------------------------------------------------------------------
+
+def test_gaming_library_intro_contains_delta_after_posting():
+    """The header message posted by post_daily_library_reminder always includes 📊 Today's Changes."""
+    state = lib.load_gaming_library(path="/tmp/does-not-exist.json")
+    game = lib.ensure_game_entry(state, canonical_name="Delta Game", url="https://store.steampowered.com/app/1/delta")
+    lib.assign_user(game, "u1", lib.STATUS_ACTIVE)
+    client = FakeDiscordClient()
+
+    lib.post_daily_library_reminder(state, day_key="2026-04-10", channel_id="lib-chan", client=client)
+
+    # The header is the first posted message (before the nav_header edit)
+    header_posted_content = client.posts[0][1]
+    assert "📊 Today's Changes" in header_posted_content, (
+        "Intro must include 📊 Today's Changes on first post"
+    )
+
+    # After the nav_header edit, the final header also has delta
+    header_edits = [e for e in client.edits if e[1] == "m-1"]
+    assert header_edits, "Header must be edited with jump links"
+    final_header = header_edits[-1][2]
+    assert "📊 Today's Changes" in final_header, (
+        "Intro must include 📊 Today's Changes in final nav_header edit"
+    )
+
+
+def test_gaming_library_header_placeholder_not_re_edited_on_rerun(capsys):
+    """On a re-run where the header already has a message_id, the placeholder is not re-edited.
+    The nav_header edit still fires and updates the header with delta + jump links."""
+    state = lib.load_gaming_library(path="/tmp/does-not-exist.json")
+    game = lib.ensure_game_entry(state, canonical_name="RerunGame", url="https://store.steampowered.com/app/2/rerun")
+    lib.assign_user(game, "u1", lib.STATUS_ACTIVE)
+    client = FakeDiscordClient()
+
+    # First run
+    lib.post_daily_library_reminder(state, day_key="2026-04-10", channel_id="lib-chan", client=client)
+    edits_after_first = list(client.edits)
+
+    # Second run (header already has message_id m-1)
+    lib.post_daily_library_reminder(state, day_key="2026-04-10", channel_id="lib-chan", client=client)
+
+    captured = capsys.readouterr()
+    assert "REUSE: gaming library header already posted" in captured.out
+
+    # The nav_header edit must still fire on the second run
+    second_run_edits = client.edits[len(edits_after_first):]
+    header_jump_edits = [e for e in second_run_edits if e[1] == "m-1"]
+    assert len(header_jump_edits) == 1, "nav_header edit must still fire on rerun"
+
+    final_content = header_jump_edits[0][2]
+    assert "📊 Today's Changes" in final_content, (
+        "nav_header edit on rerun must still include delta"
+    )
