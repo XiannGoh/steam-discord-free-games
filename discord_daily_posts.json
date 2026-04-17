@@ -6119,5 +6119,171 @@
         "description": "Task Time is a chaotic party game where up to 8 players survive 6 rounds of random tasks, sabotage each other, and tr..."
       }
     ]
+  },
+  "2026-04-17": {
+    "run_state": {
+      "section_headers": {
+        "free": {
+          "message_id": "1494581911224324122",
+          "channel_id": "592534544708796474",
+          "posted_at_utc": "2026-04-17T06:14:56.130432+00:00"
+        },
+        "paid": {
+          "message_id": "1494581968548003882",
+          "channel_id": "592534544708796474",
+          "posted_at_utc": "2026-04-17T06:15:09.689243+00:00"
+        },
+        "instagram": {
+          "message_id": "1494582019060006923",
+          "channel_id": "592534544708796474",
+          "posted_at_utc": "2026-04-17T06:15:21.554952+00:00"
+        }
+      },
+      "last_attempt_at_utc": "2026-04-17T06:14:53.735261+00:00",
+      "intro": {
+        "message_id": "1494581903993475174",
+        "channel_id": "592534544708796474",
+        "posted_at_utc": "2026-04-17T06:14:54.351131+00:00"
+      },
+      "footer": {
+        "message_id": "1494582050378879007",
+        "channel_id": "592534544708796474",
+        "posted_at_utc": "2026-04-17T06:15:29.189704+00:00"
+      }
+    },
+    "items": [
+      {
+        "item_key": "223552356283d15c",
+        "section": "free",
+        "title": "Fishing Grind",
+        "url": "https://store.steampowered.com/app/3019850/",
+        "message_id": "1494581919768383528",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-04-17T06:15:00.792911+00:00",
+        "description": "Fishing Grind is a first person 1-6 player co-op fishing game with a twist. The place you are fishing may not always be safe..."
+      },
+      {
+        "item_key": "64847de652bdd408",
+        "section": "free",
+        "title": "Rumble Fighter: Unleashed",
+        "url": "https://store.steampowered.com/app/357500/",
+        "message_id": "1494581938042704024",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-04-17T06:15:02.435327+00:00",
+        "description": "Rumble Fighter is a free-to-play fighting MMO game with real mixed martial arts and fast-paced beat-em-up action! Brawl with your friends and train to become the top Rumble Fighter!"
+      },
+      {
+        "item_key": "50aee74db95f6af3",
+        "section": "free",
+        "title": "Navy War: Battleship Games",
+        "url": "https://store.steampowered.com/app/1991850/",
+        "message_id": "1494581945454166096",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-04-17T06:15:04.101307+00:00",
+        "description": "Ready for the naval battle? Online ships are waiting for you!"
+      },
+      {
+        "item_key": "ea3b57ec9e6660eb",
+        "section": "free",
+        "title": "Different Strokes",
+        "url": "https://store.steampowered.com/app/2102020/",
+        "message_id": "1494581952701796466",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-04-17T06:15:06.147614+00:00",
+        "description": "A collaborative online painting game where players can create, edit, and rate each other's art!"
+      },
+      {
+        "item_key": "4ce737d2d494f70a",
+        "section": "free",
+        "title": "Champions of Regnum",
+        "url": "https://store.steampowered.com/app/222520/",
+        "message_id": "1494581961199587430",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-04-17T06:15:07.978224+00:00",
+        "description": "Choose your Realm and engage in the most dynamic player driven battlefield available on any MMO. Fight for the Alsius Empire, protect the woods of Syrtis or avenge the Brotherhood of Ignis."
+      },
+      {
+        "item_key": "58dde40746164ada",
+        "section": "paid",
+        "title": "Dark Hours",
+        "url": "https://store.steampowered.com/app/2208570/",
+        "message_id": "1494581975682519070",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-04-17T06:15:11.331637+00:00",
+        "description": "Dark Hours is a co-op survival horror game for 1-4 players. Your heist has been disrupted by a supernatural event, and your team of robbers is now trapped with an evil entity. Forget your plan, your mission is to survive. Explore and cooperate to find a way out."
+      },
+      {
+        "item_key": "1b6ee581163c44e4",
+        "section": "paid",
+        "title": "Dungeon Defenders",
+        "url": "https://store.steampowered.com/app/65800/",
+        "message_id": "1494581982871420998",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-04-17T06:15:13.868611+00:00",
+        "description": "Create a hero from one of four classes to save Etheria in this 4-player coop Tower Defense Action-RPG. Includes Steam exclusive Portal gun & TF2 familiars!"
+      },
+      {
+        "item_key": "10bbd9019f653341",
+        "section": "paid",
+        "title": "A Total War Saga: THRONES OF BRITANNIA",
+        "url": "https://store.steampowered.com/app/712100/",
+        "message_id": "1494581992837091456",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-04-17T06:15:15.585011+00:00",
+        "description": "From the multi-award-winning strategy series, A Total War Saga: Thrones of Britannia combines huge real-time battles with engrossing turn-based campaign, set at a critical flashpoint in history. Anglo-Saxons, Gaelic clans and Viking settlers clash for control. What Kingdom will you build?"
+      },
+      {
+        "item_key": "595c8a887854a201",
+        "section": "paid",
+        "title": "He is Coming",
+        "url": "https://store.steampowered.com/app/2824490/",
+        "message_id": "1494582000508735539",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-04-17T06:15:17.674415+00:00",
+        "description": "Deep in the forgotten corners of the world, a dark force stirs – the Demon King rises once more. Sharpen your wits, seek out powerful artifacts, and stand firm in the face of the apocalypse in this roguelite RPG auto battler."
+      },
+      {
+        "item_key": "27c40e9dc56ec7e5",
+        "section": "paid",
+        "title": "Iron Harvest",
+        "url": "https://store.steampowered.com/app/826630/",
+        "message_id": "1494582008863785143",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-04-17T06:15:20.013247+00:00",
+        "description": "A classic real-time strategy game with an epic single player campaign, multiplayer & coop, set in the alternate reality of 1920+"
+      },
+      {
+        "item_key": "afe288d3ad6caed9",
+        "section": "instagram",
+        "title": "@itzjaysasa",
+        "url": "https://www.instagram.com/p/DXNQWWUki8Q/",
+        "message_id": "1494582026601238638",
+        "channel_id": "592534544708796474",
+        "source_type": "instagram",
+        "posted_at": "2026-04-17T06:15:23.471974+00:00",
+        "description": "A co-op game where you need to keep yourself “hydrated” | Game: Drunkslop Pub Crawl Co-Op   #whattoplay #pcgaming #mu..."
+      },
+      {
+        "item_key": "c85aa58eaf593b05",
+        "section": "instagram",
+        "title": "@sharedxp_official",
+        "url": "https://www.instagram.com/p/DXNTkBODP1q/",
+        "message_id": "1494582033643737219",
+        "channel_id": "592534544708796474",
+        "source_type": "instagram",
+        "posted_at": "2026-04-17T06:15:27.403627+00:00",
+        "description": "Drunkslop: Pub Crawl COOP is a chaotic pub crawl party game where staying drunk is the win condition and one bad nigh..."
+      }
+    ]
   }
 }
