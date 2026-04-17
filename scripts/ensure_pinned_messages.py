@@ -14,7 +14,7 @@ import sys
 
 import requests
 
-from discord_api import DiscordClient, DiscordMessageNotFoundError
+from discord_api import DiscordClient, DiscordMessageNotFoundError, DiscordPermissionError
 from state_utils import load_json_object, save_json_object_atomic
 
 PINNED_MESSAGES_FILE = "data/pinned_messages.json"
@@ -175,7 +175,16 @@ def ensure_pinned_messages(
             if not new_id:
                 print(f"ERROR: Discord did not return message ID for {slug}", file=sys.stderr)
                 continue
-            active_client.pin_message(channel_id, new_id, context=f"pin {slug}")
+            try:
+                active_client.pin_message(channel_id, new_id, context=f"pin {slug}")
+            except DiscordPermissionError as e:
+                print(
+                    f"WARN: cannot pin message in {slug} — bot missing Manage Messages permission: {e}"
+                )
+                print(
+                    f"INFO: pinned message content was posted but could not be pinned. "
+                    f"Grant the bot Manage Messages permission to enable pinning."
+                )
             print(f"CREATE+PIN: pinned message for {slug} (message_id={new_id})")
             state[slug] = {"channel_id": channel_id, "message_id": new_id}
 
