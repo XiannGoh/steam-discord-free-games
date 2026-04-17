@@ -5,7 +5,7 @@ import json
 import pytest
 
 from scripts import ensure_pinned_messages as epm
-from discord_api import DiscordMessageNotFoundError
+from discord_api import DiscordMessageNotFoundError, DiscordPermissionError
 
 
 class FakeClient:
@@ -193,3 +193,44 @@ def test_step3_content_includes_commands_list(monkeypatch, tmp_path):
     assert "!rename" in content
     assert "!archive" in content
     assert "permanent gaming library" in content
+
+
+class FakeClientWithPermError(FakeClient):
+    """FakeClient whose pin_message raises DiscordPermissionError."""
+
+    def pin_message(self, channel_id, message_id, *, context):
+        raise DiscordPermissionError(f"403 Forbidden pinning {message_id}")
+
+
+def test_pin_permission_error_warns_and_continues(monkeypatch, tmp_path, capsys):
+    """When pin_message raises DiscordPermissionError, the script warns and does not crash."""
+    saved, fake = _run(
+        monkeypatch, tmp_path,
+        channel_envs={"DISCORD_STEP1_CHANNEL_ID": "chan-step1"},
+        fake_client=FakeClientWithPermError(),
+    )
+
+    # Message was still created despite the pin failure
+    assert len(fake.created_messages) == 1
+    assert "step-1" in saved
+
+    captured = capsys.readouterr()
+    assert "WARN" in captured.out
+    assert "Manage Messages" in captured.out
+
+
+def test_pin_permission_error_does_not_prevent_other_channels(monkeypatch, tmp_path, capsys):
+    """A permission error on one channel does not prevent other channels from being processed."""
+    saved, fake = _run(
+        monkeypatch, tmp_path,
+        channel_envs={
+            "DISCORD_STEP1_CHANNEL_ID": "chan-step1",
+            "DISCORD_WINNERS_CHANNEL_ID": "chan-step2",
+        },
+        fake_client=FakeClientWithPermError(),
+    )
+
+    # Both channels should have messages created
+    assert len(fake.created_messages) == 2
+    assert "step-1" in saved
+    assert "step-2" in saved
