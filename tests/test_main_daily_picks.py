@@ -375,7 +375,7 @@ def test_daily_picks_header_and_footer_are_posted_with_expected_links(monkeypatc
 
     # Footer posted last — new format: single date+links line + End separator
     footer = posted[-1]
-    assert footer.startswith("📅 Wednesday, April 8, 2026 · Jump to:")
+    assert footer.startswith("📅 End of Daily Picks — Wednesday, April 8, 2026 · Jump to:")
     assert "⬆️ Top" in footer
     assert footer.endswith(main.DAILY_FOOTER_SEPARATOR)
     # Footer must not be a copy of intro
@@ -559,7 +559,7 @@ def test_daily_picks_footer_uses_target_day_override_for_display(monkeypatch, tm
 
     main.post_daily_pick_messages([], [{"title": "Free", "url": "https://store.steampowered.com/app/12", "score": 10}], [], [])
 
-    assert posted[-1].startswith("📅 Friday, April 10, 2026 · Jump to:")
+    assert posted[-1].startswith("📅 End of Daily Picks — Friday, April 10, 2026 · Jump to:")
 
 
 def test_daily_picks_footer_skips_safely_when_guild_id_missing(monkeypatch, tmp_path):
@@ -1952,3 +1952,63 @@ class TestStaleSectionHeaderPruning:
         assert "free" in saved_run_state.get("section_headers", {}), (
             "Active free section header must not be pruned"
         )
+
+
+# ---------------------------------------------------------------------------
+# FIX: Step 1 footer first-line format and missing section notices
+# ---------------------------------------------------------------------------
+
+def _make_step1_run_state(posted_keys):
+    """Build a minimal run_state for build_daily_picks_footer_content."""
+    section_headers = {
+        key: {"channel_id": "chan-1", "message_id": f"hdr-{key}"}
+        for key in posted_keys
+    }
+    return {
+        "intro": {"channel_id": "chan-1", "message_id": "intro-1"},
+        "section_headers": section_headers,
+    }
+
+
+def test_step1_footer_first_line_starts_with_end_of_daily_picks():
+    """Step 1 footer first line must start with '📅 End of Daily Picks —'."""
+    run_state = _make_step1_run_state(["free"])
+    footer = main.build_daily_picks_footer_content(
+        run_state,
+        guild_id="guild-1",
+        target_day_key="2026-04-15",
+        posted_section_keys=["free"],
+    )
+    assert footer is not None
+    first_line = footer.split("\n")[0]
+    assert first_line.startswith("📅 End of Daily Picks — Wednesday, April 15, 2026")
+
+
+def test_step1_footer_shows_missing_section_notices():
+    """Footer includes _(No X today)_ for each section not in posted_section_keys."""
+    run_state = _make_step1_run_state(["free"])
+    footer = main.build_daily_picks_footer_content(
+        run_state,
+        guild_id="guild-1",
+        target_day_key="2026-04-15",
+        posted_section_keys=["free"],
+    )
+    assert footer is not None
+    assert "_(No Demos & Playtests today)_" in footer
+    assert "_(No Paid Under $20 today)_" in footer
+    assert "_(No Instagram Picks today)_" in footer
+    assert "_(No Free Picks today)_" not in footer
+
+
+def test_step1_footer_no_missing_notices_when_all_sections_present():
+    """Footer has no missing notices when all sections are in posted_section_keys."""
+    all_keys = ["demo_playtest", "free", "paid", "instagram"]
+    run_state = _make_step1_run_state(all_keys)
+    footer = main.build_daily_picks_footer_content(
+        run_state,
+        guild_id="guild-1",
+        target_day_key="2026-04-15",
+        posted_section_keys=all_keys,
+    )
+    assert footer is not None
+    assert "_(No " not in footer
