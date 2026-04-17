@@ -2360,6 +2360,13 @@ def post_daily_pick_messages(
     posted_section_keys = [section_key for section_key in DAILY_SECTION_ORDER if section_items_by_key.get(section_key)]
     section_paid_flags = {"demo_playtest": False, "free": False, "paid": True, "instagram": False}
 
+    # Prune stale section_header entries from previous runs that no longer have items today
+    section_headers = run_state.get("section_headers", {})
+    stale_keys = [k for k in list(section_headers.keys()) if k not in posted_section_keys]
+    for stale_key in stale_keys:
+        del section_headers[stale_key]
+        print(f"CLEANUP: removed stale section header '{stale_key}' from run_state")
+
     for section in DAILY_SECTION_CONFIG:
         section_key = section["key"]
         header_message = section["header"]
