@@ -44,7 +44,7 @@ SCHEDULE_EXPECTATIONS: dict[str, dict[str, Any]] = {
         "minute": 0,
         "window_before_minutes": 90,
     },
-    "Daily Steam Picks": {
+    "Steam Free Games": {
         "kind": "daily",
         "cron": "0 13 * * *",
         "cadence": "daily 13:00 UTC",
@@ -52,7 +52,7 @@ SCHEDULE_EXPECTATIONS: dict[str, dict[str, Any]] = {
         "minute": 0,
         "window_before_minutes": 90,
     },
-    "Evening Winners": {
+    "Daily Game Picks Winners": {
         "kind": "daily",
         "cron": "0 23 * * *",
         "cadence": "daily 23:00 UTC",
