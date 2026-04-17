@@ -339,7 +339,6 @@ Processed command message IDs are tracked in `gaming_library.json` under `proces
 | `weekly-scheduling-bot.yml` | Weekly Scheduling Bot | 9:00 AM Saturday |
 | `weekly-scheduling-responses-sync.yml` | Weekly Scheduling Responses Sync | Every 3 hours |
 | `bot-health-report.yml` | Bot Health Report | 11:00 PM daily |
-| `daily-briefing.yml` | Daily System Briefing | 11:30 PM daily |
 | `watchdog.yml` | Missed-Run Watchdog | Every hour |
 | `auto-fix.yml` | Auto-Fix | Triggered by workflow_run |
 

@@ -62,11 +62,6 @@ jobs:
                 mode: "same-day",
               },
               {
-                file: "daily-briefing.yml",
-                name: "Daily System Briefing",
-                mode: "same-day",
-              },
-              {
                 file: "weekly-scheduling-bot.yml",
                 name: "Weekly Scheduling Bot",
                 mode: "saturday-only",
