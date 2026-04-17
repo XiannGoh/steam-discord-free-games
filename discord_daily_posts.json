@@ -6284,6 +6284,486 @@
         "posted_at": "2026-04-17T06:15:27.403627+00:00",
         "description": "Drunkslop: Pub Crawl COOP is a chaotic pub crawl party game where staying drunk is the win condition and one bad nigh..."
       }
-    ]
+    ],
+    "winners_state": {
+      "intro": {
+        "message_id": "1494586573788938362",
+        "channel_id": "1491294533751799809"
+      },
+      "section_headers": {
+        "demo_playtest": {
+          "message_id": "1494586583200960553",
+          "channel_id": "1491294533751799809"
+        },
+        "free": {
+          "message_id": "1494586596966666320",
+          "channel_id": "1491294533751799809"
+        },
+        "paid": {
+          "message_id": "1494586641795514398",
+          "channel_id": "1491294533751799809"
+        },
+        "instagram": {
+          "message_id": "1494586687311974502",
+          "channel_id": "1491294533751799809"
+        }
+      },
+      "winner_messages": {
+        "https://store.steampowered.com/app/2485460/": {
+          "message_id": "1494586584484282449",
+          "channel_id": "1491294533751799809"
+        },
+        "https://store.steampowered.com/app/408960/": {
+          "message_id": "1494586588271870003",
+          "channel_id": "1491294533751799809"
+        },
+        "https://store.steampowered.com/app/65800/": {
+          "message_id": "1494586594659663955",
+          "channel_id": "1491294533751799809"
+        },
+        "https://store.steampowered.com/app/1301720/": {
+          "message_id": "1494586604680122368",
+          "channel_id": "1491294533751799809"
+        },
+        "https://store.steampowered.com/app/1962770/": {
+          "message_id": "1494586607297368165",
+          "channel_id": "1491294533751799809"
+        },
+        "https://store.steampowered.com/app/2358050/": {
+          "message_id": "1494586611009192036",
+          "channel_id": "1491294533751799809"
+        },
+        "https://store.steampowered.com/app/2564660/": {
+          "message_id": "1494586618433245264",
+          "channel_id": "1491294533751799809"
+        },
+        "https://store.steampowered.com/app/2587450/": {
+          "message_id": "1494586621704540200",
+          "channel_id": "1491294533751799809"
+        },
+        "https://store.steampowered.com/app/265630/": {
+          "message_id": "1494586625462763571",
+          "channel_id": "1491294533751799809"
+        },
+        "https://store.steampowered.com/app/3211690/": {
+          "message_id": "1494586629958926338",
+          "channel_id": "1491294533751799809"
+        },
+        "https://store.steampowered.com/app/3832630/": {
+          "message_id": "1494586633213972621",
+          "channel_id": "1491294533751799809"
+        },
+        "https://store.steampowered.com/app/905640/": {
+          "message_id": "1494586638406516786",
+          "channel_id": "1491294533751799809"
+        },
+        "https://store.steampowered.com/app/1063420/": {
+          "message_id": "1494586643183833238",
+          "channel_id": "1491294533751799809"
+        },
+        "https://store.steampowered.com/app/1135230/": {
+          "message_id": "1494586646048538858",
+          "channel_id": "1491294533751799809"
+        },
+        "https://store.steampowered.com/app/1154840/": {
+          "message_id": "1494586649311449269",
+          "channel_id": "1491294533751799809"
+        },
+        "https://store.steampowered.com/app/1929610/": {
+          "message_id": "1494586653673787402",
+          "channel_id": "1491294533751799809"
+        },
+        "https://store.steampowered.com/app/1953230/": {
+          "message_id": "1494586657373163530",
+          "channel_id": "1491294533751799809"
+        },
+        "https://store.steampowered.com/app/2489330/": {
+          "message_id": "1494586660933992621",
+          "channel_id": "1491294533751799809"
+        },
+        "https://store.steampowered.com/app/2506480/": {
+          "message_id": "1494586665703051404",
+          "channel_id": "1491294533751799809"
+        },
+        "https://store.steampowered.com/app/2956680/": {
+          "message_id": "1494586669528256563",
+          "channel_id": "1491294533751799809"
+        },
+        "https://store.steampowered.com/app/3761880/": {
+          "message_id": "1494586671839051846",
+          "channel_id": "1491294533751799809"
+        },
+        "https://store.steampowered.com/app/4204530/": {
+          "message_id": "1494586674162958426",
+          "channel_id": "1491294533751799809"
+        },
+        "https://store.steampowered.com/app/604240/": {
+          "message_id": "1494586683721515030",
+          "channel_id": "1491294533751799809"
+        },
+        "https://www.instagram.com/p/DXNBgwJjAxK/": {
+          "message_id": "1494586691720187954",
+          "channel_id": "1491294533751799809"
+        }
+      },
+      "footer": {
+        "message_id": "1494586695922876436",
+        "channel_id": "1491294533751799809"
+      },
+      "message_id": "1494586573788938362",
+      "message_ids": [
+        "1494586573788938362",
+        "1494586583200960553",
+        "1494586584484282449",
+        "1494586588271870003",
+        "1494586594659663955",
+        "1494586596966666320",
+        "1494586604680122368",
+        "1494586607297368165",
+        "1494586611009192036",
+        "1494586618433245264",
+        "1494586621704540200",
+        "1494586625462763571",
+        "1494586629958926338",
+        "1494586633213972621",
+        "1494586638406516786",
+        "1494586641795514398",
+        "1494586643183833238",
+        "1494586646048538858",
+        "1494586649311449269",
+        "1494586653673787402",
+        "1494586657373163530",
+        "1494586660933992621",
+        "1494586665703051404",
+        "1494586669528256563",
+        "1494586671839051846",
+        "1494586674162958426",
+        "1494586683721515030",
+        "1494586687311974502",
+        "1494586691720187954",
+        "1494586695922876436"
+      ],
+      "last_action": "create",
+      "updated_at_utc": "2026-04-17T06:33:56.660561+00:00",
+      "posted_at_utc": "2026-04-17T06:33:56.660576+00:00",
+      "winner_keys": [
+        "https://store.steampowered.com/app/1063420/",
+        "https://store.steampowered.com/app/1135230/",
+        "https://store.steampowered.com/app/1154840/",
+        "https://store.steampowered.com/app/1301720/",
+        "https://store.steampowered.com/app/1929610/",
+        "https://store.steampowered.com/app/1953230/",
+        "https://store.steampowered.com/app/1962770/",
+        "https://store.steampowered.com/app/2358050/",
+        "https://store.steampowered.com/app/2485460/",
+        "https://store.steampowered.com/app/2489330/",
+        "https://store.steampowered.com/app/2506480/",
+        "https://store.steampowered.com/app/2564660/",
+        "https://store.steampowered.com/app/2587450/",
+        "https://store.steampowered.com/app/265630/",
+        "https://store.steampowered.com/app/2956680/",
+        "https://store.steampowered.com/app/3211690/",
+        "https://store.steampowered.com/app/3761880/",
+        "https://store.steampowered.com/app/3832630/",
+        "https://store.steampowered.com/app/408960/",
+        "https://store.steampowered.com/app/4204530/",
+        "https://store.steampowered.com/app/604240/",
+        "https://store.steampowered.com/app/65800/",
+        "https://store.steampowered.com/app/905640/",
+        "https://www.instagram.com/p/DXNBgwJjAxK/"
+      ],
+      "winner_vote_counts": {
+        "https://store.steampowered.com/app/1063420/": 1,
+        "https://store.steampowered.com/app/1135230/": 1,
+        "https://store.steampowered.com/app/1154840/": 1,
+        "https://store.steampowered.com/app/1301720/": 1,
+        "https://store.steampowered.com/app/1929610/": 1,
+        "https://store.steampowered.com/app/1953230/": 1,
+        "https://store.steampowered.com/app/1962770/": 1,
+        "https://store.steampowered.com/app/2358050/": 1,
+        "https://store.steampowered.com/app/2485460/": 1,
+        "https://store.steampowered.com/app/2489330/": 1,
+        "https://store.steampowered.com/app/2506480/": 1,
+        "https://store.steampowered.com/app/2564660/": 1,
+        "https://store.steampowered.com/app/2587450/": 1,
+        "https://store.steampowered.com/app/265630/": 1,
+        "https://store.steampowered.com/app/2956680/": 1,
+        "https://store.steampowered.com/app/3211690/": 1,
+        "https://store.steampowered.com/app/3761880/": 1,
+        "https://store.steampowered.com/app/3832630/": 1,
+        "https://store.steampowered.com/app/408960/": 1,
+        "https://store.steampowered.com/app/4204530/": 1,
+        "https://store.steampowered.com/app/604240/": 1,
+        "https://store.steampowered.com/app/65800/": 1,
+        "https://store.steampowered.com/app/905640/": 1,
+        "https://www.instagram.com/p/DXNBgwJjAxK/": 1
+      },
+      "winner_entries": [
+        {
+          "winner_key": "https://store.steampowered.com/app/1063420/",
+          "section": "paid",
+          "title": "Void Crew",
+          "url": "https://store.steampowered.com/app/1063420/",
+          "description": "Void Crew is a Chaotic, Co-op Roguelite game for 1 to 6 players: Outfit your spaceship and crew for thrilling quests, brave fierce enemies in Space Battles... and try not to panic!",
+          "human_votes": 1,
+          "voter_names": [
+            "Thomas"
+          ]
+        },
+        {
+          "winner_key": "https://store.steampowered.com/app/1135230/",
+          "section": "paid",
+          "title": "Ember Knights",
+          "url": "https://store.steampowered.com/app/1135230/",
+          "description": "Ember Knights is an action rogue-lite for 1-4 players where you play as legendary knights, the last spark of hope against the mad sorcerer Praxis and his hordes of unwavering fiends. Wield weapons & skills, build synergies with game-changing relics and free the universe of Praxis’ corruption.",
+          "human_votes": 1,
+          "voter_names": [
+            "Chocolie"
+          ]
+        },
+        {
+          "winner_key": "https://store.steampowered.com/app/1154840/",
+          "section": "paid",
+          "title": "Shadow Empire",
+          "url": "https://store.steampowered.com/app/1154840/",
+          "description": "Shadow Empire is a deep turn-based 4X wargame with a unique blend of military focus, procedurally generated content and role-playing features. Players take the seat of the supreme ruler of a small nation, with the goal of reconquering a devastated planet.",
+          "human_votes": 1,
+          "voter_names": [
+            "Chocolie"
+          ]
+        },
+        {
+          "winner_key": "https://store.steampowered.com/app/1301720/",
+          "section": "free",
+          "title": "Escape Room - Der kranke Kollege",
+          "url": "https://store.steampowered.com/app/1301720/",
+          "description": "You only wanted to make a visit to your sick colleague, but what you encounter is beyond your imagination. Discover the secrets of your colleague and find a way to escape the trap.",
+          "human_votes": 1,
+          "voter_names": [
+            "Chocolie"
+          ]
+        },
+        {
+          "winner_key": "https://store.steampowered.com/app/1929610/",
+          "section": "paid",
+          "title": "Demonologist",
+          "url": "https://store.steampowered.com/app/1929610/",
+          "description": "Demonologist is a Co-Op horror game that can be played with at least 1 and up to 4 players. Your goal is to identify the type of evil spirit in cursed places and exorcise it using your equipment, either alone or with your team.",
+          "human_votes": 1,
+          "voter_names": [
+            "Chocolie"
+          ]
+        },
+        {
+          "winner_key": "https://store.steampowered.com/app/1953230/",
+          "section": "paid",
+          "title": "Whisper Mountain Outbreak",
+          "url": "https://store.steampowered.com/app/1953230/",
+          "description": "Escape room meets co-op survival horror. The year is 1998, and an ancient curse has been unleashed, trapping everyone on Mount Bisik. Alone or with up to 4 players, you must explore, find clues, figure out a way to escape...and survive the horror.",
+          "human_votes": 1,
+          "voter_names": [
+            "Thomas"
+          ]
+        },
+        {
+          "winner_key": "https://store.steampowered.com/app/1962770/",
+          "section": "free",
+          "title": "Nova Empire",
+          "url": "https://store.steampowered.com/app/1962770/",
+          "description": "Build up a Space Empire and establish control of the Galaxy and the Universe! Nova Empire is a multiplayer space game in which the aim is to build your empire and conquer the galaxy in epic space battles against your rivals with other allies worldwide!",
+          "human_votes": 1,
+          "voter_names": [
+            "TheMonkeyKing"
+          ]
+        },
+        {
+          "winner_key": "https://store.steampowered.com/app/2358050/",
+          "section": "free",
+          "title": "GraalOnline Era",
+          "url": "https://store.steampowered.com/app/2358050/",
+          "description": "Era is a modern 2D action MMO RPG. Purchase weapons and work with a gang to compete in activities such as special events, base capturing and PvP battles in the Spar Complex, or start your own gang and chart your own path!",
+          "human_votes": 1,
+          "voter_names": [
+            "Chocolie"
+          ]
+        },
+        {
+          "winner_key": "https://store.steampowered.com/app/2485460/",
+          "section": "demo_playtest",
+          "title": "State of Survival",
+          "url": "https://store.steampowered.com/app/2485460/",
+          "description": "Survive the Zombies War in this RPG game of Apocalypse and Survival",
+          "human_votes": 1,
+          "voter_names": [
+            "Chocolie"
+          ]
+        },
+        {
+          "winner_key": "https://store.steampowered.com/app/2489330/",
+          "section": "paid",
+          "title": "Whiskerwood",
+          "url": "https://store.steampowered.com/app/2489330/",
+          "description": "Establish a home for your industrious mice under the oppressive paw of your cat overlords in this city builder featuring complex simulations, intricate production chains, and the age-old rivalry between cat and mouse.",
+          "human_votes": 1,
+          "voter_names": [
+            "Chocolie"
+          ]
+        },
+        {
+          "winner_key": "https://store.steampowered.com/app/2506480/",
+          "section": "paid",
+          "title": "Clue/Cluedo",
+          "url": "https://store.steampowered.com/app/2506480/",
+          "description": null,
+          "human_votes": 1,
+          "voter_names": [
+            "Chocolie"
+          ]
+        },
+        {
+          "winner_key": "https://store.steampowered.com/app/2564660/",
+          "section": "free",
+          "title": "Frontline 1942: Battles of the World War 2",
+          "url": "https://store.steampowered.com/app/2564660/",
+          "description": "Immerse yourself in the times of the Second World War II and become a real hero! Shoot, capture, win – the path to glory is paved with shells!",
+          "human_votes": 1,
+          "voter_names": [
+            "TheMonkeyKing"
+          ]
+        },
+        {
+          "winner_key": "https://store.steampowered.com/app/2587450/",
+          "section": "free",
+          "title": "Tank Team",
+          "url": "https://store.steampowered.com/app/2587450/",
+          "description": "A team based PVP game where groups of up to 8 players must work together to operate a tank!",
+          "human_votes": 1,
+          "voter_names": [
+            "Chocolie"
+          ]
+        },
+        {
+          "winner_key": "https://store.steampowered.com/app/265630/",
+          "section": "free",
+          "title": "Fistful of Frags",
+          "url": "https://store.steampowered.com/app/265630/",
+          "description": "Multiplayer based, first person enabled, action packed and skill demanding shooter set in the Wild West times. A unique combination of non stop action and slow but powerful weaponry.",
+          "human_votes": 1,
+          "voter_names": [
+            "Chocolie"
+          ]
+        },
+        {
+          "winner_key": "https://store.steampowered.com/app/2956680/",
+          "section": "paid",
+          "title": "LORT",
+          "url": "https://store.steampowered.com/app/2956680/",
+          "description": "LORT is a 1–8 player co-op action roguelite. Team up with your friends to battle, loot, and stack ridiculous power-ups across a cursed fantasy world. Fight toward escape, revive your homies, and get absolutely chadded as you evolve from goblin tickler to god slapper.",
+          "human_votes": 1,
+          "voter_names": [
+            "Chocolie"
+          ]
+        },
+        {
+          "winner_key": "https://store.steampowered.com/app/3211690/",
+          "section": "free",
+          "title": "Tobacco Shop Simulator: Prologue",
+          "url": "https://store.steampowered.com/app/3211690/",
+          "description": "Run your tobacco shop in this free prologue version of the game. Sign contracts with leading brands, order products, and meet customer needs. Play with friends or go solo, and enjoy the growth of your shop.",
+          "human_votes": 1,
+          "voter_names": [
+            "Thomas"
+          ]
+        },
+        {
+          "winner_key": "https://store.steampowered.com/app/3761880/",
+          "section": "paid",
+          "title": "Night Shippers",
+          "url": "https://store.steampowered.com/app/3761880/",
+          "description": null,
+          "human_votes": 1,
+          "voter_names": [
+            "Chocolie"
+          ]
+        },
+        {
+          "winner_key": "https://store.steampowered.com/app/3832630/",
+          "section": "free",
+          "title": "Wheelchair Wizards",
+          "url": "https://store.steampowered.com/app/3832630/",
+          "description": "Wheelchair Wizards is a 4 player party game where you battle your friends while upgrading your wizard.",
+          "human_votes": 1,
+          "voter_names": [
+            "Chocolie"
+          ]
+        },
+        {
+          "winner_key": "https://store.steampowered.com/app/408960/",
+          "section": "demo_playtest",
+          "title": "Zombasite",
+          "url": "https://store.steampowered.com/app/408960/",
+          "description": "Zombasite is a zombie apocalypse action RPG set in a dynamic, evolving, fantasy world for Windows, Mac, and Linux.",
+          "human_votes": 1,
+          "voter_names": [
+            "Chocolie"
+          ]
+        },
+        {
+          "winner_key": "https://store.steampowered.com/app/4204530/",
+          "section": "paid",
+          "title": "Knights End",
+          "url": "https://store.steampowered.com/app/4204530/",
+          "description": "Work together to survive the night shift in this challenging co-op PvE horror game. Serve your villagers as a disgraced knight by obeying their commands in a cursed kingdom. Reclaim your lost honor to earn your place on the watch. How long can you survive?",
+          "human_votes": 1,
+          "voter_names": [
+            "Chocolie"
+          ]
+        },
+        {
+          "winner_key": "https://store.steampowered.com/app/604240/",
+          "section": "paid",
+          "title": "Shotgun Farmers",
+          "url": "https://store.steampowered.com/app/604240/",
+          "description": "Shotgun Farmers is the multplayer shooter where missed shots grow guns. Fire your bullets into the ground to plant your ammo. The longer a gun plant grows the more ammo you will get!",
+          "human_votes": 1,
+          "voter_names": [
+            "Chocolie"
+          ]
+        },
+        {
+          "winner_key": "https://store.steampowered.com/app/65800/",
+          "section": "demo_playtest",
+          "title": "Dungeon Defenders",
+          "url": "https://store.steampowered.com/app/65800/",
+          "description": "Create a hero from one of four classes to save Etheria in this 4-player coop Tower Defense Action-RPG. Includes Steam exclusive Portal gun & TF2 familiars!",
+          "human_votes": 1,
+          "voter_names": [
+            "Chocolie"
+          ]
+        },
+        {
+          "winner_key": "https://store.steampowered.com/app/905640/",
+          "section": "free",
+          "title": "Combat Arms: Reloaded",
+          "url": "https://store.steampowered.com/app/905640/",
+          "description": "Combat Arms is a multiplayer game, free-to-play modern first-person shooter. The game enlists players into various battlefields across the globe to face-off against other ambitious soldiers of fortune, delivering gamers a high-quality FPS with an extensive arsenal of weapons.",
+          "human_votes": 1,
+          "voter_names": [
+            "TheMonkeyKing"
+          ]
+        },
+        {
+          "winner_key": "https://www.instagram.com/p/DXNBgwJjAxK/",
+          "section": "instagram",
+          "title": "@sharedxp_official",
+          "url": "https://www.instagram.com/p/DXNBgwJjAxK/",
+          "description": "Task Time is a chaotic party game where up to 8 players survive 6 rounds of random tasks, sabotage each other, and tr...",
+          "human_votes": 1,
+          "voter_names": [
+            "TheMonkeyKing"
+          ]
+        }
+      ]
+    }
   }
 }
