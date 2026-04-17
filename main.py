@@ -2341,15 +2341,20 @@ def post_daily_pick_messages(
         save_discord_daily_posts(daily_posts)
 
     intro_state = run_state.setdefault("intro", {})
-    intro_placeholder = "\n".join([
-        f"📅 Daily Picks — {format_daily_picks_footer_date(day_key)}",
-        "",
-        "Vote 👍 on anything you want to try. Top picks move to Step 2.",
-        "",
-        DAILY_INTRO_DIVIDER,
-    ])
-    post_or_reconcile_simple(intro_placeholder, "intro", intro_state)
-    sleep_briefly()
+    if not intro_state.get("message_id"):
+        intro_placeholder = "\n".join([
+            f"📅 Daily Picks — {format_daily_picks_footer_date(day_key)}",
+            "",
+            "Vote 👍 on anything you want to try. Top picks move to Step 2.",
+            "",
+            "Loading sections...",
+            "",
+            DAILY_INTRO_DIVIDER,
+        ])
+        post_or_reconcile_simple(intro_placeholder, "intro", intro_state)
+        sleep_briefly()
+    else:
+        print(f"REUSE: intro already posted for {day_key} — skipping placeholder re-edit")
 
     section_items_by_key = {
         "demo_playtest": demo_playtest_items,

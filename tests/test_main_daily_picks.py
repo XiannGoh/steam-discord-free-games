@@ -515,7 +515,7 @@ def test_daily_force_refresh_reconciles_same_day_without_duplicates(monkeypatch,
     main.post_daily_pick_messages([], free_items, [], [], force_refresh_same_day=True)
 
     assert len(posted) == 1
-    assert len(fake_client.edits) == 5  # intro (refresh) + free header + item + intro (jump-links edit) + footer
+    assert len(fake_client.edits) == 4  # free header + item + intro (jump-links edit) + footer
     assert len(fake_client.reactions) == 1  # only brand-new item gets 👍
 
     saved = json.loads(daily_path.read_text(encoding="utf-8"))
@@ -529,7 +529,7 @@ def test_daily_force_refresh_reconciles_same_day_without_duplicates(monkeypatch,
     main.post_daily_pick_messages([], free_items, [], [], force_refresh_same_day=True)
 
     assert len(posted) == 1
-    assert len(fake_client.edits) == edits_after_first + 6  # intro + free header + two items + intro (jump-links edit) + footer
+    assert len(fake_client.edits) == edits_after_first + 5  # free header + two items + intro (jump-links edit) + footer
     assert len(fake_client.reactions) == reactions_after_first
     saved_after_second = json.loads(daily_path.read_text(encoding="utf-8"))
     assert len(saved_after_second[day_key]["items"]) == 2
@@ -1616,6 +1616,64 @@ class TestStep1IntroFooterFormatting:
         assert "🎮 Demos" in footer
         assert "🆓 Free" in footer
         assert "💰 Paid" in footer
+
+    def test_intro_placeholder_not_posted_on_rerun(self, monkeypatch, tmp_path, capsys):
+        """On a re-run where intro already has a message_id, no new post is made for the intro placeholder."""
+        import json
+
+        day_key = "2026-04-15"
+        daily_path = tmp_path / "daily.json"
+        # Pre-seed state with an existing intro message_id (must be inside run_state)
+        existing_state = {
+            day_key: {
+                "run_state": {
+                    "intro": {"message_id": "existing-intro-id", "channel_id": "chan-1"},
+                },
+                "items": [],
+            }
+        }
+        daily_path.write_text(json.dumps(existing_state), encoding="utf-8")
+
+        posted = []
+        counter = {"i": 0}
+
+        def fake_post(message, capture_metadata=False):
+            posted.append(message)
+            counter["i"] += 1
+            return {"message_id": f"m-{counter['i']}", "channel_id": "chan-1"}
+
+        fake_client = FakeDiscordClient(existing_ids={"existing-intro-id"})
+        monkeypatch.setattr(main, "DISCORD_DAILY_POSTS_FILE", str(daily_path))
+        monkeypatch.setattr(main, "DISCORD_BOT_TOKEN", "token")
+        monkeypatch.setattr(main, "DISCORD_GUILD_ID", "guild-1")
+        monkeypatch.setattr(main, "DiscordClient", lambda session: fake_client)
+        monkeypatch.setattr(main, "post_to_discord_with_metadata", fake_post)
+        monkeypatch.setattr(main, "sleep_briefly", lambda: None)
+        monkeypatch.setenv(main.DAILY_DATE_OVERRIDE_ENV, day_key)
+
+        items = {"free": [{"title": "G", "url": "https://store.steampowered.com/app/1", "score": 9}]}
+        main.post_daily_pick_messages(
+            items.get("demo_playtest", []),
+            items.get("free", []),
+            items.get("paid", []),
+            items.get("instagram", []),
+        )
+
+        # No message posted whose content is just the placeholder (no jump links)
+        placeholder_posts = [m for m in posted if "Loading sections..." in m]
+        assert placeholder_posts == [], "Placeholder must not be posted when intro already exists"
+
+        captured = capsys.readouterr()
+        assert "REUSE: intro already posted" in captured.out
+
+    def test_intro_placeholder_posted_on_first_run(self, monkeypatch, tmp_path):
+        """On a first run (no existing message_id), the placeholder IS posted."""
+        items = {"free": [{"title": "G", "url": "https://store.steampowered.com/app/1", "score": 9}]}
+        posted, _ = self._run_post(monkeypatch, tmp_path, items)
+        # The first posted message should be the placeholder
+        assert "Loading sections..." in posted[0] or main.DAILY_INTRO_DIVIDER in posted[0], (
+            "First run must post an intro placeholder"
+        )
 
 
 class TestStep1MissingSectionNotices:
