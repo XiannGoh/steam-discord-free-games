@@ -6893,26 +6893,26 @@
     "run_state": {
       "section_headers": {
         "free": {
-          "message_id": "1495024254297837629",
+          "message_id": "1495073698279985182",
           "channel_id": "592534544708796474",
-          "posted_at_utc": "2026-04-18T11:32:38.961987+00:00"
+          "posted_at_utc": "2026-04-18T14:49:07.785650+00:00"
         },
         "paid": {
-          "message_id": "1495024303476051998",
+          "message_id": "1495073752143368372",
           "channel_id": "592534544708796474",
-          "posted_at_utc": "2026-04-18T11:32:50.558732+00:00"
+          "posted_at_utc": "2026-04-18T14:49:20.073891+00:00"
         }
       },
-      "last_attempt_at_utc": "2026-04-18T11:32:37.915117+00:00",
+      "last_attempt_at_utc": "2026-04-18T14:49:06.443370+00:00",
       "intro": {
         "message_id": "1494944256459014204",
         "channel_id": "592534544708796474",
         "posted_at_utc": "2026-04-18T06:14:45.748563+00:00"
       },
       "footer": {
-        "message_id": "1495024353040138430",
+        "message_id": "1495073796342812764",
         "channel_id": "592534544708796474",
-        "posted_at_utc": "2026-04-18T11:33:02.278406+00:00"
+        "posted_at_utc": "2026-04-18T14:49:30.574983+00:00"
       }
     },
     "items": [
@@ -7179,6 +7179,116 @@
         "source_type": "paid_under_20",
         "posted_at": "2026-04-18T11:33:00.304880+00:00",
         "description": "A first-person survival game set on a post-apocalyptic, ecologically ruined Earth. Play solo or with up to 3 friends as you build, upgrade, and fly a high-tech airship. Scavenge resources, craft tools, and face dangers on the surface as you hunt for a cure to save humanity."
+      },
+      {
+        "item_key": "7fcb0e46192f5bf5",
+        "section": "free",
+        "title": "Argentum Online",
+        "url": "https://store.steampowered.com/app/1956740/",
+        "message_id": "1495073707968954430",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-04-18T14:49:09.612014+00:00",
+        "description": "Argentum Online, a 2D MMORPG, offers epic quests, dungeon delves, and battles in a fantasy world. Emphasizing community, it features alliances, PvP, and a player-driven economy, all within a vibrant open-world setting."
+      },
+      {
+        "item_key": "0e60c97c732e51d5",
+        "section": "free",
+        "title": "Holyday City: Reloaded",
+        "url": "https://store.steampowered.com/app/728730/",
+        "message_id": "1495073715669569636",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-04-18T14:49:11.495453+00:00",
+        "description": "Build, manage & grow your city in Holyday City: Reloaded! An idle clicker game where you're the business tycoon, expanding your metropolis. Master resource & time management to upgrade businesses and thrive. Experience the ultimate town builder adventure with Holyday City."
+      },
+      {
+        "item_key": "4b76953a2361a3a2",
+        "section": "free",
+        "title": "Starborne: Frontiers",
+        "url": "https://store.steampowered.com/app/3021540/",
+        "message_id": "1495073723642941572",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-04-18T14:49:13.691315+00:00",
+        "description": "Starborne: Frontiers is a free-to-play tactical autobattler with hundreds of unique ships. Form your fleet, customize it with a variety of equipment, and use strategy to create the perfect battlefield formation. Take on bounties, engage in the PvP arena, and bring order to the Frontier."
+      },
+      {
+        "item_key": "ca575b2d4ebb9cfa",
+        "section": "free",
+        "title": "Galaxy Control: 3D Strategy",
+        "url": "https://store.steampowered.com/app/435440/",
+        "message_id": "1495073732895576166",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-04-18T14:49:15.875930+00:00",
+        "description": "Build your base and battle with other players to control the galaxy! Galaxy Control is an ultimate space combat strategy game with fast-paced combats! Gather minerals and extract uranium, defend your base with laser towers, missile turrets, cannons, walls and mines."
+      },
+      {
+        "item_key": "cab22b7a437091bb",
+        "section": "free",
+        "title": "MONSTER CARDS",
+        "url": "https://store.steampowered.com/app/2010530/",
+        "message_id": "1495073742110462155",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-04-18T14:49:18.159350+00:00",
+        "description": "Bring your original deck of cards and play against everyone!"
+      },
+      {
+        "item_key": "516887dd82cd1c28",
+        "section": "paid",
+        "title": "Painkiller",
+        "url": "https://store.steampowered.com/app/2300120/",
+        "message_id": "1495073759122427905",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-04-18T14:49:21.698214+00:00",
+        "description": "The classic Painkiller series is back! Battle through Purgatory in fast-paced co-op action, wielding infernal weapons against relentless demonic hordes. Condemned for your sins, the Voice of the Creator offers you a chance at redemption. Will you seize it or be lost to darkness?"
+      },
+      {
+        "item_key": "b758dd1d465fe441",
+        "section": "paid",
+        "title": "DRAGON BALL XENOVERSE",
+        "url": "https://store.steampowered.com/app/323470/",
+        "message_id": "1495073766386958357",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-04-18T14:49:23.442273+00:00",
+        "description": "DRAGON BALL XENOVERSE revisits famous battles from the series through your custom Avatar and other classic characters. New features include the mysterious Toki Toki City, new gameplay mechanics, new animations and many other amazing features!"
+      },
+      {
+        "item_key": "1647ddcaa22f2ac8",
+        "section": "paid",
+        "title": "Backpack Battles",
+        "url": "https://store.steampowered.com/app/2427700/",
+        "message_id": "1495073773253038216",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-04-18T14:49:25.130952+00:00",
+        "description": "A PvP inventory management auto battler! Buy and craft powerful items, then carefully arrange them in your backpack."
+      },
+      {
+        "item_key": "819cd26cf180f6cd",
+        "section": "paid",
+        "title": "TerraTech",
+        "url": "https://store.steampowered.com/app/285920/",
+        "message_id": "1495073780421234689",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-04-18T14:49:26.899969+00:00",
+        "description": "TerraTech is an open-world, sandbox adventure game, where you design and build your own creations through a mix of crafting, combat and discovery. Design vehicles from a huge library of blocks. Scavenge, craft and buy new parts to survive and become the ultimate planetary prospector."
+      },
+      {
+        "item_key": "0385625adecb4e8d",
+        "section": "paid",
+        "title": "Heavenly Bodies",
+        "url": "https://store.steampowered.com/app/1138850/",
+        "message_id": "1495073787790495746",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-04-18T14:49:28.650981+00:00",
+        "description": "Wrangle the hands and arms of a 1970s space cosmonaut and push, pull and twist your way through an increasingly precarious range of physically simulated stellar scenarios, where without gravity, nothing is still, nothing is secure, and nothing is simple."
       }
     ]
   }
