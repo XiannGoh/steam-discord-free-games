@@ -165,7 +165,7 @@ jobs:
           details = f"{details}, force_refresh_same_day={'true' if force else 'false'}"
           print(json.dumps({
               "content": (
-                  "ÃÂ°ÃÂÃÂÃÂ´ XiannGPT Bot Failure\n\n"
+                  "XiannGPT Bot Failure\n\n"
                   f"Workflow: {os.environ['WORKFLOW_NAME']}\n"
                   f"Job: {os.environ['JOB_NAME']}\n"
                   "Status: failed\n"
