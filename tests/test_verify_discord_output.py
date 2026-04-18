@@ -185,9 +185,10 @@ class TestDetectBrokenIfNewConditions:
 class _FakeVerifyClient:
     """Minimal fake Discord client for verify_discord_output functional tests."""
 
-    def __init__(self, messages: dict = None, *, missing_ids: set = None):
+    def __init__(self, messages: dict = None, *, missing_ids: set = None, last_message_content: str = "📌 How This Works — fake"):
         self._messages = messages or {}
         self._missing_ids = missing_ids or set()
+        self._last_message_content = last_message_content
 
     def get_message(self, channel_id, message_id, *, context=""):
         if message_id in self._missing_ids:
@@ -195,6 +196,11 @@ class _FakeVerifyClient:
         if message_id in self._messages:
             return self._messages[message_id]
         return {"id": message_id, "content": "", "reactions": []}
+
+    def get_channel_messages(self, channel_id, *, context="", limit=100, before=None, after=None):
+        if not self._last_message_content:
+            return []
+        return [{"id": "last-msg", "content": self._last_message_content}]
 
 
 def _step1_entry(intro_content="📅 Daily Picks\n─────", footer_content="📅 ⬆️ Top\n─────────────────── End of Daily Picks ───────────────────"):

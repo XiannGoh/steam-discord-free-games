@@ -35,6 +35,12 @@
       "each_section_must_be_separate_message": true,
       "demo_playtest_max_age_days": 180
     },
+    "rolling_explainer_rules": {
+      "must_exist": true,
+      "must_be_last_message": true,
+      "detection_prefix": "📌 How This Works",
+      "same_day_rerun_must_not_duplicate": true
+    },
     "broken_if": [
       "no games posted",
       "duplicate game messages",
@@ -43,7 +49,8 @@
       "footer is missing end separator",
       "footer is a copy of the intro",
       "demo_playtest contains game older than 180 days",
-      "duplicate intro messages for same day"
+      "duplicate intro messages for same day",
+      "missing rolling explainer as last message"
     ]
   },
   "step-2-test-then-vote-to-keep": {
@@ -80,6 +87,12 @@
       "valid_sections": ["free_picks", "demo_playtest", "paid_under_20", "instagram_creator_picks"],
       "each_section_must_be_separate_message": true
     },
+    "rolling_explainer_rules": {
+      "must_exist": true,
+      "must_be_last_message": true,
+      "detection_prefix": "📌 How This Works",
+      "same_day_rerun_must_not_duplicate": true
+    },
     "broken_if": [
       "no winners posted",
       "duplicate winners",
@@ -87,7 +100,8 @@
       "missing intro",
       "section content bleeding into intro message",
       "footer is copy of intro",
-      "footer is missing end separator"
+      "footer is missing end separator",
+      "missing rolling explainer as last message"
     ]
   },
   "step-3-review-existing-games": {
@@ -130,13 +144,20 @@
     "pinned_message_rules": {
       "command_reference_must_exist_and_be_pinned": true
     },
+    "rolling_explainer_rules": {
+      "must_exist": true,
+      "must_be_last_message": true,
+      "detection_prefix": "📌 How This Works",
+      "same_day_rerun_must_not_duplicate": true
+    },
     "broken_if": [
       "missing footer",
       "duplicate library entries",
       "delta summary missing from intro",
       "delta summary posted as separate message instead of inside intro",
       "game card missing last activity date",
-      "footer is missing end separator"
+      "footer is missing end separator",
+      "missing rolling explainer as last message"
     ]
   },
   "update-weekly-schedule-here": {

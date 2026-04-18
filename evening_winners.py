@@ -8,6 +8,7 @@ import requests
 
 from daily_section_config import DAILY_SECTION_DISPLAY_LABELS, DAILY_SECTION_ORDER
 from discord_api import DiscordClient, DiscordMessageNotFoundError
+from rolling_explainer import post_or_edit_rolling_explainer
 from state_utils import is_today_verified, load_json_object, save_json_object_atomic
 
 DISCORD_DAILY_POSTS_FILE = "discord_daily_posts.json"
@@ -1082,6 +1083,7 @@ def main() -> None:
                 )
             save_discord_daily_posts(daily_posts)
             print(f"SKIP: no newly eligible winners for {day_key} (backfilled vote snapshot)")
+            post_or_edit_rolling_explainer(client, winners_channel_id, "step-2")
             return
 
         if keys_unchanged and vote_counts_unchanged and has_previous_winner_entries and not manual_run:
@@ -1095,6 +1097,7 @@ def main() -> None:
             if prior_days_requiring_updates:
                 save_discord_daily_posts(daily_posts)
             print(f"SKIP: no newly eligible winners for {day_key}")
+            post_or_edit_rolling_explainer(client, winners_channel_id, "step-2")
             return
 
         if keys_unchanged and vote_counts_unchanged and not manual_run:
@@ -1109,6 +1112,7 @@ def main() -> None:
                 )
             save_discord_daily_posts(daily_posts)
             print(f"SKIP: no newly eligible winners for {day_key}")
+            post_or_edit_rolling_explainer(client, winners_channel_id, "step-2")
             return
 
         publish_winners_for_entries(
@@ -1133,6 +1137,7 @@ def main() -> None:
                 winners_channel_id=winners_channel_id,
             )
         save_discord_daily_posts(daily_posts)
+        post_or_edit_rolling_explainer(client, winners_channel_id, "step-2")
 
 
 if __name__ == "__main__":
