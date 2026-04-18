@@ -141,7 +141,7 @@ jobs:
           details = f"target_week_start={target}" if target else "target_week_start=(default)"
           print(json.dumps({
               "content": (
-                  "Ã°ÂÂÂ´ XiannGPT Bot Failure\n\n"
+                                    "XiannGPT Bot Failure\n\n"
                   f"Workflow: {os.environ['WORKFLOW_NAME']}\n"
                   f"Job: {os.environ['JOB_NAME']}\n"
                   "Status: failed\n"
