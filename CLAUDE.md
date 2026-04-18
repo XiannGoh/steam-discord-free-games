@@ -73,7 +73,7 @@ Required Step 1 intro format:
 ```
 📅 Daily Picks — Wednesday, April 15, 2026
 
-Vote 👍 on anything you want to try. Top picks move to Step 2.
+Vote 👍 on anything you want to try. All voted games move to Step 2.
 
 🆓 [Free Picks](...)
 🎮 [Demos & Playtests](...)
@@ -88,7 +88,7 @@ Placeholder version before all sections are posted:
 ```
 📅 Daily Picks — Wednesday, April 15, 2026
 
-Vote 👍 on anything you want to try. Top picks move to Step 2.
+Vote 👍 on anything you want to try. All voted games move to Step 2.
 
 Loading sections...
 
@@ -215,35 +215,32 @@ This repo runs a 5-channel Discord pipeline for multiplayer game discovery. Each
 ### `daily.yml`
 Order must be:
 1. install packages
-2. `scripts/ensure_pinned_messages.py`
-3. `python main.py`
-4. `python scripts/read_discord_channel.py`
-5. `python scripts/verify_discord_output.py`
-6. upload artifacts
-7. save state
-8. health monitor failure notification
+2. `python main.py` (posts picks + rolling explainer at end)
+3. `python scripts/read_discord_channel.py`
+4. `python scripts/verify_discord_output.py`
+5. upload artifacts
+6. save state
+7. health monitor failure notification
 
 ### `evening-winners.yml`
 Order must be:
 1. install packages
-2. `scripts/ensure_pinned_messages.py`
-3. `python evening_winners.py`
-4. `python scripts/read_discord_channel.py`
-5. `python scripts/verify_discord_output.py`
-6. upload artifacts
-7. save state
-8. health monitor failure notification
+2. `python evening_winners.py` (posts winners + rolling explainer at end)
+3. `python scripts/read_discord_channel.py`
+4. `python scripts/verify_discord_output.py`
+5. upload artifacts
+6. save state
+7. health monitor failure notification
 
 ### `gaming-library-daily.yml`
 Order must be:
 1. install packages
-2. `scripts/ensure_pinned_messages.py`
-3. `python scripts/post_daily_gaming_library.py`
-4. `python scripts/read_discord_channel.py`
-5. `python scripts/verify_discord_output.py`
-6. upload artifacts
-7. save state
-8. health monitor failure notification
+2. `python scripts/post_daily_gaming_library.py` (posts library + rolling explainer at end)
+3. `python scripts/read_discord_channel.py`
+4. `python scripts/verify_discord_output.py`
+5. upload artifacts
+6. save state
+7. health monitor failure notification
 
 ### `weekly-scheduling-bot.yml`
 Order must be:
@@ -258,10 +255,12 @@ Order must be:
 
 ### Pinned-message workflow requirements
 `scripts/ensure_pinned_messages.py` must run at the start of:
-- `daily.yml`
-- `evening-winners.yml`
-- `gaming-library-daily.yml`
 - `weekly-scheduling-bot.yml`
+
+Rolling explainer (last-message how-it-works) is handled by each posting script directly:
+- `main.py` posts the Step 1 rolling explainer at the end of `run_daily_workflow()`
+- `evening_winners.py` posts the Step 2 rolling explainer at all exit points of `main()`
+- `scripts/post_daily_gaming_library.py` posts the Step 3 rolling explainer after `run_daily_post()`
 
 ### Snapshot workflow requirements
 `scripts/read_discord_channel.py` must run after every posting workflow and before verification. The following snapshot files must be uploaded as a single artifact named `discord-snapshots-{run_id}`:
@@ -300,11 +299,13 @@ Processed command message IDs are tracked in `gaming_library.json` under `proces
   - footer ends with the exact line: ─────────────────── End of Daily Picks ───────────────────
   - intro does not contain Steam URLs
   - demo/playtest items are not older than 180 days
+  - rolling explainer (starting with "📌 How This Works") is the last message in the channel
 - Step 2 verification must include:
   - intro exists
   - footer exists
   - footer ends with the exact line: ─────────────────── End of Daily Winners ───────────────────
   - intro does not contain Steam URLs
+  - rolling explainer (starting with "📌 How This Works") is the last message in the channel
 - Step 3 verification must include:
   - intro exists
   - footer exists
@@ -312,6 +313,7 @@ Processed command message IDs are tracked in `gaming_library.json` under `proces
   - intro contains either 📊 Today's Changes or No changes since yesterday
   - delta summary is inside the intro message, not posted as a separate Discord message
   - game cards satisfy min_items rules from channel_specs.json
+  - rolling explainer (starting with "📌 How This Works") is the last message in the channel
 
 ## Automation Loop
 

@@ -50,6 +50,11 @@ class FakeDiscordClient:
     def put_reaction(self, channel_id, message_id, encoded_emoji, *, context):
         self.put_reactions.append((channel_id, message_id, encoded_emoji, context))
 
+    def get_channel_messages(self, channel_id, *, context, limit=100, before=None, after=None):
+        # Return an existing rolling explainer by default so tests that check
+        # fake.posts == [] don't break (an edit is issued instead of a new post).
+        return [{"id": "existing-explainer", "content": "📌 How This Works — existing"}]
+
 
 def _patch_common(monkeypatch, path, fake, day_key):
     monkeypatch.setattr(winners, "DISCORD_DAILY_POSTS_FILE", str(path))
@@ -111,6 +116,9 @@ def test_winners_channel_posts_intro_sections_games_and_footer_in_order(monkeypa
     assert "Late Voted Earlier Day" in posted[4]
     assert posted[5] == "💰 Paid Winners"
     assert "Current Paid Winner" in posted[6]
+    # Rolling explainer is edited in-place (last message already exists); footer is last post
+    rolling_edits = [(mid, c) for _, mid, c, _ in fake.edits if c.startswith("📌 How This Works")]
+    assert rolling_edits, "Rolling explainer should have been edited"
     # Footer uses new format: single date+links line + End separator
     footer = posted[-1]
     assert footer.startswith("📅 ")
@@ -139,6 +147,9 @@ def test_winners_footer_omits_missing_sections(monkeypatch, tmp_path):
     )
     _patch_common(monkeypatch, path, fake, day_key)
     winners.main()
+    # Rolling explainer is edited in-place; footer is last post
+    rolling_edits = [c for _, _, c, _ in fake.edits if c.startswith("📌 How This Works")]
+    assert rolling_edits, "Rolling explainer should have been edited"
     footer = fake.posts[-1][1]
     assert "Free" in footer
     assert "⬆️ Top" in footer
@@ -292,7 +303,8 @@ def test_same_day_rerun_reuses_existing_intro_header_footer_and_game(monkeypatch
     _patch_common(monkeypatch, path, fake, day_key)
     winners.main()
     assert fake.posts == []
-    assert fake.edits == []
+    content_edits = [t for _, _, t, _ in fake.edits if not t.startswith("📌 How This Works")]
+    assert content_edits == []
 
 
 def test_late_votes_edit_prior_day_individual_winner_message(monkeypatch, tmp_path):
@@ -426,7 +438,8 @@ def test_scheduled_run_skips_when_winners_unchanged(monkeypatch, tmp_path):
     winners.main()
 
     assert fake.posts == []
-    assert fake.edits == []
+    content_edits = [t for _, _, t, _ in fake.edits if not t.startswith("📌 How This Works")]
+    assert content_edits == []
 
 
 def test_is_manual_run_detects_workflow_dispatch(monkeypatch):

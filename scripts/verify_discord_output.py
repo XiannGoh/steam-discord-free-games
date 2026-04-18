@@ -46,6 +46,7 @@ GAMING_LIBRARY_FILE = "gaming_library.json"
 
 THUMBS_UP_EMOJI = "\U0001f44d"   # 👍
 BOOKMARK_EMOJI = "\U0001f516"    # 🔖
+ROLLING_EXPLAINER_PREFIX = "📌 How This Works"
 
 # Honour the same date-override env var that main.py uses so this script can
 # be pointed at a specific day during manual reruns.
@@ -181,6 +182,39 @@ def _empty_channel_result() -> Dict[str, Any]:
     }
 
 
+def check_rolling_explainer(
+    client: DiscordClient,
+    channel_id: str,
+    ch_result: Dict[str, Any],
+    label: str,
+) -> None:
+    """Fetch the last message in channel_id and verify it is a rolling explainer.
+
+    Sets ch_result["rolling_explainer_missing"] = True if the last message does
+    not start with ROLLING_EXPLAINER_PREFIX. Silently skips if channel_id is empty.
+    """
+    if not channel_id:
+        ch_result["rolling_explainer_missing"] = False
+        return
+    try:
+        messages = client.get_channel_messages(channel_id, context=f"verify rolling explainer {label}", limit=1)
+        last = messages[0] if messages else None
+        if last and str(last.get("content", "")).startswith(ROLLING_EXPLAINER_PREFIX):
+            ch_result["rolling_explainer_missing"] = False
+            print(f"  OK  rolling explainer last message (message_id={last.get('id')})")
+        else:
+            ch_result["rolling_explainer_missing"] = True
+            last_preview = str(last.get("content", ""))[:60] if last else "(no messages)"
+            print(f"  FAIL  rolling explainer not last message — last: {last_preview!r}")
+            ch_result["errors"].append(
+                f"Rolling explainer missing as last message in {label} channel "
+                f"(last message starts with: {last_preview!r})"
+            )
+    except DiscordApiError as e:
+        ch_result["rolling_explainer_missing"] = False  # treat as undetectable on API error
+        print(f"  WARN  could not verify rolling explainer for {label}: {e}")
+
+
 def detect_broken_if(
     broken_if_conditions: List[str],
     ch_result: Dict[str, Any],
@@ -282,6 +316,10 @@ def detect_broken_if(
 
         elif "second run posted new messages instead of editing" in c:
             triggered = bool(ch_result.get("new_messages_on_rerun"))
+            detected[condition] = "triggered" if triggered else "not_triggered"
+
+        elif "missing rolling explainer" in c:
+            triggered = bool(ch_result.get("rolling_explainer_missing"))
             detected[condition] = "triggered" if triggered else "not_triggered"
 
         elif "demo_playtest contains game older than 180 days" in c:
@@ -435,6 +473,11 @@ def verify_step1(
     # Duplicate check
     duplicates_found = len(seen_message_ids) != len(set(seen_message_ids))
 
+    # --- Rolling explainer check ---
+    print("\n--- Step-1 rolling explainer ---")
+    step1_channel_id = str(intro_state.get("channel_id") or "").strip()
+    check_rolling_explainer(client, step1_channel_id, ch, "step-1")
+
     # --- Pass logic driven by spec ---
     intro_ok = not spec_required["intro_required"] or ch["intro_found"]
     # Footer is optional when GUILD_ID was absent at post time (footer_skipped=True).
@@ -442,8 +485,9 @@ def verify_step1(
     items_ok = ch["messages_checked"] >= max(spec_required["min_items"], 1) if spec_required["min_items"] > 0 else True
     no_missing = len(ch["messages_missing"]) == 0
     no_dupes = not spec_required["no_duplicates"] or not duplicates_found
+    explainer_ok = not ch.get("rolling_explainer_missing", False)
 
-    ch["pass"] = intro_ok and footer_ok and items_ok and no_missing and no_dupes
+    ch["pass"] = intro_ok and footer_ok and items_ok and no_missing and no_dupes and explainer_ok
 
     if not ch["pass"] and not ch["errors"]:
         reasons = []
@@ -457,6 +501,8 @@ def verify_step1(
             reasons.append(f"missing messages: {ch['messages_missing']}")
         if not no_dupes:
             reasons.append("duplicate message IDs found")
+        if not explainer_ok:
+            reasons.append("rolling explainer not last message")
         print(f"  WARN  pass=False with 0 errors — failing conditions: {'; '.join(reasons) or 'unknown'}")
 
     if specs is not None:
@@ -572,6 +618,11 @@ def verify_step2(
 
     duplicates_found = len(seen_message_ids) != len(set(seen_message_ids))
 
+    # --- Rolling explainer check ---
+    print("\n--- Step-2 rolling explainer ---")
+    step2_channel_id = str(intro_state.get("channel_id") or "").strip()
+    check_rolling_explainer(client, step2_channel_id, ch, "step-2")
+
     # --- Pass logic driven by spec ---
     intro_ok = not spec_required["intro_required"] or ch["intro_found"]
     # Footer is optional when GUILD_ID was absent at post time (footer_skipped=True).
@@ -579,8 +630,9 @@ def verify_step2(
     items_ok = ch["messages_checked"] >= spec_required["min_items"] if spec_required["min_items"] > 0 else True
     no_missing = len(ch["messages_missing"]) == 0
     no_dupes = not spec_required["no_duplicates"] or not duplicates_found
+    explainer_ok = not ch.get("rolling_explainer_missing", False)
 
-    ch["pass"] = intro_ok and footer_ok and items_ok and no_missing and no_dupes
+    ch["pass"] = intro_ok and footer_ok and items_ok and no_missing and no_dupes and explainer_ok
 
     if not ch["pass"] and not ch["errors"]:
         reasons = []
@@ -594,6 +646,8 @@ def verify_step2(
             reasons.append(f"missing messages: {ch['messages_missing']}")
         if not no_dupes:
             reasons.append("duplicate message IDs found")
+        if not explainer_ok:
+            reasons.append("rolling explainer not last message")
         print(f"  WARN  pass=False with 0 errors — failing conditions: {'; '.join(reasons) or 'unknown'}")
 
     if specs is not None:
@@ -696,6 +750,10 @@ def verify_step3(
     games = gaming_library_state.get("games", {})
     ch["item_count"] = len(games) if isinstance(games, dict) else 0
 
+    # --- Rolling explainer check ---
+    print("\n--- Step-3 rolling explainer ---")
+    check_rolling_explainer(client, intro_channel_id, ch, "step-3")
+
     # --- Pass logic ---
     spec_required = get_spec_required(specs or {}, CHANNEL_STEP3)
     min_items = spec_required.get("min_items", 0)
@@ -706,8 +764,9 @@ def verify_step3(
     no_missing = len(ch["messages_missing"]) == 0
     no_separator_issue = not ch["footer_missing_separator"]
     no_delta_issue = not ch["delta_missing_from_intro"]
+    explainer_ok = not ch.get("rolling_explainer_missing", False)
 
-    ch["pass"] = intro_ok and footer_ok and items_ok and no_missing and no_separator_issue and no_delta_issue
+    ch["pass"] = intro_ok and footer_ok and items_ok and no_missing and no_separator_issue and no_delta_issue and explainer_ok
 
     if specs is not None:
         apply_broken_if(ch, specs, CHANNEL_STEP3)

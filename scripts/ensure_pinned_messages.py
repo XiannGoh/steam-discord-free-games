@@ -31,7 +31,7 @@ PINNED_CONTENT: dict[str, str] = {
 Every morning the bot posts fresh game picks for the group to vote on.
 
 👍 Vote on any game you want to try tonight
-Top voted games move to #step-2-test-then-vote-to-keep in the evening
+All voted games move to #step-2-test-then-vote-to-keep in the evening
 
 New picks are posted every morning""",
 

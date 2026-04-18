@@ -15,6 +15,7 @@ except ImportError:
     instaloader = None
 from discord_api import DiscordClient, DiscordMessageNotFoundError
 from daily_section_config import DAILY_SECTION_CONFIG, DAILY_SECTION_ORDER
+from rolling_explainer import post_or_edit_rolling_explainer
 from state_utils import (
     is_today_verified,
     load_json_object,
@@ -24,6 +25,7 @@ from state_utils import (
 
 WEBHOOK_URL = os.getenv("DISCORD_WEBHOOK_URL")
 DISCORD_BOT_TOKEN = os.getenv("DISCORD_BOT_TOKEN")
+DISCORD_STEP1_CHANNEL_ID = os.getenv("DISCORD_STEP1_CHANNEL_ID")
 DISCORD_GUILD_ID = os.getenv("DISCORD_GUILD_ID")
 DISCORD_DEBUG_CHANNEL_ID = os.getenv("DISCORD_DEBUG_CHANNEL_ID")
 DISCORD_HEALTH_MONITOR_WEBHOOK_URL = os.getenv("DISCORD_HEALTH_MONITOR_WEBHOOK_URL")
@@ -2143,7 +2145,7 @@ def build_daily_picks_intro_content(
     lines = [
         f"📅 Daily Picks — {date_str}",
         "",
-        "Vote 👍 on anything you want to try. Top picks move to Step 2.",
+        "Vote 👍 on anything you want to try. All voted games move to Step 2.",
     ]
 
     if isinstance(guild_id, str) and guild_id.strip() and posted_section_keys:
@@ -2355,7 +2357,7 @@ def post_daily_pick_messages(
         intro_placeholder = "\n".join([
             f"📅 Daily Picks — {format_daily_picks_footer_date(day_key)}",
             "",
-            "Vote 👍 on anything you want to try. Top picks move to Step 2.",
+            "Vote 👍 on anything you want to try. All voted games move to Step 2.",
             "",
             "Loading sections...",
             "",
@@ -3223,6 +3225,15 @@ def run_daily_workflow(*, force_refresh_same_day: bool = False, manual_run: bool
     save_page_state(next_start_page)
     next_end_page = min(next_start_page + PAGE_WINDOW_SIZE - 1, MAX_PAGE_LIMIT)
     print(f"Next rotating page window saved: {next_start_page}-{next_end_page}")
+
+    step1_channel_id = (DISCORD_STEP1_CHANNEL_ID or "").strip()
+    if step1_channel_id and DISCORD_BOT_TOKEN:
+        with requests.Session() as _expl_session:
+            _expl_session.headers.update({
+                "Authorization": f"Bot {DISCORD_BOT_TOKEN}",
+                "Content-Type": "application/json",
+            })
+            post_or_edit_rolling_explainer(DiscordClient(_expl_session), step1_channel_id, "step-1")
 
 
 def main():
