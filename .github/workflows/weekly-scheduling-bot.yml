@@ -1,5 +1,4 @@
-idempotent
-    # idempotent - if the 13:00 run succeeds, the 13:10 run detects existing
+name: Weekly Scheduling Bot
 
 on:
   workflow_dispatch:
@@ -11,7 +10,7 @@ on:
   schedule:
     # Two cron entries are intentional: the second fires 10 minutes after the
     # first as a reliability safety net. post_weekly_availability.py is fully
-    # idempotent Ã¢ÂÂ if the 13:00 run succeeds, the 13:10 run detects existing
+    # idempotent - if the 13:00 run succeeds, the 13:10 run detects existing
     # message IDs and exits early (SKIP / REUSE path). If the first run fails
     # (e.g. transient Discord API error), the 13:10 run retries automatically.
     - cron: '0 13 * * 6'
