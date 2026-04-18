@@ -85,7 +85,7 @@ def test_pinned_message_posted_and_pinned_when_not_exists(monkeypatch, tmp_path)
     assert len(fake.created_messages) == 1
     ctx, content, new_id = fake.created_messages[0]
     assert "step-1" in ctx
-    assert content == epm.PINNED_CONTENT["step-1"]
+    assert content == epm.get_pinned_content("step-1")
     assert new_id in fake.pin_calls
     assert saved["step-1"]["message_id"] == new_id
 
@@ -104,7 +104,7 @@ def test_pinned_message_edited_in_place_when_exists(monkeypatch, tmp_path):
     assert fake.pin_calls == []          # no new pin
     assert len(fake.edits) == 1
     assert fake.edits[0][1] == existing_id
-    assert fake.edits[0][2] == epm.PINNED_CONTENT["step-2"]
+    assert fake.edits[0][2] == epm.get_pinned_content("step-2")
     assert saved["step-2"]["message_id"] == existing_id
 
 
@@ -183,16 +183,15 @@ def test_all_five_channels_processed_when_all_configured(monkeypatch, tmp_path):
         assert saved[slug]["message_id"].startswith("new-")
 
 
-def test_step3_content_includes_commands_list(monkeypatch, tmp_path):
-    """Step 3 pinned message includes both how-it-works and the commands list."""
-    content = epm.PINNED_CONTENT["step-3"]
-    assert "!addgame" in content
-    assert "!add" in content
-    assert "!remove" in content
-    assert "!unassign" in content
-    assert "!rename" in content
-    assert "!archive" in content
-    assert "permanent gaming library" in content
+def test_step3_all_variants_include_commands_list():
+    """All Step 3 rolling variants include both how-it-works and the commands list."""
+    for variant in epm.ROLLING_CONTENT["step-3"]:
+        assert "!addgame" in variant
+        assert "!add" in variant
+        assert "!remove" in variant
+        assert "!unassign" in variant
+        assert "!rename" in variant
+        assert "!archive" in variant
 
 
 class FakeClientWithPermError(FakeClient):
@@ -234,3 +233,76 @@ def test_pin_permission_error_does_not_prevent_other_channels(monkeypatch, tmp_p
     assert len(fake.created_messages) == 2
     assert "step-1" in saved
     assert "step-2" in saved
+
+
+# ---------------------------------------------------------------------------
+# Rolling explainer message tests
+# ---------------------------------------------------------------------------
+
+def test_rolling_content_steps_123_have_multiple_variants():
+    """Steps 1, 2, and 3 each define at least 2 rolling variants."""
+    for slug in ("step-1", "step-2", "step-3"):
+        assert slug in epm.ROLLING_CONTENT
+        assert len(epm.ROLLING_CONTENT[slug]) >= 2, f"{slug} must have at least 2 variants"
+
+
+def test_rolling_content_steps_45_are_not_rolling():
+    """Steps 4 and 5 are not in ROLLING_CONTENT — they use static PINNED_CONTENT."""
+    assert "step-4" not in epm.ROLLING_CONTENT
+    assert "step-5" not in epm.ROLLING_CONTENT
+    assert "step-4" in epm.PINNED_CONTENT
+    assert "step-5" in epm.PINNED_CONTENT
+
+
+def test_get_pinned_content_returns_string_for_all_slugs():
+    """get_pinned_content returns a non-empty string for every configured slug."""
+    for slug in epm.CHANNEL_ENV_MAP:
+        content = epm.get_pinned_content(slug)
+        assert isinstance(content, str)
+        assert len(content) > 0
+
+
+def test_get_pinned_content_steps_45_match_pinned_content():
+    """Steps 4 and 5 always return their static PINNED_CONTENT string."""
+    assert epm.get_pinned_content("step-4") == epm.PINNED_CONTENT["step-4"]
+    assert epm.get_pinned_content("step-5") == epm.PINNED_CONTENT["step-5"]
+
+
+def test_rolling_variants_are_distinct():
+    """Each rolling step has distinct variant texts (no accidental duplicates)."""
+    for slug in ("step-1", "step-2", "step-3"):
+        variants = epm.ROLLING_CONTENT[slug]
+        assert len(set(variants)) == len(variants), f"{slug} has duplicate variants"
+
+
+def test_all_rolling_variants_include_channel_slug(monkeypatch):
+    """Every rolling variant references its own channel name so users know where they are."""
+    channel_names = {
+        "step-1": "step-1-vote-on-games-to-test",
+        "step-2": "step-2-test-then-vote-to-keep",
+        "step-3": "step-3-review-existing-games",
+    }
+    for slug, channel_name in channel_names.items():
+        for i, variant in enumerate(epm.ROLLING_CONTENT[slug]):
+            assert channel_name in variant, (
+                f"{slug} variant {i} does not mention #{channel_name}"
+            )
+
+
+def test_get_pinned_content_rotates_by_week(monkeypatch):
+    """get_pinned_content returns a different variant when the week changes."""
+    import datetime
+
+    n_variants = len(epm.ROLLING_CONTENT["step-1"])
+    # Find two weeks that would yield different variant indices
+    base_ordinal = datetime.date(2026, 1, 5).toordinal()  # week 0 of 2026
+    results = set()
+    for offset in range(n_variants * 7):
+        day = datetime.date.fromordinal(base_ordinal + offset)
+        monkeypatch.setattr(datetime, "date", type("_D", (), {
+            "today": staticmethod(lambda d=day: d),
+            "fromordinal": staticmethod(datetime.date.fromordinal),
+        }))
+        results.add(epm.get_pinned_content("step-1"))
+
+    assert len(results) > 1, "expected at least 2 distinct variants across weeks"

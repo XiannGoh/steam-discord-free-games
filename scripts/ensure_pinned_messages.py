@@ -7,8 +7,12 @@ For each channel ID that is configured via environment variables, the script:
   - Saves the updated message ID back to data/pinned_messages.json
 
 State file: data/pinned_messages.json (keyed by channel slug, e.g. "step-1")
+
+Steps 1–3 use rolling explainer messages that rotate weekly so the pinned content
+stays fresh. Steps 4–5 use static content in PINNED_CONTENT.
 """
 
+import datetime
 import os
 import sys
 
@@ -21,31 +25,76 @@ PINNED_MESSAGES_FILE = "data/pinned_messages.json"
 USER_AGENT = "steam-discord-free-games/ensure-pinned-messages"
 
 # ---------------------------------------------------------------------------
-# Pinned message content (one entry per channel slug)
+# Rolling explainer content for Steps 1–3 (3 variants, rotate weekly)
 # ---------------------------------------------------------------------------
 
-PINNED_CONTENT: dict[str, str] = {
-    "step-1": """\
+ROLLING_CONTENT: dict[str, list[str]] = {
+    "step-1": [
+        """\
 📌 How This Works — #step-1-vote-on-games-to-test
 
 Every morning the bot posts fresh game picks for the group to vote on.
 
-👍 Vote on any game you want to try tonight
-Top voted games move to #step-2-test-then-vote-to-keep in the evening
+👍 Vote on any game you want to try
+Top-voted games move to #step-2-test-then-vote-to-keep in the evening
 
 New picks are posted every morning""",
 
-    "step-2": """\
+        """\
+📌 How This Works — #step-1-vote-on-games-to-test
+
+This is your daily list of games worth trying — free picks, demos, and deals under $20.
+
+👍 React on anything that looks fun
+The most-voted games get promoted to #step-2-test-then-vote-to-keep for testing
+
+Picks refresh every morning — vote early so your pick makes it""",
+
+        """\
+📌 How This Works — #step-1-vote-on-games-to-test
+
+The bot scans Steam each morning for free games, demos, and picks under $20.
+
+👍 Vote on any game you want to play with the group
+Top picks move to #step-2-test-then-vote-to-keep each evening
+
+Can't decide? Vote on a few — the whole group votes together""",
+    ],
+
+    "step-2": [
+        """\
 📌 How This Works — #step-2-test-then-vote-to-keep
 
-Every evening the bot posts the day's winners from #step-1-vote-on-games-to-test.
+Every evening the bot posts the top picks from #step-1-vote-on-games-to-test.
 
 🔖 Bookmark any game you want to keep permanently
 Bookmarked games move to #step-3-review-existing-games
 
 Winners are posted every evening""",
 
-    "step-3": """\
+        """\
+📌 How This Works — #step-2-test-then-vote-to-keep
+
+These are the top-voted games from Step 1 — worth testing with the group tonight.
+
+🔖 React to save any game to the permanent library
+Bookmarked games are added to #step-3-review-existing-games
+
+New winners appear each evening after the morning vote closes""",
+
+        """\
+📌 How This Works — #step-2-test-then-vote-to-keep
+
+Step 1 winners show up here each evening for the group to test.
+
+🔖 Bookmark anything worth keeping long-term
+Saved games move to #step-3-review-existing-games for ongoing tracking
+
+React with 🔖 on any game you want to revisit later""",
+    ],
+
+    "step-3": [
+        """\
 📌 How This Works — #step-3-review-existing-games
 
 This is your group's permanent gaming library.
@@ -64,6 +113,53 @@ Use commands below to manage the library:
 
 Commands are processed periodically. Bot reacts ✅ when done.""",
 
+        """\
+📌 How This Works — #step-3-review-existing-games
+
+Every game your group has saved from #step-2-test-then-vote-to-keep lives here.
+
+Keep your status up to date:
+✅ Active — in rotation
+⏸️ Paused — on hold for now
+❌ Dropped — no longer playing
+
+Manage library entries with commands:
+!addgame GameName SteamURL @user1 @user2
+!add @user GameName
+!remove @user GameName
+!unassign @user
+!rename GameName NewName
+!archive GameName
+
+Type a command in this channel — the bot reacts ✅ once processed.""",
+
+        """\
+📌 How This Works — #step-3-review-existing-games
+
+Your group's full gaming backlog, updated daily.
+
+React on each game to show your current status:
+✅ Active — you're playing it
+⏸️ Paused — taking a break
+❌ Dropped — moved on
+
+Need to add or update something? Use these commands:
+!addgame GameName SteamURL @user1 @user2
+!add @user GameName
+!remove @user GameName
+!unassign @user
+!rename GameName NewName
+!archive GameName
+
+Commands are checked periodically. Bot reacts ✅ when done.""",
+    ],
+}
+
+# ---------------------------------------------------------------------------
+# Static pinned content for Steps 4–5
+# ---------------------------------------------------------------------------
+
+PINNED_CONTENT: dict[str, str] = {
     "step-4": """\
 📌 How This Works — #update-weekly-schedule-here
 
@@ -86,6 +182,18 @@ This channel is for bot diagnostics only.
 Daily health report posted each evening
 You only need to check this if something looks wrong in the other channels""",
 }
+
+
+def get_pinned_content(slug: str) -> str:
+    """Return the pinned message content for the given channel slug.
+
+    Steps 1–3 rotate through variants weekly. Steps 4–5 are static.
+    """
+    if slug in ROLLING_CONTENT:
+        variants = ROLLING_CONTENT[slug]
+        week_index = datetime.date.today().toordinal() // 7
+        return variants[week_index % len(variants)]
+    return PINNED_CONTENT[slug]
 
 # Map of (channel_slug → env_var_name_for_channel_id)
 CHANNEL_ENV_MAP: dict[str, str] = {
@@ -161,7 +269,7 @@ def ensure_pinned_messages(
             else client
         )
 
-        content = PINNED_CONTENT[slug]
+        content = get_pinned_content(slug)
         existing_id = state.get(slug, {}).get("message_id", "")
 
         if existing_id and _try_get_message(active_client, channel_id, existing_id, slug):
