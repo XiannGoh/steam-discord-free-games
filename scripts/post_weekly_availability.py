@@ -8,12 +8,13 @@ from typing import Any
 
 import requests
 
-from discord_api import DiscordClient, DiscordMessageNotFoundError
+from discord_api import DiscordClient, DiscordMessageNotFoundError, DiscordPermissionError
 from scripts.scheduling_labels import DAY_MESSAGE_TEMPLATES, format_day_label
 from state_utils import load_json_object, prune_latest_keys, save_json_object_atomic
 
 USER_AGENT = "steam-discord-free-games/weekly-scheduling-bot"
 WEEKLY_SCHEDULE_MESSAGES_FILE = "data/scheduling/weekly_schedule_messages.json"
+DISCORD_HEALTH_MONITOR_WEBHOOK_URL = os.getenv("DISCORD_HEALTH_MONITOR_WEBHOOK_URL", "")
 
 INTRO_MESSAGE_TEMPLATE = """🗓️ Weekly Availability — react below for next week
 Week of {date_range}
@@ -36,6 +37,17 @@ Wed after 6
 Sat 1–4 PM"""
 
 AVAILABILITY_REACTIONS: list[str] = ["✅", "🌅", "☀️", "🌙", "❌", "📝"]
+
+
+def _notify_health_monitor(message: str) -> None:
+    """Post a warning to the Discord health monitor webhook (best-effort, never raises)."""
+    url = DISCORD_HEALTH_MONITOR_WEBHOOK_URL
+    if not url:
+        return
+    try:
+        requests.post(url, json={"content": message}, timeout=10)
+    except Exception:
+        pass
 
 
 def fail(message: str) -> None:
@@ -160,8 +172,16 @@ def main() -> None:
             pinned_id = str(pinned.get("id") or "")
             pinned_content = str(pinned.get("content") or "")
             if pinned_id and pinned_id != intro_message_id and pinned_content.startswith("🗓️ Weekly Availability"):
-                client.unpin_message(channel_id, pinned_id, context=f"unpin old weekly availability {pinned_id}")
-                print(f"UNPIN: old weekly availability message {pinned_id}")
+                try:
+                    client.unpin_message(channel_id, pinned_id, context=f"unpin old weekly availability {pinned_id}")
+                    print(f"UNPIN: old weekly availability message {pinned_id}")
+                except DiscordPermissionError as e:
+                    warning = (
+                        f"WARN: cannot unpin message {pinned_id} in scheduling channel "
+                        f"— bot missing Manage Messages permission: {e}"
+                    )
+                    print(warning)
+                    _notify_health_monitor(warning)
         if intro_message_id not in already_pinned_ids:
             client.pin_message(channel_id, intro_message_id, context=f"pin intro for {week_key}")
             print(f"PIN: intro message for {week_key} (message_id={intro_message_id})")
