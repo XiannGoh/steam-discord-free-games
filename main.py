@@ -2773,17 +2773,20 @@ def fetch_instagram_posts():
     creator_stats: Dict[str, Dict] = {}
 
     for username in INSTAGRAM_CREATORS:
-        creator_stats[username] = {"collected": 0, "skipped_seen": 0, "skipped_age": 0, "failed": False, "failure_reason": None}
+        creator_stats[username] = {"collected": 0, "fetched": 0, "skipped_seen": 0, "skipped_age": 0, "skipped_caption": 0, "failed": False, "failure_reason": None}
         try:
             if username not in seen:
                 seen[username] = []
 
             profile = instaloader.Profile.from_username(loader.context, username)
             count = 0
+            fetched = 0
             skipped_age = 0
             skipped_seen = 0
+            skipped_caption = 0
 
             for post in profile.get_posts():
+                fetched += 1
                 # Posts are returned newest-first; stop as soon as we pass the age cutoff.
                 post_date = post.date_utc.replace(tzinfo=timezone.utc)
                 if post_date < cutoff_utc:
@@ -2819,9 +2822,11 @@ def fetch_instagram_posts():
                 caption_lower = caption.lower()
                 if any(phrase in caption_lower for phrase in blocked_caption_phrases):
                     print(f"INSTAGRAM SKIP: @{username} — unavailable caption")
+                    skipped_caption += 1
                     continue
                 if any(re.search(p, caption_lower) for p in blocked_caption_patterns):
                     print(f"INSTAGRAM SKIP: @{username} — future release caption")
+                    skipped_caption += 1
                     continue
 
                 all_new_posts.append({
@@ -2839,16 +2844,21 @@ def fetch_instagram_posts():
             seen[username] = seen[username][-INSTAGRAM_SEEN_RETENTION_PER_CREATOR:]
 
             creator_stats[username]["collected"] = count
+            creator_stats[username]["fetched"] = fetched
             creator_stats[username]["skipped_seen"] = skipped_seen
             creator_stats[username]["skipped_age"] = skipped_age
+            creator_stats[username]["skipped_caption"] = skipped_caption
 
             if count == 0:
                 print(
                     f"INSTAGRAM ZERO POSTS: @{username} returned 0 new posts "
-                    f"(skipped_seen={skipped_seen}, skipped_age={skipped_age})"
+                    f"(fetched={fetched}, skipped_seen={skipped_seen}, skipped_age={skipped_age}, skipped_caption={skipped_caption})"
                 )
             else:
-                print(f"INSTAGRAM: @{username} collected {count} new post(s) (skipped_seen={skipped_seen}, skipped_age={skipped_age})")
+                print(
+                    f"INSTAGRAM: @{username} collected {count} new post(s) "
+                    f"(fetched={fetched}, skipped_seen={skipped_seen}, skipped_age={skipped_age}, skipped_caption={skipped_caption})"
+                )
 
         except Exception as e:
             print(f"Instagram scrape failed for {username}: {e}")
