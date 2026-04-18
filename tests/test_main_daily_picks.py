@@ -284,6 +284,57 @@ def test_instagram_dedupe_debug_summary_counts_and_samples():
     assert debug["removed_count"] == 1
 
 
+# ---------------------------------------------------------------------------
+# Cross-creator dedup: hyphenated vs non-hyphenated same game (issue #280)
+# ---------------------------------------------------------------------------
+
+def test_dedupe_instagram_posts_merges_hyphenated_coop_variant():
+    """'Drunkslop Pub Crawl Co-Op' and 'Drunkslop: Pub Crawl COOP' must collapse."""
+    posts = [
+        {"username": "itzjaysasa", "caption": "Drunkslop Pub Crawl Co-Op", "url": "u1"},
+        {"username": "sharedxp_official", "caption": "Drunkslop: Pub Crawl COOP", "url": "u2"},
+    ]
+    deduped = main.dedupe_instagram_posts(posts)
+    assert len(deduped) == 1
+    assert deduped[0]["url"] == "u1"
+    usernames = set(deduped[0]["username"].split(", "))
+    assert usernames == {"itzjaysasa", "sharedxp_official"}
+
+
+def test_dedupe_instagram_posts_keeps_distinct_plain_title_captions():
+    """Plain-title captions that are different games must NOT be merged."""
+    posts = [
+        {"username": "creator_a", "caption": "Dragon Quest Builders", "url": "u1"},
+        {"username": "creator_b", "caption": "Dragon Quest Heroes", "url": "u2"},
+    ]
+    deduped = main.dedupe_instagram_posts(posts)
+    assert [post["url"] for post in deduped] == ["u1", "u2"]
+
+
+def test_derive_instagram_game_key_plain_title_fallback():
+    """Short, specific captions with no keywords produce a key via the full-caption fallback."""
+    assert main.derive_instagram_game_key("Drunkslop Pub Crawl Co-Op") == "drunkslop pub crawl coop"
+    assert main.derive_instagram_game_key("Drunkslop: Pub Crawl COOP") == "drunkslop pub crawl coop"
+
+
+def test_derive_instagram_game_key_hyphen_normalisation():
+    """Hyphens are removed so 'Co-Op' and 'COOP' produce the same fragment."""
+    assert main.derive_instagram_game_key("Night Signal Co-Op Edition") == "night signal coop edition"
+    assert main.derive_instagram_game_key("Night Signal COOP Edition") == "night signal coop edition"
+
+
+def test_dedupe_instagram_posts_logs_dropped_duplicate(capsys):
+    """A debug line must be printed to stdout when a duplicate is dropped."""
+    posts = [
+        {"username": "itzjaysasa", "caption": "Drunkslop Pub Crawl Co-Op", "url": "u1"},
+        {"username": "sharedxp_official", "caption": "Drunkslop: Pub Crawl COOP", "url": "u2"},
+    ]
+    main._dedupe_instagram_posts_with_debug(posts)
+    captured = capsys.readouterr()
+    assert "[Instagram dedup]" in captured.out
+    assert "sharedxp_official" in captured.out
+
+
 def test_daily_sections_post_in_new_order(monkeypatch, tmp_path):
     daily_path = tmp_path / "daily.json"
     daily_path.write_text("{}", encoding="utf-8")

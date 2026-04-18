@@ -2542,6 +2542,8 @@ def _normalize_instagram_game_key_fragment(text: str) -> str:
     normalized = re.sub(r"#\w+", " ", normalized)
     for pattern in INSTAGRAM_GAME_KEY_BOILERPLATE_PATTERNS:
         normalized = re.sub(pattern, " ", normalized)
+    # Remove hyphens without inserting a space so "Co-Op" → "coop", matching "COOP".
+    normalized = re.sub(r"-", "", normalized)
     normalized = re.sub(r"[^a-z0-9\s]", " ", normalized)
     normalized = re.sub(r"\s+", " ", normalized).strip()
     return normalized
@@ -2596,6 +2598,14 @@ def derive_instagram_game_key(caption: str) -> Optional[str]:
             if not _is_low_confidence_instagram_title_candidate(key):
                 return key
 
+    # Last resort: treat the whole caption as the game title if it is short and specific.
+    # Handles plain-title captions like "Drunkslop Pub Crawl Co-Op" with no separators or
+    # boilerplate keywords that the earlier paths can latch onto.
+    key = _normalize_instagram_game_key_fragment(raw_caption)
+    if key and len(key) >= 3 and re.search(r"[a-z]", key):
+        if not _is_low_confidence_instagram_title_candidate(key):
+            return key
+
     return None
 
 
@@ -2625,6 +2635,11 @@ def _dedupe_instagram_posts_with_debug(posts: List[dict]) -> Tuple[List[dict], D
             # Merge usernames
             if post["username"] not in game_posts[key]["usernames"]:
                 game_posts[key]["usernames"].append(post["username"])
+            first_username = game_posts[key]["usernames"][0]
+            print(
+                f"[Instagram dedup] Dropped duplicate key='{key}' "
+                f"from @{post['username']} (already kept from @{first_username})"
+            )
             if len(removed_keys) < 3:
                 removed_keys.append(key)
 
