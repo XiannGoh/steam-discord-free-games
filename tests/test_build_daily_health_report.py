@@ -441,7 +441,7 @@ def test_green_workflow_output_has_no_guidance_lines():
         "conclusion": "success",
     }
     lines, diagnostics = report.build_workflow_status_lines(
-        [{"name": "Daily Steam Picks", "staleHours": 6, "run": run}],
+        [{"name": "Steam Free Games", "staleHours": 6, "run": run}],
         now_utc=datetime.now(timezone.utc),
     )
     rendered = "\n".join(lines)
@@ -485,7 +485,7 @@ def test_schedule_diagnostics_detects_latest_manual_recovery_when_scheduled_exis
         {"id": 99, "event": "schedule", "created_at": "2026-04-10T23:01:00+00:00", "updated_at": "2026-04-10T23:05:00+00:00"},
     ]
     diagnostics = report.build_schedule_diagnostics(
-        "Evening Winners",
+        "Daily Game Picks Winners",
         latest_run=latest_manual,
         recent_runs=recent_runs,
         now_utc=now_utc,
@@ -507,7 +507,7 @@ def test_schedule_diagnostics_flags_missing_scheduled_window_when_only_manual_ex
         "conclusion": "success",
     }
     diagnostics = report.build_schedule_diagnostics(
-        "Evening Winners",
+        "Daily Game Picks Winners",
         latest_run=latest_manual,
         recent_runs=[latest_manual],
         now_utc=now_utc,
@@ -528,7 +528,7 @@ def test_schedule_diagnostics_flags_old_scheduled_run_outside_expected_window():
         "conclusion": "success",
     }
     diagnostics = report.build_schedule_diagnostics(
-        "Evening Winners",
+        "Daily Game Picks Winners",
         latest_run=latest_schedule,
         recent_runs=[latest_schedule],
         now_utc=now_utc,
@@ -545,7 +545,7 @@ def test_overall_summary_is_red_when_stale_workflow_is_action_required():
             "🔴 Evening Winners",
             "Last run: success (40h ago) — stale",
             "Disposition: Action required",
-            "Next step: Re-run Evening Winners if no run is expected soon; otherwise monitor the next scheduled run.",
+            "Next step: Re-run Daily Game Picks Winners if no run is expected soon; otherwise monitor the next scheduled run.",
             "",
         ],
         state_issues=[
@@ -617,7 +617,7 @@ def test_expected_scheduled_run_missing_renders_yellow():
         "conclusion": "success",
     }
     lines, _ = report.build_workflow_status_lines(
-        [_make_workflow("Daily Steam Picks", manual_run, [manual_run])],
+        [_make_workflow("Steam Free Games", manual_run, [manual_run])],
         now_utc=now_utc,
     )
     workflow_line = lines[0]
@@ -638,7 +638,7 @@ def test_latest_manual_run_without_scheduled_run_renders_yellow():
     }
     # No scheduled run in recent_runs
     lines, _ = report.build_workflow_status_lines(
-        [_make_workflow("Evening Winners", manual_run, [manual_run])],
+        [_make_workflow("Daily Game Picks Winners", manual_run, [manual_run])],
         now_utc=now_utc,
     )
     workflow_line = lines[0]
@@ -664,7 +664,7 @@ def test_latest_manual_run_with_scheduled_run_present_renders_green():
         "conclusion": "success",
     }
     lines, _ = report.build_workflow_status_lines(
-        [_make_workflow("Evening Winners", manual_run, [manual_run, scheduled_run])],
+        [_make_workflow("Daily Game Picks Winners", manual_run, [manual_run, scheduled_run])],
         now_utc=now_utc,
     )
     workflow_line = lines[0]
@@ -682,7 +682,7 @@ def test_schedule_missed_counts_as_follow_up_not_action_required_in_overall():
         "conclusion": "success",
     }
     lines, _ = report.build_workflow_status_lines(
-        [_make_workflow("Daily Steam Picks", manual_run, [manual_run])],
+        [_make_workflow("Steam Free Games", manual_run, [manual_run])],
         now_utc=now_utc,
     )
     rendered = report.render_report(
@@ -705,7 +705,7 @@ def test_scheduled_run_succeeded_renders_green():
         "conclusion": "success",
     }
     lines, _ = report.build_workflow_status_lines(
-        [_make_workflow("Daily Steam Picks", scheduled_run, [scheduled_run])],
+        [_make_workflow("Steam Free Games", scheduled_run, [scheduled_run])],
         now_utc=now_utc,
     )
     assert lines[0].startswith("🟢"), f"Expected green for successful scheduled run: {lines[0]!r}"

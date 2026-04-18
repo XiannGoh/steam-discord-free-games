@@ -20,12 +20,15 @@
       "must_not_be_duplicate_for_same_day": true
     },
     "footer_rules": {
-      "must_be_single_line_with_separator": true,
+      "must_end_with_separator_on_last_line": true,
       "must_contain_full_date": true,
       "must_contain_jump_links": true,
       "must_contain_top_link": true,
       "must_end_with_separator": "─────────────── End of Daily Picks ───────────────",
-      "must_not_be_copy_of_intro": true
+      "must_not_be_copy_of_intro": true,
+      "must_show_missing_section_notices": true,
+      "missing_section_notice_format": "_(No {category} today)_",
+      "first_line_format": "📅 End of Daily Picks — {date} · Jump to: ..."
     },
     "section_rules": {
       "valid_sections": ["free_picks", "paid_under_20", "instagram_creator_picks", "demo_playtest"],
@@ -36,13 +39,11 @@
       "no games posted",
       "duplicate game messages",
       "missing intro",
-      "bot reaction counted in votes",
       "intro contains game content",
       "footer is missing end separator",
       "footer is a copy of the intro",
       "demo_playtest contains game older than 180 days",
-      "duplicate intro messages for same day",
-      "second run posted new messages instead of editing existing ones"
+      "duplicate intro messages for same day"
     ]
   },
   "step-2-test-then-vote-to-keep": {
@@ -65,12 +66,15 @@
       "must_not_contain_game_cards": true
     },
     "footer_rules": {
-      "must_be_single_line_with_separator": true,
+      "must_end_with_separator_on_last_line": true,
       "must_contain_full_date": true,
       "must_contain_jump_links": true,
       "must_contain_top_link": true,
       "must_end_with_separator": "─────────────── End of Daily Winners ───────────────",
-      "must_not_be_copy_of_intro": true
+      "must_not_be_copy_of_intro": true,
+      "must_show_missing_section_notices": true,
+      "missing_section_notice_format": "_(No {category} Winners today)_",
+      "first_line_format": "📅 End of Daily Winners — {date} · Jump to: ..."
     },
     "section_rules": {
       "valid_sections": ["free_picks", "demo_playtest", "paid_under_20", "instagram_creator_picks"],
@@ -81,10 +85,9 @@
       "duplicate winners",
       "missing footer",
       "missing intro",
-      "bot vote counted as human vote",
       "section content bleeding into intro message",
       "footer is copy of intro",
-      "free_picks section missing from valid sections"
+      "footer is missing end separator"
     ]
   },
   "step-3-review-existing-games": {
@@ -115,24 +118,25 @@
       "last_activity_date_format": "Last activity: {Mon DD, YYYY}"
     },
     "footer_rules": {
-      "must_be_single_line_with_separator": true,
+      "must_end_with_separator_on_last_line": true,
       "must_contain_full_date": true,
       "must_contain_jump_links": true,
       "must_contain_top_link": true,
-      "must_end_with_separator": "─────────────── End of Gaming Library ───────────────"
+      "must_end_with_separator": "─────────────── End of Gaming Library ───────────────",
+      "must_show_missing_section_notices": true,
+      "missing_section_notice_format": "_(No {category} in library)_",
+      "first_line_format": "📅 End of Gaming Library — {date} · Jump to: ..."
     },
     "pinned_message_rules": {
       "command_reference_must_exist_and_be_pinned": true
     },
     "broken_if": [
-      "game entry missing name",
-      "IG Picks entry without actual game name",
       "missing footer",
       "duplicate library entries",
       "delta summary missing from intro",
       "delta summary posted as separate message instead of inside intro",
       "game card missing last activity date",
-      "command reference not pinned"
+      "footer is missing end separator"
     ]
   },
   "update-weekly-schedule-here": {

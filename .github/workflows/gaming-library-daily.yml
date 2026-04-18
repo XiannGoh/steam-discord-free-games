@@ -55,6 +55,7 @@ jobs:
           DISCORD_GUILD_ID: ${{ secrets.DISCORD_GUILD_ID }}
           LIBRARY_DATE_UTC: ${{ inputs.library_date_utc }}
           GITHUB_EVENT_NAME: ${{ github.event_name }}
+          DISCORD_HEALTH_MONITOR_WEBHOOK_URL: ${{ secrets.DISCORD_HEALTH_MONITOR_WEBHOOK_URL }}
         run: python scripts/post_daily_gaming_library.py
 
       - name: Read Discord channel snapshots

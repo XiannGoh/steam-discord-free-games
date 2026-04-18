@@ -83,6 +83,7 @@ jobs:
           DAILY_DATE_UTC: ${{ inputs.daily_date_utc }}
           FORCE_REFRESH_SAME_DAY: ${{ inputs.force_refresh_same_day || false }}
           GITHUB_EVENT_NAME: ${{ github.event_name }}
+          DISCORD_HEALTH_MONITOR_WEBHOOK_URL: ${{ secrets.DISCORD_HEALTH_MONITOR_WEBHOOK_URL }}
         run: python main.py
 
       - name: Read Discord channel snapshots
