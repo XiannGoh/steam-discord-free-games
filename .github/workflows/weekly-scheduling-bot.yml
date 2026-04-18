@@ -10,7 +10,7 @@ on:
   schedule:
     # Two cron entries are intentional: the second fires 10 minutes after the
     # first as a reliability safety net. post_weekly_availability.py is fully
-    # idempotent — if the 13:00 run succeeds, the 13:10 run detects existing
+    # idempotent â if the 13:00 run succeeds, the 13:10 run detects existing
     # message IDs and exits early (SKIP / REUSE path). If the first run fails
     # (e.g. transient Discord API error), the 13:10 run retries automatically.
     - cron: '0 13 * * 6'
@@ -26,6 +26,7 @@ concurrency:
 jobs:
   post-weekly-availability:
     runs-on: ubuntu-latest
+      timeout-minutes: 15
 
     steps:
       - name: Check out repository
@@ -140,7 +141,7 @@ jobs:
           details = f"target_week_start={target}" if target else "target_week_start=(default)"
           print(json.dumps({
               "content": (
-                  "🔴 XiannGPT Bot Failure\n\n"
+                  "ð´ XiannGPT Bot Failure\n\n"
                   f"Workflow: {os.environ['WORKFLOW_NAME']}\n"
                   f"Job: {os.environ['JOB_NAME']}\n"
                   "Status: failed\n"
