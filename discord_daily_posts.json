@@ -6888,5 +6888,198 @@
         }
       ]
     }
+  },
+  "2026-04-18": {
+    "run_state": {
+      "section_headers": {
+        "demo_playtest": {
+          "message_id": "1494944271403323452",
+          "channel_id": "592534544708796474",
+          "posted_at_utc": "2026-04-18T06:14:49.744845+00:00"
+        },
+        "free": {
+          "message_id": "1494944287463575594",
+          "channel_id": "592534544708796474",
+          "posted_at_utc": "2026-04-18T06:14:53.144546+00:00"
+        },
+        "paid": {
+          "message_id": "1494944333701447840",
+          "channel_id": "592534544708796474",
+          "posted_at_utc": "2026-04-18T06:15:04.292874+00:00"
+        },
+        "instagram": {
+          "message_id": "1494944382263103609",
+          "channel_id": "592534544708796474",
+          "posted_at_utc": "2026-04-18T06:15:15.751310+00:00"
+        }
+      },
+      "last_attempt_at_utc": "2026-04-18T06:14:45.322573+00:00",
+      "intro": {
+        "message_id": "1494944256459014204",
+        "channel_id": "592534544708796474",
+        "posted_at_utc": "2026-04-18T06:14:45.748563+00:00"
+      },
+      "footer": {
+        "message_id": "1494944415377264700",
+        "channel_id": "592534544708796474",
+        "posted_at_utc": "2026-04-18T06:15:23.722160+00:00"
+      }
+    },
+    "items": [
+      {
+        "item_key": "b009e5b1a767b9c4",
+        "section": "demo_playtest",
+        "title": "GST - Void Of Chaos",
+        "url": "https://store.steampowered.com/app/3861040/",
+        "message_id": "1494944279527690262",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_demo_playtest",
+        "posted_at": "2026-04-18T06:14:51.519511+00:00",
+        "description": "A new, mysterious virus freezes or destroys entire planets, threatening all existence, but due to past upgrades and newer ones now, you play as two who must uncover its origins before it spreads to not only the worlds but also them. Two haunting questions remain: What is the virus? Who created it?"
+      },
+      {
+        "item_key": "90039f17c31caa39",
+        "section": "free",
+        "title": "Soul Dossier",
+        "url": "https://store.steampowered.com/app/1520470/",
+        "message_id": "1494944294727847936",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-04-18T06:14:55.336541+00:00",
+        "description": "Soul Dossier is a multiplayer game based on Oriental culture (5vS1). The game is based on a variety of traditional Oriental cultures, including five elements, eight diagrams and folklore."
+      },
+      {
+        "item_key": "bba6d1d6237a6fe0",
+        "section": "free",
+        "title": "Bless Unleashed",
+        "url": "https://store.steampowered.com/app/1254120/",
+        "message_id": "1494944303443742812",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-04-18T06:14:57.005270+00:00",
+        "description": "Bless Unleashed is an open-world online game that can be enjoyed with your friends and countless others. Venture out to engage in intense combat while exploring vast regions and treacherous dungeons."
+      },
+      {
+        "item_key": "fe32a6d1518e68e6",
+        "section": "free",
+        "title": "PICO PARK:Classic Edition",
+        "url": "https://store.steampowered.com/app/461040/",
+        "message_id": "1494944310439710750",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-04-18T06:14:58.716532+00:00",
+        "description": "PICO PARK:Classic Edition is a cooperative local/online multiplay action puzzle game for 2-10 players."
+      },
+      {
+        "item_key": "9f1c8baf6087d6d0",
+        "section": "free",
+        "title": "Crystalfall",
+        "url": "https://store.steampowered.com/app/2574970/",
+        "message_id": "1494944317637267667",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-04-18T06:15:00.602307+00:00",
+        "description": "Crystalfall is a free online Action RPG where your ground loot matters and your skills offer endless procedural customization. Survive in a world destroyed by a mysterious asteroid and grow more powerful with steampunk weapons and lootable skills in an infinite endgame."
+      },
+      {
+        "item_key": "c5e41153a7c16244",
+        "section": "free",
+        "title": "Lost Light",
+        "url": "https://store.steampowered.com/app/1797880/",
+        "message_id": "1494944325157523469",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-04-18T06:15:02.512036+00:00",
+        "description": "Join the \"Firefly\" task force and unveil the sinister plot behind the exclusion zone in the world of Lost Light. You could either scavenge for supplies or go out with guns blazing and plunder. Survive the brutal domain where danger lurks in every corner!"
+      },
+      {
+        "item_key": "478d1569bc6deab5",
+        "section": "paid",
+        "title": "Wasteland 3",
+        "url": "https://store.steampowered.com/app/719040/",
+        "message_id": "1494944341049999410",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-04-18T06:15:06.163403+00:00",
+        "description": "Following the critically acclaimed 2014 Game of the Year winner Wasteland 2, the RPG series that pioneered the post-apocalyptic genre in video games returns with Wasteland 3."
+      },
+      {
+        "item_key": "e4d6998d591698f1",
+        "section": "paid",
+        "title": "Revenge of the Savage Planet",
+        "url": "https://store.steampowered.com/app/2787320/",
+        "message_id": "1494944348758867969",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-04-18T06:15:08.210182+00:00",
+        "description": "Revenge of the Savage Planet is an upbeat, satirical action adventure Sci-Fi. Jump, shoot and collect your way across vibrant alien worlds, uncovering new gear and upgrades, while discovering various hidden secrets."
+      },
+      {
+        "item_key": "59147b4a831bb294",
+        "section": "paid",
+        "title": "Construction Simulator",
+        "url": "https://store.steampowered.com/app/1273400/",
+        "message_id": "1494944357479092264",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-04-18T06:15:10.064999+00:00",
+        "description": "Construction Simulator has returned – larger and more impressive than ever! Fulfil your ambition to become a successful construction entrepreneur by establishing your business from scratch, assisted by your mentor Hape."
+      },
+      {
+        "item_key": "14f11b7cf6dbaf43",
+        "section": "paid",
+        "title": "Metro 2033 Redux",
+        "url": "https://store.steampowered.com/app/286690/",
+        "message_id": "1494944365179830416",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-04-18T06:15:12.064334+00:00",
+        "description": "In 2013 the world was devastated by an apocalyptic event, annihilating almost all mankind and turning the Earth's surface into a poisonous wasteland. A handful of survivors took refuge in the depths of the Moscow underground, and human civilization entered a new Dark Age. The year is 2033."
+      },
+      {
+        "item_key": "4327d7bd4fadf397",
+        "section": "paid",
+        "title": "Totally Accurate Battle Simulator",
+        "url": "https://store.steampowered.com/app/508440/",
+        "message_id": "1494944373660581940",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-04-18T06:15:14.146735+00:00",
+        "description": "Be the leader of wobblers from ancient lands, spooky places, and fantasy worlds. Watch them fight in simulations made with the wobbliest physics system ever created, make your own wobblers in the unit creator and send your army off to fight your friends in multiplayer."
+      },
+      {
+        "item_key": "3663aaa21c8ce77b",
+        "section": "instagram",
+        "title": "@sharedxp_official",
+        "url": "https://www.instagram.com/p/DXPtZi4jAw_/",
+        "message_id": "1494944389628170300",
+        "channel_id": "592534544708796474",
+        "source_type": "instagram",
+        "posted_at": "2026-04-18T06:15:17.770940+00:00",
+        "description": "Cartel Pilots Wanted is a 2-player co-op smuggling game where you fly sketchy cargo across tropical islands, upgrade ..."
+      },
+      {
+        "item_key": "fe02416747c59ba3",
+        "section": "instagram",
+        "title": "@wilfratgaming",
+        "url": "https://www.instagram.com/p/DXQF2skDFVB/",
+        "message_id": "1494944397861851157",
+        "channel_id": "592534544708796474",
+        "source_type": "instagram",
+        "posted_at": "2026-04-18T06:15:19.898707+00:00",
+        "description": "In this game you and your friend join the cartel! #gamestoplay  #cartelpilotswanted  #gaming"
+      },
+      {
+        "item_key": "b55b53478cb07376",
+        "section": "instagram",
+        "title": "@wilfratgaming",
+        "url": "https://www.instagram.com/p/DXPh8P1DRiJ/",
+        "message_id": "1494944406808035328",
+        "channel_id": "592534544708796474",
+        "source_type": "instagram",
+        "posted_at": "2026-04-18T06:15:21.771235+00:00",
+        "description": "New Co-op Horror game! Last Pirates: Die Together! #horrortok #gamestoplay #gaming"
+      }
+    ]
   }
 }
