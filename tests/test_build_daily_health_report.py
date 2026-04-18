@@ -315,7 +315,7 @@ def test_health_report_chunk_labels_never_push_labeled_chunks_past_discord_limit
 def test_health_report_workflow_keeps_post_chunk_label_overflow_guardrails():
     workflow_file = Path(".github/workflows/bot-health-report.yml").read_text(encoding="utf-8")
 
-    assert "max_prefix_len = len(f\"📋 Bot Health Report ({total_chunks}/{total_chunks})\\n\")" in workflow_file
+    assert "max_prefix_len = len(f\"\xf0\x9f\x93\x8b Bot Health Report ({total_chunks}/{total_chunks})\\n\")" in workflow_file
     assert "reserved_hard_limit = 2000 - max_prefix_len" in workflow_file
     assert "if reserved_hard_limit <= 0:" in workflow_file
     assert "rechunked = split_discord_content(" in workflow_file
