@@ -20,6 +20,7 @@ concurrency:
 jobs:
   run-gaming-library-daily:
     runs-on: ubuntu-latest
+      timeout-minutes: 20
 
     steps:
       - name: Download repository
@@ -130,7 +131,7 @@ jobs:
           details = f"library_date_utc={target}" if target else "library_date_utc=(default)"
           print(json.dumps({
               "content": (
-                  "ð´ XiannGPT Bot Failure\n\n"
+                  "Ã°ÂÂÂ´ XiannGPT Bot Failure\n\n"
                   f"Workflow: {os.environ['WORKFLOW_NAME']}\n"
                   f"Job: {os.environ['JOB_NAME']}\n"
                   "Status: failed\n"
