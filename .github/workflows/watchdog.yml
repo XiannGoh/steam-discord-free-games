@@ -18,6 +18,9 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
       # ------------------------------------------------------------------ #
       # Check each scheduled workflow for missed runs and trigger if overdue.
       #
