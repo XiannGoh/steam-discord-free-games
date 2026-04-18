@@ -22,7 +22,7 @@ permissions:
 jobs:
   run-evening-winners:
     runs-on: ubuntu-latest
-      timeout-minutes: 20
+    timeout-minutes: 20
 
     steps:
       - name: Download repository
@@ -123,7 +123,7 @@ jobs:
           details = f"winners_date_utc={target}" if target else "winners_date_utc=(default)"
           print(json.dumps({
               "content": (
-                  "Ã°ÂÂÂ´ XiannGPT Bot Failure\n\n"
+                  "ÃÂ°ÃÂÃÂÃÂ´ XiannGPT Bot Failure\n\n"
                   f"Workflow: {os.environ['WORKFLOW_NAME']}\n"
                   f"Job: {os.environ['JOB_NAME']}\n"
                   "Status: failed\n"
