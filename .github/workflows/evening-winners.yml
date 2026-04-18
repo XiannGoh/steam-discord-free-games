@@ -1,28 +1,33 @@
-name: Daily Game Picks Winners
+name: Steam Free Games
 
 on:
   workflow_dispatch:
     inputs:
-      winners_date_utc:
-        description: "Optional UTC date key (YYYY-MM-DD) for manual winners rerun"
+      daily_date_utc:
+        description: "Optional UTC date key (YYYY-MM-DD) for manual rerun state targeting"
         required: false
         type: string
+      force_refresh_same_day:
+        description: "When true, reconcile/edit same-day Discord posts instead of skipping completed runs"
+        required: false
+        default: false
+        type: boolean
   schedule:
     # GitHub Actions cron uses UTC only (no timezone/DST support).
-    # This runs at 23:00 UTC year-round: 7:00 PM in New York during EDT, 6:00 PM during EST.
-    - cron: "0 23 * * *"
+    # This runs at 13:00 UTC year-round: 9:00 AM in New York during EDT, 8:00 AM during EST.
+    - cron: "0 13 * * *"
 
 concurrency:
-  group: evening-winners-state
+  group: daily-picks-state
   cancel-in-progress: false
 
 permissions:
   contents: write
 
 jobs:
-  run-evening-winners:
+  run-script:
     runs-on: ubuntu-latest
-    timeout-minutes: 20
+    timeout-minutes: 30
 
     steps:
       - name: Download repository
@@ -36,14 +41,38 @@ jobs:
       - name: Install packages
         run: pip install -r requirements.txt
 
-      - name: Run evening winners script
+      - name: Restore Instagram session
+        shell: bash
+        run: |
+          echo "${{ secrets.INSTAGRAM_SESSION_B64 }}" | base64 -d > instaloader.session
+
+      - name: Sanity-check state files
+        continue-on-error: true
         env:
+          PYTHONPATH: .
+        run: python scripts/check_state_sanity.py
+
+      - name: Upload state sanity artifact
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: state-sanity-${{ github.run_id }}
+          path: state_sanity.json
+          if-no-files-found: ignore
+
+      - name: Run Steam script
+        env:
+          DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
           DISCORD_BOT_TOKEN: ${{ secrets.DISCORD_BOT_TOKEN }}
-          DISCORD_WINNERS_CHANNEL_ID: ${{ secrets.DISCORD_WINNERS_CHANNEL_ID }}
+          DISCORD_STEP1_CHANNEL_ID: ${{ secrets.DISCORD_STEP1_CHANNEL_ID }}
           DISCORD_GUILD_ID: ${{ secrets.DISCORD_GUILD_ID }}
-          WINNERS_DATE_UTC: ${{ inputs.winners_date_utc }}
+          DISCORD_DEBUG_CHANNEL_ID: ${{ secrets.DISCORD_DEBUG_CHANNEL_ID }}
+          INSTAGRAM_USERNAME: ${{ secrets.INSTAGRAM_USERNAME }}
+          DAILY_DATE_UTC: ${{ inputs.daily_date_utc }}
+          FORCE_REFRESH_SAME_DAY: ${{ inputs.force_refresh_same_day || false }}
           GITHUB_EVENT_NAME: ${{ github.event_name }}
-        run: python evening_winners.py
+          DISCORD_HEALTH_MONITOR_WEBHOOK_URL: ${{ secrets.DISCORD_HEALTH_MONITOR_WEBHOOK_URL }}
+        run: python main.py
 
       - name: Read Discord channel snapshots
         continue-on-error: true
@@ -79,8 +108,16 @@ jobs:
         env:
           PYTHONPATH: .
           DISCORD_BOT_TOKEN: ${{ secrets.DISCORD_BOT_TOKEN }}
-          WINNERS_DATE_UTC: ${{ inputs.winners_date_utc }}
+          DAILY_DATE_UTC: ${{ inputs.daily_date_utc }}
         run: python scripts/verify_discord_output.py
+
+      - name: Upload verification artifact
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: daily-verification-${{ github.run_id }}
+          path: daily_verification.json
+          if-no-files-found: ignore
 
       - name: Upload Discord verification artifact
         if: always()
@@ -90,16 +127,18 @@ jobs:
           path: discord_verification.json
           if-no-files-found: ignore
 
-      - name: Save updated winners state
+      - name: Save updated state files
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
 
+          git add seen_ids.json page_state.json instagram_seen.json
           if [ -f discord_daily_posts.json ]; then git add discord_daily_posts.json; fi
           if [ -f data/pinned_messages.json ]; then git add data/pinned_messages.json; fi
+          if [ -f instagram_fetch_summary.json ]; then git add instagram_fetch_summary.json; fi
 
           if ! git diff --cached --quiet; then
-            git commit -m "Update winners state"
+            git commit -m "Update bot state"
             git stash --include-untracked || true
             git pull --rebase origin main
             git stash pop || true
@@ -111,19 +150,22 @@ jobs:
         env:
           DISCORD_HEALTH_MONITOR_WEBHOOK_URL: ${{ secrets.DISCORD_HEALTH_MONITOR_WEBHOOK_URL }}
           WORKFLOW_NAME: ${{ github.workflow }}
-          JOB_NAME: run-evening-winners
+          JOB_NAME: run-script
           RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
-          WINNERS_DATE_UTC: ${{ inputs.winners_date_utc || '' }}
+          DAILY_DATE_UTC: ${{ inputs.daily_date_utc || '' }}
+          FORCE_REFRESH_SAME_DAY: ${{ inputs.force_refresh_same_day || false }}
         run: |
           payload="$(python - <<'PY'
           import json
           import os
 
-          target = os.environ.get("WINNERS_DATE_UTC")
-          details = f"winners_date_utc={target}" if target else "winners_date_utc=(default)"
+          target = os.environ.get("DAILY_DATE_UTC")
+          force = str(os.environ.get("FORCE_REFRESH_SAME_DAY", "")).strip().lower() in {"1", "true", "yes", "on"}
+          details = f"daily_date_utc={target}" if target else "daily_date_utc=(default)"
+          details = f"{details}, force_refresh_same_day={'true' if force else 'false'}"
           print(json.dumps({
               "content": (
-                  "ÃÂ°ÃÂÃÂÃÂ´ XiannGPT Bot Failure\n\n"
+                  "XiannGPT Bot Failure\n\n"
                   f"Workflow: {os.environ['WORKFLOW_NAME']}\n"
                   f"Job: {os.environ['JOB_NAME']}\n"
                   "Status: failed\n"
