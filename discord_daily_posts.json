@@ -6903,7 +6903,7 @@
           "posted_at_utc": "2026-04-18T14:49:20.073891+00:00"
         }
       },
-      "last_attempt_at_utc": "2026-04-18T14:49:06.443370+00:00",
+      "last_attempt_at_utc": "2026-04-18T15:24:41.027154+00:00",
       "intro": {
         "message_id": "1494944256459014204",
         "channel_id": "592534544708796474",
@@ -6913,7 +6913,9 @@
         "message_id": "1495073796342812764",
         "channel_id": "592534544708796474",
         "posted_at_utc": "2026-04-18T14:49:30.574983+00:00"
-      }
+      },
+      "completed": true,
+      "completed_at_utc": "2026-04-18T15:25:07.249845+00:00"
     },
     "items": [
       {
@@ -7289,6 +7291,116 @@
         "source_type": "paid_under_20",
         "posted_at": "2026-04-18T14:49:28.650981+00:00",
         "description": "Wrangle the hands and arms of a 1970s space cosmonaut and push, pull and twist your way through an increasingly precarious range of physically simulated stellar scenarios, where without gravity, nothing is still, nothing is secure, and nothing is simple."
+      },
+      {
+        "item_key": "ae47b024fcbbb789",
+        "section": "free",
+        "title": "9Dragons",
+        "url": "https://store.steampowered.com/app/390100/",
+        "message_id": "1495082656545640518",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-04-18T15:24:45.760909+00:00",
+        "description": "9Dragons is a free to play MMORPG with fluid martial arts combat, lush environments, and intense PvP. Immerse yourself in a mesmerizing world set in ancient China at the beginning of martial arts chivalry."
+      },
+      {
+        "item_key": "3d78f6fc4800b519",
+        "section": "free",
+        "title": "Celtic Heroes",
+        "url": "https://store.steampowered.com/app/2829820/",
+        "message_id": "1495082675252367433",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-04-18T15:24:47.608455+00:00",
+        "description": "Are you looking for that classic MMORPG vibe? Whether you're a minmaxer strategizing every detail for maximum efficiency, a savvy fashion collector in search of the most stunning outfits, or even someone who enjoys the journey of casual leveling, Celtic Heroes opens its gates to you!"
+      },
+      {
+        "item_key": "beb3aa1442cd52d1",
+        "section": "free",
+        "title": "My Lands: Black Gem Hunting",
+        "url": "https://store.steampowered.com/app/290730/",
+        "message_id": "1495082683003568139",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-04-18T15:24:49.511672+00:00",
+        "description": "My Lands is a free online RTS where dark and light forces fight for Black Gem and dominion in a vast fantasy world. Cooperation between players, joint economy development, creation of clans and alliances and elaboration of a team strategy serve as the very foundation of the game."
+      },
+      {
+        "item_key": "ab3ca91055660117",
+        "section": "free",
+        "title": "Emporea: Realms of War and Magic",
+        "url": "https://store.steampowered.com/app/416450/",
+        "message_id": "1495082691094249492",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-04-18T15:24:51.615495+00:00",
+        "description": "Emporea is an oldschool fantasy strategy game, where cooperation with other players is necessary to achieve victory. Only the best alliance can win! Multiple realms available, with new ones starting every two weeks."
+      },
+      {
+        "item_key": "c1143f3c001581d4",
+        "section": "free",
+        "title": "Pirates Vikings & Knights II",
+        "url": "https://store.steampowered.com/app/17570/",
+        "message_id": "1495082700095099045",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-04-18T15:24:53.907817+00:00",
+        "description": "Step into the ultimate three-way war for honor, glory, and gold! This beloved community-driven game brings together swashbuckling Pirates, battle-hardened Vikings, and chivalrous Knights in hilarious and intense class-based combat. Join the fun, embrace the chaos, and fight your way to victory!"
+      },
+      {
+        "item_key": "2d32960d0ad99e86",
+        "section": "paid",
+        "title": "Equinox: Homecoming",
+        "url": "https://store.steampowered.com/app/3258290/",
+        "message_id": "1495082715224080466",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-04-18T15:24:56.974860+00:00",
+        "description": "Saddle up with friends and investigate a dark mystery, where each trail leads to wonder and intrigue. A string of events has set the idyllic island on edge. Discover the truth behind your mother’s disappearance and a local's sudden death. For fans of horses, murder mysteries, and cozy exploration!"
+      },
+      {
+        "item_key": "03655d09e1d98284",
+        "section": "paid",
+        "title": "Cargo Hunters",
+        "url": "https://store.steampowered.com/app/4197990/",
+        "message_id": "1495082722723500072",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-04-18T15:24:58.751529+00:00",
+        "description": "Cargo Hunters is a single-player extraction shooter where you control a humanoid robot scavenging the remains of humanity on an abandoned, dystopian Earth."
+      },
+      {
+        "item_key": "abfd66d11082668b",
+        "section": "paid",
+        "title": "Stick Fight: The Game",
+        "url": "https://store.steampowered.com/app/674940/",
+        "message_id": "1495082729874653375",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-04-18T15:25:00.701646+00:00",
+        "description": "Stick Fight is a physics-based couch/online fighting game where you battle it out as the iconic stick figures from the golden age of the internet."
+      },
+      {
+        "item_key": "b7a26de8d4cc7ceb",
+        "section": "paid",
+        "title": "KeyWe",
+        "url": "https://store.steampowered.com/app/1242980/",
+        "message_id": "1495082737957343269",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-04-18T15:25:02.587413+00:00",
+        "description": "KeyWe is a cute, co-operative postal puzzler starring Jeff and Debra, two small kiwi birds working in a whimsical post office. They must jump, flap, peck and butt-slam their way across an interactive landscape of levers, bells and buttons to get those messages delivered on time!"
+      },
+      {
+        "item_key": "5d6f69335a66a513",
+        "section": "paid",
+        "title": "Ghostbusters: The Video Game Remastered",
+        "url": "https://store.steampowered.com/app/1449280/",
+        "message_id": "1495082745888510103",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-04-18T15:25:04.585410+00:00",
+        "description": "The beloved and critically acclaimed Ghostbusters video game is back! Strap on your proton pack once again and join the Ghostbusters on the adventure with the voice and likeness of the original crew as you battle to save New York!"
       }
     ]
   }
