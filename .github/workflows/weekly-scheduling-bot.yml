@@ -1,4 +1,5 @@
-name: Weekly Scheduling Bot
+idempotent
+    # idempotent - if the 13:00 run succeeds, the 13:10 run detects existing
 
 on:
   workflow_dispatch:
