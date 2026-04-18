@@ -185,7 +185,7 @@ jobs:
               # re-chunk until every labeled chunk stays within Discord's 2000-char limit.
               while True:
                   total_chunks = len(chunks)
-                  max_prefix_len = len(f"ð Bot Health Report ({total_chunks}/{total_chunks})\n")
+                  max_prefix_len = len(f"📋 Bot Health Report ({total_chunks}/{total_chunks})\n")
                   reserved_hard_limit = 2000 - max_prefix_len
                   if reserved_hard_limit <= 0:
                       raise RuntimeError("Health report chunk label unexpectedly exceeds Discord hard limit")
@@ -204,7 +204,7 @@ jobs:
               labeled_chunks = []
               total_chunks = len(chunks)
               for idx, chunk in enumerate(chunks, start=1):
-                  prefix = f"ð Bot Health Report ({idx}/{total_chunks})\n"
+                  prefix = f"📋 Bot Health Report ({idx}/{total_chunks})\n"
                   labeled_chunks.append(f"{prefix}{chunk}")
               chunks = labeled_chunks
 
@@ -265,7 +265,7 @@ jobs:
 
           print(json.dumps({
               "content": (
-                  "ð´ XiannGPT Bot Failure\n\n"
+                  "Ã°ÂÂÂ´ XiannGPT Bot Failure\n\n"
                   f"Workflow: {os.environ['WORKFLOW_NAME']}\n"
                   f"Job: {os.environ['JOB_NAME']}\n"
                   "Status: failed\n"
