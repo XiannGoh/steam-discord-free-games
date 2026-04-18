@@ -2753,20 +2753,25 @@ def fetch_instagram_posts():
         )
         return []
 
-    # Session health check — verify the loaded session is still authenticated.
+    # Session auth check — make a real authenticated API call to verify the session.
     try:
-        session_username = loader.context.username
-        if not session_username:
-            print("WARN: Instagram session health check failed — context.username is empty; session may have expired")
+        authed_user = loader.test_login()
+        if not authed_user:
+            print(f"WARN: Instagram session auth check failed — test_login() returned None for {instagram_username}")
             _notify_health_monitor(
-                f"⚠️ Instagram session may have expired for {instagram_username}.\n"
-                f"context.username is empty after loading session. "
+                f"⚠️ Instagram session auth check failed for {instagram_username}.\n"
+                f"test_login() returned None — session may have expired. "
                 f"Re-authenticate and update the INSTAGRAM_SESSION secret."
             )
-        else:
-            print(f"Instagram session health check OK: logged in as @{session_username}")
+            return []
+        print(f"Instagram session valid: logged in as @{authed_user}")
     except Exception as e:
-        print(f"WARN: Instagram session health check raised an exception: {e}")
+        print(f"WARN: Instagram session auth check raised an exception: {e}")
+        _notify_health_monitor(
+            f"⚠️ Instagram session auth check raised an exception for {instagram_username}: {e}\n"
+            f"Re-authenticate and update the INSTAGRAM_SESSION secret."
+        )
+        return []
 
     cutoff_utc = datetime.now(timezone.utc) - timedelta(days=INSTAGRAM_MAX_POST_AGE_DAYS)
 

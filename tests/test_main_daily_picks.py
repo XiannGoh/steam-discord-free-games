@@ -1401,6 +1401,9 @@ class FakeInstaloader:
         def load_session_from_file(self, username, path):
             pass
 
+        def test_login(self):
+            return "testuser"
+
         @property
         def context(self):
             return None
@@ -1535,6 +1538,72 @@ def test_instagram_age_filter_boundary_exactly_7_days_excluded(monkeypatch, tmp_
 
     results = _patched_fetch_instagram_direct(monkeypatch, fake_profiles, now)
     assert results == []
+
+
+# ---------------------------------------------------------------------------
+# Issue #283 — Instagram session auth check (test_login)
+# ---------------------------------------------------------------------------
+
+class TestInstagramSessionAuthCheck:
+    """Tests for the real auth check added after load_session_from_file()."""
+
+    def _setup(self, monkeypatch, tmp_path):
+        session_path = tmp_path / "instaloader.session"
+        session_path.write_text("session")
+        monkeypatch.setenv("INSTAGRAM_USERNAME", "testuser")
+        monkeypatch.chdir(tmp_path)
+
+    def test_auth_check_returns_none_skips_instagram(self, monkeypatch, tmp_path):
+        self._setup(monkeypatch, tmp_path)
+        posted = []
+        monkeypatch.setattr(main, "_notify_health_monitor", lambda msg: posted.append(msg))
+        monkeypatch.setattr(main, "INSTAGRAM_CREATORS", [])
+
+        class NullLoginInstaloader(FakeInstaloader.Instaloader):
+            def test_login(self):
+                return None
+
+        fake_il = FakeInstaloader()
+        fake_il.Instaloader = NullLoginInstaloader
+        monkeypatch.setattr(main, "instaloader", fake_il)
+        monkeypatch.setattr(main, "INSTAGRAM_STATE_FILE", str(tmp_path / "instagram_seen.json"))
+
+        result = main.fetch_instagram_posts()
+        assert result == []
+        assert any("test_login() returned None" in msg for msg in posted)
+
+    def test_auth_check_raises_skips_instagram(self, monkeypatch, tmp_path):
+        self._setup(monkeypatch, tmp_path)
+        posted = []
+        monkeypatch.setattr(main, "_notify_health_monitor", lambda msg: posted.append(msg))
+        monkeypatch.setattr(main, "INSTAGRAM_CREATORS", [])
+
+        class RaisingLoginInstaloader(FakeInstaloader.Instaloader):
+            def test_login(self):
+                raise RuntimeError("network error")
+
+        fake_il = FakeInstaloader()
+        fake_il.Instaloader = RaisingLoginInstaloader
+        monkeypatch.setattr(main, "instaloader", fake_il)
+        monkeypatch.setattr(main, "INSTAGRAM_STATE_FILE", str(tmp_path / "instagram_seen.json"))
+
+        result = main.fetch_instagram_posts()
+        assert result == []
+        assert any("network error" in msg for msg in posted)
+
+    def test_auth_check_succeeds_continues(self, monkeypatch, tmp_path):
+        self._setup(monkeypatch, tmp_path)
+        posted = []
+        monkeypatch.setattr(main, "_notify_health_monitor", lambda msg: posted.append(msg))
+        monkeypatch.setattr(main, "INSTAGRAM_CREATORS", [])
+
+        fake_il = FakeInstaloader()
+        monkeypatch.setattr(main, "instaloader", fake_il)
+        monkeypatch.setattr(main, "INSTAGRAM_STATE_FILE", str(tmp_path / "instagram_seen.json"))
+
+        result = main.fetch_instagram_posts()
+        assert result == []
+        assert posted == []
 
 
 # ---------------------------------------------------------------------------
