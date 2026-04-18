@@ -27,6 +27,7 @@ permissions:
 jobs:
   run-script:
     runs-on: ubuntu-latest
+      timeout-minutes: 30
 
     steps:
       - name: Download repository
@@ -164,7 +165,7 @@ jobs:
           details = f"{details}, force_refresh_same_day={'true' if force else 'false'}"
           print(json.dumps({
               "content": (
-                  "ð´ XiannGPT Bot Failure\n\n"
+                  "Ã°ÂÂÂ´ XiannGPT Bot Failure\n\n"
                   f"Workflow: {os.environ['WORKFLOW_NAME']}\n"
                   f"Job: {os.environ['JOB_NAME']}\n"
                   "Status: failed\n"
