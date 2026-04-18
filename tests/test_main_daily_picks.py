@@ -1401,6 +1401,9 @@ class FakeInstaloader:
         def load_session_from_file(self, username, path):
             pass
 
+        def test_login(self):
+            return "testuser"
+
         @property
         def context(self):
             return None
@@ -1913,6 +1916,87 @@ class TestInstagramSessionAgeInMain:
         captured = capsys.readouterr()
         assert captured.out == ""
         assert captured.err == ""
+
+
+class TestInstagramSessionAuthCheck:
+    """Tests for the lightweight test_login() auth check in fetch_instagram_posts()."""
+
+    def _setup(self, monkeypatch, tmp_path, test_login_side_effect=None, test_login_return=None):
+        """Wire up a minimal fake instaloader for auth-check tests."""
+        session_path = tmp_path / "instaloader.session"
+        session_path.write_text("session")
+
+        class FakeLoader:
+            def __init__(self, **kwargs):
+                pass
+
+            def load_session_from_file(self, username, path):
+                pass
+
+            def test_login(self):
+                if test_login_side_effect is not None:
+                    raise test_login_side_effect
+                return test_login_return
+
+            @property
+            def context(self):
+                return None
+
+        class FakeIL:
+            Instaloader = FakeLoader
+
+            class Profile:
+                @classmethod
+                def from_username(cls, context, username):
+                    return None
+
+        monkeypatch.setattr(main, "instaloader", FakeIL)
+        monkeypatch.setattr(main, "INSTAGRAM_STATE_FILE", str(tmp_path / "instagram_seen.json"))
+        monkeypatch.setenv("INSTAGRAM_USERNAME", "testuser")
+        monkeypatch.setattr(main, "_check_instagram_session_age", lambda path: None)
+        monkeypatch.setattr(main, "INSTAGRAM_CREATORS", [])
+        monkeypatch.chdir(tmp_path)
+
+    def test_auth_check_returns_none_skips_instagram_and_notifies(self, monkeypatch, tmp_path, capsys):
+        """test_login() returning None must skip scraping and post a health monitor warning."""
+        posted: list[str] = []
+        monkeypatch.setattr(main, "_notify_health_monitor", lambda msg: posted.append(msg))
+        self._setup(monkeypatch, tmp_path, test_login_return=None)
+
+        result = main.fetch_instagram_posts()
+
+        assert result == []
+        assert len(posted) == 1
+        assert "⚠️" in posted[0]
+        assert "testuser" in posted[0]
+        captured = capsys.readouterr()
+        assert "WARN" in captured.out
+
+    def test_auth_check_raises_exception_skips_instagram_and_notifies(self, monkeypatch, tmp_path, capsys):
+        """test_login() raising an exception must skip scraping and post a health monitor warning."""
+        posted: list[str] = []
+        monkeypatch.setattr(main, "_notify_health_monitor", lambda msg: posted.append(msg))
+        self._setup(monkeypatch, tmp_path, test_login_side_effect=ConnectionError("timeout"))
+
+        result = main.fetch_instagram_posts()
+
+        assert result == []
+        assert len(posted) == 1
+        assert "⚠️" in posted[0]
+        assert "testuser" in posted[0]
+        captured = capsys.readouterr()
+        assert "WARN" in captured.out
+
+    def test_auth_check_succeeds_logs_session_valid(self, monkeypatch, tmp_path, capsys):
+        """test_login() returning a username must log 'Instagram session valid' and continue."""
+        monkeypatch.setattr(main, "_notify_health_monitor", lambda msg: None)
+        self._setup(monkeypatch, tmp_path, test_login_return="testuser")
+
+        main.fetch_instagram_posts()
+
+        captured = capsys.readouterr()
+        assert "Instagram session valid" in captured.out
+        assert "testuser" in captured.out
 
 
 class TestStaleSectionHeaderPruning:
