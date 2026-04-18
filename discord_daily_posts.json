@@ -6892,37 +6892,27 @@
   "2026-04-18": {
     "run_state": {
       "section_headers": {
-        "demo_playtest": {
-          "message_id": "1494944271403323452",
-          "channel_id": "592534544708796474",
-          "posted_at_utc": "2026-04-18T06:14:49.744845+00:00"
-        },
         "free": {
-          "message_id": "1494944287463575594",
+          "message_id": "1495024254297837629",
           "channel_id": "592534544708796474",
-          "posted_at_utc": "2026-04-18T06:14:53.144546+00:00"
+          "posted_at_utc": "2026-04-18T11:32:38.961987+00:00"
         },
         "paid": {
-          "message_id": "1494944333701447840",
+          "message_id": "1495024303476051998",
           "channel_id": "592534544708796474",
-          "posted_at_utc": "2026-04-18T06:15:04.292874+00:00"
-        },
-        "instagram": {
-          "message_id": "1494944382263103609",
-          "channel_id": "592534544708796474",
-          "posted_at_utc": "2026-04-18T06:15:15.751310+00:00"
+          "posted_at_utc": "2026-04-18T11:32:50.558732+00:00"
         }
       },
-      "last_attempt_at_utc": "2026-04-18T06:14:45.322573+00:00",
+      "last_attempt_at_utc": "2026-04-18T11:32:37.915117+00:00",
       "intro": {
         "message_id": "1494944256459014204",
         "channel_id": "592534544708796474",
         "posted_at_utc": "2026-04-18T06:14:45.748563+00:00"
       },
       "footer": {
-        "message_id": "1494944415377264700",
+        "message_id": "1495024353040138430",
         "channel_id": "592534544708796474",
-        "posted_at_utc": "2026-04-18T06:15:23.722160+00:00"
+        "posted_at_utc": "2026-04-18T11:33:02.278406+00:00"
       }
     },
     "items": [
@@ -7079,6 +7069,116 @@
         "source_type": "instagram",
         "posted_at": "2026-04-18T06:15:21.771235+00:00",
         "description": "New Co-op Horror game! Last Pirates: Die Together! #horrortok #gamestoplay #gaming"
+      },
+      {
+        "item_key": "ea8513961566bae6",
+        "section": "free",
+        "title": "Hades' Star",
+        "url": "https://store.steampowered.com/app/755800/",
+        "message_id": "1495024262380126358",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-04-18T11:32:40.834225+00:00",
+        "description": "A unique space strategy game where thousands of players participate in one shared galaxy."
+      },
+      {
+        "item_key": "7250ceba81932608",
+        "section": "free",
+        "title": "Blackjack Championship",
+        "url": "https://store.steampowered.com/app/1178160/",
+        "message_id": "1495024270261358663",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-04-18T11:32:42.879485+00:00",
+        "description": "Play the most authentic BLACKJACK GAME with players all over the world! Spend some lovely and relaxing time with our top-of-the-line game provided with many special features for you to feel real casino atmosphere."
+      },
+      {
+        "item_key": "491443d1ed4b4c23",
+        "section": "free",
+        "title": "Hotel Hideaway: Avatar & Chat",
+        "url": "https://store.steampowered.com/app/3829340/",
+        "message_id": "1495024278670803004",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-04-18T11:32:44.647370+00:00",
+        "description": "An immersive 3D social simulation MMO where you customize your avatar, build and decorate rooms, collect rare items, and join live community events in a nostalgic yet ever-evolving virtual world."
+      },
+      {
+        "item_key": "bbd8e5a58b93b787",
+        "section": "free",
+        "title": "Warhammer: Chaos And Conquest",
+        "url": "https://store.steampowered.com/app/1144170/",
+        "message_id": "1495024286132605130",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-04-18T11:32:46.468850+00:00",
+        "description": "MMORPG and strategy gameplay in one. Living realms of Chaos Champions battle in PVE and PVP strategic combat. Persistent army management and constant live events. Collect Warlords, manage resources, and conquer your foes."
+      },
+      {
+        "item_key": "f5bf342d969da9ce",
+        "section": "free",
+        "title": "Order of Battle: World War II",
+        "url": "https://store.steampowered.com/app/312450/",
+        "message_id": "1495024293887868928",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-04-18T11:32:48.546872+00:00",
+        "description": "Order of Battle: World War II is a breath of fresh air for all strategy fans. It is a game that takes wargaming to a new level by upgrading every single game element and rebooting the genre for a new generation of players."
+      },
+      {
+        "item_key": "f5f7dde96cab53a9",
+        "section": "paid",
+        "title": "Total War: ATTILA",
+        "url": "https://store.steampowered.com/app/325610/",
+        "message_id": "1495024310899966052",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-04-18T11:32:52.288464+00:00",
+        "description": "Against a darkening background of famine, disease and war, a new power is rising in the great steppes of the East. With a million horsemen at his back, the ultimate warrior king approaches, and his sights are set on Rome… The next instalment in the multi award-winning PC series that combines turn-based strategy with real-time tactics,..."
+      },
+      {
+        "item_key": "fa1138bddb222469",
+        "section": "paid",
+        "title": "Total War: SHOGUN 2",
+        "url": "https://store.steampowered.com/app/201270/",
+        "message_id": "1495024318399119491",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-04-18T11:32:54.549458+00:00",
+        "description": "Total War: SHOGUN 2 is the perfect mix of real-time and turn-based strategy gaming for newcomers and veterans alike."
+      },
+      {
+        "item_key": "b2acb7222e8d1e54",
+        "section": "paid",
+        "title": "We Were Here Forever",
+        "url": "https://store.steampowered.com/app/1341290/",
+        "message_id": "1495024327773524049",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-04-18T11:32:56.566435+00:00",
+        "description": "You both awaken imprisoned inside the sinister Castle Rock - were you betrayed, or simply not that clever? Find out in the greatest co-op puzzle adventure in the We Were Here Series! Do you and your partner have what it takes to face the dark forces of this realm or will you be trapped… forever?"
+      },
+      {
+        "item_key": "b915faf3fb2f9bc5",
+        "section": "paid",
+        "title": "Ale & Tale Tavern",
+        "url": "https://store.steampowered.com/app/2683150/",
+        "message_id": "1495024336027910265",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-04-18T11:32:58.463757+00:00",
+        "description": "Get ready for a thrilling mix of genres: a cooperative, first-person, open-world fantasy tavern simulator, action, fishing, hunting, exploration, and completing fun and diverse quests. And, of course, COOKING! Play with friends, feed and quench the thirst of the entire world!"
+      },
+      {
+        "item_key": "717e662b53340358",
+        "section": "paid",
+        "title": "Forever Skies",
+        "url": "https://store.steampowered.com/app/1641960/",
+        "message_id": "1495024344114528367",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-04-18T11:33:00.304880+00:00",
+        "description": "A first-person survival game set on a post-apocalyptic, ecologically ruined Earth. Play solo or with up to 3 friends as you build, upgrade, and fly a high-tech airship. Scavenge resources, craft tools, and face dangers on the surface as you hunt for a cure to save humanity."
       }
     ]
   }

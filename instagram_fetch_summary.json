@@ -1,9 +1,9 @@
 {
-  "run_at": "2026-04-18T06:14:45Z",
+  "run_at": "2026-04-18T11:32:37Z",
   "total_creators": 8,
-  "creators_with_posts": 2,
-  "total_posts_collected": 3,
-  "total_skipped_seen": 19,
+  "creators_with_posts": 0,
+  "total_posts_collected": 0,
+  "total_skipped_seen": 26,
   "failed_creators": [],
   "creators": {
     "gemgamingnetwork": {
@@ -28,16 +28,16 @@
       "failure_reason": null
     },
     "sharedxp_official": {
-      "collected": 1,
-      "skipped_seen": 11,
+      "collected": 0,
+      "skipped_seen": 12,
       "skipped_age": 1,
       "failed": false,
       "failure_reason": null
     },
     "wilfratgaming": {
-      "collected": 2,
-      "skipped_seen": 0,
-      "skipped_age": 0,
+      "collected": 0,
+      "skipped_seen": 6,
+      "skipped_age": 1,
       "failed": false,
       "failure_reason": null
     },
