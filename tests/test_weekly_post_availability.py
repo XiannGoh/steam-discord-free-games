@@ -1,5 +1,6 @@
 import json
 
+from discord_api import DiscordPermissionError
 from scripts import post_weekly_availability as weekly
 from scripts import scheduling_labels
 
@@ -195,3 +196,45 @@ def test_legacy_state_shape_loads_and_upgrades(monkeypatch, tmp_path, load_fixtu
     assert saved[week_key]["channel_id"] == "chan-1"
     assert "updated_at_utc" in saved[week_key]
     assert saved[week_key]["post_completed"] is True
+
+
+class FakeClientWithUnpinPermError(FakeClient):
+    """FakeClient whose unpin_message raises DiscordPermissionError."""
+
+    def unpin_message(self, channel_id, message_id, *, context):
+        raise DiscordPermissionError(f"403 Forbidden unpinning {message_id}")
+
+
+def test_unpin_permission_error_warns_and_continues(monkeypatch, tmp_path, capsys):
+    """When unpin_message raises DiscordPermissionError the script warns and does not crash."""
+    old_pinned_id = "old-intro-99"
+    pinned = [{"id": old_pinned_id, "content": "🗓️ Weekly Availability — react below for next week\nWeek of Apr 6–12, 2026"}]
+    webhook_calls = []
+
+    def fake_post(url, *, json=None, timeout=None):
+        webhook_calls.append(json)
+        return type("R", (), {"status_code": 204})()
+
+    monkeypatch.setattr(weekly.requests, "post", fake_post)
+    monkeypatch.setenv("DISCORD_HEALTH_MONITOR_WEBHOOK_URL", "https://discord.com/api/webhooks/fake")
+    monkeypatch.setattr(weekly, "DISCORD_HEALTH_MONITOR_WEBHOOK_URL", "https://discord.com/api/webhooks/fake")
+
+    fake = FakeClientWithUnpinPermError(pinned_messages=pinned)
+    saved = _run_main(monkeypatch, tmp_path, existing_state={}, fake_client=fake)
+
+    # Script must complete and save state normally
+    week_key = "2026-04-13_to_2026-04-19"
+    assert week_key in saved
+
+    # Old pin was NOT unpinned (permission denied), new intro was still pinned
+    assert old_pinned_id not in fake.unpin_calls
+    assert len(fake.pin_calls) == 1
+
+    # Warning was printed
+    captured = capsys.readouterr()
+    assert "WARN" in captured.out
+    assert "Manage Messages" in captured.out
+
+    # Health monitor webhook was called
+    assert len(webhook_calls) == 1
+    assert "Manage Messages" in webhook_calls[0]["content"]
