@@ -245,22 +245,18 @@ Order must be:
 ### `weekly-scheduling-bot.yml`
 Order must be:
 1. install packages
-2. `scripts/ensure_pinned_messages.py`
-3. `python scripts/post_weekly_availability.py`
-4. `python scripts/read_discord_channel.py`
-5. `python scripts/verify_weekly_schedule.py`
-6. upload artifacts
-7. save state
-8. health monitor failure notification
-
-### Pinned-message workflow requirements
-`scripts/ensure_pinned_messages.py` must run at the start of:
-- `weekly-scheduling-bot.yml`
+2. `python scripts/post_weekly_availability.py`
+3. `python scripts/read_discord_channel.py`
+4. `python scripts/verify_weekly_schedule.py`
+5. upload artifacts
+6. save state
+7. health monitor failure notification
 
 Rolling explainer (last-message how-it-works) is handled by each posting script directly:
 - `main.py` posts the Step 1 rolling explainer at the end of `run_daily_workflow()`
 - `evening_winners.py` posts the Step 2 rolling explainer at all exit points of `main()`
 - `scripts/post_daily_gaming_library.py` posts the Step 3 rolling explainer after `run_daily_post()`
+- `scripts/post_weekly_availability.py` posts the weekly-scheduling rolling explainer at the end of `main()`
 
 ### Snapshot workflow requirements
 `scripts/read_discord_channel.py` must run after every posting workflow and before verification. The following snapshot files must be uploaded as a single artifact named `discord-snapshots-{run_id}`:
@@ -420,5 +416,4 @@ Rules for Claude Code when working on issues in this repo. These apply to every 
 | `scripts/check_state_sanity.py` | Cross-file state consistency checks |
 | `scripts/manage_gaming_library.py` | CLI tool for manual library operations |
 | `scripts/read_discord_channel.py` | Reads Discord channels and writes snapshot artifacts for all 5 channels |
-| `scripts/ensure_pinned_messages.py` | Ensures pinned how-it-works messages exist and are updated in all channels |
 | `scripts/update_health_log.py` | Reads and writes the failure tracking database for the health monitor loop |

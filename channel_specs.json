@@ -141,9 +141,6 @@
       "missing_section_notice_format": "_(No {category} in library)_",
       "first_line_format": "📅 End of Gaming Library — {date} · Jump to: ..."
     },
-    "pinned_message_rules": {
-      "command_reference_must_exist_and_be_pinned": true
-    },
     "rolling_explainer_rules": {
       "must_exist": true,
       "must_be_last_message": true,
@@ -187,10 +184,11 @@
     "sync_rules": {
       "must_process_current_and_previous_week_reactions": true
     },
-    "pinning_rules": {
-      "current_week_must_be_pinned": true,
-      "previous_week_must_be_unpinned_when_new_week_posts": true,
-      "only_one_week_pinned_at_a_time": true
+    "rolling_explainer_rules": {
+      "must_exist": true,
+      "must_be_last_message": true,
+      "detection_prefix": "📌 How This Works",
+      "same_day_rerun_must_not_duplicate": true
     },
     "broken_if": [
       "scheduling post for game not in active library",
@@ -198,9 +196,8 @@
       "missing availability time bucket",
       "day entries missing dates",
       "missing members not @mentioned",
-      "current week post not pinned",
-      "previous week still pinned when new week exists",
-      "delta posted when nothing changed"
+      "delta posted when nothing changed",
+      "missing rolling explainer as last message"
     ]
   },
   "xiann-gpt-bot-health-monitor": {

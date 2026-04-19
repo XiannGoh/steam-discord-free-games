@@ -8,7 +8,8 @@ from typing import Any
 
 import requests
 
-from discord_api import DiscordClient, DiscordMessageNotFoundError, DiscordPermissionError
+from discord_api import DiscordClient, DiscordMessageNotFoundError
+from rolling_explainer import post_or_edit_rolling_explainer
 from scripts.scheduling_labels import DAY_MESSAGE_TEMPLATES, format_day_label
 from state_utils import load_json_object, prune_latest_keys, save_json_object_atomic
 
@@ -165,27 +166,6 @@ def main() -> None:
                 fail("Discord response JSON did not include intro message id")
             print(f"CREATE: intro message for {week_key} (message_id={intro_message_id})")
 
-        # Pin the intro message; unpin any stale weekly availability posts.
-        pinned_messages = client.get_pinned_messages(channel_id, context=f"fetch pinned for {week_key}")
-        already_pinned_ids = {str(p.get("id") or "") for p in pinned_messages}
-        for pinned in pinned_messages:
-            pinned_id = str(pinned.get("id") or "")
-            pinned_content = str(pinned.get("content") or "")
-            if pinned_id and pinned_id != intro_message_id and pinned_content.startswith("🗓️ Weekly Availability"):
-                try:
-                    client.unpin_message(channel_id, pinned_id, context=f"unpin old weekly availability {pinned_id}")
-                    print(f"UNPIN: old weekly availability message {pinned_id}")
-                except DiscordPermissionError as e:
-                    warning = (
-                        f"WARN: cannot unpin message {pinned_id} in scheduling channel "
-                        f"— bot missing Manage Messages permission: {e}"
-                    )
-                    print(warning)
-                    _notify_health_monitor(warning)
-        if intro_message_id not in already_pinned_ids:
-            client.pin_message(channel_id, intro_message_id, context=f"pin intro for {week_key}")
-            print(f"PIN: intro message for {week_key} (message_id={intro_message_id})")
-
         existing_days = existing_week_state.get("days")
         if not isinstance(existing_days, dict):
             existing_days = {}
@@ -215,6 +195,8 @@ def main() -> None:
             day_message_ids[day_name] = day_message_id
             created_days += 1
             print(f"CREATE: day message {day_name} (message_id={day_message_id})")
+
+        post_or_edit_rolling_explainer(client, channel_id, "weekly-scheduling")
 
     weekly_messages[week_key] = {
         "channel_id": channel_id,
