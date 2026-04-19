@@ -11,6 +11,8 @@ if str(ROOT) not in sys.path:
 
 from scripts.verify_discord_output import (
     detect_broken_if,
+    is_game_card,
+    _filter_to_today,
     verify_step1,
     verify_step2,
     verify_step3,
@@ -185,10 +187,19 @@ class TestDetectBrokenIfNewConditions:
 class _FakeVerifyClient:
     """Minimal fake Discord client for verify_discord_output functional tests."""
 
-    def __init__(self, messages: dict = None, *, missing_ids: set = None, last_message_content: str = "📌 How This Works — fake"):
+    def __init__(
+        self,
+        messages: dict = None,
+        *,
+        missing_ids: set = None,
+        last_message_content: str = "📌 How This Works — fake",
+        channel_messages: list = None,
+    ):
         self._messages = messages or {}
         self._missing_ids = missing_ids or set()
         self._last_message_content = last_message_content
+        # When set, returned from get_channel_messages (supports channel-scan tests).
+        self._channel_messages = channel_messages
 
     def get_message(self, channel_id, message_id, *, context=""):
         if message_id in self._missing_ids:
@@ -198,9 +209,41 @@ class _FakeVerifyClient:
         return {"id": message_id, "content": "", "reactions": []}
 
     def get_channel_messages(self, channel_id, *, context="", limit=100, before=None, after=None):
+        if self._channel_messages is not None:
+            return self._channel_messages[:limit]
         if not self._last_message_content:
             return []
         return [{"id": "last-msg", "content": self._last_message_content}]
+
+
+# ---------------------------------------------------------------------------
+# Helper for building timestamped fake Discord messages
+# ---------------------------------------------------------------------------
+
+_TODAY = "2026-04-19"
+_TS_TODAY = "2026-04-19T10:00:00+00:00"
+_TS_YESTERDAY = "2026-04-18T10:00:00+00:00"
+
+
+def _msg(
+    msg_id: str,
+    content: str,
+    ts: str = _TS_TODAY,
+    username: str = "XiannGPT Bot",
+    bot: bool = True,
+) -> dict:
+    return {
+        "id": msg_id,
+        "content": content,
+        "timestamp": ts,
+        "author": {"username": username, "bot": bot},
+    }
+
+
+_INTRO1_CONTENT = "📅 Daily Picks — Sunday, April 19, 2026\nVote 👍\n──────────────────────────────────────────────"
+_FOOTER1_CONTENT = "📅 End of Daily Picks — Sunday, April 19, 2026\n─────────────────── End of Daily Picks ───────────────────"
+_EXPLAINER_CONTENT = "📌 How This Works — pick guide"
+_GAME_CONTENT = "**Free Game** — <https://store.steampowered.com/app/123/>"
 
 
 def _step1_entry(intro_content="📅 Daily Picks\n─────", footer_content="📅 ⬆️ Top\n─────────────────── End of Daily Picks ───────────────────"):
@@ -367,3 +410,171 @@ class TestVerifyStep3:
         result = verify_step3(client, gl_state, {}, "2026-04-15")
         assert result["checked"] is False
         assert result["pass"] is True
+
+
+# ---------------------------------------------------------------------------
+# Helpers
+# ---------------------------------------------------------------------------
+
+def _is_game_card_and_filter_helpers() -> None:
+    """Sanity-check is_game_card and _filter_to_today directly."""
+
+
+# ---------------------------------------------------------------------------
+# New channel-scan tests (Issue #293)
+# ---------------------------------------------------------------------------
+
+class TestIsGameCard:
+    def test_steam_url_is_game_card(self) -> None:
+        assert is_game_card({"content": "<https://store.steampowered.com/app/123/>"}) is True
+
+    def test_no_steam_url_is_not_game_card(self) -> None:
+        assert is_game_card({"content": "📅 Daily Picks — Monday"}) is False
+
+    def test_empty_content_is_not_game_card(self) -> None:
+        assert is_game_card({"content": ""}) is False
+
+
+class TestFilterToToday:
+    def test_keeps_today_messages(self) -> None:
+        msgs = [_msg("a", "hi", ts=_TS_TODAY)]
+        result = _filter_to_today(msgs, _TODAY)
+        assert len(result) == 1
+
+    def test_drops_yesterday_messages(self) -> None:
+        msgs = [_msg("a", "hi", ts=_TS_YESTERDAY)]
+        result = _filter_to_today(msgs, _TODAY)
+        assert len(result) == 0
+
+    def test_drops_messages_without_timestamp(self) -> None:
+        msgs = [{"id": "a", "content": "hi"}]
+        result = _filter_to_today(msgs, _TODAY)
+        assert len(result) == 0
+
+
+def _make_step1_day_entry() -> tuple:
+    """Return (day_entry, state_messages) for a basic step-1 scenario."""
+    day_entry = {
+        "run_state": {
+            "intro": {"message_id": "intro-1", "channel_id": "chan-1"},
+            "section_headers": {},
+            "footer": {"message_id": "footer-1", "channel_id": "chan-1"},
+        },
+        "items": [],
+    }
+    state_msgs = {
+        "intro-1": {"id": "intro-1", "content": _INTRO1_CONTENT, "reactions": []},
+        "footer-1": {"id": "footer-1", "content": _FOOTER1_CONTENT, "reactions": []},
+    }
+    return day_entry, state_msgs
+
+
+_SPEC1 = {
+    "intro_required": True,
+    "footer_required": True,
+    "min_items": 0,
+    "no_duplicates": True,
+    "reactions": [],
+}
+
+
+class TestChannelScanStep1:
+    """Channel-based structural checks added by Issue #293."""
+
+    def test_duplicate_intro_detected(self) -> None:
+        """Two intro messages today → duplicate_intro=True and error."""
+        day_entry, state_msgs = _make_step1_day_entry()
+        channel_msgs = [
+            _msg("exp-1", _EXPLAINER_CONTENT),
+            _msg("footer-x", _FOOTER1_CONTENT),
+            _msg("intro-a", _INTRO1_CONTENT),
+            _msg("intro-b", _INTRO1_CONTENT),  # duplicate
+        ]
+        client = _FakeVerifyClient(state_msgs, channel_messages=channel_msgs)
+        result = verify_step1(client, day_entry, _SPEC1, _TODAY)
+        assert result.get("duplicate_intro") is True
+        assert any("duplicate intro" in e for e in result["errors"])
+        assert result["pass"] is False
+
+    def test_clean_channel_passes(self) -> None:
+        """One intro, some game cards, one footer, explainer last → pass=True."""
+        day_entry, state_msgs = _make_step1_day_entry()
+        channel_msgs = [
+            # newest first (Discord API order)
+            _msg("exp-1", _EXPLAINER_CONTENT),
+            _msg("footer-x", _FOOTER1_CONTENT),
+            _msg("game-5", _GAME_CONTENT),
+            _msg("game-4", _GAME_CONTENT),
+            _msg("game-3", _GAME_CONTENT),
+            _msg("game-2", _GAME_CONTENT),
+            _msg("game-1", _GAME_CONTENT),
+            _msg("intro-a", _INTRO1_CONTENT),
+        ]
+        client = _FakeVerifyClient(state_msgs, channel_messages=channel_msgs)
+        result = verify_step1(client, day_entry, _SPEC1, _TODAY)
+        assert result.get("duplicate_intro") is not True
+        assert result.get("duplicate_games") is not True
+        assert result.get("rolling_explainer_missing") is not True
+        assert result["pass"] is True
+
+    def test_too_many_game_cards_detected(self) -> None:
+        """More than 40 game-card messages today → duplicate_games=True."""
+        day_entry, state_msgs = _make_step1_day_entry()
+        game_msgs = [_msg(f"g-{i}", _GAME_CONTENT) for i in range(41)]
+        channel_msgs = [
+            _msg("exp-1", _EXPLAINER_CONTENT),
+            _msg("footer-x", _FOOTER1_CONTENT),
+            _msg("intro-a", _INTRO1_CONTENT),
+        ] + game_msgs
+        client = _FakeVerifyClient(state_msgs, channel_messages=channel_msgs)
+        result = verify_step1(client, day_entry, _SPEC1, _TODAY)
+        assert result.get("duplicate_games") is True
+        assert any("duplicate game" in e for e in result["errors"])
+        assert result["pass"] is False
+
+    def test_rolling_explainer_not_last_detected(self) -> None:
+        """Explainer exists but is not the last message → rolling_explainer_missing=True."""
+        day_entry, state_msgs = _make_step1_day_entry()
+        channel_msgs = [
+            # newest first — game card is last, not explainer
+            _msg("game-z", _GAME_CONTENT),
+            _msg("exp-1", _EXPLAINER_CONTENT),
+            _msg("footer-x", _FOOTER1_CONTENT),
+            _msg("intro-a", _INTRO1_CONTENT),
+        ]
+        client = _FakeVerifyClient(state_msgs, channel_messages=channel_msgs)
+        result = verify_step1(client, day_entry, _SPEC1, _TODAY)
+        assert result.get("rolling_explainer_missing") is True
+        assert any("not the last message" in e or "rolling explainer" in e.lower() for e in result["errors"])
+        assert result["pass"] is False
+
+    def test_cross_channel_bot_detected(self) -> None:
+        """A Scheduling Bot message in step-1 → cross_channel_post=True."""
+        day_entry, state_msgs = _make_step1_day_entry()
+        channel_msgs = [
+            _msg("exp-1", _EXPLAINER_CONTENT),
+            _msg("footer-x", _FOOTER1_CONTENT),
+            _msg("sched-post", "📅 Weekly Schedule", username="XiannGPT Scheduling Bot", bot=True),
+            _msg("intro-a", _INTRO1_CONTENT),
+        ]
+        client = _FakeVerifyClient(state_msgs, channel_messages=channel_msgs)
+        result = verify_step1(client, day_entry, _SPEC1, _TODAY)
+        assert result.get("cross_channel_post") is True
+        assert any("cross-channel" in e for e in result["errors"])
+        assert result["pass"] is False
+
+    def test_duplicate_rolling_explainer_detected(self) -> None:
+        """Two rolling explainers today → rolling_explainer_duplicate=True."""
+        day_entry, state_msgs = _make_step1_day_entry()
+        channel_msgs = [
+            _msg("exp-2", _EXPLAINER_CONTENT),  # newest — correct last position
+            _msg("footer-x", _FOOTER1_CONTENT),
+            _msg("game-1", _GAME_CONTENT),
+            _msg("exp-1", _EXPLAINER_CONTENT),  # duplicate from earlier run
+            _msg("intro-a", _INTRO1_CONTENT),
+        ]
+        client = _FakeVerifyClient(state_msgs, channel_messages=channel_msgs)
+        result = verify_step1(client, day_entry, _SPEC1, _TODAY)
+        assert result.get("rolling_explainer_duplicate") is True
+        assert any("duplicate rolling explainer" in e for e in result["errors"])
+        assert result["pass"] is False
