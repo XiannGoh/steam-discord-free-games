@@ -7418,7 +7418,7 @@
           "posted_at_utc": "2026-04-19T06:41:15.652392+00:00"
         }
       },
-      "last_attempt_at_utc": "2026-04-19T06:41:01.377193+00:00",
+      "last_attempt_at_utc": "2026-04-19T15:27:25.793738+00:00",
       "intro": {
         "message_id": "1495313255038455828",
         "channel_id": "592534544708796474",
@@ -7428,7 +7428,9 @@
         "message_id": "1495313361510862980",
         "channel_id": "592534544708796474",
         "posted_at_utc": "2026-04-19T06:41:27.269368+00:00"
-      }
+      },
+      "completed": true,
+      "completed_at_utc": "2026-04-19T15:27:48.101414+00:00"
     },
     "items": [
       {
@@ -7540,6 +7542,105 @@
         "source_type": "paid_under_20",
         "posted_at": "2026-04-19T06:41:25.482231+00:00",
         "description": "A space survival open world terraforming crafting game, designed for 1 to 10 players. Alter the ecosystem of an inhospitable planet to render it habitable for humanity. Survive, gather resources, and build your base. Then, generate oxygen, warmth, and pressure to create a brand new biosphere."
+      },
+      {
+        "item_key": "28f48d0f24928ff1",
+        "section": "free",
+        "title": "Milky Way Idle",
+        "url": "https://store.steampowered.com/app/3224420/",
+        "message_id": "1495445735217299588",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-04-19T15:27:28.237313+00:00",
+        "description": "Milky Way Idle: A multiplayer idle RPG where automation replaces grinding. Level up skills, gather resources, craft powerful items, and battle monsters—all while AFK. Trade in the marketplace, join a guild, team up for party combat, and socialize in chat as you progress effortlessly."
+      },
+      {
+        "item_key": "2c4b7a4b3bbad73f",
+        "section": "free",
+        "title": "Bit Heroes Quest",
+        "url": "https://store.steampowered.com/app/666860/",
+        "message_id": "1495445744331653222",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-04-19T15:27:30.188705+00:00",
+        "description": "Collect and craft thousands of pieces of loot to increase your power. Build your team by capturing monsters and bosses to fight at your side in old school, turn-based combat. Prove you’re the mightiest hero in the land by competing in the PvP arena, Raids, and weekly events for awesome prizes!"
+      },
+      {
+        "item_key": "0c8811f9c34d64ca",
+        "section": "free",
+        "title": "Pool 2D - Poolians",
+        "url": "https://store.steampowered.com/app/891040/",
+        "message_id": "1495445753034965084",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-04-19T15:27:32.123109+00:00",
+        "description": "Pool 2D is a free pool game including 8-ball,9-ball,15-ball,3-ball,rotation and blackjack. The graphics are spectacular and the physics are realistic and accurate. Whether you play against the computer or against real players from all over the world online, the action is smooth and fast paced!"
+      },
+      {
+        "item_key": "cfae554669270e9e",
+        "section": "free",
+        "title": "Sim Companies",
+        "url": "https://store.steampowered.com/app/2253720/",
+        "message_id": "1495445760701894901",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-04-19T15:27:33.793360+00:00",
+        "description": "Become a Business Tycoon. Build your own company from the ground up. Do business in a virtual economy with players all around the world! Gain valuable business skills for free. An advanced, proprietary, Economy simulation model is used to deliver the best gaming experience."
+      },
+      {
+        "item_key": "8a05dde0e3ab0400",
+        "section": "free",
+        "title": "Operation: New Earth",
+        "url": "https://store.steampowered.com/app/528740/",
+        "message_id": "1495445767949779014",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-04-19T15:27:35.734501+00:00",
+        "description": "Operation: New Earth is an intense sci-fi multiplayer strategy game in which you must command an advanced military facility to defend Earth from a hostile alien invasion. Create an alliance, gather resources, and unlock advanced technology to level up your stronghold!"
+      },
+      {
+        "item_key": "8db85819a88a959b",
+        "section": "paid",
+        "title": "Warhammer: Vermintide 2",
+        "url": "https://store.steampowered.com/app/552500/",
+        "message_id": "1495445783368044716",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-04-19T15:27:39.493693+00:00",
+        "description": "The critically acclaimed Vermintide 2 is a visually stunning and groundbreaking melee action game pushing the boundaries of the first person co-op genre. Join the fight now!"
+      },
+      {
+        "item_key": "88955c2b39a4d7d3",
+        "section": "paid",
+        "title": "Grey Hack",
+        "url": "https://store.steampowered.com/app/605230/",
+        "message_id": "1495445791945265173",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-04-19T15:27:41.613172+00:00",
+        "description": "Grey Hack is a massively multiplayer hacking simulator game. You're a hacker with full freedom to act as you wish on a vast network of procedurally generated computers."
+      },
+      {
+        "item_key": "937f5daef005cdbb",
+        "section": "paid",
+        "title": "Total War: THREE KINGDOMS",
+        "url": "https://store.steampowered.com/app/779340/",
+        "message_id": "1495445800749105232",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-04-19T15:27:43.629289+00:00",
+        "description": "Total War: THREE KINGDOMS is the first in the award-winning series to recreate epic conflict across ancient China. Combining a gripping turn-based campaign of empire-building & conquest with stunning real-time battles, THREE KINGDOMS redefines the series in an age of heroes & legends."
+      },
+      {
+        "item_key": "1589fd528875a09d",
+        "section": "paid",
+        "title": "Gang Beasts",
+        "url": "https://store.steampowered.com/app/285900/",
+        "message_id": "1495445809251090513",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-04-19T15:27:45.419038+00:00",
+        "description": "Gang Beasts is a silly multiplayer party game with surly gelatinous characters, brutal slapstick fight sequences, and absurd hazardous environments, set in the mean streets of Beef City."
       }
     ]
   }

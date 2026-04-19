@@ -1,9 +1,9 @@
 {
-  "run_at": "2026-04-19T06:41:01Z",
+  "run_at": "2026-04-19T15:27:25Z",
   "total_creators": 8,
   "creators_with_posts": 0,
   "total_posts_collected": 0,
-  "total_skipped_seen": 23,
+  "total_skipped_seen": 22,
   "failed_creators": [],
   "creators": {
     "gemgamingnetwork": {
@@ -29,7 +29,7 @@
     },
     "sharedxp_official": {
       "collected": 0,
-      "skipped_seen": 12,
+      "skipped_seen": 11,
       "skipped_age": 1,
       "failed": false,
       "failure_reason": null
