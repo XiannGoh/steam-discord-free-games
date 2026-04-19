@@ -7403,5 +7403,144 @@
         "description": "The beloved and critically acclaimed Ghostbusters video game is back! Strap on your proton pack once again and join the Ghostbusters on the adventure with the voice and likeness of the original crew as you battle to save New York!"
       }
     ]
+  },
+  "2026-04-19": {
+    "run_state": {
+      "section_headers": {
+        "free": {
+          "message_id": "1495313264303669420",
+          "channel_id": "592534544708796474",
+          "posted_at_utc": "2026-04-19T06:41:04.259615+00:00"
+        },
+        "paid": {
+          "message_id": "1495313312550879354",
+          "channel_id": "592534544708796474",
+          "posted_at_utc": "2026-04-19T06:41:15.652392+00:00"
+        }
+      },
+      "last_attempt_at_utc": "2026-04-19T06:41:01.377193+00:00",
+      "intro": {
+        "message_id": "1495313255038455828",
+        "channel_id": "592534544708796474",
+        "posted_at_utc": "2026-04-19T06:41:02.434454+00:00"
+      },
+      "footer": {
+        "message_id": "1495313361510862980",
+        "channel_id": "592534544708796474",
+        "posted_at_utc": "2026-04-19T06:41:27.269368+00:00"
+      }
+    },
+    "items": [
+      {
+        "item_key": "a4991221227e5105",
+        "section": "free",
+        "title": "MU: Dark Epoch",
+        "url": "https://store.steampowered.com/app/3953520/",
+        "message_id": "1495313271975051434",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-04-19T06:41:06.124640+00:00",
+        "description": "MU: Dark Epoch is a fantasy MMORPG mobile game that combines high quality, fast-paced gameplay, and innovative features. As the best MU instalment in the series by far, it offers impressive dynamic costumes and stunning graphic performance. Log in now and win the Archangel Set!"
+      },
+      {
+        "item_key": "8e1cc50f84da8217",
+        "section": "free",
+        "title": "MLB 9 Innings Rivals 26",
+        "url": "https://store.steampowered.com/app/2569510/",
+        "message_id": "1495313279776722985",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-04-19T06:41:08.011529+00:00",
+        "description": "Take your rivalries to the next level in MLB 9 Innings Rivals 26!"
+      },
+      {
+        "item_key": "bd248b7aef377598",
+        "section": "free",
+        "title": "Bongo Cat",
+        "url": "https://store.steampowered.com/app/3419430/",
+        "message_id": "1495313287708020858",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-04-19T06:41:09.988755+00:00",
+        "description": "Bongo cat needs your help. Bongo cat needz more hatz!!! Every time you press a key, Bongo cat will punch your taskbar. Type, click, play, work to collect more points. Which hats will you find?"
+      },
+      {
+        "item_key": "a809850843f50965",
+        "section": "free",
+        "title": "Super Animal Royale",
+        "url": "https://store.steampowered.com/app/843380/",
+        "message_id": "1495313296163864616",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-04-19T06:41:12.015640+00:00",
+        "description": "Welcome to the coziest way to kill your friends. Super Animal Royale is a 64-player, top-down 2D battle royale where adorably murderous animals fight tooth, claw, and machine gun. Then, relax in Super Animal World with fishing, hamsterball races, and story quests before the next fight to the death."
+      },
+      {
+        "item_key": "8ff3618505b839d7",
+        "section": "free",
+        "title": "Trove",
+        "url": "https://store.steampowered.com/app/304050/",
+        "message_id": "1495313304590090280",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-04-19T06:41:13.900977+00:00",
+        "description": "Grab your friends, hone your blades, and set off for an epic procedurally generated adventure in Trove! Battle the Shadow in realms filled with dungeons and items created by your fellow players. Whether hunting treasure or building realms of your own, it’s never been this good to be square!"
+      },
+      {
+        "item_key": "9f0eebf9c5d4a700",
+        "section": "paid",
+        "title": "The Lord of the Rings: Return to Moria™",
+        "url": "https://store.steampowered.com/app/2933130/",
+        "message_id": "1495313319437799505",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-04-19T06:41:17.509838+00:00",
+        "description": "A survival crafting adventure set in the Fourth Age of Middle-earth. Lead the Dwarves to reclaim Moria - mine, build, and battle through procedurally generated depths alone or with up to 8 players in co-op. It is time to return to Moria!"
+      },
+      {
+        "item_key": "f8b545abb1757657",
+        "section": "paid",
+        "title": "SnowRunner",
+        "url": "https://store.steampowered.com/app/1465360/",
+        "message_id": "1495313327830728774",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-04-19T06:41:19.457149+00:00",
+        "description": "Get ready for the next-generation off-road experience! Drive powerful vehicles and overcome extreme open environments to complete dozens of challenging missions solo or with up to 3 friends!"
+      },
+      {
+        "item_key": "fa26a8a3e9fd4c3b",
+        "section": "paid",
+        "title": "Warhammer 40,000: Darktide",
+        "url": "https://store.steampowered.com/app/1361210/",
+        "message_id": "1495313335577608306",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-04-19T06:41:21.520497+00:00",
+        "description": "Take back the city of Tertium from hordes of bloodthirsty foes in this intense and brutal action shooter. Warhammer 40,000: Darktide is the new co-op focused experience from the award-winning team behind the Vermintide series. As Tertium falls, Rejects Will Rise."
+      },
+      {
+        "item_key": "adaa39133c1af083",
+        "section": "paid",
+        "title": "State of Decay 2: Juggernaut Edition",
+        "url": "https://store.steampowered.com/app/495420/",
+        "message_id": "1495313344268206152",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-04-19T06:41:23.393678+00:00",
+        "description": "The dead have risen and civilization has fallen. Now it's up to you to gather survivors, scavenge for resources and build a community in a post-apocalyptic world – a world where you define what it means to survive in this ultimate zombie survival simulation."
+      },
+      {
+        "item_key": "5b1db5f7760bbedf",
+        "section": "paid",
+        "title": "The Planet Crafter",
+        "url": "https://store.steampowered.com/app/1284190/",
+        "message_id": "1495313353005072544",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-04-19T06:41:25.482231+00:00",
+        "description": "A space survival open world terraforming crafting game, designed for 1 to 10 players. Alter the ecosystem of an inhospitable planet to render it habitable for humanity. Survive, gather resources, and build your base. Then, generate oxygen, warmth, and pressure to create a brand new biosphere."
+      }
+    ]
   }
 }
