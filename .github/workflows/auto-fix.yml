@@ -1,9 +1,10 @@
 name: Auto Fix Loop
 
 on:
-  workflow_run:
-    workflows: ["Steam Free Games", "Daily Game Picks Winners", "Gaming Library Daily Reminder", "Gaming Library Sync", "Weekly Scheduling Responses Sync"]
-    types: [completed]
+  workflow_dispatch:
+  # workflow_run disabled 2026-04-19 - auto-merge loop was breaking since Apr 16, all recent runs failed at trigger level; manual dispatch still available
+  #   workflows: ["Steam Free Games", "Daily Game Picks Winners", "Gaming Library Daily Reminder", "Gaming Library Sync", "Weekly Scheduling Responses Sync"]
+  #   types: [completed]
 
 # Only one auto-fix may run at a time. Queue rather than cancel so no fix
 # attempt is silently dropped.
