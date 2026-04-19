@@ -103,6 +103,38 @@ Commands to edit the library (bot reacts ✅ when processed):
 !addgame GameName SteamURL @user1 @user2
 !rename GameName NewName · !archive GameName""",
     ],
+
+    "weekly-scheduling": [
+        """\
+📌 How This Works — #update-weekly-schedule-here
+
+Every week the bot posts everyone's availability summary for game nights.
+
+✍️ React with the time buckets that work for you each day
+🔄 The summary updates as reactions change
+
+Current week's post is at the top; scroll up to see everyone's availability.""",
+
+        """\
+📌 How This Works — #update-weekly-schedule-here
+
+Every week the bot posts everyone's availability summary for game nights.
+
+✍️ React with the time buckets that work for you each day
+🔄 The summary updates as reactions change
+
+Current week's post is at the top; scroll up to see everyone's availability.""",
+
+        """\
+📌 How This Works — #update-weekly-schedule-here
+
+Every week the bot posts everyone's availability summary for game nights.
+
+✍️ React with the time buckets that work for you each day
+🔄 The summary updates as reactions change
+
+Current week's post is at the top; scroll up to see everyone's availability.""",
+    ],
 }
 
 

@@ -73,11 +73,6 @@ class TestDetectBrokenIfNewConditions:
         result = detect_broken_if(["game card missing last activity date"], ch)
         assert result["game card missing last activity date"] == "triggered"
 
-    def test_command_reference_not_pinned_triggered(self) -> None:
-        ch = _empty_result(command_reference_not_pinned=True)
-        result = detect_broken_if(["command reference not pinned"], ch)
-        assert result["command reference not pinned"] == "triggered"
-
     def test_day_entries_missing_dates_triggered(self) -> None:
         ch = _empty_result(day_entries_missing_dates=True)
         result = detect_broken_if(["day entries missing dates"], ch)
@@ -87,16 +82,6 @@ class TestDetectBrokenIfNewConditions:
         ch = _empty_result(missing_members_not_mentioned=True)
         result = detect_broken_if(["missing members not @mentioned"], ch)
         assert result["missing members not @mentioned"] == "triggered"
-
-    def test_current_week_not_pinned_triggered(self) -> None:
-        ch = _empty_result(current_week_not_pinned=True)
-        result = detect_broken_if(["current week post not pinned"], ch)
-        assert result["current week post not pinned"] == "triggered"
-
-    def test_previous_week_still_pinned_triggered(self) -> None:
-        ch = _empty_result(previous_week_still_pinned=True)
-        result = detect_broken_if(["previous week still pinned when new week exists"], ch)
-        assert result["previous week still pinned when new week exists"] == "triggered"
 
     def test_delta_posted_when_nothing_changed_triggered(self) -> None:
         ch = _empty_result(delta_posted_when_nothing_changed=True)
@@ -143,11 +128,8 @@ class TestDetectBrokenIfNewConditions:
             "delta summary missing from intro",
             "delta summary posted as separate message instead of inside intro",
             "game card missing last activity date",
-            "command reference not pinned",
             "day entries missing dates",
             "missing members not @mentioned",
-            "current week post not pinned",
-            "previous week still pinned when new week exists",
             "delta posted when nothing changed",
             "failure report missing attempt count",
             "failure report missing previous occurrence count",

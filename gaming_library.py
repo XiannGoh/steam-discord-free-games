@@ -9,7 +9,6 @@ import requests
 from discord_api import (
     DiscordClient,
     DiscordMessageNotFoundError,
-    DiscordPermissionError,
     PERM_ADD_REACTIONS,
     PERM_MANAGE_MESSAGES,
     PERM_READ_MESSAGE_HISTORY,
@@ -1180,11 +1179,10 @@ def ensure_command_reference_pinned(
     client: DiscordClient,
     channel_id: str,
 ) -> None:
-    """Post the command reference message and pin it if not already done."""
+    """Post or edit the command reference message to keep it current."""
     pinned_info = state.get("command_reference_message")
     existing_msg_id = str((pinned_info or {}).get("message_id") or "").strip()
     if existing_msg_id:
-        # Already pinned — edit to keep current
         try:
             client.edit_message(channel_id, existing_msg_id, COMMAND_REFERENCE_MESSAGE, context="update command reference")
         except DiscordMessageNotFoundError:
@@ -1193,27 +1191,6 @@ def ensure_command_reference_pinned(
         payload = client.post_message(channel_id, COMMAND_REFERENCE_MESSAGE, context="post command reference")
         msg_id = str(payload.get("id") or "").strip()
         if msg_id:
-            try:
-                client.pin_message(channel_id, msg_id, context="pin command reference")
-            except DiscordPermissionError as exc:
-                warning = (
-                    f"⚠️ Bot is missing permission to pin messages in <#{channel_id}>. "
-                    f"The command reference was posted (message ID {msg_id}) but could not be pinned. "
-                    f"Please grant the bot 'Manage Messages' permission in this channel."
-                )
-                print(f"WARN: pin command reference — {exc}")
-                try:
-                    client.post_message(channel_id, warning, context="post pin permission warning")
-                except Exception:
-                    pass
-                _notify_health_monitor(
-                    f"⚠️ Gaming Library — Missing Pin Permission\n\n"
-                    f"Channel: <#{channel_id}>\n"
-                    f"The bot posted the command reference (message ID {msg_id}) but cannot pin it. "
-                    f"Please grant 'Manage Messages' permission to the bot in that channel."
-                )
-            except Exception:
-                pass
             state["command_reference_message"] = {"message_id": msg_id, "channel_id": channel_id}
 
 
