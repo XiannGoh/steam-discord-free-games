@@ -169,3 +169,24 @@ def test_step3_posted_to_correct_channel():
     client = FakeClient(last_message=None)
     post_or_edit_rolling_explainer(client, "library-chan", "step-3")
     assert client.posted[0][0] == "library-chan"
+
+
+def test_edits_in_place_when_last_message_from_different_bot_author():
+    """Detection is by prefix only — author is irrelevant (Issue #292 Fix 3).
+
+    A rolling explainer posted by a different bot identity (e.g. XiannGPT Scheduling Bot
+    vs XiannGPT Game Picks Bot) must still be detected and edited in place rather than
+    posting a duplicate. The author field must not influence the decision.
+    """
+    other_bot_message = {
+        "id": "msg-from-other-bot",
+        "content": f"{ROLLING_EXPLAINER_PREFIX} — #step-1-vote-on-games-to-test\n\nOld text.",
+        "author": {"id": "999999999", "username": "XiannGPT Scheduling Bot", "bot": True},
+    }
+    client = FakeClient(last_message=other_bot_message)
+    post_or_edit_rolling_explainer(client, "step1-chan", "step-1")
+    assert len(client.posted) == 0, "Must not post a duplicate when last message has the prefix"
+    assert len(client.edited) == 1, "Must edit the existing message regardless of author"
+    _, edited_id, edited_content = client.edited[0]
+    assert edited_id == "msg-from-other-bot"
+    assert edited_content.startswith(ROLLING_EXPLAINER_PREFIX)

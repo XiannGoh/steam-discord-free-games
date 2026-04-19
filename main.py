@@ -1929,8 +1929,9 @@ def get_force_refresh_same_day() -> bool:
 def is_manual_run() -> bool:
     """Return True when triggered by workflow_dispatch (manual/test run).
 
-    Manual runs post to Discord but do NOT mark the day as completed so that
-    the subsequent scheduled run always executes cleanly.
+    Manual runs post to Discord and mark the day as completed unless
+    force_refresh_same_day is also set, which signals an explicit test rerun
+    that should keep the day open for the next scheduled run.
     """
     event = (os.getenv(GITHUB_EVENT_NAME_ENV, "") or "").strip().lower()
     return event == "workflow_dispatch"
@@ -2247,9 +2248,10 @@ def post_daily_pick_messages(
 ) -> Tuple[Dict[str, int], bool]:
     """Post (or reconcile) daily pick messages. Returns (run_counts, rerun_protection_active, verification_state).
 
-    When manual_run is True (workflow_dispatch trigger), the run completes normally
-    but does NOT mark the day as completed in state. This ensures the next scheduled
-    run always executes cleanly regardless of prior manual runs.
+    When manual_run is True AND force_refresh_same_day is True, the run completes
+    but does NOT mark the day as completed, keeping the day open for the next
+    scheduled run. For all other cases (including plain manual runs triggered by
+    workflow_dispatch without force_refresh), completed=True is set normally.
     """
     run_counts: Dict[str, int] = {"created": 0, "updated": 0, "reused": 0, "skipped": 0}
     if not (demo_playtest_items or free_items or paid_items or instagram_posts):
@@ -2506,6 +2508,11 @@ def post_daily_pick_messages(
                 discord_client.edit_message(existing_channel_id, existing_message_id, intro_content, context=f"edit intro for {day_key}")
                 intro_state["posted_at_utc"] = utc_now_iso()
                 print(f"EDIT: updated intro for {day_key}")
+            except DiscordMessageNotFoundError:
+                print(f"REPOST: original intro for {day_key} missing, posting fresh")
+                intro_state.pop("message_id", None)
+                intro_state.pop("channel_id", None)
+                post_or_reconcile_simple(intro_content, "intro", intro_state)
             except Exception as e:
                 print(f"WARN: failed to edit intro for {day_key}: {e}")
 
@@ -2515,8 +2522,8 @@ def post_daily_pick_messages(
         post_or_reconcile_simple(footer_content, "footer", footer_state)
         sleep_briefly()
 
-    if manual_run:
-        print(f"MANUAL RUN: daily picks done for {day_key}; skipping completed=True to preserve scheduled run eligibility")
+    if manual_run and force_refresh_same_day:
+        print(f"Manual rerun with force_refresh — not marking {day_key} completed")
     else:
         run_state["completed"] = True
         run_state["completed_at_utc"] = utc_now_iso()

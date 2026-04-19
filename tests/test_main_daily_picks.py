@@ -646,8 +646,13 @@ def test_daily_picks_footer_skips_safely_when_guild_id_missing(monkeypatch, tmp_
     assert saved[day_key]["run_state"]["completed"] is True
 
 
-def test_manual_run_does_not_set_completed_flag(monkeypatch, tmp_path):
-    """workflow_dispatch runs post normally but do not mark the day as completed."""
+def test_manual_run_without_force_refresh_sets_completed_flag(monkeypatch, tmp_path):
+    """workflow_dispatch without force_refresh posts normally AND marks the day completed.
+
+    Fix 1 (Issue #292): only workflow_dispatch + force_refresh_same_day=True should keep
+    the day open. A plain workflow_dispatch (e.g. from auto-fix bot) must set completed=True
+    so that the next scheduled cron run is correctly suppressed.
+    """
     daily_path = tmp_path / "daily.json"
     daily_path.write_text("{}", encoding="utf-8")
     day_key = "2026-04-09"
@@ -662,13 +667,14 @@ def test_manual_run_does_not_set_completed_flag(monkeypatch, tmp_path):
     main.post_daily_pick_messages(
         [], [{"title": "Free", "url": "https://store.steampowered.com/app/99", "score": 10}], [], [],
         manual_run=True,
+        force_refresh_same_day=False,
     )
 
     # Posts happened (manual run still posts to Discord)
     assert len(posted) > 0
-    # But completed flag is NOT set
+    # completed IS set — plain manual runs must not leave the day open
     saved = json.loads(daily_path.read_text(encoding="utf-8"))
-    assert saved[day_key]["run_state"].get("completed") is not True
+    assert saved[day_key]["run_state"].get("completed") is True
 
 
 def test_scheduled_run_sets_completed_flag(monkeypatch, tmp_path):
@@ -693,8 +699,14 @@ def test_scheduled_run_sets_completed_flag(monkeypatch, tmp_path):
     assert saved[day_key]["run_state"]["completed"] is True
 
 
-def test_manual_run_followed_by_scheduled_run_executes_normally(monkeypatch, tmp_path):
-    """After a manual run, the scheduled run still runs (not blocked by completed flag)."""
+def test_manual_run_without_force_refresh_blocks_subsequent_scheduled_run(monkeypatch, tmp_path):
+    """After a plain manual run, the subsequent scheduled run is blocked (Fix 1, Issue #292).
+
+    workflow_dispatch without force_refresh_same_day sets completed=True, so the next
+    scheduled cron run sees completed=True and correctly suppresses itself.
+    Use force_refresh_same_day=True if the intent is to keep the day open for a follow-up
+    scheduled run.
+    """
     daily_path = tmp_path / "daily.json"
     daily_path.write_text("{}", encoding="utf-8")
     day_key = "2026-04-09"
@@ -706,11 +718,46 @@ def test_manual_run_followed_by_scheduled_run_executes_normally(monkeypatch, tmp
 
     free_items = [{"title": "Free", "url": "https://store.steampowered.com/app/99", "score": 10}]
 
-    # Manual run first
+    # Manual run first (no force_refresh)
     manual_posts = []
     monkeypatch.setattr(main, "post_to_discord_with_metadata", lambda msg, capture_metadata=False: manual_posts.append(msg))
-    main.post_daily_pick_messages([], free_items, [], [], manual_run=True)
+    main.post_daily_pick_messages([], free_items, [], [], manual_run=True, force_refresh_same_day=False)
     assert manual_posts  # posts happened
+    saved = json.loads(daily_path.read_text(encoding="utf-8"))
+    assert saved[day_key]["run_state"]["completed"] is True  # completed set after manual run
+
+    # Scheduled run after — must be blocked because completed=True
+    scheduled_posts = []
+    monkeypatch.setattr(main, "post_to_discord_with_metadata", lambda msg, capture_metadata=False: scheduled_posts.append(msg))
+    _, rerun_protection_active, _ = main.post_daily_pick_messages([], free_items, [], [], manual_run=False)
+    assert rerun_protection_active  # suppressed by completed flag
+    assert not scheduled_posts  # no duplicate posts
+
+
+def test_manual_run_with_force_refresh_followed_by_scheduled_run_executes_normally(monkeypatch, tmp_path):
+    """After manual run + force_refresh=True, the scheduled run proceeds normally.
+
+    This is the explicit test-rerun flow: force_refresh_same_day=True keeps the day open
+    so the next scheduled run executes from scratch.
+    """
+    daily_path = tmp_path / "daily.json"
+    daily_path.write_text("{}", encoding="utf-8")
+    day_key = "2026-04-09"
+
+    monkeypatch.setattr(main, "DISCORD_DAILY_POSTS_FILE", str(daily_path))
+    monkeypatch.setattr(main, "DISCORD_BOT_TOKEN", "token")
+    monkeypatch.setattr(main, "sleep_briefly", lambda: None)
+    monkeypatch.setenv(main.DAILY_DATE_OVERRIDE_ENV, day_key)
+
+    free_items = [{"title": "Free", "url": "https://store.steampowered.com/app/99", "score": 10}]
+
+    # Manual run with force_refresh — must NOT set completed
+    manual_posts = []
+    monkeypatch.setattr(main, "post_to_discord_with_metadata", lambda msg, capture_metadata=False: manual_posts.append(msg))
+    main.post_daily_pick_messages([], free_items, [], [], manual_run=True, force_refresh_same_day=True)
+    assert manual_posts
+    saved = json.loads(daily_path.read_text(encoding="utf-8"))
+    assert saved[day_key]["run_state"].get("completed") is not True  # day left open
 
     # Scheduled run after — must NOT be blocked
     scheduled_posts = []
@@ -2063,3 +2110,57 @@ def test_step1_footer_no_missing_notices_when_all_sections_present():
     )
     assert footer is not None
     assert "_(No " not in footer
+
+
+def test_intro_reposts_on_404_when_stale_message_id(monkeypatch, tmp_path):
+    """If the stored intro message_id no longer exists (404), a fresh intro must be posted.
+
+    Without Fix 2, the edit_message call catches generic Exception and prints a WARN,
+    leaving the channel without an intro. With Fix 2, the DiscordMessageNotFoundError
+    triggers a re-post via post_or_reconcile_simple.
+    """
+    daily_path = tmp_path / "daily.json"
+    day_key = "2026-04-18"
+
+    # State with a stale intro message_id that no longer exists on Discord
+    initial = {
+        day_key: {
+            "run_state": {
+                "completed": False,
+                "section_headers": {},
+                "intro": {"message_id": "stale-intro-id", "channel_id": "chan-1"},
+            }
+        }
+    }
+    daily_path.write_text(json.dumps(initial), encoding="utf-8")
+
+    posted = []
+    counter = {"i": 0}
+
+    def fake_post(message, capture_metadata=False):
+        counter["i"] += 1
+        posted.append(message)
+        return {"message_id": f"new-{counter['i']}", "channel_id": "chan-1"}
+
+    # FakeDiscordClient raises DiscordMessageNotFoundError for the stale intro id
+    fake_client = FakeDiscordClient(stale_ids={"stale-intro-id"})
+
+    monkeypatch.setattr(main, "DISCORD_DAILY_POSTS_FILE", str(daily_path))
+    monkeypatch.setattr(main, "DISCORD_BOT_TOKEN", "token")
+    monkeypatch.setattr(main, "DiscordClient", lambda session: fake_client)
+    monkeypatch.setattr(main, "post_to_discord_with_metadata", fake_post)
+    monkeypatch.setattr(main, "sleep_briefly", lambda: None)
+    monkeypatch.setenv(main.DAILY_DATE_OVERRIDE_ENV, day_key)
+
+    main.post_daily_pick_messages(
+        demo_playtest_items=[],
+        free_items=[{"title": "Game A", "url": "https://store.steampowered.com/app/1", "price": "Free", "score": 9}],
+        paid_items=[],
+        instagram_posts=[],
+    )
+
+    # A fresh intro must have been posted (not silently skipped)
+    assert any("Daily Picks" in msg for msg in posted), (
+        "Expected a fresh intro to be posted after 404 on stale intro message_id, "
+        f"but posted messages were: {posted!r}"
+    )
