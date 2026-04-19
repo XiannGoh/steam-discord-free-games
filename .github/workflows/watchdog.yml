@@ -2,8 +2,8 @@ name: Missed-Run Watchdog
 
 on:
   workflow_dispatch:
-  schedule:
-    - cron: "0 * * * *"
+  # schedule:  # disabled 2026-04-19 (retry cascade amplifies duplicate-run bugs; workflow_dispatch still works)
+  #   - cron: "0 * * * *"
 
 concurrency:
   group: watchdog
