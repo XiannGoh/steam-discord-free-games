@@ -22,7 +22,7 @@ permissions:
 jobs:
   run-evening-winners:
     runs-on: ubuntu-latest
-      timeout-minutes: 20
+    timeout-minutes: 20
 
     steps:
       - name: Download repository
@@ -100,9 +100,19 @@ jobs:
 
           if ! git diff --cached --quiet; then
             git commit -m "Update winners state"
-            git stash --include-untracked || true
-            git pull --rebase origin main
-            git stash pop || true
+            for attempt in 1 2 3 4 5; do
+              git stash --include-untracked || true
+              if git pull --rebase -X theirs origin main; then
+                git stash pop || true
+                if git push; then exit 0; fi
+              else
+                git rebase --abort || true
+                git stash pop || true
+              fi
+              sleep $((attempt * 3))
+            done
+            echo "Push failed after 5 attempts"
+            exit 1
           fi
           git push
 
