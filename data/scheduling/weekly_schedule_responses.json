@@ -256,13 +256,13 @@
           },
           "Tuesday": {
             "reactions": [
-              "✅"
+              "❌"
             ],
             "custom_reply": null
           },
           "Wednesday": {
             "reactions": [
-              "❌"
+              "✅"
             ],
             "custom_reply": null
           },
