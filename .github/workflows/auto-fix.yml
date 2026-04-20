@@ -1069,10 +1069,7 @@ Run: ${RUN_URL}"
       # is tracked and manual review is flagged if it exceeds 10.
       # ------------------------------------------------------------------ #
       - name: Update health log — all attempts failed
-        if: |
-          steps.check.outputs.should_fix == 'true' &&
-          steps.fix_3.outcome == 'failure' &&
-          steps.health_log.outputs.failure_id != ''
+        if: steps.check.outputs.should_fix == 'true' && steps.fix_3.outcome == 'failure' && steps.health_log.outputs.failure_id != ''
         continue-on-error: true
         env:
           PYTHONPATH: .
@@ -1084,9 +1081,8 @@ Run: ${RUN_URL}"
             --attempt 3
 
       - name: Notify Discord — max attempts reached
-        if: |
-          steps.check.outputs.should_fix == 'true' &&
-          steps.fix_3.outcome == 'failure'
+        if: steps.check.outputs.should_fix == 'true' && steps.fix_3.outcome == 'failure'
+        continue-on-error: true
         env:
           DISCORD_HEALTH_MONITOR_WEBHOOK_URL: ${{ secrets.DISCORD_HEALTH_MONITOR_WEBHOOK_URL }}
           RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
