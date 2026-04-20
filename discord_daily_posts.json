@@ -7643,5 +7643,184 @@
         "description": "Gang Beasts is a silly multiplayer party game with surly gelatinous characters, brutal slapstick fight sequences, and absurd hazardous environments, set in the mean streets of Beef City."
       }
     ]
+  },
+  "2026-04-20": {
+    "run_state": {
+      "section_headers": {
+        "free": {
+          "message_id": "1495833746233098241",
+          "channel_id": "592534544708796474",
+          "posted_at_utc": "2026-04-20T17:09:17.495036+00:00"
+        },
+        "paid": {
+          "message_id": "1495833830639272227",
+          "channel_id": "592534544708796474",
+          "posted_at_utc": "2026-04-20T17:09:36.981408+00:00"
+        },
+        "instagram": {
+          "message_id": "1495833883412008990",
+          "channel_id": "592534544708796474",
+          "posted_at_utc": "2026-04-20T17:09:49.363820+00:00"
+        }
+      },
+      "last_attempt_at_utc": "2026-04-20T17:09:13.882989+00:00",
+      "intro": {
+        "message_id": "1495833736833536131",
+        "channel_id": "592534544708796474",
+        "posted_at_utc": "2026-04-20T17:09:15.039178+00:00"
+      },
+      "footer": {
+        "message_id": "1495833996398166127",
+        "channel_id": "592534544708796474",
+        "posted_at_utc": "2026-04-20T17:10:16.331854+00:00"
+      },
+      "completed": true,
+      "completed_at_utc": "2026-04-20T17:10:17.541549+00:00"
+    },
+    "items": [
+      {
+        "item_key": "33fdce47595ecdad",
+        "section": "free",
+        "title": "Shadowbane: Resurgence",
+        "url": "https://store.steampowered.com/app/4371680/",
+        "message_id": "1495833756982968473",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-04-20T17:09:19.649380+00:00",
+        "description": "A classic dark fantasy open-world MMORPG with unrestricted global PVP & a player-driven dynamic world. 12 unique races, flexible 22+48 class system. Build fortresses, conquer kingdoms, reshape the continent. Steam version supports multi-systems, no pay-to-win, hardcore fair gameplay."
+      },
+      {
+        "item_key": "02fc3e45178157d6",
+        "section": "free",
+        "title": "Hired Ops",
+        "url": "https://store.steampowered.com/app/374280/",
+        "message_id": "1495833765866508470",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-04-20T17:09:23.267727+00:00",
+        "description": "Hired Ops is a session-based online shooter dedicated to fierce conflicts between rival mercenary groups battling on a global scale."
+      },
+      {
+        "item_key": "c4e1a52dcfe89648",
+        "section": "free",
+        "title": "Eternal Card Game",
+        "url": "https://store.steampowered.com/app/531640/",
+        "message_id": "1495833785009443040",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-04-20T17:09:33.201023+00:00",
+        "description": "Six-guns and sorcery collide in Eternal, the new strategy card game of unlimited choices and unbelievable fun. Eternal brings AAA pace and polish to the infinite possibilities of a deep strategy card game. The only limits are your own creativity."
+      },
+      {
+        "item_key": "8e1a3b20e8b8b78a",
+        "section": "free",
+        "title": "AirMech",
+        "url": "https://store.steampowered.com/app/206500/",
+        "message_id": "1495833822204526594",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-04-20T17:09:35.110195+00:00",
+        "description": "AirMech® Strike is a fast paced Action-RTS game that can be played solo, coop, or competitively online. Earn Kudos and Experience in battle and unlock a wide collection of AirMechs and Units while you practice the perfect strategy to emerge victorious!"
+      },
+      {
+        "item_key": "09a2d3caec706660",
+        "section": "paid",
+        "title": "Shape of Dreams",
+        "url": "https://store.steampowered.com/app/2444750/",
+        "message_id": "1495833838763376871",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-04-20T17:09:39.233046+00:00",
+        "description": "Shape of Dreams delivers fast-paced top-down roguelite action with chaotic projectile-filled battles, fluid combat, and high-stakes co-op. Play solo or with up to three friends as you dodge overwhelming attacks and unleash devastating builds."
+      },
+      {
+        "item_key": "e9b250a4ec02238f",
+        "section": "paid",
+        "title": "Wobbly Life",
+        "url": "https://store.steampowered.com/app/1211020/",
+        "message_id": "1495833847840116797",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-04-20T17:09:41.603009+00:00",
+        "description": "Wobbly Life is a vibrant open-world physics sandbox. Play with your friends online or in local co-op, with exciting jobs, mini games and wacky story missions. Earn cash to spend in the world on clothes, vehicles and houses. There is a whole Wobbly World out there to explore!"
+      },
+      {
+        "item_key": "70ab44ba6a73667b",
+        "section": "paid",
+        "title": "Echo Point Nova",
+        "url": "https://store.steampowered.com/app/1836730/",
+        "message_id": "1495833858036469923",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-04-20T17:09:43.745078+00:00",
+        "description": "Echo Point Nova is an open-world FPS that offers unparalleled freedom and thrilling speed. Designed for both singleplayer and coop. From the creators of Severed Steel."
+      },
+      {
+        "item_key": "9f5caa4e26717bf6",
+        "section": "paid",
+        "title": "Roots of Pacha",
+        "url": "https://store.steampowered.com/app/1245560/",
+        "message_id": "1495833867133780211",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-04-20T17:09:45.675889+00:00",
+        "description": "The charming and relaxing stone-age farming sim where you live in a thriving community exploring the wonderful world of Pacha. Discover \"ideas,\" domesticate crops, befriend animals, and help your village grow. Play co-op with friends or explore the early days of civilization in single-player."
+      },
+      {
+        "item_key": "14c9b3d09c0bc212",
+        "section": "paid",
+        "title": "Warhammer 40,000: Fire Warrior (Classic)",
+        "url": "https://store.steampowered.com/app/4280930/",
+        "message_id": "1495833874926801026",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-04-20T17:09:47.693794+00:00",
+        "description": "Become an elite Fire Warrior and fight the forces of the Imperium of Man in an action-packed classic FPS. Experience Warhammer 40,000 from a unique T'au perspective with a story full of twists and betrayal."
+      },
+      {
+        "item_key": "ab489bc97c7f286e",
+        "section": "instagram",
+        "title": "@wilfratgaming",
+        "url": "https://www.instagram.com/p/DXXGlIBjdp6/",
+        "message_id": "1495833890504577036",
+        "channel_id": "592534544708796474",
+        "source_type": "instagram",
+        "posted_at": "2026-04-20T17:09:51.359434+00:00",
+        "description": "Corsair Cove! #gamestoplay #gaming #videogames #survivalgames"
+      },
+      {
+        "item_key": "c737b8652b492668",
+        "section": "instagram",
+        "title": "@sharedxp_official",
+        "url": "https://www.instagram.com/p/DXWgCX0DPxS/",
+        "message_id": "1495833899358748783",
+        "channel_id": "592534544708796474",
+        "source_type": "instagram",
+        "posted_at": "2026-04-20T17:09:53.306627+00:00",
+        "description": "Cartel Pilots Wanted is a 2-player co-op smuggling game where you fly dodgy cargo between tropical islands, upgrade y..."
+      },
+      {
+        "item_key": "a7ae3038fddb1f37",
+        "section": "instagram",
+        "title": "@sharedxp_official",
+        "url": "https://www.instagram.com/p/DXUbXgfDAFD/",
+        "message_id": "1495833908577701971",
+        "channel_id": "592534544708796474",
+        "source_type": "instagram",
+        "posted_at": "2026-04-20T17:10:12.546895+00:00",
+        "description": "Windrose is an online pirate survival game where you sail, build, fight, and survive as a crew across a shared world...."
+      },
+      {
+        "item_key": "38d4424bada32026",
+        "section": "instagram",
+        "title": "@wilfratgaming",
+        "url": "https://www.instagram.com/p/DXUfudFjefD/",
+        "message_id": "1495833987682402504",
+        "channel_id": "592534544708796474",
+        "source_type": "instagram",
+        "posted_at": "2026-04-20T17:10:14.521393+00:00",
+        "description": "FINALLY we are getting some good nam combat! #gaming #gamestoplay #hellletloose"
+      }
+    ]
   }
 }
