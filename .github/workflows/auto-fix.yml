@@ -563,16 +563,16 @@ jobs:
             fi
             post_discord "🔴 Auto-fix Reverted — ${triggering_workflow} — ${date_str}
 
-Reason: Post-fix verification showed more failures
-Reverted PR: #${pr_number}
-Run: ${RUN_URL}"
+          Reason: Post-fix verification showed more failures
+          Reverted PR: #${pr_number}
+          Run: ${RUN_URL}"
           else
             echo "Post-fix verification still failing but not worse — inconclusive"
             post_discord "🟡 Auto-fix Inconclusive — ${triggering_workflow} — ${date_str}
 
-Fix merged but verification still failing
-Next attempt will try a different approach
-Run: ${RUN_URL}"
+          Fix merged but verification still failing
+          Next attempt will try a different approach
+          Run: ${RUN_URL}"
           fi
 
       - name: Fix attempt 2 of 3
@@ -807,16 +807,16 @@ Run: ${RUN_URL}"
             fi
             post_discord "🔴 Auto-fix Reverted — ${triggering_workflow} — ${date_str}
 
-Reason: Post-fix verification showed more failures
-Reverted PR: #${pr_number}
-Run: ${RUN_URL}"
+          Reason: Post-fix verification showed more failures
+          Reverted PR: #${pr_number}
+          Run: ${RUN_URL}"
           else
             echo "Post-fix verification still failing but not worse — inconclusive"
             post_discord "🟡 Auto-fix Inconclusive — ${triggering_workflow} — ${date_str}
 
-Fix merged but verification still failing
-Next attempt will try a different approach
-Run: ${RUN_URL}"
+          Fix merged but verification still failing
+          Next attempt will try a different approach
+          Run: ${RUN_URL}"
           fi
 
       - name: Fix attempt 3 of 3
@@ -1051,16 +1051,16 @@ Run: ${RUN_URL}"
             fi
             post_discord "🔴 Auto-fix Reverted — ${triggering_workflow} — ${date_str}
 
-Reason: Post-fix verification showed more failures
-Reverted PR: #${pr_number}
-Run: ${RUN_URL}"
+          Reason: Post-fix verification showed more failures
+          Reverted PR: #${pr_number}
+          Run: ${RUN_URL}"
           else
             echo "Post-fix verification still failing but not worse — inconclusive"
             post_discord "🟡 Auto-fix Inconclusive — ${triggering_workflow} — ${date_str}
 
-Fix merged but verification still failing
-Next attempt will try a different approach
-Run: ${RUN_URL}"
+          Fix merged but verification still failing
+          Next attempt will try a different approach
+          Run: ${RUN_URL}"
           fi
 
       # ------------------------------------------------------------------ #
