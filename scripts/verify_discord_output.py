@@ -52,6 +52,18 @@ ROLLING_EXPLAINER_PREFIX = "📌 How This Works"
 # be pointed at a specific day during manual reruns.
 DAILY_DATE_OVERRIDE_ENV = "DAILY_DATE_UTC"
 
+# Channel IDs for direct channel scans (fallback when not in run_state).
+_DISCORD_STEP1_CHANNEL_ID = os.getenv("DISCORD_STEP1_CHANNEL_ID", "")
+_DISCORD_WINNERS_CHANNEL_ID = os.getenv("DISCORD_WINNERS_CHANNEL_ID", "")
+_DISCORD_GAMING_LIBRARY_CHANNEL_ID = os.getenv("DISCORD_GAMING_LIBRARY_CHANNEL_ID", "")
+
+# Expected bot usernames per channel — used to detect cross-channel leakage.
+EXPECTED_BOT_AUTHORS: Dict[str, set] = {
+    CHANNEL_STEP1: {"XiannGPT Bot", "XiannGPT Game Picks Bot"},
+    CHANNEL_STEP2: {"XiannGPT Bot", "XiannGPT Game Picks Bot"},
+    CHANNEL_STEP3: {"XiannGPT Bot", "XiannGPT Game Picks Bot"},
+}
+
 
 # ---------------------------------------------------------------------------
 # Helpers
@@ -215,6 +227,200 @@ def check_rolling_explainer(
         print(f"  WARN  could not verify rolling explainer for {label}: {e}")
 
 
+def is_game_card(msg: Dict[str, Any]) -> bool:
+    """Return True if the message looks like an individual game-card post.
+
+    Game cards always contain a suppressed Steam store URL.
+    """
+    return "store.steampowered.com" in msg.get("content", "").lower()
+
+
+def _has_divider_line(content: str) -> bool:
+    """Return True if any line in content consists only of em-dashes (≥15)."""
+    for line in content.splitlines():
+        stripped = line.strip()
+        if len(stripped) >= 15 and all(c == "\u2500" for c in stripped):
+            return True
+    return False
+
+
+def _get_day_utc_bounds(day_key: str):
+    """Return (start_utc, end_utc) datetime pair for day_key (YYYY-MM-DD, UTC)."""
+    d = datetime.fromisoformat(day_key).date()
+    start = datetime(d.year, d.month, d.day, tzinfo=timezone.utc)
+    return start, start + timedelta(days=1)
+
+
+def _filter_to_today(messages: List[Dict[str, Any]], day_key: str) -> List[Dict[str, Any]]:
+    """Return only messages whose Discord timestamp falls within day_key (UTC)."""
+    start, end = _get_day_utc_bounds(day_key)
+    result = []
+    for m in messages:
+        ts = m.get("timestamp", "")
+        if not ts:
+            continue
+        try:
+            dt = datetime.fromisoformat(str(ts).replace("Z", "+00:00"))
+            if dt.tzinfo is None:
+                dt = dt.replace(tzinfo=timezone.utc)
+            if start <= dt < end:
+                result.append(m)
+        except (ValueError, TypeError):
+            pass
+    return result
+
+
+def _run_channel_scan(
+    client: "DiscordClient",
+    channel_id: str,
+    day_key: str,
+    ch: Dict[str, Any],
+    channel_slug: str,
+    *,
+    intro_marker: str,
+    footer_keyword: str,
+    expected_max_game_cards: int = 40,
+) -> None:
+    """Fetch the last 200 messages from channel_id and run channel-based structural checks.
+
+    Sets fields on ch: duplicate_intro, duplicate_games, rolling_explainer_duplicate,
+    cross_channel_post, and appends to ch["errors"] for each problem found.
+
+    Skips silently when channel_id is empty or when no today-messages are found
+    (guards against fake clients in tests that return messages without timestamps).
+    """
+    if not channel_id:
+        return
+    try:
+        all_messages = client.get_channel_messages(
+            channel_id, context=f"channel scan {channel_slug}", limit=100
+        )
+    except Exception as e:
+        print(f"  WARN  channel scan {channel_slug}: could not fetch messages — {e}")
+        return
+
+    today_messages = _filter_to_today(all_messages, day_key)
+    print(
+        f"  channel scan {channel_slug}: {len(all_messages)} fetched, "
+        f"{len(today_messages)} from {day_key}"
+    )
+
+    if not today_messages:
+        # No timestamped messages found — skip structural checks rather than
+        # false-failing (covers test fakes that omit timestamps).
+        print(f"  WARN  channel scan {channel_slug}: no timestamped messages for {day_key} — skipping")
+        return
+
+    # --- Intro: must appear exactly once today ---
+    intro_candidates = [
+        m for m in today_messages
+        if not is_game_card(m)
+        and not m.get("content", "").startswith(ROLLING_EXPLAINER_PREFIX)
+        and _has_divider_line(m.get("content", ""))
+        and intro_marker in m.get("content", "")
+    ]
+    if len(intro_candidates) == 0:
+        ch["intro_found"] = False
+        ch["errors"].append(f"missing intro for today (channel scan: {day_key})")
+        print(f"  FAIL  channel scan {channel_slug}: no intro for {day_key}")
+    elif len(intro_candidates) > 1:
+        ch["duplicate_intro"] = True
+        ch["errors"].append(
+            f"duplicate intro messages for same day ({len(intro_candidates)} found) "
+            f"(channel scan: {day_key})"
+        )
+        print(f"  FAIL  channel scan {channel_slug}: {len(intro_candidates)} intros for {day_key}")
+    else:
+        ch["intro_found"] = True
+        print(f"  OK  channel scan {channel_slug}: intro found (id={intro_candidates[0].get('id')})")
+
+    # --- Footer: must appear exactly once today ---
+    footer_candidates = [
+        m for m in today_messages
+        if footer_keyword in m.get("content", "")
+    ]
+    if len(footer_candidates) == 0:
+        if not ch.get("footer_skipped"):
+            ch["footer_found"] = False
+            ch["errors"].append(f"missing footer for today (channel scan: {day_key})")
+            print(f"  FAIL  channel scan {channel_slug}: no footer for {day_key}")
+    elif len(footer_candidates) > 1:
+        ch["duplicate_footer"] = True
+        ch["errors"].append(
+            f"duplicate footer messages for same day ({len(footer_candidates)} found) "
+            f"(channel scan: {day_key})"
+        )
+        print(f"  FAIL  channel scan {channel_slug}: {len(footer_candidates)} footers for {day_key}")
+    else:
+        ch["footer_found"] = True
+        print(f"  OK  channel scan {channel_slug}: footer found (id={footer_candidates[0].get('id')})")
+
+    # --- Game cards: detect duplicates from re-runs ---
+    game_cards = [m for m in today_messages if is_game_card(m)]
+    if len(game_cards) > expected_max_game_cards:
+        ch["duplicate_games"] = True
+        ch["errors"].append(
+            f"duplicate game messages ({len(game_cards)} game cards today, "
+            f"expected max {expected_max_game_cards}) (channel scan: {day_key})"
+        )
+        print(
+            f"  FAIL  channel scan {channel_slug}: "
+            f"{len(game_cards)} game cards (max {expected_max_game_cards})"
+        )
+    else:
+        print(f"  OK  channel scan {channel_slug}: {len(game_cards)} game cards")
+
+    # --- Rolling explainer: exactly one today, and it's the last message overall ---
+    explainer_today = [
+        m for m in today_messages
+        if m.get("content", "").startswith(ROLLING_EXPLAINER_PREFIX)
+    ]
+    if len(explainer_today) == 0:
+        ch["rolling_explainer_missing"] = True
+        ch["errors"].append(
+            f"missing rolling explainer as last message (channel scan: {day_key})"
+        )
+        print(f"  FAIL  channel scan {channel_slug}: no rolling explainer for {day_key}")
+    elif len(explainer_today) > 1:
+        ch["rolling_explainer_duplicate"] = True
+        ch["errors"].append(
+            f"duplicate rolling explainers for same day ({len(explainer_today)} found) "
+            f"(channel scan: {day_key})"
+        )
+        print(
+            f"  FAIL  channel scan {channel_slug}: "
+            f"{len(explainer_today)} rolling explainers for {day_key}"
+        )
+    # Verify the explainer is the actual last message in the channel.
+    if all_messages and not all_messages[0].get("content", "").startswith(ROLLING_EXPLAINER_PREFIX):
+        ch["rolling_explainer_missing"] = True
+        last_preview = str(all_messages[0].get("content", ""))[:60]
+        ch["errors"].append(
+            f"rolling explainer is not the last message — "
+            f"last: {last_preview!r} (channel scan: {day_key})"
+        )
+        print(f"  FAIL  channel scan {channel_slug}: rolling explainer is not last message")
+    elif all_messages and all_messages[0].get("content", "").startswith(ROLLING_EXPLAINER_PREFIX):
+        ch.setdefault("rolling_explainer_missing", False)
+        print(f"  OK  channel scan {channel_slug}: rolling explainer is last message")
+
+    # --- Cross-channel bot detection ---
+    expected_bots = EXPECTED_BOT_AUTHORS.get(channel_slug)
+    if expected_bots:
+        for m in today_messages:
+            author = m.get("author") or {}
+            if not author.get("bot"):
+                continue
+            username = author.get("username", "")
+            if username and username not in expected_bots:
+                ch["cross_channel_post"] = True
+                ch["errors"].append(
+                    f"cross-channel post: {username!r} posted in {channel_slug} "
+                    f"(channel scan: {day_key})"
+                )
+                print(f"  FAIL  channel scan {channel_slug}: cross-channel post by {username!r}")
+
+
 def detect_broken_if(
     broken_if_conditions: List[str],
     ch_result: Dict[str, Any],
@@ -236,11 +442,13 @@ def detect_broken_if(
             detected[condition] = "triggered" if triggered else "not_triggered"
 
         elif "duplicate intro" in c or ("duplicate" in c and "intro" in c):
-            triggered = "duplicate" in errors_text and "intro" in errors_text
+            triggered = bool(ch_result.get("duplicate_intro")) or (
+                "duplicate" in errors_text and "intro" in errors_text
+            )
             detected[condition] = "triggered" if triggered else "not_triggered"
 
         elif "duplicate" in c:
-            triggered = "duplicate" in errors_text
+            triggered = bool(ch_result.get("duplicate_games")) or "duplicate" in errors_text
             detected[condition] = "triggered" if triggered else "not_triggered"
 
         elif "missing intro" in c:
@@ -319,7 +527,11 @@ def detect_broken_if(
             detected[condition] = "triggered" if triggered else "not_triggered"
 
         elif "missing rolling explainer" in c:
-            triggered = bool(ch_result.get("rolling_explainer_missing"))
+            triggered = bool(ch_result.get("rolling_explainer_missing")) or bool(ch_result.get("rolling_explainer_duplicate"))
+            detected[condition] = "triggered" if triggered else "not_triggered"
+
+        elif "cross-channel" in c or "cross channel" in c:
+            triggered = bool(ch_result.get("cross_channel_post"))
             detected[condition] = "triggered" if triggered else "not_triggered"
 
         elif "demo_playtest contains game older than 180 days" in c:
@@ -473,10 +685,22 @@ def verify_step1(
     # Duplicate check
     duplicates_found = len(seen_message_ids) != len(set(seen_message_ids))
 
-    # --- Rolling explainer check ---
-    print("\n--- Step-1 rolling explainer ---")
-    step1_channel_id = str(intro_state.get("channel_id") or "").strip()
-    check_rolling_explainer(client, step1_channel_id, ch, "step-1")
+    # --- Channel-based structural scan (covers rolling explainer + duplicates) ---
+    print("\n--- Step-1 channel scan ---")
+    step1_channel_id = (
+        str(intro_state.get("channel_id") or "").strip()
+        or _DISCORD_STEP1_CHANNEL_ID
+    )
+    if step1_channel_id:
+        _run_channel_scan(
+            client, step1_channel_id, day_key, ch, CHANNEL_STEP1,
+            intro_marker="Daily Picks",
+            footer_keyword="End of Daily Picks",
+            expected_max_game_cards=40,
+        )
+    else:
+        print("\n--- Step-1 rolling explainer (fallback) ---")
+        check_rolling_explainer(client, step1_channel_id, ch, "step-1")
 
     # --- Pass logic driven by spec ---
     intro_ok = not spec_required["intro_required"] or ch["intro_found"]
@@ -486,8 +710,15 @@ def verify_step1(
     no_missing = len(ch["messages_missing"]) == 0
     no_dupes = not spec_required["no_duplicates"] or not duplicates_found
     explainer_ok = not ch.get("rolling_explainer_missing", False)
+    no_channel_scan_errors = not any([
+        ch.get("duplicate_intro"),
+        ch.get("duplicate_games"),
+        ch.get("duplicate_footer"),
+        ch.get("cross_channel_post"),
+        ch.get("rolling_explainer_duplicate"),
+    ])
 
-    ch["pass"] = intro_ok and footer_ok and items_ok and no_missing and no_dupes and explainer_ok
+    ch["pass"] = intro_ok and footer_ok and items_ok and no_missing and no_dupes and explainer_ok and no_channel_scan_errors
 
     if not ch["pass"] and not ch["errors"]:
         reasons = []
@@ -618,10 +849,22 @@ def verify_step2(
 
     duplicates_found = len(seen_message_ids) != len(set(seen_message_ids))
 
-    # --- Rolling explainer check ---
-    print("\n--- Step-2 rolling explainer ---")
-    step2_channel_id = str(intro_state.get("channel_id") or "").strip()
-    check_rolling_explainer(client, step2_channel_id, ch, "step-2")
+    # --- Channel-based structural scan (covers rolling explainer + duplicates) ---
+    print("\n--- Step-2 channel scan ---")
+    step2_channel_id = (
+        str(intro_state.get("channel_id") or "").strip()
+        or _DISCORD_WINNERS_CHANNEL_ID
+    )
+    if step2_channel_id:
+        _run_channel_scan(
+            client, step2_channel_id, day_key, ch, CHANNEL_STEP2,
+            intro_marker="Daily Winners",
+            footer_keyword="End of Daily Winners",
+            expected_max_game_cards=40,
+        )
+    else:
+        print("\n--- Step-2 rolling explainer (fallback) ---")
+        check_rolling_explainer(client, step2_channel_id, ch, "step-2")
 
     # --- Pass logic driven by spec ---
     intro_ok = not spec_required["intro_required"] or ch["intro_found"]
@@ -631,8 +874,15 @@ def verify_step2(
     no_missing = len(ch["messages_missing"]) == 0
     no_dupes = not spec_required["no_duplicates"] or not duplicates_found
     explainer_ok = not ch.get("rolling_explainer_missing", False)
+    no_channel_scan_errors = not any([
+        ch.get("duplicate_intro"),
+        ch.get("duplicate_games"),
+        ch.get("duplicate_footer"),
+        ch.get("cross_channel_post"),
+        ch.get("rolling_explainer_duplicate"),
+    ])
 
-    ch["pass"] = intro_ok and footer_ok and items_ok and no_missing and no_dupes and explainer_ok
+    ch["pass"] = intro_ok and footer_ok and items_ok and no_missing and no_dupes and explainer_ok and no_channel_scan_errors
 
     if not ch["pass"] and not ch["errors"]:
         reasons = []
@@ -750,9 +1000,23 @@ def verify_step3(
     games = gaming_library_state.get("games", {})
     ch["item_count"] = len(games) if isinstance(games, dict) else 0
 
-    # --- Rolling explainer check ---
-    print("\n--- Step-3 rolling explainer ---")
-    check_rolling_explainer(client, intro_channel_id, ch, "step-3")
+    # --- Channel-based structural scan (covers rolling explainer + duplicates) ---
+    print("\n--- Step-3 channel scan ---")
+    step3_channel_id = (
+        str(intro_channel_id or "").strip()
+        or _DISCORD_GAMING_LIBRARY_CHANNEL_ID
+    )
+    if step3_channel_id:
+        _run_channel_scan(
+            client, step3_channel_id, day_key, ch, CHANNEL_STEP3,
+            intro_marker="Gaming Library",
+            footer_keyword="End of Gaming Library",
+            # Step-3 game cards are the full library — no per-day duplicate cap needed.
+            expected_max_game_cards=200,
+        )
+    else:
+        print("\n--- Step-3 rolling explainer (fallback) ---")
+        check_rolling_explainer(client, step3_channel_id, ch, "step-3")
 
     # --- Pass logic ---
     spec_required = get_spec_required(specs or {}, CHANNEL_STEP3)
@@ -765,8 +1029,14 @@ def verify_step3(
     no_separator_issue = not ch["footer_missing_separator"]
     no_delta_issue = not ch["delta_missing_from_intro"]
     explainer_ok = not ch.get("rolling_explainer_missing", False)
+    no_channel_scan_errors = not any([
+        ch.get("duplicate_intro"),
+        ch.get("duplicate_footer"),
+        ch.get("cross_channel_post"),
+        ch.get("rolling_explainer_duplicate"),
+    ])
 
-    ch["pass"] = intro_ok and footer_ok and items_ok and no_missing and no_separator_issue and no_delta_issue and explainer_ok
+    ch["pass"] = intro_ok and footer_ok and items_ok and no_missing and no_separator_issue and no_delta_issue and explainer_ok and no_channel_scan_errors
 
     if specs is not None:
         apply_broken_if(ch, specs, CHANNEL_STEP3)
