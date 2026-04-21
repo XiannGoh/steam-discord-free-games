@@ -293,7 +293,7 @@ def _run_channel_scan(
         return
     try:
         all_messages = client.get_channel_messages(
-            channel_id, context=f"channel scan {channel_slug}", limit=200
+            channel_id, context=f"channel scan {channel_slug}", limit=100
         )
     except Exception as e:
         print(f"  WARN  channel scan {channel_slug}: could not fetch messages — {e}")
