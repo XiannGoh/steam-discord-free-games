@@ -7822,5 +7822,129 @@
         "description": "FINALLY we are getting some good nam combat! #gaming #gamestoplay #hellletloose"
       }
     ]
+  },
+  "2026-04-21": {
+    "run_state": {
+      "section_headers": {
+        "free": {
+          "message_id": "1496194589814690007",
+          "channel_id": "592534544708796474",
+          "posted_at_utc": "2026-04-21T17:03:08.406093+00:00"
+        },
+        "paid": {
+          "message_id": "1496194604439965776",
+          "channel_id": "592534544708796474",
+          "posted_at_utc": "2026-04-21T17:03:12.354872+00:00"
+        },
+        "instagram": {
+          "message_id": "1496194654444589257",
+          "channel_id": "592534544708796474",
+          "posted_at_utc": "2026-04-21T17:03:23.959245+00:00"
+        }
+      },
+      "last_attempt_at_utc": "2026-04-21T17:03:04.927265+00:00",
+      "intro": {
+        "message_id": "1496194578552717382",
+        "channel_id": "592534544708796474",
+        "posted_at_utc": "2026-04-21T17:03:06.472407+00:00"
+      },
+      "footer": {
+        "message_id": "1496194680847597568",
+        "channel_id": "592534544708796474",
+        "posted_at_utc": "2026-04-21T17:03:30.927138+00:00"
+      },
+      "completed": true,
+      "completed_at_utc": "2026-04-21T17:03:32.137394+00:00"
+    },
+    "items": [
+      {
+        "item_key": "98db022726e5caee",
+        "section": "free",
+        "title": "Hamster Playground",
+        "url": "https://store.steampowered.com/app/1442670/",
+        "message_id": "1496194596332372218",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-04-21T17:03:10.298027+00:00",
+        "description": "Prepare for cuteness overload, relentless training, and fierce rivalry as you and your hamsters take on challenges while traversing the maze and riding a skateboard, with more modes coming soon! Be the first to cross the finish line to earn rewards and yummy treats!"
+      },
+      {
+        "item_key": "829714b921b890f6",
+        "section": "paid",
+        "title": "The Scouring",
+        "url": "https://store.steampowered.com/app/3338950/",
+        "message_id": "1496194613059256485",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-04-21T17:03:14.528865+00:00",
+        "description": "The Scouring is an RTS with fast pace, high attention to detail and next generation experience. Lead humans or orcs in a Classic Mode or use one of powerful Heroes to fight for victory! Play alone or with friends. Use our modding tools to create maps and custom game modes! Join The Scouring!"
+      },
+      {
+        "item_key": "648f8b2c17c56873",
+        "section": "paid",
+        "title": "Kingdoms Reborn",
+        "url": "https://store.steampowered.com/app/1307890/",
+        "message_id": "1496194622324474028",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-04-21T17:03:16.597430+00:00",
+        "description": "A city builder with simulated citizens, set in a procedurally-generated world map. Grow your kingdom through the eras from a tiny medieval hamlet into a prosperous global empire! Cooperate or compete in real-time with your friends in multiplayer mode."
+      },
+      {
+        "item_key": "d9d932ef35c04e78",
+        "section": "paid",
+        "title": "MORDHAU",
+        "url": "https://store.steampowered.com/app/629760/",
+        "message_id": "1496194630721605812",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-04-21T17:03:18.497784+00:00",
+        "description": "MORDHAU is a multiplayer medieval slasher. Create your mercenary and fight in brutal battles where you will experience fast paced combat, castle sieges, cavalry charges, and more."
+      },
+      {
+        "item_key": "7c4b8388fa059433",
+        "section": "paid",
+        "title": "Street Fighter 30th Anniversary Collection",
+        "url": "https://store.steampowered.com/app/586200/",
+        "message_id": "1496194638820937819",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-04-21T17:03:20.423156+00:00",
+        "description": "Celebrate Street Fighter’s historic legacy with the Street Fighter 30th Anniversary Collection. In this collection of 12 Street Fighter games, four groundbreaking titles let you hop online and relive the arcade experience through the online Arcade Mode or play with friends."
+      },
+      {
+        "item_key": "554faa00339a9069",
+        "section": "paid",
+        "title": "TerraScape",
+        "url": "https://store.steampowered.com/app/2290000/",
+        "message_id": "1496194646794305689",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-04-21T17:03:22.232755+00:00",
+        "description": "Build gorgeous kingdoms on floating islands by strategically placing buildings in this cozy, medieval City-Puzzler. Discover secret combinations, take on weekly challenges and explore randomly generated maps in various single- and multiplayer game modes."
+      },
+      {
+        "item_key": "77537134ca04cba0",
+        "section": "instagram",
+        "title": "@sharedxp_official",
+        "url": "https://www.instagram.com/p/DXZjgSYjPTC/",
+        "message_id": "1496194661784752168",
+        "channel_id": "592534544708796474",
+        "source_type": "instagram",
+        "posted_at": "2026-04-21T17:03:26.304268+00:00",
+        "description": "Chronicles: Medieval is an open-world medieval sandbox where you rise from nothing, fight one-on-one, build power, an..."
+      },
+      {
+        "item_key": "977ac13b118c09f9",
+        "section": "instagram",
+        "title": "@sharedxp_official",
+        "url": "https://www.instagram.com/p/DXZO0V_jPmW/",
+        "message_id": "1496194671209353452",
+        "channel_id": "592534544708796474",
+        "source_type": "instagram",
+        "posted_at": "2026-04-21T17:03:28.302939+00:00",
+        "description": "WHEEL MAKE IT is a chaotic physics co-op game where you and your mate try to survive the journey home using just one ..."
+      }
+    ]
   }
 }
