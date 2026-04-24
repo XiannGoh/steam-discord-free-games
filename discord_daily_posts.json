@@ -8125,5 +8125,206 @@
         "description": "Baldur’s Gate 3 is great, but this game aims to tackle one of its biggest problems..   Wyldheart!   #gaming #newgames..."
       }
     ]
+  },
+  "2026-04-23": {
+    "run_state": {
+      "section_headers": {
+        "free": {
+          "message_id": "1496938257873764545",
+          "channel_id": "592534544708796474",
+          "posted_at_utc": "2026-04-23T18:18:12.844754+00:00"
+        },
+        "paid": {
+          "message_id": "1496938312693317775",
+          "channel_id": "592534544708796474",
+          "posted_at_utc": "2026-04-23T18:18:26.035882+00:00"
+        },
+        "instagram": {
+          "message_id": "1496938372843704430",
+          "channel_id": "592534544708796474",
+          "posted_at_utc": "2026-04-23T18:18:40.106467+00:00"
+        }
+      },
+      "last_attempt_at_utc": "2026-04-23T18:18:10.310381+00:00",
+      "intro": {
+        "message_id": "1496938249904721940",
+        "channel_id": "592534544708796474",
+        "posted_at_utc": "2026-04-23T18:18:11.033583+00:00"
+      },
+      "footer": {
+        "message_id": "1496938425033425009",
+        "channel_id": "592534544708796474",
+        "posted_at_utc": "2026-04-23T18:18:52.918602+00:00"
+      },
+      "completed": true,
+      "completed_at_utc": "2026-04-23T18:18:54.129021+00:00"
+    },
+    "items": [
+      {
+        "item_key": "672c821eaac946fe",
+        "section": "free",
+        "title": "World of Tanks Blitz",
+        "url": "https://store.steampowered.com/app/444200/",
+        "message_id": "1496938264861605951",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-04-23T18:18:14.837573+00:00",
+        "description": "Blow off steam and tank turrets in a free-to-play online 7v7 tank shooter! Drive hundreds of tanks, from museum classics to \"did-that-ever-exist?\" specials, in quick 5 to 7-minute brawls packed with metal mayhem. Play solo or team up with a friend and enjoy smooth action even on modest hardware!"
+      },
+      {
+        "item_key": "933a04d7a445892f",
+        "section": "free",
+        "title": "NARAKA: BLADEPOINT",
+        "url": "https://store.steampowered.com/app/1203220/",
+        "message_id": "1496938274415972526",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-04-23T18:18:17.615813+00:00",
+        "description": "Dive into the legends of the Far East in NARAKA: BLADEPOINT; team up with friends in fast-paced melee fights for a Battle Royale experience unlike any other. Find your playstyle with a varied cast of heroes with unique skills. More than 40 million players have already joined the fray, play free now!"
+      },
+      {
+        "item_key": "a68b979786891aa5",
+        "section": "free",
+        "title": "Viking Rise",
+        "url": "https://store.steampowered.com/app/2819520/",
+        "message_id": "1496938285421953324",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-04-23T18:18:19.536996+00:00",
+        "description": "3rd Anniversary begins! Limited Hero and Hallowed Castle Skins debut—join us!"
+      },
+      {
+        "item_key": "2281c3be7f95fb55",
+        "section": "free",
+        "title": "Wizard101",
+        "url": "https://store.steampowered.com/app/799960/",
+        "message_id": "1496938293324026027",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-04-23T18:18:21.855059+00:00",
+        "description": "Unleash your inner magic and prepare to unravel the mysteries surrounding a death professor gone rogue. Darkness threatens to engulf the Spiral as you master powerful spells, explore over 22 whimsical worlds, and team-up with friends in this nostalgic wizard turn-based deckbuilding MMORPG."
+      },
+      {
+        "item_key": "3695146848f5744b",
+        "section": "free",
+        "title": "Yu-Gi-Oh! Duel Links",
+        "url": "https://store.steampowered.com/app/601510/",
+        "message_id": "1496938303054942259",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-04-23T18:18:24.145126+00:00",
+        "description": "Take on Duelists around the world with \"Yu-Gi-Oh! Duel Links\"! Step into a world that crosses dimensions and connects all Duelists. In Duel World, any location transforms into a Duel Field where heated Duels unfold!"
+      },
+      {
+        "item_key": "d15862fcc0449659",
+        "section": "paid",
+        "title": "Heroes of Hammerwatch II",
+        "url": "https://store.steampowered.com/app/619820/",
+        "message_id": "1496938321119674368",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-04-23T18:18:30.627408+00:00",
+        "description": "A rogue-lite action-rpg that offers extensive persistent progression. Build your town, upgrade and equip your heroes, before taking on the ever-changing Dark Citadel - either solo or with a team of friends."
+      },
+      {
+        "item_key": "76119421024549cd",
+        "section": "paid",
+        "title": "Cloudheim",
+        "url": "https://store.steampowered.com/app/2070270/",
+        "message_id": "1496938339830464632",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-04-23T18:18:32.709894+00:00",
+        "description": "Master chaotic physics-based combat inspired by Zelda and Devil May Cry. Explore islands and dungeons, smash monsters, loot and craft powerful gear, and grow your home in the sky. Play solo or online co-op with up to 4 players."
+      },
+      {
+        "item_key": "0b2cd79257d29d06",
+        "section": "paid",
+        "title": "Pratfall",
+        "url": "https://store.steampowered.com/app/4244510/",
+        "message_id": "1496938348449628281",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-04-23T18:18:34.787575+00:00",
+        "description": "A co-op game where you fall, dig, and explode your way down a dangerous cave system to find your lost dog. Catch your friends and watch your step on this journey full of traps, hazards, and the most deadly force of all: gravity. Will you jump into the unknown to rescue your dog?"
+      },
+      {
+        "item_key": "88c4bdf410d9f4c5",
+        "section": "paid",
+        "title": "Teardown",
+        "url": "https://store.steampowered.com/app/1167630/",
+        "message_id": "1496938357325041734",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-04-23T18:18:36.685262+00:00",
+        "description": "Prepare the perfect heist in a fully destructible, simulated voxel world. Tear down walls with vehicles or use explosives to create your own shortcuts. Shape the environment to your advantage in the most creative ways you can imagine. Play solo or with up to 12 players in multiplayer."
+      },
+      {
+        "item_key": "089e4f4425f518c6",
+        "section": "paid",
+        "title": "Kiln",
+        "url": "https://store.steampowered.com/app/1165990/",
+        "message_id": "1496938365239562310",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-04-23T18:18:38.501934+00:00",
+        "description": "An online, multiplayer, pottery party brawler from Double Fine Productions. Grab your friends to assemble a team of colorful spirits, then sculpt ceramic battle armor on a pottery wheel. The size and shape of your pots determine their play-style and abilities—work together to douse the enemy's kiln!"
+      },
+      {
+        "item_key": "feae02a81a82af57",
+        "section": "instagram",
+        "title": "@wilfratgaming",
+        "url": "https://www.instagram.com/p/DXe24YcjXdu/",
+        "message_id": "1496938379592466563",
+        "channel_id": "592534544708796474",
+        "source_type": "instagram",
+        "posted_at": "2026-04-23T18:18:41.938861+00:00",
+        "description": "SimplePlanes 2! Early access on steam right now!  #gaming #gamestoplay  #simpleplanes2"
+      },
+      {
+        "item_key": "132f6492b311ad6b",
+        "section": "instagram",
+        "title": "@sharedxp_official",
+        "url": "https://www.instagram.com/p/DXerIVaDHCs/",
+        "message_id": "1496938387653787789",
+        "channel_id": "592534544708796474",
+        "source_type": "instagram",
+        "posted_at": "2026-04-23T18:18:44.077136+00:00",
+        "description": "🐷 Grillhouse Protocol — farm animals vs a murderous farmer in this 1–8 player co-op stealth game  ✅ Online Co-op ✅ PC..."
+      },
+      {
+        "item_key": "a322459b08c88e1c",
+        "section": "instagram",
+        "title": "@sharedxp_official",
+        "url": "https://www.instagram.com/p/DXciNFujHKN/",
+        "message_id": "1496938396235333828",
+        "channel_id": "592534544708796474",
+        "source_type": "instagram",
+        "posted_at": "2026-04-23T18:18:46.494078+00:00",
+        "description": "American Cooking Simulator: Multiplayer is a chaotic co-op cooking game where you and up to 3 friends run a fast food..."
+      },
+      {
+        "item_key": "baf797cdb8ce7f92",
+        "section": "instagram",
+        "title": "@wilfratgaming",
+        "url": "https://www.instagram.com/p/DXeIIV_DeB8/",
+        "message_id": "1496938406545199227",
+        "channel_id": "592534544708796474",
+        "source_type": "instagram",
+        "posted_at": "2026-04-23T18:18:48.851841+00:00",
+        "description": "This physics based combat game could REALLY do with multiplayer! #gamestoplay #gaming"
+      },
+      {
+        "item_key": "2f680cf2aee35bfe",
+        "section": "instagram",
+        "title": "@itzjaysasa",
+        "url": "https://www.instagram.com/p/DXcV4UuDeqs/",
+        "message_id": "1496938416066138113",
+        "channel_id": "592534544708796474",
+        "source_type": "instagram",
+        "posted_at": "2026-04-23T18:18:50.897649+00:00",
+        "description": "So this game merges mechanics from games like megabonk with base building and made it co-op! It’s a perfect game to p..."
+      }
+    ]
   }
 }
