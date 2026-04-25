@@ -8326,5 +8326,217 @@
         "description": "So this game merges mechanics from games like megabonk with base building and made it co-op! It’s a perfect game to p..."
       }
     ]
+  },
+  "2026-04-24": {
+    "run_state": {
+      "section_headers": {
+        "free": {
+          "message_id": "1497274985004269730",
+          "channel_id": "592534544708796474",
+          "posted_at_utc": "2026-04-24T16:36:15.036510+00:00"
+        },
+        "paid": {
+          "message_id": "1497275034346065922",
+          "channel_id": "592534544708796474",
+          "posted_at_utc": "2026-04-24T16:36:26.595993+00:00"
+        },
+        "instagram": {
+          "message_id": "1497275089211621488",
+          "channel_id": "592534544708796474",
+          "posted_at_utc": "2026-04-24T16:36:41.453957+00:00"
+        }
+      },
+      "last_attempt_at_utc": "2026-04-24T16:36:11.878163+00:00",
+      "intro": {
+        "message_id": "1497274974875160766",
+        "channel_id": "592534544708796474",
+        "posted_at_utc": "2026-04-24T16:36:13.083593+00:00"
+      },
+      "footer": {
+        "message_id": "1497275152290021426",
+        "channel_id": "592534544708796474",
+        "posted_at_utc": "2026-04-24T16:36:55.361773+00:00"
+      },
+      "completed": true,
+      "completed_at_utc": "2026-04-24T16:36:56.572588+00:00"
+    },
+    "items": [
+      {
+        "item_key": "cbda4b7c95cb42af",
+        "section": "free",
+        "title": "Burger Shift: Team Rush: Prologue",
+        "url": "https://store.steampowered.com/app/3821150/",
+        "message_id": "1497274992730181817",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-04-24T16:36:17.297455+00:00",
+        "description": "Run the world's most chaotic fast food joint! Play solo or with up to 8 friends as you take orders, make burgers, and hustle to keep customers happy. Grow your business with every shift."
+      },
+      {
+        "item_key": "b496c1a2a9e50cad",
+        "section": "free",
+        "title": "Global City",
+        "url": "https://store.steampowered.com/app/1731270/",
+        "message_id": "1497275002687459349",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-04-24T16:36:19.322970+00:00",
+        "description": "Become the mayor and build the city of your dreams! In this game, anything is possible. Whatever you can imagine in a city-building and development simulator, you can do. Start from the very beginning and unlock new possibilities for developing your city in Global City!"
+      },
+      {
+        "item_key": "63d33aef928d40de",
+        "section": "free",
+        "title": "Will To Live Online",
+        "url": "https://store.steampowered.com/app/707010/",
+        "message_id": "1497275010954301621",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-04-24T16:36:20.992003+00:00",
+        "description": "Will To Live is a MMORPG-shooter whose action takes place in a severe post-apocalyptic world. Explore the world, engage in fights with mutants and other survivors, join the clans in the struggle for existence and prove your right to Live."
+      },
+      {
+        "item_key": "e11217ba999ff19b",
+        "section": "free",
+        "title": "Uncharted Waters Origin",
+        "url": "https://store.steampowered.com/app/1574360/",
+        "message_id": "1497275018198126713",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-04-24T16:36:23.101641+00:00",
+        "description": "Commemorating 30 years of the Uncharted Waters seriesSail through the vast oceans, massive worlds and contentsOpen world exploration RPG Uncharted Waters Origin"
+      },
+      {
+        "item_key": "ce93245037889f53",
+        "section": "free",
+        "title": "TrackMania Nations Forever",
+        "url": "https://store.steampowered.com/app/11020/",
+        "message_id": "1497275026632868054",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-04-24T16:36:24.866988+00:00",
+        "description": "A free game in the truest sense of the word, TrackMania Nations Forever lets you drive at mind-blowing speeds on fun and spectacular tracks in solo and multiplayer modes.TrackMania Nations Forever offers a new \"Forever\" version of the Stadium environment, a solid solo mode and 65 brand new, progressively challenging tracks."
+      },
+      {
+        "item_key": "ba330d77dd4afb4a",
+        "section": "paid",
+        "title": "Plants vs. Zombies™ Garden Warfare 2: Deluxe Edition",
+        "url": "https://store.steampowered.com/app/1922560/",
+        "message_id": "1497275041543491777",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-04-24T16:36:29.906004+00:00",
+        "description": "Ready the Peashooters and prepare for the craziest, funniest shooter in the universe: Plants vs. Zombies Garden Warfare 2."
+      },
+      {
+        "item_key": "adc1b004ccb149ce",
+        "section": "paid",
+        "title": "The Crew Motorfest",
+        "url": "https://store.steampowered.com/app/2698940/",
+        "message_id": "1497275055523106999",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-04-24T16:36:31.808161+00:00",
+        "description": "Welcome to Motorfest, the ultimate open-world driving experience. Explore the Hawaiian islands of O'ahu and Maui. Celebrate the best of car culture through 20+ themed campaigns (street racing, offroad, drift...) and collect hundreds of iconic vehicles. Enjoy the game free for five hours!"
+      },
+      {
+        "item_key": "e957a8f2d758267c",
+        "section": "paid",
+        "title": "A Way Out",
+        "url": "https://store.steampowered.com/app/1222700/",
+        "message_id": "1497275063563718917",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-04-24T16:36:33.829369+00:00",
+        "description": "A Way Out is an exclusively co-op adventure where you play the role of one of two prisoners making their daring escape from prison."
+      },
+      {
+        "item_key": "65a7f77f97f0f2e5",
+        "section": "paid",
+        "title": "Need for Speed™ Heat",
+        "url": "https://store.steampowered.com/app/1222680/",
+        "message_id": "1497275071754932405",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-04-24T16:36:36.150181+00:00",
+        "description": "Hustle by day and risk it all at night in Need for Speed™ Heat Deluxe Edition, a white-knuckle street racer, where the lines of the law fade as the sun starts to set."
+      },
+      {
+        "item_key": "cc1549a730e63057",
+        "section": "paid",
+        "title": "Rest Area Simulator",
+        "url": "https://store.steampowered.com/app/3732960/",
+        "message_id": "1497275081607348234",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-04-24T16:36:38.027869+00:00",
+        "description": "Take over the gas station and convenience store at a roadside rest area and expand by purchasing new businesses. Manage a living world shaped by dynamic economy and random events. Upgrade your facilities, satisfy your customers, and play solo or with friends."
+      },
+      {
+        "item_key": "a2a743d3016d0280",
+        "section": "instagram",
+        "title": "@sharedxp_official",
+        "url": "https://www.instagram.com/p/DXgt6mgDF6j/",
+        "message_id": "1497275103841353972",
+        "channel_id": "592534544708796474",
+        "source_type": "instagram",
+        "posted_at": "2026-04-24T16:36:43.238209+00:00",
+        "description": "Sixth Force — a two-player co-op adventure where you're physically tethered together and every mechanic runs through ..."
+      },
+      {
+        "item_key": "621585da050c7dfd",
+        "section": "instagram",
+        "title": "@sharedxp_official",
+        "url": "https://www.instagram.com/p/DXfSeY9jG8D/",
+        "message_id": "1497275111051493418",
+        "channel_id": "592534544708796474",
+        "source_type": "instagram",
+        "posted_at": "2026-04-24T16:36:45.303556+00:00",
+        "description": "Flock Around — explore a nature sanctuary with friends, photograph every bird species, and try not to get pooped on i..."
+      },
+      {
+        "item_key": "a30f975161a9422d",
+        "section": "instagram",
+        "title": "@wilfratgaming",
+        "url": "https://www.instagram.com/p/DXhF9UJib25/",
+        "message_id": "1497275119821918353",
+        "channel_id": "592534544708796474",
+        "source_type": "instagram",
+        "posted_at": "2026-04-24T16:36:46.994566+00:00",
+        "description": "Psychological horror game! This is Barking from the dark!  #gamestoplay #gaming"
+      },
+      {
+        "item_key": "a4bf74cdf482c96f",
+        "section": "instagram",
+        "title": "@wilfratgaming",
+        "url": "https://www.instagram.com/p/DXgzDpSDXBu/",
+        "message_id": "1497275126952099843",
+        "channel_id": "592534544708796474",
+        "source_type": "instagram",
+        "posted_at": "2026-04-24T16:36:49.088817+00:00",
+        "description": "This is Hull Rupture! Free playtest demo is out now! #gamestoplay #hullrupture #newgames"
+      },
+      {
+        "item_key": "eba63de00a23eed3",
+        "section": "instagram",
+        "title": "@biffmatictv",
+        "url": "https://www.instagram.com/p/DXfLLRgDWTT/",
+        "message_id": "1497275135420403753",
+        "channel_id": "592534544708796474",
+        "source_type": "instagram",
+        "posted_at": "2026-04-24T16:36:50.779613+00:00",
+        "description": "This base management roguelite was just announced at the Second Wind Games Showcase and it looks amazing!   Hull Rupt..."
+      },
+      {
+        "item_key": "0b8bd4d58b4b5297",
+        "section": "instagram",
+        "title": "@itzjaysasa",
+        "url": "https://www.instagram.com/p/DXfZBMZkpda/",
+        "message_id": "1497275142785597526",
+        "channel_id": "592534544708796474",
+        "source_type": "instagram",
+        "posted_at": "2026-04-24T16:36:52.740798+00:00",
+        "description": "This game is one of the most in-depth inspection style games I’ve ever played. Mixing that mechanic with base managem..."
+      }
+    ]
   }
 }
