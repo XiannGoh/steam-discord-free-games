@@ -8538,5 +8538,151 @@
         "description": "This game is one of the most in-depth inspection style games I’ve ever played. Mixing that mechanic with base managem..."
       }
     ]
+  },
+  "2026-04-25": {
+    "run_state": {
+      "section_headers": {
+        "free": {
+          "message_id": "1497621219481227294",
+          "channel_id": "592534544708796474",
+          "posted_at_utc": "2026-04-25T15:32:03.452561+00:00"
+        },
+        "paid": {
+          "message_id": "1497621236312707335",
+          "channel_id": "592534544708796474",
+          "posted_at_utc": "2026-04-25T15:32:07.893968+00:00"
+        },
+        "instagram": {
+          "message_id": "1497621283985424557",
+          "channel_id": "592534544708796474",
+          "posted_at_utc": "2026-04-25T15:32:18.975777+00:00"
+        }
+      },
+      "last_attempt_at_utc": "2026-04-25T15:32:00.965268+00:00",
+      "intro": {
+        "message_id": "1497621210664669346",
+        "channel_id": "592534544708796474",
+        "posted_at_utc": "2026-04-25T15:32:01.862697+00:00"
+      },
+      "footer": {
+        "message_id": "1497621324623904798",
+        "channel_id": "592534544708796474",
+        "posted_at_utc": "2026-04-25T15:32:28.461283+00:00"
+      },
+      "completed": true,
+      "completed_at_utc": "2026-04-25T15:32:29.671881+00:00"
+    },
+    "items": [
+      {
+        "item_key": "aff21777cabefb9a",
+        "section": "free",
+        "title": "Nova: Space Armada",
+        "url": "https://store.steampowered.com/app/1108270/",
+        "message_id": "1497621226355429457",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-04-25T15:32:05.751771+00:00",
+        "description": "An exceptional sci-fi strategy game based on space adventure as its core."
+      },
+      {
+        "item_key": "68865e92f1d94c69",
+        "section": "paid",
+        "title": "We Gotta Go",
+        "url": "https://store.steampowered.com/app/3967470/",
+        "message_id": "1497621245082992773",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-04-25T15:32:09.649336+00:00",
+        "description": "We Gotta Go is a co-op horror comedy that’ll scare the crap out of you—literally. Team up to reach the only bathroom in a haunted mansion before your bowels betray you. Scavenge for items, fend off ghosts, and fight through cursed halls together in a desperate hunt for sweet relief."
+      },
+      {
+        "item_key": "f43d9c8bfc161b38",
+        "section": "paid",
+        "title": "Tiny Tina's Wonderlands",
+        "url": "https://store.steampowered.com/app/1286680/",
+        "message_id": "1497621252456714412",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-04-25T15:32:11.667829+00:00",
+        "description": "Embark on an epic adventure full of whimsy, wonder, and high-powered weaponry! Roll your own multiclass hero then shoot, loot, slash, and cast on a quest to stop the Dragon Lord."
+      },
+      {
+        "item_key": "9539cd54cb523819",
+        "section": "paid",
+        "title": "Super Mega Baseball™ 4",
+        "url": "https://store.steampowered.com/app/1487210/",
+        "message_id": "1497621260312514705",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-04-25T15:32:13.697058+00:00",
+        "description": "Super Mega Baseball™ 4 is where the Legends play. The signature combo of arcade-inspired style and immersive gameplay returns with over 200 baseball Legends and a grand slam of presentation upgrades."
+      },
+      {
+        "item_key": "4aa85fc9ffacc80c",
+        "section": "paid",
+        "title": "Sengoku Dynasty",
+        "url": "https://store.steampowered.com/app/1702010/",
+        "message_id": "1497621268869152841",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-04-25T15:32:15.411272+00:00",
+        "description": "Sengoku Dynasty is the ultimate feudal Japan experience: build villages, grow your community, and shape the open world through combat or economy. The choice is yours alone - or that of up to 4 players in multiplayer co-op!"
+      },
+      {
+        "item_key": "0209ab54ec10d57a",
+        "section": "paid",
+        "title": "Streets of Rage 4",
+        "url": "https://store.steampowered.com/app/985890/",
+        "message_id": "1497621276381155518",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-04-25T15:32:17.230397+00:00",
+        "description": "Amongst the best beat’em up series ever created, jammin’ ‘90s beats and over the top street fighting, the iconic series Streets of Rage comes back with a masterful tribute to and revitalization of the classic action fans adore."
+      },
+      {
+        "item_key": "65548f4fb5af7246",
+        "section": "instagram",
+        "title": "@wilfratgaming",
+        "url": "https://www.instagram.com/p/DXcU8r8jbpj/",
+        "message_id": "1497621291568468108",
+        "channel_id": "592534544708796474",
+        "source_type": "instagram",
+        "posted_at": "2026-04-25T15:32:21.020937+00:00",
+        "description": "Zombutcher! Demo on steam now!  #gaming #gamestoplay"
+      },
+      {
+        "item_key": "e4fb292270db3445",
+        "section": "instagram",
+        "title": "@sharedxp_official",
+        "url": "https://www.instagram.com/p/DXjjs7KDKn9/",
+        "message_id": "1497621299948683347",
+        "channel_id": "592534544708796474",
+        "source_type": "instagram",
+        "posted_at": "2026-04-25T15:32:23.035389+00:00",
+        "description": "Dirty Business — build and run a criminal empire from an underground base with up to four friends in this co-op crime..."
+      },
+      {
+        "item_key": "0b666660b85bceea",
+        "section": "instagram",
+        "title": "@sharedxp_official",
+        "url": "https://www.instagram.com/p/DXjbwJADJrw/",
+        "message_id": "1497621308265992262",
+        "channel_id": "592534544708796474",
+        "source_type": "instagram",
+        "posted_at": "2026-04-25T15:32:24.832625+00:00",
+        "description": "Over The Top: WWI is a 200-player World War I shooter with classes, tanks, planes, artillery, and fully destructible ..."
+      },
+      {
+        "item_key": "8d7f7ca9131e1826",
+        "section": "instagram",
+        "title": "@wilfratgaming",
+        "url": "https://www.instagram.com/p/DXhnGjAjRAm/",
+        "message_id": "1497621315719528630",
+        "channel_id": "592534544708796474",
+        "source_type": "instagram",
+        "posted_at": "2026-04-25T15:32:26.815195+00:00",
+        "description": "#Gothic #ReturnToTheColony #GothicRemake #Gothic1Remake"
+      }
+    ]
   }
 }
