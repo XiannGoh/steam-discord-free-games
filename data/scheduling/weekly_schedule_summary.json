@@ -437,7 +437,7 @@
     "date_range": "Apr 27–May 3, 2026",
     "summary": {
       "day_counts": {
-        "Monday": 1,
+        "Monday": 2,
         "Tuesday": 1,
         "Wednesday": 1,
         "Thursday": 1,
@@ -447,7 +447,7 @@
       },
       "slot_counts": {
         "Monday": {
-          "✅": 0,
+          "✅": 1,
           "🌅": 0,
           "☀️": 0,
           "🌙": 1,
@@ -498,7 +498,12 @@
       },
       "slot_voters": {
         "Monday": {
-          "✅": [],
+          "✅": [
+            {
+              "user_id": "137123568952672257",
+              "display_name": "Janithan"
+            }
+          ],
           "🌅": [],
           "☀️": [],
           "🌙": [
@@ -584,7 +589,7 @@
       },
       "best_overlap": {
         "day": "Monday",
-        "slot": "🌙",
+        "slot": "✅",
         "count": 1
       }
     }
