@@ -8814,5 +8814,124 @@
         "description": "This is a truck simulator set entirely in SPACE! Star Trucker   #gaming #spacegame #simulatorgame #trucksimulator #truck"
       }
     ]
+  },
+  "2026-04-27": {
+    "run_state": {
+      "section_headers": {
+        "free": {
+          "message_id": "1498385933521784982",
+          "channel_id": "592534544708796474",
+          "posted_at_utc": "2026-04-27T18:10:45.575338+00:00"
+        },
+        "paid": {
+          "message_id": "1498385963515117810",
+          "channel_id": "592534544708796474",
+          "posted_at_utc": "2026-04-27T18:10:52.667787+00:00"
+        }
+      },
+      "last_attempt_at_utc": "2026-04-27T18:10:42.352514+00:00",
+      "intro": {
+        "message_id": "1498385922113146961",
+        "channel_id": "592534544708796474",
+        "posted_at_utc": "2026-04-27T18:10:43.854484+00:00"
+      },
+      "footer": {
+        "message_id": "1498386011712000080",
+        "channel_id": "592534544708796474",
+        "posted_at_utc": "2026-04-27T18:11:04.042784+00:00"
+      },
+      "completed": true,
+      "completed_at_utc": "2026-04-27T18:11:05.253328+00:00"
+    },
+    "items": [
+      {
+        "item_key": "0bff7c2420b4d8ea",
+        "section": "free",
+        "title": "BEACHED",
+        "url": "https://store.steampowered.com/app/1412190/",
+        "message_id": "1498385940555763753",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-04-27T18:10:47.317688+00:00",
+        "description": "A free-to-play, low-poly, open-world survival shooter where you’ll battle other players, explore massive monuments, and fight to stay alive. Build and fortify your base to defend against enemy raids, gather resources, and conquer a harsh, competitive world. Survival means doing whatever it takes."
+      },
+      {
+        "item_key": "929e1ea46294e25f",
+        "section": "free",
+        "title": "Urban Rivals",
+        "url": "https://store.steampowered.com/app/715310/",
+        "message_id": "1498385948067631104",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-04-27T18:10:49.322055+00:00",
+        "description": "Urban Rivals World - for fans and new players! Come to fight and stay for the collection!"
+      },
+      {
+        "item_key": "09d380c01a5af928",
+        "section": "free",
+        "title": "Copa Petrobras de Marcas",
+        "url": "https://store.steampowered.com/app/359800/",
+        "message_id": "1498385956254908567",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-04-27T18:10:51.009931+00:00",
+        "description": "COPA PETROBRAS DE MARCAS is a 100% free official game simulating the thrill of competing wheel-to-wheel with models from various automakers in some of the main Brazilian race tracks."
+      },
+      {
+        "item_key": "e946b3ac2ee1ea96",
+        "section": "paid",
+        "title": "Oddsparks: An Automation Adventure",
+        "url": "https://store.steampowered.com/app/1817800/",
+        "message_id": "1498385970276470977",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-04-27T18:10:54.530160+00:00",
+        "description": "Oddsparks is a blend of automation and real-time strategy for both the die-hard fans of the automation genre and the automation-curious. Explore a strange fantasy world, uncover the mysteries of the past, automate your workshops, and go on adventures with your odd & adorable Sparks!"
+      },
+      {
+        "item_key": "c00ef523241c42f9",
+        "section": "paid",
+        "title": "Erenshor",
+        "url": "https://store.steampowered.com/app/2382520/",
+        "message_id": "1498385978174210170",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-04-27T18:10:56.673693+00:00",
+        "description": "Erenshor is a single player RPG with the soul of a classic MMO - built for players who miss the journey. Partner up with Erenshor's signature SimPlayers and explore an open world where every reward comes with a story. Discover thousands of items, quests, raids, and secrets - all at your own pace."
+      },
+      {
+        "item_key": "556bc50999835b97",
+        "section": "paid",
+        "title": "SimCity™ 4 Deluxe Edition",
+        "url": "https://store.steampowered.com/app/24780/",
+        "message_id": "1498385987150282842",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-04-27T18:10:58.609914+00:00",
+        "description": "SimCity 4 Deluxe Edition includes the bestselling SimCity 4 and the all-new SimCity 4 Rush Hour Expansion Pack. Create the most massive region of cities ever, with a farming town, bedroom community, high-tech commercial center, and industrial backbone."
+      },
+      {
+        "item_key": "3486e50473440932",
+        "section": "paid",
+        "title": "Need for Speed™ Hot Pursuit Remastered",
+        "url": "https://store.steampowered.com/app/1328660/",
+        "message_id": "1498385995396157470",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-04-27T18:11:00.439484+00:00",
+        "description": "Feel the thrill of the chase and the rush of escape behind the wheels of the world’s hottest high-performance cars in Need for Speed™ Hot Pursuit Remastered– a heart-pumping, socially competitive racing experience."
+      },
+      {
+        "item_key": "69f700e9fdb61361",
+        "section": "paid",
+        "title": "Feed and Grow: Fish",
+        "url": "https://store.steampowered.com/app/429050/",
+        "message_id": "1498386003080249375",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-04-27T18:11:02.385482+00:00",
+        "description": "Hunt and eat other fish - simply, grow into larger beasts!"
+      }
+    ]
   }
 }
