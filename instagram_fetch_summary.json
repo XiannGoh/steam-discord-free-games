@@ -1,9 +1,9 @@
 {
-  "run_at": "2026-04-27T18:10:42Z",
+  "run_at": "2026-04-28T18:32:54Z",
   "total_creators": 8,
-  "creators_with_posts": 0,
-  "total_posts_collected": 0,
-  "total_skipped_seen": 24,
+  "creators_with_posts": 4,
+  "total_posts_collected": 6,
+  "total_skipped_seen": 5,
   "total_skipped_caption": 0,
   "failed_creators": [],
   "creators": {
@@ -35,19 +35,19 @@
       "failure_reason": null
     },
     "sharedxp_official": {
-      "fetched": 13,
-      "collected": 0,
-      "skipped_seen": 12,
-      "skipped_age": 1,
+      "fetched": 2,
+      "collected": 2,
+      "skipped_seen": 0,
+      "skipped_age": 0,
       "skipped_caption": 0,
       "failed": false,
       "failure_reason": null
     },
     "wilfratgaming": {
-      "fetched": 8,
-      "collected": 0,
-      "skipped_seen": 7,
-      "skipped_age": 1,
+      "fetched": 2,
+      "collected": 2,
+      "skipped_seen": 0,
+      "skipped_age": 0,
       "skipped_caption": 0,
       "failed": false,
       "failure_reason": null
@@ -62,8 +62,8 @@
       "failure_reason": null
     },
     "biffmatictv": {
-      "fetched": 4,
-      "collected": 0,
+      "fetched": 5,
+      "collected": 1,
       "skipped_seen": 3,
       "skipped_age": 1,
       "skipped_caption": 0,
@@ -71,8 +71,8 @@
       "failure_reason": null
     },
     "itzjaysasa": {
-      "fetched": 3,
-      "collected": 0,
+      "fetched": 4,
+      "collected": 1,
       "skipped_seen": 2,
       "skipped_age": 1,
       "skipped_caption": 0,
