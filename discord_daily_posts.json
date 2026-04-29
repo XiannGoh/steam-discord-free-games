@@ -8933,5 +8933,217 @@
         "description": "Hunt and eat other fish - simply, grow into larger beasts!"
       }
     ]
+  },
+  "2026-04-28": {
+    "run_state": {
+      "section_headers": {
+        "free": {
+          "message_id": "1498753910712696933",
+          "channel_id": "592534544708796474",
+          "posted_at_utc": "2026-04-28T18:32:58.189441+00:00"
+        },
+        "paid": {
+          "message_id": "1498753961682014339",
+          "channel_id": "592534544708796474",
+          "posted_at_utc": "2026-04-28T18:33:10.500695+00:00"
+        },
+        "instagram": {
+          "message_id": "1498754013263560855",
+          "channel_id": "592534544708796474",
+          "posted_at_utc": "2026-04-28T18:33:22.701972+00:00"
+        }
+      },
+      "last_attempt_at_utc": "2026-04-28T18:32:54.996757+00:00",
+      "intro": {
+        "message_id": "1498753899668963539",
+        "channel_id": "592534544708796474",
+        "posted_at_utc": "2026-04-28T18:32:56.395195+00:00"
+      },
+      "footer": {
+        "message_id": "1498754075053785223",
+        "channel_id": "592534544708796474",
+        "posted_at_utc": "2026-04-28T18:33:37.338529+00:00"
+      },
+      "completed": true,
+      "completed_at_utc": "2026-04-28T18:33:38.550266+00:00"
+    },
+    "items": [
+      {
+        "item_key": "032c61a9b1818652",
+        "section": "free",
+        "title": "AFK Journey",
+        "url": "https://store.steampowered.com/app/4195600/",
+        "message_id": "1498753918031626250",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-04-28T18:33:00.202061+00:00",
+        "description": "Welcome to the enchanted land of Esperia! Play as the legendary mage Merlin and explore a beautifully illustrated storybook world. Outsmart your foes in strategic card battles and uncover the secrets of this world alongside other heroes."
+      },
+      {
+        "item_key": "9d95dbca4467bd93",
+        "section": "free",
+        "title": "MechWarrior Online™ Legends",
+        "url": "https://store.steampowered.com/app/342200/",
+        "message_id": "1498753926109990974",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-04-28T18:33:01.954588+00:00",
+        "description": "MechWarrior Online™ Legends is a tactical, 'Mech-based online shooter set in the vast BattleTech Universe. Assume the role of an elite MechWarrior, piloting powerful BattleMechs, fighting for supremacy over the Inner Sphere."
+      },
+      {
+        "item_key": "0dfe4442ef4a8aa1",
+        "section": "free",
+        "title": "Cry of Fear",
+        "url": "https://store.steampowered.com/app/223710/",
+        "message_id": "1498753933555011606",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-04-28T18:33:04.020751+00:00",
+        "description": "Cry of Fear is a psychological single-player and co-op horror game set in a deserted town filled with horrific creatures and nightmarish delusions. You play as a young man desperately searching for answers in the cold Scandinavian night, finding his way through the city as he slowly descends into madness."
+      },
+      {
+        "item_key": "3f904e093a5eb5e4",
+        "section": "free",
+        "title": "Business Tour - Board Game with Online Multiplayer",
+        "url": "https://store.steampowered.com/app/397900/",
+        "message_id": "1498753943768137830",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-04-28T18:33:06.446335+00:00",
+        "description": "Business Tour is a free-to-play multiplayer tabletop game. Build your own monopoly, play with friends, complete daily tasks, and compete against players from around the world. Easy to learn, fun to master, and perfect for quick matches."
+      },
+      {
+        "item_key": "61900f00c2d508a0",
+        "section": "free",
+        "title": "Spiral Knights",
+        "url": "https://store.steampowered.com/app/99900/",
+        "message_id": "1498753952718651424",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-04-28T18:33:08.522966+00:00",
+        "description": "Join the ranks of the Spiral Knights. Stranded on an alien world, you must explore the ever-changing Clockworks beneath its surface."
+      },
+      {
+        "item_key": "3b8a6d6d027fa3f4",
+        "section": "paid",
+        "title": "Far Far West",
+        "url": "https://store.steampowered.com/app/3124540/",
+        "message_id": "1498753969772691668",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-04-28T18:33:12.485932+00:00",
+        "description": "Yee-haw, Cowboys! Team up in this chaotic 1-4 player co-op shooter. Journey to the Far Far West to blast monsters, sling spells, complete missions, and collect bounties. Work as a team to get in, get paid and get out (mostly) alive."
+      },
+      {
+        "item_key": "79c296ac256e6bcf",
+        "section": "paid",
+        "title": "s&box",
+        "url": "https://store.steampowered.com/app/590830/",
+        "message_id": "1498753977930743911",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-04-28T18:33:14.555818+00:00",
+        "description": "Our spiritual successor to Garry's Mod, this is a game creation platform built on the Source 2 engine. Play, create, and share games, explore community creations, and experience endless sandbox fun with powerful modern tools."
+      },
+      {
+        "item_key": "168ceae0df7be7d9",
+        "section": "paid",
+        "title": "Rust",
+        "url": "https://store.steampowered.com/app/252490/",
+        "message_id": "1498753986579136636",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-04-28T18:33:16.430251+00:00",
+        "description": "The only aim in Rust is to survive. Everything wants you to die - the island’s wildlife, other inhabitants, the environment, and other survivors. Do whatever it takes to last another night."
+      },
+      {
+        "item_key": "f33e65a6f16ac5bc",
+        "section": "paid",
+        "title": "EA SPORTS™ Madden NFL 26",
+        "url": "https://store.steampowered.com/app/3230400/",
+        "message_id": "1498753995072737424",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-04-28T18:33:18.943943+00:00",
+        "description": "EA SPORTS™ Madden NFL 26 leverages a new AI-powered machine learning system to convert thousands of plays from nearly a decade of real NFL data into more explosive gameplay."
+      },
+      {
+        "item_key": "5efadb19d10dc88a",
+        "section": "paid",
+        "title": "Flock Around",
+        "url": "https://store.steampowered.com/app/3618030/",
+        "message_id": "1498754005118222507",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-04-28T18:33:20.890994+00:00",
+        "description": "Flock Around is a multiplayer bird watching game. Explore a nature sanctuary with friends, snap pictures of birds, and fill out the guide book!"
+      },
+      {
+        "item_key": "35584260e53189fe",
+        "section": "instagram",
+        "title": "@itzjaysasa",
+        "url": "https://www.instagram.com/p/DXryVTaDYK1/",
+        "message_id": "1498754021463167076",
+        "channel_id": "592534544708796474",
+        "source_type": "instagram",
+        "posted_at": "2026-04-28T18:33:24.816609+00:00",
+        "description": "Here’s a fun game to play with friends where you hunt bounties in a supernatural Wild West | Game: Far Far West   #pc..."
+      },
+      {
+        "item_key": "4ff2752603bbb173",
+        "section": "instagram",
+        "title": "@sharedxp_official",
+        "url": "https://www.instagram.com/p/DXrq5FpjJCQ/",
+        "message_id": "1498754030455750791",
+        "channel_id": "592534544708796474",
+        "source_type": "instagram",
+        "posted_at": "2026-04-28T18:33:27.755196+00:00",
+        "description": "🎮 5 co-op games on Steam with up to 90% off right now  ✅ We Were Here Together — 60% off ✅ Green Hell — 90% off ✅ It ..."
+      },
+      {
+        "item_key": "6dc407c60f9bb220",
+        "section": "instagram",
+        "title": "@sharedxp_official",
+        "url": "https://www.instagram.com/p/DXpSkFdjHGO/",
+        "message_id": "1498754042099273768",
+        "channel_id": "592534544708796474",
+        "source_type": "instagram",
+        "posted_at": "2026-04-28T18:33:29.623551+00:00",
+        "description": "Awaysis — a physics-based co-op dungeon brawler where momentum is everything and your mates are just as dangerous as ..."
+      },
+      {
+        "item_key": "ad73f4a6740423c1",
+        "section": "instagram",
+        "title": "@wilfratgaming",
+        "url": "https://www.instagram.com/p/DXrnI0_DYYW/",
+        "message_id": "1498754049904869508",
+        "channel_id": "592534544708796474",
+        "source_type": "instagram",
+        "posted_at": "2026-04-28T18:33:31.505053+00:00",
+        "description": "#ad @dontnod_ent Aphelion is a cinematic, story-driven sci-fi adventure where exploration and stealth are the keys to..."
+      },
+      {
+        "item_key": "e26f069f25121af5",
+        "section": "instagram",
+        "title": "@wilfratgaming",
+        "url": "https://www.instagram.com/p/DXrWanBicIl/",
+        "message_id": "1498754057853075597",
+        "channel_id": "592534544708796474",
+        "source_type": "instagram",
+        "posted_at": "2026-04-28T18:33:33.568574+00:00",
+        "description": "Fans have waited so long for this! #newgames #gamestoplay #milsim #coopgame #risingstorm"
+      },
+      {
+        "item_key": "5448d055c6232ceb",
+        "section": "instagram",
+        "title": "@biffmatictv",
+        "url": "https://www.instagram.com/p/DXpsGAejNSx/",
+        "message_id": "1498754066384158740",
+        "channel_id": "592534544708796474",
+        "source_type": "instagram",
+        "posted_at": "2026-04-28T18:33:35.410548+00:00",
+        "description": "Is this the closest game we’ll ever get to TITANFALL 3?   Shatter Rush  #gaming #newgames #titanfall #gamingwithfrien..."
+      }
+    ]
   }
 }
