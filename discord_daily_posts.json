@@ -9799,6 +9799,188 @@
         "posted_at": "2026-05-02T15:58:09.111897+00:00",
         "description": "Gothic 1 Remake has a dynamic living world, it’s a cult classic RPG arriving with modern visuals, improved systems an..."
       }
-    ]
+    ],
+    "winners_state": {
+      "intro": {
+        "message_id": "1500280769996656792",
+        "channel_id": "1491294533751799809"
+      },
+      "section_headers": {
+        "paid": {
+          "message_id": "1500280778951622677",
+          "channel_id": "1491294533751799809"
+        },
+        "instagram": {
+          "message_id": "1500280815043481640",
+          "channel_id": "1491294533751799809"
+        }
+      },
+      "winner_messages": {
+        "https://store.steampowered.com/app/1167630/": {
+          "message_id": "1500280782315327661",
+          "channel_id": "1491294533751799809"
+        },
+        "https://store.steampowered.com/app/1225570/": {
+          "message_id": "1500280786111303740",
+          "channel_id": "1491294533751799809"
+        },
+        "https://store.steampowered.com/app/1755080/": {
+          "message_id": "1500280789089386537",
+          "channel_id": "1491294533751799809"
+        },
+        "https://store.steampowered.com/app/2070270/": {
+          "message_id": "1500280794063704144",
+          "channel_id": "1491294533751799809"
+        },
+        "https://store.steampowered.com/app/3732960/": {
+          "message_id": "1500280796840333366",
+          "channel_id": "1491294533751799809"
+        },
+        "https://store.steampowered.com/app/4244510/": {
+          "message_id": "1500280801521303653",
+          "channel_id": "1491294533751799809"
+        },
+        "https://store.steampowered.com/app/429050/": {
+          "message_id": "1500280810895314974",
+          "channel_id": "1491294533751799809"
+        },
+        "https://www.instagram.com/p/DXcV4UuDeqs/": {
+          "message_id": "1500280820709986335",
+          "channel_id": "1491294533751799809"
+        }
+      },
+      "footer": {
+        "message_id": "1500280826003329095",
+        "channel_id": "1491294533751799809"
+      },
+      "message_id": "1500280769996656792",
+      "message_ids": [
+        "1500280769996656792",
+        "1500280778951622677",
+        "1500280782315327661",
+        "1500280786111303740",
+        "1500280789089386537",
+        "1500280794063704144",
+        "1500280796840333366",
+        "1500280801521303653",
+        "1500280810895314974",
+        "1500280815043481640",
+        "1500280820709986335",
+        "1500280826003329095"
+      ],
+      "last_action": "create",
+      "updated_at_utc": "2026-05-02T23:40:23.213624+00:00",
+      "posted_at_utc": "2026-05-02T23:40:23.213641+00:00",
+      "winner_keys": [
+        "https://store.steampowered.com/app/1167630/",
+        "https://store.steampowered.com/app/1225570/",
+        "https://store.steampowered.com/app/1755080/",
+        "https://store.steampowered.com/app/2070270/",
+        "https://store.steampowered.com/app/3732960/",
+        "https://store.steampowered.com/app/4244510/",
+        "https://store.steampowered.com/app/429050/",
+        "https://www.instagram.com/p/DXcV4UuDeqs/"
+      ],
+      "winner_vote_counts": {
+        "https://store.steampowered.com/app/1167630/": 1,
+        "https://store.steampowered.com/app/1225570/": 1,
+        "https://store.steampowered.com/app/1755080/": 1,
+        "https://store.steampowered.com/app/2070270/": 1,
+        "https://store.steampowered.com/app/3732960/": 1,
+        "https://store.steampowered.com/app/4244510/": 1,
+        "https://store.steampowered.com/app/429050/": 1,
+        "https://www.instagram.com/p/DXcV4UuDeqs/": 1
+      },
+      "winner_entries": [
+        {
+          "winner_key": "https://store.steampowered.com/app/1167630/",
+          "section": "paid",
+          "title": "Teardown",
+          "url": "https://store.steampowered.com/app/1167630/",
+          "description": "Prepare the perfect heist in a fully destructible, simulated voxel world. Tear down walls with vehicles or use explosives to create your own shortcuts. Shape the environment to your advantage in the most creative ways you can imagine. Play solo or with up to 12 players in multiplayer.",
+          "human_votes": 1,
+          "voter_names": [
+            "Chocolie"
+          ]
+        },
+        {
+          "winner_key": "https://store.steampowered.com/app/1225570/",
+          "section": "paid",
+          "title": "Unravel Two",
+          "url": "https://store.steampowered.com/app/1225570/",
+          "description": "When you cut ties to the past, new bonds form. Build relationships with other Yarnys in local co-op or as a single player, fostering friendship and support as you journey together.",
+          "human_votes": 1,
+          "voter_names": [
+            "Chocolie"
+          ]
+        },
+        {
+          "winner_key": "https://store.steampowered.com/app/1755080/",
+          "section": "paid",
+          "title": "Away From Life",
+          "url": "https://store.steampowered.com/app/1755080/",
+          "description": "You survived a helicopter crash; going home is your top priority. Live as a castaway - survive the dangers of the islands by using your environment to find food, build shelter, craft tools to extend your stay, explore the secrets of the islands and their surrounding waters, and carve your way home.",
+          "human_votes": 1,
+          "voter_names": [
+            "Chocolie"
+          ]
+        },
+        {
+          "winner_key": "https://store.steampowered.com/app/2070270/",
+          "section": "paid",
+          "title": "Cloudheim",
+          "url": "https://store.steampowered.com/app/2070270/",
+          "description": "Master chaotic physics-based combat inspired by Zelda and Devil May Cry. Explore islands and dungeons, smash monsters, loot and craft powerful gear, and grow your home in the sky. Play solo or online co-op with up to 4 players.",
+          "human_votes": 1,
+          "voter_names": [
+            "Janithan"
+          ]
+        },
+        {
+          "winner_key": "https://store.steampowered.com/app/3732960/",
+          "section": "paid",
+          "title": "Rest Area Simulator",
+          "url": "https://store.steampowered.com/app/3732960/",
+          "description": "Take over the gas station and convenience store at a roadside rest area and expand by purchasing new businesses. Manage a living world shaped by dynamic economy and random events. Upgrade your facilities, satisfy your customers, and play solo or with friends.",
+          "human_votes": 1,
+          "voter_names": [
+            "Chocolie"
+          ]
+        },
+        {
+          "winner_key": "https://store.steampowered.com/app/4244510/",
+          "section": "paid",
+          "title": "Pratfall",
+          "url": "https://store.steampowered.com/app/4244510/",
+          "description": "A co-op game where you fall, dig, and explode your way down a dangerous cave system to find your lost dog. Catch your friends and watch your step on this journey full of traps, hazards, and the most deadly force of all: gravity. Will you jump into the unknown to rescue your dog?",
+          "human_votes": 1,
+          "voter_names": [
+            "Chocolie"
+          ]
+        },
+        {
+          "winner_key": "https://store.steampowered.com/app/429050/",
+          "section": "paid",
+          "title": "Feed and Grow: Fish",
+          "url": "https://store.steampowered.com/app/429050/",
+          "description": "Hunt and eat other fish - simply, grow into larger beasts!",
+          "human_votes": 1,
+          "voter_names": [
+            "Thomas"
+          ]
+        },
+        {
+          "winner_key": "https://www.instagram.com/p/DXcV4UuDeqs/",
+          "section": "instagram",
+          "title": "@itzjaysasa",
+          "url": "https://www.instagram.com/p/DXcV4UuDeqs/",
+          "description": "So this game merges mechanics from games like megabonk with base building and made it co-op! It’s a perfect game to p...",
+          "human_votes": 1,
+          "voter_names": [
+            "Thomas"
+          ]
+        }
+      ]
+    }
   }
 }
