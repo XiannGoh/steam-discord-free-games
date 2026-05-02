@@ -9638,5 +9638,167 @@
         "description": "Combat Flight Sim WITH NUKES! Enough said..  Nuclear Option!  #gaming #flightsim #planegame #milsim #nuclearoption"
       }
     ]
+  },
+  "2026-05-02": {
+    "run_state": {
+      "section_headers": {
+        "demo_playtest": {
+          "message_id": "1500164379021152416",
+          "channel_id": "592534544708796474",
+          "posted_at_utc": "2026-05-02T15:57:40.277379+00:00"
+        },
+        "free": {
+          "message_id": "1500164397631410356",
+          "channel_id": "592534544708796474",
+          "posted_at_utc": "2026-05-02T15:57:44.545325+00:00"
+        },
+        "paid": {
+          "message_id": "1500164413200666834",
+          "channel_id": "592534544708796474",
+          "posted_at_utc": "2026-05-02T15:57:48.235924+00:00"
+        },
+        "instagram": {
+          "message_id": "1500164465352642821",
+          "channel_id": "592534544708796474",
+          "posted_at_utc": "2026-05-02T15:58:00.874390+00:00"
+        }
+      },
+      "last_attempt_at_utc": "2026-05-02T15:57:35.823993+00:00",
+      "intro": {
+        "message_id": "1500164363238113403",
+        "channel_id": "592534544708796474",
+        "posted_at_utc": "2026-05-02T15:57:38.280950+00:00"
+      },
+      "footer": {
+        "message_id": "1500164509069742281",
+        "channel_id": "592534544708796474",
+        "posted_at_utc": "2026-05-02T15:58:11.335823+00:00"
+      },
+      "completed": true,
+      "completed_at_utc": "2026-05-02T15:58:12.547767+00:00"
+    },
+    "items": [
+      {
+        "item_key": "e7b526c075f28d8a",
+        "section": "demo_playtest",
+        "title": "Formula Evolution 2025",
+        "url": "https://store.steampowered.com/app/3273660/",
+        "message_id": "1500164387883974726",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_demo_playtest",
+        "posted_at": "2026-05-02T15:57:42.701798+00:00",
+        "description": "Your favorite indie formula MMO is back! Experience the evolution of formulas with up to 39 friends!"
+      },
+      {
+        "item_key": "13c66a73ee85f108",
+        "section": "free",
+        "title": "Ecto",
+        "url": "https://store.steampowered.com/app/2256970/",
+        "message_id": "1500164405248393316",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-05-02T15:57:46.462084+00:00",
+        "description": "Ecto is a goofy lil game about jumping around in randomly generated nature worlds. Complete movement challenges, pick up frogs, unlock goofy items, or set time trial records against your friends. Play singleplayer or multiplayer up to 8 players."
+      },
+      {
+        "item_key": "1db127ee5d7844d8",
+        "section": "paid",
+        "title": "Mass Effect™: Andromeda Deluxe Edition",
+        "url": "https://store.steampowered.com/app/1238000/",
+        "message_id": "1500164420234645518",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-05-02T15:57:50.372644+00:00",
+        "description": "Return to the Mass Effect universe & lead the first humans in Andromeda on a desperate search for our new home."
+      },
+      {
+        "item_key": "70c96abd84a78797",
+        "section": "paid",
+        "title": "Toukiden 2",
+        "url": "https://store.steampowered.com/app/551730/",
+        "message_id": "1500164429667368970",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-05-02T15:57:52.340946+00:00",
+        "description": "Slayers! Go forth and eradicate the Oni menace! Experience the latest hunting action game featuring a dynamic targeted destruction system! The latest installment in the hunting action series \"Toukiden\"."
+      },
+      {
+        "item_key": "1848ba869aedcc3d",
+        "section": "paid",
+        "title": "Cubic Odyssey",
+        "url": "https://store.steampowered.com/app/3400000/",
+        "message_id": "1500164438009843763",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-05-02T15:57:54.164177+00:00",
+        "description": "Embark on a galactic journey in Cubic Odyssey, an open-world adventure where you explore vibrant planets, craft tools, build vehicles, and fight the Red Darkness. Uncover ancient mysteries, and shape a universe full of life, danger, and limitless possibilities!"
+      },
+      {
+        "item_key": "f640faa8c5411a20",
+        "section": "paid",
+        "title": "GladiEATers",
+        "url": "https://store.steampowered.com/app/2141280/",
+        "message_id": "1500164445756723331",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-05-02T15:57:56.868336+00:00",
+        "description": "Cook and command teams of living food in this narrative creature battler. GladiEATers blends seven chef stories in top-down JRPG adventures and roguelike gauntlets, featuring 6v6 battles, spicy cooking minigames and online multiplayer."
+      },
+      {
+        "item_key": "a498613942c3ba96",
+        "section": "paid",
+        "title": "Demon Lord: Just a Block",
+        "url": "https://store.steampowered.com/app/3720420/",
+        "message_id": "1500164457408499762",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-05-02T15:57:58.809179+00:00",
+        "description": "Seek revenge on fantasy heroes as a reborn Demon Lord! Dive into this satisfying roguelite action game where the world only moves when you do. Plan your moves step by step or play swiftly with quick dodges and parries, colliding with enemies to land powerful attacks!"
+      },
+      {
+        "item_key": "1ccdb93fb0c2fd7c",
+        "section": "instagram",
+        "title": "@sharedxp_official",
+        "url": "https://www.instagram.com/p/DXz9qT7Mtq2/",
+        "message_id": "1500164473963544596",
+        "channel_id": "592534544708796474",
+        "source_type": "instagram",
+        "posted_at": "2026-05-02T15:58:02.877190+00:00",
+        "description": "Minecraft Dungeons 2 — the sequel to the co-op dungeon crawler that hit 25 million players is finally here, and it's ..."
+      },
+      {
+        "item_key": "31a810164c7fb25e",
+        "section": "instagram",
+        "title": "@wilfratgaming",
+        "url": "https://www.instagram.com/p/DX1jrz_NvPO/",
+        "message_id": "1500164482096435361",
+        "channel_id": "592534544708796474",
+        "source_type": "instagram",
+        "posted_at": "2026-05-02T15:58:04.811603+00:00",
+        "description": "The devs of town to city are making a new game! #steamtoelectric #newgames #gamestoplay"
+      },
+      {
+        "item_key": "07898a4cbb2593d6",
+        "section": "instagram",
+        "title": "@biffmatictv",
+        "url": "https://www.instagram.com/p/DX1kjTztsG7/",
+        "message_id": "1500164490421862494",
+        "channel_id": "592534544708796474",
+        "source_type": "instagram",
+        "posted_at": "2026-05-02T15:58:06.989619+00:00",
+        "description": "Build a rail empire with real prototype trains in this voxel tycoon game! Steam to Electric!  #gaming #trainsim #tyco..."
+      },
+      {
+        "item_key": "8cb110e7f3afd52a",
+        "section": "instagram",
+        "title": "@biffmatictv",
+        "url": "https://www.instagram.com/p/DXzi_j-NuuO/",
+        "message_id": "1500164499309592657",
+        "channel_id": "592534544708796474",
+        "source_type": "instagram",
+        "posted_at": "2026-05-02T15:58:09.111897+00:00",
+        "description": "Gothic 1 Remake has a dynamic living world, it’s a cult classic RPG arriving with modern visuals, improved systems an..."
+      }
+    ]
   }
 }
