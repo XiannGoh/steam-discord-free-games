@@ -490,5 +490,58 @@
         }
       }
     }
+  },
+  "2026-05-04_to_2026-05-10": {
+    "date_range": "May 4–10, 2026",
+    "users": {
+      "137123568952672257": {
+        "username": "janithan",
+        "global_name": "Janithan",
+        "days": {
+          "Monday": {
+            "reactions": [
+              "❌"
+            ],
+            "custom_reply": null
+          },
+          "Tuesday": {
+            "reactions": [
+              "✅"
+            ],
+            "custom_reply": null
+          },
+          "Wednesday": {
+            "reactions": [
+              "❌"
+            ],
+            "custom_reply": null
+          },
+          "Thursday": {
+            "reactions": [
+              "❌"
+            ],
+            "custom_reply": null
+          },
+          "Friday": {
+            "reactions": [
+              "📝"
+            ],
+            "custom_reply": null
+          },
+          "Saturday": {
+            "reactions": [
+              "❌"
+            ],
+            "custom_reply": null
+          },
+          "Sunday": {
+            "reactions": [
+              "❌"
+            ],
+            "custom_reply": null
+          }
+        }
+      }
+    }
   }
 }
