@@ -9982,5 +9982,162 @@
         }
       ]
     }
+  },
+  "2026-05-03": {
+    "run_state": {
+      "section_headers": {
+        "free": {
+          "message_id": "1500504356699504730",
+          "channel_id": "592534544708796474",
+          "posted_at_utc": "2026-05-03T14:28:37.156742+00:00"
+        },
+        "paid": {
+          "message_id": "1500504404619559052",
+          "channel_id": "592534544708796474",
+          "posted_at_utc": "2026-05-03T14:28:48.573817+00:00"
+        },
+        "instagram": {
+          "message_id": "1500504456054308964",
+          "channel_id": "592534544708796474",
+          "posted_at_utc": "2026-05-03T14:29:00.898858+00:00"
+        }
+      },
+      "last_attempt_at_utc": "2026-05-03T14:28:34.145940+00:00",
+      "intro": {
+        "message_id": "1500504346713133176",
+        "channel_id": "592534544708796474",
+        "posted_at_utc": "2026-05-03T14:28:35.250691+00:00"
+      },
+      "footer": {
+        "message_id": "1500504472022155465",
+        "channel_id": "592534544708796474",
+        "posted_at_utc": "2026-05-03T14:29:05.878687+00:00"
+      },
+      "completed": true,
+      "completed_at_utc": "2026-05-03T14:29:07.091231+00:00"
+    },
+    "items": [
+      {
+        "item_key": "b94f5ee75e0cfc6b",
+        "section": "free",
+        "title": "Delta Force",
+        "url": "https://store.steampowered.com/app/2507950/",
+        "message_id": "1500504364266029140",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-05-03T14:28:39.167770+00:00",
+        "description": "Play for free in operator-based extraction and full-scale combined arms warfare. Become elite Operators, customize an ever-expanding arsenal of weapons, and deploy into thrill-packed missions across multiple modes."
+      },
+      {
+        "item_key": "1108b3b6c3b3f596",
+        "section": "free",
+        "title": "Arena Breakout: Infinite",
+        "url": "https://store.steampowered.com/app/2073620/",
+        "message_id": "1500504372755304599",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-05-03T14:28:41.075703+00:00",
+        "description": "Arena Breakout: Infinite is a high-stakes tactical extraction shooter where every decision matters. Fight, loot, and extract—or lose it all. With stunningly realistic visuals, lifelike sound, and unforgiving PvPvE combat, every raid is a gamble between glory and ruin."
+      },
+      {
+        "item_key": "01428812cfa237ab",
+        "section": "free",
+        "title": "Farlight 84",
+        "url": "https://store.steampowered.com/app/1928420/",
+        "message_id": "1500504380800241786",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-05-03T14:28:43.086384+00:00",
+        "description": "Hey Lightcatchers! Are you ready for massive 60-player shootouts? Enjoy fast-paced hero shooter action in Farlight 84!"
+      },
+      {
+        "item_key": "a87ab608d8f55464",
+        "section": "free",
+        "title": "World of Sea Battle",
+        "url": "https://store.steampowered.com/app/2948190/",
+        "message_id": "1500504388907831459",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-05-03T14:28:44.880122+00:00",
+        "description": "Set sail in World of Sea Battle, an action-packed open-world MMO in the Golden Age of Sail! Command historic ships, battle in PvP & PvE, shape the economy, and engage in territorial guild wars in your quest for glory across the high seas!"
+      },
+      {
+        "item_key": "916b73b07eb4cf03",
+        "section": "free",
+        "title": "PlanetSide 2",
+        "url": "https://store.steampowered.com/app/218230/",
+        "message_id": "1500504396730204370",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-05-03T14:28:46.764787+00:00",
+        "description": "PlanetSide 2 is an all-out planetary war, where thousands of players battle as one across enormous continents. Utilize infantry, ground and air vehicles, and teamwork to destroy your enemies in this revolutionary first-person shooter on a massive scale."
+      },
+      {
+        "item_key": "386a83670cc2949d",
+        "section": "paid",
+        "title": "Super Battle Golf",
+        "url": "https://store.steampowered.com/app/4069520/",
+        "message_id": "1500504412550987816",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-05-03T14:28:50.688254+00:00",
+        "description": "An online 1-8 player golf game where everyone plays at the same time. Swing, shoot, sabotage, and finish first by any means necessary in a free-for-all rush to the hole."
+      },
+      {
+        "item_key": "c56800ecc6a623fe",
+        "section": "paid",
+        "title": "Escape the Backrooms",
+        "url": "https://store.steampowered.com/app/1943950/",
+        "message_id": "1500504421069492254",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-05-03T14:28:52.538261+00:00",
+        "description": "Escape the Backrooms is a 1-4 player co-op horror exploration game. Traverse 30+ eerie backrooms levels while avoiding entities and other dangers. Try to escape but be warned: survival isn't guaranteed."
+      },
+      {
+        "item_key": "3810dfeb3d965196",
+        "section": "paid",
+        "title": "R.E.P.O.",
+        "url": "https://store.steampowered.com/app/3241660/",
+        "message_id": "1500504429168951326",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-05-03T14:28:54.731865+00:00",
+        "description": "An online co-op horror game with up to 6 players. Locate valuable, fully physics-based objects and handle them with care as you retrieve and extract to satisfy your creator's desires."
+      },
+      {
+        "item_key": "08c4ca79bac06635",
+        "section": "paid",
+        "title": "Black Desert",
+        "url": "https://store.steampowered.com/app/582660/",
+        "message_id": "1500504438031519936",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-05-03T14:28:57.158990+00:00",
+        "description": "Played by over 20 million Adventurers - Black Desert Online is an open-world, action MMORPG. Experience intense, action-packed combat, battle massive world bosses, fight alongside friends to siege and conquer castles, and train in professions such as fishing, trading, crafting, cooking, and more!"
+      },
+      {
+        "item_key": "c30f118d50de99ea",
+        "section": "paid",
+        "title": "Element TD 2 - Tower Defense",
+        "url": "https://store.steampowered.com/app/1018830/",
+        "message_id": "1500504448185663629",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-05-03T14:28:58.979691+00:00",
+        "description": "Element TD 2 sees you combine powerful elements to create unique towers. Prove your defenses against challenging foes, and compete or cooperate with others to determine who has mastered the elements."
+      },
+      {
+        "item_key": "bbc9553cb6937036",
+        "section": "instagram",
+        "title": "@wilfratgaming",
+        "url": "https://www.instagram.com/p/DX4J8AdtDHA/",
+        "message_id": "1500504463608119569",
+        "channel_id": "592534544708796474",
+        "source_type": "instagram",
+        "posted_at": "2026-05-03T14:29:02.728927+00:00",
+        "description": "Natural Vision Evolved! A full on redesign of GTA Vs graphics! Available for Fivem also! #gtarp #fivem #gaming"
+      }
+    ]
   }
 }
