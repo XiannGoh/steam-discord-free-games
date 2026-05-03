@@ -600,10 +600,10 @@
     "summary": {
       "day_counts": {
         "Monday": 0,
-        "Tuesday": 0,
+        "Tuesday": 1,
         "Wednesday": 0,
         "Thursday": 0,
-        "Friday": 0,
+        "Friday": 1,
         "Saturday": 0,
         "Sunday": 0
       },
@@ -616,7 +616,7 @@
           "📝": 0
         },
         "Tuesday": {
-          "✅": 0,
+          "✅": 1,
           "🌅": 0,
           "☀️": 0,
           "🌙": 0,
@@ -641,7 +641,7 @@
           "🌅": 0,
           "☀️": 0,
           "🌙": 0,
-          "📝": 0
+          "📝": 1
         },
         "Saturday": {
           "✅": 0,
@@ -667,7 +667,12 @@
           "📝": []
         },
         "Tuesday": {
-          "✅": [],
+          "✅": [
+            {
+              "user_id": "137123568952672257",
+              "display_name": "Janithan"
+            }
+          ],
           "🌅": [],
           "☀️": [],
           "🌙": [],
@@ -692,7 +697,12 @@
           "🌅": [],
           "☀️": [],
           "🌙": [],
-          "📝": []
+          "📝": [
+            {
+              "user_id": "137123568952672257",
+              "display_name": "Janithan"
+            }
+          ]
         },
         "Saturday": {
           "✅": [],
@@ -710,9 +720,9 @@
         }
       },
       "best_overlap": {
-        "day": "Monday",
+        "day": "Tuesday",
         "slot": "✅",
-        "count": 0
+        "count": 1
       }
     }
   }

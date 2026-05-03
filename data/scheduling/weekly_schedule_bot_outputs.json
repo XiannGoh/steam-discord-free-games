@@ -76,14 +76,14 @@
     "last_reminder_local_date": "2026-04-27"
   },
   "2026-05-04_to_2026-05-10": {
-    "summary_last_synced_at_utc": "2026-05-02T15:57:52.910974+00:00",
-    "summary_data_signature": "46eeb4580c1bae934b616ba7bac2997a02fd4c8be07e654629f01dd37775fd9d",
+    "summary_last_synced_at_utc": "2026-05-03T03:58:48.815783+00:00",
+    "summary_data_signature": "2cf9895f1b72676347a329c0dbfaa5ef6f8319bb70e951a82a662ab55d52c33d",
     "summary_posted": true,
     "summary_message_id": "1500164436848148528",
     "summary_message_ids": [
       "1500164436848148528"
     ],
-    "summary_message_content": "📊 Availability Summary — May 4–10, 2026\n\n*0 of 14 people responded • 14 still missing*\nMissing: <@137123568952672257> <@150522802292785152> <@161248274970443776> <@162382481369071617> <@164270274928181248> <@195462430535581708> <@204517030395641856> <@239951450082377740> <@245393360490201089> <@277285824935231488> <@321367835525775381> <@412746386271109130> <@711603470544797747> <@740065988812341280>\n*Last updated: May 2, 11:57 AM ET*\n\n**Monday 5/4**\nNo responses\n\n**Tuesday 5/5**\nNo responses\n\n**Wednesday 5/6**\nNo responses\n\n**Thursday 5/7**\nNo responses\n\n**Friday 5/8**\nNo responses\n\n**Saturday 5/9**\nNo responses\n\n**Sunday 5/10**\nNo responses",
+    "summary_message_content": "📊 Availability Summary — May 4–10, 2026\n\n*1 of 14 people responded • 13 still missing*\nMissing: <@150522802292785152> <@161248274970443776> <@162382481369071617> <@164270274928181248> <@195462430535581708> <@204517030395641856> <@239951450082377740> <@245393360490201089> <@277285824935231488> <@321367835525775381> <@412746386271109130> <@711603470544797747> <@740065988812341280>\n*Last updated: May 2, 11:58 PM ET*\n\n**Monday 5/4**\nNo responses\n\n**Tuesday 5/5**\n✅ 1 — Janithan\n\n**Wednesday 5/6**\nNo responses\n\n**Thursday 5/7**\nNo responses\n\n**Friday 5/8**\n📝 1 — Janithan\n\n**Saturday 5/9**\nNo responses\n\n**Sunday 5/10**\nNo responses",
     "reminder_message_id": "1500164438827733194",
     "reminder_message_ids": [
       "1500164438827733194"
