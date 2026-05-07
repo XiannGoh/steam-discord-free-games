@@ -172,12 +172,47 @@ class DiscordClient:
         )
         return self._parse_json_array(response, f"{context} JSON")
 
-    def post_message(self, channel_id: str, content: str, *, context: str) -> dict[str, Any]:
-        response = self.request("POST", f"{DISCORD_API_BASE}/channels/{channel_id}/messages", context=context, json_payload={"content": content})
+    def post_message(
+        self,
+        channel_id: str,
+        content: str,
+        *,
+        context: str,
+        embed: dict[str, Any] | None = None,
+    ) -> dict[str, Any]:
+        # Note: existing callers that don't pass `embed=` produce an identical
+        # JSON payload to before. When `embed=` is provided, Discord renders
+        # masked-link markdown ([label](url)) inside the embed description,
+        # which it does NOT do for plain bot-message content.
+        payload: dict[str, Any] = {"content": content}
+        if embed is not None:
+            payload["embeds"] = [embed]
+        response = self.request(
+            "POST",
+            f"{DISCORD_API_BASE}/channels/{channel_id}/messages",
+            context=context,
+            json_payload=payload,
+        )
         return self._parse_json_object(response, f"{context} JSON")
 
-    def edit_message(self, channel_id: str, message_id: str, content: str, *, context: str) -> dict[str, Any]:
-        response = self.request("PATCH", f"{DISCORD_API_BASE}/channels/{channel_id}/messages/{message_id}", context=context, json_payload={"content": content})
+    def edit_message(
+        self,
+        channel_id: str,
+        message_id: str,
+        content: str,
+        *,
+        context: str,
+        embed: dict[str, Any] | None = None,
+    ) -> dict[str, Any]:
+        payload: dict[str, Any] = {"content": content}
+        if embed is not None:
+            payload["embeds"] = [embed]
+        response = self.request(
+            "PATCH",
+            f"{DISCORD_API_BASE}/channels/{channel_id}/messages/{message_id}",
+            context=context,
+            json_payload=payload,
+        )
         return self._parse_json_object(response, f"{context} JSON")
 
     def put_reaction(self, channel_id: str, message_id: str, encoded_emoji: str, *, context: str) -> None:
@@ -204,7 +239,7 @@ class DiscordClient:
         """Return the bot's effective permission bitfield for the given channel.
 
         Fetches guild member roles, role permissions, and channel permission overwrites,
-        then computes the effective bitfield.  Returns 0 on any API error (best-effort
+        then computes the effective bitfield. Returns 0 on any API error (best-effort
         check — the caller should treat 0 as "permissions unknown").
         """
         try:
