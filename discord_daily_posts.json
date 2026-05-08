@@ -10508,5 +10508,206 @@
         "description": "What if a space sim had flight sim level depth? This game does just that!   Space Hauler  What if a space sim had fli..."
       }
     ]
+  },
+  "2026-05-07": {
+    "run_state": {
+      "section_headers": {
+        "free": {
+          "message_id": "1501973715569610792",
+          "channel_id": "592534544708796474",
+          "posted_at_utc": "2026-05-07T15:47:19.438732+00:00"
+        },
+        "paid": {
+          "message_id": "1501973768489275404",
+          "channel_id": "592534544708796474",
+          "posted_at_utc": "2026-05-07T15:47:32.322753+00:00"
+        },
+        "instagram": {
+          "message_id": "1501973825615564914",
+          "channel_id": "592534544708796474",
+          "posted_at_utc": "2026-05-07T15:47:45.995122+00:00"
+        }
+      },
+      "last_attempt_at_utc": "2026-05-07T15:47:16.806751+00:00",
+      "intro": {
+        "message_id": "1501973706610708662",
+        "channel_id": "592534544708796474",
+        "posted_at_utc": "2026-05-07T15:47:17.750393+00:00"
+      },
+      "footer": {
+        "message_id": "1501973887322161252",
+        "channel_id": "592534544708796474",
+        "posted_at_utc": "2026-05-07T15:48:00.500480+00:00"
+      },
+      "completed": true,
+      "completed_at_utc": "2026-05-07T15:48:01.713636+00:00"
+    },
+    "items": [
+      {
+        "item_key": "3f07a48c127d13d9",
+        "section": "free",
+        "title": "RPG MO",
+        "url": "https://store.steampowered.com/app/372800/",
+        "message_id": "1501973722729545819",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-05-07T15:47:21.585180+00:00",
+        "description": "RPG MO is a nostalgic MMORPG that reminds of Ultima and Runescape Classic."
+      },
+      {
+        "item_key": "831e80a80857b652",
+        "section": "free",
+        "title": "Dead Maze",
+        "url": "https://store.steampowered.com/app/667890/",
+        "message_id": "1501973731688452377",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-05-07T15:47:23.996827+00:00",
+        "description": "Dead Maze is a 2D MMO game set in a destroyed contemporary world, filled with zombies. Explore the world, scavenge and craft as many items as possible, to survive the hostile environment and upgrade your gear and camp as you go."
+      },
+      {
+        "item_key": "07ce3d166b2fdf65",
+        "section": "free",
+        "title": "Nexus Rumble: The Ultimate Showdown",
+        "url": "https://store.steampowered.com/app/3027820/",
+        "message_id": "1501973741763170354",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-05-07T15:47:26.418445+00:00",
+        "description": "Welcome to Nexus Rumble, the ultimate showdown where champions clash in a fierce competition for survival! Prepare to embark on an adrenaline-fueled journey through diverse landscapes and exhilarating challenges in this heart-pounding multiplayer extravaganza."
+      },
+      {
+        "item_key": "70284b80978d9bc8",
+        "section": "free",
+        "title": "Warborne Above Ashes",
+        "url": "https://store.steampowered.com/app/3142050/",
+        "message_id": "1501973751846146189",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-05-07T15:47:28.608802+00:00",
+        "description": "Warborne is a top-down PvP loot-and-extract MMO. Every choice in the Abyss is a high-stakes gamble. Pick your gear wisely, employ cunning tactics, and plunder every treasure you can from a battlefield teeming with deception. And pray you make it out alive. Trade your spoils to grow your might."
+      },
+      {
+        "item_key": "9c266f0cdc48c7de",
+        "section": "free",
+        "title": "Growtopia",
+        "url": "https://store.steampowered.com/app/866020/",
+        "message_id": "1501973761002307595",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-05-07T15:47:30.469902+00:00",
+        "description": "Growtopia is a 2D sandbox game, that brings together millions of players in an expansive pixel world. Collaborate in building anything you can imagine, become anyone you want to be, and delve into numerous mini-games. Unleash your creativity and join the massive universe in Growtopia today!"
+      },
+      {
+        "item_key": "aa488a4eb76c8256",
+        "section": "paid",
+        "title": "Car Service Together",
+        "url": "https://store.steampowered.com/app/3501070/",
+        "message_id": "1501973776676425789",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-05-07T15:47:34.652943+00:00",
+        "description": "Car Service Together is a 1-4 co-op & single player simulation game where you and/or with your friends start from scratch and build your way up. Work together to successfully run your own service center. Team up, manage your business, and create the ultimate car service !"
+      },
+      {
+        "item_key": "88a8ba06dff98f50",
+        "section": "paid",
+        "title": "Sker Ritual",
+        "url": "https://store.steampowered.com/app/1492070/",
+        "message_id": "1501973786298159144",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-05-07T15:47:36.708301+00:00",
+        "description": "An intense round-based zombie survival FPS, play solo or co-op. Shoot your way through relentless waves of vicious horrors with high-octane objectives, upgrading steampunk weapons, collecting Celtic God powers, and surviving the onslaught of the Quiet Ones."
+      },
+      {
+        "item_key": "8664a9582f92ec8f",
+        "section": "paid",
+        "title": "LOCKDOWN Protocol",
+        "url": "https://store.steampowered.com/app/2780980/",
+        "message_id": "1501973795039215698",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-05-07T15:47:39.040445+00:00",
+        "description": "A first person social deduction game, combining real time action and communication, playable up to 16 players. While most players will cooperate to complete objectives to ensure victory, a small portion of dissidents will try their best to stop them at all cost, without being caught."
+      },
+      {
+        "item_key": "f78e6193dc2c451b",
+        "section": "paid",
+        "title": "EA SPORTS™ PGA TOUR™",
+        "url": "https://store.steampowered.com/app/1677350/",
+        "message_id": "1501973804753359008",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-05-07T15:47:41.396503+00:00",
+        "description": "The exclusive home of the Majors, EA SPORTS™ PGA TOUR™ features Pure Strike for superior golf gameplay, powered by ShotLink®, and unrivaled access to the world’s most exclusive golf courses."
+      },
+      {
+        "item_key": "63abcab8bbe397d4",
+        "section": "paid",
+        "title": "For The King",
+        "url": "https://store.steampowered.com/app/527230/",
+        "message_id": "1501973815759212796",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-05-07T15:47:44.016225+00:00",
+        "description": "For The King is a strategic RPG that blends tabletop and roguelike elements in a challenging adventure that spans the realms. Set off on a single player experience or play cooperatively both online and locally."
+      },
+      {
+        "item_key": "49081743c6c64226",
+        "section": "instagram",
+        "title": "@sharedxp_official",
+        "url": "https://www.instagram.com/p/DYAmilyMN4f/",
+        "message_id": "1501973835811913789",
+        "channel_id": "592534544708796474",
+        "source_type": "instagram",
+        "posted_at": "2026-05-07T15:47:48.571666+00:00",
+        "description": "Notmads — build your home on the back of a living colossal beast and explore a vast open world with up to 5 friends i..."
+      },
+      {
+        "item_key": "1c1a7b195afdcff7",
+        "section": "instagram",
+        "title": "@sharedxp_official",
+        "url": "https://www.instagram.com/p/DYAVLOhM7_0/",
+        "message_id": "1501973845345701928",
+        "channel_id": "592534544708796474",
+        "source_type": "instagram",
+        "posted_at": "2026-05-07T15:47:52.127720+00:00",
+        "description": "Lost Castle 2 — a roguelite dungeon brawler with over 200 weapons, deep build systems, and a secret level most player..."
+      },
+      {
+        "item_key": "e9d07985d3bce008",
+        "section": "instagram",
+        "title": "@wilfratgaming",
+        "url": "https://www.instagram.com/p/DYAW-B0NFPF/",
+        "message_id": "1501973859581165568",
+        "channel_id": "592534544708796474",
+        "source_type": "instagram",
+        "posted_at": "2026-05-07T15:47:54.067850+00:00",
+        "description": "This game lets you take top gear style road trips with your friends! SimplePlanes 2 is OUT NOW! #coopgame  #gamestopl..."
+      },
+      {
+        "item_key": "874968aa0d9c793c",
+        "section": "instagram",
+        "title": "@wilfratgaming",
+        "url": "https://www.instagram.com/p/DX7arFeNbCt/",
+        "message_id": "1501973867760193687",
+        "channel_id": "592534544708796474",
+        "source_type": "instagram",
+        "posted_at": "2026-05-07T15:47:56.104086+00:00",
+        "description": "If Shutter Island was made into a game, THIS would be it! #gamestoplay #gaming #videogames"
+      },
+      {
+        "item_key": "81c02356df561435",
+        "section": "instagram",
+        "title": "@biffmatictv",
+        "url": "https://www.instagram.com/p/DYAQMD4N0Uu/",
+        "message_id": "1501973876446466090",
+        "channel_id": "592534544708796474",
+        "source_type": "instagram",
+        "posted_at": "2026-05-07T15:47:58.553317+00:00",
+        "description": "This is the ultimate multiplayer vehicle sandbox! Simple Planes 2  #gaming #newgames #sandbox #gamingwithfriends #sim..."
+      }
+    ]
   }
 }
