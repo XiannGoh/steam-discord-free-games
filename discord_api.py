@@ -215,6 +215,17 @@ class DiscordClient:
         )
         return self._parse_json_object(response, f"{context} JSON")
 
+    def delete_message(self, channel_id: str, message_id: str, *, context: str) -> None:
+        """Delete a message. Treats "unknown message" (already deleted) as success."""
+        try:
+            self.request(
+                "DELETE",
+                f"{DISCORD_API_BASE}/channels/{channel_id}/messages/{message_id}",
+                context=context,
+            )
+        except DiscordMessageNotFoundError:
+            pass
+
     def put_reaction(self, channel_id: str, message_id: str, encoded_emoji: str, *, context: str) -> None:
         self.request("PUT", f"{DISCORD_API_BASE}/channels/{channel_id}/messages/{message_id}/reactions/{encoded_emoji}/@me", context=context)
 
