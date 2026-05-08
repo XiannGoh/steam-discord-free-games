@@ -636,17 +636,26 @@ def _post_or_edit_message(
     *,
     context: str,
     existing_info: Optional[Dict[str, str]],
+    as_embed: bool = False,
 ) -> tuple[Dict[str, Any], bool]:
-    """Post or edit a message. Returns (payload, is_new_message)."""
+    """Post or edit a message. Returns (payload, is_new_message).
+
+    When as_embed=True, the content is sent as an embed description rather than
+    plain message content. Discord renders [label](url) masked links in embed
+    descriptions but NOT in regular bot-message content, so headers/footers
+    that need clickable jump links must use as_embed=True.
+    """
     existing_channel_id = str((existing_info or {}).get("channel_id") or channel_id).strip()
     existing_message_id = str((existing_info or {}).get("message_id") or "").strip()
+    embed_payload = {"description": content} if as_embed else None
+    body_text = "" if as_embed else content
     if existing_message_id:
         try:
-            payload = client.edit_message(existing_channel_id, existing_message_id, content, context=context)
+            payload = client.edit_message(existing_channel_id, existing_message_id, body_text, context=context, embed=embed_payload)
             return payload, False
         except DiscordMessageNotFoundError:
             pass
-    payload = client.post_message(channel_id, content, context=context)
+    payload = client.post_message(channel_id, body_text, context=context, embed=embed_payload)
     return payload, True
 
 
@@ -685,6 +694,7 @@ def post_daily_library_reminder(
             message["content"],
             context=f"post/edit gaming library {message['type']} for {day_key}",
             existing_info=existing_info,
+            as_embed=message["type"] in ("header", "footer"),
         )
         changed = True
 
@@ -714,7 +724,7 @@ def post_daily_library_reminder(
             posted_section_keys=posted_section_keys,
             state=state,
         )
-        client.edit_message(header_ch_id, header_msg_id, nav_header, context=f"update gaming library header with jump links for {day_key}")
+        client.edit_message(header_ch_id, header_msg_id, "", context=f"update gaming library header with jump links for {day_key}", embed={"description": nav_header})
 
     # --- Footer ---
     footer_content = build_library_footer(
@@ -731,6 +741,7 @@ def post_daily_library_reminder(
         footer_content,
         context=f"post/edit gaming library footer for {day_key}",
         existing_info=existing_messages.get("footer"),
+        as_embed=True,
     )
     footer_msg_id = str(footer_payload.get("id") or "")
     if not footer_msg_id:

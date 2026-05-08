@@ -730,19 +730,22 @@ def _ensure_post_or_edit_message(
     state_entry: dict,
     content: str,
     context_prefix: str,
+    as_embed: bool = False,
 ) -> dict:
     existing_message_id = str(state_entry.get("message_id") or "").strip()
     existing_channel_id = str(state_entry.get("channel_id") or channel_id).strip() or channel_id
+    embed_payload = {"description": content} if as_embed else None
+    body_text = "" if as_embed else content
     if existing_message_id:
         try:
             client.get_message(existing_channel_id, existing_message_id, context=f"verify {context_prefix}")
-            client.edit_message(existing_channel_id, existing_message_id, content, context=f"edit {context_prefix}")
+            client.edit_message(existing_channel_id, existing_message_id, body_text, context=f"edit {context_prefix}", embed=embed_payload)
             state_entry["message_id"] = existing_message_id
             state_entry["channel_id"] = existing_channel_id
             return state_entry
         except DiscordMessageNotFoundError:
             print(f"RECOVER: stale/deleted {context_prefix}; posting replacement")
-    payload = client.post_message(channel_id, content, context=f"post {context_prefix}")
+    payload = client.post_message(channel_id, body_text, context=f"post {context_prefix}", embed=embed_payload)
     message_id = str(payload.get("id") or "").strip()
     if not message_id:
         raise RuntimeError(f"Discord response missing message id for {context_prefix}")
@@ -777,6 +780,7 @@ def publish_winners_for_entries(
         state_entry=intro_state,
         content=build_winners_header_placeholder(day_key),
         context_prefix=f"winners intro for {day_key}",
+        as_embed=True,
     )
 
     posted_section_keys: List[str] = []
@@ -847,8 +851,9 @@ def publish_winners_for_entries(
             client.edit_message(
                 intro_channel_id,
                 intro_message_id,
-                header_content,
+                "",
                 context=f"edit winners header with jump links for {day_key}",
+                embed={"description": header_content},
             )
         except DiscordMessageNotFoundError:
             print(f"WARN: winners header message missing; skip header jump-link edit for {day_key}")
@@ -868,6 +873,7 @@ def publish_winners_for_entries(
             state_entry=footer_state,
             content=footer_content,
             context_prefix=f"winners footer for {day_key}",
+            as_embed=True,
         )
 
     message_ids: List[str] = []
