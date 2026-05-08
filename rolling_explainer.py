@@ -153,13 +153,32 @@ def post_or_edit_rolling_explainer(
     channel_id: str,
     slug: str,
 ) -> None:
-    """Post the rolling explainer as the last message, or edit it if already last."""
+    """Post the rolling explainer as the last message, or edit it if already last.
+
+    If a previous rolling explainer exists earlier in the channel (e.g. from a
+    previous workflow run that posted other messages after it), it is deleted
+    before the new explainer is posted. This prevents accumulating one stale
+    "How This Works" message per workflow run while still satisfying the
+    verifier's expectation that the explainer is the literal last message.
+    """
     content = get_rolling_content(slug)
-    messages = client.get_channel_messages(channel_id, context=f"rolling explainer fetch {slug}", limit=1)
+    # Look back further than 1 so we can find and clean up a stale explainer.
+    messages = client.get_channel_messages(channel_id, context=f"rolling explainer fetch {slug}", limit=20)
     last = messages[0] if messages else None
     if last and str(last.get("content", "")).startswith(ROLLING_EXPLAINER_PREFIX):
         client.edit_message(channel_id, str(last["id"]), content, context=f"edit rolling explainer {slug}")
         print(f"EDIT: rolling explainer for {slug} (message_id={last['id']})")
-    else:
-        msg = client.post_message(channel_id, content, context=f"post rolling explainer {slug}")
-        print(f"CREATE: rolling explainer for {slug} (message_id={msg.get('id')})")
+        return
+    # Last message isn't an explainer. Look back through recent messages for a
+    # stale explainer (from a previous run) and delete it before posting the
+    # new one. Stop at the first match — there should be at most one.
+    for m in messages[1:]:
+        if str(m.get("content", "")).startswith(ROLLING_EXPLAINER_PREFIX):
+            try:
+                client.delete_message(channel_id, str(m["id"]), context=f"delete stale rolling explainer {slug}")
+                print(f"DELETE: stale rolling explainer for {slug} (message_id={m['id']})")
+            except Exception as e:
+                print(f"WARN: could not delete stale rolling explainer for {slug} (message_id={m.get('id')}): {e}")
+            break
+    msg = client.post_message(channel_id, content, context=f"post rolling explainer {slug}")
+    print(f"CREATE: rolling explainer for {slug} (message_id={msg.get('id')})")
