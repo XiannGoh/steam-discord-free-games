@@ -337,8 +337,8 @@ def _run_channel_scan(
         m for m in today_messages
         if not is_game_card(m)
         and not m.get("content", "").startswith(ROLLING_EXPLAINER_PREFIX)
-        and _has_divider_line(m.get("content", ""))
-        and intro_marker in m.get("content", "")
+        and _has_divider_line(message_text(m))
+        and intro_marker in message_text(m)
     ]
     if len(intro_candidates) == 0:
         ch["intro_found"] = False
@@ -358,7 +358,7 @@ def _run_channel_scan(
     # --- Footer: must appear exactly once today ---
     footer_candidates = [
         m for m in today_messages
-        if footer_keyword in m.get("content", "")
+        if footer_keyword in message_text(m)
     ]
     if len(footer_candidates) == 0:
         if not ch.get("footer_skipped"):
