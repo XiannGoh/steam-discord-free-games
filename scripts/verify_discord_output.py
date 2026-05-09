@@ -73,6 +73,27 @@ def utc_now_iso() -> str:
     return datetime.now(timezone.utc).isoformat()
 
 
+def message_text(msg: Dict[str, Any]) -> str:
+    """Return the human-visible text of a Discord message regardless of where it lives.
+
+    After PR #302, the gaming library and evening-winners workflows post
+    header/footer messages with empty `content` and the actual text in
+    `embeds[0].description`. Verifier code that reads `content` directly
+    would incorrectly mark these messages as missing. This helper returns the
+    `content` if non-empty, otherwise falls back to the first embed's
+    description, otherwise an empty string. Safe for plain-text messages too.
+    """
+    content = str(msg.get("content") or "")
+    if content:
+        return content
+    embeds = msg.get("embeds") or []
+    if isinstance(embeds, list) and embeds:
+        first = embeds[0]
+        if isinstance(first, dict):
+            return str(first.get("description") or "")
+    return ""
+
+
 def get_target_day_key() -> str:
     manual_day = (os.getenv(DAILY_DATE_OVERRIDE_ENV, "") or "").strip()
     if manual_day:
@@ -316,8 +337,8 @@ def _run_channel_scan(
         m for m in today_messages
         if not is_game_card(m)
         and not m.get("content", "").startswith(ROLLING_EXPLAINER_PREFIX)
-        and _has_divider_line(m.get("content", ""))
-        and intro_marker in m.get("content", "")
+        and _has_divider_line(message_text(m))
+        and intro_marker in message_text(m)
     ]
     if len(intro_candidates) == 0:
         ch["intro_found"] = False
@@ -337,7 +358,7 @@ def _run_channel_scan(
     # --- Footer: must appear exactly once today ---
     footer_candidates = [
         m for m in today_messages
-        if footer_keyword in m.get("content", "")
+        if footer_keyword in message_text(m)
     ]
     if len(footer_candidates) == 0:
         if not ch.get("footer_skipped"):
@@ -603,7 +624,7 @@ def verify_step1(
 
     if intro_message_id and intro_channel_id:
         msg = check_message(client, intro_channel_id, intro_message_id, "intro", ch)
-        ch["intro_found"] = msg is not None and bool(msg.get("content"))
+        ch["intro_found"] = msg is not None and bool(message_text(msg))
         if msg is not None:
             ch["section_content_in_intro"] = "store.steampowered.com" in msg.get("content", "").lower()
     else:
@@ -623,7 +644,7 @@ def verify_step1(
             print(f"  MISSING  {section_key} header (no message_id in state)")
             continue
         msg = check_message(client, ch_id, msg_id, f"{section_key} header", ch)
-        if msg is not None and msg.get("content"):
+        if msg is not None and message_text(msg):
             ch["sections_found"].append(section_key)
 
     # --- Navigation footer (conditional on GUILD_ID) ---
@@ -634,9 +655,9 @@ def verify_step1(
 
     if footer_message_id and footer_channel_id:
         msg = check_message(client, footer_channel_id, footer_message_id, "footer", ch)
-        ch["footer_found"] = msg is not None and bool(msg.get("content"))
+        ch["footer_found"] = msg is not None and bool(message_text(msg))
         if msg is not None:
-            ch["footer_missing_separator"] = not msg.get("content", "").strip().endswith(
+            ch["footer_missing_separator"] = not message_text(msg).strip().endswith(
                 "End of Daily Picks ───────────────────"
             )
     else:
@@ -784,7 +805,7 @@ def verify_step2(
 
     if intro_message_id and intro_channel_id:
         msg = check_message(client, intro_channel_id, intro_message_id, "winners intro", ch)
-        ch["intro_found"] = msg is not None and bool(msg.get("content"))
+        ch["intro_found"] = msg is not None and bool(message_text(msg))
         if msg is not None:
             ch["section_content_in_intro"] = "store.steampowered.com" in msg.get("content", "").lower()
     else:
@@ -804,7 +825,7 @@ def verify_step2(
             print(f"  MISSING  {section_key} header (no message_id in state)")
             continue
         msg = check_message(client, ch_id, msg_id, f"winners {section_key} header", ch)
-        if msg is not None and msg.get("content"):
+        if msg is not None and message_text(msg):
             ch["sections_found"].append(section_key)
 
     # --- Footer (conditional on GUILD_ID having been set at post time) ---
@@ -815,9 +836,9 @@ def verify_step2(
 
     if footer_message_id and footer_channel_id:
         msg = check_message(client, footer_channel_id, footer_message_id, "winners footer", ch)
-        ch["footer_found"] = msg is not None and bool(msg.get("content"))
+        ch["footer_found"] = msg is not None and bool(message_text(msg))
         if msg is not None:
-            ch["footer_missing_separator"] = not msg.get("content", "").strip().endswith(
+            ch["footer_missing_separator"] = not message_text(msg).strip().endswith(
                 "End of Daily Winners ───────────────────"
             )
     else:
@@ -951,8 +972,8 @@ def verify_step3(
     if intro_message_id and intro_channel_id:
         try:
             msg = client.get_message(intro_channel_id, intro_message_id, context="verify step-3 intro")
-            ch["intro_found"] = bool(msg.get("content"))
-            intro_content = msg.get("content", "")
+            ch["intro_found"] = bool(message_text(msg))
+            intro_content = message_text(msg)
             print(f"  OK  intro (message_id={intro_message_id})")
         except DiscordMessageNotFoundError:
             ch["messages_missing"].append({"label": "intro", "message_id": intro_message_id})
@@ -979,8 +1000,8 @@ def verify_step3(
     if footer_message_id and footer_channel_id:
         try:
             msg = client.get_message(footer_channel_id, footer_message_id, context="verify step-3 footer")
-            ch["footer_found"] = bool(msg.get("content"))
-            footer_content = msg.get("content", "").strip()
+            ch["footer_found"] = bool(message_text(msg))
+            footer_content = message_text(msg).strip()
             ch["footer_missing_separator"] = not footer_content.endswith(
                 "End of Gaming Library ───────────────────"
             )
