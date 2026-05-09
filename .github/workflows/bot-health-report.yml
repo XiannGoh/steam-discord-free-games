@@ -68,6 +68,7 @@ jobs:
         uses: actions/github-script@v7
         with:
           script: |
+            const fs = require("fs");
             const workflows = [
               { file: "weekly-scheduling-bot.yml", name: "Weekly Scheduling Bot", staleHours: 168 },
               { file: "weekly-scheduling-responses-sync.yml", name: "Weekly Scheduling Responses Sync", staleHours: 6 },
@@ -104,7 +105,15 @@ jobs:
               });
             }
 
-            core.setOutput("workflows", JSON.stringify(output));
+            // Write the JSON directly to disk instead of through step outputs.
+            // Step outputs flow through the runner's env block when consumed via
+            // ${{ steps.X.outputs.Y }}, and after enough days of accumulated run
+            // history the JSON exceeds Linux ARG_MAX (~128KB-2MB combined env+args)
+            // and the next bash step fails with "Argument list too long" before it
+            // can even start. Writing to a file bypasses the env block entirely.
+            const json = JSON.stringify(output);
+            fs.writeFileSync("workflow-runs.json", json);
+            core.info(`Wrote ${json.length} bytes of workflow run data to workflow-runs.json`);
 
       - name: Fetch GitHub Actions billing
         id: actions_billing
@@ -135,13 +144,12 @@ jobs:
       - name: Build daily health report
         id: build-report
         env:
-          WORKFLOW_RUNS_JSON: ${{ steps.collect-workflows.outputs.workflows }}
+          # workflow-runs.json is written to disk by the previous github-script
+          # step; only actions-billing.json comes via env (it is small).
           ACTIONS_BILLING_JSON: ${{ steps.actions_billing.outputs.actions_billing_json }}
         run: |
           python - <<'PY'
           import os
-          with open("workflow-runs.json", "w") as f:
-              f.write(os.environ.get("WORKFLOW_RUNS_JSON", "[]"))
           with open("actions-billing.json", "w") as f:
               f.write(os.environ.get("ACTIONS_BILLING_JSON", "{}"))
           PY
