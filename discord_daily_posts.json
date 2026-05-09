@@ -1,287 +1,4 @@
 {
-  "2026-04-07": {
-    "items": [
-      {
-        "channel_id": "592534544708796474",
-        "message_id": "1491140466907938836",
-        "posted_at": "2026-04-07T18:19:51.884947+00:00",
-        "section": "free",
-        "source_type": "steam_free",
-        "title": "Kings Call",
-        "url": "https://store.steampowered.com/app/2674290/"
-      },
-      {
-        "channel_id": "592534544708796474",
-        "message_id": "1491140474856149112",
-        "posted_at": "2026-04-07T18:19:53.929565+00:00",
-        "section": "free",
-        "source_type": "steam_free",
-        "title": "Dragon Traveler",
-        "url": "https://store.steampowered.com/app/4104440/"
-      },
-      {
-        "channel_id": "592534544708796474",
-        "message_id": "1491140483232174264",
-        "posted_at": "2026-04-07T18:19:55.783641+00:00",
-        "section": "free",
-        "source_type": "steam_free",
-        "title": "theHunter Classic",
-        "url": "https://store.steampowered.com/app/253710/"
-      },
-      {
-        "channel_id": "592534544708796474",
-        "message_id": "1491140491096363288",
-        "posted_at": "2026-04-07T18:19:57.767797+00:00",
-        "section": "free",
-        "source_type": "steam_free",
-        "title": "World of Warships",
-        "url": "https://store.steampowered.com/app/552990/"
-      },
-      {
-        "channel_id": "592534544708796474",
-        "message_id": "1491140499346817196",
-        "posted_at": "2026-04-07T18:19:59.547891+00:00",
-        "section": "free",
-        "source_type": "steam_free",
-        "title": "Guild Wars 2®",
-        "url": "https://store.steampowered.com/app/1284210/"
-      },
-      {
-        "channel_id": "592534544708796474",
-        "message_id": "1491140506875465728",
-        "posted_at": "2026-04-07T18:20:01.322761+00:00",
-        "section": "free",
-        "source_type": "steam_free",
-        "title": "Sky: Children of the Light",
-        "url": "https://store.steampowered.com/app/2325290/"
-      },
-      {
-        "channel_id": "592534544708796474",
-        "message_id": "1491140514752368814",
-        "posted_at": "2026-04-07T18:20:04.748827+00:00",
-        "section": "free",
-        "source_type": "steam_free",
-        "title": "Realm of the Mad God Exalt",
-        "url": "https://store.steampowered.com/app/200210/"
-      },
-      {
-        "channel_id": "592534544708796474",
-        "message_id": "1491140528702492783",
-        "posted_at": "2026-04-07T18:20:06.559359+00:00",
-        "section": "free",
-        "source_type": "steam_free",
-        "title": "Toram Online",
-        "url": "https://store.steampowered.com/app/1827180/"
-      },
-      {
-        "channel_id": "592534544708796474",
-        "message_id": "1491140536327868506",
-        "posted_at": "2026-04-07T18:20:08.461073+00:00",
-        "section": "free",
-        "source_type": "steam_free",
-        "title": "War Robots: Frontiers",
-        "url": "https://store.steampowered.com/app/1491000/"
-      },
-      {
-        "channel_id": "592534544708796474",
-        "message_id": "1491140544766804109",
-        "posted_at": "2026-04-07T18:20:10.516462+00:00",
-        "section": "free",
-        "source_type": "steam_free",
-        "title": "Dragonheir: Silent Gods",
-        "url": "https://store.steampowered.com/app/2203070/"
-      },
-      {
-        "channel_id": "592534544708796474",
-        "message_id": "1491140559702589540",
-        "posted_at": "2026-04-07T18:20:14.040007+00:00",
-        "section": "paid",
-        "source_type": "paid_under_20",
-        "title": "Plague Inc: Aliens & Anti-Vaxxers",
-        "url": "https://store.steampowered.com/app/4508320/"
-      },
-      {
-        "channel_id": "592534544708796474",
-        "message_id": "1491140567638212638",
-        "posted_at": "2026-04-07T18:20:15.889370+00:00",
-        "section": "paid",
-        "source_type": "paid_under_20",
-        "title": "Call of Cthulhu®",
-        "url": "https://store.steampowered.com/app/399810/"
-      },
-      {
-        "channel_id": "592534544708796474",
-        "message_id": "1491140575557058710",
-        "posted_at": "2026-04-07T18:20:18.020678+00:00",
-        "section": "paid",
-        "source_type": "paid_under_20",
-        "title": "Plague Inc: Evolved",
-        "url": "https://store.steampowered.com/app/246620/"
-      },
-      {
-        "channel_id": "592534544708796474",
-        "message_id": "1491140584705101926",
-        "posted_at": "2026-04-07T18:20:19.954575+00:00",
-        "section": "paid",
-        "source_type": "paid_under_20",
-        "title": "The Long Dark",
-        "url": "https://store.steampowered.com/app/305620/"
-      },
-      {
-        "channel_id": "592534544708796474",
-        "message_id": "1491140592611365065",
-        "posted_at": "2026-04-07T18:20:22.041181+00:00",
-        "section": "paid",
-        "source_type": "paid_under_20",
-        "title": "The Planet Crafter - Toxicity",
-        "url": "https://store.steampowered.com/app/4078590/"
-      },
-      {
-        "channel_id": "592534544708796474",
-        "message_id": "1491140609354891434",
-        "posted_at": "2026-04-07T18:20:25.881549+00:00",
-        "section": "instagram",
-        "source_type": "instagram",
-        "title": "@gemgamingnetwork",
-        "url": "https://www.instagram.com/p/DRxhGu7jAfg/"
-      },
-      {
-        "channel_id": "592534544708796474",
-        "message_id": "1491140617835909160",
-        "posted_at": "2026-04-07T18:20:27.807598+00:00",
-        "section": "instagram",
-        "source_type": "instagram",
-        "title": "@gemgamingnetwork",
-        "url": "https://www.instagram.com/p/DW1h2B1Bauc/"
-      },
-      {
-        "channel_id": "592534544708796474",
-        "message_id": "1491140625247113238",
-        "posted_at": "2026-04-07T18:20:29.979793+00:00",
-        "section": "instagram",
-        "source_type": "instagram",
-        "title": "@cloudual",
-        "url": "https://www.instagram.com/p/DW1UP51GV2H/"
-      },
-      {
-        "channel_id": "592534544708796474",
-        "message_id": "1491140634839482408",
-        "posted_at": "2026-04-07T18:20:32.298467+00:00",
-        "section": "instagram",
-        "source_type": "instagram",
-        "title": "@cloudual",
-        "url": "https://www.instagram.com/p/DWyvdmsjO56/"
-      },
-      {
-        "channel_id": "592534544708796474",
-        "message_id": "1491140644339585186",
-        "posted_at": "2026-04-07T18:20:34.153147+00:00",
-        "section": "instagram",
-        "source_type": "instagram",
-        "title": "@mildsoss_official",
-        "url": "https://www.instagram.com/p/DW1sNoEIN39/"
-      },
-      {
-        "channel_id": "592534544708796474",
-        "message_id": "1491140652157767823",
-        "posted_at": "2026-04-07T18:20:36.225650+00:00",
-        "section": "instagram",
-        "source_type": "instagram",
-        "title": "@mildsoss_official",
-        "url": "https://www.instagram.com/p/DWzQnqFogi9/"
-      },
-      {
-        "channel_id": "592534544708796474",
-        "message_id": "1491140660886110490",
-        "posted_at": "2026-04-07T18:20:38.235241+00:00",
-        "section": "instagram",
-        "source_type": "instagram",
-        "title": "@sharedxp_official",
-        "url": "https://www.instagram.com/p/DW1mE_tjOsS/"
-      },
-      {
-        "channel_id": "592534544708796474",
-        "message_id": "1491140669216133122",
-        "posted_at": "2026-04-07T18:20:40.218419+00:00",
-        "section": "instagram",
-        "source_type": "instagram",
-        "title": "@sharedxp_official",
-        "url": "https://www.instagram.com/p/DWwcJrnjH_D/"
-      },
-      {
-        "channel_id": "592534544708796474",
-        "message_id": "1491140677298556980",
-        "posted_at": "2026-04-07T18:20:41.945515+00:00",
-        "section": "instagram",
-        "source_type": "instagram",
-        "title": "@wilfratgaming",
-        "url": "https://www.instagram.com/p/DW1aFieibhN/"
-      },
-      {
-        "channel_id": "592534544708796474",
-        "message_id": "1491140684672008382",
-        "posted_at": "2026-04-07T18:20:43.806242+00:00",
-        "section": "instagram",
-        "source_type": "instagram",
-        "title": "@wilfratgaming",
-        "url": "https://www.instagram.com/p/DWwtZDGjJhi/"
-      },
-      {
-        "channel_id": "592534544708796474",
-        "message_id": "1491140692154781717",
-        "posted_at": "2026-04-07T18:20:45.511171+00:00",
-        "section": "instagram",
-        "source_type": "instagram",
-        "title": "@indiegamespotlights",
-        "url": "https://www.instagram.com/p/DW1q5HyDw9y/"
-      },
-      {
-        "channel_id": "592534544708796474",
-        "message_id": "1491140701021405336",
-        "posted_at": "2026-04-07T18:20:48.010693+00:00",
-        "section": "instagram",
-        "source_type": "instagram",
-        "title": "@indiegamespotlights",
-        "url": "https://www.instagram.com/p/DW1qV3UDyu-/"
-      },
-      {
-        "channel_id": "592534544708796474",
-        "message_id": "1491140710450200587",
-        "posted_at": "2026-04-07T18:20:50.082800+00:00",
-        "section": "instagram",
-        "source_type": "instagram",
-        "title": "@biffmatictv",
-        "url": "https://www.instagram.com/p/DWnQrciCKC5/"
-      },
-      {
-        "channel_id": "592534544708796474",
-        "message_id": "1491140719417622719",
-        "posted_at": "2026-04-07T18:20:52.129293+00:00",
-        "section": "instagram",
-        "source_type": "instagram",
-        "title": "@biffmatictv",
-        "url": "https://www.instagram.com/p/DWjs3IyDTOy/"
-      },
-      {
-        "channel_id": "592534544708796474",
-        "message_id": "1491140728032727062",
-        "posted_at": "2026-04-07T18:20:54.074460+00:00",
-        "section": "instagram",
-        "source_type": "instagram",
-        "title": "@itzjaysasa",
-        "url": "https://www.instagram.com/p/DW1mbpOjWAT/"
-      },
-      {
-        "channel_id": "592534544708796474",
-        "message_id": "1491140735792316416",
-        "posted_at": "2026-04-07T18:20:55.976642+00:00",
-        "section": "instagram",
-        "source_type": "instagram",
-        "title": "@itzjaysasa",
-        "url": "https://www.instagram.com/p/DWpuEGCjSmU/"
-      }
-    ]
-  },
   "2026-04-08": {
     "items": [
       {
@@ -10707,6 +10424,196 @@
         "source_type": "instagram",
         "posted_at": "2026-05-07T15:47:58.553317+00:00",
         "description": "This is the ultimate multiplayer vehicle sandbox! Simple Planes 2  #gaming #newgames #sandbox #gamingwithfriends #sim..."
+      }
+    ]
+  },
+  "2026-05-08": {
+    "run_state": {
+      "section_headers": {
+        "free": {
+          "message_id": "1502322551505031259",
+          "channel_id": "592534544708796474",
+          "posted_at_utc": "2026-05-08T14:53:28.575859+00:00"
+        },
+        "paid": {
+          "message_id": "1502322604692738109",
+          "channel_id": "592534544708796474",
+          "posted_at_utc": "2026-05-08T14:53:41.491425+00:00"
+        },
+        "instagram": {
+          "message_id": "1502322652772044850",
+          "channel_id": "592534544708796474",
+          "posted_at_utc": "2026-05-08T14:53:52.565181+00:00"
+        }
+      },
+      "last_attempt_at_utc": "2026-05-08T14:53:25.763172+00:00",
+      "intro": {
+        "message_id": "1502322542218575923",
+        "channel_id": "592534544708796474",
+        "posted_at_utc": "2026-05-08T14:53:26.774057+00:00"
+      },
+      "footer": {
+        "message_id": "1502322694811816116",
+        "channel_id": "592534544708796474",
+        "posted_at_utc": "2026-05-08T14:54:02.704540+00:00"
+      },
+      "completed": true,
+      "completed_at_utc": "2026-05-08T14:54:03.917471+00:00"
+    },
+    "items": [
+      {
+        "item_key": "19dfe233c1f0b1b6",
+        "section": "free",
+        "title": "Darza's Dominion",
+        "url": "https://store.steampowered.com/app/1895130/",
+        "message_id": "1502322559537123348",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-05-08T14:53:30.793659+00:00",
+        "description": "The Dominion takes no prisoners! Fight for your survival in the unforgiving terrains that surround you, strengthen your hero through slaying dangerous creatures, gather a group of allies and bring the battle to Darza in this fast-paced roguelike cooperative bullet-hell MMO!"
+      },
+      {
+        "item_key": "34e36ca6b990b017",
+        "section": "free",
+        "title": "XERA: Survival",
+        "url": "https://store.steampowered.com/app/625340/",
+        "message_id": "1502322568462467224",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-05-08T14:53:32.750438+00:00",
+        "description": "Action-focused, open world survival shooter, PvPvE against fellow mercenaries and lethal XOIDS. Raid for resources alone or with team-mates, build and defend your base, stash your gear and survive against the odds. You are the hunters. You are the hunted. And the robots never sleep…"
+      },
+      {
+        "item_key": "042f5780bfb9ef4a",
+        "section": "free",
+        "title": "Heroes Of The Dark",
+        "url": "https://store.steampowered.com/app/1851330/",
+        "message_id": "1502322576939290725",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-05-08T14:53:35.006140+00:00",
+        "description": "Battle Vampires, Werewolves and Humans in a dark Imperial Age strategy game! Collect and upgrade Heroes for 5v5 action, forge alliances, and restore world order."
+      },
+      {
+        "item_key": "2fb5c98374843165",
+        "section": "free",
+        "title": "PANZERKAMPF®",
+        "url": "https://store.steampowered.com/app/2771910/",
+        "message_id": "1502322586070155306",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-05-08T14:53:37.199931+00:00",
+        "description": "World war of tanks rages on. Join the battle in one of our real-world tanks! Upgrade your vehicles and destroy the enemy! Play with friends and dominate the war! Play for free, in intuitive and easy to grasp UI, with state-of-the-art graphics, particle effects and authentic sound!"
+      },
+      {
+        "item_key": "3e622801d55d3565",
+        "section": "free",
+        "title": "FreestyleFootball R",
+        "url": "https://store.steampowered.com/app/1826980/",
+        "message_id": "1502322595071131659",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-05-08T14:53:39.511062+00:00",
+        "description": "《FreestyleFootball》 is a street hip-hop animation style soccer ACG game created by JCE and published by HOGA. In the game, you will collect and play as different characters in PVP team Competition. The game mode includes 4v4 team competition and club league."
+      },
+      {
+        "item_key": "39fa42fda695ca60",
+        "section": "paid",
+        "title": "Wildgate",
+        "url": "https://store.steampowered.com/app/3504780/",
+        "message_id": "1502322613295386705",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-05-08T14:53:43.318263+00:00",
+        "description": "Wildgate is a PvPvE multiplayer shooter that blends tactical ship-to-ship combat with fast-paced first-person action. Evade deadly environmental hazards, search for powerful weapons and ship upgrades, and be the first crew to escape with the Artifact... or the last crew left flying."
+      },
+      {
+        "item_key": "267e1cf9e482c1ea",
+        "section": "paid",
+        "title": "Cursed Companions",
+        "url": "https://store.steampowered.com/app/3265230/",
+        "message_id": "1502322620551532565",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-05-08T14:53:45.214854+00:00",
+        "description": "If we say the wrong words... WE DIE! This game kills you with your own voices! Online co-op where everyone gets a forbidden word, say it and you kill your friends. Explore spooky dungeons, cast spells and defeat monsters with your voices."
+      },
+      {
+        "item_key": "1edd7298b1274d9d",
+        "section": "paid",
+        "title": "SCP: 5K",
+        "url": "https://store.steampowered.com/app/872670/",
+        "message_id": "1502322628830953513",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-05-08T14:53:47.198419+00:00",
+        "description": "SCP: 5K is a co-op or singleplayer tactical horror FPS project that puts players in the midst of a conspiracy where the SCP Foundation has turned on humanity. Enjoy Early Access as we continue to work towards a completed full release of the project!"
+      },
+      {
+        "item_key": "d947a91b2e8a95d2",
+        "section": "paid",
+        "title": "BIGFOOT",
+        "url": "https://store.steampowered.com/app/509980/",
+        "message_id": "1502322637295063192",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-05-08T14:53:49.037211+00:00",
+        "description": "You are a Bigfoot hunter with an important mission: to put an end to rumours once and for all and prove to yourself that Bigfoot is not just a myth or an invention of the mind..."
+      },
+      {
+        "item_key": "de93b3543b4a5e9a",
+        "section": "paid",
+        "title": "Scam Line",
+        "url": "https://store.steampowered.com/app/2794590/",
+        "message_id": "1502322644802867403",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-05-08T14:53:50.927992+00:00",
+        "description": "Scam Line is a 4–8 player social deception game where your party will face different challenges. Become a liar, a manipulator, a cheater, or find your own path to victory"
+      },
+      {
+        "item_key": "4ed6482723dabfab",
+        "section": "instagram",
+        "title": "@wilfratgaming",
+        "url": "https://www.instagram.com/p/DYDDlpvNMHf/",
+        "message_id": "1502322659646505041",
+        "channel_id": "592534544708796474",
+        "source_type": "instagram",
+        "posted_at": "2026-05-08T14:53:54.437674+00:00",
+        "description": "Project Spectrum! #gamestoplay #gaming #videogames #newgames"
+      },
+      {
+        "item_key": "62e0625974a1b716",
+        "section": "instagram",
+        "title": "@sharedxp_official",
+        "url": "https://www.instagram.com/p/DYDeCacMMSk/",
+        "message_id": "1502322667338862633",
+        "channel_id": "592534544708796474",
+        "source_type": "instagram",
+        "posted_at": "2026-05-08T14:53:56.606779+00:00",
+        "description": "Left Fore Dead: Zombie Battle Golf — golf on a zombie-infested course with up to 4 players where your mates are just ..."
+      },
+      {
+        "item_key": "bc4f60fa08093b1f",
+        "section": "instagram",
+        "title": "@sharedxp_official",
+        "url": "https://www.instagram.com/p/DYC2xmQM1gw/",
+        "message_id": "1502322676591628420",
+        "channel_id": "592534544708796474",
+        "source_type": "instagram",
+        "posted_at": "2026-05-08T14:53:58.663797+00:00",
+        "description": "WheelMates — two players, two RC cars, one missing scientist, and a house full of secrets to uncover together at your..."
+      },
+      {
+        "item_key": "1448dce572e4554a",
+        "section": "instagram",
+        "title": "@biffmatictv",
+        "url": "https://www.instagram.com/p/DYFJUjBNju1/",
+        "message_id": "1502322685105934428",
+        "channel_id": "592534544708796474",
+        "source_type": "instagram",
+        "posted_at": "2026-05-08T14:54:00.769784+00:00",
+        "description": "Feed Rubber Ducks into an ENDLESS PIT in this Automation Sandbox Game!   @projectpittgame   #gaming #sandbox #automat..."
       }
     ]
   }
