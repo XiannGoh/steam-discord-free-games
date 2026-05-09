@@ -27,10 +27,18 @@ class FakeClient:
         self.deleted = []  # list of (channel_id, message_id)
 
     def get_channel_messages(self, channel_id, *, context, limit=100, before=None, after=None):
+        # Build the channel newest-first, then optionally page from a cursor.
         msgs = []
         if self.last_message is not None:
             msgs.append(self.last_message)
         msgs.extend(self.prior_messages)
+        if before is not None:
+            # Skip past and including the message with id == before
+            try:
+                idx = next(i for i, m in enumerate(msgs) if str(m.get("id")) == str(before))
+            except StopIteration:
+                return []
+            msgs = msgs[idx + 1:]
         return msgs[:limit]
 
     def post_message(self, channel_id, content, *, context):
@@ -232,4 +240,35 @@ def test_only_first_stale_explainer_deleted():
     client = FakeClient(last_message=last, prior_messages=[newer, older])
     post_or_edit_rolling_explainer(client, "chan-1", "step-3")
     assert client.deleted == [("chan-1", "newer-explainer")]
+    assert len(client.posted) == 1
+
+
+def test_deletes_stale_explainer_via_paging_when_buried_past_first_page():
+    # When the run posts more than ROLLING_EXPLAINER_PAGE_SIZE messages
+    # before the explainer (e.g. a large gaming library), the stale explainer
+    # is on a later page. The cleanup must page back to find it.
+    last = {"id": "today-footer", "content": "📅 End of Gaming Library"}
+    today_games = [{"id": f"today-game-{i}", "content": f"Game {i}"} for i in range(150)]
+    stale = {"id": "stale-explainer", "content": f"{ROLLING_EXPLAINER_PREFIX} — yesterday"}
+    prior = today_games + [stale]
+    client = FakeClient(last_message=last, prior_messages=prior)
+    post_or_edit_rolling_explainer(client, "chan-1", "step-3")
+    assert client.deleted == [("chan-1", "stale-explainer")]
+    assert len(client.posted) == 1
+
+
+def test_paging_gives_up_after_max_pages():
+    # If the stale explainer is buried beyond the bounded scan, this run
+    # does not delete it. The next run gets another chance.
+    from rolling_explainer import (
+        ROLLING_EXPLAINER_MAX_SCAN_PAGES,
+        ROLLING_EXPLAINER_PAGE_SIZE,
+    )
+    cap = ROLLING_EXPLAINER_MAX_SCAN_PAGES * ROLLING_EXPLAINER_PAGE_SIZE
+    last = {"id": "today-footer", "content": "📅 End of Gaming Library"}
+    filler = [{"id": f"filler-{i}", "content": f"Game {i}"} for i in range(cap + 5)]
+    stale = {"id": "way-buried", "content": f"{ROLLING_EXPLAINER_PREFIX} — ancient"}
+    client = FakeClient(last_message=last, prior_messages=filler + [stale])
+    post_or_edit_rolling_explainer(client, "chan-1", "step-3")
+    assert client.deleted == []
     assert len(client.posted) == 1
