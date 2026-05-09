@@ -148,6 +148,49 @@ def get_rolling_content(slug: str, *, _today: date | None = None) -> str:
     return variants[idx]
 
 
+# How many pages of channel history to scan when looking for a stale explainer.
+# Each page is up to 100 messages, so this caps the search at ~500 messages.
+# A typical Step 3 daily run posts on the order of `1 header + N section
+# headers + M game messages + 1 footer + 1 explainer`. Five pages is plenty
+# for libraries with hundreds of games while still bounding the worst-case
+# Discord API cost to a handful of GETs.
+ROLLING_EXPLAINER_MAX_SCAN_PAGES = 5
+ROLLING_EXPLAINER_PAGE_SIZE = 100
+
+
+def _find_stale_explainer_id(
+    client: DiscordClient,
+    channel_id: str,
+    slug: str,
+    *,
+    after_message_id: str,
+) -> str | None:
+    """Page back through channel history looking for the most recent rolling
+    explainer older than `after_message_id`.
+
+    Returns the message id of the first explainer found, or None if no
+    explainer was found within `ROLLING_EXPLAINER_MAX_SCAN_PAGES` pages.
+    Stopping bounded means a hopelessly polluted channel doesn't cause an
+    unbounded scan; if a stale explainer is buried deeper than the cap, the
+    next workflow run still gets another chance.
+    """
+    cursor = after_message_id
+    for page in range(ROLLING_EXPLAINER_MAX_SCAN_PAGES):
+        batch = client.get_channel_messages(
+            channel_id,
+            context=f"rolling explainer scan page {page} for {slug}",
+            limit=ROLLING_EXPLAINER_PAGE_SIZE,
+            before=cursor,
+        )
+        if not batch:
+            return None
+        for m in batch:
+            if str(m.get("content", "")).startswith(ROLLING_EXPLAINER_PREFIX):
+                return str(m["id"])
+        cursor = str(batch[-1]["id"])
+    return None
+
+
 def post_or_edit_rolling_explainer(
     client: DiscordClient,
     channel_id: str,
@@ -160,25 +203,45 @@ def post_or_edit_rolling_explainer(
     before the new explainer is posted. This prevents accumulating one stale
     "How This Works" message per workflow run while still satisfying the
     verifier's expectation that the explainer is the literal last message.
+
+    The cleanup pages back through channel history until it finds an explainer
+    or hits `ROLLING_EXPLAINER_MAX_SCAN_PAGES`. This handles channels where
+    today's run posts more than one page of messages (e.g. Step 3 with a large
+    gaming library) before the explainer is posted, which limit=20 alone could
+    not reach.
     """
     content = get_rolling_content(slug)
-    # Look back further than 1 so we can find and clean up a stale explainer.
-    messages = client.get_channel_messages(channel_id, context=f"rolling explainer fetch {slug}", limit=20)
-    last = messages[0] if messages else None
+    first_page = client.get_channel_messages(
+        channel_id,
+        context=f"rolling explainer fetch {slug}",
+        limit=ROLLING_EXPLAINER_PAGE_SIZE,
+    )
+    last = first_page[0] if first_page else None
     if last and str(last.get("content", "")).startswith(ROLLING_EXPLAINER_PREFIX):
         client.edit_message(channel_id, str(last["id"]), content, context=f"edit rolling explainer {slug}")
         print(f"EDIT: rolling explainer for {slug} (message_id={last['id']})")
         return
-    # Last message isn't an explainer. Look back through recent messages for a
-    # stale explainer (from a previous run) and delete it before posting the
-    # new one. Stop at the first match — there should be at most one.
-    for m in messages[1:]:
+    # Last message isn't an explainer. Look for a stale explainer to clean up
+    # before posting a fresh one.
+    stale_id: str | None = None
+    # First check the current page (cheap — no extra API call).
+    for m in first_page[1:]:
         if str(m.get("content", "")).startswith(ROLLING_EXPLAINER_PREFIX):
-            try:
-                client.delete_message(channel_id, str(m["id"]), context=f"delete stale rolling explainer {slug}")
-                print(f"DELETE: stale rolling explainer for {slug} (message_id={m['id']})")
-            except Exception as e:
-                print(f"WARN: could not delete stale rolling explainer for {slug} (message_id={m.get('id')}): {e}")
+            stale_id = str(m["id"])
             break
+    # If not found on page 1 and there are more messages to scan, page back.
+    if stale_id is None and first_page:
+        stale_id = _find_stale_explainer_id(
+            client,
+            channel_id,
+            slug,
+            after_message_id=str(first_page[-1]["id"]),
+        )
+    if stale_id is not None:
+        try:
+            client.delete_message(channel_id, stale_id, context=f"delete stale rolling explainer {slug}")
+            print(f"DELETE: stale rolling explainer for {slug} (message_id={stale_id})")
+        except Exception as e:
+            print(f"WARN: could not delete stale rolling explainer for {slug} (message_id={stale_id}): {e}")
     msg = client.post_message(channel_id, content, context=f"post rolling explainer {slug}")
     print(f"CREATE: rolling explainer for {slug} (message_id={msg.get('id')})")
