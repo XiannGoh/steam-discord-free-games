@@ -107,7 +107,23 @@ jobs:
           fi
 
           git commit -m "chore: update weekly schedule message state"
-          git push
+
+          # Retry push with pull --rebase on conflict. Concurrent workflow
+          # runs that also push state files (winners-state, gaming-library)
+          # can cause non-fast-forward push failures even with the workflow-
+          # level concurrency group, since other workflows are not in this
+          # group. Up to 5 attempts with exponential backoff.
+          for attempt in 1 2 3 4 5; do
+            if git push; then
+              echo "Pushed weekly schedule state on attempt $attempt"
+              exit 0
+            fi
+            echo "Push attempt $attempt failed, pulling and retrying..."
+            git pull --rebase --autostash origin main
+            sleep $((attempt * 2))
+          done
+          echo "Failed to push weekly schedule state after 5 attempts" >&2
+          exit 1
 
       - name: Notify Discord health monitor on failure
         if: ${{ failure() && env.DISCORD_HEALTH_MONITOR_WEBHOOK_URL != '' }}
