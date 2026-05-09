@@ -34,6 +34,28 @@ import requests
 
 from discord_api import DiscordApiError, DiscordClient, DiscordMessageNotFoundError
 
+
+def message_text(msg: Dict[str, Any]) -> str:
+    """Return the human-visible text of a Discord message regardless of where it lives.
+
+    After PR #302, the gaming library workflow posts header/footer messages
+    with empty `content` and the actual text in `embeds[0].description`.
+    Verifier code that reads `content` directly would incorrectly mark these
+    messages as missing. This helper returns the `content` if non-empty,
+    otherwise falls back to the first embed description, otherwise an empty
+    string. Safe for plain-text messages too.
+    """
+    content = str(msg.get("content") or "")
+    if content:
+        return content
+    embeds = msg.get("embeds") or []
+    if isinstance(embeds, list) and embeds:
+        first = embeds[0]
+        if isinstance(first, dict):
+            return str(first.get("description") or "")
+    return ""
+
+
 # ---------------------------------------------------------------------------
 # Constants
 # ---------------------------------------------------------------------------
@@ -280,7 +302,7 @@ def main() -> None:
             result["errors"].append(f"Duplicate message_id {header_msg_id} for header.")
         seen_message_ids.append(header_msg_id)
         msg = check_message(client, header_ch_id, header_msg_id, "gaming library header", result)
-        result["header_found"] = msg is not None and bool(msg.get("content"))
+        result["header_found"] = msg is not None and bool(message_text(msg))
     else:
         result["errors"].append("Header message_id or channel_id missing from daily_posts.")
         print("  MISSING  header (no message_id in state)")
@@ -341,7 +363,7 @@ def main() -> None:
             result["errors"].append(f"Duplicate message_id {footer_msg_id} for footer.")
         seen_message_ids.append(footer_msg_id)
         msg = check_message(client, footer_ch_id, footer_msg_id, "gaming library footer", result)
-        result["footer_found"] = msg is not None and bool(msg.get("content"))
+        result["footer_found"] = msg is not None and bool(message_text(msg))
     else:
         if spec_required["footer_required"]:
             result["errors"].append("Footer message_id or channel_id missing from daily_posts.")

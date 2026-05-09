@@ -30,6 +30,27 @@ import requests
 
 from discord_api import DiscordApiError, DiscordClient, DiscordMessageNotFoundError
 
+
+def message_text(msg: Dict[str, Any]) -> str:
+    """Return the human-visible text of a Discord message regardless of where it lives.
+
+    Mirror of the helper added to verify_gaming_library.py / verify_discord_output.py
+    in the embed-aware verifier fixes that follow PR #302. The weekly scheduling bot
+    currently posts via plain content, but normalizing on this helper means the
+    verifier stays correct if/when the schedule channel is migrated to embed-rendered
+    messages.
+    """
+    content = str(msg.get("content") or "")
+    if content:
+        return content
+    embeds = msg.get("embeds") or []
+    if isinstance(embeds, list) and embeds:
+        first = embeds[0]
+        if isinstance(first, dict):
+            return str(first.get("description") or "")
+    return ""
+
+
 # ---------------------------------------------------------------------------
 # Constants
 # ---------------------------------------------------------------------------
@@ -208,7 +229,7 @@ def main() -> None:
             result["errors"].append(f"Duplicate message_id {intro_message_id} for intro.")
         seen_message_ids.append(intro_message_id)
         msg = check_message(client, channel_id, intro_message_id, "weekly schedule intro", result)
-        result["intro_found"] = msg is not None and bool(msg.get("content"))
+        result["intro_found"] = msg is not None and bool(message_text(msg))
     else:
         print("  SKIPPED  intro (no intro_message_id in state)")
         result["intro_found"] = False
