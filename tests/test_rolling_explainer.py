@@ -17,15 +17,21 @@ from rolling_explainer import (
 # ---------------------------------------------------------------------------
 
 class FakeClient:
-    def __init__(self, last_message=None):
-        self.last_message = last_message  # dict or None
+    def __init__(self, last_message=None, prior_messages=None):
+        # last_message: dict or None — the literal most recent message in the channel
+        # prior_messages: list of dicts (newest-first) — older messages in the channel
+        self.last_message = last_message
+        self.prior_messages = list(prior_messages or [])
         self.posted = []   # list of (channel_id, content)
         self.edited = []   # list of (channel_id, message_id, content)
+        self.deleted = []  # list of (channel_id, message_id)
 
     def get_channel_messages(self, channel_id, *, context, limit=100, before=None, after=None):
-        if self.last_message is None:
-            return []
-        return [self.last_message]
+        msgs = []
+        if self.last_message is not None:
+            msgs.append(self.last_message)
+        msgs.extend(self.prior_messages)
+        return msgs[:limit]
 
     def post_message(self, channel_id, content, *, context):
         msg_id = f"new-{len(self.posted) + 1}"
@@ -35,6 +41,9 @@ class FakeClient:
     def edit_message(self, channel_id, message_id, content, *, context):
         self.edited.append((channel_id, message_id, content))
         return {"id": message_id}
+
+    def delete_message(self, channel_id, message_id, *, context):
+        self.deleted.append((channel_id, message_id))
 
 
 # ---------------------------------------------------------------------------
@@ -190,3 +199,37 @@ def test_edits_in_place_when_last_message_from_different_bot_author():
     _, edited_id, edited_content = client.edited[0]
     assert edited_id == "msg-from-other-bot"
     assert edited_content.startswith(ROLLING_EXPLAINER_PREFIX)
+
+
+def test_deletes_stale_explainer_when_last_message_not_explainer():
+    """When a stale explainer exists earlier in the channel, it should be
+    deleted before posting the new one (prevents day-over-day accumulation)."""
+    stale = {"id": "stale-explainer", "content": f"{ROLLING_EXPLAINER_PREFIX} — stale content"}
+    last = {"id": "today-footer", "content": "📅 End of Gaming Library"}
+    client = FakeClient(last_message=last, prior_messages=[stale])
+    post_or_edit_rolling_explainer(client, "chan-1", "step-3")
+    assert client.deleted == [("chan-1", "stale-explainer")]
+    assert len(client.posted) == 1
+    assert len(client.edited) == 0
+
+
+def test_no_delete_when_no_stale_explainer():
+    """When the channel has no prior explainer, nothing is deleted."""
+    last = {"id": "today-footer", "content": "📅 End of Gaming Library"}
+    other = {"id": "earlier-msg", "content": "Some other thing"}
+    client = FakeClient(last_message=last, prior_messages=[other])
+    post_or_edit_rolling_explainer(client, "chan-1", "step-3")
+    assert client.deleted == []
+    assert len(client.posted) == 1
+
+
+def test_only_first_stale_explainer_deleted():
+    """If multiple stale explainers exist, only the most recent one is deleted
+    in this run. Subsequent runs will clean up the rest one at a time."""
+    older = {"id": "older-explainer", "content": f"{ROLLING_EXPLAINER_PREFIX} — older"}
+    newer = {"id": "newer-explainer", "content": f"{ROLLING_EXPLAINER_PREFIX} — newer"}
+    last = {"id": "today-footer", "content": "📅 End of Gaming Library"}
+    client = FakeClient(last_message=last, prior_messages=[newer, older])
+    post_or_edit_rolling_explainer(client, "chan-1", "step-3")
+    assert client.deleted == [("chan-1", "newer-explainer")]
+    assert len(client.posted) == 1
