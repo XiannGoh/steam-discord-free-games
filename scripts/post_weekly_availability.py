@@ -4,7 +4,7 @@ import os
 import sys
 import urllib.parse
 from datetime import date, datetime, timedelta, timezone
-from typing import Any
+from typing import Any, Optional
 
 import requests
 
@@ -109,6 +109,44 @@ def try_get_message(client: DiscordClient, channel_id: str, message_id: str, con
         return False
 
 
+def find_recent_intro_in_channel(
+    client: DiscordClient,
+    channel_id: str,
+    date_range: str,
+    *,
+    scan_limit: int = 50,
+) -> Optional[str]:
+    """Scan recent channel messages for an existing intro matching this week.
+
+    The state file (`weekly_schedule_messages.json`) is the primary source of
+    truth for whether this week was already posted. But if two scheduled runs
+    fire in parallel (the concurrency group is best-effort), both can read
+    the state file BEFORE either has committed, and both will CREATE
+    duplicate intro+day messages (this happened the week of May 2 2026).
+    This helper provides a second-line idempotency check by scanning the
+    channel for a recent message containing the unique "Week of {date_range}"
+    marker. If found, the caller should treat it as the canonical intro and
+    skip the CREATE step.
+
+    Returns the message id of the matching intro, or None if no match.
+    """
+    marker = f"Week of {date_range}"
+    try:
+        recent = client.get_channel_messages(
+            channel_id,
+            context=f"scan-for-existing-intro {date_range}",
+            limit=scan_limit,
+        )
+    except Exception as error:
+        print(f"WARN: channel scan for existing intro failed: {error}")
+        return None
+    for msg in recent:
+        content = str(msg.get("content") or "")
+        if marker in content and "Weekly Availability" in content:
+            return str(msg.get("id") or "")
+    return None
+
+
 def format_day_message(day_name: str, emoji: str, day_date: date) -> str:
     _ = emoji
     return format_day_label(day_name, day_date, include_emoji=True)
@@ -155,6 +193,18 @@ def main() -> None:
         client = DiscordClient(session)
 
         intro_message_id = existing_week_state.get("intro_message_id")
+        # Pre-CREATE channel scan: if the state file does not have an intro
+        # message id, but the channel already has one matching this week
+        # (e.g. a parallel run beat us to the post), adopt it instead of
+        # creating a duplicate. This narrows the parallel-run race window
+        # from ~90s (state-file-commit time) to ~2s (channel POST round-
+        # trip). Combined with the workflow concurrency group, this makes
+        # duplicate posts very unlikely in practice.
+        if not (isinstance(intro_message_id, str) and intro_message_id):
+            scanned_intro_id = find_recent_intro_in_channel(client, channel_id, date_range)
+            if scanned_intro_id:
+                intro_message_id = scanned_intro_id
+                print(f"ADOPT: intro found via channel scan for {week_key} (message_id={intro_message_id})")
         if isinstance(intro_message_id, str) and intro_message_id and try_get_message(
             client, channel_id, intro_message_id, f"verify intro for {week_key}"
         ):
