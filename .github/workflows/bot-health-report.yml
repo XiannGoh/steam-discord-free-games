@@ -76,7 +76,9 @@ jobs:
               { file: "evening-winners.yml", name: "Daily Game Picks Winners", staleHours: 12 },
               { file: "gaming-library-daily.yml", name: "Gaming Library Daily Reminder", staleHours: 20 },
               { file: "gaming-library-sync.yml", name: "Gaming Library Sync", staleHours: 4 },
-              { file: "watchdog.yml", name: "Missed-Run Watchdog", staleHours: 2 },
+              // Missed-Run Watchdog removed 2026-05-10: cron disabled in watchdog.yml
+              // since 2026-04-19, so the workflow is never expected to fire. Re-add this entry
+              // (with appropriate staleHours) if the cron is re-enabled.
             ];
 
             const output = [];
