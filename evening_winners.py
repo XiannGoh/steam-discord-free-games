@@ -1056,8 +1056,13 @@ def main() -> None:
                     day_key=prior_day,
                     winners_channel_id=winners_channel_id,
                 )
-            if prior_days_requiring_updates:
-                save_discord_daily_posts(daily_posts)
+            # Mark winners_state with a SKIP status so the health report knows
+            # we ran for this day and intentionally posted nothing. Without this
+            # marker, the health report flags day_key as winners.state_missing.
+            winners_state["status"] = "skipped"
+            winners_state["skipped_reason"] = "no_eligible_winners"
+            winners_state["updated_at_utc"] = datetime.now(timezone.utc).isoformat()
+            save_discord_daily_posts(daily_posts)
             print(f"SKIP: no eligible winners in last {WINNERS_LOOKBACK_DAYS} days for {day_key}")
             return
 
@@ -1077,6 +1082,10 @@ def main() -> None:
         ]
 
         if keys_unchanged and not had_previous_vote_snapshot and not manual_run:
+            # Same SKIP-clear as the main publish path: this branch updates real
+            # vote_counts / winner_entries, so any prior SKIP marker is stale.
+            winners_state.pop("status", None)
+            winners_state.pop("skipped_reason", None)
             winners_state["winner_vote_counts"] = current_winner_vote_counts
             winners_state["winner_entries"] = current_winner_entries
             winners_state["updated_at_utc"] = datetime.now(timezone.utc).isoformat()
@@ -1100,8 +1109,12 @@ def main() -> None:
                     day_key=prior_day,
                     winners_channel_id=winners_channel_id,
                 )
-            if prior_days_requiring_updates:
-                save_discord_daily_posts(daily_posts)
+            # Stamp updated_at_utc so the health report can confirm this run
+            # actually re-checked the day. winner_entries already exist from a
+            # previous run, so no SKIP marker is needed here — the existing
+            # winners_state is fully valid.
+            winners_state["updated_at_utc"] = datetime.now(timezone.utc).isoformat()
+            save_discord_daily_posts(daily_posts)
             print(f"SKIP: no newly eligible winners for {day_key}")
             post_or_edit_rolling_explainer(client, winners_channel_id, "step-2")
             return
@@ -1128,6 +1141,13 @@ def main() -> None:
             day_key=day_key,
             winner_entries_by_key={entry["winner_key"]: entry for entry in current_winner_entries},
         )
+        # Clear any SKIP marker from a prior no-winners run on the same day:
+        # this run is publishing real winners, so the state should reflect that.
+        # Without this clear, the health report's SKIP-aware short-circuit would
+        # suppress message_id / winner_keys / freshness checks against an actually
+        # published state, hiding genuine inconsistencies.
+        winners_state.pop("status", None)
+        winners_state.pop("skipped_reason", None)
         winners_state["last_action"] = "edit" if previous_message_ids else "create"
         winners_state["updated_at_utc"] = datetime.now(timezone.utc).isoformat()
         if not previous_message_ids:

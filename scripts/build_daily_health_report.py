@@ -581,7 +581,12 @@ def compute_state_issues(*, now_utc: datetime | None = None) -> list[Issue]:
                     file_path="discord_daily_posts.json",
                     day_key=winners_day,
                 )
-            if isinstance(winners_state, dict):
+            # SKIP-marked state means evening_winners.py ran for this day and
+            # intentionally posted nothing (no eligible winners in the lookback
+            # window). The presence of the dict satisfies the missing-state check
+            # above, but we skip the message_id / winner_keys / freshness checks
+            # below since they do not apply to a no-winners state.
+            if isinstance(winners_state, dict) and winners_state.get("status") != "skipped":
                 message_id = winners_state.get("message_id")
                 winner_keys = winners_state.get("winner_keys")
                 if not isinstance(message_id, str) or not message_id.strip():
