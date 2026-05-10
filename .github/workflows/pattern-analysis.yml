@@ -31,7 +31,12 @@ jobs:
         uses: anthropics/claude-code-action@v1
         with:
           claude_code_oauth_token: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
-          claude_args: '--model claude-sonnet-4-6 --max-turns 10'
+          # 10 turns was too low for a 6-step task (read log, classify patterns,
+          # update entries, optionally fix code, post webhook, commit). All 4 historical
+          # runs (May 3, 10, 17, 24) failed with "Reached maximum number of turns (10)".
+          # Bump to 50 — still bounded enough to fail loudly on runaway loops, but enough
+          # headroom for the realistic workflow.
+          claude_args: '--model claude-sonnet-4-6 --max-turns 50'
           prompt: |
             You are performing weekly pattern analysis for the bot health monitor.
 
