@@ -1056,8 +1056,13 @@ def main() -> None:
                     day_key=prior_day,
                     winners_channel_id=winners_channel_id,
                 )
-            if prior_days_requiring_updates:
-                save_discord_daily_posts(daily_posts)
+            # Mark winners_state with a SKIP status so the health report knows
+            # we ran for this day and intentionally posted nothing. Without this
+            # marker, the health report flags day_key as winners.state_missing.
+            winners_state["status"] = "skipped"
+            winners_state["skipped_reason"] = "no_eligible_winners"
+            winners_state["updated_at_utc"] = datetime.now(timezone.utc).isoformat()
+            save_discord_daily_posts(daily_posts)
             print(f"SKIP: no eligible winners in last {WINNERS_LOOKBACK_DAYS} days for {day_key}")
             return
 
@@ -1100,8 +1105,12 @@ def main() -> None:
                     day_key=prior_day,
                     winners_channel_id=winners_channel_id,
                 )
-            if prior_days_requiring_updates:
-                save_discord_daily_posts(daily_posts)
+            # Stamp updated_at_utc so the health report can confirm this run
+            # actually re-checked the day. winner_entries already exist from a
+            # previous run, so no SKIP marker is needed here — the existing
+            # winners_state is fully valid.
+            winners_state["updated_at_utc"] = datetime.now(timezone.utc).isoformat()
+            save_discord_daily_posts(daily_posts)
             print(f"SKIP: no newly eligible winners for {day_key}")
             post_or_edit_rolling_explainer(client, winners_channel_id, "step-2")
             return
