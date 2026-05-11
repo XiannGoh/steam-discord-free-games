@@ -1026,7 +1026,12 @@ def main() -> None:
     if not isinstance(week_outputs, dict):
         week_outputs = {}
 
-    with make_retry_session() as posting_session:
+    # Note: posting_session uses bare requests.Session() (no retry adapter)
+    # because DiscordClient is used inside this block and has its own retry
+    # loop for 429/5xx. Adding adapter retries on top would double-retry POST
+    # mutations, which can cause duplicate messages if Discord accepts the
+    # message but the response times out (Codex review on PR #312).
+    with requests.Session() as posting_session:
         posting_session.headers.update(
             {
                 "Authorization": f"Bot {token}",
