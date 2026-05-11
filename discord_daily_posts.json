@@ -8781,6 +8781,111 @@
         "posted_at": "2026-05-11T16:15:39.220870+00:00",
         "description": "In this game it's been 10 years since the outbreak! #gamestoplay #newgames #coopgame"
       }
-    ]
+    ],
+    "winners_state": {
+      "intro": {
+        "message_id": "1503546179349381292",
+        "channel_id": "1491294533751799809"
+      },
+      "section_headers": {
+        "paid": {
+          "message_id": "1503546183790886942",
+          "channel_id": "1491294533751799809"
+        }
+      },
+      "winner_messages": {
+        "https://store.steampowered.com/app/2141730/": {
+          "message_id": "1503546185464549527",
+          "channel_id": "1491294533751799809"
+        },
+        "https://store.steampowered.com/app/2567870/": {
+          "message_id": "1503546187737731194",
+          "channel_id": "1491294533751799809"
+        },
+        "https://store.steampowered.com/app/3643170/": {
+          "message_id": "1503546189730025603",
+          "channel_id": "1491294533751799809"
+        },
+        "https://store.steampowered.com/app/648800/": {
+          "message_id": "1503546192242544720",
+          "channel_id": "1491294533751799809"
+        }
+      },
+      "footer": {
+        "message_id": "1503546197674168320",
+        "channel_id": "1491294533751799809"
+      },
+      "message_id": "1503546179349381292",
+      "message_ids": [
+        "1503546179349381292",
+        "1503546183790886942",
+        "1503546185464549527",
+        "1503546187737731194",
+        "1503546189730025603",
+        "1503546192242544720",
+        "1503546197674168320"
+      ],
+      "last_action": "create",
+      "updated_at_utc": "2026-05-11T23:55:48.585862+00:00",
+      "posted_at_utc": "2026-05-11T23:55:48.585876+00:00",
+      "winner_keys": [
+        "https://store.steampowered.com/app/2141730/",
+        "https://store.steampowered.com/app/2567870/",
+        "https://store.steampowered.com/app/3643170/",
+        "https://store.steampowered.com/app/648800/"
+      ],
+      "winner_vote_counts": {
+        "https://store.steampowered.com/app/2141730/": 1,
+        "https://store.steampowered.com/app/2567870/": 1,
+        "https://store.steampowered.com/app/3643170/": 1,
+        "https://store.steampowered.com/app/648800/": 1
+      },
+      "winner_entries": [
+        {
+          "winner_key": "https://store.steampowered.com/app/2141730/",
+          "section": "paid",
+          "title": "Backrooms: Escape Together",
+          "url": "https://store.steampowered.com/app/2141730/",
+          "description": "A visually lifelike co-op horror for 1-6 people. Journey through 10 procedurally generated levels, using what's available to survive and progress deeper into the Backrooms.",
+          "human_votes": 1,
+          "voter_names": [
+            "Thomas"
+          ]
+        },
+        {
+          "winner_key": "https://store.steampowered.com/app/2567870/",
+          "section": "paid",
+          "title": "Chained Together",
+          "url": "https://store.steampowered.com/app/2567870/",
+          "description": "From the depths of hell, climb chained to your friends through diverse worlds. Solo or co-op, try to reach the summit and discover what awaits you there...",
+          "human_votes": 1,
+          "voter_names": [
+            "Thomas"
+          ]
+        },
+        {
+          "winner_key": "https://store.steampowered.com/app/3643170/",
+          "section": "paid",
+          "title": "Roadside Research",
+          "url": "https://store.steampowered.com/app/3643170/",
+          "description": "Roadside Research is a 1 to 4 player co-op gas station simulator. Except you’re aliens. And undercover. Do very human things like restocking shelves while preparing for the invasion. Just don’t get caught.",
+          "human_votes": 1,
+          "voter_names": [
+            "Thomas"
+          ]
+        },
+        {
+          "winner_key": "https://store.steampowered.com/app/648800/",
+          "section": "paid",
+          "title": "Raft",
+          "url": "https://store.steampowered.com/app/648800/",
+          "description": "Raft™ throws you and your friends into an epic oceanic adventure! Alone or together, players battle to survive a perilous voyage across a vast sea! Gather debris, scavenge reefs and build your own floating home, but be wary of the man-eating sharks!",
+          "human_votes": 1,
+          "voter_names": [
+            "Thomas"
+          ]
+        }
+      ]
+    }
   }
 }
