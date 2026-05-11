@@ -11,6 +11,8 @@ from typing import Any
 from zoneinfo import ZoneInfo
 
 import requests
+from requests.adapters import HTTPAdapter
+from urllib3.util.retry import Retry
 
 from discord_api import DiscordClient, DiscordMessageNotFoundError, split_discord_content
 from scripts.scheduling_labels import DAY_NAMES, format_day_label
@@ -819,6 +821,42 @@ def current_new_york_local_date() -> str:
     return datetime.now(NEW_YORK_TIMEZONE).date().isoformat()
 
 
+def make_retry_session() -> requests.Session:
+    """Build a requests.Session that retries on transient Discord failures.
+
+    Run #182 (2026-05-08) crashed with \`TimeoutError: The read operation
+    timed out\` during a Discord API call because the bare session had no
+    retry policy. This helper mounts an HTTPAdapter with a Retry config that
+    handles read/connect timeouts and the standard Discord retry-eligible
+    HTTP status codes, matching the resilience that DiscordClient already
+    provides for its own calls.
+
+    Retry policy:
+      * total=3 attempts (initial + 3 retries)
+      * backoff_factor=2.0 → waits 2s, 4s, 8s between retries
+      * status_forcelist={429, 500, 502, 503, 504} (matches discord_api.py)
+      * connect/read errors covered by default
+      * respect_retry_after_header=True (honors Discord rate-limit hints)
+    """
+    session = requests.Session()
+    retry = Retry(
+        total=3,
+        connect=3,
+        read=3,
+        backoff_factor=2.0,
+        status_forcelist=[429, 500, 502, 503, 504],
+        allowed_methods=frozenset(
+            ["HEAD", "GET", "PUT", "DELETE", "OPTIONS", "TRACE", "POST", "PATCH"]
+        ),
+        respect_retry_after_header=True,
+        raise_on_status=False,
+    )
+    adapter = HTTPAdapter(max_retries=retry)
+    session.mount("https://", adapter)
+    session.mount("http://", adapter)
+    return session
+
+
 def main() -> None:
     """Fetch and persist reaction responses for recorded scheduled weeks."""
     token = require_env("DISCORD_SCHEDULING_BOT_TOKEN")
@@ -856,7 +894,7 @@ def main() -> None:
         )
     else:
         print(f"Starting weekly schedule response sync for {len(week_keys)} week(s)")
-        with requests.Session() as session:
+        with make_retry_session() as session:
             session.headers.update(
                 {
                     "Authorization": f"Bot {token}",
@@ -988,6 +1026,11 @@ def main() -> None:
     if not isinstance(week_outputs, dict):
         week_outputs = {}
 
+    # Note: posting_session uses bare requests.Session() (no retry adapter)
+    # because DiscordClient is used inside this block and has its own retry
+    # loop for 429/5xx. Adding adapter retries on top would double-retry POST
+    # mutations, which can cause duplicate messages if Discord accepts the
+    # message but the response times out (Codex review on PR #312).
     with requests.Session() as posting_session:
         posting_session.headers.update(
             {

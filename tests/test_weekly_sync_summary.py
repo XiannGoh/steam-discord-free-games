@@ -13,6 +13,12 @@ class FakeSession:
     def __exit__(self, exc_type, exc, tb):
         return False
 
+    def mount(self, prefix, adapter):
+        # No-op: real Session.mount installs a transport adapter, but tests
+        # do not exercise transport behaviour. Required so make_retry_session()
+        # (which calls session.mount("https://", ...)) works against this fake.
+        pass
+
 
 class FakeDiscordClient:
     def __init__(self, *, stale_summary_id=None):
