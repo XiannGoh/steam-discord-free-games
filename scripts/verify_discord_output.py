@@ -792,6 +792,25 @@ def verify_step2(
         ch["skipped_reason"] = f"No winners_state in discord_daily_posts.json for {day_key}."
         print(f"\n--- Step-2 skipped: no winners_state for {day_key} ---")
         return ch
+    if winners_state.get("status") == "skipped":
+        # SKIP-marked state means evening_winners.py ran for this day and
+        # intentionally posted nothing (no eligible winners in the lookback
+        # window). The intro / section header / footer / item checks below
+        # do not apply to a no-winners state; the SKIP marker IS the "we ran
+        # and decided not to post" signal the verifier wants. Treat it the
+        # same as an absent winners_state — skipped, pass=True.
+        ch["checked"] = False
+        ch["pass"] = True
+        skipped_reason = winners_state.get("skipped_reason") or "unknown"
+        ch["skipped_reason"] = (
+            f"winners_state.status=skipped (reason={skipped_reason}) "
+            f"for {day_key}: evening_winners.py ran but found no eligible winners."
+        )
+        print(
+            f"\n--- Step-2 skipped: winners_state.status=skipped "
+            f"(reason={skipped_reason}) for {day_key} ---"
+        )
+        return ch
 
     ch["checked"] = True
 
