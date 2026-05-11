@@ -1,9 +1,12 @@
 name: Pattern Analysis
 
 on:
-  schedule:
-    # Runs every Sunday at midnight UTC
-    - cron: "0 0 * * 0"
+  # schedule:  # disabled 2026-05-10: 5 consecutive failures — prompt scope
+  #               exceeds even 50 turns (PR #310 raised it from 10→50 and Run #5
+  #               still hit the cap). Re-enable after the prompt is trimmed and
+  #               manually verified via workflow_dispatch.
+  #   # Runs every Sunday at midnight UTC
+  #   - cron: "0 0 * * 0"
   workflow_dispatch: {}
 
 permissions:
