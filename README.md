@@ -30,8 +30,8 @@ Every workflow posts its status here. Failures trigger auto-fix. Daily health re
 - **Scoring model** — games are scored on review sentiment, multiplayer tags, recency, and friend signal. Only games above a minimum score threshold are posted.
 - **Validator** — after every post, a validator checks Discord output against a spec. If anything is wrong it triggers auto-fix.
 - **Auto-fix loop** — Claude Code automatically diagnoses failures, opens PRs, and merges fixes. Up to 3 attempts per failure with rollback if a fix makes things worse.
-- **Watchdog** — runs hourly. If any scheduled workflow missed its run, the watchdog re-triggers it. Capped at 3 re-triggers per workflow per day.
-- **Pattern analysis** — runs every Sunday. Reviews failure patterns from the week and suggests improvements.
+- **Watchdog** — scheduled cron is currently disabled (was hourly). Workflow remains available via `workflow_dispatch` for ad-hoc use. The hourly retry cascade was found to amplify duplicate-run bugs and was paused on 2026-04-19.
+- **Pattern analysis** — scheduled cron is currently disabled (was Sunday). Workflow remains available via `workflow_dispatch`. The current prompt is over-scoped (all historical runs hit max-turns); cron will be re-enabled after the prompt is trimmed.
 - **State backup** — all state files backed up daily to a separate branch.
 
 ## Workflows
@@ -45,9 +45,9 @@ Every workflow posts its status here. Failures trigger auto-fix. Daily health re
 | `weekly-scheduling-bot.yml` | Saturday 9AM ET | Weekly availability prompt |
 | `weekly-scheduling-responses-sync.yml` | Every 3 hours | Sync availability responses |
 | `bot-health-report.yml` | 11PM ET daily | Daily health summary |
-| `watchdog.yml` | Every hour | Re-trigger missed workflows |
+| `watchdog.yml` | Disabled (cron) / on-demand | Re-trigger missed workflows |
 | `auto-fix.yml` | On failure | Self-healing fix loop |
-| `pattern-analysis.yml` | Sunday midnight | Weekly pattern review |
+| `pattern-analysis.yml` | Disabled (cron) / on-demand | Weekly pattern review |
 | `state-backup.yml` | 11:45PM ET daily | Back up state files |
 
 ## Key files

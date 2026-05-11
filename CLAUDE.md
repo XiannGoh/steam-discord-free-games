@@ -337,7 +337,7 @@ Processed command message IDs are tracked in `gaming_library.json` under `proces
 | `weekly-scheduling-bot.yml` | Weekly Scheduling Bot | 9:00 AM Saturday |
 | `weekly-scheduling-responses-sync.yml` | Weekly Scheduling Responses Sync | Every 3 hours |
 | `bot-health-report.yml` | Bot Health Report | 11:00 PM daily |
-| `watchdog.yml` | Missed-Run Watchdog | Every hour |
+| `watchdog.yml` | Missed-Run Watchdog | Disabled (cron) / on-demand |
 | `auto-fix.yml` | Auto-Fix | Triggered by workflow_run |
 
 Every workflow has a Notify Discord health monitor on failure step that posts to DISCORD_HEALTH_MONITOR_WEBHOOK_URL on failure.
