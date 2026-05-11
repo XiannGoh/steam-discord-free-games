@@ -170,7 +170,7 @@ jobs:
                   f"Job: {os.environ['JOB_NAME']}\n"
                   "Status: failed\n"
                   f"Context: {details}\n"
-                  f"Run: {os.environ['RUN_URL']}"
+                  f"Run: <{os.environ['RUN_URL']}>"
               )
           }))
           PY
