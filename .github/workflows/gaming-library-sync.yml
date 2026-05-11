@@ -33,6 +33,11 @@ jobs:
           PYTHONPATH: .
           DISCORD_BOT_TOKEN: ${{ secrets.DISCORD_BOT_TOKEN }}
           DISCORD_GUILD_ID: ${{ secrets.DISCORD_GUILD_ID }}
+          # DISCORD_GAMING_LIBRARY_CHANNEL_ID is required for process_library_commands
+          # to run. Without it, run_discord_sync() silently skips the !add/!remove/...
+          # command scanner because of "if channel_id:" guard in gaming_library.py.
+          # Missing this env var meant manual commands never worked (0 processed_command_ids).
+          DISCORD_GAMING_LIBRARY_CHANNEL_ID: ${{ secrets.DISCORD_GAMING_LIBRARY_CHANNEL_ID }}
           GITHUB_EVENT_NAME: ${{ github.event_name }}
         run: python scripts/sync_gaming_library.py
 
