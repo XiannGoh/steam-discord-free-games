@@ -71,37 +71,47 @@ Miss today's votes? The last 10 days of picks are always available.""",
         """\
 📌 How This Works — #step-3-review-existing-games
 
-This is your group's permanent gaming library.
-✅ Active — you want to play this
+Your group's permanent gaming library. React on any game card to update your status:
+✅ Active — playing it
 ⏸️ Paused — taking a break
 ❌ Dropped — no longer interested
 
-Manage the library with commands (the bot reacts ✅ when done):
-!addgame GameName SteamURL @user1 @user2
-!add @user GameName · !remove @user GameName
-!unassign @user · !rename GameName NewName · !archive GameName""",
+Commands (post in this channel — the bot reacts ✅ when done):
+`!addgame <Name> <SteamURL> @user1 @user2` — add a new game to the library
+`!add @user <Name>` — assign a player to an existing game
+`!remove @user <Name>` — unassign a player from one game
+`!unassign @user` — remove a player from ALL games
+`!rename <OldName> <NewName>` — rename a game
+`!archive <Name>` — manually archive a game (remove from active list)""",
 
         """\
 📌 How This Works — #step-3-review-existing-games
 
 Your permanent backlog of group-approved games. React to update your status:
-✅ Active · ⏸️ Paused · ❌ Dropped
+✅ Active  ·  ⏸️ Paused  ·  ❌ Dropped
 
-Bot commands (processed periodically, bot reacts ✅):
-!add @user GameName · !remove @user GameName
-!addgame GameName SteamURL @user1 @user2
-!archive GameName · !rename GameName NewName · !unassign @user""",
+Bot commands (post in this channel — processed every few hours, bot reacts ✅):
+`!addgame <Name> <SteamURL> @user1 @user2` — add a new game directly to the library
+`!add @user <Name>` — assign a player to an existing game
+`!remove @user <Name>` — unassign a player from a game
+`!unassign @user` — remove a player from every game they're on
+`!rename <OldName> <NewName>` — rename a game in the library
+`!archive <Name>` — archive a game (remove from the active list)""",
 
         """\
 📌 How This Works — #step-3-review-existing-games
 
 The living record of games your group has tested and kept.
-React on each game: ✅ active · ⏸️ paused · ❌ dropped
+React on each game card to set your status:
+✅ active  ·  ⏸️ paused  ·  ❌ dropped
 
-Commands to edit the library (bot reacts ✅ when processed):
-!add @user GameName · !remove @user GameName · !unassign @user
-!addgame GameName SteamURL @user1 @user2
-!rename GameName NewName · !archive GameName""",
+Commands to edit the library (bot reacts ✅ once processed):
+`!addgame <Name> <SteamURL> @user1 @user2` — add a new game to the library
+`!add @user <Name>` — assign a player to a game
+`!remove @user <Name>` — unassign a player from a single game
+`!unassign @user` — remove a player from every game they're assigned to
+`!rename <OldName> <NewName>` — rename a game
+`!archive <Name>` — archive a game so it stops appearing in the daily post""",
     ],
 
     "weekly-scheduling": [
