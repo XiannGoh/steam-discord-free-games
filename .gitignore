@@ -16,3 +16,11 @@ env/
 # Misc
 *.log
 .DS_Store
+
+# Workflow-generated artifacts that should never be committed back to main:
+# - state_sanity.json is regenerated fresh by scripts/check_state_sanity.py
+#   on every daily.yml run and uploaded as an artifact. A stale committed
+#   copy would be re-read by build_daily_health_report.py and surface dead
+#   errors/warnings as fresh issues.
+state_sanity.json
+daily_stop_go_result.json
