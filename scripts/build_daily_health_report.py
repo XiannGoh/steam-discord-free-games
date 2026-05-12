@@ -76,12 +76,6 @@ SCHEDULE_EXPECTATIONS: dict[str, dict[str, Any]] = {
         "minute": 0,
         "window_before_minutes": 90,
     },
-    # Missed-Run Watchdog was intentionally disabled in watchdog.yml on
-    # 2026-04-19 (the cron entry is commented out; only workflow_dispatch
-    # remains). Keeping it in SCHEDULE_EXPECTATIONS would cause the health
-    # report to fire a chronic "stale 21d ago" alert on every run, since
-    # the workflow is no longer expected to fire on its hourly cadence.
-    # Re-add this entry if the cron is re-enabled in watchdog.yml.
 }
 
 
