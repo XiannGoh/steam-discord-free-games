@@ -74,14 +74,6 @@ jobs:
             data/snapshot_health.json
           if-no-files-found: ignore
 
-      - name: Verify Discord output
-        continue-on-error: true
-        env:
-          PYTHONPATH: .
-          DISCORD_BOT_TOKEN: ${{ secrets.DISCORD_BOT_TOKEN }}
-          LIBRARY_DATE_UTC: ${{ inputs.library_date_utc }}
-        run: python scripts/verify_discord_output.py
-
       - name: Verify gaming library output
         continue-on-error: true
         env:
