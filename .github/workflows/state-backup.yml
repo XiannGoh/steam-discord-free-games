@@ -44,8 +44,6 @@ jobs:
             discord_daily_posts.json \
             gaming_library.json \
             data/health_monitor_log.json \
-            data/pinned_messages.json \
-            data/instagram_fetch_summary.json \
             data/scheduling/expected_schedule_roster.json \
             data/scheduling/weekly_schedule_messages.json \
             data/scheduling/weekly_schedule_responses.json \
@@ -59,9 +57,7 @@ jobs:
             page_state.json \
             discord_daily_posts.json \
             gaming_library.json \
-            data/health_monitor_log.json \
-            data/pinned_messages.json \
-            data/instagram_fetch_summary.json; do
+            data/health_monitor_log.json; do
             if [ -f "$f" ]; then
               git add "$f"
               echo "Added: $f"

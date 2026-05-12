@@ -393,8 +393,6 @@ Rules for Claude Code when working on issues in this repo. These apply to every 
 | `seen_ids.json` | Deduplication store for Step 1 Steam items |
 | `instagram_seen.json` | Deduplication store for Instagram posts |
 | `page_state.json` | Pagination state for Steam free games scraper |
-| `data/pinned_messages.json` | Pinned-message state store by channel slug |
-| `data/instagram_fetch_summary.json` | Instagram fetch summary state |
 | `data/health_monitor_log.json` | Failure tracking database for recursive self-healing loop |
 
 ## Key Scripts
