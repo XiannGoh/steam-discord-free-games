@@ -39,7 +39,7 @@ jobs:
       - name: Check workflows and trigger overdue ones
         id: check
         continue-on-error: true
-        uses: actions/github-script@v7
+        uses: actions/github-script@v8
         with:
           script: |
             const WATCHED = [

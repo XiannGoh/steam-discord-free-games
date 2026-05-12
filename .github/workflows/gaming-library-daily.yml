@@ -63,7 +63,7 @@ jobs:
 
       - name: Upload Discord snapshot artifact
         if: always()
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v6
         with:
           name: discord-snapshots-${{ github.run_id }}
           path: |
@@ -92,7 +92,7 @@ jobs:
 
       - name: Upload gaming library verification artifact
         if: always()
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v6
         with:
           name: gaming-library-verification-${{ github.run_id }}
           path: gaming_library_verification.json

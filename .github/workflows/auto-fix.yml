@@ -38,7 +38,7 @@ jobs:
       - name: Download verification artifact
         id: download
         continue-on-error: true
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v5
         with:
           github-token: ${{ github.token }}
           run-id: ${{ github.event.workflow_run.id }}
@@ -55,7 +55,7 @@ jobs:
       - name: Download Discord verification artifact
         id: download_discord
         continue-on-error: true
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v5
         with:
           github-token: ${{ github.token }}
           run-id: ${{ github.event.workflow_run.id }}
@@ -70,7 +70,7 @@ jobs:
       - name: Download gaming library verification artifact
         id: download_gaming_library
         continue-on-error: true
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v5
         with:
           github-token: ${{ github.token }}
           run-id: ${{ github.event.workflow_run.id }}
@@ -85,7 +85,7 @@ jobs:
       - name: Download weekly schedule verification artifact
         id: download_weekly_schedule
         continue-on-error: true
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v5
         with:
           github-token: ${{ github.token }}
           run-id: ${{ github.event.workflow_run.id }}
@@ -100,7 +100,7 @@ jobs:
       - name: Download Discord snapshot artifact
         id: download_snapshots
         continue-on-error: true
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v5
         with:
           github-token: ${{ github.token }}
           run-id: ${{ github.event.workflow_run.id }}
