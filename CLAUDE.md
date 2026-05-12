@@ -311,21 +311,6 @@ Processed command message IDs are tracked in `gaming_library.json` under `proces
   - game cards satisfy min_items rules from channel_specs.json
   - rolling explainer (starting with "ð How This Works") is the last message in the channel
 
-## Automation Loop
-
-`auto-fix.yml` triggers automatically when any of these workflows complete: Steam Free Games, Daily Game Picks Winners, Gaming Library Daily Reminder, Gaming Library Sync, Weekly Scheduling Responses Sync. It fires a fix attempt when any relevant verification artifact reports pass: false or when the triggering workflow itself fails.
-
-- Claude Code is the fixer â it reads verification artifacts, Discord snapshot artifacts, and channel_specs.json to diagnose the root cause before making any change
-- `auto-fix.yml` must download Discord snapshot artifacts (`discord-snapshots-*`) before invoking Claude Code so Claude Code can read the actual Discord output
-- Fix branches are named fix/auto-fix-{workflow-run-id}-{attempt}
-- PRs are auto-merged when checks pass
-- Maximum 3 attempts; if all fail, an escalation alert is posted to xiann-gpt-bot-health-monitor
-- Success notifications must be posted to the health monitor channel when an auto-fix succeeds
-- If the bot encounters a 403 Forbidden error when attempting to pin a message, it must NOT treat this as a code bug. Instead it must:
-  - Post a warning to `xiann-gpt-bot-health-monitor` explaining which channel is missing Manage Messages permission
-  - Continue execution without failing the workflow
-  - The auto-fix loop must NOT attempt to fix 403 permission errors via code changes
-
 ## Workflow Schedule (all times ET)
 
 | Workflow file | Name | Schedule |
@@ -338,7 +323,6 @@ Processed command message IDs are tracked in `gaming_library.json` under `proces
 | `weekly-scheduling-responses-sync.yml` | Weekly Scheduling Responses Sync | Every 3 hours |
 | `bot-health-report.yml` | Bot Health Report | 11:00 PM daily |
 | `watchdog.yml` | Missed-Run Watchdog | Disabled (cron) / on-demand |
-| `auto-fix.yml` | Auto-Fix | Triggered by workflow_run |
 
 Every workflow has a Notify Discord health monitor on failure step that posts to DISCORD_HEALTH_MONITOR_WEBHOOK_URL on failure.
 
