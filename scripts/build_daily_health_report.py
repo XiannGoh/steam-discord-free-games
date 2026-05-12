@@ -62,19 +62,19 @@ SCHEDULE_EXPECTATIONS: dict[str, dict[str, Any]] = {
     },
     "Gaming Library Daily Reminder": {
         "kind": "daily",
-        "cron": "0 14 * * *",
-        "cadence": "daily 14:00 UTC",
-        "hour": 14,
+        "cron": "0 0 * * *",
+        "cadence": "daily 00:00 UTC",
+        "hour": 0,
         "minute": 0,
         "window_before_minutes": 90,
     },
     "Gaming Library Sync": {
         "kind": "interval",
-        "cron": "15 * * * *",
-        "cadence": "every hour at :15 UTC",
-        "interval_hours": 1,
-        "minute": 15,
-        "window_before_minutes": 30,
+        "cron": "0 */3 * * *",
+        "cadence": "every 3 hours (UTC)",
+        "interval_hours": 3,
+        "minute": 0,
+        "window_before_minutes": 90,
     },
     # Missed-Run Watchdog was intentionally disabled in watchdog.yml on
     # 2026-04-19 (the cron entry is commented out; only workflow_dispatch
