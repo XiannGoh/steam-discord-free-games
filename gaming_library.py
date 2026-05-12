@@ -1259,13 +1259,22 @@ def run_daily_post(state_path: str = GAMING_LIBRARY_FILE) -> bool:
 
     # Rule 1 & 5: If already completed AND discord_verification.json shows pass=True
     # for today, suppress all re-triggers (watchdog, manual) — nothing to do.
+    manual_run = is_manual_run()
     _day_entry_check = state.get("daily_posts", {}).get(day_key, {})
     if isinstance(_day_entry_check, dict) and bool(_day_entry_check.get("completed")):
         if is_today_verified(day_key):
             print(f"Run already completed and verified — watchdog re-trigger suppressed for {day_key}")
             return False
+        if manual_run:
+            # Manual workflow_dispatch reruns on an already-completed day try to edit
+            # messages older than 1 hour, which Discord hard-rate-limits with HTTP 429
+            # code 30046 ("Maximum number of edits to messages older than 1 hour reached").
+            # That failure cascades into: 🔴 Failure Detected → auto-fix retries 3× (all fail
+            # with the same 30046) → 🚨 Auto-fix Exhausted. Skip gracefully so the next
+            # scheduled cron at 00:00 UTC posts fresh messages without the edit-rate-limit.
+            print(f"Manual workflow_dispatch on already-completed day {day_key} — skipping (would hit Discord edit-rate-limit, code 30046)")
+            return False
 
-    manual_run = is_manual_run()
     if manual_run:
         print("Gaming library daily post is a manual (workflow_dispatch) run — completed flag will not be set")
 
