@@ -377,7 +377,6 @@ Rules for Claude Code when working on issues in this repo. These apply to every 
 | `seen_ids.json` | Deduplication store for Step 1 Steam items |
 | `instagram_seen.json` | Deduplication store for Instagram posts |
 | `page_state.json` | Pagination state for Steam free games scraper |
-| `data/health_monitor_log.json` | Failure tracking database for recursive self-healing loop |
 
 ## Key Scripts
 
@@ -391,4 +390,3 @@ Rules for Claude Code when working on issues in this repo. These apply to every 
 | `scripts/check_state_sanity.py` | Cross-file state consistency checks |
 | `scripts/manage_gaming_library.py` | CLI tool for manual library operations |
 | `scripts/read_discord_channel.py` | Reads Discord channels and writes snapshot artifacts for all 5 channels |
-| `scripts/update_health_log.py` | Reads and writes the failure tracking database for the health monitor loop |
