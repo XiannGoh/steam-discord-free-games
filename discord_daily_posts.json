@@ -8676,6 +8676,57 @@
         "posted_at": "2026-05-12T15:58:56.670436+00:00",
         "description": "Save a failing aircraft with one of your friends in this new CO-OP GAME!   Don’t Panic It Is Just Turbulence   #gamin..."
       }
-    ]
+    ],
+    "winners_state": {
+      "intro": {
+        "message_id": "1503909155352875009",
+        "channel_id": "1491294533751799809"
+      },
+      "section_headers": {
+        "instagram": {
+          "message_id": "1503909158607392949",
+          "channel_id": "1491294533751799809"
+        }
+      },
+      "winner_messages": {
+        "https://www.instagram.com/p/DYNMTIMtVFg/": {
+          "message_id": "1503909160465469502",
+          "channel_id": "1491294533751799809"
+        }
+      },
+      "footer": {
+        "message_id": "1503909164118708284",
+        "channel_id": "1491294533751799809"
+      },
+      "message_id": "1503909155352875009",
+      "message_ids": [
+        "1503909155352875009",
+        "1503909158607392949",
+        "1503909160465469502",
+        "1503909164118708284"
+      ],
+      "last_action": "create",
+      "updated_at_utc": "2026-05-12T23:58:06.632875+00:00",
+      "posted_at_utc": "2026-05-12T23:58:06.632891+00:00",
+      "winner_keys": [
+        "https://www.instagram.com/p/DYNMTIMtVFg/"
+      ],
+      "winner_vote_counts": {
+        "https://www.instagram.com/p/DYNMTIMtVFg/": 1
+      },
+      "winner_entries": [
+        {
+          "winner_key": "https://www.instagram.com/p/DYNMTIMtVFg/",
+          "section": "instagram",
+          "title": "@biffmatictv",
+          "url": "https://www.instagram.com/p/DYNMTIMtVFg/",
+          "description": "Save a failing aircraft with one of your friends in this new CO-OP GAME!   Don’t Panic It Is Just Turbulence   #gamin...",
+          "human_votes": 1,
+          "voter_names": [
+            "Thomas"
+          ]
+        }
+      ]
+    }
   }
 }
