@@ -387,21 +387,14 @@ Rules for Claude Code when working on issues in this repo. These apply to every 
 | `discord_api.py` | Discord REST client â post, edit, react, pin, get channel messages |
 | `daily_section_config.py` | Section definitions for Step 1 daily post categories |
 | `channel_specs.json` | Per-channel correctness spec â required fields, reactions, and failure conditions |
-| `daily_verification.json` | Runtime artifact from main.py â structural checks on what was posted |
 | `discord_verification.json` | Runtime artifact from scripts/verify_discord_output.py â live Discord read-back checks |
 | `discord_daily_posts.json` | Message ID state store â maps each day's posts to their Discord message and channel IDs |
 | `gaming_library.json` | Library state â persistent backlog of games tracked in step-3-review-existing-games |
 | `seen_ids.json` | Deduplication store for Step 1 Steam items |
 | `instagram_seen.json` | Deduplication store for Instagram posts |
 | `page_state.json` | Pagination state for Steam free games scraper |
-| `state_sanity.json` | Output of scripts/check_state_sanity.py â cross-file state consistency checks |
 | `data/pinned_messages.json` | Pinned-message state store by channel slug |
 | `data/instagram_fetch_summary.json` | Instagram fetch summary state |
-| `data/snapshot_step1.json` | Discord snapshot artifact for Step 1 |
-| `data/snapshot_step2.json` | Discord snapshot artifact for Step 2 |
-| `data/snapshot_step3.json` | Discord snapshot artifact for Step 3 |
-| `data/snapshot_schedule.json` | Discord snapshot artifact for weekly scheduling |
-| `data/snapshot_health.json` | Discord snapshot artifact for health monitor |
 | `data/health_monitor_log.json` | Failure tracking database for recursive self-healing loop |
 
 ## Key Scripts
