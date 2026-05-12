@@ -96,18 +96,11 @@ _LIBRARY_FOOTER_MISSING_LABELS = {
     CATEGORY_CREATOR_PICKS: "Creator Picks",
 }
 
-COMMAND_REFERENCE_MESSAGE = """\
-📋 Bot Commands — step-3-review-existing-games
-`!add @user GameName` — assign a player to a game
-`!remove @user GameName` — unassign a player from a game
-`!rename GameName NewName` — rename a game
-`!unassign @user` — remove a player from all games
-`!archive GameName` — manually archive a game
-`!addgame GameName SteamURL @user1 @user2` — add game directly to library
-
-React on any game message to update your status:
-✅ Playing · ⏸️ Paused · ❌ Dropped\
-"""
+# COMMAND_REFERENCE_MESSAGE removed: command reference is now consolidated into
+# the rolling explainer (rolling_explainer.py "step-3" variants), which is posted
+# fresh by the daily-library cron. Maintaining a separate pinned message led to
+# divergent wording/formatting between the two messages and broke the verifier
+# check that expects the rolling explainer as the last message.
 
 
 def is_manual_run() -> bool:
@@ -1185,24 +1178,39 @@ def _check_channel_permissions(
     )
 
 
-def ensure_command_reference_pinned(
+def cleanup_command_reference_message(
     state: Dict[str, Any],
     client: DiscordClient,
     channel_id: str,
 ) -> None:
-    """Post or edit the command reference message to keep it current."""
+    """One-shot cleanup: delete the legacy "📋 Bot Commands" pinned message and
+    clear the state field that tracked it.
+
+    Background: an earlier version of this module maintained a separate pinned
+    "Bot Commands" reference card via ensure_command_reference_pinned(). That
+    duplicated the command list already present in the step-3 rolling explainer
+    (see rolling_explainer.py), with subtly divergent wording and formatting,
+    and broke the verifier check that requires the rolling explainer to be the
+    last message in #step-3.
+
+    This function runs every sync cycle but is effectively a no-op once the
+    legacy message has been deleted. The state field is cleared atomically so
+    a partial-success retry won't loop on a stale id.
+    """
     pinned_info = state.get("command_reference_message")
     existing_msg_id = str((pinned_info or {}).get("message_id") or "").strip()
-    if existing_msg_id:
-        try:
-            client.edit_message(channel_id, existing_msg_id, COMMAND_REFERENCE_MESSAGE, context="update command reference")
-        except DiscordMessageNotFoundError:
-            existing_msg_id = ""
     if not existing_msg_id:
-        payload = client.post_message(channel_id, COMMAND_REFERENCE_MESSAGE, context="post command reference")
-        msg_id = str(payload.get("id") or "").strip()
-        if msg_id:
-            state["command_reference_message"] = {"message_id": msg_id, "channel_id": channel_id}
+        return
+    try:
+        client.delete_message(channel_id, existing_msg_id, context="cleanup legacy command reference")
+    except DiscordMessageNotFoundError:
+        # Already gone (user deleted it, or already cleaned up in another run).
+        pass
+    except Exception as exc:  # pragma: no cover - defensive
+        print(f"WARN: failed to delete legacy command reference {existing_msg_id}: {exc}")
+        return  # keep state entry so we retry on next run
+    # Either delete succeeded or message was already gone; clear state.
+    state["command_reference_message"] = None
 
 
 def run_discord_sync(state_path: str = GAMING_LIBRARY_FILE, daily_posts_path: str = DISCORD_DAILY_POSTS_FILE) -> Dict[str, int]:
@@ -1233,7 +1241,7 @@ def run_discord_sync(state_path: str = GAMING_LIBRARY_FILE, daily_posts_path: st
         commands_processed = 0
         if channel_id:
             commands_processed = process_library_commands(state, client, channel_id, bot_user_id)
-            ensure_command_reference_pinned(state, client, channel_id)
+            cleanup_command_reference_message(state, client, channel_id)
 
     save_gaming_library(state, state_path)
     return {"promotions": promotions, "status_updates": status_updates, "commands_processed": commands_processed}
