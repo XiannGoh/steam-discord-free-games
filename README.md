@@ -35,7 +35,6 @@ Every workflow posts its status here. Daily health report summarizes everything.
 
 - **Scoring model** — games are scored on review sentiment, multiplayer tags, recency, and friend signal. Only games above a minimum score threshold are posted.
 - **Validator** — after every post, a validator checks Discord output against a spec and surfaces failures to the health channel.
-- **Watchdog** — scheduled cron is currently disabled (was hourly). Workflow remains available via `workflow_dispatch` for ad-hoc use. The hourly retry cascade was found to amplify duplicate-run bugs and was paused on 2026-04-19.
 - **State backup** — all state files backed up daily to a separate branch.
 
 ## Workflows
@@ -49,7 +48,6 @@ Every workflow posts its status here. Daily health report summarizes everything.
 | `weekly-scheduling-bot.yml` | Saturday 9AM ET | Weekly availability prompt |
 | `weekly-scheduling-responses-sync.yml` | Every 3 hours | Sync availability responses |
 | `bot-health-report.yml` | 11PM ET daily | Daily health summary |
-| `watchdog.yml` | Disabled (cron) / on-demand | Re-trigger missed workflows |
 | `state-backup.yml` | 11:45PM ET daily | Back up state files |
 
 ## Key files
