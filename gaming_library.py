@@ -1269,9 +1269,9 @@ def run_daily_post(state_path: str = GAMING_LIBRARY_FILE) -> bool:
             # Manual workflow_dispatch reruns on an already-completed day try to edit
             # messages older than 1 hour, which Discord hard-rate-limits with HTTP 429
             # code 30046 ("Maximum number of edits to messages older than 1 hour reached").
-            # That failure cascades into: 🔴 Failure Detected → auto-fix retries 3× (all fail
-            # with the same 30046) → 🚨 Auto-fix Exhausted. Skip gracefully so the next
-            # scheduled cron at 00:00 UTC posts fresh messages without the edit-rate-limit.
+            # That failure would also fire a 🔴 Failure Detected alert in the health
+            # monitor channel. Skip gracefully so the next scheduled cron at 00:00 UTC
+            # posts fresh messages without the edit-rate-limit.
             print(f"Manual workflow_dispatch on already-completed day {day_key} — skipping (would hit Discord edit-rate-limit, code 30046)")
             return False
 
