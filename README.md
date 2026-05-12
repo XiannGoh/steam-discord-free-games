@@ -11,7 +11,13 @@ A fully automated, self-healing Discord bot pipeline for multiplayer Steam game 
 ## What it does
 
 **Step 1 — Daily Picks** (`step-1-vote-on-games-to-test`)
-Scrapes Steam daily for free games, demos, playtests, and paid games under $20. Scores and filters them for multiplayer fit. Posts picks every morning at 9AM ET with 👍 voting. All voted games move to Step 2.
+Scrapes Steam daily for free games, demos, playtests, and paid games under $20. Scores and filters them for multiplayer fit, then posts them every morning at 9AM ET in three sections:
+
+- 🆓 **Free Picks** — the top scored free-to-play games for the day
+- 💰 **Paid Under $20** — best-fit paid games under the $20 ceiling
+- 📸 **Instagram Creator Picks** — games featured today by the gaming creators we follow on Instagram (e.g. @sharedxp_official, @wilfratgaming, @biffmatictv). Each pick includes the creator's caption so you can see why they highlighted it.
+
+React 👍 on anything you want to try. All upvoted games move to Step 2.
 
 **Step 2 — Daily Winners** (`step-2-test-then-vote-to-keep`)
 Every evening, posts the day's Step 1 winners. Members 🔖 bookmark games they want to keep permanently. Bookmarked games move to Step 3.
