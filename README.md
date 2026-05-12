@@ -29,15 +29,13 @@ A persistent backlog of bookmarked games. Updated daily with delta summaries sho
 Every Saturday, posts an availability prompt for the coming week. Members select their available time slots. The bot syncs responses every 3 hours and posts a summary with @mentions for missing members.
 
 **Health Monitor** (`xiann-gpt-bot-health-monitor`)
-Every workflow posts its status here. Failures trigger auto-fix. Daily health report summarizes everything.
+Every workflow posts its status here. Daily health report summarizes everything.
 
 ## How it works
 
 - **Scoring model** — games are scored on review sentiment, multiplayer tags, recency, and friend signal. Only games above a minimum score threshold are posted.
-- **Validator** — after every post, a validator checks Discord output against a spec. If anything is wrong it triggers auto-fix.
-- **Auto-fix loop** — Claude Code automatically diagnoses failures, opens PRs, and merges fixes. Up to 3 attempts per failure with rollback if a fix makes things worse.
+- **Validator** — after every post, a validator checks Discord output against a spec and surfaces failures to the health channel.
 - **Watchdog** — scheduled cron is currently disabled (was hourly). Workflow remains available via `workflow_dispatch` for ad-hoc use. The hourly retry cascade was found to amplify duplicate-run bugs and was paused on 2026-04-19.
-- **Pattern analysis** — scheduled cron is currently disabled (was Sunday). Workflow remains available via `workflow_dispatch`. The current prompt is over-scoped (all historical runs hit max-turns); cron will be re-enabled after the prompt is trimmed.
 - **State backup** — all state files backed up daily to a separate branch.
 
 ## Workflows
@@ -52,8 +50,6 @@ Every workflow posts its status here. Failures trigger auto-fix. Daily health re
 | `weekly-scheduling-responses-sync.yml` | Every 3 hours | Sync availability responses |
 | `bot-health-report.yml` | 11PM ET daily | Daily health summary |
 | `watchdog.yml` | Disabled (cron) / on-demand | Re-trigger missed workflows |
-| `auto-fix.yml` | On failure | Self-healing fix loop |
-| `pattern-analysis.yml` | Disabled (cron) / on-demand | Weekly pattern review |
 | `state-backup.yml` | 11:45PM ET daily | Back up state files |
 
 ## Key files
