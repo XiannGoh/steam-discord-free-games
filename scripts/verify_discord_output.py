@@ -47,13 +47,6 @@ GAMING_LIBRARY_FILE = "gaming_library.json"
 THUMBS_UP_EMOJI = "\U0001f44d"   # 👍
 BOOKMARK_EMOJI = "\U0001f516"    # 🔖
 ROLLING_EXPLAINER_PREFIX = "📌 How This Works"
-# In #step-3, gaming_library.py also pins a "📋 Bot Commands" reference card via
-# ensure_command_reference_pinned(). On the day that reference is first posted
-# (state had no command_reference_message yet), it sits AFTER the rolling
-# explainer until tomorrow's daily-library cron posts a fresh explainer.
-# Subsequent sync runs edit the existing message in place (no reorder).
-# Allow either prefix as the valid trailing message in step-3.
-COMMAND_REFERENCE_PREFIX = "📋 Bot Commands"
 
 # Honour the same date-override env var that main.py uses so this script can
 # be pointed at a specific day during manual reruns.
@@ -420,28 +413,17 @@ def _run_channel_scan(
             f"{len(explainer_today)} rolling explainers for {day_key}"
         )
     # Verify the explainer is the actual last message in the channel.
-    # Exception: in #step-3, the pinned "📋 Bot Commands" reference card may sit
-    # after the explainer on the day it's first posted. Accept either as valid.
-    last_content = all_messages[0].get("content", "") if all_messages else ""
-    is_explainer_last = last_content.startswith(ROLLING_EXPLAINER_PREFIX)
-    is_cmd_ref_last = (
-        channel_slug == CHANNEL_STEP3
-        and last_content.startswith(COMMAND_REFERENCE_PREFIX)
-    )
-    if all_messages and not (is_explainer_last or is_cmd_ref_last):
+    if all_messages and not all_messages[0].get("content", "").startswith(ROLLING_EXPLAINER_PREFIX):
         ch["rolling_explainer_missing"] = True
-        last_preview = str(last_content)[:60]
+        last_preview = str(all_messages[0].get("content", ""))[:60]
         ch["errors"].append(
             f"rolling explainer is not the last message — "
             f"last: {last_preview!r} (channel scan: {day_key})"
         )
         print(f"  FAIL  channel scan {channel_slug}: rolling explainer is not last message")
-    elif all_messages and is_explainer_last:
+    elif all_messages and all_messages[0].get("content", "").startswith(ROLLING_EXPLAINER_PREFIX):
         ch.setdefault("rolling_explainer_missing", False)
         print(f"  OK  channel scan {channel_slug}: rolling explainer is last message")
-    elif all_messages and is_cmd_ref_last:
-        ch.setdefault("rolling_explainer_missing", False)
-        print(f"  OK  channel scan {channel_slug}: command reference is last message (step-3 pinned reference)")
 
     # --- Cross-channel bot detection ---
     expected_bots = EXPECTED_BOT_AUTHORS.get(channel_slug)
