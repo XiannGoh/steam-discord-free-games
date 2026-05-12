@@ -60,7 +60,6 @@ Every workflow posts its status here. Daily health report summarizes everything.
 - `discord_api.py` — Discord REST client
 - `channel_specs.json` — per-channel validation spec
 - `CLAUDE.md` — Claude Code constitution
-- `data/health_monitor_log.json` — failure tracking
 - `daily_section_config.py` — section config and order
 
 ## Required secrets
