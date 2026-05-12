@@ -25,7 +25,7 @@ Use 📝 only if you want to reply with a custom time.
 
 Availability:
 
-✅ Free all day (alpha chad)
+✅ Free all day (Giga Chad)
 🌅 Morning
 ☀️ Afternoon
 🌙 Evening
