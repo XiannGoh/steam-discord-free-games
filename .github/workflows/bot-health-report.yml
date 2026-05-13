@@ -72,9 +72,9 @@ jobs:
             const workflows = [
               { file: "weekly-scheduling-bot.yml", name: "Weekly Scheduling Bot", staleHours: 168 },
               { file: "weekly-scheduling-responses-sync.yml", name: "Weekly Scheduling Responses Sync", staleHours: 6 },
-              { file: "daily.yml", name: "Steam Free Games", staleHours: 20 },
-              { file: "evening-winners.yml", name: "Daily Game Picks Winners", staleHours: 12 },
-              { file: "gaming-library-daily.yml", name: "Gaming Library Daily Reminder", staleHours: 20 },
+              { file: "daily.yml", name: "Steam Free Games", staleHours: 26 },
+              { file: "evening-winners.yml", name: "Daily Game Picks Winners", staleHours: 26 },
+              { file: "gaming-library-daily.yml", name: "Gaming Library Daily Reminder", staleHours: 26 },
               { file: "gaming-library-sync.yml", name: "Gaming Library Sync", staleHours: 4 },
             ];
 
