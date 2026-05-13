@@ -801,10 +801,10 @@ def detect_item_type(source: str, app_id: str, title: str, text: str) -> str:
     if source == "steamdb_promo" or "free to keep" in lower_text or "100% off" in lower_text:
         return "temporarily_free"
 
-    # Paid candidates are only ever evaluated as paid_under_20 — skip demo/playtest paths.
+    # Paid candidates are only ever evaluated as paid_under_20 â skip demo/playtest paths.
     if source != "paid_candidate":
         if "playtest" in lower_title or "playtest" in lower_text:
-            # Verify the app is actually free — paid games sometimes mention
+            # Verify the app is actually free â paid games sometimes mention
             # "playtest" in their page text without offering a free trial.
             price, is_free, _, _ = get_price_info(app_id)
             if price is not None and price > 0 and not is_free:
@@ -814,7 +814,7 @@ def detect_item_type(source: str, app_id: str, title: str, text: str) -> str:
 
         if source == "steam_demo" or "demo" in lower_title or "demo" in lower_text:
             # For non-steam_demo sources, verify the app is actually free before
-            # classifying as demo — paid games can mention "demo" anywhere in page text.
+            # classifying as demo â paid games can mention "demo" anywhere in page text.
             if source != "steam_demo":
                 price, is_free, _, _ = get_price_info(app_id)
                 if price is not None and price > 0 and not is_free:
@@ -1085,7 +1085,7 @@ def is_demo_not_yet_available(page_text: str, soup: "BeautifulSoup") -> tuple[bo
         if soup.select_one(selector):
             return True, f"Steam coming-soon element '{selector}' present"
 
-    # 3. Purchase/action block text (targeted — not a broad page-text scan)
+    # 3. Purchase/action block text (targeted â not a broad page-text scan)
     for selector in (".game_purchase_action", ".game_area_purchase_game"):
         block = soup.select_one(selector)
         if block:
@@ -1412,7 +1412,7 @@ def post_discord_debug_summary(
     reused = run_counts.get("reused", 0)
     skipped = run_counts.get("skipped", 0)
     lines = [
-        f"🛠 Debug | Daily Picks | {day_label}",
+        f"ð  Debug | Daily Picks | {day_label}",
         f"Created: {created} | Updated: {updated} | Reused: {reused} | Skipped: {skipped}",
         f"Rerun protection: {'active' if rerun_protection_active else 'inactive'}"
         + (" | Force refresh: on" if force_refresh_same_day else ""),
@@ -1594,14 +1594,14 @@ def inspect_game(source: str, app_id: str) -> Optional[dict]:
         # Hard age cutoff: demos/playtests older than 180 days are excluded.
         _release_date = extract_release_date(page_text)
         if _release_date is None or (datetime.now(timezone.utc) - _release_date).days > 180:
-            print(f"EXCLUDE: {title} — demo/playtest older than 180 days (or no release date)")
+            print(f"EXCLUDE: {title} â demo/playtest older than 180 days (or no release date)")
             return None
 
     review_sentiment = extract_review_sentiment(soup)
 
     if item_type in {"demo", "playtest"}:
         if review_sentiment in HARD_EXCLUDE_REVIEW_SENTIMENTS:
-            print(f"EXCLUDE: {title} — blocked review: {review_sentiment}")
+            print(f"EXCLUDE: {title} â blocked review: {review_sentiment}")
             return None
 
     multiplayer_score, multiplayer_hits = score_multiplayer(page_text)
@@ -1610,7 +1610,7 @@ def inspect_game(source: str, app_id: str) -> Optional[dict]:
     review_count = extract_review_count(page_text)
     review_score = REVIEW_SENTIMENT_SCORES.get(review_sentiment, UNKNOWN_REVIEW_SCORE_BY_TYPE.get(item_type, 0))
 
-    # Hard exclude: Mostly Negative / Very Negative / Overwhelmingly Negative → skip entirely.
+    # Hard exclude: Mostly Negative / Very Negative / Overwhelmingly Negative â skip entirely.
     # Demos/playtests with no reviews (review_sentiment is None) are exempt.
     if review_sentiment in HARD_EXCLUDE_REVIEW_SENTIMENTS:
         print(f"HARD EXCLUDED (negative reviews): {title} | sentiment={review_sentiment}")
@@ -1765,7 +1765,7 @@ def format_item_block(item: dict, idx: int, paid: bool = False) -> str:
 
 
 def format_steam_item_message(item: dict, idx: int, paid: bool = False, demo_playtest: bool = False) -> str:
-    emoji = "💸" if paid else ("🧪" if demo_playtest else "🎮")
+    emoji = "ð¸" if paid else ("ð§ª" if demo_playtest else "ð®")
     if paid:
         label = "Paid Pick"
     elif demo_playtest:
@@ -1787,8 +1787,8 @@ def format_steam_item_message(item: dict, idx: int, paid: bool = False, demo_pla
 
 def format_instagram_item_message(post: dict, idx: int) -> str:
     return (
-        f"📸 Creator Pick #{idx}\n"
-        f"@{post['username']} — {post['caption']}\n"
+        f"ð¸ Creator Pick #{idx}\n"
+        f"@{post['username']} â {post['caption']}\n"
         f"{post['url']}"
     )
 
@@ -1815,13 +1815,13 @@ def build_message_chunks(title_line: str, items: List[dict], paid: bool = False)
     return chunks
     
 def build_instagram_chunks(posts: List[dict]) -> List[str]:
-    title = "📸 **New Instagram Creator Picks**"
+    title = "ð¸ **New Instagram Creator Picks**"
     chunks = []
     current = title + "\n\n"
 
     for idx, post in enumerate(posts, start=1):
         block = (
-            f"{idx}. @{post['username']} — {post['caption']}\n"
+            f"{idx}. @{post['username']} â {post['caption']}\n"
             f"{post['url']}\n\n"
         )
 
@@ -2040,16 +2040,16 @@ def build_daily_navigation_footer(
         return None
 
     section_labels = {
-        "demo_playtest": "🧪 Demo & Playtest Picks",
-        "free": "🎮 Free Picks",
-        "paid": "💸 Paid Picks",
-        "instagram": "📸 Creator Picks",
+        "demo_playtest": "ð§ª Demo & Playtest Picks",
+        "free": "ð® Free Picks",
+        "paid": "ð¸ Paid Picks",
+        "instagram": "ð¸ Creator Picks",
     }
     section_headers = run_state.get("section_headers", {})
     lines = [
-        f"🗓️ Daily Picks for {format_daily_picks_footer_date(target_day_key)}",
+        f"ðï¸ Daily Picks for {format_daily_picks_footer_date(target_day_key)}",
         "",
-        f"🎯 Intro / Top of Post → [Jump]({build_discord_message_link(guild_id, intro_channel_id, intro_message_id)})",
+        f"ð¯ Intro / Top of Post â [Jump]({build_discord_message_link(guild_id, intro_channel_id, intro_message_id)})",
     ]
 
     for section_key in DAILY_SECTION_ORDER:
@@ -2067,7 +2067,7 @@ def build_daily_navigation_footer(
         section_label = section_labels.get(section_key)
         if not section_label:
             continue
-        lines.append(f"{section_label} → [Jump]({build_discord_message_link(guild_id, channel_id, message_id)})")
+        lines.append(f"{section_label} â [Jump]({build_discord_message_link(guild_id, channel_id, message_id)})")
 
     return "\n".join(lines)
 
@@ -2082,15 +2082,15 @@ def build_daily_picks_navigation_content(
         return None
 
     lines = [
-        f"📅 Daily Picks - {format_daily_picks_footer_date(target_day_key)}",
-        "Vote 👍 on any game you want to try. Every vote advances to Step 2.",
+        f"ð Daily Picks - {format_daily_picks_footer_date(target_day_key)}",
+        "Vote ð on any game you want to try. Every vote advances to Step 2.",
     ]
 
     section_labels = {
-        "demo_playtest": "🧪 Demo & Playtest Picks",
-        "free": "🎮 Free Picks",
-        "paid": "💸 Paid Picks",
-        "instagram": "📸 Creator Picks",
+        "demo_playtest": "ð§ª Demo & Playtest Picks",
+        "free": "ð® Free Picks",
+        "paid": "ð¸ Paid Picks",
+        "instagram": "ð¸ Creator Picks",
     }
     section_headers = run_state.get("section_headers", {})
 
@@ -2107,25 +2107,25 @@ def build_daily_picks_navigation_content(
         section_label = section_labels.get(section_key)
         if not section_label:
             continue
-        lines.append(f"{section_label} ⟹ [Jump]({build_discord_message_link(guild_id, channel_id, message_id)})")
+        lines.append(f"{section_label} â¹ [Jump]({build_discord_message_link(guild_id, channel_id, message_id)})")
 
     return "\n".join(lines)
 
 
-DAILY_INTRO_DIVIDER = "─────────────────────────────────────────"
-DAILY_FOOTER_SEPARATOR = "─────────────────── End of Daily Picks ───────────────────"
+DAILY_INTRO_DIVIDER = "âââââââââââââââââââââââââââââââââââââââââ"
+DAILY_FOOTER_SEPARATOR = "âââââââââââââââââââ End of Daily Picks âââââââââââââââââââ"
 
 _DAILY_INTRO_SECTION_LABELS = {
-    "demo_playtest": ("🎮", "Demos & Playtests"),
-    "free": ("🆓", "Free Picks"),
-    "paid": ("💰", "Paid Under $20"),
-    "instagram": ("📸", "Instagram Picks"),
+    "demo_playtest": ("ð®", "Demos & Playtests"),
+    "free": ("ð", "Free Picks"),
+    "paid": ("ð°", "Paid Under $20"),
+    "instagram": ("ð¸", "Instagram Picks"),
 }
 _DAILY_FOOTER_SECTION_LABELS = {
-    "demo_playtest": "🎮 Demos",
-    "free": "🆓 Free",
-    "paid": "💰 Paid",
-    "instagram": "📸 Instagram",
+    "demo_playtest": "ð® Demos",
+    "free": "ð Free",
+    "paid": "ð° Paid",
+    "instagram": "ð¸ Instagram",
 }
 _DAILY_MISSING_SECTION_LABELS = {
     "demo_playtest": "Demos & Playtests",
@@ -2144,9 +2144,9 @@ def build_daily_picks_intro_content(
     """Build the Step 1 intro message with optional jump links and trailing divider."""
     date_str = format_daily_picks_footer_date(target_day_key)
     lines = [
-        f"📅 Daily Picks — {date_str}",
+        f"ð Daily Picks â {date_str}",
         "",
-        "Vote 👍 on anything you want to try. All voted games move to Step 2.",
+        "Vote ð on anything you want to try. All voted games move to Step 2.",
     ]
 
     if isinstance(guild_id, str) and guild_id.strip() and posted_section_keys:
@@ -2221,7 +2221,7 @@ def build_daily_picks_footer_content(
         link_parts.append(f"[{label}]({build_discord_message_link(guild_id, channel_id, message_id)})")
 
     top_link = build_discord_message_link(guild_id, intro_channel_id, intro_message_id)
-    link_parts.append(f"[⬆️ Top]({top_link})")
+    link_parts.append(f"[â¬ï¸ Top]({top_link})")
 
     all_section_keys = list(DAILY_SECTION_ORDER)
     missing_sections = [k for k in all_section_keys if k not in posted_section_keys]
@@ -2230,7 +2230,7 @@ def build_daily_picks_footer_content(
         label = _DAILY_MISSING_SECTION_LABELS.get(key, key)
         missing_lines.append(f"_(No {label} today)_")
 
-    first_line = f"📅 End of Daily Picks — {date_str} · Jump to: {' · '.join(link_parts)}"
+    first_line = f"ð End of Daily Picks â {date_str} Â· Jump to: {' Â· '.join(link_parts)}"
     if missing_lines:
         missing_block = "\n".join(missing_lines)
         return f"{first_line}\n{missing_block}\n{DAILY_FOOTER_SEPARATOR}"
@@ -2278,9 +2278,9 @@ def post_daily_pick_messages(
     run_state["last_attempt_at_utc"] = utc_now_iso()
 
     # Rule 1 & 5: If already completed AND discord_verification.json shows pass=True
-    # for today, suppress all re-triggers (watchdog, force_refresh, manual) — nothing to do.
+    # for today, suppress all re-triggers (watchdog, force_refresh, manual) â nothing to do.
     if bool(run_state.get("completed")) and is_today_verified(day_key):
-        print(f"Run already completed and verified — watchdog re-trigger suppressed for {day_key}")
+        print(f"Run already completed and verified â watchdog re-trigger suppressed for {day_key}")
         save_discord_daily_posts(daily_posts)
         return run_counts, True, {}
 
@@ -2357,9 +2357,9 @@ def post_daily_pick_messages(
     intro_state = run_state.setdefault("intro", {})
     if not intro_state.get("message_id"):
         intro_placeholder = "\n".join([
-            f"📅 Daily Picks — {format_daily_picks_footer_date(day_key)}",
+            f"ð Daily Picks â {format_daily_picks_footer_date(day_key)}",
             "",
-            "Vote 👍 on anything you want to try. All voted games move to Step 2.",
+            "Vote ð on anything you want to try. All voted games move to Step 2.",
             "",
             "Loading sections...",
             "",
@@ -2368,7 +2368,7 @@ def post_daily_pick_messages(
         post_or_reconcile_simple(intro_placeholder, "intro", intro_state)
         sleep_briefly()
     else:
-        print(f"REUSE: intro already posted for {day_key} — skipping placeholder re-edit")
+        print(f"REUSE: intro already posted for {day_key} â skipping placeholder re-edit")
 
     section_items_by_key = {
         "demo_playtest": demo_playtest_items,
@@ -2523,7 +2523,7 @@ def post_daily_pick_messages(
         sleep_briefly()
 
     if manual_run and force_refresh_same_day:
-        print(f"Manual rerun with force_refresh — not marking {day_key} completed")
+        print(f"Manual rerun with force_refresh â not marking {day_key} completed")
     else:
         run_state["completed"] = True
         run_state["completed_at_utc"] = utc_now_iso()
@@ -2551,7 +2551,7 @@ def _normalize_instagram_game_key_fragment(text: str) -> str:
     normalized = re.sub(r"#\w+", " ", normalized)
     for pattern in INSTAGRAM_GAME_KEY_BOILERPLATE_PATTERNS:
         normalized = re.sub(pattern, " ", normalized)
-    # Remove hyphens without inserting a space so "Co-Op" → "coop", matching "COOP".
+    # Remove hyphens without inserting a space so "Co-Op" â "coop", matching "COOP".
     normalized = re.sub(r"-", "", normalized)
     normalized = re.sub(r"[^a-z0-9\s]", " ", normalized)
     normalized = re.sub(r"\s+", " ", normalized).strip()
@@ -2574,7 +2574,7 @@ def derive_instagram_game_key(caption: str) -> Optional[str]:
         return None
 
     quoted_or_bracketed_patterns = [
-        r"[\"“”]([^\"“”]{2,80})[\"“”]",
+        r"[\"ââ]([^\"ââ]{2,80})[\"ââ]",
         r"\[([^\[\]]{2,80})\]",
         r"\(([^\(\)]{2,80})\)",
     ]
@@ -2601,7 +2601,7 @@ def derive_instagram_game_key(caption: str) -> Optional[str]:
             boundary_start = match.start()
 
     if boundary_start is not None:
-        candidate = raw_caption[:boundary_start].strip(" -|:–—•")
+        candidate = raw_caption[:boundary_start].strip(" -|:âââ¢")
         key = _normalize_instagram_game_key_fragment(candidate)
         if key and len(key) >= 3 and re.search(r"[a-z]", key):
             if not _is_low_confidence_instagram_title_candidate(key):
@@ -2711,13 +2711,13 @@ def _check_instagram_session_age(session_file: str) -> None:
     except OSError:
         return
     if age_days > 50:
-        print(f"WARN: Instagram session file is {age_days:.0f} days old — session may have expired", flush=True)
+        print(f"WARN: Instagram session file is {age_days:.0f} days old â session may have expired", flush=True)
         _notify_health_monitor(
-            f"⚠️ Instagram session file is {age_days:.0f} days old.\n"
-            "The session may have expired — re-authenticate and update the INSTAGRAM_SESSION secret."
+            f"â ï¸ Instagram session file is {age_days:.0f} days old.\n"
+            "The session may have expired â re-authenticate and update the INSTAGRAM_SESSION secret."
         )
     elif age_days > 30:
-        print(f"INFO: Instagram session file is {age_days:.0f} days old — consider refreshing soon", flush=True)
+        print(f"INFO: Instagram session file is {age_days:.0f} days old â consider refreshing soon", flush=True)
 
 
 def fetch_instagram_posts():
@@ -2755,19 +2755,19 @@ def fetch_instagram_posts():
     except Exception as e:
         print(f"Instagram session load failed: {e}")
         _notify_health_monitor(
-            f"⚠️ Instagram session load failed for {instagram_username}: {e}\n"
-            f"Instagram session may have expired — re-authenticate and update INSTAGRAM_SESSION secret."
+            f"â ï¸ Instagram session load failed for {instagram_username}: {e}\n"
+            f"Instagram session may have expired â re-authenticate and update INSTAGRAM_SESSION secret."
         )
         return []
 
-    # Session auth check — make a real authenticated API call to verify the session.
+    # Session auth check â make a real authenticated API call to verify the session.
     try:
         authed_user = loader.test_login()
         if not authed_user:
-            print(f"WARN: Instagram session auth check failed — test_login() returned None for {instagram_username}")
+            print(f"WARN: Instagram session auth check failed â test_login() returned None for {instagram_username}")
             _notify_health_monitor(
-                f"⚠️ Instagram session auth check failed for {instagram_username}.\n"
-                f"test_login() returned None — session may have expired. "
+                f"â ï¸ Instagram session auth check failed for {instagram_username}.\n"
+                f"test_login() returned None â session may have expired. "
                 f"Re-authenticate and update the INSTAGRAM_SESSION secret."
             )
             return []
@@ -2775,7 +2775,7 @@ def fetch_instagram_posts():
     except Exception as e:
         print(f"WARN: Instagram session auth check raised an exception: {e}")
         _notify_health_monitor(
-            f"⚠️ Instagram session auth check raised an exception for {instagram_username}: {e}\n"
+            f"â ï¸ Instagram session auth check raised an exception for {instagram_username}: {e}\n"
             f"Re-authenticate and update the INSTAGRAM_SESSION secret."
         )
         return []
@@ -2833,11 +2833,11 @@ def fetch_instagram_posts():
                 ]
                 caption_lower = caption.lower()
                 if any(phrase in caption_lower for phrase in blocked_caption_phrases):
-                    print(f"INSTAGRAM SKIP: @{username} — unavailable caption")
+                    print(f"INSTAGRAM SKIP: @{username} â unavailable caption")
                     skipped_caption += 1
                     continue
                 if any(re.search(p, caption_lower) for p in blocked_caption_patterns):
-                    print(f"INSTAGRAM SKIP: @{username} — future release caption")
+                    print(f"INSTAGRAM SKIP: @{username} â future release caption")
                     skipped_caption += 1
                     continue
 
@@ -2983,12 +2983,12 @@ def run_daily_workflow(*, force_refresh_same_day: bool = False, manual_run: bool
 
     if scraping_status == "broken":
         _notify_health_monitor(
-            f"🔴 Steam scraping is broken — all {pages_fail} page(s) failed to fetch. "
+            f"ð´ Steam scraping is broken â all {pages_fail} page(s) failed to fetch. "
             "Check Steam connectivity and scraper URLs."
         )
     elif scraping_status == "degraded":
         _notify_health_monitor(
-            f"⚠️ Steam scraping is degraded — {pages_fail} of {total_pages} page(s) failed. "
+            f"â ï¸ Steam scraping is degraded â {pages_fail} of {total_pages} page(s) failed. "
             "Some candidates may be missing."
         )
 
@@ -3148,7 +3148,7 @@ def run_daily_workflow(*, force_refresh_same_day: bool = False, manual_run: bool
         print("Daily picks run configured with FORCE_REFRESH_SAME_DAY=true")
     manual_run = manual_run or is_manual_run()
     if manual_run:
-        print("Daily picks run is a manual (workflow_dispatch) run — completed flag will not be set")
+        print("Daily picks run is a manual (workflow_dispatch) run â completed flag will not be set")
     run_counts, rerun_protection_active, verification_state = post_daily_pick_messages(
         demo_playtest_items,
         free_items,
