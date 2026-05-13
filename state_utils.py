@@ -97,7 +97,7 @@ def is_today_verified(day_key: str, *, verification_file: str = DISCORD_VERIFICA
     """Return True if discord_verification.json shows pass=True for day_key.
 
     Used by workflow entry-points to detect when today's run is already
-    completed and fully verified, so watchdog or manual re-triggers can be
+    completed and fully verified, so manual re-triggers can be
     suppressed without doing any Discord work.
 
     Returns False (not verified) when the file is absent, unreadable, or
