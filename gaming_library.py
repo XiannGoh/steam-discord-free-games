@@ -1258,12 +1258,12 @@ def run_daily_post(state_path: str = GAMING_LIBRARY_FILE) -> bool:
         raise RuntimeError("DISCORD_GAMING_LIBRARY_CHANNEL_ID is not set")
 
     # Rule 1 & 5: If already completed AND discord_verification.json shows pass=True
-    # for today, suppress all re-triggers (watchdog, manual) — nothing to do.
+    # for today, suppress all re-triggers (manual) — nothing to do.
     manual_run = is_manual_run()
     _day_entry_check = state.get("daily_posts", {}).get(day_key, {})
     if isinstance(_day_entry_check, dict) and bool(_day_entry_check.get("completed")):
         if is_today_verified(day_key):
-            print(f"Run already completed and verified — watchdog re-trigger suppressed for {day_key}")
+            print(f"Run already completed and verified — re-trigger suppressed for {day_key}")
             return False
         if manual_run:
             # Manual workflow_dispatch reruns on an already-completed day try to edit
