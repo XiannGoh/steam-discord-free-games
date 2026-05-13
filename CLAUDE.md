@@ -278,6 +278,8 @@ Players can type commands in `step-3-review-existing-games`. Commands are proces
 |---------|--------|
 | `!add @user GameName` | Assign player to a game |
 | `!remove @user GameName` | Unassign player from a game |
+| `!add @user GameName` | Assign a user to a game (creates the game if missing, marks status active) |
+| `!remove @user GameName` | Remove a user from a specific game |
 | `!rename GameName NewName` | Rename a game |
 | `!unassign @user` | Remove player from all games |
 | `!archive GameName` | Archive a game |

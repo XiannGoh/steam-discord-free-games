@@ -650,7 +650,7 @@ def test_manual_run_without_force_refresh_sets_completed_flag(monkeypatch, tmp_p
     """workflow_dispatch without force_refresh posts normally AND marks the day completed.
 
     Fix 1 (Issue #292): only workflow_dispatch + force_refresh_same_day=True should keep
-    the day open. A plain workflow_dispatch (e.g. from auto-fix bot) must set completed=True
+    the day open. A plain workflow_dispatch (e.g. from manual rerun) must set completed=True
     so that the next scheduled cron run is correctly suppressed.
     """
     daily_path = tmp_path / "daily.json"
