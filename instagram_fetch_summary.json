@@ -1,9 +1,9 @@
 {
-  "run_at": "2026-05-12T15:58:21Z",
+  "run_at": "2026-05-13T20:58:53Z",
   "total_creators": 8,
   "creators_with_posts": 2,
-  "total_posts_collected": 2,
-  "total_skipped_seen": 19,
+  "total_posts_collected": 3,
+  "total_skipped_seen": 10,
   "total_skipped_caption": 0,
   "failed_creators": [],
   "creators": {
@@ -35,18 +35,18 @@
       "failure_reason": null
     },
     "sharedxp_official": {
-      "fetched": 9,
-      "collected": 1,
-      "skipped_seen": 7,
-      "skipped_age": 1,
+      "fetched": 2,
+      "collected": 2,
+      "skipped_seen": 0,
+      "skipped_age": 0,
       "skipped_caption": 0,
       "failed": false,
       "failure_reason": null
     },
     "wilfratgaming": {
-      "fetched": 8,
+      "fetched": 6,
       "collected": 0,
-      "skipped_seen": 7,
+      "skipped_seen": 5,
       "skipped_age": 1,
       "skipped_caption": 0,
       "failed": false,
