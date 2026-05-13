@@ -731,11 +731,11 @@
     "date_range": "May 11–17, 2026",
     "summary": {
       "day_counts": {
-        "Monday": 1,
+        "Monday": 2,
         "Tuesday": 1,
-        "Wednesday": 2,
+        "Wednesday": 3,
         "Thursday": 2,
-        "Friday": 1,
+        "Friday": 2,
         "Saturday": 1,
         "Sunday": 1
       },
@@ -744,7 +744,7 @@
           "✅": 0,
           "🌅": 0,
           "☀️": 0,
-          "🌙": 1,
+          "🌙": 2,
           "📝": 0
         },
         "Tuesday": {
@@ -758,7 +758,7 @@
           "✅": 1,
           "🌅": 0,
           "☀️": 0,
-          "🌙": 1,
+          "🌙": 2,
           "📝": 0
         },
         "Thursday": {
@@ -772,7 +772,7 @@
           "✅": 0,
           "🌅": 0,
           "☀️": 0,
-          "🌙": 1,
+          "🌙": 2,
           "📝": 0
         },
         "Saturday": {
@@ -796,6 +796,10 @@
           "🌅": [],
           "☀️": [],
           "🌙": [
+            {
+              "user_id": "164270274928181248",
+              "display_name": "Chocolie"
+            },
             {
               "user_id": "195462430535581708",
               "display_name": "Thomas"
@@ -826,6 +830,10 @@
           "☀️": [],
           "🌙": [
             {
+              "user_id": "164270274928181248",
+              "display_name": "Chocolie"
+            },
+            {
               "user_id": "195462430535581708",
               "display_name": "Thomas"
             }
@@ -853,6 +861,10 @@
           "🌅": [],
           "☀️": [],
           "🌙": [
+            {
+              "user_id": "164270274928181248",
+              "display_name": "Chocolie"
+            },
             {
               "user_id": "195462430535581708",
               "display_name": "Thomas"
@@ -886,7 +898,7 @@
         }
       },
       "best_overlap": {
-        "day": "Thursday",
+        "day": "Monday",
         "slot": "🌙",
         "count": 2
       }
