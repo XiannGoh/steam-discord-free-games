@@ -917,11 +917,11 @@ def main() -> None:
         daily_posts[day_key] = today_entry
 
     # Rule 1 & 5: If winners already posted AND discord_verification.json shows pass=True
-    # for today, suppress all re-triggers (watchdog, manual) — nothing to do.
+    # for today, suppress all re-triggers (manual) — nothing to do.
     _winners_state_check = today_entry.get("winners_state") or {}
     if isinstance(_winners_state_check, dict) and _winners_state_check.get("winner_messages"):
         if is_today_verified(day_key):
-            print(f"Run already completed and verified — watchdog re-trigger suppressed for {day_key}")
+            print(f"Run already completed and verified — re-trigger suppressed for {day_key}")
             return
 
     lookback_day_keys = get_lookback_day_keys(day_key)

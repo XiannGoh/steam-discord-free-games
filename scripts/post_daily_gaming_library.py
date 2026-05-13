@@ -11,7 +11,7 @@ if __name__ == "__main__":
     print(f"daily gaming library posted={posted}")
 
     # PR #324 follow-up: if run_daily_post() returned False, the day was already
-    # complete (or watchdog suppression fired) and we MUST NOT touch the rolling
+    # complete (or suppression fired) and we MUST NOT touch the rolling
     # explainer either — it's an existing message older than 1 hour, and Discord
     # rate-limits edits to old messages (HTTP 429 code 30046). The script would
     # exit 1 from rolling_explainer's crash even though run_daily_post() succeeded
