@@ -75,7 +75,7 @@ def test_healthy_state_has_all_clear_message(tmp_path, monkeypatch):
     assert issues == []
 
     rendered = report.render_report(
-        workflow_status_lines=["🟢 Daily Steam Picks", "Last run: success (1h ago)", "Expected cadence: daily 13:00 UTC (cron: 0 13 * * *)", ""],
+        workflow_status_lines=["🟢 Steam Free Games", "Last run: success (1h ago)", "Expected cadence: daily 13:00 UTC (cron: 0 13 * * *)", ""],
         state_issues=issues,
         report_date="Apr 9, 2026",
     )
@@ -150,7 +150,7 @@ def test_malformed_roster_is_red_issue(tmp_path, monkeypatch):
 
 def test_signal_light_formatting_uses_expected_icons_and_state_metadata():
     rendered = report.render_report(
-        workflow_status_lines=["🟡 Evening Winners", "Last run: success (36h ago) — stale", ""],
+        workflow_status_lines=["🟡 Daily Game Picks Winners", "Last run: success (36h ago) — stale", ""],
         state_issues=[
             report.Issue(
                 code="state.warning",
@@ -172,7 +172,7 @@ def test_signal_light_formatting_uses_expected_icons_and_state_metadata():
         report_date="Apr 10, 2026",
     )
 
-    assert "🟡 Evening Winners" in rendered
+    assert "🟡 Daily Game Picks Winners" in rendered
     assert "🔴 Winners state error" in rendered
     assert "🟡 Daily picks warning" in rendered
     assert "Code: state.error" in rendered
@@ -183,10 +183,10 @@ def test_signal_light_formatting_uses_expected_icons_and_state_metadata():
 
 def test_final_report_snapshot_shape_with_mixed_signals_and_triage_metadata():
     workflow_lines = [
-        "🟢 Daily Steam Picks",
+        "🟢 Steam Free Games",
         "Last run: success (2h ago)",
         "",
-        "🔴 Evening Winners",
+        "🔴 Daily Game Picks Winners",
         "Last run: success (40h ago) — stale",
         "Expected freshness: ≤30h",
         "Trigger: schedule",
@@ -227,8 +227,8 @@ def test_final_report_snapshot_shape_with_mixed_signals_and_triage_metadata():
     )
 
     assert "## Workflow Status" in rendered
-    assert "🟢 Daily Steam Picks" in rendered
-    assert "🔴 Evening Winners" in rendered
+    assert "🟢 Steam Free Games" in rendered
+    assert "🔴 Daily Game Picks Winners" in rendered
     assert "🔴 Weekly Scheduling Responses Sync" in rendered
     assert "Expected freshness: ≤30h" in rendered
     assert "Trigger: schedule" in rendered
@@ -259,10 +259,10 @@ def test_health_report_cleanup_removes_state_sanity_check_references_from_workfl
             "🟢 Weekly Scheduling Responses Sync",
             "Last run: success (1h ago)",
             "",
-            "🟢 Daily Steam Picks",
+            "🟢 Steam Free Games",
             "Last run: success (6h ago)",
             "",
-            "🟢 Evening Winners",
+            "🟢 Daily Game Picks Winners",
             "Last run: success (8h ago)",
             "",
         ],
@@ -453,7 +453,7 @@ def test_green_workflow_output_has_no_guidance_lines():
 
 def test_overall_summary_is_green_when_only_no_action_needed_warnings():
     rendered = report.render_report(
-        workflow_status_lines=["🟢 Daily Steam Picks", "Last run: success (1h ago)", "Expected cadence: daily 13:00 UTC (cron: 0 13 * * *)", ""],
+        workflow_status_lines=["🟢 Steam Free Games", "Last run: success (1h ago)", "Expected cadence: daily 13:00 UTC (cron: 0 13 * * *)", ""],
         state_issues=[
             report.Issue(
                 code="weekly.summary_freshness_missing",
@@ -542,7 +542,7 @@ def test_schedule_diagnostics_flags_old_scheduled_run_outside_expected_window():
 def test_overall_summary_is_red_when_stale_workflow_is_action_required():
     rendered = report.render_report(
         workflow_status_lines=[
-            "🔴 Evening Winners",
+            "🔴 Daily Game Picks Winners",
             "Last run: success (40h ago) — stale",
             "Disposition: Action required",
             "Next step: Re-run Daily Game Picks Winners if no run is expected soon; otherwise monitor the next scheduled run.",
@@ -591,7 +591,7 @@ def test_overall_summary_is_red_when_action_required_or_error_exists():
 
 def test_overall_summary_is_green_when_fully_healthy():
     rendered = report.render_report(
-        workflow_status_lines=["🟢 Daily Steam Picks", "Last run: success (1h ago)", "Expected cadence: daily 13:00 UTC (cron: 0 13 * * *)", ""],
+        workflow_status_lines=["🟢 Steam Free Games", "Last run: success (1h ago)", "Expected cadence: daily 13:00 UTC (cron: 0 13 * * *)", ""],
         state_issues=[],
         report_date="Apr 9, 2026",
     )
