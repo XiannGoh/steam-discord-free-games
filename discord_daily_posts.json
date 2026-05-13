@@ -8070,7 +8070,7 @@
         "1503546197674168320"
       ],
       "last_action": "create",
-      "updated_at_utc": "2026-05-11T23:55:48.585862+00:00",
+      "updated_at_utc": "2026-05-13T23:54:56.332727+00:00",
       "posted_at_utc": "2026-05-11T23:55:48.585876+00:00",
       "winner_keys": [
         "https://store.steampowered.com/app/2141730/",
@@ -8082,7 +8082,7 @@
         "https://store.steampowered.com/app/2141730/": 1,
         "https://store.steampowered.com/app/2567870/": 1,
         "https://store.steampowered.com/app/3643170/": 1,
-        "https://store.steampowered.com/app/648800/": 1
+        "https://store.steampowered.com/app/648800/": 2
       },
       "winner_entries": [
         {
@@ -8124,8 +8124,9 @@
           "title": "Raft",
           "url": "https://store.steampowered.com/app/648800/",
           "description": "Raft™ throws you and your friends into an epic oceanic adventure! Alone or together, players battle to survive a perilous voyage across a vast sea! Gather debris, scavenge reefs and build your own floating home, but be wary of the man-eating sharks!",
-          "human_votes": 1,
+          "human_votes": 2,
           "voter_names": [
+            "Chocolie",
             "Thomas"
           ]
         }
@@ -8627,6 +8628,242 @@
         "posted_at": "2026-05-13T20:59:24.884855+00:00",
         "description": "This is one of the coolest colony sims I’ve ever seen! Set in World War 1!   Dig In  #gaming #newgames #colonysim #wo..."
       }
-    ]
+    ],
+    "winners_state": {
+      "intro": {
+        "message_id": "1504270756383559752",
+        "channel_id": "1491294533751799809"
+      },
+      "section_headers": {
+        "free": {
+          "message_id": "1504270759084691547",
+          "channel_id": "1491294533751799809"
+        },
+        "paid": {
+          "message_id": "1504270781385801738",
+          "channel_id": "1491294533751799809"
+        }
+      },
+      "winner_messages": {
+        "https://store.steampowered.com/app/1241100/": {
+          "message_id": "1504270762226356224",
+          "channel_id": "1491294533751799809"
+        },
+        "https://store.steampowered.com/app/3027820/": {
+          "message_id": "1504270764252070039",
+          "channel_id": "1491294533751799809"
+        },
+        "https://store.steampowered.com/app/3601420/": {
+          "message_id": "1504270767649456168",
+          "channel_id": "1491294533751799809"
+        },
+        "https://store.steampowered.com/app/3731580/": {
+          "message_id": "1504270771520929884",
+          "channel_id": "1491294533751799809"
+        },
+        "https://store.steampowered.com/app/744900/": {
+          "message_id": "1504270775086219318",
+          "channel_id": "1491294533751799809"
+        },
+        "https://store.steampowered.com/app/866020/": {
+          "message_id": "1504270779871924254",
+          "channel_id": "1491294533751799809"
+        },
+        "https://store.steampowered.com/app/2764750/": {
+          "message_id": "1504270782442766367",
+          "channel_id": "1491294533751799809"
+        },
+        "https://store.steampowered.com/app/371970/": {
+          "message_id": "1504270785353875466",
+          "channel_id": "1491294533751799809"
+        },
+        "https://store.steampowered.com/app/500/": {
+          "message_id": "1504270787459289118",
+          "channel_id": "1491294533751799809"
+        },
+        "https://store.steampowered.com/app/550/": {
+          "message_id": "1504270810637144084",
+          "channel_id": "1491294533751799809"
+        },
+        "https://store.steampowered.com/app/699130/": {
+          "message_id": "1504270812226523156",
+          "channel_id": "1491294533751799809"
+        }
+      },
+      "footer": {
+        "message_id": "1504270814675996833",
+        "channel_id": "1491294533751799809"
+      },
+      "message_id": "1504270756383559752",
+      "message_ids": [
+        "1504270756383559752",
+        "1504270759084691547",
+        "1504270762226356224",
+        "1504270764252070039",
+        "1504270767649456168",
+        "1504270771520929884",
+        "1504270775086219318",
+        "1504270779871924254",
+        "1504270781385801738",
+        "1504270782442766367",
+        "1504270785353875466",
+        "1504270787459289118",
+        "1504270810637144084",
+        "1504270812226523156",
+        "1504270814675996833"
+      ],
+      "last_action": "create",
+      "updated_at_utc": "2026-05-13T23:55:10.679254+00:00",
+      "posted_at_utc": "2026-05-13T23:55:10.679270+00:00",
+      "winner_keys": [
+        "https://store.steampowered.com/app/1241100/",
+        "https://store.steampowered.com/app/2764750/",
+        "https://store.steampowered.com/app/3027820/",
+        "https://store.steampowered.com/app/3601420/",
+        "https://store.steampowered.com/app/371970/",
+        "https://store.steampowered.com/app/3731580/",
+        "https://store.steampowered.com/app/500/",
+        "https://store.steampowered.com/app/550/",
+        "https://store.steampowered.com/app/699130/",
+        "https://store.steampowered.com/app/744900/",
+        "https://store.steampowered.com/app/866020/"
+      ],
+      "winner_vote_counts": {
+        "https://store.steampowered.com/app/1241100/": 1,
+        "https://store.steampowered.com/app/2764750/": 1,
+        "https://store.steampowered.com/app/3027820/": 1,
+        "https://store.steampowered.com/app/3601420/": 1,
+        "https://store.steampowered.com/app/371970/": 1,
+        "https://store.steampowered.com/app/3731580/": 1,
+        "https://store.steampowered.com/app/500/": 1,
+        "https://store.steampowered.com/app/550/": 1,
+        "https://store.steampowered.com/app/699130/": 1,
+        "https://store.steampowered.com/app/744900/": 1,
+        "https://store.steampowered.com/app/866020/": 1
+      },
+      "winner_entries": [
+        {
+          "winner_key": "https://store.steampowered.com/app/1241100/",
+          "section": "free",
+          "title": "POLYGON",
+          "url": "https://store.steampowered.com/app/1241100/",
+          "description": "POLYGON is a tactical multiplayer team 1st person shooter. Using various weapons, you will battle with up to 32 players on large-scale maps. Properly managing your arsenal and skills, you will lead your team to victory!",
+          "human_votes": 1,
+          "voter_names": [
+            "Chocolie"
+          ]
+        },
+        {
+          "winner_key": "https://store.steampowered.com/app/2764750/",
+          "section": "paid",
+          "title": "The Other Side",
+          "url": "https://store.steampowered.com/app/2764750/",
+          "description": "The Other Side is a co-op psychological thriller for up to 6 players. Your goal is to investigate haunted locations using modern ghost hunting equipment, gather evidence, identify entities, and cleanse them from the location. Customize your character, headquarters, and more.",
+          "human_votes": 1,
+          "voter_names": [
+            "Chocolie"
+          ]
+        },
+        {
+          "winner_key": "https://store.steampowered.com/app/3027820/",
+          "section": "free",
+          "title": "Nexus Rumble: The Ultimate Showdown",
+          "url": "https://store.steampowered.com/app/3027820/",
+          "description": "Welcome to Nexus Rumble, the ultimate showdown where champions clash in a fierce competition for survival! Prepare to embark on an adrenaline-fueled journey through diverse landscapes and exhilarating challenges in this heart-pounding multiplayer extravaganza.",
+          "human_votes": 1,
+          "voter_names": [
+            "Chocolie"
+          ]
+        },
+        {
+          "winner_key": "https://store.steampowered.com/app/3601420/",
+          "section": "free",
+          "title": "Casino Roulette: Roulettist",
+          "url": "https://store.steampowered.com/app/3601420/",
+          "description": "Test your luck! Play casino roulette with stunning, realistic 3D graphics! Feel the risk as you dive into the casino atmosphere and hit the big time!",
+          "human_votes": 1,
+          "voter_names": [
+            "Chocolie"
+          ]
+        },
+        {
+          "winner_key": "https://store.steampowered.com/app/371970/",
+          "section": "paid",
+          "title": "Barony",
+          "url": "https://store.steampowered.com/app/371970/",
+          "description": "Barony is the premier first-person roguelike with cooperative play! Adventure alone, or gather a party with iconic and unusual RPG classes to face off against the brutal dungeons. Test your resourcefulness, wits, and friendships, on your quest to lift the evil lich's curse!",
+          "human_votes": 1,
+          "voter_names": [
+            "Chocolie"
+          ]
+        },
+        {
+          "winner_key": "https://store.steampowered.com/app/3731580/",
+          "section": "free",
+          "title": "Space Station: Beyond",
+          "url": "https://store.steampowered.com/app/3731580/",
+          "description": "Play as a variety of creatures or characters and try to survive either maintaining or attacking a space station while everything that can go wrong has already gone wrong.",
+          "human_votes": 1,
+          "voter_names": [
+            "Chocolie"
+          ]
+        },
+        {
+          "winner_key": "https://store.steampowered.com/app/500/",
+          "section": "paid",
+          "title": "Left 4 Dead",
+          "url": "https://store.steampowered.com/app/500/",
+          "description": "From Valve (the creators of Counter-Strike, Half-Life and more) comes Left 4 Dead, a co-op action horror game for the PC and Xbox 360 that casts up to four players in an epic struggle for survival against swarming zombie hordes and terrifying mutant monsters.",
+          "human_votes": 1,
+          "voter_names": [
+            "Chocolie"
+          ]
+        },
+        {
+          "winner_key": "https://store.steampowered.com/app/550/",
+          "section": "paid",
+          "title": "Left 4 Dead 2",
+          "url": "https://store.steampowered.com/app/550/",
+          "description": "Set in the zombie apocalypse, Left 4 Dead 2 is a co-operative action horror FPS takes you and your friends through the cities, swamps and cemeteries of the Deep South, from Savannah to New Orleans across five expansive campaigns.",
+          "human_votes": 1,
+          "voter_names": [
+            "Chocolie"
+          ]
+        },
+        {
+          "winner_key": "https://store.steampowered.com/app/699130/",
+          "section": "paid",
+          "title": "World War Z",
+          "url": "https://store.steampowered.com/app/699130/",
+          "description": "World War Z is a heart-pounding coop third-person shooter for up to 4 players featuring massive swarms of hundreds of zombies, focused on fast-paced, gruesomely spectacular action.",
+          "human_votes": 1,
+          "voter_names": [
+            "Chocolie"
+          ]
+        },
+        {
+          "winner_key": "https://store.steampowered.com/app/744900/",
+          "section": "free",
+          "title": "Dead Frontier 2",
+          "url": "https://store.steampowered.com/app/744900/",
+          "description": "Survival horror MMO. As one of the few survivors of the outbreak, you must scratch a living out of the decaying ruins of society. Scavenge for supplies, improve your skills, and trade with other players. All the while, keeping your eyes peeled for the infected lurking around every corner.",
+          "human_votes": 1,
+          "voter_names": [
+            "Chocolie"
+          ]
+        },
+        {
+          "winner_key": "https://store.steampowered.com/app/866020/",
+          "section": "free",
+          "title": "Growtopia",
+          "url": "https://store.steampowered.com/app/866020/",
+          "description": "Growtopia is a 2D sandbox game, that brings together millions of players in an expansive pixel world. Collaborate in building anything you can imagine, become anyone you want to be, and delve into numerous mini-games. Unleash your creativity and join the massive universe in Growtopia today!",
+          "human_votes": 1,
+          "voter_names": [
+            "Chocolie"
+          ]
+        }
+      ]
+    }
   }
 }
