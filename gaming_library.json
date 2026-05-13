@@ -15,14 +15,14 @@
       "assignments": {
         "195462430535581708": {
           "status": "dropped",
-          "updated_at_utc": "2026-05-12T22:12:31.965386+00:00"
+          "updated_at_utc": "2026-05-13T02:00:13.631026+00:00"
         }
       },
       "archived": true,
       "created_at_utc": "2026-04-10T09:39:19.389733+00:00",
-      "updated_at_utc": "2026-05-12T22:12:31.965414+00:00",
+      "updated_at_utc": "2026-05-13T02:00:13.631053+00:00",
       "conflicting_users": [],
-      "last_activity_date": "2026-05-12"
+      "last_activity_date": "2026-05-13"
     },
     "url:https://www.instagram.com/p/dw6y_zjj2tc/": {
       "identity_key": "url:https://www.instagram.com/p/dw6y_zjj2tc/",
@@ -38,14 +38,14 @@
       "assignments": {
         "195462430535581708": {
           "status": "dropped",
-          "updated_at_utc": "2026-05-12T22:12:37.754086+00:00"
+          "updated_at_utc": "2026-05-13T02:00:19.512047+00:00"
         }
       },
       "archived": true,
       "created_at_utc": "2026-04-10T09:39:31.041650+00:00",
-      "updated_at_utc": "2026-05-12T22:12:37.754110+00:00",
+      "updated_at_utc": "2026-05-13T02:00:19.512073+00:00",
       "conflicting_users": [],
-      "last_activity_date": "2026-05-12"
+      "last_activity_date": "2026-05-13"
     },
     "steam:3716600": {
       "identity_key": "steam:3716600",
@@ -61,14 +61,14 @@
       "assignments": {
         "195462430535581708": {
           "status": "dropped",
-          "updated_at_utc": "2026-05-12T22:12:37.421385+00:00"
+          "updated_at_utc": "2026-05-13T02:00:19.144994+00:00"
         }
       },
       "archived": true,
       "created_at_utc": "2026-04-13T09:19:36.758638+00:00",
-      "updated_at_utc": "2026-05-12T22:12:37.421410+00:00",
+      "updated_at_utc": "2026-05-13T02:00:19.145023+00:00",
       "conflicting_users": [],
-      "last_activity_date": "2026-05-12"
+      "last_activity_date": "2026-05-13"
     },
     "steam:408400": {
       "identity_key": "steam:408400",
@@ -84,14 +84,14 @@
       "assignments": {
         "195462430535581708": {
           "status": "dropped",
-          "updated_at_utc": "2026-05-12T22:12:26.325997+00:00"
+          "updated_at_utc": "2026-05-13T02:00:09.083323+00:00"
         }
       },
       "archived": true,
       "created_at_utc": "2026-04-13T09:19:36.851684+00:00",
-      "updated_at_utc": "2026-05-12T22:12:26.326024+00:00",
+      "updated_at_utc": "2026-05-13T02:00:09.083350+00:00",
       "conflicting_users": [],
-      "last_activity_date": "2026-05-12"
+      "last_activity_date": "2026-05-13"
     },
     "url:https://www.instagram.com/p/dwrvg40brws/": {
       "identity_key": "url:https://www.instagram.com/p/dwrvg40brws/",
@@ -107,14 +107,14 @@
       "assignments": {
         "195462430535581708": {
           "status": "dropped",
-          "updated_at_utc": "2026-05-12T22:12:43.535469+00:00"
+          "updated_at_utc": "2026-05-13T02:00:25.453550+00:00"
         }
       },
       "archived": true,
       "created_at_utc": "2026-04-13T09:19:41.011252+00:00",
-      "updated_at_utc": "2026-05-12T22:12:43.535550+00:00",
+      "updated_at_utc": "2026-05-13T02:00:25.453577+00:00",
       "conflicting_users": [],
-      "last_activity_date": "2026-05-12"
+      "last_activity_date": "2026-05-13"
     },
     "url:https://www.instagram.com/p/dwrqgefhfmd/": {
       "identity_key": "url:https://www.instagram.com/p/dwrqgefhfmd/",
@@ -130,14 +130,14 @@
       "assignments": {
         "195462430535581708": {
           "status": "dropped",
-          "updated_at_utc": "2026-05-12T22:12:43.144574+00:00"
+          "updated_at_utc": "2026-05-13T02:00:25.103378+00:00"
         }
       },
       "archived": true,
       "created_at_utc": "2026-04-13T09:19:41.234758+00:00",
-      "updated_at_utc": "2026-05-12T22:12:43.144603+00:00",
+      "updated_at_utc": "2026-05-13T02:00:25.103405+00:00",
       "conflicting_users": [],
-      "last_activity_date": "2026-05-12"
+      "last_activity_date": "2026-05-13"
     },
     "steam:2422870": {
       "identity_key": "steam:2422870",
@@ -149,13 +149,13 @@
       "assignments": {
         "195462430535581708": {
           "status": "paused",
-          "updated_at_utc": "2026-05-12T22:12:54.561515+00:00"
+          "updated_at_utc": "2026-05-13T02:00:36.697294+00:00"
         }
       },
       "archived": false,
       "created_at_utc": "2026-05-11T08:58:07.272764+00:00",
-      "updated_at_utc": "2026-05-12T22:12:54.561545+00:00",
-      "last_activity_date": "2026-05-12",
+      "updated_at_utc": "2026-05-13T02:00:36.697320+00:00",
+      "last_activity_date": "2026-05-13",
       "conflicting_users": []
     },
     "steam:2141730": {
@@ -172,13 +172,13 @@
       "assignments": {
         "195462430535581708": {
           "status": "paused",
-          "updated_at_utc": "2026-05-12T22:12:48.894544+00:00"
+          "updated_at_utc": "2026-05-13T02:00:30.884264+00:00"
         }
       },
       "archived": false,
       "created_at_utc": "2026-05-12T02:54:35.624275+00:00",
-      "updated_at_utc": "2026-05-12T22:12:48.894572+00:00",
-      "last_activity_date": "2026-05-12",
+      "updated_at_utc": "2026-05-13T02:00:30.884289+00:00",
+      "last_activity_date": "2026-05-13",
       "conflicting_users": []
     },
     "steam:648800": {
@@ -195,14 +195,84 @@
       "assignments": {
         "195462430535581708": {
           "status": "paused",
-          "updated_at_utc": "2026-05-12T22:12:54.237023+00:00"
+          "updated_at_utc": "2026-05-13T02:00:36.351032+00:00"
         }
       },
       "archived": false,
       "created_at_utc": "2026-05-12T02:54:41.069604+00:00",
-      "updated_at_utc": "2026-05-12T22:12:54.237049+00:00",
-      "last_activity_date": "2026-05-12",
+      "updated_at_utc": "2026-05-13T02:00:36.351059+00:00",
+      "last_activity_date": "2026-05-13",
       "conflicting_users": []
+    },
+    "steam:3643170": {
+      "identity_key": "steam:3643170",
+      "canonical_name": "Roadside Research",
+      "url": "https://store.steampowered.com/app/3643170/",
+      "source_type": "paid_under_20",
+      "source_section": "paid",
+      "source_metadata": {
+        "winner_key": "https://store.steampowered.com/app/3643170/",
+        "description": "Roadside Research is a 1 to 4 player co-op gas station simulator. Except you’re aliens. And undercover. Do very human things like restocking shelves while preparing for the invasion. Just don’t get caught.",
+        "daily_section": "paid"
+      },
+      "assignments": {
+        "195462430535581708": {
+          "status": "active",
+          "updated_at_utc": "2026-05-13T01:59:55.906725+00:00"
+        }
+      },
+      "archived": false,
+      "created_at_utc": "2026-05-13T01:59:55.906699+00:00",
+      "updated_at_utc": "2026-05-13T01:59:55.906735+00:00",
+      "last_activity_date": "2026-05-13"
+    },
+    "url:https://www.instagram.com/p/dynmtimtvfg/": {
+      "identity_key": "url:https://www.instagram.com/p/dynmtimtvfg/",
+      "canonical_name": "Save a failing aircraft with one of your friends in this new CO-OP GAME",
+      "url": "https://www.instagram.com/p/DYNMTIMtVFg/",
+      "source_type": "instagram",
+      "source_section": "instagram",
+      "source_metadata": {
+        "winner_key": "https://www.instagram.com/p/DYNMTIMtVFg/",
+        "description": "Save a failing aircraft with one of your friends in this new CO-OP GAME!   Don’t Panic It Is Just Turbulence   #gamin...",
+        "daily_section": "instagram"
+      },
+      "assignments": {
+        "195462430535581708": {
+          "status": "active",
+          "updated_at_utc": "2026-05-13T01:59:56.299122+00:00"
+        }
+      },
+      "archived": false,
+      "created_at_utc": "2026-05-13T01:59:56.299096+00:00",
+      "updated_at_utc": "2026-05-13T01:59:56.299133+00:00",
+      "last_activity_date": "2026-05-13"
+    },
+    "steam:3041230": {
+      "identity_key": "steam:3041230",
+      "canonical_name": "Windrose",
+      "url": "https://store.steampowered.com/app/3041230/Windrose/",
+      "source_type": "manual",
+      "source_section": "manual",
+      "source_metadata": {},
+      "assignments": {
+        "195462430535581708": {
+          "status": "active",
+          "updated_at_utc": "2026-05-13T02:00:36.917460+00:00"
+        },
+        "137123568952672257": {
+          "status": "active",
+          "updated_at_utc": "2026-05-13T02:00:36.917466+00:00"
+        },
+        "164270274928181248": {
+          "status": "active",
+          "updated_at_utc": "2026-05-13T02:00:36.917471+00:00"
+        }
+      },
+      "archived": false,
+      "created_at_utc": "2026-05-13T02:00:36.917438+00:00",
+      "updated_at_utc": "2026-05-13T02:00:36.917480+00:00",
+      "last_activity_date": "2026-05-13"
     }
   },
   "daily_posts": {
@@ -950,7 +1020,8 @@
     }
   },
   "processed_command_ids": [
-    "1494577844838469743"
+    "1494577844838469743",
+    "1503934636366102648"
   ],
   "command_reference_message": null
 }
