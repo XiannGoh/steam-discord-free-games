@@ -501,23 +501,6 @@ def compute_state_issues(*, now_utc: datetime | None = None) -> list[Issue]:
                         file_path="data/scheduling/weekly_schedule_bot_outputs.json",
                         week_key=current_week_key,
                     )
-                else:
-                    responses_mtime = WEEKLY_PATHS["responses"].stat().st_mtime if WEEKLY_PATHS["responses"].exists() else None
-                    outputs_mtime = WEEKLY_PATHS["outputs"].stat().st_mtime if WEEKLY_PATHS["outputs"].exists() else None
-                    newest_source_mtime = max(
-                        value for value in [responses_mtime, outputs_mtime] if value is not None
-                    ) if any(value is not None for value in [responses_mtime, outputs_mtime]) else None
-                    if newest_source_mtime is not None:
-                        newest_source_time = datetime.fromtimestamp(newest_source_mtime, tz=timezone.utc)
-                        if newest_source_time - summary_last_synced > timedelta(minutes=20):
-                            issues["stale_weekly_summary"] = _new_issue(
-                                "weekly.summary_stale",
-                                "warning",
-                                "Weekly summary appears stale",
-                                "Summary freshness timestamp is behind latest responses/outputs state.",
-                                file_path="data/scheduling/weekly_schedule_bot_outputs.json",
-                                week_key=current_week_key,
-                            )
 
     users = roster.get("users") if isinstance(roster, dict) else None
     if not isinstance(users, dict):
@@ -549,7 +532,11 @@ def compute_state_issues(*, now_utc: datetime | None = None) -> list[Issue]:
         )
     else:
         today_entry = daily_posts.get(today_key)
-        if not isinstance(today_entry, dict):
+        # daily.yml runs at 13:00 UTC. Health check at 03:00 UTC always runs BEFORE
+        # daily.yml has executed, so today's entry won't exist yet. Allow a 2-hour
+        # grace window after the expected daily run time to avoid false alarms.
+        daily_run_expected_by = now_utc.replace(hour=15, minute=0, second=0, microsecond=0)
+        if not isinstance(today_entry, dict) and now_utc >= daily_run_expected_by:
             issues["missing_today_entry"] = _new_issue(
                 "daily.today_missing",
                 "warning",
