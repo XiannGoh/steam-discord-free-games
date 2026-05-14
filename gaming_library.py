@@ -1169,12 +1169,12 @@ def _check_channel_permissions(
     )
     print(f"WARN: {warning}")
     _notify_health_monitor(
-        f"⚠️ Gaming Library — Missing Discord Permissions\n\n"
+        "⚠️ Gaming Library — Missing Discord Permissions\n\n"
         f"Context: {context}\n"
         f"Channel: <#{channel_id}>\n"
         f"Missing: {', '.join(missing)}\n\n"
-        f"The bot will attempt to continue but errors may occur. "
-        f"Please grant the required permissions to the bot in that channel."
+        "The bot will attempt to continue but errors may occur. "
+        "Please grant the required permissions to the bot in that channel."
     )
 
 
