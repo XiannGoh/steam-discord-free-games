@@ -7824,26 +7824,26 @@
     "run_state": {
       "section_headers": {
         "free": {
-          "message_id": "1504363484681601115",
+          "message_id": "1504402057841344632",
           "channel_id": "592534544708796474",
-          "posted_at_utc": "2026-05-14T06:03:24.968659+00:00"
+          "posted_at_utc": "2026-05-14T08:36:41.516006+00:00"
         },
         "paid": {
-          "message_id": "1504363543053467678",
+          "message_id": "1504402102708080682",
           "channel_id": "592534544708796474",
-          "posted_at_utc": "2026-05-14T06:03:38.571333+00:00"
+          "posted_at_utc": "2026-05-14T08:36:51.938714+00:00"
         }
       },
-      "last_attempt_at_utc": "2026-05-14T06:03:24.148936+00:00",
+      "last_attempt_at_utc": "2026-05-14T08:36:40.763663+00:00",
       "intro": {
         "message_id": "1504334503169228800",
         "channel_id": "592534544708796474",
         "posted_at_utc": "2026-05-14T04:08:15.419497+00:00"
       },
       "footer": {
-        "message_id": "1504363588171862046",
+        "message_id": "1504402148144971797",
         "channel_id": "592534544708796474",
-        "posted_at_utc": "2026-05-14T06:03:49.339247+00:00"
+        "posted_at_utc": "2026-05-14T08:37:02.878829+00:00"
       }
     },
     "items": [
@@ -8110,6 +8110,116 @@
         "source_type": "paid_under_20",
         "posted_at": "2026-05-14T06:03:47.472989+00:00",
         "description": "It’s 2091 and megacorp Horzine has produced the ultimate army: an obedient horde of bioengineered monsters called zeds. Now, join the rebel group Nightfall in this co-op action/horror FPS that puts you and your teammates in a battle for the future of humanity."
+      },
+      {
+        "item_key": "1312f995d3aefb70",
+        "section": "free",
+        "title": "KurtzPel",
+        "url": "https://store.steampowered.com/app/844870/",
+        "message_id": "1504402065395552296",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-05-14T08:36:43.187167+00:00",
+        "description": "\"KurtzPel is an anime-styled, action battle game from a third-person perspective. Players can battle it out in both PvP and PvE mission-based battle modes with massive boss monsters. Players utilize Karmas (the method used to indicate weapon and class types) when charging into battle. Each character gets to use two types of Karmas."
+      },
+      {
+        "item_key": "47ca741ccc7bf825",
+        "section": "free",
+        "title": "War Rock",
+        "url": "https://store.steampowered.com/app/880850/",
+        "message_id": "1504402072383000716",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-05-14T08:36:44.864140+00:00",
+        "description": "War Rock is a fast-paced, large-scale multiplayer first person shooter that combines old-school tactical combat with explosive vehicular warfare. Choose your profession and battle in close quarters combat, vehicular warfare and terrifying Zombie Survival encounters. Enlist in War Rock today!"
+      },
+      {
+        "item_key": "32c154a1e10ecc15",
+        "section": "free",
+        "title": "GPRO - Classic racing manager",
+        "url": "https://store.steampowered.com/app/2169220/",
+        "message_id": "1504402079614111806",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-05-14T08:36:46.593583+00:00",
+        "description": "Manage your racing team, driver and a car, prepare setups and strategy for every race, plan your season and budget, analyze race telemetry."
+      },
+      {
+        "item_key": "41ee53ad2d4579da",
+        "section": "free",
+        "title": "Mitos.is: The Game",
+        "url": "https://store.steampowered.com/app/389570/",
+        "message_id": "1504402086731845712",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-05-14T08:36:48.404114+00:00",
+        "description": "Step into the microscopic world of Mitos.is! Eat or be eaten—become the ultimate cell in a highly addictive multiplayer game. Diverse modes, daily tournaments, guilds, and gear await! The BEST game of 2015 is back!"
+      },
+      {
+        "item_key": "cc5239aef1abeed5",
+        "section": "free",
+        "title": "Wheelchair Wizards",
+        "url": "https://store.steampowered.com/app/3832630/",
+        "message_id": "1504402094256291882",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-05-14T08:36:50.338373+00:00",
+        "description": "Wheelchair Wizards is a 4 player party game where you battle your friends while upgrading your wizard."
+      },
+      {
+        "item_key": "73df736c43e586f0",
+        "section": "paid",
+        "title": "Hero Siege",
+        "url": "https://store.steampowered.com/app/269210/",
+        "message_id": "1504402109037154306",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-05-14T08:36:53.625366+00:00",
+        "description": "Hero Siege is a fast paced Pixel Art ARPG featuring an expansive roster of unique classes, deep build experimentation, and a player driven economy."
+      },
+      {
+        "item_key": "68d465146f3db3a4",
+        "section": "paid",
+        "title": "Deathground",
+        "url": "https://store.steampowered.com/app/1200770/",
+        "message_id": "1504402116289237115",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-05-14T08:36:55.911713+00:00",
+        "description": "A 1-4 player co-op horror game that throws you into a desperate fight for survival against deadly dinosaurs. Run, hide and work together to complete missions and uncover the secrets buried within the abandoned AEON research facility. Can you and your friends make it out alive?"
+      },
+      {
+        "item_key": "fc3303a67cab4f26",
+        "section": "paid",
+        "title": "Guild Wars® Reforged",
+        "url": "https://store.steampowered.com/app/29720/",
+        "message_id": "1504402125726154822",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-05-14T08:36:57.566710+00:00",
+        "description": "Step into Guild Wars Reforged, the award-winning online roleplaying game enjoyed by millions, now re-energized with system enhancements and Steam Deck verified. Experience the complete saga— from the fall of Ascalon to the desperate stand against Nightfall. Your adventure is just getting started!"
+      },
+      {
+        "item_key": "b14f81f166690b20",
+        "section": "paid",
+        "title": "Bogos Binted?",
+        "url": "https://store.steampowered.com/app/3588490/",
+        "message_id": "1504402132705476719",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-05-14T08:36:59.300843+00:00",
+        "description": "Welcome to a sinful night with the galaxy’s wackiest aliens. Play twisted tabletop games with up to 4 players, devise brilliant strategies, bluff your way to victory, and try not to lose your head - literally."
+      },
+      {
+        "item_key": "8611b392fb36bd0f",
+        "section": "paid",
+        "title": "Rhythia",
+        "url": "https://store.steampowered.com/app/2250500/",
+        "message_id": "1504402139928330240",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-05-14T08:37:00.963101+00:00",
+        "description": "Rhythia is a game about aiming and hitting musical beats with precision timing, within a dynamic 3x3 grid system. Use your reflexes to target flying blocks, combine accurate aim with perfect rhythm, and finally master the leaderboards against players who challenge your precision skills."
       }
     ]
   }
