@@ -4,7 +4,7 @@ import os
 import sys
 import urllib.parse
 from datetime import date, datetime, timedelta, timezone
-from typing import Any, Optional
+from typing import Optional
 
 import requests
 
