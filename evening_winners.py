@@ -368,8 +368,6 @@ def fetch_human_voter_names(
     return names
 
 
-
-
 def build_winner_identity_key(item: dict) -> str:
     dedupe_key = str(item.get("url") or "").strip()
     if dedupe_key:
