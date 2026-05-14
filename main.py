@@ -2714,7 +2714,7 @@ def fetch_instagram_posts():
         print(f"WARN: could not save instagram_fetch_summary.json: {e}")
 
     return all_new_posts
-    
+
 def run_daily_workflow(*, force_refresh_same_day: bool = False, manual_run: bool = False) -> None:
     state = load_state()
     print(f"Daily run target date (UTC): {get_target_day_key()}")
