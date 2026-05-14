@@ -59,7 +59,7 @@ import requests
 ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(ROOT))
 
-from discord_api import DISCORD_API_BASE, DiscordApiError, DiscordClient  # noqa: E402
+from discord_api import DiscordApiError, DiscordClient  # noqa: E402
 
 # ---------------------------------------------------------------------------
 # Constants
