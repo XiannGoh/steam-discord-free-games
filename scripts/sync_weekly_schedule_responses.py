@@ -1151,7 +1151,7 @@ def main() -> None:
                 if missing_user_ids != previous_missing_users:
                     if last_reminder_local_date == reminder_local_date:
                         print(
-                            f"SKIP: reminder already posted on New York date "
+                            "SKIP: reminder already posted on New York date "
                             f"{reminder_local_date} for week {posting_week_key}; skipping reminder post"
                         )
                     else:

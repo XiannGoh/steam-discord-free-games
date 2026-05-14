@@ -758,7 +758,7 @@ def is_vr_content(title: str, description: str, text: str, tags: List[str]) -> b
 def get_price_info(app_id: str) -> Tuple[Optional[float], bool, Optional[int], Optional[str]]:
     try:
         url = (
-            f"https://store.steampowered.com/api/appdetails"
+            "https://store.steampowered.com/api/appdetails"
             f"?appids={app_id}&cc=us"
         )
         response = requests.get(url, headers=HEADERS, timeout=30)
@@ -2568,7 +2568,7 @@ def fetch_instagram_posts():
         print(f"Instagram session load failed: {e}")
         _notify_health_monitor(
             f"⚠️ Instagram session load failed for {instagram_username}: {e}\n"
-            f"Instagram session may have expired — re-authenticate and update INSTAGRAM_SESSION secret."
+            "Instagram session may have expired — re-authenticate and update INSTAGRAM_SESSION secret."
         )
         return []
 
@@ -2579,8 +2579,8 @@ def fetch_instagram_posts():
             print(f"WARN: Instagram session auth check failed — test_login() returned None for {instagram_username}")
             _notify_health_monitor(
                 f"⚠️ Instagram session auth check failed for {instagram_username}.\n"
-                f"test_login() returned None — session may have expired. "
-                f"Re-authenticate and update the INSTAGRAM_SESSION secret."
+                "test_login() returned None — session may have expired. "
+                "Re-authenticate and update the INSTAGRAM_SESSION secret."
             )
             return []
         print(f"Instagram session valid: logged in as @{authed_user}")
@@ -2588,7 +2588,7 @@ def fetch_instagram_posts():
         print(f"WARN: Instagram session auth check raised an exception: {e}")
         _notify_health_monitor(
             f"⚠️ Instagram session auth check raised an exception for {instagram_username}: {e}\n"
-            f"Re-authenticate and update the INSTAGRAM_SESSION secret."
+            "Re-authenticate and update the INSTAGRAM_SESSION secret."
         )
         return []
 
