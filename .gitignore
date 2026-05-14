@@ -23,4 +23,3 @@ env/
 #   copy would be re-read by build_daily_health_report.py and surface dead
 #   errors/warnings as fresh issues.
 state_sanity.json
-daily_stop_go_result.json
