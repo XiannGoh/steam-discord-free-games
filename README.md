@@ -6,7 +6,7 @@
 [![Weekly Scheduling Responses Sync](https://github.com/XiannGoh/steam-discord-free-games/actions/workflows/weekly-scheduling-responses-sync.yml/badge.svg)](https://github.com/XiannGoh/steam-discord-free-games/actions/workflows/weekly-scheduling-responses-sync.yml)
 [![Bot Health Report](https://github.com/XiannGoh/steam-discord-free-games/actions/workflows/bot-health-report.yml/badge.svg)](https://github.com/XiannGoh/steam-discord-free-games/actions/workflows/bot-health-report.yml)
 
-A fully automated, self-healing Discord bot pipeline for multiplayer Steam game discovery. Runs daily, fixes itself when things break, and posts picks to a 5-channel Discord server.
+A fully automated Discord bot pipeline for multiplayer Steam game discovery. Runs daily and posts picks to a 5-channel Discord server.
 
 ## What it does
 
