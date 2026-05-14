@@ -417,7 +417,7 @@ def _run_channel_scan(
         ch["rolling_explainer_missing"] = True
         last_preview = str(all_messages[0].get("content", ""))[:60]
         ch["errors"].append(
-            f"rolling explainer is not the last message — "
+            "rolling explainer is not the last message — "
             f"last: {last_preview!r} (channel scan: {day_key})"
         )
         print(f"  FAIL  channel scan {channel_slug}: rolling explainer is not last message")
@@ -807,7 +807,7 @@ def verify_step2(
             f"for {day_key}: evening_winners.py ran but found no eligible winners."
         )
         print(
-            f"\n--- Step-2 skipped: winners_state.status=skipped "
+            "\n--- Step-2 skipped: winners_state.status=skipped "
             f"(reason={skipped_reason}) for {day_key} ---"
         )
         return ch
@@ -1101,7 +1101,7 @@ def main() -> None:
     if specs:
         print(f"Loaded {CHANNEL_SPECS_FILE} ({len(specs)} channel specs)")
     else:
-        print(f"WARN: No channel specs loaded — using defaults")
+        print("WARN: No channel specs loaded — using defaults")
 
     daily_posts = load_daily_posts()
     day_entry = daily_posts.get(day_key)
