@@ -242,19 +242,6 @@ def build_winners_navigation_footer(
     return f"{first_line}\n{WINNERS_FOOTER_SEPARATOR}"
 
 
-def _build_winner_item_lines(item: dict, *, section: str) -> List[str]:
-    lines = [item["title"]]
-    description = resolve_winner_description_for_message(item, section=section)
-    if description:
-        lines.append(description)
-    lines.append(item["url"])
-    vote_word = "vote" if item["human_votes"] == 1 else "votes"
-    lines.append(f"👍 {item['human_votes']} {vote_word}")
-    lines.append(f"Voters — {format_voter_names_for_message(item['voter_names'])}")
-    lines.append("")
-    return lines
-
-
 def normalize_winner_description_for_message(
     description: Optional[str], max_length: int = 110
 ) -> str:
@@ -404,24 +391,6 @@ def _coerce_int(value: object, default: int = 0) -> int:
         return int(value)
     except (TypeError, ValueError):
         return default
-
-
-def _build_winners_by_section_from_entries(entries: List[dict]) -> Dict[str, List[dict]]:
-    winners_by_section: Dict[str, List[dict]] = {key: [] for key in SECTION_ORDER}
-    for entry in entries:
-        section = str(entry.get("section") or "").strip()
-        if section not in winners_by_section:
-            continue
-        winners_by_section[section].append(
-            {
-                "title": entry.get("title", "Untitled"),
-                "url": entry.get("url", ""),
-                "description": entry.get("description"),
-                "human_votes": _coerce_int(entry.get("human_votes"), 0),
-                "voter_names": entry.get("voter_names", []),
-            }
-        )
-    return winners_by_section
 
 
 def collect_recent_announced_winner_index(
