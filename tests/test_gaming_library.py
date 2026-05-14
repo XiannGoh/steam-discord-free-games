@@ -743,7 +743,6 @@ def test_is_manual_run_returns_false_when_env_unset(monkeypatch):
     assert lib.is_manual_run() is False
 
 
-
 # --- FIX 6: Step 3 footer separator and section label contract tests ---
 
 def test_library_footer_ends_with_exact_separator_string():
