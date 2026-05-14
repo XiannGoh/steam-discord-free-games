@@ -133,7 +133,6 @@ STEAM_DEMO_SEARCH_URL = "https://store.steampowered.com/search/?category1=10&pag
 STEAM_TOPSELLERS_URL = "https://store.steampowered.com/search/?filter=topsellers&page={}"
 STEAMDB_FREE_PROMO_URL = "https://steamdb.info/upcoming/free/"
 
-DISCORD_CHAR_LIMIT = 1900
 
 FILTER_REASON_WEAK_REVIEW = "weak_review"
 FILTER_REASON_WEAK_GROUP_FIT = "weak_group_fit"
@@ -428,7 +427,6 @@ REVIEW_CONFIDENCE_BASELINE_SENTIMENTS = {
     "Very Positive",
     "Overwhelmingly Positive",
 }
-REVIEW_CONFIDENCE_STRONG_SENTIMENTS = {"Very Positive", "Overwhelmingly Positive"}
 
 REJECT_PATTERNS = [
     r"\b1\s*-\s*2\b",
