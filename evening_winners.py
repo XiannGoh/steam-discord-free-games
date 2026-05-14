@@ -283,90 +283,6 @@ def _build_winner_item_lines(item: dict, *, section: str) -> List[str]:
     return lines
 
 
-def build_winners_message_chunks(
-    winners_by_section: Dict[str, List[dict]],
-    *,
-    target_max: int = WINNERS_MESSAGE_TARGET_MAX,
-    hard_limit: int = DISCORD_MESSAGE_CHAR_LIMIT,
-) -> List[str]:
-    full_message = build_winners_message(winners_by_section)
-    if len(full_message) <= hard_limit:
-        return [full_message]
-
-    header = "🏆 Daily Game Picks — Winners"
-    chunks: List[str] = []
-    current_lines: List[str] = [header, ""]
-    has_any_winners = any(isinstance(winners_by_section.get(section), list) and winners_by_section.get(section) for section in SECTION_ORDER)
-
-    def finalize_current_chunk() -> None:
-        if current_lines:
-            rendered = "\n".join(current_lines).strip()
-            if rendered:
-                chunks.append(rendered)
-
-    def can_fit(lines: List[str], extra_lines: List[str]) -> bool:
-        rendered = "\n".join(lines + extra_lines).strip()
-        return len(rendered) <= target_max
-
-    if not has_any_winners:
-        return [full_message]
-
-    for section in SECTION_ORDER:
-        items = winners_by_section.get(section, [])
-        if not items:
-            continue
-
-        section_header_lines = [SECTION_CONFIG[section]]
-        section_full_lines = section_header_lines[:]
-        for item in items:
-            section_full_lines.extend(_build_winner_item_lines(item, section=section))
-
-        if can_fit(current_lines, section_full_lines):
-            current_lines.extend(section_full_lines)
-            continue
-
-        if len("\n".join(current_lines).strip()) > len(header):
-            finalize_current_chunk()
-            current_lines = []
-
-        current_lines.extend(section_header_lines)
-        for item in items:
-            item_lines = _build_winner_item_lines(item, section=section)
-            if not can_fit(current_lines, item_lines):
-                finalize_current_chunk()
-                current_lines = [SECTION_CONFIG[section]]
-            current_lines.extend(item_lines)
-
-    finalize_current_chunk()
-    for chunk in chunks:
-        if len(chunk) > hard_limit:
-            raise RuntimeError("Winners chunk exceeded Discord character limit")
-    return chunks
-
-
-def build_winners_message_compact(winners_by_section: Dict[str, List[dict]]) -> str:
-    lines = ["🏆 Daily Game Picks — Winners", ""]
-    has_any_winners = False
-
-    for section in SECTION_ORDER:
-        items = winners_by_section.get(section, [])
-        if not items:
-            continue
-
-        has_any_winners = True
-        lines.append(SECTION_CONFIG[section])
-        for item in items:
-            vote_word = "vote" if item["human_votes"] == 1 else "votes"
-            lines.append(f"- {item['title']} ({item['human_votes']} {vote_word})")
-            lines.append(f"  {item['url']}")
-        lines.append("")
-
-    if not has_any_winners:
-        lines.append("_No votes yet today._")
-
-    return "\n".join(lines).strip()
-
-
 def normalize_winner_description_for_message(
     description: Optional[str], max_length: int = 110
 ) -> str:
@@ -509,30 +425,6 @@ def build_winner_identity_key(item: dict) -> str:
     channel_id = str(item.get("channel_id") or "").strip()
     message_id = str(item.get("message_id") or "").strip()
     return f"{channel_id}:{message_id}"
-
-
-def collect_recent_announced_winner_keys(
-    daily_posts: Dict[str, dict],
-    *,
-    target_day_key: str,
-    lookback_days: int = WINNERS_LOOKBACK_DAYS,
-) -> set[str]:
-    announced_keys: set[str] = set()
-    for bucket_key in get_lookback_day_keys(target_day_key, lookback_days)[1:]:
-        bucket = daily_posts.get(bucket_key, {})
-        if not isinstance(bucket, dict):
-            continue
-        winners_state = bucket.get("winners_state")
-        if not isinstance(winners_state, dict):
-            continue
-        winner_keys = winners_state.get("winner_keys")
-        if not isinstance(winner_keys, list):
-            continue
-        for winner_key in winner_keys:
-            normalized = str(winner_key).strip()
-            if normalized:
-                announced_keys.add(normalized)
-    return announced_keys
 
 
 def _coerce_int(value: object, default: int = 0) -> int:
@@ -701,14 +593,6 @@ def upsert_winners_messages_for_day(
         if isinstance(entry, dict) and str(entry.get("winner_key") or "").strip()
     }
     return True
-
-
-def post_winners_message(client: DiscordClient, channel_id: str, message: str) -> str:
-    payload = client.post_message(channel_id, message, context="post winners message")
-    message_id = str(payload.get("id", ""))
-    if not message_id:
-        raise RuntimeError("Discord response missing winners message id")
-    return message_id
 
 
 def normalize_winners_message_ids(winners_state: dict) -> List[str]:

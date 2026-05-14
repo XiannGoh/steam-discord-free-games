@@ -1529,14 +1529,6 @@ def extract_review_sentiment(soup: BeautifulSoup) -> Optional[str]:
     return None
 
 
-def extract_review_score(soup: BeautifulSoup) -> int:
-    sentiment = extract_review_sentiment(soup)
-    if sentiment is None:
-        return 0
-
-    return REVIEW_SENTIMENT_SCORES[sentiment]
-
-
 def inspect_game(source: str, app_id: str) -> Optional[dict]:
     url = f"https://store.steampowered.com/app/{app_id}/"
     try:
@@ -1790,49 +1782,6 @@ def format_instagram_item_message(post: dict, idx: int) -> str:
     )
 
 
-def build_message_chunks(title_line: str, items: List[dict], paid: bool = False) -> List[str]:
-    if not items:
-        return []
-
-    chunks = []
-    current = f"{title_line}\n\n"
-
-    for idx, item in enumerate(items, start=1):
-        block = format_item_block(item, idx, paid=paid)
-
-        if len(current) + len(block) > DISCORD_CHAR_LIMIT:
-            chunks.append(current.rstrip())
-            current = block
-        else:
-            current += block
-
-    if current.strip():
-        chunks.append(current.rstrip())
-
-    return chunks
-    
-def build_instagram_chunks(posts: List[dict]) -> List[str]:
-    title = "📸 **New Instagram Creator Picks**"
-    chunks = []
-    current = title + "\n\n"
-
-    for idx, post in enumerate(posts, start=1):
-        block = (
-            f"{idx}. @{post['username']} — {post['caption']}\n"
-            f"{post['url']}\n\n"
-        )
-
-        if len(current) + len(block) > DISCORD_CHAR_LIMIT:
-            chunks.append(current.rstrip())
-            current = title + "\n\n" + block
-        else:
-            current += block
-
-    if current.strip():
-        chunks.append(current.rstrip())
-
-    return chunks
-
 def post_to_discord(message: str) -> None:
     if not WEBHOOK_URL:
         raise RuntimeError("DISCORD_WEBHOOK_URL is not set.")
@@ -2005,131 +1954,8 @@ def record_posted_item(
         print(f"RECORD DAILY DISCORD ITEM FAILED: title={title} | error={e}")
 
 
-def post_message_chunks(chunks: List[str]) -> None:
-    for chunk in chunks:
-        post_to_discord(chunk)
-        sleep_briefly()
-
-
 def build_discord_message_link(guild_id: str, channel_id: str, message_id: str) -> str:
     return f"https://discord.com/channels/{guild_id}/{channel_id}/{message_id}"
-
-
-def build_daily_navigation_footer(
-    run_state: dict,
-    guild_id: Optional[str],
-    target_day_key: str,
-    posted_section_keys: List[str],
-) -> Optional[str]:
-    if not isinstance(guild_id, str) or not guild_id.strip():
-        print("WARN: DISCORD_GUILD_ID missing; skipping daily navigation footer.")
-        return None
-
-    intro_state = run_state.get("intro")
-    if not isinstance(intro_state, dict):
-        print("WARN: intro state missing; skipping daily navigation footer.")
-        return None
-
-    intro_channel_id = intro_state.get("channel_id")
-    intro_message_id = intro_state.get("message_id")
-    if not (isinstance(intro_channel_id, str) and isinstance(intro_message_id, str)):
-        print("WARN: intro message metadata missing; skipping daily navigation footer.")
-        return None
-
-    section_labels = {
-        "demo_playtest": "🧪 Demo & Playtest Picks",
-        "free": "🎮 Free Picks",
-        "paid": "💸 Paid Picks",
-        "instagram": "📸 Creator Picks",
-    }
-    section_headers = run_state.get("section_headers", {})
-    lines = [
-        f"🗓️ Daily Picks for {format_daily_picks_footer_date(target_day_key)}",
-        "",
-        f"🎯 Intro / Top of Post → [Jump]({build_discord_message_link(guild_id, intro_channel_id, intro_message_id)})",
-    ]
-
-    for section_key in DAILY_SECTION_ORDER:
-        if section_key not in posted_section_keys:
-            continue
-        section_state = section_headers.get(section_key) if isinstance(section_headers, dict) else None
-        if not isinstance(section_state, dict):
-            print(f"WARN: {section_key} header state missing; skipping daily navigation footer.")
-            return None
-        channel_id = section_state.get("channel_id")
-        message_id = section_state.get("message_id")
-        if not (isinstance(channel_id, str) and isinstance(message_id, str)):
-            print(f"WARN: {section_key} header metadata missing; skipping daily navigation footer.")
-            return None
-        section_label = section_labels.get(section_key)
-        if not section_label:
-            continue
-        lines.append(f"{section_label} → [Jump]({build_discord_message_link(guild_id, channel_id, message_id)})")
-
-    return "\n".join(lines)
-
-
-def build_daily_picks_navigation_content(
-    run_state: dict,
-    guild_id: Optional[str],
-    target_day_key: str,
-    posted_section_keys: List[str],
-) -> Optional[str]:
-    if not isinstance(guild_id, str) or not guild_id.strip():
-        return None
-
-    lines = [
-        f"📅 Daily Picks - {format_daily_picks_footer_date(target_day_key)}",
-        "Vote 👍 on any game you want to try. Every vote advances to Step 2.",
-    ]
-
-    section_labels = {
-        "demo_playtest": "🧪 Demo & Playtest Picks",
-        "free": "🎮 Free Picks",
-        "paid": "💸 Paid Picks",
-        "instagram": "📸 Creator Picks",
-    }
-    section_headers = run_state.get("section_headers", {})
-
-    for section_key in DAILY_SECTION_ORDER:
-        if section_key not in posted_section_keys:
-            continue
-        section_state = section_headers.get(section_key) if isinstance(section_headers, dict) else None
-        if not isinstance(section_state, dict):
-            continue
-        channel_id = section_state.get("channel_id")
-        message_id = section_state.get("message_id")
-        if not (isinstance(channel_id, str) and isinstance(message_id, str)):
-            continue
-        section_label = section_labels.get(section_key)
-        if not section_label:
-            continue
-        lines.append(f"{section_label} ⟹ [Jump]({build_discord_message_link(guild_id, channel_id, message_id)})")
-
-    return "\n".join(lines)
-
-
-DAILY_INTRO_DIVIDER = "─────────────────────────────────────────"
-DAILY_FOOTER_SEPARATOR = "─────────────────── End of Daily Picks ───────────────────"
-
-_DAILY_INTRO_SECTION_LABELS = {
-    "demo_playtest": ("🎮", "Demos & Playtests"),
-    "free": ("🆓", "Free Picks"),
-    "paid": ("💰", "Paid Under $20"),
-    "instagram": ("📸", "Instagram Picks"),
-}
-_DAILY_FOOTER_SECTION_LABELS = {
-    "demo_playtest": "🎮 Demos",
-    "free": "🆓 Free",
-    "paid": "💰 Paid",
-    "instagram": "📸 Instagram",
-}
-_DAILY_MISSING_SECTION_LABELS = {
-    "demo_playtest": "Demos & Playtests",
-    "free": "Free Picks",
-    "paid": "Paid Under $20",
-    "instagram": "Instagram Picks",
-}
 
 
 def build_daily_picks_intro_content(

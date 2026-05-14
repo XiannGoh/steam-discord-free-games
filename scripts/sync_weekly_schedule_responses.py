@@ -801,21 +801,6 @@ def post_channel_message(session: requests.Session, channel_id: str, content: st
     return str(message_id)
 
 
-def edit_channel_message(
-    session: requests.Session, channel_id: str, message_id: str, content: str
-) -> None:
-    """Edit an existing Discord channel message in place."""
-    response = session.patch(
-        build_edit_message_url(channel_id, message_id),
-        json={"content": content},
-        timeout=REQUEST_TIMEOUT_SECONDS,
-    )
-    check_response(
-        response,
-        f"Failed to edit channel message for channel_id={channel_id}, message_id={message_id}",
-    )
-
-
 def current_new_york_local_date() -> str:
     """Return the current New York calendar date in ISO format."""
     return datetime.now(NEW_YORK_TIMEZONE).date().isoformat()
