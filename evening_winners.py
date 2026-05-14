@@ -242,34 +242,6 @@ def build_winners_navigation_footer(
     return f"{first_line}\n{WINNERS_FOOTER_SEPARATOR}"
 
 
-def build_winners_message(winners_by_section: Dict[str, List[dict]]) -> str:
-    lines = ["🏆 Daily Game Picks — Winners", ""]
-    has_any_winners = False
-
-    for section in SECTION_ORDER:
-        items = winners_by_section.get(section, [])
-        if not items:
-            continue
-
-        has_any_winners = True
-        lines.append(SECTION_CONFIG[section])
-        for item in items:
-            lines.append(item["title"])
-            description = resolve_winner_description_for_message(item, section=section)
-            if description:
-                lines.append(description)
-            lines.append(item["url"])
-            vote_word = "vote" if item["human_votes"] == 1 else "votes"
-            lines.append(f"👍 {item['human_votes']} {vote_word}")
-            lines.append(f"Voters — {format_voter_names_for_message(item['voter_names'])}")
-            lines.append("")
-
-    if not has_any_winners:
-        lines.append("_No votes yet today._")
-
-    return "\n".join(lines).strip()
-
-
 def _build_winner_item_lines(item: dict, *, section: str) -> List[str]:
     lines = [item["title"]]
     description = resolve_winner_description_for_message(item, section=section)

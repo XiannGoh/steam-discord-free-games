@@ -271,11 +271,6 @@ def build_create_message_url(channel_id: str) -> str:
     return f"{DISCORD_API_BASE}/channels/{channel_id}/messages"
 
 
-def build_edit_message_url(channel_id: str, message_id: str) -> str:
-    """Build the Discord API URL for editing an existing channel message."""
-    return f"{DISCORD_API_BASE}/channels/{channel_id}/messages/{message_id}"
-
-
 def fetch_channel_messages(session: requests.Session, channel_id: str) -> list[dict[str, Any]]:
     """Fetch all messages in a channel, handling pagination."""
     all_messages: list[dict[str, Any]] = []

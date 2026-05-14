@@ -1741,18 +1741,6 @@ def type_label(item_type: str) -> str:
     return "Free Game"
 
 
-def format_item_block(item: dict, idx: int, paid: bool = False) -> str:
-    lines = []
-    lines.append(f"**{idx}. {item['title']}**")
-    lines.append(f"Type: {'Paid Under $20' if paid else type_label(item['type'])}")
-    lines.append(f"Score: {item['score']}")
-    if item["description"]:
-        lines.append(item["description"][:180])
-    lines.append(item["url"])
-    lines.append("")
-    return "\n".join(lines)
-
-
 def format_steam_item_message(item: dict, idx: int, paid: bool = False, demo_playtest: bool = False) -> str:
     emoji = "💸" if paid else ("🧪" if demo_playtest else "🎮")
     if paid:
@@ -1780,19 +1768,6 @@ def format_instagram_item_message(post: dict, idx: int) -> str:
         f"@{post['username']} — {post['caption']}\n"
         f"{post['url']}"
     )
-
-
-def post_to_discord(message: str) -> None:
-    if not WEBHOOK_URL:
-        raise RuntimeError("DISCORD_WEBHOOK_URL is not set.")
-
-    response = requests.post(
-        WEBHOOK_URL,
-        json={"content": message},
-        headers={"Content-Type": "application/json"},
-        timeout=30,
-    )
-    response.raise_for_status()
 
 
 def post_to_discord_with_metadata(message: str, capture_metadata: bool = False) -> Optional[dict]:
