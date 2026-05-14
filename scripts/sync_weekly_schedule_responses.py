@@ -124,8 +124,6 @@ def require_env(name: str) -> str:
     return value
 
 
-
-
 def env_flag(name: str, default: bool = False) -> bool:
     """Read a boolean environment variable with common truthy values."""
     value = os.getenv(name)
