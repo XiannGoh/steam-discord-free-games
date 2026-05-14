@@ -1958,6 +1958,29 @@ def build_discord_message_link(guild_id: str, channel_id: str, message_id: str) 
     return f"https://discord.com/channels/{guild_id}/{channel_id}/{message_id}"
 
 
+DAILY_INTRO_DIVIDER = "─────────────────────────────────────────"
+DAILY_FOOTER_SEPARATOR = "─────────────────── End of Daily Picks ───────────────────"
+
+_DAILY_INTRO_SECTION_LABELS = {
+    "demo_playtest": ("🎮", "Demos & Playtests"),
+    "free": ("🆓", "Free Picks"),
+    "paid": ("💰", "Paid Under $20"),
+    "instagram": ("📸", "Instagram Picks"),
+}
+_DAILY_FOOTER_SECTION_LABELS = {
+    "demo_playtest": "🎮 Demos",
+    "free": "🆓 Free",
+    "paid": "💰 Paid",
+    "instagram": "📸 Instagram",
+}
+_DAILY_MISSING_SECTION_LABELS = {
+    "demo_playtest": "Demos & Playtests",
+    "free": "Free Picks",
+    "paid": "Paid Under $20",
+    "instagram": "Instagram Picks",
+}
+
+
 def build_daily_picks_intro_content(
     run_state: dict,
     guild_id: Optional[str],
