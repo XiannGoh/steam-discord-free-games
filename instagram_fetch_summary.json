@@ -1,9 +1,9 @@
 {
-  "run_at": "2026-05-14T21:03:19Z",
+  "run_at": "2026-05-14T22:23:24Z",
   "total_creators": 8,
-  "creators_with_posts": 1,
-  "total_posts_collected": 1,
-  "total_skipped_seen": 22,
+  "creators_with_posts": 0,
+  "total_posts_collected": 0,
+  "total_skipped_seen": 23,
   "total_skipped_caption": 0,
   "failed_creators": [],
   "creators": {
@@ -63,8 +63,8 @@
     },
     "biffmatictv": {
       "fetched": 7,
-      "collected": 1,
-      "skipped_seen": 5,
+      "collected": 0,
+      "skipped_seen": 6,
       "skipped_age": 1,
       "skipped_caption": 0,
       "failed": false,
