@@ -8294,6 +8294,11 @@
         "posted_at": "2026-05-15T15:33:19.150321+00:00",
         "description": "Destroy entire cities in this 32 Player Kaiju game! Beastlink!   #gaming #newgames #gamingwithfriends #multiplayer #k..."
       }
-    ]
+    ],
+    "winners_state": {
+      "status": "skipped",
+      "skipped_reason": "no_eligible_winners",
+      "updated_at_utc": "2026-05-15T23:55:47.320998+00:00"
+    }
   }
 }
