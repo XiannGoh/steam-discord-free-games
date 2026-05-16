@@ -8007,6 +8007,57 @@
         "posted_at": "2026-05-16T14:41:21.407569+00:00",
         "description": "Winter Apocalypse Survive game! #gamestoplay #gaming #newgames #videogames"
       }
-    ]
+    ],
+    "winners_state": {
+      "intro": {
+        "message_id": "1505356922843566150",
+        "channel_id": "1491294533751799809"
+      },
+      "section_headers": {
+        "free": {
+          "message_id": "1505356927788384326",
+          "channel_id": "1491294533751799809"
+        }
+      },
+      "winner_messages": {
+        "https://store.steampowered.com/app/2971900/": {
+          "message_id": "1505356928992411678",
+          "channel_id": "1491294533751799809"
+        }
+      },
+      "footer": {
+        "message_id": "1505356932200927384",
+        "channel_id": "1491294533751799809"
+      },
+      "message_id": "1505356922843566150",
+      "message_ids": [
+        "1505356922843566150",
+        "1505356927788384326",
+        "1505356928992411678",
+        "1505356932200927384"
+      ],
+      "last_action": "create",
+      "updated_at_utc": "2026-05-16T23:51:01.346056+00:00",
+      "posted_at_utc": "2026-05-16T23:51:01.346073+00:00",
+      "winner_keys": [
+        "https://store.steampowered.com/app/2971900/"
+      ],
+      "winner_vote_counts": {
+        "https://store.steampowered.com/app/2971900/": 1
+      },
+      "winner_entries": [
+        {
+          "winner_key": "https://store.steampowered.com/app/2971900/",
+          "section": "free",
+          "title": "Welcome to Dustown",
+          "url": "https://store.steampowered.com/app/2971900/",
+          "description": "Welcome to Dustown is a single-player or cooperative horror game for up to 4 players. Play as field scientists exploring vast labyrinthine cornfields, collecting samples and evidence for a mysterious corporation. Make sure you don't get killed at the crossroads.",
+          "human_votes": 1,
+          "voter_names": [
+            "Thomas"
+          ]
+        }
+      ]
+    }
   }
 }
