@@ -2532,6 +2532,64 @@ def _check_instagram_session_age(session_file: str) -> None:
         print(f"INFO: Instagram session file is {age_days:.0f} days old — consider refreshing soon", flush=True)
 
 
+def _attempt_instagram_fresh_login(loader, instagram_username: str, session_file: str) -> Optional[str]:
+    """Attempt a fresh Instagram login using env-var credentials when the session has expired.
+
+    Returns the authenticated username on success, or None if login fails.
+    Reports all failure modes to the health monitor without crashing.
+    """
+    ig_password = os.getenv("INSTAGRAM_PASSWORD")
+    if not ig_password:
+        print("WARN: INSTAGRAM_USERNAME/INSTAGRAM_PASSWORD not set — cannot fall back to fresh login")
+        _notify_health_monitor(
+            f"⚠️ Instagram session expired for {instagram_username} and no INSTAGRAM_PASSWORD fallback configured.\n"
+            "Set the INSTAGRAM_PASSWORD secret and ensure it is passed to the Run Steam script step in daily.yml."
+        )
+        return None
+
+    print(f"INFO: Attempting fresh Instagram login for {instagram_username}")
+    try:
+        loader.login(instagram_username, ig_password)
+        authed_user = loader.test_login()
+        if authed_user:
+            print(f"INFO: Fresh Instagram login succeeded for @{authed_user}")
+            loader.save_session_to_file(session_file)
+            return authed_user
+        print("WARN: Fresh Instagram login completed but test_login() still returns None")
+        _notify_health_monitor(
+            f"⚠️ Fresh Instagram login completed for {instagram_username} but test_login() still returns None.\n"
+            "The account may require additional verification."
+        )
+        return None
+    except Exception as e:
+        exc_type = type(e).__name__
+        if exc_type == "TwoFactorAuthRequiredException":
+            print("WARN: Instagram requires 2FA — cannot recover automatically")
+            _notify_health_monitor(
+                "⚠️ Instagram fresh login blocked by 2FA.\n"
+                "Disable 2FA on the bot account or implement TOTP support."
+            )
+        elif exc_type == "BadCredentialsException":
+            print(f"WARN: Bad Instagram credentials: {e}")
+            _notify_health_monitor(
+                f"⚠️ Instagram fresh login failed — bad credentials for {instagram_username}.\n"
+                "Update the INSTAGRAM_USERNAME and INSTAGRAM_PASSWORD secrets."
+            )
+        elif exc_type == "ConnectionException":
+            print(f"WARN: Instagram challenged the login: {e}")
+            _notify_health_monitor(
+                f"⚠️ Instagram challenged the fresh login (likely email/SMS verification): {e}\n"
+                "Resolve via the Instagram app or web, then daily.yml will succeed next run."
+            )
+        else:
+            print(f"WARN: Instagram fresh login raised {exc_type}: {e}")
+            _notify_health_monitor(
+                f"⚠️ Instagram fresh login failed for {instagram_username} ({exc_type}): {e}\n"
+                "Re-authenticate and update the INSTAGRAM_SESSION secret."
+            )
+        return None
+
+
 def fetch_instagram_posts():
     if instaloader is None:
         return []
@@ -2577,12 +2635,9 @@ def fetch_instagram_posts():
         authed_user = loader.test_login()
         if not authed_user:
             print(f"WARN: Instagram session auth check failed — test_login() returned None for {instagram_username}")
-            _notify_health_monitor(
-                f"⚠️ Instagram session auth check failed for {instagram_username}.\n"
-                "test_login() returned None — session may have expired. "
-                "Re-authenticate and update the INSTAGRAM_SESSION secret."
-            )
-            return []
+            authed_user = _attempt_instagram_fresh_login(loader, instagram_username, session_file)
+            if not authed_user:
+                return []
         print(f"Instagram session valid: logged in as @{authed_user}")
     except Exception as e:
         print(f"WARN: Instagram session auth check raised an exception: {e}")
