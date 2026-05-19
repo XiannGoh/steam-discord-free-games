@@ -790,3 +790,103 @@ class TestActionsMinutesLines:
         assert len(lines) == 1
         assert "ℹ️" in lines[0]
         assert "unavailable" in lines[0]
+
+
+class TestLoadDiscordVerificationIssues:
+    def test_missing_file_returns_empty(self, tmp_path):
+        result = report.load_discord_verification_issues(tmp_path / "missing.json")
+        assert result == []
+
+    def test_malformed_json_returns_empty(self, tmp_path):
+        path = tmp_path / "discord_verification.json"
+        path.write_text("not json", encoding="utf-8")
+        result = report.load_discord_verification_issues(path)
+        assert result == []
+
+    def test_all_channels_passing_returns_empty(self, tmp_path):
+        path = tmp_path / "discord_verification.json"
+        path.write_text(json.dumps({
+            "channels": {
+                "step-1": {"checked": True, "pass": True, "errors": []},
+                "step-2": {"checked": True, "pass": True, "errors": []},
+            }
+        }), encoding="utf-8")
+        result = report.load_discord_verification_issues(path)
+        assert result == []
+
+    def test_unchecked_channel_is_skipped(self, tmp_path):
+        path = tmp_path / "discord_verification.json"
+        path.write_text(json.dumps({
+            "channels": {
+                "step-2": {"checked": False, "pass": True, "errors": []},
+            }
+        }), encoding="utf-8")
+        result = report.load_discord_verification_issues(path)
+        assert result == []
+
+    def test_failing_checked_channel_produces_issue(self, tmp_path):
+        path = tmp_path / "discord_verification.json"
+        path.write_text(json.dumps({
+            "channels": {
+                "step-1": {
+                    "checked": True,
+                    "pass": False,
+                    "errors": ["missing intro", "missing footer"],
+                },
+            }
+        }), encoding="utf-8")
+        result = report.load_discord_verification_issues(path)
+        assert len(result) == 1
+        issue = result[0]
+        assert issue.code == "DISCORD_OUTPUT_VERIFICATION_FAILED"
+        assert issue.severity == "error"
+        assert "step-1" in issue.title
+        assert "missing intro" in issue.context
+        assert "missing footer" in issue.context
+
+    def test_failing_channel_no_errors_uses_fallback_context(self, tmp_path):
+        path = tmp_path / "discord_verification.json"
+        path.write_text(json.dumps({
+            "channels": {
+                "step-2": {"checked": True, "pass": False, "errors": []},
+            }
+        }), encoding="utf-8")
+        result = report.load_discord_verification_issues(path)
+        assert len(result) == 1
+        assert result[0].context == "verification failed"
+
+    def test_multiple_failing_channels_produce_multiple_issues(self, tmp_path):
+        path = tmp_path / "discord_verification.json"
+        path.write_text(json.dumps({
+            "channels": {
+                "step-1": {"checked": True, "pass": False, "errors": ["intro missing"]},
+                "step-2": {"checked": False, "pass": True, "errors": []},
+                "step-3": {"checked": True, "pass": False, "errors": ["footer missing"]},
+            }
+        }), encoding="utf-8")
+        result = report.load_discord_verification_issues(path)
+        assert len(result) == 2
+        titles = {issue.title for issue in result}
+        assert any("step-1" in t for t in titles)
+        assert any("step-3" in t for t in titles)
+
+    def test_failing_channel_surfaced_in_bhr_report(self, tmp_path):
+        path = tmp_path / "discord_verification.json"
+        path.write_text(json.dumps({
+            "channels": {
+                "step-2": {
+                    "checked": True,
+                    "pass": False,
+                    "errors": ["stale winners post"],
+                },
+            }
+        }), encoding="utf-8")
+        issues = report.load_discord_verification_issues(path)
+        rendered = report.render_report(
+            workflow_status_lines=[],
+            state_issues=issues,
+            report_date="May 19, 2026",
+        )
+        assert "DISCORD_OUTPUT_VERIFICATION_FAILED" in rendered
+        assert "step-2" in rendered
+        assert "stale winners post" in rendered

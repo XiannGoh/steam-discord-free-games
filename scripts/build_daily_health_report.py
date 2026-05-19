@@ -22,6 +22,7 @@ WEEKLY_PATHS = {
     "roster": ROOT / "data/scheduling/expected_schedule_roster.json",
 }
 DAILY_POSTS_PATH = ROOT / "discord_daily_posts.json"
+DISCORD_VERIFICATION_PATH = ROOT / "discord_verification.json"
 INSTAGRAM_FETCH_SUMMARY_PATH = ROOT / "instagram_fetch_summary.json"
 INSTAGRAM_TOTAL_CREATORS = 8
 
@@ -975,6 +976,40 @@ def load_state_sanity_issues(path: Path) -> list[Issue]:
     return issues
 
 
+def load_discord_verification_issues(path: Path) -> list[Issue]:
+    """Read discord_verification.json and convert failing checked channels to Issue objects."""
+    if not path.exists():
+        return []
+    try:
+        data = json.loads(path.read_text(encoding="utf-8"))
+    except Exception:
+        return []
+    if not isinstance(data, dict):
+        return []
+
+    channels = data.get("channels")
+    if not isinstance(channels, dict):
+        return []
+
+    issues: list[Issue] = []
+    for channel_name, channel_data in channels.items():
+        if not isinstance(channel_data, dict):
+            continue
+        if not channel_data.get("checked", False):
+            continue
+        if channel_data.get("pass", True):
+            continue
+        errors = channel_data.get("errors") or []
+        issues.append(Issue(
+            code="DISCORD_OUTPUT_VERIFICATION_FAILED",
+            severity="error",
+            title=f"Discord channel verification failed: {channel_name}",
+            context="; ".join(str(e) for e in errors) or "verification failed",
+            file_path=None,
+        ))
+    return issues
+
+
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--workflow-runs-json", required=True, help="Path to workflow run metadata JSON")
@@ -1005,6 +1040,9 @@ def main() -> None:
         state_issues.extend(load_state_sanity_issues(Path(args.state_sanity_json)))
     elif Path("state_sanity.json").exists():
         state_issues.extend(load_state_sanity_issues(Path("state_sanity.json")))
+
+    if DISCORD_VERIFICATION_PATH.exists():
+        state_issues.extend(load_discord_verification_issues(DISCORD_VERIFICATION_PATH))
 
     billing_data: dict[str, Any] | None = None
     if args.actions_billing_json and Path(args.actions_billing_json).exists():
