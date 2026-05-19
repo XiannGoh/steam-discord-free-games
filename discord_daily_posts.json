@@ -6623,29 +6623,29 @@
     "run_state": {
       "section_headers": {
         "free": {
-          "message_id": "1506334284972032011",
+          "message_id": "1506412997541892210",
           "channel_id": "592534544708796474",
-          "posted_at_utc": "2026-05-19T16:34:40.210383+00:00"
+          "posted_at_utc": "2026-05-19T21:47:27.199972+00:00"
         },
         "paid": {
-          "message_id": "1506334331713359922",
+          "message_id": "1506413046556397754",
           "channel_id": "592534544708796474",
-          "posted_at_utc": "2026-05-19T16:34:51.392195+00:00"
+          "posted_at_utc": "2026-05-19T21:47:38.811524+00:00"
         }
       },
-      "last_attempt_at_utc": "2026-05-19T16:34:37.305898+00:00",
+      "last_attempt_at_utc": "2026-05-19T21:47:26.199100+00:00",
       "intro": {
         "message_id": "1506334274595455210",
         "channel_id": "592534544708796474",
         "posted_at_utc": "2026-05-19T16:34:38.533630+00:00"
       },
       "footer": {
-        "message_id": "1506334379809439815",
+        "message_id": "1506413098251321364",
         "channel_id": "592534544708796474",
-        "posted_at_utc": "2026-05-19T16:35:03.442836+00:00"
+        "posted_at_utc": "2026-05-19T21:47:50.625993+00:00"
       },
       "completed": true,
-      "completed_at_utc": "2026-05-19T16:35:04.651538+00:00"
+      "completed_at_utc": "2026-05-19T21:47:51.835173+00:00"
     },
     "items": [
       {
@@ -6757,6 +6757,116 @@
         "source_type": "paid_under_20",
         "posted_at": "2026-05-19T16:35:00.942917+00:00",
         "description": "Defend the shores of Gallipoli against landing forces in this WWI FPS game, as the enemy attacks you with troops, armored cars, planes, battleships and more! Use the iconic WWI weapons, prepare your defenses with mines, explosives and bonuses!"
+      },
+      {
+        "item_key": "e560b2aa183b7c3f",
+        "section": "free",
+        "title": "Life is Feudal: Arden",
+        "url": "https://store.steampowered.com/app/3285700/",
+        "message_id": "1506413006043746335",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-05-19T21:47:29.047599+00:00",
+        "description": "Life is Feudal: Arden is a new free-to-play open-world MMORPG set in the Middle Ages, built on the foundation of Life is Feudal: MMO. Engage in thrilling PvP combat, navigate political intrigue, master a variety of professions and craft unique items. Forge your own path to power and greatness!"
+      },
+      {
+        "item_key": "f684a47af1a802a6",
+        "section": "free",
+        "title": "VEGA Conflict",
+        "url": "https://store.steampowered.com/app/339600/",
+        "message_id": "1506413014092484648",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-05-19T21:47:31.140768+00:00",
+        "description": "Stake your claim, command your fleets, and wage epic war in space."
+      },
+      {
+        "item_key": "27aa756894abc3cb",
+        "section": "free",
+        "title": "Military Tanks",
+        "url": "https://store.steampowered.com/app/2342030/",
+        "message_id": "1506413022594465845",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-05-19T21:47:32.950711+00:00",
+        "description": "Do you like tanks game? Are you ready to feel the full power of a tank games?"
+      },
+      {
+        "item_key": "26d7272404624fe6",
+        "section": "free",
+        "title": "Professional Fishing",
+        "url": "https://store.steampowered.com/app/798420/",
+        "message_id": "1506413030559191110",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-05-19T21:47:34.881116+00:00",
+        "description": "Are you falling asleep with a rod? Never again! Professional Fishing will never let you fall asleep! Play an amazing fishing simulator and feel like a real angler! Create your own fishing club and compete with others!"
+      },
+      {
+        "item_key": "6a20104c09d6f033",
+        "section": "free",
+        "title": "Habbo Hotel: Origins",
+        "url": "https://store.steampowered.com/app/3809900/",
+        "message_id": "1506413038528630785",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-05-19T21:47:36.555687+00:00",
+        "description": "A pixel-art social simulation MMO where you customize your avatar, build and decorate rooms, trade rare items, and join live community events in a nostalgic yet ever-evolving virtual world."
+      },
+      {
+        "item_key": "15b60e219e4db0c3",
+        "section": "paid",
+        "title": "Panzer Corps 2",
+        "url": "https://store.steampowered.com/app/1072040/",
+        "message_id": "1506413054970302695",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-05-19T21:47:40.576021+00:00",
+        "description": "Panzer Corps 2 is the ultimate Second World War strategy game! Enjoy the time-proven gameplay formula which has been appreciated by millions of players over the years, brought to a whole new level of refinement up to the latest technical standards."
+      },
+      {
+        "item_key": "b649a2f5f1e3d54c",
+        "section": "paid",
+        "title": "Rise of Piracy",
+        "url": "https://store.steampowered.com/app/1400660/",
+        "message_id": "1506413062511661150",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-05-19T21:47:42.971876+00:00",
+        "description": "The perfect blend of Action, Adventure and RTS. Begin your journey as the lowly captain of a small vessel. End as the commander of a threatening fleet. Rise to glory how you see fit. Trade, fight, recruit, grow, pillage, ally, destroy & conquer."
+      },
+      {
+        "item_key": "62449cf848d257f4",
+        "section": "paid",
+        "title": "Rhythm Doctor",
+        "url": "https://store.steampowered.com/app/774181/",
+        "message_id": "1506413072896622602",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-05-19T21:47:45.289016+00:00",
+        "description": "Save patients with your rhythm mastery! Rhythm Doctor is a rhythm game where you heal patients by defibrillating in time to their heartbeats. Learn each patient's unique heartbeat and defeat boss viruses trying to sabotage your rhythm, all set to heart-pumping, soul-soothing music."
+      },
+      {
+        "item_key": "f179373e5392ad4b",
+        "section": "paid",
+        "title": "GigaBash",
+        "url": "https://store.steampowered.com/app/1546400/",
+        "message_id": "1506413082300252230",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-05-19T21:47:47.091977+00:00",
+        "description": "GigaBash is the ultimate Kaiju Fighting Game for 1-4 players, where you battle as film-inspired Kaijus and giant Heroes in fully destructible cityscapes."
+      },
+      {
+        "item_key": "ceccf2b17a1a5329",
+        "section": "paid",
+        "title": "100% Orange Juice",
+        "url": "https://store.steampowered.com/app/282800/",
+        "message_id": "1506413089518522525",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-05-19T21:47:48.928831+00:00",
+        "description": "100% Orange Juice is a digital multiplayer board game populated by developer Orange Juice's all-star cast. Characters from Flying Red Barrel, QP Shooting, Suguri and Sora come together with all-new characters to duke it out... with dice."
       }
     ]
   }
