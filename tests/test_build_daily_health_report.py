@@ -24,6 +24,9 @@ def _configure_paths(monkeypatch, root: Path):
         },
     )
     monkeypatch.setattr(report, "DAILY_POSTS_PATH", root / "discord_daily_posts.json")
+    # Point Instagram summary at a non-existent path so tests that call render_report()
+    # are not affected by whatever real instagram_fetch_summary.json is on disk.
+    monkeypatch.setattr(report, "INSTAGRAM_FETCH_SUMMARY_PATH", root / "instagram_fetch_summary.json")
 
 
 def _seed_healthy_state(root: Path, *, now_utc: datetime):
@@ -386,7 +389,10 @@ def test_benign_warning_renders_no_action_needed_guidance():
 
 
 def test_monitor_only_case_for_daily_today_missing(tmp_path, monkeypatch):
-    now_utc = datetime(2026, 4, 10, 3, 10, tzinfo=timezone.utc)
+    # Seed with the same date so day keys match; daily.yml runs at 13:00 UTC and
+    # the code only emits daily.today_missing after a 2-hour grace window (15:00 UTC).
+    # Use 16:00 UTC so the check fires even though today's entry is absent.
+    now_utc = datetime(2026, 4, 10, 16, 0, tzinfo=timezone.utc)
     _configure_paths(monkeypatch, tmp_path)
     _seed_healthy_state(tmp_path, now_utc=now_utc)
     _write_json(tmp_path / "discord_daily_posts.json", {})
