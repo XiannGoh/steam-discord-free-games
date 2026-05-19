@@ -1114,22 +1114,25 @@ def main() -> None:
     }
 
     if not isinstance(day_entry, dict):
+        skipped_msg = (
+            f"No entry for {day_key} in {DISCORD_DAILY_POSTS_FILE} — "
+            "daily picks have not posted yet (or no entry exists). "
+            "Workflow-cadence checks are handled separately by the BHR workflow_status section."
+        )
         result["channels"][CHANNEL_STEP1] = {
-            "pass": False,
-            "checked": True,
-            "errors": [
-                f"No entry for {day_key} in {DISCORD_DAILY_POSTS_FILE}. "
-                "Daily picks may not have run yet."
-            ],
+            "pass": True,
+            "checked": False,
+            "skipped_reason": skipped_msg,
         }
         result["channels"][CHANNEL_STEP2] = {
             "pass": True,
             "checked": False,
             "skipped_reason": f"No entry for {day_key} in {DISCORD_DAILY_POSTS_FILE}.",
         }
-        print(f"FAIL: no entry for {day_key} in {DISCORD_DAILY_POSTS_FILE}")
+        result["pass"] = True
+        print(f"SKIP: no entry for {day_key} in {DISCORD_DAILY_POSTS_FILE} — nothing to verify for step-1/step-2")
         write_verification(result)
-        sys.exit(1)
+        sys.exit(0)
 
     session = requests.Session()
     session.headers.update({
