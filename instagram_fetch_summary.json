@@ -1,83 +1,92 @@
 {
-  "run_at": "2026-05-18T16:40:18Z",
+  "run_at": "2026-05-19T16:34:37Z",
   "total_creators": 8,
-  "creators_with_posts": 3,
-  "total_posts_collected": 5,
-  "total_skipped_seen": 14,
+  "creators_with_posts": 0,
+  "total_posts_collected": 0,
+  "total_skipped_seen": 0,
   "total_skipped_caption": 0,
-  "failed_creators": [],
+  "failed_creators": [
+    "gemgamingnetwork",
+    "cloudual",
+    "mildsoss_official",
+    "sharedxp_official",
+    "wilfratgaming",
+    "indiegamespotlights",
+    "biffmatictv",
+    "itzjaysasa"
+  ],
   "creators": {
     "gemgamingnetwork": {
-      "fetched": 1,
+      "fetched": 0,
       "collected": 0,
       "skipped_seen": 0,
-      "skipped_age": 1,
+      "skipped_age": 0,
       "skipped_caption": 0,
-      "failed": false,
-      "failure_reason": null
+      "failed": true,
+      "failure_reason": "400 Bad Request - \"fail\" status, message \"invalid request\" when accessing https://www.instagram.com/graphql/query"
     },
     "cloudual": {
-      "fetched": 1,
+      "fetched": 0,
       "collected": 0,
       "skipped_seen": 0,
-      "skipped_age": 1,
+      "skipped_age": 0,
       "skipped_caption": 0,
-      "failed": false,
-      "failure_reason": null
+      "failed": true,
+      "failure_reason": "400 Bad Request - \"fail\" status, message \"invalid request\" when accessing https://www.instagram.com/graphql/query"
     },
     "mildsoss_official": {
-      "fetched": 4,
-      "collected": 2,
-      "skipped_seen": 2,
+      "fetched": 0,
+      "collected": 0,
+      "skipped_seen": 0,
       "skipped_age": 0,
       "skipped_caption": 0,
-      "failed": false,
-      "failure_reason": null
+      "failed": true,
+      "failure_reason": "400 Bad Request - \"fail\" status, message \"invalid request\" when accessing https://www.instagram.com/graphql/query"
     },
     "sharedxp_official": {
-      "fetched": 8,
+      "fetched": 0,
       "collected": 0,
-      "skipped_seen": 7,
-      "skipped_age": 1,
-      "skipped_caption": 0,
-      "failed": false,
-      "failure_reason": null
-    },
-    "wilfratgaming": {
-      "fetched": 2,
-      "collected": 2,
       "skipped_seen": 0,
       "skipped_age": 0,
       "skipped_caption": 0,
-      "failed": false,
-      "failure_reason": null
+      "failed": true,
+      "failure_reason": "400 Bad Request - \"fail\" status, message \"invalid request\" when accessing https://www.instagram.com/graphql/query"
     },
-    "indiegamespotlights": {
-      "fetched": 1,
+    "wilfratgaming": {
+      "fetched": 0,
       "collected": 0,
       "skipped_seen": 0,
-      "skipped_age": 1,
+      "skipped_age": 0,
       "skipped_caption": 0,
-      "failed": false,
-      "failure_reason": null
+      "failed": true,
+      "failure_reason": "400 Bad Request - \"fail\" status, message \"invalid request\" when accessing https://www.instagram.com/graphql/query"
+    },
+    "indiegamespotlights": {
+      "fetched": 0,
+      "collected": 0,
+      "skipped_seen": 0,
+      "skipped_age": 0,
+      "skipped_caption": 0,
+      "failed": true,
+      "failure_reason": "400 Bad Request - \"fail\" status, message \"invalid request\" when accessing https://www.instagram.com/graphql/query"
     },
     "biffmatictv": {
-      "fetched": 5,
+      "fetched": 0,
       "collected": 0,
-      "skipped_seen": 4,
-      "skipped_age": 1,
+      "skipped_seen": 0,
+      "skipped_age": 0,
       "skipped_caption": 0,
-      "failed": false,
-      "failure_reason": null
+      "failed": true,
+      "failure_reason": "400 Bad Request - \"fail\" status, message \"invalid request\" when accessing https://www.instagram.com/graphql/query"
     },
     "itzjaysasa": {
-      "fetched": 3,
-      "collected": 1,
-      "skipped_seen": 1,
-      "skipped_age": 1,
+      "fetched": 0,
+      "collected": 0,
+      "skipped_seen": 0,
+      "skipped_age": 0,
       "skipped_caption": 0,
-      "failed": false,
-      "failure_reason": null
+      "failed": true,
+      "failure_reason": "400 Bad Request - \"fail\" status, message \"invalid request\" when accessing https://www.instagram.com/graphql/query"
     }
   }
 }
