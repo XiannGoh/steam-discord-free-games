@@ -1519,8 +1519,10 @@ class TestInstagramSessionAuthCheck:
         monkeypatch.setenv("INSTAGRAM_USERNAME", "testuser")
         monkeypatch.chdir(tmp_path)
 
-    def test_auth_check_returns_none_skips_instagram(self, monkeypatch, tmp_path):
+    def test_auth_check_returns_none_no_password_skips_instagram(self, monkeypatch, tmp_path):
+        # Session fails + no INSTAGRAM_PASSWORD → health monitor notified, returns []
         self._setup(monkeypatch, tmp_path)
+        monkeypatch.delenv("INSTAGRAM_PASSWORD", raising=False)
         posted = []
         monkeypatch.setattr(main, "_notify_health_monitor", lambda msg: posted.append(msg))
         monkeypatch.setattr(main, "INSTAGRAM_CREATORS", [])
@@ -1536,7 +1538,7 @@ class TestInstagramSessionAuthCheck:
 
         result = main.fetch_instagram_posts()
         assert result == []
-        assert any("test_login() returned None" in msg for msg in posted)
+        assert any("INSTAGRAM_PASSWORD" in msg for msg in posted)
 
     def test_auth_check_raises_skips_instagram(self, monkeypatch, tmp_path):
         self._setup(monkeypatch, tmp_path)
@@ -1570,6 +1572,185 @@ class TestInstagramSessionAuthCheck:
         result = main.fetch_instagram_posts()
         assert result == []
         assert posted == []
+
+
+# ---------------------------------------------------------------------------
+# Issue #362 — Instagram username/password login fallback
+# ---------------------------------------------------------------------------
+
+class TestInstagramFreshLoginFallback:
+    """Tests for _attempt_instagram_fresh_login() and its integration into fetch_instagram_posts()."""
+
+    def _setup(self, monkeypatch, tmp_path):
+        session_path = tmp_path / "instaloader.session"
+        session_path.write_text("session")
+        monkeypatch.setenv("INSTAGRAM_USERNAME", "testuser")
+        monkeypatch.setenv("INSTAGRAM_PASSWORD", "testpass")
+        monkeypatch.chdir(tmp_path)
+
+    def test_session_valid_no_fallback_attempted(self, monkeypatch, tmp_path):
+        """Session works → no fallback attempted, no health monitor call."""
+        self._setup(monkeypatch, tmp_path)
+        posted = []
+        monkeypatch.setattr(main, "_notify_health_monitor", lambda msg: posted.append(msg))
+        monkeypatch.setattr(main, "INSTAGRAM_CREATORS", [])
+
+        login_calls = []
+
+        class TrackingInstaloader(FakeInstaloader.Instaloader):
+            def test_login(self):
+                return "testuser"
+
+            def login(self, username, password):
+                login_calls.append((username, password))
+
+        fake_il = FakeInstaloader()
+        fake_il.Instaloader = TrackingInstaloader
+        monkeypatch.setattr(main, "instaloader", fake_il)
+        monkeypatch.setattr(main, "INSTAGRAM_STATE_FILE", str(tmp_path / "instagram_seen.json"))
+
+        result = main.fetch_instagram_posts()
+        assert result == []
+        assert login_calls == []
+        assert posted == []
+
+    def test_session_fails_fallback_succeeds_saves_session(self, monkeypatch, tmp_path):
+        """Session fails, fallback login succeeds → new session saved, continues normally."""
+        self._setup(monkeypatch, tmp_path)
+        posted = []
+        monkeypatch.setattr(main, "_notify_health_monitor", lambda msg: posted.append(msg))
+        monkeypatch.setattr(main, "INSTAGRAM_CREATORS", [])
+
+        call_count = {"n": 0}
+        saved = []
+
+        class FallbackInstaloader(FakeInstaloader.Instaloader):
+            def test_login(self):
+                call_count["n"] += 1
+                # First call (session check) returns None; second call (post-login) returns user
+                return None if call_count["n"] == 1 else "testuser"
+
+            def login(self, username, password):
+                pass
+
+            def save_session_to_file(self, path):
+                saved.append(path)
+
+        fake_il = FakeInstaloader()
+        fake_il.Instaloader = FallbackInstaloader
+        monkeypatch.setattr(main, "instaloader", fake_il)
+        monkeypatch.setattr(main, "INSTAGRAM_STATE_FILE", str(tmp_path / "instagram_seen.json"))
+
+        result = main.fetch_instagram_posts()
+        assert result == []
+        assert posted == []
+        assert len(saved) == 1
+
+    def test_session_fails_fallback_2fa_notifies_health_monitor(self, monkeypatch, tmp_path):
+        """Session fails, fallback raises TwoFactorAuthRequiredException → health monitor notified, no crash."""
+        self._setup(monkeypatch, tmp_path)
+        posted = []
+        monkeypatch.setattr(main, "_notify_health_monitor", lambda msg: posted.append(msg))
+        monkeypatch.setattr(main, "INSTAGRAM_CREATORS", [])
+
+        class TwoFAException(Exception):
+            pass
+        TwoFAException.__name__ = "TwoFactorAuthRequiredException"
+
+        class TwoFAInstaloader(FakeInstaloader.Instaloader):
+            def test_login(self):
+                return None
+
+            def login(self, username, password):
+                raise TwoFAException("2FA required")
+
+        fake_il = FakeInstaloader()
+        fake_il.Instaloader = TwoFAInstaloader
+        monkeypatch.setattr(main, "instaloader", fake_il)
+        monkeypatch.setattr(main, "INSTAGRAM_STATE_FILE", str(tmp_path / "instagram_seen.json"))
+
+        result = main.fetch_instagram_posts()
+        assert result == []
+        assert any("2FA" in msg for msg in posted)
+
+    def test_session_fails_fallback_bad_credentials_notifies_health_monitor(self, monkeypatch, tmp_path):
+        """Session fails, fallback raises BadCredentialsException → health monitor notified, no crash."""
+        self._setup(monkeypatch, tmp_path)
+        posted = []
+        monkeypatch.setattr(main, "_notify_health_monitor", lambda msg: posted.append(msg))
+        monkeypatch.setattr(main, "INSTAGRAM_CREATORS", [])
+
+        class BadCredsException(Exception):
+            pass
+        BadCredsException.__name__ = "BadCredentialsException"
+
+        class BadCredsInstaloader(FakeInstaloader.Instaloader):
+            def test_login(self):
+                return None
+
+            def login(self, username, password):
+                raise BadCredsException("wrong password")
+
+        fake_il = FakeInstaloader()
+        fake_il.Instaloader = BadCredsInstaloader
+        monkeypatch.setattr(main, "instaloader", fake_il)
+        monkeypatch.setattr(main, "INSTAGRAM_STATE_FILE", str(tmp_path / "instagram_seen.json"))
+
+        result = main.fetch_instagram_posts()
+        assert result == []
+        assert any("bad credentials" in msg.lower() or "credentials" in msg.lower() for msg in posted)
+
+    def test_session_fails_fallback_challenge_notifies_health_monitor(self, monkeypatch, tmp_path):
+        """Session fails, fallback raises ConnectionException (IG challenge) → health monitor notified, no crash."""
+        self._setup(monkeypatch, tmp_path)
+        posted = []
+        monkeypatch.setattr(main, "_notify_health_monitor", lambda msg: posted.append(msg))
+        monkeypatch.setattr(main, "INSTAGRAM_CREATORS", [])
+
+        class ConnException(Exception):
+            pass
+        ConnException.__name__ = "ConnectionException"
+
+        class ChallengeInstaloader(FakeInstaloader.Instaloader):
+            def test_login(self):
+                return None
+
+            def login(self, username, password):
+                raise ConnException("challenge required")
+
+        fake_il = FakeInstaloader()
+        fake_il.Instaloader = ChallengeInstaloader
+        monkeypatch.setattr(main, "instaloader", fake_il)
+        monkeypatch.setattr(main, "INSTAGRAM_STATE_FILE", str(tmp_path / "instagram_seen.json"))
+
+        result = main.fetch_instagram_posts()
+        assert result == []
+        assert any("challenged" in msg.lower() or "challenge" in msg.lower() for msg in posted)
+
+    def test_session_fails_no_password_notifies_health_monitor(self, monkeypatch, tmp_path):
+        """Session fails, INSTAGRAM_PASSWORD not set → health monitor notified, no crash."""
+        session_path = tmp_path / "instaloader.session"
+        session_path.write_text("session")
+        monkeypatch.setenv("INSTAGRAM_USERNAME", "testuser")
+        monkeypatch.delenv("INSTAGRAM_PASSWORD", raising=False)
+        monkeypatch.chdir(tmp_path)
+
+        posted = []
+        monkeypatch.setattr(main, "_notify_health_monitor", lambda msg: posted.append(msg))
+        monkeypatch.setattr(main, "INSTAGRAM_CREATORS", [])
+
+        class NullLoginInstaloader(FakeInstaloader.Instaloader):
+            def test_login(self):
+                return None
+
+        fake_il = FakeInstaloader()
+        fake_il.Instaloader = NullLoginInstaloader
+        monkeypatch.setattr(main, "instaloader", fake_il)
+        monkeypatch.setattr(main, "INSTAGRAM_STATE_FILE", str(tmp_path / "instagram_seen.json"))
+
+        result = main.fetch_instagram_posts()
+        assert result == []
+        assert any("INSTAGRAM_PASSWORD" in msg for msg in posted)
 
 
 # ---------------------------------------------------------------------------
