@@ -4,11 +4,15 @@ from __future__ import annotations
 
 import sys
 from pathlib import Path
+from unittest.mock import patch
+
+import pytest
 
 ROOT = Path(__file__).resolve().parents[1]
 if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
+import scripts.verify_discord_output as _vdo
 from scripts.verify_discord_output import (
     detect_broken_if,
     is_game_card,
@@ -17,6 +21,8 @@ from scripts.verify_discord_output import (
     verify_step2,
     verify_step3,
     get_spec_required,
+    CHANNEL_STEP1,
+    CHANNEL_STEP2,
 )
 from discord_api import DiscordMessageNotFoundError
 
@@ -560,3 +566,38 @@ class TestChannelScanStep1:
         assert result.get("rolling_explainer_duplicate") is True
         assert any("duplicate rolling explainer" in e for e in result["errors"])
         assert result["pass"] is False
+
+
+# ---------------------------------------------------------------------------
+# main() missing day_entry skip (Issue #356)
+# ---------------------------------------------------------------------------
+
+class TestMainMissingDayEntry:
+    """main() must skip step-1/step-2 (not fail) when discord_daily_posts.json has no entry."""
+
+    def test_missing_day_entry_is_skip_not_failure(self, monkeypatch) -> None:
+        """No entry for the target day → step-1 checked=False/pass=True, overall pass=True, exits 0."""
+        monkeypatch.setenv("DISCORD_BOT_TOKEN", "fake-token")
+
+        with (
+            patch.object(_vdo, "load_daily_posts", return_value={}),
+            patch.object(_vdo, "get_target_day_key", return_value="2026-05-19"),
+            patch.object(_vdo, "load_channel_specs", return_value={}),
+            patch.object(_vdo, "write_verification") as mock_write,
+        ):
+            with pytest.raises(SystemExit) as exc_info:
+                _vdo.main()
+
+        assert exc_info.value.code == 0
+
+        written_result = mock_write.call_args[0][0]
+        assert written_result["pass"] is True
+
+        step1 = written_result["channels"].get(CHANNEL_STEP1, {})
+        assert step1.get("checked") is False
+        assert step1.get("pass") is True
+        assert "skipped_reason" in step1
+
+        step2 = written_result["channels"].get(CHANNEL_STEP2, {})
+        assert step2.get("checked") is False
+        assert step2.get("pass") is True
