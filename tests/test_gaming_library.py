@@ -13,18 +13,20 @@ class FakeDiscordClient:
     def get_reaction_users(self, channel_id, message_id, encoded_emoji, *, context, limit=100, after=None):
         return self.reactions.get((channel_id, message_id, encoded_emoji), [])
 
-    def post_message(self, channel_id, content, *, context):
+    def post_message(self, channel_id, content, *, context, embed=None):
         message_id = f"m-{len(self.posts)+1}"
-        self.posts.append((channel_id, content, context))
+        effective_content = (embed or {}).get("description") or content
+        self.posts.append((channel_id, effective_content, context))
         return {"id": message_id, "channel_id": channel_id}
 
     def put_reaction(self, channel_id, message_id, encoded_emoji, *, context):
         self.put_reactions.append((channel_id, message_id, encoded_emoji, context))
 
-    def edit_message(self, channel_id, message_id, content, *, context):
+    def edit_message(self, channel_id, message_id, content, *, context, embed=None):
         if (channel_id, message_id) in self.not_found_edits:
             raise lib.DiscordMessageNotFoundError("not found")
-        self.edits.append((channel_id, message_id, content, context))
+        effective_content = (embed or {}).get("description") or content
+        self.edits.append((channel_id, message_id, effective_content, context))
         return {"id": message_id, "channel_id": channel_id}
 
 

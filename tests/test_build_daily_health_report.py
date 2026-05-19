@@ -830,6 +830,62 @@ class TestLoadDiscordVerificationIssues:
         result = report.load_discord_verification_issues(path)
         assert result == []
 
+    def test_step1_missing_day_entry_skipped_reason_produces_no_issue(self, tmp_path):
+        """step-1 with checked=False/pass=True/skipped_reason (no day entry) must not surface as an error.
+
+        This mirrors the exact JSON that verify_discord_output.py writes when discord_daily_posts.json
+        has no entry for the target date — the BHR must treat it as a skip, not a failure.
+        """
+        path = tmp_path / "discord_verification.json"
+        path.write_text(json.dumps({
+            "channels": {
+                "step-1-vote-on-games-to-test": {
+                    "pass": True,
+                    "checked": False,
+                    "skipped_reason": (
+                        "No entry for 2026-05-19 in discord_daily_posts.json — "
+                        "daily picks have not posted yet (or no entry exists). "
+                        "Workflow-cadence checks are handled separately by the BHR workflow_status section."
+                    ),
+                },
+                "step-2-test-then-vote-to-keep": {
+                    "pass": True,
+                    "checked": False,
+                    "skipped_reason": "No entry for 2026-05-19 in discord_daily_posts.json.",
+                },
+            }
+        }), encoding="utf-8")
+        result = report.load_discord_verification_issues(path)
+        assert result == [], (
+            "checked=False channels must never produce issues — "
+            "missing day entry is not a failure"
+        )
+
+    def test_step1_checked_failure_produces_issue(self, tmp_path):
+        """step-1 with checked=True/pass=False/errors must surface as a red error.
+
+        Verifies that real failures (intro missing, footer missing, etc.) are not
+        accidentally suppressed after the missing-day-entry fix.
+        """
+        path = tmp_path / "discord_verification.json"
+        path.write_text(json.dumps({
+            "channels": {
+                "step-1-vote-on-games-to-test": {
+                    "checked": True,
+                    "pass": False,
+                    "errors": ["missing intro", "missing footer"],
+                },
+            }
+        }), encoding="utf-8")
+        result = report.load_discord_verification_issues(path)
+        assert len(result) == 1
+        issue = result[0]
+        assert issue.code == "DISCORD_OUTPUT_VERIFICATION_FAILED"
+        assert issue.severity == "error"
+        assert "step-1-vote-on-games-to-test" in issue.title
+        assert "missing intro" in issue.context
+        assert "missing footer" in issue.context
+
     def test_failing_checked_channel_produces_issue(self, tmp_path):
         path = tmp_path / "discord_verification.json"
         path.write_text(json.dumps({
