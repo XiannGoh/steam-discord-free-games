@@ -38,13 +38,17 @@ class FakeDiscordClient:
         self.reaction_calls.append((channel_id, message_id, encoded_emoji, limit, after))
         return self.reaction_users.get(message_id, []) or self.reaction_users.get((channel_id, message_id, encoded_emoji), [])
 
-    def edit_message(self, channel_id, message_id, content, *, context):
-        self.edits.append((channel_id, message_id, content, context))
+    def edit_message(self, channel_id, message_id, content, *, context, embed=None):
+        # store the effective displayed content so tests can assert on it directly
+        effective = embed.get("description", content) if (not content and embed) else content
+        self.edits.append((channel_id, message_id, effective, context, embed))
         return {"id": message_id}
 
-    def post_message(self, channel_id, content, *, context):
+    def post_message(self, channel_id, content, *, context, embed=None):
         mid = f"w-{len(self.posts)+1}"
-        self.posts.append((channel_id, content, mid, context))
+        # store the effective displayed content so tests can assert on it directly
+        effective = embed.get("description", content) if (not content and embed) else content
+        self.posts.append((channel_id, effective, mid, context, embed))
         return {"id": mid, "channel_id": channel_id}
 
     def put_reaction(self, channel_id, message_id, encoded_emoji, *, context):
@@ -105,7 +109,7 @@ def test_winners_channel_posts_intro_sections_games_and_footer_in_order(monkeypa
 
     winners.main()
 
-    posted = [content for _, content, _, _ in fake.posts]
+    posted = [content for _, content, _, _, _ in fake.posts]
     # Header placeholder posted first (new format with em-dash and divider)
     assert posted[0].startswith("🏆 Daily Winners — ")
     assert "bookmark to keep permanently" in posted[0]
@@ -117,7 +121,7 @@ def test_winners_channel_posts_intro_sections_games_and_footer_in_order(monkeypa
     assert posted[5] == "💰 Paid Winners"
     assert "Current Paid Winner" in posted[6]
     # Rolling explainer is edited in-place (last message already exists); footer is last post
-    rolling_edits = [(mid, c) for _, mid, c, _ in fake.edits if c.startswith("📌 How This Works")]
+    rolling_edits = [(mid, c) for _, mid, c, _, _ in fake.edits if c.startswith("📌 How This Works")]
     assert rolling_edits, "Rolling explainer should have been edited"
     # Footer uses new format: single date+links line + End separator
     footer = posted[-1]
@@ -127,7 +131,7 @@ def test_winners_channel_posts_intro_sections_games_and_footer_in_order(monkeypa
     # Footer must not be a copy of intro
     assert footer != posted[0]
     # Header edited with jump links after sections posted
-    header_edits = [(mid, content) for _, mid, content, _ in fake.edits if mid == "w-1"]
+    header_edits = [(mid, content) for _, mid, content, _, _ in fake.edits if mid == "w-1"]
     assert header_edits, "Header message should be edited with jump links"
     _, header_final = header_edits[-1]
     assert "Demo & Playtest Winners" in header_final
@@ -148,7 +152,7 @@ def test_winners_footer_omits_missing_sections(monkeypatch, tmp_path):
     _patch_common(monkeypatch, path, fake, day_key)
     winners.main()
     # Rolling explainer is edited in-place; footer is last post
-    rolling_edits = [c for _, _, c, _ in fake.edits if c.startswith("📌 How This Works")]
+    rolling_edits = [c for _, _, c, _, _ in fake.edits if c.startswith("📌 How This Works")]
     assert rolling_edits, "Rolling explainer should have been edited"
     footer = fake.posts[-1][1]
     assert "Free" in footer
@@ -180,7 +184,7 @@ def test_winners_header_shows_date_and_subtitle(monkeypatch, tmp_path):
     assert first_post.endswith(winners.WINNERS_INTRO_DIVIDER)
 
     # Header is subsequently edited with jump links and divider
-    header_edits = [(mid, content) for _, mid, content, _ in fake.edits]
+    header_edits = [(mid, content) for _, mid, content, _, _ in fake.edits]
     assert any("Free Winners" in content and content.endswith(winners.WINNERS_INTRO_DIVIDER) for _, content in header_edits)
 
 
@@ -301,9 +305,11 @@ def test_same_day_rerun_reuses_existing_intro_header_footer_and_game(monkeypatch
         {"m-late": [{"id": "bot-1"}, {"id": "u1", "username": "jan"}]},
     )
     _patch_common(monkeypatch, path, fake, day_key)
+    # Must be a scheduled run so the idempotency skip is active (manual runs re-publish)
+    monkeypatch.setenv(winners.GITHUB_EVENT_NAME_ENV, "schedule")
     winners.main()
     assert fake.posts == []
-    content_edits = [t for _, _, t, _ in fake.edits if not t.startswith("📌 How This Works")]
+    content_edits = [t for _, _, t, _, _ in fake.edits if not t.startswith("📌 How This Works")]
     assert content_edits == []
 
 
@@ -438,7 +444,7 @@ def test_scheduled_run_skips_when_winners_unchanged(monkeypatch, tmp_path):
     winners.main()
 
     assert fake.posts == []
-    content_edits = [t for _, _, t, _ in fake.edits if not t.startswith("📌 How This Works")]
+    content_edits = [t for _, _, t, _, _ in fake.edits if not t.startswith("📌 How This Works")]
     assert content_edits == []
 
 
