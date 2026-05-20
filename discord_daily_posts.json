@@ -6639,29 +6639,29 @@
     "run_state": {
       "section_headers": {
         "free": {
-          "message_id": "1506460422293946448",
+          "message_id": "1506499803998326884",
           "channel_id": "592534544708796474",
-          "posted_at_utc": "2026-05-20T00:55:53.684712+00:00"
+          "posted_at_utc": "2026-05-20T03:32:23.043687+00:00"
         },
         "paid": {
-          "message_id": "1506460471648190504",
+          "message_id": "1506499854061408298",
           "channel_id": "592534544708796474",
-          "posted_at_utc": "2026-05-20T00:56:05.354632+00:00"
+          "posted_at_utc": "2026-05-20T03:32:36.248440+00:00"
         }
       },
-      "last_attempt_at_utc": "2026-05-20T00:55:48.950612+00:00",
+      "last_attempt_at_utc": "2026-05-20T03:32:22.410327+00:00",
       "intro": {
         "message_id": "1506460405067677726",
         "channel_id": "592534544708796474",
         "posted_at_utc": "2026-05-20T00:55:52.040556+00:00"
       },
       "footer": {
-        "message_id": "1506460518720733244",
+        "message_id": "1506499903139090554",
         "channel_id": "592534544708796474",
-        "posted_at_utc": "2026-05-20T00:56:16.641048+00:00"
+        "posted_at_utc": "2026-05-20T03:32:46.580059+00:00"
       },
       "completed": true,
-      "completed_at_utc": "2026-05-20T00:56:17.849634+00:00"
+      "completed_at_utc": "2026-05-20T03:32:47.789313+00:00"
     },
     "items": [
       {
@@ -6773,6 +6773,116 @@
         "source_type": "paid_under_20",
         "posted_at": "2026-05-20T00:56:14.957479+00:00",
         "description": "Clone Drone in the Danger Zone is a robot voxel slice-em-up where any part of your body can be sliced off. With your mind downloaded into a robot gladiator, you must survive the sinister trials of the arena."
+      },
+      {
+        "item_key": "cdabe708629b6e2f",
+        "section": "free",
+        "title": "Sky: Children of the Light",
+        "url": "https://store.steampowered.com/app/2325290/",
+        "message_id": "1506499810998489119",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-05-20T03:32:24.668703+00:00",
+        "description": "A breathtaking open-world adventure awaits! Explore magical realms, restore lost light, and form wordless bonds with players worldwide. Complete quests and solve puzzles in seasonal events that celebrate kindness, discovery, and heartfelt connection."
+      },
+      {
+        "item_key": "e132db62a13c2fea",
+        "section": "free",
+        "title": "Toram Online",
+        "url": "https://store.steampowered.com/app/1827180/",
+        "message_id": "1506499817780674650",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-05-20T03:32:26.430552+00:00",
+        "description": "The MMORPG of a massive and magnificent fantasy! Let's explore the MMO world!"
+      },
+      {
+        "item_key": "403862495ee9c4f8",
+        "section": "free",
+        "title": "Path of Exile",
+        "url": "https://store.steampowered.com/app/238960/",
+        "message_id": "1506499825200533554",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-05-20T03:32:28.299735+00:00",
+        "description": "You are an Exile, struggling to survive on the dark continent of Wraeclast, as you fight to earn power that will allow you to exact your revenge against those who wronged you. Path of Exile is an online Action RPG set in a dark fantasy world. The game is completely free and will never be pay-to-win."
+      },
+      {
+        "item_key": "675cc631a93c9ee2",
+        "section": "free",
+        "title": "Dragon Traveler",
+        "url": "https://store.steampowered.com/app/4104440/",
+        "message_id": "1506499833173901464",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-05-20T03:32:30.033089+00:00",
+        "description": "Love x Comedy x Isekai = The Ultimate Bishoujo RPG! Welcome to the wild world of Dragon Traveler!"
+      },
+      {
+        "item_key": "b936ee5ca6338fca",
+        "section": "free",
+        "title": "World of Warships: Legends",
+        "url": "https://store.steampowered.com/app/2964090/",
+        "message_id": "1506499846327238776",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-05-20T03:32:33.244147+00:00",
+        "description": "Join this free-to-play PvP online naval shooter with fast-paced combat, easy-to-learn gameplay, intuitive controls, and cross-platform play on Steam, console, and mobile. Choose from 600+ warships and 150+ Commanders, and master tactics on diverse maps. Play now and become a legend!"
+      },
+      {
+        "item_key": "7796da88ae6febc7",
+        "section": "paid",
+        "title": "Stormworks: Build and Rescue",
+        "url": "https://store.steampowered.com/app/573090/",
+        "message_id": "1506499866660966510",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-05-20T03:32:37.929520+00:00",
+        "description": "Join a world where you design, create and pilot your own air sea rescue service. Release your inner hero as you battle fierce storms out at sea to rescue those in need."
+      },
+      {
+        "item_key": "d40a3415a38e52c3",
+        "section": "paid",
+        "title": "MARVEL Cosmic Invasion",
+        "url": "https://store.steampowered.com/app/2753970/",
+        "message_id": "1506499873300545572",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-05-20T03:32:39.643459+00:00",
+        "description": "A cosmic battle awaits! Choose between 15 Marvel Super Heroes in this frenetic action beat ‘em up to fight against the deadly Annihilation Wave threatening the galaxy. From New York City to the depths of the Negative Zone, the future of the Marvel Universe will be fought for across the stars!"
+      },
+      {
+        "item_key": "d7b9752508f80d7c",
+        "section": "paid",
+        "title": "Abyssus",
+        "url": "https://store.steampowered.com/app/1721110/",
+        "message_id": "1506499880695365724",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-05-20T03:32:41.479030+00:00",
+        "description": "Choose your loadout, blast through the corrupted denizens of a sunken civilization, and wield godly powers in Abyssus – a fast-paced 1-to-4 players FPS and roguelite brinepunk adventure."
+      },
+      {
+        "item_key": "59759933af37b139",
+        "section": "paid",
+        "title": "Farm to Table",
+        "url": "https://store.steampowered.com/app/3582250/",
+        "message_id": "1506499888270147745",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-05-20T03:32:43.147777+00:00",
+        "description": "A farming & restaurant management sim with base building elements. Grow in backyard to cook & serve! Discover new recipes by exploring ingredients on the island; gather, fish, raise animals & produce with machines. Manage resources, hire staff & grow your organic business into a 5-star restaurant!"
+      },
+      {
+        "item_key": "898721e945a9ee50",
+        "section": "paid",
+        "title": "Gamble With Your Friends",
+        "url": "https://store.steampowered.com/app/3892270/",
+        "message_id": "1506499895295606935",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-05-20T03:32:44.739477+00:00",
+        "description": "An online 1-6 player co-op \"casino crawler\" where you and your friends share one bank account and one massive debt. Gamble, buy sketchy items, make terrible decisions, and climb an ominous casino tower to hit your loan shark’s daily quota in 5 minutes - or face the consequences."
       }
     ]
   }
