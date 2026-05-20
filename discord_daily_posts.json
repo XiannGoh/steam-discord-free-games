@@ -1,244 +1,4 @@
 {
-  "2026-04-19": {
-    "run_state": {
-      "section_headers": {
-        "free": {
-          "message_id": "1495313264303669420",
-          "channel_id": "592534544708796474",
-          "posted_at_utc": "2026-04-19T06:41:04.259615+00:00"
-        },
-        "paid": {
-          "message_id": "1495313312550879354",
-          "channel_id": "592534544708796474",
-          "posted_at_utc": "2026-04-19T06:41:15.652392+00:00"
-        }
-      },
-      "last_attempt_at_utc": "2026-04-19T15:27:25.793738+00:00",
-      "intro": {
-        "message_id": "1495313255038455828",
-        "channel_id": "592534544708796474",
-        "posted_at_utc": "2026-04-19T06:41:02.434454+00:00"
-      },
-      "footer": {
-        "message_id": "1495313361510862980",
-        "channel_id": "592534544708796474",
-        "posted_at_utc": "2026-04-19T06:41:27.269368+00:00"
-      },
-      "completed": true,
-      "completed_at_utc": "2026-04-19T15:27:48.101414+00:00"
-    },
-    "items": [
-      {
-        "item_key": "a4991221227e5105",
-        "section": "free",
-        "title": "MU: Dark Epoch",
-        "url": "https://store.steampowered.com/app/3953520/",
-        "message_id": "1495313271975051434",
-        "channel_id": "592534544708796474",
-        "source_type": "steam_free",
-        "posted_at": "2026-04-19T06:41:06.124640+00:00",
-        "description": "MU: Dark Epoch is a fantasy MMORPG mobile game that combines high quality, fast-paced gameplay, and innovative features. As the best MU instalment in the series by far, it offers impressive dynamic costumes and stunning graphic performance. Log in now and win the Archangel Set!"
-      },
-      {
-        "item_key": "8e1cc50f84da8217",
-        "section": "free",
-        "title": "MLB 9 Innings Rivals 26",
-        "url": "https://store.steampowered.com/app/2569510/",
-        "message_id": "1495313279776722985",
-        "channel_id": "592534544708796474",
-        "source_type": "steam_free",
-        "posted_at": "2026-04-19T06:41:08.011529+00:00",
-        "description": "Take your rivalries to the next level in MLB 9 Innings Rivals 26!"
-      },
-      {
-        "item_key": "bd248b7aef377598",
-        "section": "free",
-        "title": "Bongo Cat",
-        "url": "https://store.steampowered.com/app/3419430/",
-        "message_id": "1495313287708020858",
-        "channel_id": "592534544708796474",
-        "source_type": "steam_free",
-        "posted_at": "2026-04-19T06:41:09.988755+00:00",
-        "description": "Bongo cat needs your help. Bongo cat needz more hatz!!! Every time you press a key, Bongo cat will punch your taskbar. Type, click, play, work to collect more points. Which hats will you find?"
-      },
-      {
-        "item_key": "a809850843f50965",
-        "section": "free",
-        "title": "Super Animal Royale",
-        "url": "https://store.steampowered.com/app/843380/",
-        "message_id": "1495313296163864616",
-        "channel_id": "592534544708796474",
-        "source_type": "steam_free",
-        "posted_at": "2026-04-19T06:41:12.015640+00:00",
-        "description": "Welcome to the coziest way to kill your friends. Super Animal Royale is a 64-player, top-down 2D battle royale where adorably murderous animals fight tooth, claw, and machine gun. Then, relax in Super Animal World with fishing, hamsterball races, and story quests before the next fight to the death."
-      },
-      {
-        "item_key": "8ff3618505b839d7",
-        "section": "free",
-        "title": "Trove",
-        "url": "https://store.steampowered.com/app/304050/",
-        "message_id": "1495313304590090280",
-        "channel_id": "592534544708796474",
-        "source_type": "steam_free",
-        "posted_at": "2026-04-19T06:41:13.900977+00:00",
-        "description": "Grab your friends, hone your blades, and set off for an epic procedurally generated adventure in Trove! Battle the Shadow in realms filled with dungeons and items created by your fellow players. Whether hunting treasure or building realms of your own, it’s never been this good to be square!"
-      },
-      {
-        "item_key": "9f0eebf9c5d4a700",
-        "section": "paid",
-        "title": "The Lord of the Rings: Return to Moria™",
-        "url": "https://store.steampowered.com/app/2933130/",
-        "message_id": "1495313319437799505",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-04-19T06:41:17.509838+00:00",
-        "description": "A survival crafting adventure set in the Fourth Age of Middle-earth. Lead the Dwarves to reclaim Moria - mine, build, and battle through procedurally generated depths alone or with up to 8 players in co-op. It is time to return to Moria!"
-      },
-      {
-        "item_key": "f8b545abb1757657",
-        "section": "paid",
-        "title": "SnowRunner",
-        "url": "https://store.steampowered.com/app/1465360/",
-        "message_id": "1495313327830728774",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-04-19T06:41:19.457149+00:00",
-        "description": "Get ready for the next-generation off-road experience! Drive powerful vehicles and overcome extreme open environments to complete dozens of challenging missions solo or with up to 3 friends!"
-      },
-      {
-        "item_key": "fa26a8a3e9fd4c3b",
-        "section": "paid",
-        "title": "Warhammer 40,000: Darktide",
-        "url": "https://store.steampowered.com/app/1361210/",
-        "message_id": "1495313335577608306",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-04-19T06:41:21.520497+00:00",
-        "description": "Take back the city of Tertium from hordes of bloodthirsty foes in this intense and brutal action shooter. Warhammer 40,000: Darktide is the new co-op focused experience from the award-winning team behind the Vermintide series. As Tertium falls, Rejects Will Rise."
-      },
-      {
-        "item_key": "adaa39133c1af083",
-        "section": "paid",
-        "title": "State of Decay 2: Juggernaut Edition",
-        "url": "https://store.steampowered.com/app/495420/",
-        "message_id": "1495313344268206152",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-04-19T06:41:23.393678+00:00",
-        "description": "The dead have risen and civilization has fallen. Now it's up to you to gather survivors, scavenge for resources and build a community in a post-apocalyptic world – a world where you define what it means to survive in this ultimate zombie survival simulation."
-      },
-      {
-        "item_key": "5b1db5f7760bbedf",
-        "section": "paid",
-        "title": "The Planet Crafter",
-        "url": "https://store.steampowered.com/app/1284190/",
-        "message_id": "1495313353005072544",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-04-19T06:41:25.482231+00:00",
-        "description": "A space survival open world terraforming crafting game, designed for 1 to 10 players. Alter the ecosystem of an inhospitable planet to render it habitable for humanity. Survive, gather resources, and build your base. Then, generate oxygen, warmth, and pressure to create a brand new biosphere."
-      },
-      {
-        "item_key": "28f48d0f24928ff1",
-        "section": "free",
-        "title": "Milky Way Idle",
-        "url": "https://store.steampowered.com/app/3224420/",
-        "message_id": "1495445735217299588",
-        "channel_id": "592534544708796474",
-        "source_type": "steam_free",
-        "posted_at": "2026-04-19T15:27:28.237313+00:00",
-        "description": "Milky Way Idle: A multiplayer idle RPG where automation replaces grinding. Level up skills, gather resources, craft powerful items, and battle monsters—all while AFK. Trade in the marketplace, join a guild, team up for party combat, and socialize in chat as you progress effortlessly."
-      },
-      {
-        "item_key": "2c4b7a4b3bbad73f",
-        "section": "free",
-        "title": "Bit Heroes Quest",
-        "url": "https://store.steampowered.com/app/666860/",
-        "message_id": "1495445744331653222",
-        "channel_id": "592534544708796474",
-        "source_type": "steam_free",
-        "posted_at": "2026-04-19T15:27:30.188705+00:00",
-        "description": "Collect and craft thousands of pieces of loot to increase your power. Build your team by capturing monsters and bosses to fight at your side in old school, turn-based combat. Prove you’re the mightiest hero in the land by competing in the PvP arena, Raids, and weekly events for awesome prizes!"
-      },
-      {
-        "item_key": "0c8811f9c34d64ca",
-        "section": "free",
-        "title": "Pool 2D - Poolians",
-        "url": "https://store.steampowered.com/app/891040/",
-        "message_id": "1495445753034965084",
-        "channel_id": "592534544708796474",
-        "source_type": "steam_free",
-        "posted_at": "2026-04-19T15:27:32.123109+00:00",
-        "description": "Pool 2D is a free pool game including 8-ball,9-ball,15-ball,3-ball,rotation and blackjack. The graphics are spectacular and the physics are realistic and accurate. Whether you play against the computer or against real players from all over the world online, the action is smooth and fast paced!"
-      },
-      {
-        "item_key": "cfae554669270e9e",
-        "section": "free",
-        "title": "Sim Companies",
-        "url": "https://store.steampowered.com/app/2253720/",
-        "message_id": "1495445760701894901",
-        "channel_id": "592534544708796474",
-        "source_type": "steam_free",
-        "posted_at": "2026-04-19T15:27:33.793360+00:00",
-        "description": "Become a Business Tycoon. Build your own company from the ground up. Do business in a virtual economy with players all around the world! Gain valuable business skills for free. An advanced, proprietary, Economy simulation model is used to deliver the best gaming experience."
-      },
-      {
-        "item_key": "8a05dde0e3ab0400",
-        "section": "free",
-        "title": "Operation: New Earth",
-        "url": "https://store.steampowered.com/app/528740/",
-        "message_id": "1495445767949779014",
-        "channel_id": "592534544708796474",
-        "source_type": "steam_free",
-        "posted_at": "2026-04-19T15:27:35.734501+00:00",
-        "description": "Operation: New Earth is an intense sci-fi multiplayer strategy game in which you must command an advanced military facility to defend Earth from a hostile alien invasion. Create an alliance, gather resources, and unlock advanced technology to level up your stronghold!"
-      },
-      {
-        "item_key": "8db85819a88a959b",
-        "section": "paid",
-        "title": "Warhammer: Vermintide 2",
-        "url": "https://store.steampowered.com/app/552500/",
-        "message_id": "1495445783368044716",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-04-19T15:27:39.493693+00:00",
-        "description": "The critically acclaimed Vermintide 2 is a visually stunning and groundbreaking melee action game pushing the boundaries of the first person co-op genre. Join the fight now!"
-      },
-      {
-        "item_key": "88955c2b39a4d7d3",
-        "section": "paid",
-        "title": "Grey Hack",
-        "url": "https://store.steampowered.com/app/605230/",
-        "message_id": "1495445791945265173",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-04-19T15:27:41.613172+00:00",
-        "description": "Grey Hack is a massively multiplayer hacking simulator game. You're a hacker with full freedom to act as you wish on a vast network of procedurally generated computers."
-      },
-      {
-        "item_key": "937f5daef005cdbb",
-        "section": "paid",
-        "title": "Total War: THREE KINGDOMS",
-        "url": "https://store.steampowered.com/app/779340/",
-        "message_id": "1495445800749105232",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-04-19T15:27:43.629289+00:00",
-        "description": "Total War: THREE KINGDOMS is the first in the award-winning series to recreate epic conflict across ancient China. Combining a gripping turn-based campaign of empire-building & conquest with stunning real-time battles, THREE KINGDOMS redefines the series in an age of heroes & legends."
-      },
-      {
-        "item_key": "1589fd528875a09d",
-        "section": "paid",
-        "title": "Gang Beasts",
-        "url": "https://store.steampowered.com/app/285900/",
-        "message_id": "1495445809251090513",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-04-19T15:27:45.419038+00:00",
-        "description": "Gang Beasts is a silly multiplayer party game with surly gelatinous characters, brutal slapstick fight sequences, and absurd hazardous environments, set in the mean streets of Beef City."
-      }
-    ]
-  },
   "2026-04-20": {
     "run_state": {
       "section_headers": {
@@ -6874,5 +6634,146 @@
       "skipped_reason": "no_eligible_winners",
       "updated_at_utc": "2026-05-20T00:02:53.167216+00:00"
     }
+  },
+  "2026-05-20": {
+    "run_state": {
+      "section_headers": {
+        "free": {
+          "message_id": "1506460422293946448",
+          "channel_id": "592534544708796474",
+          "posted_at_utc": "2026-05-20T00:55:53.684712+00:00"
+        },
+        "paid": {
+          "message_id": "1506460471648190504",
+          "channel_id": "592534544708796474",
+          "posted_at_utc": "2026-05-20T00:56:05.354632+00:00"
+        }
+      },
+      "last_attempt_at_utc": "2026-05-20T00:55:48.950612+00:00",
+      "intro": {
+        "message_id": "1506460405067677726",
+        "channel_id": "592534544708796474",
+        "posted_at_utc": "2026-05-20T00:55:52.040556+00:00"
+      },
+      "footer": {
+        "message_id": "1506460518720733244",
+        "channel_id": "592534544708796474",
+        "posted_at_utc": "2026-05-20T00:56:16.641048+00:00"
+      },
+      "completed": true,
+      "completed_at_utc": "2026-05-20T00:56:17.849634+00:00"
+    },
+    "items": [
+      {
+        "item_key": "eef603b2c0988486",
+        "section": "free",
+        "title": "World Of Robots",
+        "url": "https://store.steampowered.com/app/576430/",
+        "message_id": "1506460429684310026",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-05-20T00:55:56.069539+00:00",
+        "description": "World of Robots is the tactical online shooter with simple controls"
+      },
+      {
+        "item_key": "50aee74db95f6af3",
+        "section": "free",
+        "title": "Navy War: Battleship Games",
+        "url": "https://store.steampowered.com/app/1991850/",
+        "message_id": "1506460439515496528",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-05-20T00:55:58.042373+00:00",
+        "description": "War & battle ships simulator PvP game with friends. Craft your modern ship fleet"
+      },
+      {
+        "item_key": "b685a0450e71e9ef",
+        "section": "free",
+        "title": "Darwin Project",
+        "url": "https://store.steampowered.com/app/544920/",
+        "message_id": "1506460447610765504",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-05-20T00:56:00.211497+00:00",
+        "description": "In Darwin Project, ten inmates must survive the elements, track each other, fight, craft tools, and use their social skills to be the last one standing. It's a unique take on battle royale with a Show Director to influence the match and Spectator Interactions to create a one-of-a-kind game show."
+      },
+      {
+        "item_key": "154b21db34c3494e",
+        "section": "free",
+        "title": "Palace of Cards",
+        "url": "https://store.steampowered.com/app/347950/",
+        "message_id": "1506460456263614596",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-05-20T00:56:01.817507+00:00",
+        "description": "Play cards online with other players from around the world and choose from 6 unique games: Rummy, Solitaire, Mau-Mau (Crazy Eights), Skat, Sheepshead & Doppelkopf. Each game comes with its own community, league systems, clubs, statistics & insights, and much more. Play now, for free!"
+      },
+      {
+        "item_key": "5687e558662514c9",
+        "section": "free",
+        "title": "WHO'S WHO 2.0",
+        "url": "https://store.steampowered.com/app/3391260/",
+        "message_id": "1506460463418970223",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-05-20T00:56:03.820538+00:00",
+        "description": "Who's Who 2.0 is back with brand new team! Looking for another dynamic party game? Each characters now holds unique skills which now will impact each modes with its own advantages! You can play solo, or party up with your friends and become the winner by eliminating the real players among the NPCs."
+      },
+      {
+        "item_key": "34ce8602a3f1a782",
+        "section": "paid",
+        "title": "Alchemy Factory",
+        "url": "https://store.steampowered.com/app/3669570/",
+        "message_id": "1506460478543626392",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-05-20T00:56:07.417519+00:00",
+        "description": "Craft your workshop as an alchemist!‌ Harness arcane devices to automate crafting. Sell alchemical goods, fulfill commissions, and rise to become a renowned alchemy magnate. ‌Multiplayer Supported!‌ Invite master designers to (ahem) contribute their expertise—let them optimize your production lines!"
+      },
+      {
+        "item_key": "519c5d71d46932dd",
+        "section": "paid",
+        "title": "Ranger’s Path: National Park Simulator",
+        "url": "https://store.steampowered.com/app/2502780/",
+        "message_id": "1506460486613336167",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-05-20T00:56:09.026796+00:00",
+        "description": "Begin your park ranger journey in Ranger’s Path: National Park Simulator. Maintain trails, assist visitors, check permits and respond to emergencies. Explore diverse biomes and observe varied animal behaviors across a wide range of species."
+      },
+      {
+        "item_key": "b5819e9102410df6",
+        "section": "paid",
+        "title": "Solar Nations 2",
+        "url": "https://store.steampowered.com/app/2275440/",
+        "message_id": "1506460493609439302",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-05-20T00:56:11.057202+00:00",
+        "description": "In this Grand Strategy game, you take control of the Solar System's Great Powers in 2092 and weather the storm of change as you navigate the uncertain waters of the future. Control the greatest military forces in the world and wage wars on an epic scale: outer space is yours to conquer!"
+      },
+      {
+        "item_key": "b402f094e955dcb3",
+        "section": "paid",
+        "title": "LEGO® Batman™ 3: Beyond Gotham",
+        "url": "https://store.steampowered.com/app/313690/",
+        "message_id": "1506460501994115223",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-05-20T00:56:12.836077+00:00",
+        "description": "The Caped Crusader joins forces with the super heroes of the DC Comics universe and blasts off to outer space to stop the evil Brainiac from destroying Earth."
+      },
+      {
+        "item_key": "5119fd7379b42c8c",
+        "section": "paid",
+        "title": "Clone Drone in the Danger Zone",
+        "url": "https://store.steampowered.com/app/597170/",
+        "message_id": "1506460509644394516",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-05-20T00:56:14.957479+00:00",
+        "description": "Clone Drone in the Danger Zone is a robot voxel slice-em-up where any part of your body can be sliced off. With your mind downloaded into a robot gladiator, you must survive the sinister trials of the arena."
+      }
+    ]
   }
 }
