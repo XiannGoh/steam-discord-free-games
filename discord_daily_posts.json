@@ -6868,6 +6868,11 @@
         "posted_at": "2026-05-19T21:47:48.928831+00:00",
         "description": "100% Orange Juice is a digital multiplayer board game populated by developer Orange Juice's all-star cast. Characters from Flying Red Barrel, QP Shooting, Suguri and Sora come together with all-new characters to duke it out... with dice."
       }
-    ]
+    ],
+    "winners_state": {
+      "status": "skipped",
+      "skipped_reason": "no_eligible_winners",
+      "updated_at_utc": "2026-05-20T00:02:53.167216+00:00"
+    }
   }
 }
