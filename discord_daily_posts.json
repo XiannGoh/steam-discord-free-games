@@ -6639,29 +6639,29 @@
     "run_state": {
       "section_headers": {
         "free": {
-          "message_id": "1506499803998326884",
+          "message_id": "1506527804676636712",
           "channel_id": "592534544708796474",
-          "posted_at_utc": "2026-05-20T03:32:23.043687+00:00"
+          "posted_at_utc": "2026-05-20T05:23:39.306187+00:00"
         },
         "paid": {
-          "message_id": "1506499854061408298",
+          "message_id": "1506527853569638420",
           "channel_id": "592534544708796474",
-          "posted_at_utc": "2026-05-20T03:32:36.248440+00:00"
+          "posted_at_utc": "2026-05-20T05:23:50.637958+00:00"
         }
       },
-      "last_attempt_at_utc": "2026-05-20T03:32:22.410327+00:00",
+      "last_attempt_at_utc": "2026-05-20T05:23:38.162238+00:00",
       "intro": {
         "message_id": "1506460405067677726",
         "channel_id": "592534544708796474",
         "posted_at_utc": "2026-05-20T00:55:52.040556+00:00"
       },
       "footer": {
-        "message_id": "1506499903139090554",
+        "message_id": "1506527907261190224",
         "channel_id": "592534544708796474",
-        "posted_at_utc": "2026-05-20T03:32:46.580059+00:00"
+        "posted_at_utc": "2026-05-20T05:24:03.418190+00:00"
       },
       "completed": true,
-      "completed_at_utc": "2026-05-20T03:32:47.789313+00:00"
+      "completed_at_utc": "2026-05-20T05:24:04.627566+00:00"
     },
     "items": [
       {
@@ -6883,6 +6883,116 @@
         "source_type": "paid_under_20",
         "posted_at": "2026-05-20T03:32:44.739477+00:00",
         "description": "An online 1-6 player co-op \"casino crawler\" where you and your friends share one bank account and one massive debt. Gamble, buy sketchy items, make terrible decisions, and climb an ominous casino tower to hit your loan shark’s daily quota in 5 minutes - or face the consequences."
+      },
+      {
+        "item_key": "15d0e1ced46d8127",
+        "section": "free",
+        "title": "Doomsday × Ghost in the Shell",
+        "url": "https://store.steampowered.com/app/2439510/",
+        "message_id": "1506527813392400424",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-05-20T05:23:41.157450+00:00",
+        "description": "Fight the Posthuman crisis in the Ghost in the Shell collab!"
+      },
+      {
+        "item_key": "dc8ee5414a02bb9d",
+        "section": "free",
+        "title": "Brighter Shores",
+        "url": "https://store.steampowered.com/app/2791440/",
+        "message_id": "1506527820732432458",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-05-20T05:23:42.851614+00:00",
+        "description": "Brighter Shores is an all new adventure from award winning MMORPG designer Andrew Gower. It is an enchanting point-and-click style RPG with hundreds of hours of gameplay, set in a land of magic and mysteries, with a huge number of professions to try, and something new to find around every corner."
+      },
+      {
+        "item_key": "1d6ea98507fdd211",
+        "section": "free",
+        "title": "Legend of YMIR",
+        "url": "https://store.steampowered.com/app/4172530/",
+        "message_id": "1506527828194103367",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-05-20T05:23:44.918433+00:00",
+        "description": "Forge your destiny in Legend of YMIR, a next-generation MMORPG inspired by Norse mythology and powered by Unreal Engine 5. Master skill-based combat, lead your clan to glory in massive server wars, and carve your name among the legends."
+      },
+      {
+        "item_key": "7d1c00171c996fe9",
+        "section": "free",
+        "title": "World of Warplanes",
+        "url": "https://store.steampowered.com/app/790710/",
+        "message_id": "1506527837090222150",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-05-20T05:23:46.775195+00:00",
+        "description": "World of Warplanes is an aerial combat MMO action game set in the Golden Age of military aviation. The game throws players into a never-ending battle for dominance of the skies."
+      },
+      {
+        "item_key": "90039f17c31caa39",
+        "section": "free",
+        "title": "Soul Dossier",
+        "url": "https://store.steampowered.com/app/1520470/",
+        "message_id": "1506527844719661136",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-05-20T05:23:48.630214+00:00",
+        "description": "Soul Dossier is a multiplayer game based on Oriental culture (5vS1). The game is based on a variety of traditional Oriental cultures, including five elements, eight diagrams and folklore."
+      },
+      {
+        "item_key": "d4bb643a9d9a8fe9",
+        "section": "paid",
+        "title": "Super Bunny Man",
+        "url": "https://store.steampowered.com/app/673750/",
+        "message_id": "1506527860733513750",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-05-20T05:23:52.415573+00:00",
+        "description": "A physics-based co-op platformer about a guy in a rabbit costume! Team up with a friend or three (local or online) to beat levels, find hidden carrots and race against the clock. Experience bunny madness. Embrace carrot chaos. Become Super Bunny Man."
+      },
+      {
+        "item_key": "5026ad9a19a58f7c",
+        "section": "paid",
+        "title": "Cluckmech Oasis",
+        "url": "https://store.steampowered.com/app/2453360/",
+        "message_id": "1506527868367274085",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-05-20T05:23:54.127651+00:00",
+        "description": "Cluckmech Oasis, a top-down shooting Roguelike tower defense game. Play as the Warcluck and lead your team of animal heroes in a fight for survival. Collect, build and upgrade defenses, and engage in intense battle against waves of plant enemies."
+      },
+      {
+        "item_key": "9cc8c353d8f9ea4d",
+        "section": "paid",
+        "title": "Voyagers of Nera",
+        "url": "https://store.steampowered.com/app/2686630/",
+        "message_id": "1506527875669557248",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-05-20T05:23:56.204698+00:00",
+        "description": "Voyagers of Nera is a cooperative survival-crafting game where you must survive a magical ocean world brimming with lost spirits and deadly monsters. Sail to distant islands, build beautiful villages and surf across the waves with up to 10 players."
+      },
+      {
+        "item_key": "768e82721d7436f2",
+        "section": "paid",
+        "title": "We Need To Go Deeper",
+        "url": "https://store.steampowered.com/app/307110/",
+        "message_id": "1506527890634833931",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-05-20T05:23:59.529844+00:00",
+        "description": "DIVE. DISCOVER. DIE. Crew a submarine with friends in We Need To Go Deeper - a 2-4-player cooperative submarine roguelike set in a Verne-inspired undersea universe."
+      },
+      {
+        "item_key": "381218f910dfc584",
+        "section": "paid",
+        "title": "CarX Street",
+        "url": "https://store.steampowered.com/app/1114150/",
+        "message_id": "1506527897882595380",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-05-20T05:24:01.394139+00:00",
+        "description": "Conquer mountain roads, highways, and city streets. Build your dream car with detailed tuning that unleashes the potential of “CarX Technology”© physics. Take part in thrilling races, enjoying realistic gameplay and dynamic driving."
       }
     ]
   }
