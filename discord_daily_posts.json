@@ -1,183 +1,4 @@
 {
-  "2026-04-20": {
-    "run_state": {
-      "section_headers": {
-        "free": {
-          "message_id": "1495833746233098241",
-          "channel_id": "592534544708796474",
-          "posted_at_utc": "2026-04-20T17:09:17.495036+00:00"
-        },
-        "paid": {
-          "message_id": "1495833830639272227",
-          "channel_id": "592534544708796474",
-          "posted_at_utc": "2026-04-20T17:09:36.981408+00:00"
-        },
-        "instagram": {
-          "message_id": "1495833883412008990",
-          "channel_id": "592534544708796474",
-          "posted_at_utc": "2026-04-20T17:09:49.363820+00:00"
-        }
-      },
-      "last_attempt_at_utc": "2026-04-20T17:09:13.882989+00:00",
-      "intro": {
-        "message_id": "1495833736833536131",
-        "channel_id": "592534544708796474",
-        "posted_at_utc": "2026-04-20T17:09:15.039178+00:00"
-      },
-      "footer": {
-        "message_id": "1495833996398166127",
-        "channel_id": "592534544708796474",
-        "posted_at_utc": "2026-04-20T17:10:16.331854+00:00"
-      },
-      "completed": true,
-      "completed_at_utc": "2026-04-20T17:10:17.541549+00:00"
-    },
-    "items": [
-      {
-        "item_key": "33fdce47595ecdad",
-        "section": "free",
-        "title": "Shadowbane: Resurgence",
-        "url": "https://store.steampowered.com/app/4371680/",
-        "message_id": "1495833756982968473",
-        "channel_id": "592534544708796474",
-        "source_type": "steam_free",
-        "posted_at": "2026-04-20T17:09:19.649380+00:00",
-        "description": "A classic dark fantasy open-world MMORPG with unrestricted global PVP & a player-driven dynamic world. 12 unique races, flexible 22+48 class system. Build fortresses, conquer kingdoms, reshape the continent. Steam version supports multi-systems, no pay-to-win, hardcore fair gameplay."
-      },
-      {
-        "item_key": "02fc3e45178157d6",
-        "section": "free",
-        "title": "Hired Ops",
-        "url": "https://store.steampowered.com/app/374280/",
-        "message_id": "1495833765866508470",
-        "channel_id": "592534544708796474",
-        "source_type": "steam_free",
-        "posted_at": "2026-04-20T17:09:23.267727+00:00",
-        "description": "Hired Ops is a session-based online shooter dedicated to fierce conflicts between rival mercenary groups battling on a global scale."
-      },
-      {
-        "item_key": "c4e1a52dcfe89648",
-        "section": "free",
-        "title": "Eternal Card Game",
-        "url": "https://store.steampowered.com/app/531640/",
-        "message_id": "1495833785009443040",
-        "channel_id": "592534544708796474",
-        "source_type": "steam_free",
-        "posted_at": "2026-04-20T17:09:33.201023+00:00",
-        "description": "Six-guns and sorcery collide in Eternal, the new strategy card game of unlimited choices and unbelievable fun. Eternal brings AAA pace and polish to the infinite possibilities of a deep strategy card game. The only limits are your own creativity."
-      },
-      {
-        "item_key": "8e1a3b20e8b8b78a",
-        "section": "free",
-        "title": "AirMech",
-        "url": "https://store.steampowered.com/app/206500/",
-        "message_id": "1495833822204526594",
-        "channel_id": "592534544708796474",
-        "source_type": "steam_free",
-        "posted_at": "2026-04-20T17:09:35.110195+00:00",
-        "description": "AirMech® Strike is a fast paced Action-RTS game that can be played solo, coop, or competitively online. Earn Kudos and Experience in battle and unlock a wide collection of AirMechs and Units while you practice the perfect strategy to emerge victorious!"
-      },
-      {
-        "item_key": "09a2d3caec706660",
-        "section": "paid",
-        "title": "Shape of Dreams",
-        "url": "https://store.steampowered.com/app/2444750/",
-        "message_id": "1495833838763376871",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-04-20T17:09:39.233046+00:00",
-        "description": "Shape of Dreams delivers fast-paced top-down roguelite action with chaotic projectile-filled battles, fluid combat, and high-stakes co-op. Play solo or with up to three friends as you dodge overwhelming attacks and unleash devastating builds."
-      },
-      {
-        "item_key": "e9b250a4ec02238f",
-        "section": "paid",
-        "title": "Wobbly Life",
-        "url": "https://store.steampowered.com/app/1211020/",
-        "message_id": "1495833847840116797",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-04-20T17:09:41.603009+00:00",
-        "description": "Wobbly Life is a vibrant open-world physics sandbox. Play with your friends online or in local co-op, with exciting jobs, mini games and wacky story missions. Earn cash to spend in the world on clothes, vehicles and houses. There is a whole Wobbly World out there to explore!"
-      },
-      {
-        "item_key": "70ab44ba6a73667b",
-        "section": "paid",
-        "title": "Echo Point Nova",
-        "url": "https://store.steampowered.com/app/1836730/",
-        "message_id": "1495833858036469923",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-04-20T17:09:43.745078+00:00",
-        "description": "Echo Point Nova is an open-world FPS that offers unparalleled freedom and thrilling speed. Designed for both singleplayer and coop. From the creators of Severed Steel."
-      },
-      {
-        "item_key": "9f5caa4e26717bf6",
-        "section": "paid",
-        "title": "Roots of Pacha",
-        "url": "https://store.steampowered.com/app/1245560/",
-        "message_id": "1495833867133780211",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-04-20T17:09:45.675889+00:00",
-        "description": "The charming and relaxing stone-age farming sim where you live in a thriving community exploring the wonderful world of Pacha. Discover \"ideas,\" domesticate crops, befriend animals, and help your village grow. Play co-op with friends or explore the early days of civilization in single-player."
-      },
-      {
-        "item_key": "14c9b3d09c0bc212",
-        "section": "paid",
-        "title": "Warhammer 40,000: Fire Warrior (Classic)",
-        "url": "https://store.steampowered.com/app/4280930/",
-        "message_id": "1495833874926801026",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-04-20T17:09:47.693794+00:00",
-        "description": "Become an elite Fire Warrior and fight the forces of the Imperium of Man in an action-packed classic FPS. Experience Warhammer 40,000 from a unique T'au perspective with a story full of twists and betrayal."
-      },
-      {
-        "item_key": "ab489bc97c7f286e",
-        "section": "instagram",
-        "title": "@wilfratgaming",
-        "url": "https://www.instagram.com/p/DXXGlIBjdp6/",
-        "message_id": "1495833890504577036",
-        "channel_id": "592534544708796474",
-        "source_type": "instagram",
-        "posted_at": "2026-04-20T17:09:51.359434+00:00",
-        "description": "Corsair Cove! #gamestoplay #gaming #videogames #survivalgames"
-      },
-      {
-        "item_key": "c737b8652b492668",
-        "section": "instagram",
-        "title": "@sharedxp_official",
-        "url": "https://www.instagram.com/p/DXWgCX0DPxS/",
-        "message_id": "1495833899358748783",
-        "channel_id": "592534544708796474",
-        "source_type": "instagram",
-        "posted_at": "2026-04-20T17:09:53.306627+00:00",
-        "description": "Cartel Pilots Wanted is a 2-player co-op smuggling game where you fly dodgy cargo between tropical islands, upgrade y..."
-      },
-      {
-        "item_key": "a7ae3038fddb1f37",
-        "section": "instagram",
-        "title": "@sharedxp_official",
-        "url": "https://www.instagram.com/p/DXUbXgfDAFD/",
-        "message_id": "1495833908577701971",
-        "channel_id": "592534544708796474",
-        "source_type": "instagram",
-        "posted_at": "2026-04-20T17:10:12.546895+00:00",
-        "description": "Windrose is an online pirate survival game where you sail, build, fight, and survive as a crew across a shared world...."
-      },
-      {
-        "item_key": "38d4424bada32026",
-        "section": "instagram",
-        "title": "@wilfratgaming",
-        "url": "https://www.instagram.com/p/DXUfudFjefD/",
-        "message_id": "1495833987682402504",
-        "channel_id": "592534544708796474",
-        "source_type": "instagram",
-        "posted_at": "2026-04-20T17:10:14.521393+00:00",
-        "description": "FINALLY we are getting some good nam combat! #gaming #gamestoplay #hellletloose"
-      }
-    ]
-  },
   "2026-04-21": {
     "run_state": {
       "section_headers": {
@@ -6993,6 +6814,147 @@
         "source_type": "paid_under_20",
         "posted_at": "2026-05-20T05:24:01.394139+00:00",
         "description": "Conquer mountain roads, highways, and city streets. Build your dream car with detailed tuning that unleashes the potential of “CarX Technology”© physics. Take part in thrilling races, enjoying realistic gameplay and dynamic driving."
+      }
+    ]
+  },
+  "2026-05-21": {
+    "run_state": {
+      "section_headers": {
+        "free": {
+          "message_id": "1507058671048327331",
+          "channel_id": "592534544708796474",
+          "posted_at_utc": "2026-05-21T16:33:07.633051+00:00"
+        },
+        "paid": {
+          "message_id": "1507058725138206811",
+          "channel_id": "592534544708796474",
+          "posted_at_utc": "2026-05-21T16:33:20.149612+00:00"
+        }
+      },
+      "last_attempt_at_utc": "2026-05-21T16:33:04.941206+00:00",
+      "intro": {
+        "message_id": "1507058662600999015",
+        "channel_id": "592534544708796474",
+        "posted_at_utc": "2026-05-21T16:33:05.662890+00:00"
+      },
+      "footer": {
+        "message_id": "1507058773053673702",
+        "channel_id": "592534544708796474",
+        "posted_at_utc": "2026-05-21T16:33:31.623018+00:00"
+      },
+      "completed": true,
+      "completed_at_utc": "2026-05-21T16:33:32.831861+00:00"
+    },
+    "items": [
+      {
+        "item_key": "54f4f3b502e550a1",
+        "section": "free",
+        "title": "Mobile Dungeon",
+        "url": "https://store.steampowered.com/app/707710/",
+        "message_id": "1507058679558705252",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-05-21T16:33:09.576904+00:00",
+        "description": "From the universe of Shakes & Fidget, the NEW Team Battle RPG dungeon crawler!"
+      },
+      {
+        "item_key": "cc37ba1d6fa83e79",
+        "section": "free",
+        "title": "Entropia Universe",
+        "url": "https://store.steampowered.com/app/3642750/",
+        "message_id": "1507058687544524820",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-05-21T16:33:11.612439+00:00",
+        "description": "Entropia Universe is a unique massively multiplayer online game (MMO) where virtual assets hold real-world value and players can participate in a thriving virtual sandbox economy."
+      },
+      {
+        "item_key": "1ccfe10be1c8ed69",
+        "section": "free",
+        "title": "Bakery Cafe Simulator: Prologue",
+        "url": "https://store.steampowered.com/app/3669720/",
+        "message_id": "1507058695958433972",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-05-21T16:33:14.879028+00:00",
+        "description": "Start bake, build, and grow your dream bakery cafe with prologue now! Create delicious pastries, design your space, and serve customers. Play solo or with friends in online co-op to expand your business and experience the excitement of running a bustling cafe!"
+      },
+      {
+        "item_key": "b9d5d7beb36faa1d",
+        "section": "free",
+        "title": "Escape Room - Der kranke Kollege",
+        "url": "https://store.steampowered.com/app/1301720/",
+        "message_id": "1507058710072004758",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-05-21T16:33:16.903452+00:00",
+        "description": "You only wanted to make a visit to your sick colleague, but what you encounter is beyond your imagination. Discover the secrets of your colleague and find a way to escape the trap."
+      },
+      {
+        "item_key": "c35ea6a9dae18954",
+        "section": "free",
+        "title": "GraalOnline Era",
+        "url": "https://store.steampowered.com/app/2358050/",
+        "message_id": "1507058718091644949",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-05-21T16:33:18.664157+00:00",
+        "description": "Era is a modern 2D action MMO RPG. Purchase weapons and work with a gang to compete in activities such as special events, base capturing and PvP battles in the Spar Complex, or start your own gang and chart your own path!"
+      },
+      {
+        "item_key": "4f6b0b8c2badac93",
+        "section": "paid",
+        "title": "Holdfast: Nations At War",
+        "url": "https://store.steampowered.com/app/589290/",
+        "message_id": "1507058731949752380",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-05-21T16:33:22.048928+00:00",
+        "description": "Fight on multiple fronts in Holdfast: Nations At War - A multiplayer first and third-person shooter set during the great Napoleonic Era and WW1. Charge into battle with over 150 players per server!"
+      },
+      {
+        "item_key": "ee503fc68685b190",
+        "section": "paid",
+        "title": "LEGO® Star Wars™ - The Complete Saga",
+        "url": "https://store.steampowered.com/app/32440/",
+        "message_id": "1507058739474075842",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-05-21T16:33:23.925351+00:00",
+        "description": "Kick Some Brick in I through VI! Play through all six Star Wars movies in one videogame! Adding new characters, new levels, new features and for the first time ever, the chance to build and battle your way through a fun Star Wars galaxy on your PC!"
+      },
+      {
+        "item_key": "03571ff49faff8aa",
+        "section": "paid",
+        "title": "Over The Top: WWI",
+        "url": "https://store.steampowered.com/app/2778610/",
+        "message_id": "1507058747833319546",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-05-21T16:33:26.029357+00:00",
+        "description": "Join 200-player battles in Over The Top: WWI - an intense shooter set in the gritty backdrop of World War I. Pick your class, choose from a vast arsenal, including rifles, artillery, airplanes and powerful tanks, and experience the chaos of fully destructible battlefields."
+      },
+      {
+        "item_key": "5902341bf02fcb40",
+        "section": "paid",
+        "title": "METAL GEAR & METAL GEAR 2: Solid Snake",
+        "url": "https://store.steampowered.com/app/2131680/",
+        "message_id": "1507058756008284315",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-05-21T16:33:27.898386+00:00",
+        "description": "The first and second title in the METAL GEAR series that established the stealth action genre, as well as the basic mechanics of the series."
+      },
+      {
+        "item_key": "8ba70b9d8b1265fa",
+        "section": "paid",
+        "title": "King of Tokyo - Richard Garfield",
+        "url": "https://store.steampowered.com/app/3232870/",
+        "message_id": "1507058764753141800",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-05-21T16:33:29.890932+00:00",
+        "description": "Play as a kaiju as you destroy everything in your path in this board game! Roll the dice and make the best possible combinations to heal yourself, attack, buy cards or win Victory Points."
       }
     ]
   }
