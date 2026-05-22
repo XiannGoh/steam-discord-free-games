@@ -913,7 +913,7 @@
         "Tuesday": 1,
         "Wednesday": 1,
         "Thursday": 1,
-        "Friday": 1,
+        "Friday": 2,
         "Saturday": 1,
         "Sunday": 1
       },
@@ -950,7 +950,7 @@
           "✅": 0,
           "🌅": 0,
           "☀️": 0,
-          "🌙": 1,
+          "🌙": 2,
           "📝": 0
         },
         "Saturday": {
@@ -1028,6 +1028,10 @@
           "☀️": [],
           "🌙": [
             {
+              "user_id": "137123568952672257",
+              "display_name": "Janithan"
+            },
+            {
               "user_id": "195462430535581708",
               "display_name": "Thomas"
             }
@@ -1060,9 +1064,9 @@
         }
       },
       "best_overlap": {
-        "day": "Monday",
-        "slot": "✅",
-        "count": 1
+        "day": "Friday",
+        "slot": "🌙",
+        "count": 2
       }
     }
   }
