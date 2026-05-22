@@ -6956,6 +6956,76 @@
         "posted_at": "2026-05-21T16:33:29.890932+00:00",
         "description": "Play as a kaiju as you destroy everything in your path in this board game! Roll the dice and make the best possible combinations to heal yourself, attack, buy cards or win Victory Points."
       }
-    ]
+    ],
+    "winners_state": {
+      "intro": {
+        "message_id": "1507171571389829203",
+        "channel_id": "1491294533751799809"
+      },
+      "section_headers": {
+        "paid": {
+          "message_id": "1507171588988997673",
+          "channel_id": "1491294533751799809"
+        }
+      },
+      "winner_messages": {
+        "https://store.steampowered.com/app/1721110/": {
+          "message_id": "1507171659470340258",
+          "channel_id": "1491294533751799809"
+        },
+        "https://store.steampowered.com/app/2686630/": {
+          "message_id": "1507171665673453728",
+          "channel_id": "1491294533751799809"
+        }
+      },
+      "footer": {
+        "message_id": "1507171668462797003",
+        "channel_id": "1491294533751799809"
+      },
+      "message_id": "1507171571389829203",
+      "message_ids": [
+        "1507171571389829203",
+        "1507171588988997673",
+        "1507171659470340258",
+        "1507171665673453728",
+        "1507171668462797003"
+      ],
+      "last_action": "create",
+      "updated_at_utc": "2026-05-22T00:02:07.954125+00:00",
+      "posted_at_utc": "2026-05-22T00:02:07.954138+00:00",
+      "winner_keys": [
+        "https://store.steampowered.com/app/1721110/",
+        "https://store.steampowered.com/app/2686630/"
+      ],
+      "winner_vote_counts": {
+        "https://store.steampowered.com/app/1721110/": 2,
+        "https://store.steampowered.com/app/2686630/": 1
+      },
+      "winner_entries": [
+        {
+          "winner_key": "https://store.steampowered.com/app/1721110/",
+          "section": "paid",
+          "title": "Abyssus",
+          "url": "https://store.steampowered.com/app/1721110/",
+          "description": "Choose your loadout, blast through the corrupted denizens of a sunken civilization, and wield godly powers in Abyssus – a fast-paced 1-to-4 players FPS and roguelite brinepunk adventure.",
+          "human_votes": 2,
+          "voter_names": [
+            "Janithan",
+            "Thomas"
+          ]
+        },
+        {
+          "winner_key": "https://store.steampowered.com/app/2686630/",
+          "section": "paid",
+          "title": "Voyagers of Nera",
+          "url": "https://store.steampowered.com/app/2686630/",
+          "description": "Voyagers of Nera is a cooperative survival-crafting game where you must survive a magical ocean world brimming with lost spirits and deadly monsters. Sail to distant islands, build beautiful villages and surf across the waves with up to 10 players.",
+          "human_votes": 1,
+          "voter_names": [
+            "Thomas"
+          ]
+        }
+      ]
+    }
   }
 }
