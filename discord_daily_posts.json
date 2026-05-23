@@ -7005,6 +7005,11 @@
         "posted_at": "2026-05-23T14:47:24.034085+00:00",
         "description": "Rediscover game night in this tactical RPG where shared strategy shapes every turn. Adventure across the Sunderlands with up to four players in online multiplayer using your mouse & keyboard or play couch co-op using phones as controllers."
       }
-    ]
+    ],
+    "winners_state": {
+      "status": "skipped",
+      "skipped_reason": "no_eligible_winners",
+      "updated_at_utc": "2026-05-23T23:57:25.805768+00:00"
+    }
   }
 }
