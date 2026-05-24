@@ -161,5 +161,34 @@
       "740065988812341280"
     ],
     "last_reminder_local_date": "2026-05-18"
+  },
+  "2026-05-25_to_2026-05-31": {
+    "summary_last_synced_at_utc": "2026-05-23T22:04:38.622223+00:00",
+    "summary_data_signature": "fb9c6ddabdb6d511f8b65992bff893b4fd7619792ee36330b4960ab246d41ba8",
+    "summary_posted": true,
+    "summary_message_id": "1507777950408507464",
+    "summary_message_ids": [
+      "1507777950408507464"
+    ],
+    "summary_message_content": "📊 Availability Summary — May 25–31, 2026\n\n*2 of 14 people responded • 12 still missing*\nMissing: <@150522802292785152> <@161248274970443776> <@162382481369071617> <@164270274928181248> <@204517030395641856> <@239951450082377740> <@245393360490201089> <@277285824935231488> <@321367835525775381> <@412746386271109130> <@711603470544797747> <@740065988812341280>\n*Last updated: May 23, 6:04 PM ET*\n\n**Monday 5/25**\n🌙 1 — Thomas\n\n**Tuesday 5/26**\n🌙 1 — Thomas\n\n**Wednesday 5/27**\n🌙 1 — Thomas\n\n**Thursday 5/28**\n✅ 1 — Janithan\n🌙 1 — Thomas\n\n**Friday 5/29**\n🌙 1 — Thomas\n\n**Saturday 5/30**\n🌙 1 — Thomas\n\n**Sunday 5/31**\n🌙 1 — Thomas",
+    "reminder_message_id": "1507777952648270050",
+    "reminder_message_ids": [
+      "1507777952648270050"
+    ],
+    "reminder_missing_users": [
+      "150522802292785152",
+      "161248274970443776",
+      "162382481369071617",
+      "164270274928181248",
+      "204517030395641856",
+      "239951450082377740",
+      "245393360490201089",
+      "277285824935231488",
+      "321367835525775381",
+      "412746386271109130",
+      "711603470544797747",
+      "740065988812341280"
+    ],
+    "last_reminder_local_date": "2026-05-24"
   }
 }
