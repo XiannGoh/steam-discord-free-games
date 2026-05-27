@@ -1,150 +1,4 @@
 {
-  "2026-04-25": {
-    "run_state": {
-      "section_headers": {
-        "free": {
-          "message_id": "1497621219481227294",
-          "channel_id": "592534544708796474",
-          "posted_at_utc": "2026-04-25T15:32:03.452561+00:00"
-        },
-        "paid": {
-          "message_id": "1497621236312707335",
-          "channel_id": "592534544708796474",
-          "posted_at_utc": "2026-04-25T15:32:07.893968+00:00"
-        },
-        "instagram": {
-          "message_id": "1497621283985424557",
-          "channel_id": "592534544708796474",
-          "posted_at_utc": "2026-04-25T15:32:18.975777+00:00"
-        }
-      },
-      "last_attempt_at_utc": "2026-04-25T15:32:00.965268+00:00",
-      "intro": {
-        "message_id": "1497621210664669346",
-        "channel_id": "592534544708796474",
-        "posted_at_utc": "2026-04-25T15:32:01.862697+00:00"
-      },
-      "footer": {
-        "message_id": "1497621324623904798",
-        "channel_id": "592534544708796474",
-        "posted_at_utc": "2026-04-25T15:32:28.461283+00:00"
-      },
-      "completed": true,
-      "completed_at_utc": "2026-04-25T15:32:29.671881+00:00"
-    },
-    "items": [
-      {
-        "item_key": "aff21777cabefb9a",
-        "section": "free",
-        "title": "Nova: Space Armada",
-        "url": "https://store.steampowered.com/app/1108270/",
-        "message_id": "1497621226355429457",
-        "channel_id": "592534544708796474",
-        "source_type": "steam_free",
-        "posted_at": "2026-04-25T15:32:05.751771+00:00",
-        "description": "An exceptional sci-fi strategy game based on space adventure as its core."
-      },
-      {
-        "item_key": "68865e92f1d94c69",
-        "section": "paid",
-        "title": "We Gotta Go",
-        "url": "https://store.steampowered.com/app/3967470/",
-        "message_id": "1497621245082992773",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-04-25T15:32:09.649336+00:00",
-        "description": "We Gotta Go is a co-op horror comedy that’ll scare the crap out of you—literally. Team up to reach the only bathroom in a haunted mansion before your bowels betray you. Scavenge for items, fend off ghosts, and fight through cursed halls together in a desperate hunt for sweet relief."
-      },
-      {
-        "item_key": "f43d9c8bfc161b38",
-        "section": "paid",
-        "title": "Tiny Tina's Wonderlands",
-        "url": "https://store.steampowered.com/app/1286680/",
-        "message_id": "1497621252456714412",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-04-25T15:32:11.667829+00:00",
-        "description": "Embark on an epic adventure full of whimsy, wonder, and high-powered weaponry! Roll your own multiclass hero then shoot, loot, slash, and cast on a quest to stop the Dragon Lord."
-      },
-      {
-        "item_key": "9539cd54cb523819",
-        "section": "paid",
-        "title": "Super Mega Baseball™ 4",
-        "url": "https://store.steampowered.com/app/1487210/",
-        "message_id": "1497621260312514705",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-04-25T15:32:13.697058+00:00",
-        "description": "Super Mega Baseball™ 4 is where the Legends play. The signature combo of arcade-inspired style and immersive gameplay returns with over 200 baseball Legends and a grand slam of presentation upgrades."
-      },
-      {
-        "item_key": "4aa85fc9ffacc80c",
-        "section": "paid",
-        "title": "Sengoku Dynasty",
-        "url": "https://store.steampowered.com/app/1702010/",
-        "message_id": "1497621268869152841",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-04-25T15:32:15.411272+00:00",
-        "description": "Sengoku Dynasty is the ultimate feudal Japan experience: build villages, grow your community, and shape the open world through combat or economy. The choice is yours alone - or that of up to 4 players in multiplayer co-op!"
-      },
-      {
-        "item_key": "0209ab54ec10d57a",
-        "section": "paid",
-        "title": "Streets of Rage 4",
-        "url": "https://store.steampowered.com/app/985890/",
-        "message_id": "1497621276381155518",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-04-25T15:32:17.230397+00:00",
-        "description": "Amongst the best beat’em up series ever created, jammin’ ‘90s beats and over the top street fighting, the iconic series Streets of Rage comes back with a masterful tribute to and revitalization of the classic action fans adore."
-      },
-      {
-        "item_key": "65548f4fb5af7246",
-        "section": "instagram",
-        "title": "@wilfratgaming",
-        "url": "https://www.instagram.com/p/DXcU8r8jbpj/",
-        "message_id": "1497621291568468108",
-        "channel_id": "592534544708796474",
-        "source_type": "instagram",
-        "posted_at": "2026-04-25T15:32:21.020937+00:00",
-        "description": "Zombutcher! Demo on steam now!  #gaming #gamestoplay"
-      },
-      {
-        "item_key": "e4fb292270db3445",
-        "section": "instagram",
-        "title": "@sharedxp_official",
-        "url": "https://www.instagram.com/p/DXjjs7KDKn9/",
-        "message_id": "1497621299948683347",
-        "channel_id": "592534544708796474",
-        "source_type": "instagram",
-        "posted_at": "2026-04-25T15:32:23.035389+00:00",
-        "description": "Dirty Business — build and run a criminal empire from an underground base with up to four friends in this co-op crime..."
-      },
-      {
-        "item_key": "0b666660b85bceea",
-        "section": "instagram",
-        "title": "@sharedxp_official",
-        "url": "https://www.instagram.com/p/DXjbwJADJrw/",
-        "message_id": "1497621308265992262",
-        "channel_id": "592534544708796474",
-        "source_type": "instagram",
-        "posted_at": "2026-04-25T15:32:24.832625+00:00",
-        "description": "Over The Top: WWI is a 200-player World War I shooter with classes, tanks, planes, artillery, and fully destructible ..."
-      },
-      {
-        "item_key": "8d7f7ca9131e1826",
-        "section": "instagram",
-        "title": "@wilfratgaming",
-        "url": "https://www.instagram.com/p/DXhnGjAjRAm/",
-        "message_id": "1497621315719528630",
-        "channel_id": "592534544708796474",
-        "source_type": "instagram",
-        "posted_at": "2026-04-25T15:32:26.815195+00:00",
-        "description": "#Gothic #ReturnToTheColony #GothicRemake #Gothic1Remake"
-      }
-    ]
-  },
   "2026-04-26": {
     "run_state": {
       "section_headers": {
@@ -6883,6 +6737,147 @@
         "source_type": "paid_under_20",
         "posted_at": "2026-05-25T16:08:22.177416+00:00",
         "description": "ONE PIECE: PIRATE WARRIORS 4 is the latest evolution of PIRATE WARRIORS action! Based on the concept of \"experiencing a real ONE PIECE battlefield,\" buildings will come crashing down during the action and attacks will throw up smoke and dust, placing you in the thick of the ONE PIECE world!"
+      }
+    ]
+  },
+  "2026-05-26": {
+    "run_state": {
+      "section_headers": {
+        "free": {
+          "message_id": "1508876889396347021",
+          "channel_id": "592534544708796474",
+          "posted_at_utc": "2026-05-26T16:58:04.830788+00:00"
+        },
+        "paid": {
+          "message_id": "1508876940029984958",
+          "channel_id": "592534544708796474",
+          "posted_at_utc": "2026-05-26T16:58:16.408339+00:00"
+        }
+      },
+      "last_attempt_at_utc": "2026-05-26T16:58:01.436959+00:00",
+      "intro": {
+        "message_id": "1508876878729969705",
+        "channel_id": "592534544708796474",
+        "posted_at_utc": "2026-05-26T16:58:02.639256+00:00"
+      },
+      "footer": {
+        "message_id": "1508876988088324216",
+        "channel_id": "592534544708796474",
+        "posted_at_utc": "2026-05-26T16:58:27.759248+00:00"
+      },
+      "completed": true,
+      "completed_at_utc": "2026-05-26T16:58:28.968691+00:00"
+    },
+    "items": [
+      {
+        "item_key": "19d29711af410717",
+        "section": "free",
+        "title": "Frontline 1942: Battles of the World War 2",
+        "url": "https://store.steampowered.com/app/2564660/",
+        "message_id": "1508876898485407744",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-05-26T16:58:06.936812+00:00",
+        "description": "Immerse yourself in the times of the Second World War II and become a real hero! Shoot, capture, win – the path to glory is paved with shells!"
+      },
+      {
+        "item_key": "6d8774a24b8a866b",
+        "section": "free",
+        "title": "Nova Empire",
+        "url": "https://store.steampowered.com/app/1962770/",
+        "message_id": "1508876907448635533",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-05-26T16:58:08.951251+00:00",
+        "description": "Build up a Space Empire and establish control of the Galaxy and the Universe! Nova Empire is a multiplayer space game in which the aim is to build your empire and conquer the galaxy in epic space battles against your rivals with other allies worldwide!"
+      },
+      {
+        "item_key": "2ff7701b63b7b2c5",
+        "section": "free",
+        "title": "Combat Arms: Reloaded",
+        "url": "https://store.steampowered.com/app/905640/",
+        "message_id": "1508876915656757419",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-05-26T16:58:10.945975+00:00",
+        "description": "Combat Arms is a multiplayer game, free-to-play modern first-person shooter. The game enlists players into various battlefields across the globe to face-off against other ambitious soldiers of fortune, delivering gamers a high-quality FPS with an extensive arsenal of weapons."
+      },
+      {
+        "item_key": "0e60c97c732e51d5",
+        "section": "free",
+        "title": "Holyday City: Reloaded",
+        "url": "https://store.steampowered.com/app/728730/",
+        "message_id": "1508876923919663285",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-05-26T16:58:12.892120+00:00",
+        "description": "Build, manage & grow your city in Holyday City: Reloaded! An idle clicker game where you're the business tycoon, expanding your metropolis. Master resource & time management to upgrade businesses and thrive. Experience the ultimate town builder adventure with Holyday City."
+      },
+      {
+        "item_key": "ca575b2d4ebb9cfa",
+        "section": "free",
+        "title": "Galaxy Control: 3D Strategy",
+        "url": "https://store.steampowered.com/app/435440/",
+        "message_id": "1508876931792113665",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-05-26T16:58:14.739471+00:00",
+        "description": "Build your base and battle with other players to control the galaxy! Galaxy Control is an ultimate space combat strategy game with fast-paced combats! Gather minerals and extract uranium, defend your base with laser towers, missile turrets, cannons, walls and mines."
+      },
+      {
+        "item_key": "bbe832c5d3641844",
+        "section": "paid",
+        "title": "SYNTHETIK 2",
+        "url": "https://store.steampowered.com/app/1471410/",
+        "message_id": "1508876946866442271",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-05-26T16:58:18.369960+00:00",
+        "description": "SYNTHETIK 2 is a unrelenting tactical-shooter rogue-lite. Play alone or with friends. Loot powerful tech. Experience the next level in gun-play. Upgrade your androids to rival the machine gods!"
+      },
+      {
+        "item_key": "b91e033e0ec43248",
+        "section": "paid",
+        "title": "FINAL FANTASY® XI: Ultimate Collection Seekers Edition",
+        "url": "https://store.steampowered.com/app/230330/",
+        "message_id": "1508876955133673562",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-05-26T16:58:20.174281+00:00",
+        "description": "BEGIN A NEW JOURNEY WITH THE COMPLETE EDITION OF FINAL FANTASY XIEnter an online multiplayer RPG that challenges players to journey through the world of Vana’diel® — a world of fantasy, adventure, and exploration.Heed the call and join players from around the world to become the hero that Vana’diel needs."
+      },
+      {
+        "item_key": "20d13fdf0f16e567",
+        "section": "paid",
+        "title": "The Jackbox Party Pack 6",
+        "url": "https://store.steampowered.com/app/1005300/",
+        "message_id": "1508876962402144389",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-05-26T16:58:22.049694+00:00",
+        "description": "It’s the wildest Party Pack yet, with the absurd deathmatch Trivia Murder Party 2, the weird word circus Dictionarium, the hidden identity game Push The Button, the comedy contest Joke Boat and the offbeat personality test Role Models."
+      },
+      {
+        "item_key": "e6506a2ff9dd8d15",
+        "section": "paid",
+        "title": "The Jackbox Party Pack 4",
+        "url": "https://store.steampowered.com/app/610180/",
+        "message_id": "1508876970824306829",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-05-26T16:58:24.040137+00:00",
+        "description": "The fourth pack in this storied party game franchise features Fibbage 3 and its new game mode, Fibbage: Enough About You; the twisted web game Survive the Internet; the dating contest Monster Seeking Monster; the deranged debate match Bracketeering; and the one-up art game Civic Doodle."
+      },
+      {
+        "item_key": "e1e8f573c5083bd6",
+        "section": "paid",
+        "title": "Magicraft",
+        "url": "https://store.steampowered.com/app/2103140/",
+        "message_id": "1508876979187875963",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-05-26T16:58:26.101777+00:00",
+        "description": "\"Magicraft\" is a Roguelike game that uses a variety of spells to match unimaginable spell effects, and the construction of ultra-high degrees of freedom cannot even be exhausted by developers."
       }
     ]
   }
