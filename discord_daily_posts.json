@@ -1,123 +1,4 @@
 {
-  "2026-04-27": {
-    "run_state": {
-      "section_headers": {
-        "free": {
-          "message_id": "1498385933521784982",
-          "channel_id": "592534544708796474",
-          "posted_at_utc": "2026-04-27T18:10:45.575338+00:00"
-        },
-        "paid": {
-          "message_id": "1498385963515117810",
-          "channel_id": "592534544708796474",
-          "posted_at_utc": "2026-04-27T18:10:52.667787+00:00"
-        }
-      },
-      "last_attempt_at_utc": "2026-04-27T18:10:42.352514+00:00",
-      "intro": {
-        "message_id": "1498385922113146961",
-        "channel_id": "592534544708796474",
-        "posted_at_utc": "2026-04-27T18:10:43.854484+00:00"
-      },
-      "footer": {
-        "message_id": "1498386011712000080",
-        "channel_id": "592534544708796474",
-        "posted_at_utc": "2026-04-27T18:11:04.042784+00:00"
-      },
-      "completed": true,
-      "completed_at_utc": "2026-04-27T18:11:05.253328+00:00"
-    },
-    "items": [
-      {
-        "item_key": "0bff7c2420b4d8ea",
-        "section": "free",
-        "title": "BEACHED",
-        "url": "https://store.steampowered.com/app/1412190/",
-        "message_id": "1498385940555763753",
-        "channel_id": "592534544708796474",
-        "source_type": "steam_free",
-        "posted_at": "2026-04-27T18:10:47.317688+00:00",
-        "description": "A free-to-play, low-poly, open-world survival shooter where you’ll battle other players, explore massive monuments, and fight to stay alive. Build and fortify your base to defend against enemy raids, gather resources, and conquer a harsh, competitive world. Survival means doing whatever it takes."
-      },
-      {
-        "item_key": "929e1ea46294e25f",
-        "section": "free",
-        "title": "Urban Rivals",
-        "url": "https://store.steampowered.com/app/715310/",
-        "message_id": "1498385948067631104",
-        "channel_id": "592534544708796474",
-        "source_type": "steam_free",
-        "posted_at": "2026-04-27T18:10:49.322055+00:00",
-        "description": "Urban Rivals World - for fans and new players! Come to fight and stay for the collection!"
-      },
-      {
-        "item_key": "09d380c01a5af928",
-        "section": "free",
-        "title": "Copa Petrobras de Marcas",
-        "url": "https://store.steampowered.com/app/359800/",
-        "message_id": "1498385956254908567",
-        "channel_id": "592534544708796474",
-        "source_type": "steam_free",
-        "posted_at": "2026-04-27T18:10:51.009931+00:00",
-        "description": "COPA PETROBRAS DE MARCAS is a 100% free official game simulating the thrill of competing wheel-to-wheel with models from various automakers in some of the main Brazilian race tracks."
-      },
-      {
-        "item_key": "e946b3ac2ee1ea96",
-        "section": "paid",
-        "title": "Oddsparks: An Automation Adventure",
-        "url": "https://store.steampowered.com/app/1817800/",
-        "message_id": "1498385970276470977",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-04-27T18:10:54.530160+00:00",
-        "description": "Oddsparks is a blend of automation and real-time strategy for both the die-hard fans of the automation genre and the automation-curious. Explore a strange fantasy world, uncover the mysteries of the past, automate your workshops, and go on adventures with your odd & adorable Sparks!"
-      },
-      {
-        "item_key": "c00ef523241c42f9",
-        "section": "paid",
-        "title": "Erenshor",
-        "url": "https://store.steampowered.com/app/2382520/",
-        "message_id": "1498385978174210170",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-04-27T18:10:56.673693+00:00",
-        "description": "Erenshor is a single player RPG with the soul of a classic MMO - built for players who miss the journey. Partner up with Erenshor's signature SimPlayers and explore an open world where every reward comes with a story. Discover thousands of items, quests, raids, and secrets - all at your own pace."
-      },
-      {
-        "item_key": "556bc50999835b97",
-        "section": "paid",
-        "title": "SimCity™ 4 Deluxe Edition",
-        "url": "https://store.steampowered.com/app/24780/",
-        "message_id": "1498385987150282842",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-04-27T18:10:58.609914+00:00",
-        "description": "SimCity 4 Deluxe Edition includes the bestselling SimCity 4 and the all-new SimCity 4 Rush Hour Expansion Pack. Create the most massive region of cities ever, with a farming town, bedroom community, high-tech commercial center, and industrial backbone."
-      },
-      {
-        "item_key": "3486e50473440932",
-        "section": "paid",
-        "title": "Need for Speed™ Hot Pursuit Remastered",
-        "url": "https://store.steampowered.com/app/1328660/",
-        "message_id": "1498385995396157470",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-04-27T18:11:00.439484+00:00",
-        "description": "Feel the thrill of the chase and the rush of escape behind the wheels of the world’s hottest high-performance cars in Need for Speed™ Hot Pursuit Remastered– a heart-pumping, socially competitive racing experience."
-      },
-      {
-        "item_key": "69f700e9fdb61361",
-        "section": "paid",
-        "title": "Feed and Grow: Fish",
-        "url": "https://store.steampowered.com/app/429050/",
-        "message_id": "1498386003080249375",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-04-27T18:11:02.385482+00:00",
-        "description": "Hunt and eat other fish - simply, grow into larger beasts!"
-      }
-    ]
-  },
   "2026-04-28": {
     "run_state": {
       "section_headers": {
@@ -6896,5 +6777,146 @@
       "skipped_reason": "no_eligible_winners",
       "updated_at_utc": "2026-05-27T23:59:54.203068+00:00"
     }
+  },
+  "2026-05-28": {
+    "run_state": {
+      "section_headers": {
+        "free": {
+          "message_id": "1509604409187762206",
+          "channel_id": "592534544708796474",
+          "posted_at_utc": "2026-05-28T17:08:58.504457+00:00"
+        },
+        "paid": {
+          "message_id": "1509604457539698748",
+          "channel_id": "592534544708796474",
+          "posted_at_utc": "2026-05-28T17:09:10.075553+00:00"
+        }
+      },
+      "last_attempt_at_utc": "2026-05-28T17:08:56.137244+00:00",
+      "intro": {
+        "message_id": "1509604401185296535",
+        "channel_id": "592534544708796474",
+        "posted_at_utc": "2026-05-28T17:08:56.922922+00:00"
+      },
+      "footer": {
+        "message_id": "1509604507439468614",
+        "channel_id": "592534544708796474",
+        "posted_at_utc": "2026-05-28T17:09:21.970294+00:00"
+      },
+      "completed": true,
+      "completed_at_utc": "2026-05-28T17:09:23.178548+00:00"
+    },
+    "items": [
+      {
+        "item_key": "7d6acbe0564df6cd",
+        "section": "free",
+        "title": "EVE Online",
+        "url": "https://store.steampowered.com/app/8500/",
+        "message_id": "1509604416020283527",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-05-28T17:09:00.658391+00:00",
+        "description": "Over 20 years of legendary space battles! Explore a massive living universe of danger and opportunity in a challenging and highly rewarding space adventure. Fight, trade, build, and connect with a universe driven and shaped directly by players."
+      },
+      {
+        "item_key": "288c3768c5988af7",
+        "section": "free",
+        "title": "Asphalt Legends",
+        "url": "https://store.steampowered.com/app/1815780/",
+        "message_id": "1509604424949956759",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-05-28T17:09:02.732055+00:00",
+        "description": "Spark your competitive soul with Asphalt Legends and feel the collective heartbeat of the road! Join forces with other players to speed through intense arcade races, perform jaw-dropping stunts, and charge towards victory while driving the finest hypercars!"
+      },
+      {
+        "item_key": "e28f4852271fa5c8",
+        "section": "free",
+        "title": "Astral Party",
+        "url": "https://store.steampowered.com/app/2622000/",
+        "message_id": "1509604433518919933",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-05-28T17:09:04.618352+00:00",
+        "description": "Astral Party is a multiplayer party game populated by cute anime girls! Choose your favorite character, strategize skills & cards, and roll the dice to destroy friendships in this unique board game."
+      },
+      {
+        "item_key": "7c74f858efb0f6cb",
+        "section": "free",
+        "title": "DC Universe™ Online",
+        "url": "https://store.steampowered.com/app/24200/",
+        "message_id": "1509604441408536586",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-05-28T17:09:06.572953+00:00",
+        "description": "DC Universe Online is a Free-to-Play, massive multiplayer online action game set in the popular DC Universe. Become one of a new breed of Heroes or Villains and wield incredible powers as you go to war with legendary characters such as Batman, Superman, Lex Luthor and The Joker."
+      },
+      {
+        "item_key": "6035eb1b54c2c81a",
+        "section": "free",
+        "title": "Myth of Empires: Throne",
+        "url": "https://store.steampowered.com/app/4510830/",
+        "message_id": "1509604449537233127",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-05-28T17:09:08.419940+00:00",
+        "description": "Myth of Empires: Throne is a free seasonal multiplayer warfare sandbox. Explore vast lands inspired by multiple civilizations, tame creatures, forge powerful weapons, and build your guild. Lead cross-server expeditions, conquer territories, and compete with players worldwide for the ultimate throne!"
+      },
+      {
+        "item_key": "46879bf183b508ad",
+        "section": "paid",
+        "title": "LEGO® Harry Potter™ Collection",
+        "url": "https://store.steampowered.com/app/2950340/",
+        "message_id": "1509604464590454814",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-05-28T17:09:11.987324+00:00",
+        "description": "The LEGO® Harry Potter™: Collection brings LEGO® Harry Potter™: Years 1-4 and LEGO® Harry Potter™: Years 5-7 together in one game, now remastered with enhanced graphics."
+      },
+      {
+        "item_key": "103362a85cdd5381",
+        "section": "paid",
+        "title": "PowerWash Simulator",
+        "url": "https://store.steampowered.com/app/1290000/",
+        "message_id": "1509604472370892811",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-05-28T17:09:14.473728+00:00",
+        "description": "Release the Pressure with PowerWash Simulator! Wash away your worries with the soothing sounds of high-pressure water. Fire up your power washer and blast away every speck of dirt and grime you can find, all with the simple satisfaction of power-washing to a sparkling finish."
+      },
+      {
+        "item_key": "7e48bf7d40ceab6d",
+        "section": "paid",
+        "title": "9 Kings",
+        "url": "https://store.steampowered.com/app/2784470/",
+        "message_id": "1509604482781020401",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-05-28T17:09:16.303929+00:00",
+        "description": "A fast-paced roguelike kingdom builder. Grow your empire and fight massive battles against powerful rival kings. Break the game with thousands of insane builds to become the King of Kings."
+      },
+      {
+        "item_key": "439acd03e520d7a7",
+        "section": "paid",
+        "title": "Ranch Simulator: Build, Hunt, Farm",
+        "url": "https://store.steampowered.com/app/1119730/",
+        "message_id": "1509604490439954572",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-05-28T17:09:18.262327+00:00",
+        "description": "Builder. Farmer. Hunter. Trader. Ranching certainly isn’t your average job. Think you have the skills to turn your family’s rundown homestead into the most prosperous ranch in the valley? Then it’s time to head out into the wilderness in this captivating single and multiplayer open-world simulator."
+      },
+      {
+        "item_key": "b440e5990902ab07",
+        "section": "paid",
+        "title": "Risk of Rain 2",
+        "url": "https://store.steampowered.com/app/632360/",
+        "message_id": "1509604498723836087",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-05-28T17:09:20.190426+00:00",
+        "description": "Escape a chaotic alien planet by fighting through hordes of frenzied monsters – with your friends, or on your own. Combine loot in surprising ways and master each character until you become the havoc you feared upon your first crash landing."
+      }
+    ]
   }
 }
