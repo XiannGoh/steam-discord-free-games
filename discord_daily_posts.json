@@ -6890,6 +6890,11 @@
         "posted_at": "2026-05-27T16:54:40.267255+00:00",
         "description": "It’s the biggest Party Pack yet, including the return of the classic pop culture trivia mash-up YOU DON’T KNOW JACK: Full Stream; the game of hilarious hypotheticals Split the Room; the lyric-writing, robot rap battle Mad Verse City; the inventive drawing game Patently Stupid; and the outer space fling-fest Zeeple Dome."
       }
-    ]
+    ],
+    "winners_state": {
+      "status": "skipped",
+      "skipped_reason": "no_eligible_winners",
+      "updated_at_utc": "2026-05-27T23:59:54.203068+00:00"
+    }
   }
 }
