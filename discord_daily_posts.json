@@ -1,134 +1,4 @@
 {
-  "2026-04-26": {
-    "run_state": {
-      "section_headers": {
-        "paid": {
-          "message_id": "1497988387842560182",
-          "channel_id": "592534544708796474",
-          "posted_at_utc": "2026-04-26T15:51:03.422193+00:00"
-        },
-        "instagram": {
-          "message_id": "1497988441223467259",
-          "channel_id": "592534544708796474",
-          "posted_at_utc": "2026-04-26T15:51:17.787674+00:00"
-        }
-      },
-      "last_attempt_at_utc": "2026-04-26T15:50:59.691389+00:00",
-      "intro": {
-        "message_id": "1497988375330951360",
-        "channel_id": "592534544708796474",
-        "posted_at_utc": "2026-04-26T15:51:01.675643+00:00"
-      },
-      "footer": {
-        "message_id": "1497988490145697812",
-        "channel_id": "592534544708796474",
-        "posted_at_utc": "2026-04-26T15:51:28.011608+00:00"
-      },
-      "completed": true,
-      "completed_at_utc": "2026-04-26T15:51:29.222313+00:00"
-    },
-    "items": [
-      {
-        "item_key": "db50731dd3eca149",
-        "section": "paid",
-        "title": "Away From Life",
-        "url": "https://store.steampowered.com/app/1755080/",
-        "message_id": "1497988395144839300",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-04-26T15:51:05.354063+00:00",
-        "description": "You survived a helicopter crash; going home is your top priority. Live as a castaway - survive the dangers of the islands by using your environment to find food, build shelter, craft tools to extend your stay, explore the secrets of the islands and their surrounding waters, and carve your way home."
-      },
-      {
-        "item_key": "d9adb5af7bae8960",
-        "section": "paid",
-        "title": "Unravel Two",
-        "url": "https://store.steampowered.com/app/1225570/",
-        "message_id": "1497988403914997881",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-04-26T15:51:07.357571+00:00",
-        "description": "When you cut ties to the past, new bonds form. Build relationships with other Yarnys in local co-op or as a single player, fostering friendship and support as you journey together."
-      },
-      {
-        "item_key": "e04415363ff37f43",
-        "section": "paid",
-        "title": "Ancient Kingdoms",
-        "url": "https://store.steampowered.com/app/2241380/",
-        "message_id": "1497988412421050509",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-04-26T15:51:09.649185+00:00",
-        "description": "Dive into an old-school pixel art RPG inspired by classic MMORPGs! Explore epic dungeons, battle fearsome bosses, and complete quests solo offline or online with up to 5 players. Choose your class, gear up, and craft your own legend!"
-      },
-      {
-        "item_key": "83f80087202748c3",
-        "section": "paid",
-        "title": "SPORE™ Creepy & Cute Parts Pack",
-        "url": "https://store.steampowered.com/app/17440/",
-        "message_id": "1497988421686395154",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-04-26T15:51:11.968308+00:00",
-        "description": "Add horror and humor to your universe. Make grotesque beasts or cuddly critters, then watch them do the robot, zombie walk, break dance and more! Includes over 100 new items. 60 New parts 48 New paint options 24 New animations"
-      },
-      {
-        "item_key": "200743d61d7274ab",
-        "section": "paid",
-        "title": "Dead Space (2008)",
-        "url": "https://store.steampowered.com/app/17470/",
-        "message_id": "1497988432884928522",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-04-26T15:51:14.302666+00:00",
-        "description": "You are Isaac Clarke, an engineer on the spacecraft USG Ishimura. You're not a warrior. You're not a soldier. You are, however, the last line of defense for the remaining living crew."
-      },
-      {
-        "item_key": "eba50994e41182c6",
-        "section": "instagram",
-        "title": "@sharedxp_official",
-        "url": "https://www.instagram.com/p/DXe9xekDB7Y/",
-        "message_id": "1497988455941275850",
-        "channel_id": "592534544708796474",
-        "source_type": "instagram",
-        "posted_at": "2026-04-26T15:51:19.566900+00:00",
-        "description": "Friendly Steps — you and your mates are absolutely wasted and roped together trying to stumble home in this physics-b..."
-      },
-      {
-        "item_key": "11c3d6336ccedcf6",
-        "section": "instagram",
-        "title": "@sharedxp_official",
-        "url": "https://www.instagram.com/p/DXcT-p5DMS6/",
-        "message_id": "1497988463297827079",
-        "channel_id": "592534544708796474",
-        "source_type": "instagram",
-        "posted_at": "2026-04-26T15:51:21.422645+00:00",
-        "description": "Sineus Arena Survivors is a 3D co-op survivors-like where you fight hordes, build defenses mid-run, and survive the f..."
-      },
-      {
-        "item_key": "aa88ee3fbcac654a",
-        "section": "instagram",
-        "title": "@wilfratgaming",
-        "url": "https://www.instagram.com/p/DXlmIbEDTJp/",
-        "message_id": "1497988470776533215",
-        "channel_id": "592534544708796474",
-        "source_type": "instagram",
-        "posted_at": "2026-04-26T15:51:23.367898+00:00",
-        "description": "You and your friend are stuck on the moon in this game! #gamestoplay #gaming #survivalgames"
-      },
-      {
-        "item_key": "0d0bbf7dc5dd9f26",
-        "section": "instagram",
-        "title": "@biffmatictv",
-        "url": "https://www.instagram.com/p/DXktY7hiKDj/",
-        "message_id": "1497988480242946160",
-        "channel_id": "592534544708796474",
-        "source_type": "instagram",
-        "posted_at": "2026-04-26T15:51:25.698787+00:00",
-        "description": "This is a truck simulator set entirely in SPACE! Star Trucker   #gaming #spacegame #simulatorgame #trucksimulator #truck"
-      }
-    ]
-  },
   "2026-04-27": {
     "run_state": {
       "section_headers": {
@@ -6880,5 +6750,151 @@
         "description": "\"Magicraft\" is a Roguelike game that uses a variety of spells to match unimaginable spell effects, and the construction of ultra-high degrees of freedom cannot even be exhausted by developers."
       }
     ]
+  },
+  "2026-05-27": {
+    "run_state": {
+      "section_headers": {
+        "free": {
+          "message_id": "1509238330099896380",
+          "channel_id": "592534544708796474",
+          "posted_at_utc": "2026-05-27T16:54:18.623170+00:00"
+        },
+        "paid": {
+          "message_id": "1509238380398120970",
+          "channel_id": "592534544708796474",
+          "posted_at_utc": "2026-05-27T16:54:30.687351+00:00"
+        }
+      },
+      "last_attempt_at_utc": "2026-05-27T16:54:14.653428+00:00",
+      "intro": {
+        "message_id": "1509238316191453335",
+        "channel_id": "592534544708796474",
+        "posted_at_utc": "2026-05-27T16:54:16.806968+00:00"
+      },
+      "footer": {
+        "message_id": "1509238428716372009",
+        "channel_id": "592534544708796474",
+        "posted_at_utc": "2026-05-27T16:54:42.365199+00:00"
+      },
+      "completed": true,
+      "completed_at_utc": "2026-05-27T16:54:43.574490+00:00"
+    },
+    "items": [
+      {
+        "item_key": "56c07b7c68ecde19",
+        "section": "free",
+        "title": "H.I.A: Horror Investigation Agency",
+        "url": "https://store.steampowered.com/app/2363590/",
+        "message_id": "1509238338295435294",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-05-27T16:54:20.830299+00:00",
+        "description": "H.I.A: Horror Investigation Agency is a fun multiplayer horror game in which you and co-players have to investigate exciting horror cases. Among finding victims and evidence of the horror event that has taken place, you will be faced with jumpscares and scary monsters along your investigation."
+      },
+      {
+        "item_key": "e6d5956cab5dd43d",
+        "section": "free",
+        "title": "Closers",
+        "url": "https://store.steampowered.com/app/215830/",
+        "message_id": "1509238346797289664",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-05-27T16:54:23.035624+00:00",
+        "description": "Closers is an episodic anime action RPG bursting with spectacular battles and steeped in an epic storyline. Choose your Closer, gather your friends or dive in solo, and use your amazing powers to protect Earth, in mankind’s desperate battle against horrific monsters from another dimension!"
+      },
+      {
+        "item_key": "f068cbcc6224605c",
+        "section": "free",
+        "title": "Godzilla x Kong: Titan Chasers",
+        "url": "https://store.steampowered.com/app/3670140/",
+        "message_id": "1509238356125548715",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-05-27T16:54:25.017159+00:00",
+        "description": "Hunt, capture, and command the monsters of the Monsterverse. Build your base, recruit elite Titan Chasers, and lead squads into tactical turn-based battles. Expand your territory in a shared online world, forge alliances, and face colossal threats like Godzilla, Kong, and Skullcrawlers."
+      },
+      {
+        "item_key": "47b9695f3f72f0a5",
+        "section": "free",
+        "title": "Anarchy Online",
+        "url": "https://store.steampowered.com/app/396280/",
+        "message_id": "1509238364392656927",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-05-27T16:54:26.814575+00:00",
+        "description": "Anarchy Online – the first ever science fiction MMO – is now on Steam! Compete and cooperate with thousands of players simultaneously on a vast, alien world. Join humanity nearly 30,000 years in the future in a world of perpetual conflict and scientific marvel."
+      },
+      {
+        "item_key": "ab3ca91055660117",
+        "section": "free",
+        "title": "Emporea: Realms of War and Magic",
+        "url": "https://store.steampowered.com/app/416450/",
+        "message_id": "1509238371858387056",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-05-27T16:54:28.824885+00:00",
+        "description": "Emporea is an oldschool fantasy strategy game, where cooperation with other players is necessary to achieve victory. Only the best alliance can win! Multiple realms available, with new ones starting every two weeks."
+      },
+      {
+        "item_key": "7e415fa7788247cb",
+        "section": "paid",
+        "title": "Plants vs. Zombies™: Replanted",
+        "url": "https://store.steampowered.com/app/3654560/",
+        "message_id": "1509238388073697451",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-05-27T16:54:32.582756+00:00",
+        "description": "The classic Plants vs. Zombies returns in glorious HD! The original battle between Plants and Zombies is back — bigger, brighter, and crazier than ever before! Experience the game that started it all, now remastered with stunning HD graphics and packed with new secrets and content to uncover."
+      },
+      {
+        "item_key": "5ae07c3a1817b040",
+        "section": "paid",
+        "title": "Wildmender",
+        "url": "https://store.steampowered.com/app/1599330/",
+        "message_id": "1509238396046802974",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-05-27T16:54:34.533410+00:00",
+        "description": "A desert gardening survival game. Start from a tiny spring and cultivate a blooming garden. Explore a vast world amid the sands and uncover its mysteries. Can you defend against the relentless forces of nature and mysterious wraith corruption, to bring life to a dying world?"
+      },
+      {
+        "item_key": "dcf290c74dc8045c",
+        "section": "paid",
+        "title": "LEGO® Marvel™ Super Heroes",
+        "url": "https://store.steampowered.com/app/249130/",
+        "message_id": "1509238404267638895",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-05-27T16:54:36.314279+00:00",
+        "description": "LEGO® Marvel™ Super Heroes features an original story crossing the entire Marvel Universe. Players take control of Iron Man, Spider-Man, the Hulk, Captain America, Wolverine and many more Marvel characters as they unite to stop Loki and a host of other Marvel villains from assembling a super-weapon capable of destroying the world."
+      },
+      {
+        "item_key": "14f11b7cf6dbaf43",
+        "section": "paid",
+        "title": "Metro 2033 Redux",
+        "url": "https://store.steampowered.com/app/286690/",
+        "message_id": "1509238411926438039",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-05-27T16:54:38.374622+00:00",
+        "description": "In 2013 the world was devastated by an apocalyptic event, annihilating almost all mankind and turning the Earth's surface into a poisonous wasteland. A handful of survivors took refuge in the depths of the Moscow underground, and human civilization entered a new Dark Age. The year is 2033."
+      },
+      {
+        "item_key": "926f87553eb0e389",
+        "section": "paid",
+        "title": "The Jackbox Party Pack 5",
+        "url": "https://store.steampowered.com/app/774461/",
+        "message_id": "1509238420436816087",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-05-27T16:54:40.267255+00:00",
+        "description": "It’s the biggest Party Pack yet, including the return of the classic pop culture trivia mash-up YOU DON’T KNOW JACK: Full Stream; the game of hilarious hypotheticals Split the Room; the lyric-writing, robot rap battle Mad Verse City; the inventive drawing game Patently Stupid; and the outer space fling-fest Zeeple Dome."
+      }
+    ],
+    "winners_state": {
+      "status": "skipped",
+      "skipped_reason": "no_eligible_winners",
+      "updated_at_utc": "2026-05-27T23:59:54.203068+00:00"
+    }
   }
 }
