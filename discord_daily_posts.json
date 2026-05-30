@@ -6808,6 +6808,11 @@
         "posted_at": "2026-05-30T14:46:55.763091+00:00",
         "description": "Get ready to explore, farm, fish, mine, craft, and raise magical Lumas as you solve puzzles and embark on quests across Luma Island. Play solo, or team up with friends in 1-4 player online co-op. Choose relaxing Cozy, challenging Adventure, or epic Hero mode to match your mood and playstyle."
       }
-    ]
+    ],
+    "winners_state": {
+      "status": "skipped",
+      "skipped_reason": "no_eligible_winners",
+      "updated_at_utc": "2026-05-30T23:59:36.625987+00:00"
+    }
   }
 }
