@@ -1,134 +1,4 @@
 {
-  "2026-04-30": {
-    "run_state": {
-      "section_headers": {
-        "paid": {
-          "message_id": "1499474036965642349",
-          "channel_id": "592534544708796474",
-          "posted_at_utc": "2026-04-30T18:14:30.070795+00:00"
-        },
-        "instagram": {
-          "message_id": "1499474097006973040",
-          "channel_id": "592534544708796474",
-          "posted_at_utc": "2026-04-30T18:14:43.993790+00:00"
-        }
-      },
-      "last_attempt_at_utc": "2026-04-30T18:14:26.802830+00:00",
-      "intro": {
-        "message_id": "1499474027276931263",
-        "channel_id": "592534544708796474",
-        "posted_at_utc": "2026-04-30T18:14:27.897351+00:00"
-      },
-      "footer": {
-        "message_id": "1499474140158234654",
-        "channel_id": "592534544708796474",
-        "posted_at_utc": "2026-04-30T18:14:54.367383+00:00"
-      },
-      "completed": true,
-      "completed_at_utc": "2026-04-30T18:14:55.578080+00:00"
-    },
-    "items": [
-      {
-        "item_key": "039bd7ac559e1ab5",
-        "section": "paid",
-        "title": "Military Conflict: Vietnam",
-        "url": "https://store.steampowered.com/app/1012110/",
-        "message_id": "1499474052937416744",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-04-30T18:14:33.792399+00:00",
-        "description": "It’s 1968 in Vietnam, the time to “Make War Not Love”. Side with the Viet Cong or U.S. Army in this intense, fast-paced FPS set in the Vietnam War — now with co-op zombie mode. Choose from 300+ weapons of destruction. Kill or be killed!"
-      },
-      {
-        "item_key": "317f349a1729fab2",
-        "section": "paid",
-        "title": "The Riftbreaker",
-        "url": "https://store.steampowered.com/app/780310/",
-        "message_id": "1499474061640597534",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-04-30T18:14:36.016254+00:00",
-        "description": "The Riftbreaker is a solo or Co-op base-building, survival game with Action-RPG elements for up to 4 players. Hack & slash countless hordes of enemies. Build up your base, craft powerful weapons and research new inventions to survive."
-      },
-      {
-        "item_key": "9ad5e8d8d29fa36a",
-        "section": "paid",
-        "title": "Twin Shot Deluxe",
-        "url": "https://store.steampowered.com/app/3618520/",
-        "message_id": "1499474071010939042",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-04-30T18:14:38.193614+00:00",
-        "description": "The Angel Cats are back! Twin Shot Deluxe is a platform arcade shooter where players defend their homeland using bow and arrows. Take aim at 200+ brand new levels set across four worlds. Play solo or with a friends in local co-op (1-4 players) or competitively to see who will be crowned champion."
-      },
-      {
-        "item_key": "2c04128e9767e2a0",
-        "section": "paid",
-        "title": "Wingspan",
-        "url": "https://store.steampowered.com/app/1054490/",
-        "message_id": "1499474079953059913",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-04-30T18:14:40.249328+00:00",
-        "description": "Wingspan is a relaxing, award-winning strategy card game about birds for 1 to 5 players. Each bird you play extends a chain of powerful combinations in one of your three habitats. Your goal is to discover and attract the best birds to your network of wildlife preserves."
-      },
-      {
-        "item_key": "7fc382384d6f9b00",
-        "section": "paid",
-        "title": "Spirit Island",
-        "url": "https://store.steampowered.com/app/1236720/",
-        "message_id": "1499474088429617174",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-04-30T18:14:42.203299+00:00",
-        "description": "Become the spirits of the land, and defend the island from colonizing Invaders spreading blight and destruction! Your spirits work with the native islanders to increase your power and drive the invading colonists from your island in this strategic area-control game."
-      },
-      {
-        "item_key": "b1d94db9777a7502",
-        "section": "instagram",
-        "title": "@sharedxp_official",
-        "url": "https://www.instagram.com/p/DXw3PA8MEcX/",
-        "message_id": "1499474104242147492",
-        "channel_id": "592534544708796474",
-        "source_type": "instagram",
-        "posted_at": "2026-04-30T18:14:46.017995+00:00",
-        "description": "Wreck Runners — four players, one vehicle, sent on \"perfectly safe\" salvage missions into the Bermuda Triangle in thi..."
-      },
-      {
-        "item_key": "ab634fd6d4048f24",
-        "section": "instagram",
-        "title": "@sharedxp_official",
-        "url": "https://www.instagram.com/p/DXwoA-EsqsX/",
-        "message_id": "1499474112802721832",
-        "channel_id": "592534544708796474",
-        "source_type": "instagram",
-        "posted_at": "2026-04-30T18:14:48.210927+00:00",
-        "description": "Meowgic — you and 3 friends play as wizard cats casting real spells by shouting into your mic across magical floating..."
-      },
-      {
-        "item_key": "a0e91fe1fd5cd56d",
-        "section": "instagram",
-        "title": "@wilfratgaming",
-        "url": "https://www.instagram.com/p/DXue5uFjRAo/",
-        "message_id": "1499474122093367437",
-        "channel_id": "592534544708796474",
-        "source_type": "instagram",
-        "posted_at": "2026-04-30T18:14:50.408360+00:00",
-        "description": "Cowboy wizards?? This is Far Far West! #FFWPartner #coopgame #gamestoplay #newgames"
-      },
-      {
-        "item_key": "ddc3dc07c304b9d9",
-        "section": "instagram",
-        "title": "@biffmatictv",
-        "url": "https://www.instagram.com/p/DXucYEMjU72/",
-        "message_id": "1499474131500929235",
-        "channel_id": "592534544708796474",
-        "source_type": "instagram",
-        "posted_at": "2026-04-30T18:14:52.344818+00:00",
-        "description": "Run a butcher shop with a dark secret in this simulation game..  ZOMBUTCHER  #gaming #newgames #simulatorgame #zombie..."
-      }
-    ]
-  },
   "2026-05-01": {
     "run_state": {
       "section_headers": {
@@ -6814,5 +6684,124 @@
       "skipped_reason": "no_eligible_winners",
       "updated_at_utc": "2026-05-30T23:59:36.625987+00:00"
     }
+  },
+  "2026-05-31": {
+    "run_state": {
+      "section_headers": {
+        "free": {
+          "message_id": "1510655665469919312",
+          "channel_id": "592534544708796474",
+          "posted_at_utc": "2026-05-31T14:46:17.557818+00:00"
+        },
+        "paid": {
+          "message_id": "1510655695559590073",
+          "channel_id": "592534544708796474",
+          "posted_at_utc": "2026-05-31T14:46:24.719865+00:00"
+        }
+      },
+      "last_attempt_at_utc": "2026-05-31T14:46:14.561829+00:00",
+      "intro": {
+        "message_id": "1510655654937886741",
+        "channel_id": "592534544708796474",
+        "posted_at_utc": "2026-05-31T14:46:15.950317+00:00"
+      },
+      "footer": {
+        "message_id": "1510655744469499944",
+        "channel_id": "592534544708796474",
+        "posted_at_utc": "2026-05-31T14:46:36.524412+00:00"
+      },
+      "completed": true,
+      "completed_at_utc": "2026-05-31T14:46:37.733696+00:00"
+    },
+    "items": [
+      {
+        "item_key": "18f002406ba867dd",
+        "section": "free",
+        "title": "Dawn of Ages",
+        "url": "https://store.steampowered.com/app/3247200/",
+        "message_id": "1510655671769497811",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-05-31T14:46:19.280567+00:00",
+        "description": "Experience authentic medieval warfare. Command vast armies in brutal mass battles, utilizing diverse weapons and tactics. Embark on historical campaigns against rival kingdoms or challenge real opponents in epic PvP wars."
+      },
+      {
+        "item_key": "cab22b7a437091bb",
+        "section": "free",
+        "title": "MONSTER CARDS",
+        "url": "https://store.steampowered.com/app/2010530/",
+        "message_id": "1510655679411654748",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-05-31T14:46:21.320853+00:00",
+        "description": "Bring your original deck of cards and play against everyone!"
+      },
+      {
+        "item_key": "98db022726e5caee",
+        "section": "free",
+        "title": "Hamster Playground",
+        "url": "https://store.steampowered.com/app/1442670/",
+        "message_id": "1510655688018362369",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-05-31T14:46:23.140662+00:00",
+        "description": "Prepare for cuteness overload, relentless training, and fierce rivalry as you and your hamsters take on challenges while traversing the maze and riding a skateboard, with more modes coming soon! Be the first to cross the finish line to earn rewards and yummy treats!"
+      },
+      {
+        "item_key": "b8827d6a437610f9",
+        "section": "paid",
+        "title": "VALHALL: Harbinger",
+        "url": "https://store.steampowered.com/app/908740/",
+        "message_id": "1510655702853746769",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-05-31T14:46:26.726616+00:00",
+        "description": "VALHALL is a blend of multiple genres, combining first & third person directional physical combat slasher with a survival experience set in a brutal world of Vikings. Survive, feel Thor's power, become an einherjar, and enter the ultimate battlefield!"
+      },
+      {
+        "item_key": "4b5ed7e772aaaf0c",
+        "section": "paid",
+        "title": "Flashing Lights - Police, Firefighting, Emergency Services (EMS) Simulator",
+        "url": "https://store.steampowered.com/app/605740/",
+        "message_id": "1510655710877450260",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-05-31T14:46:28.769355+00:00",
+        "description": "Play solo or in up to 10-player multiplayer co-op! Flashing Lights is an open world police, firefighting and EMS simulator game with plenty of opportunity for role-play or more relaxed fun with friends. Become the law or save lives! Discover leagues of player-created mods!"
+      },
+      {
+        "item_key": "87da3489835d60c7",
+        "section": "paid",
+        "title": "Animal Shelter 2",
+        "url": "https://store.steampowered.com/app/2658510/",
+        "message_id": "1510655719391760385",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-05-31T14:46:30.729346+00:00",
+        "description": "Welcome back to the heartwarming world of Animal Shelter 2! Provide a loving home for every four-legged friend in need – play with them, pet them, even dress them up! Get to know them and find them a loving family. Play with your friends and manage your shelter together in co-op!"
+      },
+      {
+        "item_key": "5efadb19d10dc88a",
+        "section": "paid",
+        "title": "Flock Around",
+        "url": "https://store.steampowered.com/app/3618030/",
+        "message_id": "1510655727587430502",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-05-31T14:46:32.896319+00:00",
+        "description": "Flock Around is a multiplayer bird watching game. Explore a nature sanctuary with friends, snap pictures of birds, and fill out the guide book!"
+      },
+      {
+        "item_key": "2e4ed5e12379f512",
+        "section": "paid",
+        "title": "Crystal Project",
+        "url": "https://store.steampowered.com/app/1637730/",
+        "message_id": "1510655736617636073",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-05-31T14:46:34.651178+00:00",
+        "description": "Crystal Project is a non-linear JRPG where you are the maker of your own adventure. Explore the world while you find Crystals, unlock classes, learn abilities, and create a strategy capable of taking down the world's toughest bosses. Or just stick to exploring; it's up to you."
+      }
+    ]
   }
 }
