@@ -1,188 +1,4 @@
 {
-  "2026-05-01": {
-    "run_state": {
-      "section_headers": {
-        "demo_playtest": {
-          "message_id": "1499811339185422356",
-          "channel_id": "592534544708796474",
-          "posted_at_utc": "2026-05-01T16:34:50.566044+00:00"
-        },
-        "free": {
-          "message_id": "1499811362451362095",
-          "channel_id": "592534544708796474",
-          "posted_at_utc": "2026-05-01T16:34:54.579201+00:00"
-        },
-        "paid": {
-          "message_id": "1499811380507971767",
-          "channel_id": "592534544708796474",
-          "posted_at_utc": "2026-05-01T16:34:59.017325+00:00"
-        },
-        "instagram": {
-          "message_id": "1499811436350931074",
-          "channel_id": "592534544708796474",
-          "posted_at_utc": "2026-05-01T16:35:11.926815+00:00"
-        }
-      },
-      "last_attempt_at_utc": "2026-05-01T16:34:46.333065+00:00",
-      "intro": {
-        "message_id": "1499811331237220412",
-        "channel_id": "592534544708796474",
-        "posted_at_utc": "2026-05-01T16:34:47.074241+00:00"
-      },
-      "footer": {
-        "message_id": "1499811498841608314",
-        "channel_id": "592534544708796474",
-        "posted_at_utc": "2026-05-01T16:35:27.058736+00:00"
-      },
-      "completed": true,
-      "completed_at_utc": "2026-05-01T16:35:28.270702+00:00"
-    },
-    "items": [
-      {
-        "item_key": "029567fd38aafec0",
-        "section": "demo_playtest",
-        "title": "Legend Battles",
-        "url": "https://store.steampowered.com/app/3649730/",
-        "message_id": "1499811353555370086",
-        "channel_id": "592534544708796474",
-        "source_type": "steam_demo_playtest",
-        "posted_at": "2026-05-01T16:34:52.590775+00:00",
-        "description": "Free-to-play UE 5.6 Extraction Battle Royale in 400 km² neo-futuristic world with destructible environment and vehicles, massive ET-ACUs, armored Aliens, ferocious Monsters, heavily armed MetaHumans, complete missions to attack, defend, loot, extract facing dynamic weathers."
-      },
-      {
-        "item_key": "6e94b5161ad72888",
-        "section": "free",
-        "title": "Haven & Hearth",
-        "url": "https://store.steampowered.com/app/3051280/",
-        "message_id": "1499811371058204752",
-        "channel_id": "592534544708796474",
-        "source_type": "steam_free",
-        "posted_at": "2026-05-01T16:34:56.782493+00:00",
-        "description": "A free-to-play MMORPG with crafting, building, landscaping, foraging, hunting, fishing, a dash of poetry, and open PvP combat,"
-      },
-      {
-        "item_key": "9d1b0934a63e9316",
-        "section": "paid",
-        "title": "EARTH DEFENSE FORCE 5",
-        "url": "https://store.steampowered.com/app/1007040/",
-        "message_id": "1499811389458481384",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-05-01T16:35:01.198317+00:00",
-        "description": "Stand and fight for humanity. This arcade shooter takes place in the year 2022, as the Earth Defense Force fends off an all-out attack by unknown life forms. Become an EDF soldier, battle against endless hordes of immense enemies, and restore peace to the earth."
-      },
-      {
-        "item_key": "5d31022df37cdb0e",
-        "section": "paid",
-        "title": "Dead Space™ 2",
-        "url": "https://store.steampowered.com/app/47780/",
-        "message_id": "1499811398388027545",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-05-01T16:35:03.467406+00:00",
-        "description": "Three years after the Necromorph infestation aboard the USS Ishimura, Isaac Clarke awakens from a coma, confused, disoriented, and on a space station called The Sprawl. Explore this world and its zero-g environments to discover the truth about the Unitology and its role in the Necromorph epidemic."
-      },
-      {
-        "item_key": "2e5b3c7a0906c589",
-        "section": "paid",
-        "title": "LEGO® STAR WARS™: The Force Awakens",
-        "url": "https://store.steampowered.com/app/438640/",
-        "message_id": "1499811408001499327",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-05-01T16:35:06.025916+00:00",
-        "description": "The No. 1 LEGO® videogame franchise triumphantly returns with a fun-filled, humorous journey based on the blockbuster film. The game will also feature brand new story content from the Star Wars Universe that explores the time between Star Wars: Return of the Jedi and Star Wars: The Force Awakens."
-      },
-      {
-        "item_key": "29bbd3b9eb64d678",
-        "section": "paid",
-        "title": "Sid Meier's Civilization®: Beyond Earth™",
-        "url": "https://store.steampowered.com/app/65980/",
-        "message_id": "1499811418407571560",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-05-01T16:35:08.050493+00:00",
-        "description": "Sid Meier’s Civilization: Beyond Earth is a new science-fiction-themed entry into the award winning Civilization series. As part of an expedition sent to find a home beyond Earth, lead your people into a new frontier, explore and colonize an alien planet and create a new civilization in space."
-      },
-      {
-        "item_key": "688cb0495ade01bf",
-        "section": "paid",
-        "title": "Brush Burial: Gutter World",
-        "url": "https://store.steampowered.com/app/3594120/",
-        "message_id": "1499811427060551683",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-05-01T16:35:10.248144+00:00",
-        "description": "A murky first-person immersive sim with tightly-wound melee combat and tangled, vertical levels to explore. Use your forked tail to tie your enemies in knots and climb impossible heights. Kill your mark with quickness and cunning, using whatever tools you see fit."
-      },
-      {
-        "item_key": "aab545507e035ef2",
-        "section": "instagram",
-        "title": "@wilfratgaming",
-        "url": "https://www.instagram.com/p/DXxDS1rtvMo/",
-        "message_id": "1499811444571639910",
-        "channel_id": "592534544708796474",
-        "source_type": "instagram",
-        "posted_at": "2026-05-01T16:35:15.176381+00:00",
-        "description": "NTE is out now! New Open World game! #NTE #NevernessToEverness #NTElaunch + #gamestoplay #newgames"
-      },
-      {
-        "item_key": "2765fce9f541b5b5",
-        "section": "instagram",
-        "title": "@itzjaysasa",
-        "url": "https://www.instagram.com/p/DXx_dcXtD1D/",
-        "message_id": "1499811457452474398",
-        "channel_id": "592534544708796474",
-        "source_type": "instagram",
-        "posted_at": "2026-05-01T16:35:17.176240+00:00",
-        "description": "This game blurs the lines between cozy and horror by corrupting a staple mechanic we are all too comfortable with | G..."
-      },
-      {
-        "item_key": "c3561c63af636f34",
-        "section": "instagram",
-        "title": "@itzjaysasa",
-        "url": "https://www.instagram.com/p/DXxDJilhwQq/",
-        "message_id": "1499811465471852735",
-        "channel_id": "592534544708796474",
-        "source_type": "instagram",
-        "posted_at": "2026-05-01T16:35:19.105378+00:00",
-        "description": "Here’s a fun game to play with friends that has a REALLY cool feature | Game: Wreck Runners  #pcgaming #multiplayer #..."
-      },
-      {
-        "item_key": "f9879d86305133d2",
-        "section": "instagram",
-        "title": "@sharedxp_official",
-        "url": "https://www.instagram.com/p/DXxWG9ZsMnm/",
-        "message_id": "1499811473625579521",
-        "channel_id": "592534544708796474",
-        "source_type": "instagram",
-        "posted_at": "2026-05-01T16:35:21.205591+00:00",
-        "description": "Kiln — sculpt your own pot on a pottery wheel then take it into a team brawl and try to soak the enemy's kiln before ..."
-      },
-      {
-        "item_key": "0df91627be3e5f93",
-        "section": "instagram",
-        "title": "@sharedxp_official",
-        "url": "https://www.instagram.com/p/DXu6nO1jBBJ/",
-        "message_id": "1499811482291011806",
-        "channel_id": "592534544708796474",
-        "source_type": "instagram",
-        "posted_at": "2026-05-01T16:35:23.055193+00:00",
-        "description": "CheatCheat — you and up to 5 friends are back in school, cheating your way through impossible exams while avoiding a ..."
-      },
-      {
-        "item_key": "966029ff620a76cb",
-        "section": "instagram",
-        "title": "@biffmatictv",
-        "url": "https://www.instagram.com/p/DXxJxvitOf-/",
-        "message_id": "1499811490100678696",
-        "channel_id": "592534544708796474",
-        "source_type": "instagram",
-        "posted_at": "2026-05-01T16:35:24.973724+00:00",
-        "description": "Combat Flight Sim WITH NUKES! Enough said..  Nuclear Option!  #gaming #flightsim #planegame #milsim #nuclearoption"
-      }
-    ]
-  },
   "2026-05-02": {
     "run_state": {
       "section_headers": {
@@ -6801,6 +6617,147 @@
         "source_type": "paid_under_20",
         "posted_at": "2026-05-31T14:46:34.651178+00:00",
         "description": "Crystal Project is a non-linear JRPG where you are the maker of your own adventure. Explore the world while you find Crystals, unlock classes, learn abilities, and create a strategy capable of taking down the world's toughest bosses. Or just stick to exploring; it's up to you."
+      }
+    ]
+  },
+  "2026-06-01": {
+    "run_state": {
+      "section_headers": {
+        "free": {
+          "message_id": "1511081144181854354",
+          "channel_id": "592534544708796474",
+          "posted_at_utc": "2026-06-01T18:56:59.569721+00:00"
+        },
+        "paid": {
+          "message_id": "1511081191187419176",
+          "channel_id": "592534544708796474",
+          "posted_at_utc": "2026-06-01T18:57:11.041018+00:00"
+        }
+      },
+      "last_attempt_at_utc": "2026-06-01T18:56:57.734895+00:00",
+      "intro": {
+        "message_id": "1511081137722626189",
+        "channel_id": "592534544708796474",
+        "posted_at_utc": "2026-06-01T18:56:58.082129+00:00"
+      },
+      "footer": {
+        "message_id": "1511081245763960933",
+        "channel_id": "592534544708796474",
+        "posted_at_utc": "2026-06-01T18:57:23.871871+00:00"
+      },
+      "completed": true,
+      "completed_at_utc": "2026-06-01T18:57:25.080883+00:00"
+    },
+    "items": [
+      {
+        "item_key": "2d73e8db0227f3b0",
+        "section": "free",
+        "title": "Tank Team",
+        "url": "https://store.steampowered.com/app/2587450/",
+        "message_id": "1511081150922100806",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-06-01T18:57:01.730640+00:00",
+        "description": "A team based PVP game where groups of up to 8 players must work together to operate a tank!"
+      },
+      {
+        "item_key": "40d9e5f3ba62ec44",
+        "section": "free",
+        "title": "Tobacco Shop Simulator: Prologue",
+        "url": "https://store.steampowered.com/app/3211690/",
+        "message_id": "1511081159818346556",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-06-01T18:57:03.387454+00:00",
+        "description": "Run your tobacco shop in this free prologue version of the game. Sign contracts with leading brands, order products, and meet customer needs. Play with friends or go solo, and enjoy the growth of your shop."
+      },
+      {
+        "item_key": "decc0ede01fbe397",
+        "section": "free",
+        "title": "Florensia",
+        "url": "https://store.steampowered.com/app/384030/",
+        "message_id": "1511081166806188072",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-06-01T18:57:05.229306+00:00",
+        "description": "Florensia is a Free-to-Play MMORPG and shows you its legendary worlds ashore and at sea with its 3D anime style. Mysterious islands, the great ocean, dungeons, picturesque pirates and dangerous monsters are waiting to be discovered."
+      },
+      {
+        "item_key": "223552356283d15c",
+        "section": "free",
+        "title": "Fishing Grind",
+        "url": "https://store.steampowered.com/app/3019850/",
+        "message_id": "1511081174460530788",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-06-01T18:57:07.061438+00:00",
+        "description": "Fishing Grind is a first person 1-6 player co-op fishing game with a twist. The place you are fishing may not always be safe..."
+      },
+      {
+        "item_key": "64847de652bdd408",
+        "section": "free",
+        "title": "Rumble Fighter: Unleashed",
+        "url": "https://store.steampowered.com/app/357500/",
+        "message_id": "1511081182253813770",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-06-01T18:57:09.213761+00:00",
+        "description": "Rumble Fighter is a free-to-play fighting MMO game with real mixed martial arts and fast-paced beat-em-up action! Brawl with your friends and train to become the top Rumble Fighter!"
+      },
+      {
+        "item_key": "adc1b004ccb149ce",
+        "section": "paid",
+        "title": "The Crew Motorfest",
+        "url": "https://store.steampowered.com/app/2698940/",
+        "message_id": "1511081198921715954",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-06-01T18:57:12.905742+00:00",
+        "description": "Welcome to Motorfest, the ultimate open-world driving experience. Explore the Hawaiian islands of O'ahu and Maui. Celebrate the best of car culture through 20+ themed campaigns (street racing, offroad, drift...) and collect hundreds of iconic vehicles. Enjoy the game free for five hours!"
+      },
+      {
+        "item_key": "5905da31de4a76f0",
+        "section": "paid",
+        "title": "Saleblazers",
+        "url": "https://store.steampowered.com/app/1419850/",
+        "message_id": "1511081206870179890",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-06-01T18:57:14.730941+00:00",
+        "description": "You’re a humble shopkeeper trying to live a peaceful new life, finding yourself surrounded by warring factions and dangerous creatures. Will you be able to carve out a new home for yourself and your customers in this open-world survival shopkeeping simulator?"
+      },
+      {
+        "item_key": "840383195fc555dd",
+        "section": "paid",
+        "title": "FBC: Firebreak",
+        "url": "https://store.steampowered.com/app/2272540/",
+        "message_id": "1511081214654550169",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-06-01T18:57:18.265658+00:00",
+        "description": "Purchase FBC: Firebreak and invite your friends to play the full game for free on any platform. FBC: Firebreak is a three-player cooperative first-person shooter set within a mysterious federal agency under assault by otherworldly forces."
+      },
+      {
+        "item_key": "595c8a887854a201",
+        "section": "paid",
+        "title": "He is Coming",
+        "url": "https://store.steampowered.com/app/2824490/",
+        "message_id": "1511081229246660779",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-06-01T18:57:20.132816+00:00",
+        "description": "Deep in the forgotten corners of the world, a dark force stirs – the Demon King rises once more. Sharpen your wits, seek out powerful artifacts, and stand firm in the face of the apocalypse in this roguelite RPG auto battler."
+      },
+      {
+        "item_key": "c00341d9d3323bb2",
+        "section": "paid",
+        "title": "Warhammer 40,000: Speed Freeks",
+        "url": "https://store.steampowered.com/app/2078450/",
+        "message_id": "1511081237022769393",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-06-01T18:57:22.045634+00:00",
+        "description": "High-orktane combat racing in the Warhammer 40,000 universe! Drive buggies, tanks and helicopters, mastering advanced movement and explosive weaponry online or against bots. Unlock gear, customize your rides and use the NEW Creation Workshop to create, share, and play custom maps from the community!"
       }
     ]
   }
