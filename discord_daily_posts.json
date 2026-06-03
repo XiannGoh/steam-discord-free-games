@@ -1,161 +1,4 @@
 {
-  "2026-05-03": {
-    "run_state": {
-      "section_headers": {
-        "free": {
-          "message_id": "1500504356699504730",
-          "channel_id": "592534544708796474",
-          "posted_at_utc": "2026-05-03T14:28:37.156742+00:00"
-        },
-        "paid": {
-          "message_id": "1500504404619559052",
-          "channel_id": "592534544708796474",
-          "posted_at_utc": "2026-05-03T14:28:48.573817+00:00"
-        },
-        "instagram": {
-          "message_id": "1500504456054308964",
-          "channel_id": "592534544708796474",
-          "posted_at_utc": "2026-05-03T14:29:00.898858+00:00"
-        }
-      },
-      "last_attempt_at_utc": "2026-05-03T14:28:34.145940+00:00",
-      "intro": {
-        "message_id": "1500504346713133176",
-        "channel_id": "592534544708796474",
-        "posted_at_utc": "2026-05-03T14:28:35.250691+00:00"
-      },
-      "footer": {
-        "message_id": "1500504472022155465",
-        "channel_id": "592534544708796474",
-        "posted_at_utc": "2026-05-03T14:29:05.878687+00:00"
-      },
-      "completed": true,
-      "completed_at_utc": "2026-05-03T14:29:07.091231+00:00"
-    },
-    "items": [
-      {
-        "item_key": "b94f5ee75e0cfc6b",
-        "section": "free",
-        "title": "Delta Force",
-        "url": "https://store.steampowered.com/app/2507950/",
-        "message_id": "1500504364266029140",
-        "channel_id": "592534544708796474",
-        "source_type": "steam_free",
-        "posted_at": "2026-05-03T14:28:39.167770+00:00",
-        "description": "Play for free in operator-based extraction and full-scale combined arms warfare. Become elite Operators, customize an ever-expanding arsenal of weapons, and deploy into thrill-packed missions across multiple modes."
-      },
-      {
-        "item_key": "1108b3b6c3b3f596",
-        "section": "free",
-        "title": "Arena Breakout: Infinite",
-        "url": "https://store.steampowered.com/app/2073620/",
-        "message_id": "1500504372755304599",
-        "channel_id": "592534544708796474",
-        "source_type": "steam_free",
-        "posted_at": "2026-05-03T14:28:41.075703+00:00",
-        "description": "Arena Breakout: Infinite is a high-stakes tactical extraction shooter where every decision matters. Fight, loot, and extract—or lose it all. With stunningly realistic visuals, lifelike sound, and unforgiving PvPvE combat, every raid is a gamble between glory and ruin."
-      },
-      {
-        "item_key": "01428812cfa237ab",
-        "section": "free",
-        "title": "Farlight 84",
-        "url": "https://store.steampowered.com/app/1928420/",
-        "message_id": "1500504380800241786",
-        "channel_id": "592534544708796474",
-        "source_type": "steam_free",
-        "posted_at": "2026-05-03T14:28:43.086384+00:00",
-        "description": "Hey Lightcatchers! Are you ready for massive 60-player shootouts? Enjoy fast-paced hero shooter action in Farlight 84!"
-      },
-      {
-        "item_key": "a87ab608d8f55464",
-        "section": "free",
-        "title": "World of Sea Battle",
-        "url": "https://store.steampowered.com/app/2948190/",
-        "message_id": "1500504388907831459",
-        "channel_id": "592534544708796474",
-        "source_type": "steam_free",
-        "posted_at": "2026-05-03T14:28:44.880122+00:00",
-        "description": "Set sail in World of Sea Battle, an action-packed open-world MMO in the Golden Age of Sail! Command historic ships, battle in PvP & PvE, shape the economy, and engage in territorial guild wars in your quest for glory across the high seas!"
-      },
-      {
-        "item_key": "916b73b07eb4cf03",
-        "section": "free",
-        "title": "PlanetSide 2",
-        "url": "https://store.steampowered.com/app/218230/",
-        "message_id": "1500504396730204370",
-        "channel_id": "592534544708796474",
-        "source_type": "steam_free",
-        "posted_at": "2026-05-03T14:28:46.764787+00:00",
-        "description": "PlanetSide 2 is an all-out planetary war, where thousands of players battle as one across enormous continents. Utilize infantry, ground and air vehicles, and teamwork to destroy your enemies in this revolutionary first-person shooter on a massive scale."
-      },
-      {
-        "item_key": "386a83670cc2949d",
-        "section": "paid",
-        "title": "Super Battle Golf",
-        "url": "https://store.steampowered.com/app/4069520/",
-        "message_id": "1500504412550987816",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-05-03T14:28:50.688254+00:00",
-        "description": "An online 1-8 player golf game where everyone plays at the same time. Swing, shoot, sabotage, and finish first by any means necessary in a free-for-all rush to the hole."
-      },
-      {
-        "item_key": "c56800ecc6a623fe",
-        "section": "paid",
-        "title": "Escape the Backrooms",
-        "url": "https://store.steampowered.com/app/1943950/",
-        "message_id": "1500504421069492254",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-05-03T14:28:52.538261+00:00",
-        "description": "Escape the Backrooms is a 1-4 player co-op horror exploration game. Traverse 30+ eerie backrooms levels while avoiding entities and other dangers. Try to escape but be warned: survival isn't guaranteed."
-      },
-      {
-        "item_key": "3810dfeb3d965196",
-        "section": "paid",
-        "title": "R.E.P.O.",
-        "url": "https://store.steampowered.com/app/3241660/",
-        "message_id": "1500504429168951326",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-05-03T14:28:54.731865+00:00",
-        "description": "An online co-op horror game with up to 6 players. Locate valuable, fully physics-based objects and handle them with care as you retrieve and extract to satisfy your creator's desires."
-      },
-      {
-        "item_key": "08c4ca79bac06635",
-        "section": "paid",
-        "title": "Black Desert",
-        "url": "https://store.steampowered.com/app/582660/",
-        "message_id": "1500504438031519936",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-05-03T14:28:57.158990+00:00",
-        "description": "Played by over 20 million Adventurers - Black Desert Online is an open-world, action MMORPG. Experience intense, action-packed combat, battle massive world bosses, fight alongside friends to siege and conquer castles, and train in professions such as fishing, trading, crafting, cooking, and more!"
-      },
-      {
-        "item_key": "c30f118d50de99ea",
-        "section": "paid",
-        "title": "Element TD 2 - Tower Defense",
-        "url": "https://store.steampowered.com/app/1018830/",
-        "message_id": "1500504448185663629",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-05-03T14:28:58.979691+00:00",
-        "description": "Element TD 2 sees you combine powerful elements to create unique towers. Prove your defenses against challenging foes, and compete or cooperate with others to determine who has mastered the elements."
-      },
-      {
-        "item_key": "bbc9553cb6937036",
-        "section": "instagram",
-        "title": "@wilfratgaming",
-        "url": "https://www.instagram.com/p/DX4J8AdtDHA/",
-        "message_id": "1500504463608119569",
-        "channel_id": "592534544708796474",
-        "source_type": "instagram",
-        "posted_at": "2026-05-03T14:29:02.728927+00:00",
-        "description": "Natural Vision Evolved! A full on redesign of GTA Vs graphics! Available for Fivem also! #gtarp #fivem #gaming"
-      }
-    ]
-  },
   "2026-05-04": {
     "run_state": {
       "section_headers": {
@@ -6555,6 +6398,147 @@
         "source_type": "paid_under_20",
         "posted_at": "2026-06-02T17:35:55.417786+00:00",
         "description": "Played by over 20 million Adventurers - Black Desert Online is an open-world, action MMORPG. Experience intense, action-packed combat, battle massive world bosses, fight alongside friends to siege and conquer castles, and train in professions such as fishing, trading, crafting, cooking, and more!"
+      }
+    ]
+  },
+  "2026-06-03": {
+    "run_state": {
+      "section_headers": {
+        "free": {
+          "message_id": "1511796064137515199",
+          "channel_id": "592534544708796474",
+          "posted_at_utc": "2026-06-03T18:17:49.716337+00:00"
+        },
+        "paid": {
+          "message_id": "1511796110300287076",
+          "channel_id": "592534544708796474",
+          "posted_at_utc": "2026-06-03T18:18:00.966907+00:00"
+        }
+      },
+      "last_attempt_at_utc": "2026-06-03T18:17:44.265566+00:00",
+      "intro": {
+        "message_id": "1511796042826256534",
+        "channel_id": "592534544708796474",
+        "posted_at_utc": "2026-06-03T18:17:48.200604+00:00"
+      },
+      "footer": {
+        "message_id": "1511796156970041526",
+        "channel_id": "592534544708796474",
+        "posted_at_utc": "2026-06-03T18:18:12.578144+00:00"
+      },
+      "completed": true,
+      "completed_at_utc": "2026-06-03T18:18:13.789166+00:00"
+    },
+    "items": [
+      {
+        "item_key": "c543ff8efa536dff",
+        "section": "free",
+        "title": "Counter-Strike Nexon",
+        "url": "https://store.steampowered.com/app/273110/",
+        "message_id": "1511796071070699741",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-06-03T18:17:51.736855+00:00",
+        "description": "Counter-Strike Nexon is a Free to Play MMOFPS offering competitive PvP and PvE action including content from the original Counter-Strike and all new game modes, map creation function, weapons, and hordes of Zombies!"
+      },
+      {
+        "item_key": "1d666d4c3e5c8e74",
+        "section": "free",
+        "title": "Kathana",
+        "url": "https://store.steampowered.com/app/2081880/",
+        "message_id": "1511796078943404044",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-06-03T18:17:53.505017+00:00",
+        "description": "Adventure awaits in Kathana Select your character, quest with friends, face challenging bosses, explore dungeons, and engage in guild wars and PvP battles!"
+      },
+      {
+        "item_key": "6c0d01c2e32dc347",
+        "section": "free",
+        "title": "Stash",
+        "url": "https://store.steampowered.com/app/466660/",
+        "message_id": "1511796086400876677",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-06-03T18:17:55.185423+00:00",
+        "description": "Stash is an MMO with turn based grid combat, custom housing, a tabletop art style, and more loot than you can fit in a portable hole. Stash has the charm of a pen-and-paper gaming group with the gameplay of a deep, interesting, unique RPG. Join our friendly community!"
+      },
+      {
+        "item_key": "bd3602edb09f77a2",
+        "section": "free",
+        "title": "EverQuest",
+        "url": "https://store.steampowered.com/app/205710/",
+        "message_id": "1511796093439054028",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-06-03T18:17:57.148144+00:00",
+        "description": "Welcome to EverQuest® - the original fantasy MMORPG. Explore huge worlds, fight challenging foes, and grow your character with friends. Discover why players have quested, grouped, and raided in Norrath for more than two decades."
+      },
+      {
+        "item_key": "0c8811f9c34d64ca",
+        "section": "free",
+        "title": "Pool 2D - Poolians",
+        "url": "https://store.steampowered.com/app/891040/",
+        "message_id": "1511796101726867476",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-06-03T18:17:58.979334+00:00",
+        "description": "Pool 2D is a free pool game including 8-ball,9-ball,15-ball,3-ball,rotation and blackjack. The graphics are spectacular and the physics are realistic and accurate. Whether you play against the computer or against real players from all over the world online, the action is smooth and fast paced!"
+      },
+      {
+        "item_key": "386a83670cc2949d",
+        "section": "paid",
+        "title": "Super Battle Golf",
+        "url": "https://store.steampowered.com/app/4069520/",
+        "message_id": "1511796117749108778",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-06-03T18:18:02.764709+00:00",
+        "description": "An online 1-8 player golf game where everyone plays at the same time. Swing, shoot, sabotage, and finish first by any means necessary in a free-for-all rush to the hole."
+      },
+      {
+        "item_key": "9fa49d9bfa7a8a9e",
+        "section": "paid",
+        "title": "SCUM",
+        "url": "https://store.steampowered.com/app/513710/",
+        "message_id": "1511796125479473172",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-06-03T18:18:04.661198+00:00",
+        "description": "Welcome to SCUM, a ruthless open-world survival game where deep character customization defines the prisoner you become. Loot, craft, hunt, build, and fight to outlast a hostile island where every choice can change your fate. Stay alive. Stay dangerous. Become harder to kill."
+      },
+      {
+        "item_key": "0b2cd79257d29d06",
+        "section": "paid",
+        "title": "Pratfall",
+        "url": "https://store.steampowered.com/app/4244510/",
+        "message_id": "1511796133217697963",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-06-03T18:18:06.476477+00:00",
+        "description": "A co-op game for 1-6+ players where you fall, dig, and explode your way down a dangerous cave system to find your lost dog. Catch your friends and watch your step on this journey full of traps, hazards, and the most deadly force of all: gravity. Will you jump into the unknown to rescue your dog?"
+      },
+      {
+        "item_key": "a6e1c846804faed8",
+        "section": "paid",
+        "title": "Barony",
+        "url": "https://store.steampowered.com/app/371970/",
+        "message_id": "1511796140918571200",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-06-03T18:18:08.383748+00:00",
+        "description": "Barony is the premier first-person roguelike with cooperative play! Adventure alone, or gather a party with iconic and unusual RPG classes to face off against the brutal dungeons. Test your resourcefulness, wits, and friendships, on your quest to lift the evil lich's curse!"
+      },
+      {
+        "item_key": "ff293b98411fd935",
+        "section": "paid",
+        "title": "Cheap Car Repair",
+        "url": "https://store.steampowered.com/app/2904040/",
+        "message_id": "1511796148963250206",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-06-03T18:18:10.189554+00:00",
+        "description": "Cheap Car Repair - go back in time to Poland of the 90's. Run your own Cheap Car Repair shop. Look for savings wherever you can. Make lots of money and avoid angry customers!"
       }
     ]
   }
