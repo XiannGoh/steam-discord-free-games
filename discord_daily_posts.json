@@ -1,205 +1,4 @@
 {
-  "2026-05-06": {
-    "run_state": {
-      "section_headers": {
-        "free": {
-          "message_id": "1501610730141782189",
-          "channel_id": "592534544708796474",
-          "posted_at_utc": "2026-05-06T15:44:57.088169+00:00"
-        },
-        "paid": {
-          "message_id": "1501610780162920590",
-          "channel_id": "592534544708796474",
-          "posted_at_utc": "2026-05-06T15:45:09.758819+00:00"
-        },
-        "instagram": {
-          "message_id": "1501610840573345802",
-          "channel_id": "592534544708796474",
-          "posted_at_utc": "2026-05-06T15:45:23.398761+00:00"
-        }
-      },
-      "last_attempt_at_utc": "2026-05-06T15:44:52.666242+00:00",
-      "intro": {
-        "message_id": "1501610713771278399",
-        "channel_id": "592534544708796474",
-        "posted_at_utc": "2026-05-06T15:44:55.215649+00:00"
-      },
-      "footer": {
-        "message_id": "1501610896135291025",
-        "channel_id": "592534544708796474",
-        "posted_at_utc": "2026-05-06T15:45:36.926126+00:00"
-      },
-      "completed": true,
-      "completed_at_utc": "2026-05-06T15:45:38.139274+00:00"
-    },
-    "items": [
-      {
-        "item_key": "110910710d59b3ef",
-        "section": "free",
-        "title": "Eterspire",
-        "url": "https://store.steampowered.com/app/2144600/",
-        "message_id": "1501610737615765554",
-        "channel_id": "592534544708796474",
-        "source_type": "steam_free",
-        "posted_at": "2026-05-06T15:44:59.146537+00:00",
-        "description": "Eterspire is a true free-to-play, cross-platform MMORPG where your skill and dedication define your progression! Play on PC and Mobile with crossplay, join a friendly and active community, discover new content updates every two weeks, and explore a massive world full of charming characters."
-      },
-      {
-        "item_key": "992218c63c675154",
-        "section": "free",
-        "title": "Born Again",
-        "url": "https://store.steampowered.com/app/2332210/",
-        "message_id": "1501610746231001188",
-        "channel_id": "592534544708796474",
-        "source_type": "steam_free",
-        "posted_at": "2026-05-06T15:45:01.068195+00:00",
-        "description": "Hack-n-slash your way through the evil brewing in the Outer Realm! Stop the ominous Overlords in their tracks, but tread lightly, for every corner hosts a monster in waiting!"
-      },
-      {
-        "item_key": "fd2a03254714400d",
-        "section": "free",
-        "title": "Infestation: The New Z",
-        "url": "https://store.steampowered.com/app/555570/",
-        "message_id": "1501610754292449280",
-        "channel_id": "592534544708796474",
-        "source_type": "steam_free",
-        "posted_at": "2026-05-06T15:45:03.114829+00:00",
-        "description": "The New Z is a FREE TO PLAY multi-game mode experience. SURVIVE with friends and gather loot, stash and trade. Go into wars against other groups in a massive OPEN WORLD or face them 5 v 5 in COMPETITIVE."
-      },
-      {
-        "item_key": "b13bdbe2bfd52174",
-        "section": "free",
-        "title": "Mini World: CREATA",
-        "url": "https://store.steampowered.com/app/814480/",
-        "message_id": "1501610762949361735",
-        "channel_id": "592534544708796474",
-        "source_type": "steam_free",
-        "posted_at": "2026-05-06T15:45:05.213036+00:00",
-        "description": "Mini World is a 3D free sandbox game about adventure, exploration, and creating your dream worlds. There is no grinding or leveling up. No IAP gate that locks features from free to play players. Everyone can enjoy the game’s full features with great freedom"
-      },
-      {
-        "item_key": "0295aaffe478faad",
-        "section": "free",
-        "title": "Royal Revolt II",
-        "url": "https://store.steampowered.com/app/1571190/",
-        "message_id": "1501610771744817152",
-        "channel_id": "592534544708796474",
-        "source_type": "steam_free",
-        "posted_at": "2026-05-06T15:45:07.254260+00:00",
-        "description": "Royal Revolt 2 is an asynchronous PvP Reverse Tower Defense game full of medieval magic and action-laden battles.Can you set up your defenses so other Kings and Queens can't crash your castle gates? We're throwing down the gauntlet. Will you pick it up?"
-      },
-      {
-        "item_key": "631233dcdbffe64c",
-        "section": "paid",
-        "title": "MIMESIS",
-        "url": "https://store.steampowered.com/app/2827200/",
-        "message_id": "1501610790791151736",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-05-06T15:45:11.846571+00:00",
-        "description": "4 Player co-op survival horror game. When the cursed rain falls, 'Mimesis' appear, perfectly imitating your teammates, bringing a new level of tension you've never experienced before."
-      },
-      {
-        "item_key": "c98b8d4b867f00eb",
-        "section": "paid",
-        "title": "Walk of Life",
-        "url": "https://store.steampowered.com/app/1910150/",
-        "message_id": "1501610800085991564",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-05-06T15:45:13.739255+00:00",
-        "description": "Walk of Life is a competitive life simulator for up to 6 players! Choose from a cast of unique roles and duke it out with your friends, bots, or by yourself, in this wacky and ever-surprising party game!"
-      },
-      {
-        "item_key": "126e4bcd756b1d73",
-        "section": "paid",
-        "title": "Jump Space",
-        "url": "https://store.steampowered.com/app/1757300/",
-        "message_id": "1501610807438344274",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-05-06T15:45:15.891807+00:00",
-        "description": "Jump Space (formerly Jump Ship) is a mission based co-op PvE for 1-4 players, where you are the crew of a spaceship. Transition seamlessly from crewing the ship to on-foot exploration and space walks. Explore, upgrade, and survive intense encounters in deep space together."
-      },
-      {
-        "item_key": "7db15329402ac31d",
-        "section": "paid",
-        "title": "The Awakener: Battle Tendency",
-        "url": "https://store.steampowered.com/app/3742830/",
-        "message_id": "1501610816506560542",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-05-06T15:45:19.226360+00:00",
-        "description": "The Awakener: Battle Tendency fuses Diablo-style build depth with Dynasty Warriors crowd-clearing. In 20–50 intense hours, shred monster hordes and craft your own style with hundreds of affixes and talents—no filler, just kill, loot, grow."
-      },
-      {
-        "item_key": "d912a62ffed15ef8",
-        "section": "paid",
-        "title": "Lucid Blocks",
-        "url": "https://store.steampowered.com/app/3495730/",
-        "message_id": "1501610830284849164",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-05-06T15:45:21.628197+00:00",
-        "description": "Explore, build, and survive in a cryptic expanse oozing with dreamlike oddities and esoteric critters."
-      },
-      {
-        "item_key": "e1ff632a44250fd8",
-        "section": "instagram",
-        "title": "@wilfratgaming",
-        "url": "https://www.instagram.com/p/DX9brjTtIVk/",
-        "message_id": "1501610848014041178",
-        "channel_id": "592534544708796474",
-        "source_type": "instagram",
-        "posted_at": "2026-05-06T15:45:25.795350+00:00",
-        "description": "MOTORSLICE! OUT NOW! Parkour through the megastructure with the perfect drum and bass soundtrack!  #gamestoplay #newg..."
-      },
-      {
-        "item_key": "8289a2beae350d6a",
-        "section": "instagram",
-        "title": "@sharedxp_official",
-        "url": "https://www.instagram.com/p/DX9v1mXsIVC/",
-        "message_id": "1501610858055204894",
-        "channel_id": "592534544708796474",
-        "source_type": "instagram",
-        "posted_at": "2026-05-06T15:45:27.828078+00:00",
-        "description": "Hidalgo — a heartwarming two-player co-op adventure where you play as puppets in a handcrafted world built from recyc..."
-      },
-      {
-        "item_key": "f59ff7833d3633fd",
-        "section": "instagram",
-        "title": "@sharedxp_official",
-        "url": "https://www.instagram.com/p/DX9Lh_CM8DE/",
-        "message_id": "1501610866632560792",
-        "channel_id": "592534544708796474",
-        "source_type": "instagram",
-        "posted_at": "2026-05-06T15:45:30.548455+00:00",
-        "description": "Warhammer 40,000: Dark Heresy — a party-based story-driven cRPG where you play as Inquisition acolytes investigating ..."
-      },
-      {
-        "item_key": "b6cb4a538117b20a",
-        "section": "instagram",
-        "title": "@wilfratgaming",
-        "url": "https://www.instagram.com/p/DX9-yo9tSX9/",
-        "message_id": "1501610877969891450",
-        "channel_id": "592534544708796474",
-        "source_type": "instagram",
-        "posted_at": "2026-05-06T15:45:32.507846+00:00",
-        "description": "This game turns you and your friends into crane wielding offroaders! #newgames #gamestoplay  #coopgame #woahlaunch"
-      },
-      {
-        "item_key": "86131ad502533314",
-        "section": "instagram",
-        "title": "@biffmatictv",
-        "url": "https://www.instagram.com/p/DX8jpMiNrOr/",
-        "message_id": "1501610886518014122",
-        "channel_id": "592534544708796474",
-        "source_type": "instagram",
-        "posted_at": "2026-05-06T15:45:34.781633+00:00",
-        "description": "What if a space sim had flight sim level depth? This game does just that!   Space Hauler  What if a space sim had fli..."
-      }
-    ]
-  },
   "2026-05-07": {
     "run_state": {
       "section_headers": {
@@ -6512,6 +6311,114 @@
         "source_type": "paid_under_20",
         "posted_at": "2026-06-04T16:37:23.944537+00:00",
         "description": "Hell is an experiment you can't survive in Outlast, a first-person survival horror game developed by veterans of some of the biggest game franchises in history. As investigative journalist Miles Upshur, explore Mount Massive Asylum and try to survive long enough to discover its terrible secret... if you dare."
+      }
+    ]
+  },
+  "2026-06-05": {
+    "run_state": {
+      "section_headers": {
+        "free": {
+          "message_id": "1512489340331233481",
+          "channel_id": "592534544708796474",
+          "posted_at_utc": "2026-06-05T16:12:39.851028+00:00"
+        },
+        "paid": {
+          "message_id": "1512489364251213824",
+          "channel_id": "592534544708796474",
+          "posted_at_utc": "2026-06-05T16:12:45.444504+00:00"
+        }
+      },
+      "last_attempt_at_utc": "2026-06-05T16:12:36.895153+00:00",
+      "intro": {
+        "message_id": "1512489330453774387",
+        "channel_id": "592534544708796474",
+        "posted_at_utc": "2026-06-05T16:12:38.053050+00:00"
+      },
+      "footer": {
+        "message_id": "1512489411777003534",
+        "channel_id": "592534544708796474",
+        "posted_at_utc": "2026-06-05T16:12:56.869811+00:00"
+      },
+      "completed": true,
+      "completed_at_utc": "2026-06-05T16:12:58.078578+00:00"
+    },
+    "items": [
+      {
+        "item_key": "b13bdbe2bfd52174",
+        "section": "free",
+        "title": "Mini World: CREATA",
+        "url": "https://store.steampowered.com/app/814480/",
+        "message_id": "1512489347973386431",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-06-05T16:12:41.890512+00:00",
+        "description": "Mini World is a 3D free sandbox game about adventure, exploration, and creating your dream worlds. There is no grinding or leveling up. No IAP gate that locks features from free to play players. Everyone can enjoy the game’s full features with great freedom"
+      },
+      {
+        "item_key": "4b76953a2361a3a2",
+        "section": "free",
+        "title": "Starborne: Frontiers",
+        "url": "https://store.steampowered.com/app/3021540/",
+        "message_id": "1512489356408127578",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-06-05T16:12:43.726809+00:00",
+        "description": "Starborne: Frontiers is a free-to-play tactical autobattler with hundreds of unique ships. Form your fleet, customize it with a variety of equipment, and use strategy to create the perfect battlefield formation. Take on bounties, engage in the PvP arena, and bring order to the Frontier."
+      },
+      {
+        "item_key": "539a57c70093fda2",
+        "section": "paid",
+        "title": "The Greatest Penguin Heist of All Time",
+        "url": "https://store.steampowered.com/app/1451480/",
+        "message_id": "1512489371427799121",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-06-05T16:12:47.508574+00:00",
+        "description": "The Greatest Penguin Heist of All Time is a sandboxy physics game for 1-8 players, with everything from sneaky heists to hilarous stupidity to baking pizzas. With continuous updates, plenty of maps, and hundreds of items, clothes and quests, it has something for everyone."
+      },
+      {
+        "item_key": "bb99a4e40aed45c1",
+        "section": "paid",
+        "title": "Kingdom Two Crowns",
+        "url": "https://store.steampowered.com/app/701160/",
+        "message_id": "1512489379967275059",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-06-05T16:12:49.289722+00:00",
+        "description": "Gather coins, build defenses and reclaim your fallen Kingdom. Explore and uncover secrets, unlock new technologies and protect your crown versus waves of Greed monsters that come at night. Kingdom is a solo or co-op micro-strategy and tower defense game set in an atmospheric pixel world."
+      },
+      {
+        "item_key": "7c4b8388fa059433",
+        "section": "paid",
+        "title": "Street Fighter 30th Anniversary Collection",
+        "url": "https://store.steampowered.com/app/586200/",
+        "message_id": "1512489387554771106",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-06-05T16:12:51.110927+00:00",
+        "description": "Celebrate Street Fighter’s historic legacy with the Street Fighter 30th Anniversary Collection. In this collection of 12 Street Fighter games, four groundbreaking titles let you hop online and relive the arcade experience through the online Arcade Mode or play with friends."
+      },
+      {
+        "item_key": "247efdb95585a028",
+        "section": "paid",
+        "title": "Funko Fusion",
+        "url": "https://store.steampowered.com/app/1843310/",
+        "message_id": "1512489395125747872",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-06-05T16:12:52.830876+00:00",
+        "description": "Experience a festival of fandom like never before in Funko Fusion! Play through iconic worlds and mashup characters inspired by some of your favorite franchises in an action-adventure game with uniquely authentic, irreverent humor from the creative minds of 10:10 Games."
+      },
+      {
+        "item_key": "cf40ae4aa0975d2c",
+        "section": "paid",
+        "title": "THE GAME OF LIFE 2",
+        "url": "https://store.steampowered.com/app/1455630/",
+        "message_id": "1512489401886707973",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-06-05T16:12:54.933227+00:00",
+        "description": "The official sequel to the hit board game played by 50 million fans! The Game of Life 2 adds vibrant 3D animation and brand-new choices in every turn. Customise your peg, spin the spinner and build your best life!"
       }
     ]
   }
