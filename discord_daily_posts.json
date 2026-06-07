@@ -1,194 +1,4 @@
 {
-  "2026-05-08": {
-    "run_state": {
-      "section_headers": {
-        "free": {
-          "message_id": "1502322551505031259",
-          "channel_id": "592534544708796474",
-          "posted_at_utc": "2026-05-08T14:53:28.575859+00:00"
-        },
-        "paid": {
-          "message_id": "1502322604692738109",
-          "channel_id": "592534544708796474",
-          "posted_at_utc": "2026-05-08T14:53:41.491425+00:00"
-        },
-        "instagram": {
-          "message_id": "1502322652772044850",
-          "channel_id": "592534544708796474",
-          "posted_at_utc": "2026-05-08T14:53:52.565181+00:00"
-        }
-      },
-      "last_attempt_at_utc": "2026-05-08T14:53:25.763172+00:00",
-      "intro": {
-        "message_id": "1502322542218575923",
-        "channel_id": "592534544708796474",
-        "posted_at_utc": "2026-05-08T14:53:26.774057+00:00"
-      },
-      "footer": {
-        "message_id": "1502322694811816116",
-        "channel_id": "592534544708796474",
-        "posted_at_utc": "2026-05-08T14:54:02.704540+00:00"
-      },
-      "completed": true,
-      "completed_at_utc": "2026-05-08T14:54:03.917471+00:00"
-    },
-    "items": [
-      {
-        "item_key": "19dfe233c1f0b1b6",
-        "section": "free",
-        "title": "Darza's Dominion",
-        "url": "https://store.steampowered.com/app/1895130/",
-        "message_id": "1502322559537123348",
-        "channel_id": "592534544708796474",
-        "source_type": "steam_free",
-        "posted_at": "2026-05-08T14:53:30.793659+00:00",
-        "description": "The Dominion takes no prisoners! Fight for your survival in the unforgiving terrains that surround you, strengthen your hero through slaying dangerous creatures, gather a group of allies and bring the battle to Darza in this fast-paced roguelike cooperative bullet-hell MMO!"
-      },
-      {
-        "item_key": "34e36ca6b990b017",
-        "section": "free",
-        "title": "XERA: Survival",
-        "url": "https://store.steampowered.com/app/625340/",
-        "message_id": "1502322568462467224",
-        "channel_id": "592534544708796474",
-        "source_type": "steam_free",
-        "posted_at": "2026-05-08T14:53:32.750438+00:00",
-        "description": "Action-focused, open world survival shooter, PvPvE against fellow mercenaries and lethal XOIDS. Raid for resources alone or with team-mates, build and defend your base, stash your gear and survive against the odds. You are the hunters. You are the hunted. And the robots never sleep…"
-      },
-      {
-        "item_key": "042f5780bfb9ef4a",
-        "section": "free",
-        "title": "Heroes Of The Dark",
-        "url": "https://store.steampowered.com/app/1851330/",
-        "message_id": "1502322576939290725",
-        "channel_id": "592534544708796474",
-        "source_type": "steam_free",
-        "posted_at": "2026-05-08T14:53:35.006140+00:00",
-        "description": "Battle Vampires, Werewolves and Humans in a dark Imperial Age strategy game! Collect and upgrade Heroes for 5v5 action, forge alliances, and restore world order."
-      },
-      {
-        "item_key": "2fb5c98374843165",
-        "section": "free",
-        "title": "PANZERKAMPF®",
-        "url": "https://store.steampowered.com/app/2771910/",
-        "message_id": "1502322586070155306",
-        "channel_id": "592534544708796474",
-        "source_type": "steam_free",
-        "posted_at": "2026-05-08T14:53:37.199931+00:00",
-        "description": "World war of tanks rages on. Join the battle in one of our real-world tanks! Upgrade your vehicles and destroy the enemy! Play with friends and dominate the war! Play for free, in intuitive and easy to grasp UI, with state-of-the-art graphics, particle effects and authentic sound!"
-      },
-      {
-        "item_key": "3e622801d55d3565",
-        "section": "free",
-        "title": "FreestyleFootball R",
-        "url": "https://store.steampowered.com/app/1826980/",
-        "message_id": "1502322595071131659",
-        "channel_id": "592534544708796474",
-        "source_type": "steam_free",
-        "posted_at": "2026-05-08T14:53:39.511062+00:00",
-        "description": "《FreestyleFootball》 is a street hip-hop animation style soccer ACG game created by JCE and published by HOGA. In the game, you will collect and play as different characters in PVP team Competition. The game mode includes 4v4 team competition and club league."
-      },
-      {
-        "item_key": "39fa42fda695ca60",
-        "section": "paid",
-        "title": "Wildgate",
-        "url": "https://store.steampowered.com/app/3504780/",
-        "message_id": "1502322613295386705",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-05-08T14:53:43.318263+00:00",
-        "description": "Wildgate is a PvPvE multiplayer shooter that blends tactical ship-to-ship combat with fast-paced first-person action. Evade deadly environmental hazards, search for powerful weapons and ship upgrades, and be the first crew to escape with the Artifact... or the last crew left flying."
-      },
-      {
-        "item_key": "267e1cf9e482c1ea",
-        "section": "paid",
-        "title": "Cursed Companions",
-        "url": "https://store.steampowered.com/app/3265230/",
-        "message_id": "1502322620551532565",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-05-08T14:53:45.214854+00:00",
-        "description": "If we say the wrong words... WE DIE! This game kills you with your own voices! Online co-op where everyone gets a forbidden word, say it and you kill your friends. Explore spooky dungeons, cast spells and defeat monsters with your voices."
-      },
-      {
-        "item_key": "1edd7298b1274d9d",
-        "section": "paid",
-        "title": "SCP: 5K",
-        "url": "https://store.steampowered.com/app/872670/",
-        "message_id": "1502322628830953513",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-05-08T14:53:47.198419+00:00",
-        "description": "SCP: 5K is a co-op or singleplayer tactical horror FPS project that puts players in the midst of a conspiracy where the SCP Foundation has turned on humanity. Enjoy Early Access as we continue to work towards a completed full release of the project!"
-      },
-      {
-        "item_key": "d947a91b2e8a95d2",
-        "section": "paid",
-        "title": "BIGFOOT",
-        "url": "https://store.steampowered.com/app/509980/",
-        "message_id": "1502322637295063192",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-05-08T14:53:49.037211+00:00",
-        "description": "You are a Bigfoot hunter with an important mission: to put an end to rumours once and for all and prove to yourself that Bigfoot is not just a myth or an invention of the mind..."
-      },
-      {
-        "item_key": "de93b3543b4a5e9a",
-        "section": "paid",
-        "title": "Scam Line",
-        "url": "https://store.steampowered.com/app/2794590/",
-        "message_id": "1502322644802867403",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-05-08T14:53:50.927992+00:00",
-        "description": "Scam Line is a 4–8 player social deception game where your party will face different challenges. Become a liar, a manipulator, a cheater, or find your own path to victory"
-      },
-      {
-        "item_key": "4ed6482723dabfab",
-        "section": "instagram",
-        "title": "@wilfratgaming",
-        "url": "https://www.instagram.com/p/DYDDlpvNMHf/",
-        "message_id": "1502322659646505041",
-        "channel_id": "592534544708796474",
-        "source_type": "instagram",
-        "posted_at": "2026-05-08T14:53:54.437674+00:00",
-        "description": "Project Spectrum! #gamestoplay #gaming #videogames #newgames"
-      },
-      {
-        "item_key": "62e0625974a1b716",
-        "section": "instagram",
-        "title": "@sharedxp_official",
-        "url": "https://www.instagram.com/p/DYDeCacMMSk/",
-        "message_id": "1502322667338862633",
-        "channel_id": "592534544708796474",
-        "source_type": "instagram",
-        "posted_at": "2026-05-08T14:53:56.606779+00:00",
-        "description": "Left Fore Dead: Zombie Battle Golf — golf on a zombie-infested course with up to 4 players where your mates are just ..."
-      },
-      {
-        "item_key": "bc4f60fa08093b1f",
-        "section": "instagram",
-        "title": "@sharedxp_official",
-        "url": "https://www.instagram.com/p/DYC2xmQM1gw/",
-        "message_id": "1502322676591628420",
-        "channel_id": "592534544708796474",
-        "source_type": "instagram",
-        "posted_at": "2026-05-08T14:53:58.663797+00:00",
-        "description": "WheelMates — two players, two RC cars, one missing scientist, and a house full of secrets to uncover together at your..."
-      },
-      {
-        "item_key": "1448dce572e4554a",
-        "section": "instagram",
-        "title": "@biffmatictv",
-        "url": "https://www.instagram.com/p/DYFJUjBNju1/",
-        "message_id": "1502322685105934428",
-        "channel_id": "592534544708796474",
-        "source_type": "instagram",
-        "posted_at": "2026-05-08T14:54:00.769784+00:00",
-        "description": "Feed Rubber Ducks into an ENDLESS PIT in this Automation Sandbox Game!   @projectpittgame   #gaming #sandbox #automat..."
-      }
-    ]
-  },
   "2026-05-09": {
     "run_state": {
       "section_headers": {
@@ -6366,5 +6176,146 @@
       "skipped_reason": "no_eligible_winners",
       "updated_at_utc": "2026-06-07T00:01:39.243127+00:00"
     }
+  },
+  "2026-06-07": {
+    "run_state": {
+      "section_headers": {
+        "free": {
+          "message_id": "1513197845740654733",
+          "channel_id": "592534544708796474",
+          "posted_at_utc": "2026-06-07T15:08:00.499640+00:00"
+        },
+        "paid": {
+          "message_id": "1513197901185286334",
+          "channel_id": "592534544708796474",
+          "posted_at_utc": "2026-06-07T15:08:13.703028+00:00"
+        }
+      },
+      "last_attempt_at_utc": "2026-06-07T15:07:56.938341+00:00",
+      "intro": {
+        "message_id": "1513197832520077372",
+        "channel_id": "592534544708796474",
+        "posted_at_utc": "2026-06-07T15:07:58.850885+00:00"
+      },
+      "footer": {
+        "message_id": "1513197949214003343",
+        "channel_id": "592534544708796474",
+        "posted_at_utc": "2026-06-07T15:08:25.326824+00:00"
+      },
+      "completed": true,
+      "completed_at_utc": "2026-06-07T15:08:26.535490+00:00"
+    },
+    "items": [
+      {
+        "item_key": "ae86d368049003ec",
+        "section": "free",
+        "title": "Modern Warships",
+        "url": "https://store.steampowered.com/app/3144230/",
+        "message_id": "1513197852216655943",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-06-07T15:08:02.328904+00:00",
+        "description": "Modern Warships is an online action game about contemporary military vehicles. Join now and detect the enemy with recon aircraft, launch volleys of guided missiles from cruisers, sneak up to surface vessels with submarines, and provide cover to the allied fleet with jet fighters and helicopters."
+      },
+      {
+        "item_key": "6ee3ff270f8026a2",
+        "section": "free",
+        "title": "IdleOn",
+        "url": "https://store.steampowered.com/app/1476970/",
+        "message_id": "1513197859980316723",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-06-07T15:08:04.063770+00:00",
+        "description": "The management RPG where your heroes keep fighting even when you're gone! Spend their loot on upgrades, unlock classes from Elemental Wizard to Cannon Pirate, and level up 19 unique skills like Farming, Sailing, and even Construction!"
+      },
+      {
+        "item_key": "7ab10749c220382c",
+        "section": "free",
+        "title": "MapleStory",
+        "url": "https://store.steampowered.com/app/216150/",
+        "message_id": "1513197867852890204",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-06-07T15:08:06.384348+00:00",
+        "description": "Join over 260 million players worldwide in MapleStory, the world’s biggest 2D MMORPG adventure! Play now for free."
+      },
+      {
+        "item_key": "fd94046ed17f3b49",
+        "section": "free",
+        "title": "Brawlhalla",
+        "url": "https://store.steampowered.com/app/291550/",
+        "message_id": "1513197877420228730",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-06-07T15:08:09.229237+00:00",
+        "description": "An epic platform fighter for up to 8 players online or local. Try casual free-for-alls, ranked matches, or invite friends to a private room. And it's free! Play cross-platform with millions of players on PlayStation, Xbox, Nintendo Switch, iOS, Android & Steam! Frequent updates. Over sixty Legends."
+      },
+      {
+        "item_key": "3eb172c367772b5b",
+        "section": "free",
+        "title": "SMITE 2",
+        "url": "https://store.steampowered.com/app/2437170/",
+        "message_id": "1513197889310949601",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-06-07T15:08:12.116785+00:00",
+        "description": "Become a god and wage war in SMITE 2, the free-to-play Unreal Engine 5-powered sequel to the legendary third-person action MOBA. If you love challenging competition, intense action, ability-driven combat, rewarding teamwork, or godly mythology, you’ll see why 40+ million players love SMITE."
+      },
+      {
+        "item_key": "b41e8eb68db5eb8e",
+        "section": "paid",
+        "title": "Vellum",
+        "url": "https://store.steampowered.com/app/917950/",
+        "message_id": "1513197907489198153",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-06-07T15:08:15.725288+00:00",
+        "description": "Write on! Defend the books in Vellum, a co-op, literary roguelike! Harness class-defining colors, master an inspired spellbook, and influence the growth of your enemy! As a group or solo, you'll craft plot-twisting builds to rewrite the rules in Ink!"
+      },
+      {
+        "item_key": "cd12988bfcc6bd39",
+        "section": "paid",
+        "title": "Romestead",
+        "url": "https://store.steampowered.com/app/1805320/",
+        "message_id": "1513197916758474944",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-06-07T15:08:17.698147+00:00",
+        "description": "Rome has fallen! Rebuild civilization in this action-adventure survival game for 1-8 players. Fight hordes of the walking dead, build settlements, restore the Roman gods... or kick back and farm with friends."
+      },
+      {
+        "item_key": "76119421024549cd",
+        "section": "paid",
+        "title": "Cloudheim",
+        "url": "https://store.steampowered.com/app/2070270/",
+        "message_id": "1513197924530524340",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-06-07T15:08:19.689007+00:00",
+        "description": "Master chaotic physics-based combat inspired by Zelda and Devil May Cry. Explore islands and dungeons, smash monsters, loot and craft powerful gear, and grow your home in the sky. Play solo or online co-op with up to 4 players."
+      },
+      {
+        "item_key": "050a182498b86046",
+        "section": "paid",
+        "title": "MONSTER HUNTER RISE",
+        "url": "https://store.steampowered.com/app/1446780/",
+        "message_id": "1513197932772462603",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-06-07T15:08:21.660251+00:00",
+        "description": "Rise to the challenge and join the hunt! In Monster Hunter Rise, the latest installment in the award-winning and top-selling Monster Hunter series, you’ll become a hunter, explore brand new maps and use a variety of weapons to take down fearsome monsters as part of an all-new storyline."
+      },
+      {
+        "item_key": "d0379c8698b0a997",
+        "section": "paid",
+        "title": "Hell Let Loose",
+        "url": "https://store.steampowered.com/app/686810/",
+        "message_id": "1513197941186363433",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-06-07T15:08:23.557109+00:00",
+        "description": "Join the ever expanding experience of Hell Let Loose - a hardcore World War Two first person shooter with epic battles of 100 players with infantry, tanks, artillery, a dynamically shifting front line and a unique resource based RTS-inspired meta-game."
+      }
+    ]
   }
 }
