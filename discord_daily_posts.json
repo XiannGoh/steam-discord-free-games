@@ -1,205 +1,4 @@
 {
-  "2026-05-07": {
-    "run_state": {
-      "section_headers": {
-        "free": {
-          "message_id": "1501973715569610792",
-          "channel_id": "592534544708796474",
-          "posted_at_utc": "2026-05-07T15:47:19.438732+00:00"
-        },
-        "paid": {
-          "message_id": "1501973768489275404",
-          "channel_id": "592534544708796474",
-          "posted_at_utc": "2026-05-07T15:47:32.322753+00:00"
-        },
-        "instagram": {
-          "message_id": "1501973825615564914",
-          "channel_id": "592534544708796474",
-          "posted_at_utc": "2026-05-07T15:47:45.995122+00:00"
-        }
-      },
-      "last_attempt_at_utc": "2026-05-07T15:47:16.806751+00:00",
-      "intro": {
-        "message_id": "1501973706610708662",
-        "channel_id": "592534544708796474",
-        "posted_at_utc": "2026-05-07T15:47:17.750393+00:00"
-      },
-      "footer": {
-        "message_id": "1501973887322161252",
-        "channel_id": "592534544708796474",
-        "posted_at_utc": "2026-05-07T15:48:00.500480+00:00"
-      },
-      "completed": true,
-      "completed_at_utc": "2026-05-07T15:48:01.713636+00:00"
-    },
-    "items": [
-      {
-        "item_key": "3f07a48c127d13d9",
-        "section": "free",
-        "title": "RPG MO",
-        "url": "https://store.steampowered.com/app/372800/",
-        "message_id": "1501973722729545819",
-        "channel_id": "592534544708796474",
-        "source_type": "steam_free",
-        "posted_at": "2026-05-07T15:47:21.585180+00:00",
-        "description": "RPG MO is a nostalgic MMORPG that reminds of Ultima and Runescape Classic."
-      },
-      {
-        "item_key": "831e80a80857b652",
-        "section": "free",
-        "title": "Dead Maze",
-        "url": "https://store.steampowered.com/app/667890/",
-        "message_id": "1501973731688452377",
-        "channel_id": "592534544708796474",
-        "source_type": "steam_free",
-        "posted_at": "2026-05-07T15:47:23.996827+00:00",
-        "description": "Dead Maze is a 2D MMO game set in a destroyed contemporary world, filled with zombies. Explore the world, scavenge and craft as many items as possible, to survive the hostile environment and upgrade your gear and camp as you go."
-      },
-      {
-        "item_key": "07ce3d166b2fdf65",
-        "section": "free",
-        "title": "Nexus Rumble: The Ultimate Showdown",
-        "url": "https://store.steampowered.com/app/3027820/",
-        "message_id": "1501973741763170354",
-        "channel_id": "592534544708796474",
-        "source_type": "steam_free",
-        "posted_at": "2026-05-07T15:47:26.418445+00:00",
-        "description": "Welcome to Nexus Rumble, the ultimate showdown where champions clash in a fierce competition for survival! Prepare to embark on an adrenaline-fueled journey through diverse landscapes and exhilarating challenges in this heart-pounding multiplayer extravaganza."
-      },
-      {
-        "item_key": "70284b80978d9bc8",
-        "section": "free",
-        "title": "Warborne Above Ashes",
-        "url": "https://store.steampowered.com/app/3142050/",
-        "message_id": "1501973751846146189",
-        "channel_id": "592534544708796474",
-        "source_type": "steam_free",
-        "posted_at": "2026-05-07T15:47:28.608802+00:00",
-        "description": "Warborne is a top-down PvP loot-and-extract MMO. Every choice in the Abyss is a high-stakes gamble. Pick your gear wisely, employ cunning tactics, and plunder every treasure you can from a battlefield teeming with deception. And pray you make it out alive. Trade your spoils to grow your might."
-      },
-      {
-        "item_key": "9c266f0cdc48c7de",
-        "section": "free",
-        "title": "Growtopia",
-        "url": "https://store.steampowered.com/app/866020/",
-        "message_id": "1501973761002307595",
-        "channel_id": "592534544708796474",
-        "source_type": "steam_free",
-        "posted_at": "2026-05-07T15:47:30.469902+00:00",
-        "description": "Growtopia is a 2D sandbox game, that brings together millions of players in an expansive pixel world. Collaborate in building anything you can imagine, become anyone you want to be, and delve into numerous mini-games. Unleash your creativity and join the massive universe in Growtopia today!"
-      },
-      {
-        "item_key": "aa488a4eb76c8256",
-        "section": "paid",
-        "title": "Car Service Together",
-        "url": "https://store.steampowered.com/app/3501070/",
-        "message_id": "1501973776676425789",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-05-07T15:47:34.652943+00:00",
-        "description": "Car Service Together is a 1-4 co-op & single player simulation game where you and/or with your friends start from scratch and build your way up. Work together to successfully run your own service center. Team up, manage your business, and create the ultimate car service !"
-      },
-      {
-        "item_key": "88a8ba06dff98f50",
-        "section": "paid",
-        "title": "Sker Ritual",
-        "url": "https://store.steampowered.com/app/1492070/",
-        "message_id": "1501973786298159144",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-05-07T15:47:36.708301+00:00",
-        "description": "An intense round-based zombie survival FPS, play solo or co-op. Shoot your way through relentless waves of vicious horrors with high-octane objectives, upgrading steampunk weapons, collecting Celtic God powers, and surviving the onslaught of the Quiet Ones."
-      },
-      {
-        "item_key": "8664a9582f92ec8f",
-        "section": "paid",
-        "title": "LOCKDOWN Protocol",
-        "url": "https://store.steampowered.com/app/2780980/",
-        "message_id": "1501973795039215698",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-05-07T15:47:39.040445+00:00",
-        "description": "A first person social deduction game, combining real time action and communication, playable up to 16 players. While most players will cooperate to complete objectives to ensure victory, a small portion of dissidents will try their best to stop them at all cost, without being caught."
-      },
-      {
-        "item_key": "f78e6193dc2c451b",
-        "section": "paid",
-        "title": "EA SPORTS™ PGA TOUR™",
-        "url": "https://store.steampowered.com/app/1677350/",
-        "message_id": "1501973804753359008",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-05-07T15:47:41.396503+00:00",
-        "description": "The exclusive home of the Majors, EA SPORTS™ PGA TOUR™ features Pure Strike for superior golf gameplay, powered by ShotLink®, and unrivaled access to the world’s most exclusive golf courses."
-      },
-      {
-        "item_key": "63abcab8bbe397d4",
-        "section": "paid",
-        "title": "For The King",
-        "url": "https://store.steampowered.com/app/527230/",
-        "message_id": "1501973815759212796",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-05-07T15:47:44.016225+00:00",
-        "description": "For The King is a strategic RPG that blends tabletop and roguelike elements in a challenging adventure that spans the realms. Set off on a single player experience or play cooperatively both online and locally."
-      },
-      {
-        "item_key": "49081743c6c64226",
-        "section": "instagram",
-        "title": "@sharedxp_official",
-        "url": "https://www.instagram.com/p/DYAmilyMN4f/",
-        "message_id": "1501973835811913789",
-        "channel_id": "592534544708796474",
-        "source_type": "instagram",
-        "posted_at": "2026-05-07T15:47:48.571666+00:00",
-        "description": "Notmads — build your home on the back of a living colossal beast and explore a vast open world with up to 5 friends i..."
-      },
-      {
-        "item_key": "1c1a7b195afdcff7",
-        "section": "instagram",
-        "title": "@sharedxp_official",
-        "url": "https://www.instagram.com/p/DYAVLOhM7_0/",
-        "message_id": "1501973845345701928",
-        "channel_id": "592534544708796474",
-        "source_type": "instagram",
-        "posted_at": "2026-05-07T15:47:52.127720+00:00",
-        "description": "Lost Castle 2 — a roguelite dungeon brawler with over 200 weapons, deep build systems, and a secret level most player..."
-      },
-      {
-        "item_key": "e9d07985d3bce008",
-        "section": "instagram",
-        "title": "@wilfratgaming",
-        "url": "https://www.instagram.com/p/DYAW-B0NFPF/",
-        "message_id": "1501973859581165568",
-        "channel_id": "592534544708796474",
-        "source_type": "instagram",
-        "posted_at": "2026-05-07T15:47:54.067850+00:00",
-        "description": "This game lets you take top gear style road trips with your friends! SimplePlanes 2 is OUT NOW! #coopgame  #gamestopl..."
-      },
-      {
-        "item_key": "874968aa0d9c793c",
-        "section": "instagram",
-        "title": "@wilfratgaming",
-        "url": "https://www.instagram.com/p/DX7arFeNbCt/",
-        "message_id": "1501973867760193687",
-        "channel_id": "592534544708796474",
-        "source_type": "instagram",
-        "posted_at": "2026-05-07T15:47:56.104086+00:00",
-        "description": "If Shutter Island was made into a game, THIS would be it! #gamestoplay #gaming #videogames"
-      },
-      {
-        "item_key": "81c02356df561435",
-        "section": "instagram",
-        "title": "@biffmatictv",
-        "url": "https://www.instagram.com/p/DYAQMD4N0Uu/",
-        "message_id": "1501973876446466090",
-        "channel_id": "592534544708796474",
-        "source_type": "instagram",
-        "posted_at": "2026-05-07T15:47:58.553317+00:00",
-        "description": "This is the ultimate multiplayer vehicle sandbox! Simple Planes 2  #gaming #newgames #sandbox #gamingwithfriends #sim..."
-      }
-    ]
-  },
   "2026-05-08": {
     "run_state": {
       "section_headers": {
@@ -6421,5 +6220,151 @@
         "description": "The official sequel to the hit board game played by 50 million fans! The Game of Life 2 adds vibrant 3D animation and brand-new choices in every turn. Customise your peg, spin the spinner and build your best life!"
       }
     ]
+  },
+  "2026-06-06": {
+    "run_state": {
+      "section_headers": {
+        "free": {
+          "message_id": "1512829729504366603",
+          "channel_id": "592534544708796474",
+          "posted_at_utc": "2026-06-06T14:45:14.761986+00:00"
+        },
+        "paid": {
+          "message_id": "1512829770952478971",
+          "channel_id": "592534544708796474",
+          "posted_at_utc": "2026-06-06T14:45:24.908306+00:00"
+        }
+      },
+      "last_attempt_at_utc": "2026-06-06T14:45:11.213248+00:00",
+      "intro": {
+        "message_id": "1512829716027936888",
+        "channel_id": "592534544708796474",
+        "posted_at_utc": "2026-06-06T14:45:13.177348+00:00"
+      },
+      "footer": {
+        "message_id": "1512829820118237277",
+        "channel_id": "592534544708796474",
+        "posted_at_utc": "2026-06-06T14:45:36.440791+00:00"
+      },
+      "completed": true,
+      "completed_at_utc": "2026-06-06T14:45:37.649505+00:00"
+    },
+    "items": [
+      {
+        "item_key": "437ebfb76e7351ab",
+        "section": "free",
+        "title": "Grind Hero: MMORPG",
+        "url": "https://store.steampowered.com/app/3882310/",
+        "message_id": "1512829735611404300",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-06-06T14:45:16.434379+00:00",
+        "description": "2D MMORPG with PvP, guilds, bosses, sigils, and a vast world to explore!"
+      },
+      {
+        "item_key": "ae47b024fcbbb789",
+        "section": "free",
+        "title": "9Dragons",
+        "url": "https://store.steampowered.com/app/390100/",
+        "message_id": "1512829742943047820",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-06-06T14:45:18.015894+00:00",
+        "description": "9Dragons is a free to play MMORPG with fluid martial arts combat, lush environments, and intense PvP. Immerse yourself in a mesmerizing world set in ancient China at the beginning of martial arts chivalry."
+      },
+      {
+        "item_key": "4ce737d2d494f70a",
+        "section": "free",
+        "title": "Champions of Regnum",
+        "url": "https://store.steampowered.com/app/222520/",
+        "message_id": "1512829749653803170",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-06-06T14:45:19.646081+00:00",
+        "description": "Choose your Realm and engage in the most dynamic player driven battlefield available on any MMO. Fight for the Alsius Empire, protect the woods of Syrtis or avenge the Brotherhood of Ignis."
+      },
+      {
+        "item_key": "ea3b57ec9e6660eb",
+        "section": "free",
+        "title": "Different Strokes",
+        "url": "https://store.steampowered.com/app/2102020/",
+        "message_id": "1512829756599435324",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-06-06T14:45:21.376998+00:00",
+        "description": "A collaborative online painting game where players can create, edit, and rate each other's art!"
+      },
+      {
+        "item_key": "c88ae3286bbaaff2",
+        "section": "free",
+        "title": "The Expendabros",
+        "url": "https://store.steampowered.com/app/312990/",
+        "message_id": "1512829763671036165",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-06-06T14:45:23.035230+00:00",
+        "description": "The Expendabros have assembled and set their sights on the forces of ruthless arms dealer Conrad Stonebanks in the forests of Eastern Europe."
+      },
+      {
+        "item_key": "32ff51fed41e5105",
+        "section": "paid",
+        "title": "Minecraft Legends",
+        "url": "https://store.steampowered.com/app/1928870/",
+        "message_id": "1512829778481119283",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-06-06T14:45:26.479910+00:00",
+        "description": "Discover the mysteries of Minecraft Legends, a new action strategy game. Explore a gentle land of rich resources and lush biomes on the brink of destruction. The ravaging piglins have arrived, and it’s up to you to inspire your allies and lead them in strategic battles to save the Overworld!"
+      },
+      {
+        "item_key": "f70400a3ed6456cf",
+        "section": "paid",
+        "title": "Just Shapes & Beats",
+        "url": "https://store.steampowered.com/app/531510/",
+        "message_id": "1512829785192005832",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-06-06T14:45:28.259500+00:00",
+        "description": "\"Just Shapes & Beats\" is a chaotic co-op musical bullet-hell based on three simple things: avoid Shapes, move to the kick-ass Beats, and die, repeatedly."
+      },
+      {
+        "item_key": "414f693c8f118ca1",
+        "section": "paid",
+        "title": "Crab Champions",
+        "url": "https://store.steampowered.com/app/774801/",
+        "message_id": "1512829792859193386",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-06-06T14:45:30.776236+00:00",
+        "description": "Claw your way across exotic islands combining fluid movement with fast paced combat to become a Crab Champion in this third person roguelike shooter."
+      },
+      {
+        "item_key": "6e5074dde2d07c4e",
+        "section": "paid",
+        "title": "Sword Art Online: Fatal Bullet",
+        "url": "https://store.steampowered.com/app/626690/",
+        "message_id": "1512829803399479397",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-06-06T14:45:32.841120+00:00",
+        "description": "Experience an original story where you are the protagonist in the world of Gun Gale Online. Create your own avatar and explore devastated lands while experiencing exciting third person shooting in this action RPG."
+      },
+      {
+        "item_key": "0081726478f69331",
+        "section": "paid",
+        "title": "LEGO® The Hobbit™",
+        "url": "https://store.steampowered.com/app/285160/",
+        "message_id": "1512829812371357869",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-06-06T14:45:34.798658+00:00",
+        "description": "Reclaim the Lost Kingdom brick by brick! Join Bilbo Baggins, Gandalf, Thorin and his company of Dwarves in an epic adventure across Middle-earth to recapture the Lonely Mountain in the most expansive LEGO game to date."
+      }
+    ],
+    "winners_state": {
+      "status": "skipped",
+      "skipped_reason": "no_eligible_winners",
+      "updated_at_utc": "2026-06-07T00:01:39.243127+00:00"
+    }
   }
 }
