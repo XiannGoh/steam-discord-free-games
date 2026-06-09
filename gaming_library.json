@@ -15,12 +15,12 @@
       "assignments": {
         "195462430535581708": {
           "status": "dropped",
-          "updated_at_utc": "2026-06-09T14:50:06.812351+00:00"
+          "updated_at_utc": "2026-06-09T17:24:50.541294+00:00"
         }
       },
       "archived": true,
       "created_at_utc": "2026-04-10T09:39:19.389733+00:00",
-      "updated_at_utc": "2026-06-09T14:50:06.812419+00:00",
+      "updated_at_utc": "2026-06-09T17:24:50.541320+00:00",
       "conflicting_users": [],
       "last_activity_date": "2026-06-09"
     },
@@ -38,12 +38,12 @@
       "assignments": {
         "195462430535581708": {
           "status": "dropped",
-          "updated_at_utc": "2026-06-09T14:50:12.707091+00:00"
+          "updated_at_utc": "2026-06-09T17:24:56.962803+00:00"
         }
       },
       "archived": true,
       "created_at_utc": "2026-04-10T09:39:31.041650+00:00",
-      "updated_at_utc": "2026-06-09T14:50:12.707115+00:00",
+      "updated_at_utc": "2026-06-09T17:24:56.962826+00:00",
       "conflicting_users": [],
       "last_activity_date": "2026-06-09"
     },
@@ -61,12 +61,12 @@
       "assignments": {
         "195462430535581708": {
           "status": "dropped",
-          "updated_at_utc": "2026-06-09T14:50:11.668814+00:00"
+          "updated_at_utc": "2026-06-09T17:24:56.300432+00:00"
         }
       },
       "archived": true,
       "created_at_utc": "2026-04-13T09:19:36.758638+00:00",
-      "updated_at_utc": "2026-06-09T14:50:11.668841+00:00",
+      "updated_at_utc": "2026-06-09T17:24:56.300454+00:00",
       "conflicting_users": [],
       "last_activity_date": "2026-06-09"
     },
@@ -84,12 +84,12 @@
       "assignments": {
         "195462430535581708": {
           "status": "dropped",
-          "updated_at_utc": "2026-06-09T14:50:01.796817+00:00"
+          "updated_at_utc": "2026-06-09T17:24:45.915088+00:00"
         }
       },
       "archived": true,
       "created_at_utc": "2026-04-13T09:19:36.851684+00:00",
-      "updated_at_utc": "2026-06-09T14:50:01.796844+00:00",
+      "updated_at_utc": "2026-06-09T17:24:45.915110+00:00",
       "conflicting_users": [],
       "last_activity_date": "2026-06-09"
     },
@@ -107,12 +107,12 @@
       "assignments": {
         "195462430535581708": {
           "status": "dropped",
-          "updated_at_utc": "2026-06-09T14:50:17.994975+00:00"
+          "updated_at_utc": "2026-06-09T17:25:02.263478+00:00"
         }
       },
       "archived": true,
       "created_at_utc": "2026-04-13T09:19:41.011252+00:00",
-      "updated_at_utc": "2026-06-09T14:50:17.995003+00:00",
+      "updated_at_utc": "2026-06-09T17:25:02.263499+00:00",
       "conflicting_users": [],
       "last_activity_date": "2026-06-09"
     },
@@ -130,12 +130,12 @@
       "assignments": {
         "195462430535581708": {
           "status": "dropped",
-          "updated_at_utc": "2026-06-09T14:50:17.521078+00:00"
+          "updated_at_utc": "2026-06-09T17:25:01.754418+00:00"
         }
       },
       "archived": true,
       "created_at_utc": "2026-04-13T09:19:41.234758+00:00",
-      "updated_at_utc": "2026-06-09T14:50:17.521104+00:00",
+      "updated_at_utc": "2026-06-09T17:25:01.754444+00:00",
       "conflicting_users": [],
       "last_activity_date": "2026-06-09"
     },
@@ -149,12 +149,12 @@
       "assignments": {
         "195462430535581708": {
           "status": "paused",
-          "updated_at_utc": "2026-06-09T14:50:51.253571+00:00"
+          "updated_at_utc": "2026-06-09T17:25:37.627538+00:00"
         }
       },
       "archived": false,
       "created_at_utc": "2026-05-11T08:58:07.272764+00:00",
-      "updated_at_utc": "2026-06-09T14:58:03.143820+00:00",
+      "updated_at_utc": "2026-06-09T17:33:12.904097+00:00",
       "last_activity_date": "2026-06-09",
       "conflicting_users": []
     },
@@ -162,22 +162,22 @@
       "identity_key": "steam:2141730",
       "canonical_name": "Backrooms: Escape Together",
       "url": "https://store.steampowered.com/app/2141730/",
-      "source_type": "paid_under_20",
+      "source_type": "winner_promotion",
       "source_section": "paid",
       "source_metadata": {
         "winner_key": "https://store.steampowered.com/app/2141730/",
         "description": "A visually lifelike co-op horror for 1-6 people. Journey through 10 procedurally generated levels, using what's available to survive and progress deeper into the Backrooms.",
-        "daily_section": "paid"
+        "daily_section": null
       },
       "assignments": {
         "195462430535581708": {
           "status": "paused",
-          "updated_at_utc": "2026-06-09T14:50:34.272117+00:00"
+          "updated_at_utc": "2026-06-09T17:25:19.770413+00:00"
         }
       },
       "archived": false,
       "created_at_utc": "2026-05-12T02:54:35.624275+00:00",
-      "updated_at_utc": "2026-06-09T14:57:53.134950+00:00",
+      "updated_at_utc": "2026-06-09T17:33:01.089533+00:00",
       "last_activity_date": "2026-06-09",
       "conflicting_users": []
     },
@@ -195,16 +195,16 @@
       "assignments": {
         "195462430535581708": {
           "status": "paused",
-          "updated_at_utc": "2026-06-09T14:50:34.804194+00:00"
+          "updated_at_utc": "2026-06-09T17:25:20.292985+00:00"
         },
         "137123568952672257": {
           "status": "paused",
-          "updated_at_utc": "2026-06-09T14:51:24.949933+00:00"
+          "updated_at_utc": "2026-06-09T17:26:13.991328+00:00"
         }
       },
       "archived": false,
       "created_at_utc": "2026-05-12T02:54:41.069604+00:00",
-      "updated_at_utc": "2026-06-09T14:57:52.241035+00:00",
+      "updated_at_utc": "2026-06-09T17:33:00.473417+00:00",
       "last_activity_date": "2026-06-09",
       "conflicting_users": []
     },
@@ -222,12 +222,12 @@
       "assignments": {
         "195462430535581708": {
           "status": "dropped",
-          "updated_at_utc": "2026-06-09T14:50:40.680300+00:00"
+          "updated_at_utc": "2026-06-09T17:25:25.882845+00:00"
         }
       },
       "archived": true,
       "created_at_utc": "2026-05-13T01:59:55.906699+00:00",
-      "updated_at_utc": "2026-06-09T14:50:40.680325+00:00",
+      "updated_at_utc": "2026-06-09T17:25:25.882871+00:00",
       "last_activity_date": "2026-06-09",
       "conflicting_users": []
     },
@@ -245,12 +245,12 @@
       "assignments": {
         "195462430535581708": {
           "status": "dropped",
-          "updated_at_utc": "2026-06-09T14:50:45.613629+00:00"
+          "updated_at_utc": "2026-06-09T17:25:31.459509+00:00"
         }
       },
       "archived": true,
       "created_at_utc": "2026-05-13T01:59:56.299096+00:00",
-      "updated_at_utc": "2026-06-09T14:50:45.613654+00:00",
+      "updated_at_utc": "2026-06-09T17:25:31.459531+00:00",
       "last_activity_date": "2026-06-09",
       "conflicting_users": []
     },
@@ -264,11 +264,11 @@
       "assignments": {
         "195462430535581708": {
           "status": "paused",
-          "updated_at_utc": "2026-06-09T14:50:46.427127+00:00"
+          "updated_at_utc": "2026-06-09T17:25:31.897516+00:00"
         },
         "137123568952672257": {
           "status": "paused",
-          "updated_at_utc": "2026-06-09T14:51:25.427842+00:00"
+          "updated_at_utc": "2026-06-09T17:26:14.479789+00:00"
         },
         "164270274928181248": {
           "status": "active",
@@ -277,7 +277,7 @@
       },
       "archived": false,
       "created_at_utc": "2026-05-13T02:00:36.917438+00:00",
-      "updated_at_utc": "2026-06-09T14:58:02.507072+00:00",
+      "updated_at_utc": "2026-06-09T17:33:12.483238+00:00",
       "last_activity_date": "2026-06-09",
       "conflicting_users": []
     },
@@ -300,7 +300,7 @@
       },
       "archived": false,
       "created_at_utc": "2026-05-19T09:41:20.701657+00:00",
-      "updated_at_utc": "2026-06-09T14:57:57.816321+00:00",
+      "updated_at_utc": "2026-06-09T17:33:06.708008+00:00",
       "last_activity_date": "2026-05-19",
       "conflicting_users": []
     }
