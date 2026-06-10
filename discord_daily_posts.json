@@ -1,188 +1,4 @@
 {
-  "2026-05-10": {
-    "run_state": {
-      "section_headers": {
-        "free": {
-          "message_id": "1503043559618772994",
-          "channel_id": "592534544708796474",
-          "posted_at_utc": "2026-05-10T14:38:30.200439+00:00"
-        },
-        "paid": {
-          "message_id": "1503043618611531908",
-          "channel_id": "592534544708796474",
-          "posted_at_utc": "2026-05-10T14:38:44.331151+00:00"
-        },
-        "instagram": {
-          "message_id": "1503043676606304398",
-          "channel_id": "592534544708796474",
-          "posted_at_utc": "2026-05-10T14:38:58.432277+00:00"
-        }
-      },
-      "last_attempt_at_utc": "2026-05-10T14:38:26.927705+00:00",
-      "intro": {
-        "message_id": "1503043548134510784",
-        "channel_id": "592534544708796474",
-        "posted_at_utc": "2026-05-10T14:38:28.481834+00:00"
-      },
-      "footer": {
-        "message_id": "1503043717706289303",
-        "channel_id": "592534544708796474",
-        "posted_at_utc": "2026-05-10T14:39:07.941243+00:00"
-      },
-      "completed": true,
-      "completed_at_utc": "2026-05-10T14:39:09.152210+00:00"
-    },
-    "items": [
-      {
-        "item_key": "e83563e66619daf9",
-        "section": "free",
-        "title": "Undawn",
-        "url": "https://store.steampowered.com/app/1881700/",
-        "message_id": "1503043567319384194",
-        "channel_id": "592534544708796474",
-        "source_type": "steam_free",
-        "posted_at": "2026-05-10T14:38:34.154088+00:00",
-        "description": "Explore, adapt, and survive in Undawn, a free-to-play open-world survival RPG for mobile and PC developed by LightSpeed Studios and published by Level Infinite. Embark on an adventure with other survivors four years after a worldwide disaster where hordes of infected roam a shattered world."
-      },
-      {
-        "item_key": "3daf6efde8a71830",
-        "section": "free",
-        "title": "Ragnarok X: Next Generation",
-        "url": "https://store.steampowered.com/app/4007140/",
-        "message_id": "1503043583677169715",
-        "channel_id": "592534544708796474",
-        "source_type": "steam_free",
-        "posted_at": "2026-05-10T14:38:36.049092+00:00",
-        "description": "ROX is the official next-gen evolution of the classic Ragnarok Online MMORPG. With enhanced visuals, strategic combat, and diverse gameplay, ROX stays true to its roots while offering Fair Loot, Free Trading, and True Adventures. Your legend begins now— Are you ready?"
-      },
-      {
-        "item_key": "34e59783073defe9",
-        "section": "free",
-        "title": "POLYGON",
-        "url": "https://store.steampowered.com/app/1241100/",
-        "message_id": "1503043592292274308",
-        "channel_id": "592534544708796474",
-        "source_type": "steam_free",
-        "posted_at": "2026-05-10T14:38:38.367155+00:00",
-        "description": "POLYGON is a tactical multiplayer team 1st person shooter. Using various weapons, you will battle with up to 32 players on large-scale maps. Properly managing your arsenal and skills, you will lead your team to victory!"
-      },
-      {
-        "item_key": "dfaebf39616a3342",
-        "section": "free",
-        "title": "WonderKing",
-        "url": "https://store.steampowered.com/app/3825780/",
-        "message_id": "1503043601163358348",
-        "channel_id": "592534544708796474",
-        "source_type": "steam_free",
-        "posted_at": "2026-05-10T14:38:40.351335+00:00",
-        "description": "The return of classic 2D side-scrolling action! WonderKing is a free-to-play MMORPG packed with flashy combat and deep progression. Advance through diverse classes, master unique combos, and party up with friends for epic boss raids. Start your adventure today!"
-      },
-      {
-        "item_key": "0dfc4061cdf7030a",
-        "section": "free",
-        "title": "SCP: Containment Breach 2",
-        "url": "https://store.steampowered.com/app/3257000/",
-        "message_id": "1503043609539252224",
-        "channel_id": "592534544708796474",
-        "source_type": "steam_free",
-        "posted_at": "2026-05-10T14:38:42.506212+00:00",
-        "description": "Survive the chaos of SCP Foundation! Step into a thrilling SCP horror experience with story-driven co-op, intense PvP Breach mode, and randomized maps. Play as Class-D, scientist, SCPs, and more, each role bringing unique challenges in an unpredictable, immersive facility."
-      },
-      {
-        "item_key": "749d344db1a47ff9",
-        "section": "paid",
-        "title": "Left 4 Dead 2",
-        "url": "https://store.steampowered.com/app/550/",
-        "message_id": "1503043626228256768",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-05-10T14:38:46.633992+00:00",
-        "description": "Set in the zombie apocalypse, Left 4 Dead 2 is a co-operative action horror FPS takes you and your friends through the cities, swamps and cemeteries of the Deep South, from Savannah to New Orleans across five expansive campaigns."
-      },
-      {
-        "item_key": "9121000d2c1eb5fa",
-        "section": "paid",
-        "title": "Backrooms: Escape Together",
-        "url": "https://store.steampowered.com/app/2141730/",
-        "message_id": "1503043635644596245",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-05-10T14:38:48.737059+00:00",
-        "description": "A visually lifelike co-op horror for 1-6 people. Journey through 10 procedurally generated levels, using what's available to survive and progress deeper into the Backrooms."
-      },
-      {
-        "item_key": "e9650158f9c790c8",
-        "section": "paid",
-        "title": "Party Animals",
-        "url": "https://store.steampowered.com/app/1260320/",
-        "message_id": "1503043645215871037",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-05-10T14:38:50.981406+00:00",
-        "description": "Fight your friends as puppies, kittens and other fuzzy creatures in PARTY ANIMALS! Paw it out with your friends remotely, or huddle together for chaotic fun on the same screen. Interact with the world under our realistic physics engine. Did I mention PUPPIES?"
-      },
-      {
-        "item_key": "7f31d9b79ee5acc6",
-        "section": "paid",
-        "title": "Golf With Your Friends",
-        "url": "https://store.steampowered.com/app/431240/",
-        "message_id": "1503043655332790442",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-05-10T14:38:53.958214+00:00",
-        "description": "Why have friends if not to play Golf... With Your Friends! Nothing is out of bounds as you take on courses filled with fast paced, exciting, simultaneous mini golf for up to 12 players!"
-      },
-      {
-        "item_key": "34759c5b9757946c",
-        "section": "paid",
-        "title": "Gunfire Reborn",
-        "url": "https://store.steampowered.com/app/1217060/",
-        "message_id": "1503043666841698487",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-05-10T14:38:56.359384+00:00",
-        "description": "Gunfire Reborn is a level-based adventure game featuring FPS, Roguelite and RPG. Players can control heroes with various abilities to experience diverse Build gameplay, use various weapons to explore procedurally-generated levels. You can play the game alone, or join 4-player coop."
-      },
-      {
-        "item_key": "ed8cd49ecea369f0",
-        "section": "instagram",
-        "title": "@sharedxp_official",
-        "url": "https://www.instagram.com/p/DX7Kx2jM6HW/",
-        "message_id": "1503043685439246336",
-        "channel_id": "592534544708796474",
-        "source_type": "instagram",
-        "posted_at": "2026-05-10T14:39:00.379109+00:00",
-        "description": "Ship or Burn! Co-op Express — keep your delivery train running by burning anything you can find, including the parcel..."
-      },
-      {
-        "item_key": "2c04ebc1081497a7",
-        "section": "instagram",
-        "title": "@wilfratgaming",
-        "url": "https://www.instagram.com/p/DYJ9OLMta1c/",
-        "message_id": "1503043693748162680",
-        "channel_id": "592534544708796474",
-        "source_type": "instagram",
-        "posted_at": "2026-05-10T14:39:02.526883+00:00",
-        "description": "This is another friendship destroying game! #drivetogether #coopgame #newgames #gamestoplay"
-      },
-      {
-        "item_key": "25b648a8e1d99011",
-        "section": "instagram",
-        "title": "@biffmatictv",
-        "url": "https://www.instagram.com/p/DYH0c1Do7FO/",
-        "message_id": "1503043702329708676",
-        "channel_id": "592534544708796474",
-        "source_type": "instagram",
-        "posted_at": "2026-05-10T14:39:06.022101+00:00",
-        "description": "The most realistic part about this warehouse job simulator is that your only goal is to QUIT   Liminal Logistics  #ga..."
-      }
-    ],
-    "winners_state": {
-      "status": "skipped",
-      "skipped_reason": "no_eligible_winners",
-      "updated_at_utc": "2026-05-10T23:47:39.912313+00:00"
-    }
-  },
   "2026-05-11": {
     "run_state": {
       "section_headers": {
@@ -6255,6 +6071,163 @@
         "source_type": "paid_under_20",
         "posted_at": "2026-06-08T17:04:40.581598+00:00",
         "description": "Realistic, immersive, breathtaking. WARNO is the ultimate World War III battle simulator from the masters of strategy, Eugen Systems. A Cold War turns decisively hot as you command hundreds of units on a beautiful and brutal battlefield. Outsmart, outfight, and lead your forces to total victory."
+      }
+    ]
+  },
+  "2026-06-09": {
+    "run_state": {
+      "section_headers": {
+        "demo_playtest": {
+          "message_id": "1513938708708065540",
+          "channel_id": "592534544708796474",
+          "posted_at_utc": "2026-06-09T16:11:56.033808+00:00"
+        },
+        "free": {
+          "message_id": "1513938723425751102",
+          "channel_id": "592534544708796474",
+          "posted_at_utc": "2026-06-09T16:11:59.557688+00:00"
+        },
+        "paid": {
+          "message_id": "1513938770812993668",
+          "channel_id": "592534544708796474",
+          "posted_at_utc": "2026-06-09T16:12:11.586077+00:00"
+        }
+      },
+      "last_attempt_at_utc": "2026-06-09T16:11:52.007693+00:00",
+      "intro": {
+        "message_id": "1513938694053302456",
+        "channel_id": "592534544708796474",
+        "posted_at_utc": "2026-06-09T16:11:54.456870+00:00"
+      },
+      "footer": {
+        "message_id": "1513938819643342878",
+        "channel_id": "592534544708796474",
+        "posted_at_utc": "2026-06-09T16:12:22.446492+00:00"
+      },
+      "completed": true,
+      "completed_at_utc": "2026-06-09T16:12:23.655454+00:00"
+    },
+    "items": [
+      {
+        "item_key": "6b90686bf0b6451a",
+        "section": "demo_playtest",
+        "title": "666 Malevolence Lane",
+        "url": "https://store.steampowered.com/app/4450260/",
+        "message_id": "1513938715129417912",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_demo_playtest",
+        "posted_at": "2026-06-09T16:11:57.972927+00:00",
+        "description": "Trapped in a haunted Mansion filled with monsters and minigames, you must out maneuver, out think, and out play your friends to escape before your fear makes it impossible to do so."
+      },
+      {
+        "item_key": "992218c63c675154",
+        "section": "free",
+        "title": "Born Again",
+        "url": "https://store.steampowered.com/app/2332210/",
+        "message_id": "1513938730627371139",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-06-09T16:12:01.678352+00:00",
+        "description": "Hack-n-slash your way through the evil brewing in the Outer Realm! Stop the ominous Overlords in their tracks, but tread lightly, for every corner hosts a monster in waiting!"
+      },
+      {
+        "item_key": "3daf6efde8a71830",
+        "section": "free",
+        "title": "Ragnarok X: Next Generation",
+        "url": "https://store.steampowered.com/app/4007140/",
+        "message_id": "1513938739179683930",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-06-09T16:12:03.420731+00:00",
+        "description": "ROX is the official next-gen evolution of the classic Ragnarok Online MMORPG. With enhanced visuals, strategic combat, and diverse gameplay, ROX stays true to its roots while offering Fair Loot, Free Trading, and True Adventures. Your legend begins now— Are you ready?"
+      },
+      {
+        "item_key": "794406c592444e9f",
+        "section": "free",
+        "title": "Force of Warships: Battleship Games",
+        "url": "https://store.steampowered.com/app/1991860/",
+        "message_id": "1513938746087837838",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-06-09T16:12:05.423633+00:00",
+        "description": "Direct your battleship to glorious victory! Online battle under your leadership!"
+      },
+      {
+        "item_key": "43d98e264df42a63",
+        "section": "free",
+        "title": "Nexus Legacy",
+        "url": "https://store.steampowered.com/app/4661910/",
+        "message_id": "1513938754648150248",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-06-09T16:12:07.075565+00:00",
+        "description": "Rebuild civilization from a single planet in Nexus Legacy, a persistent sci-fi 4X MMO. Colonize worlds, manage resources, research technologies, command fleets, forge alliances, and fight for control of a living galaxy."
+      },
+      {
+        "item_key": "1bf1a9a5957a8fd5",
+        "section": "free",
+        "title": "The Four Kings Casino and Slots",
+        "url": "https://store.steampowered.com/app/260430/",
+        "message_id": "1513938761656832250",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-06-09T16:12:09.056569+00:00",
+        "description": "The Four Kings Casino & Slots is a rich social online multiplayer casino gaming experience. Play all of your favorite casino games like Poker, Blackjack, Roulette, Craps, Baccarat, Slots and more! Meet friends, climb the leaderboards and win rewards to customize your avatar."
+      },
+      {
+        "item_key": "4f8ecd505e129d5a",
+        "section": "paid",
+        "title": "The Other Side",
+        "url": "https://store.steampowered.com/app/2764750/",
+        "message_id": "1513938780665680048",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-06-09T16:12:13.598502+00:00",
+        "description": "The Other Side is a co-op psychological thriller for up to 6 players. Your goal is to investigate haunted locations using modern ghost hunting equipment, gather evidence, identify entities, and cleanse them from the location. Customize your character, headquarters, and more."
+      },
+      {
+        "item_key": "126e4bcd756b1d73",
+        "section": "paid",
+        "title": "Jump Space",
+        "url": "https://store.steampowered.com/app/1757300/",
+        "message_id": "1513938789037506671",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-06-09T16:12:15.700803+00:00",
+        "description": "Jump Space (formerly Jump Ship) is a mission based co-op PvE for 1-4 players, where you are the crew of a spaceship. Transition seamlessly from crewing the ship to on-foot exploration and space walks. Explore, upgrade, and survive intense encounters in deep space together."
+      },
+      {
+        "item_key": "e9650158f9c790c8",
+        "section": "paid",
+        "title": "Party Animals",
+        "url": "https://store.steampowered.com/app/1260320/",
+        "message_id": "1513938797568594083",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-06-09T16:12:17.541286+00:00",
+        "description": "Fight your friends as puppies, kittens and other fuzzy creatures in PARTY ANIMALS! Paw it out with your friends remotely, or huddle together for chaotic fun on the same screen. Interact with the world under our realistic physics engine. Did I mention PUPPIES?"
+      },
+      {
+        "item_key": "478d1569bc6deab5",
+        "section": "paid",
+        "title": "Wasteland 3",
+        "url": "https://store.steampowered.com/app/719040/",
+        "message_id": "1513938805349027881",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-06-09T16:12:19.112322+00:00",
+        "description": "Following the critically acclaimed 2014 Game of the Year winner Wasteland 2, the RPG series that pioneered the post-apocalyptic genre in video games returns with Wasteland 3."
+      },
+      {
+        "item_key": "b9102ffcc6c229ed",
+        "section": "paid",
+        "title": "R.I.P. - Reincarnation Insurance Program",
+        "url": "https://store.steampowered.com/app/3985950/",
+        "message_id": "1513938812135407819",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-06-09T16:12:20.815485+00:00",
+        "description": "Welcome to the Reincarnation Insurance Program! This top-down roguelite shooter blends Diablo-style looting with Survivor-like mayhem. Face screen-filling zombie tides, use Divine Tech to liquidate them into ash, and farm god-tier gear to forge your OP build."
       }
     ]
   }
