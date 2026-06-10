@@ -1,278 +1,4 @@
 {
-  "2026-05-11": {
-    "run_state": {
-      "section_headers": {
-        "free": {
-          "message_id": "1503430282102050968",
-          "channel_id": "592534544708796474",
-          "posted_at_utc": "2026-05-11T16:15:12.295512+00:00"
-        },
-        "paid": {
-          "message_id": "1503430331171078197",
-          "channel_id": "592534544708796474",
-          "posted_at_utc": "2026-05-11T16:15:23.926526+00:00"
-        },
-        "instagram": {
-          "message_id": "1503430380714197093",
-          "channel_id": "592534544708796474",
-          "posted_at_utc": "2026-05-11T16:15:35.648887+00:00"
-        }
-      },
-      "last_attempt_at_utc": "2026-05-11T16:15:09.268435+00:00",
-      "intro": {
-        "message_id": "1503430272950206484",
-        "channel_id": "592534544708796474",
-        "posted_at_utc": "2026-05-11T16:15:10.398573+00:00"
-      },
-      "footer": {
-        "message_id": "1503430404512813106",
-        "channel_id": "592534544708796474",
-        "posted_at_utc": "2026-05-11T16:15:42.017197+00:00"
-      },
-      "completed": true,
-      "completed_at_utc": "2026-05-11T16:15:43.228636+00:00"
-    },
-    "items": [
-      {
-        "item_key": "9c2bde7b16a027c8",
-        "section": "free",
-        "title": "Fistful of Frags",
-        "url": "https://store.steampowered.com/app/265630/",
-        "message_id": "1503430290440323282",
-        "channel_id": "592534544708796474",
-        "source_type": "steam_free",
-        "posted_at": "2026-05-11T16:15:14.150472+00:00",
-        "description": "Multiplayer based, first person enabled, action packed and skill demanding shooter set in the Wild West times. A unique combination of non stop action and slow but powerful weaponry."
-      },
-      {
-        "item_key": "9f68107e115ac58a",
-        "section": "free",
-        "title": "Thunder Tier One",
-        "url": "https://store.steampowered.com/app/377300/",
-        "message_id": "1503430298313162853",
-        "channel_id": "592534544708796474",
-        "source_type": "steam_free",
-        "posted_at": "2026-05-11T16:15:16.016870+00:00",
-        "description": "Thunder Tier One is a realistic top-down shooter where you join an elite special operations team tasked with stopping a dangerous terrorist organization wreaking havoc across the fictional Eastern European country of Salobia."
-      },
-      {
-        "item_key": "5e5e784a5002716e",
-        "section": "free",
-        "title": "Hero Zero - Multiplayer RPG",
-        "url": "https://store.steampowered.com/app/482920/",
-        "message_id": "1503430305665650870",
-        "channel_id": "592534544708796474",
-        "source_type": "steam_free",
-        "posted_at": "2026-05-11T16:15:18.162231+00:00",
-        "description": "Become a hero, build your own Hide-Out and start by saving your neighbourhood. Level up your skills, collect incredibly weird superhero gadgets, and join a superhero team to save the world!"
-      },
-      {
-        "item_key": "365fb7fbba472536",
-        "section": "free",
-        "title": "Project Entropy",
-        "url": "https://store.steampowered.com/app/2806410/",
-        "message_id": "1503430314977005740",
-        "channel_id": "592534544708796474",
-        "source_type": "steam_free",
-        "posted_at": "2026-05-11T16:15:19.988059+00:00",
-        "description": "Welcome, commander, to Project Entropy- an ultimate Sci-Fi and role-playing game with battles in space. In this immersive MMO experience, you will command alien civilizations, conquer uncharted planets, and build Hero fleets."
-      },
-      {
-        "item_key": "d4ccf79b3408c30f",
-        "section": "free",
-        "title": "Crazy Oddballs: Idle RPG",
-        "url": "https://store.steampowered.com/app/4507620/",
-        "message_id": "1503430322900045944",
-        "channel_id": "592534544708796474",
-        "source_type": "steam_free",
-        "posted_at": "2026-05-11T16:15:22.090971+00:00",
-        "description": "Build your oddball team, grind endless loot, and optimize ridiculous gear combinations in a chaotic idle RPG with guild battles, PvP, and long-term progression."
-      },
-      {
-        "item_key": "c4826bd48cb5b7ba",
-        "section": "paid",
-        "title": "MISERY",
-        "url": "https://store.steampowered.com/app/2119830/",
-        "message_id": "1503430339190853693",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-05-11T16:15:25.850310+00:00",
-        "description": "MISERY is a 1–5 player co-op survival game set in a nuclear disaster zone. Here, every day is a struggle: search radioactive ruins for resources, build your bunker, craft weapons, and explore a weird, procedurally-generated world with your friends. Beware of anomalies, monsters, and armed bandits."
-      },
-      {
-        "item_key": "0a22fc3f0beef7af",
-        "section": "paid",
-        "title": "Pummel Party",
-        "url": "https://store.steampowered.com/app/880940/",
-        "message_id": "1503430347990499548",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-05-11T16:15:27.938458+00:00",
-        "description": "Pummel Party is a 4-8 player online and local-multiplayer party game. Pummel friends or AI using a wide array of absurd items in the board mode and compete to destroy friendships in the unique collection of minigames."
-      },
-      {
-        "item_key": "63c96828ed2fdb77",
-        "section": "paid",
-        "title": "Chained Together",
-        "url": "https://store.steampowered.com/app/2567870/",
-        "message_id": "1503430355842236592",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-05-11T16:15:29.849499+00:00",
-        "description": "From the depths of hell, climb chained to your friends through diverse worlds. Solo or co-op, try to reach the summit and discover what awaits you there..."
-      },
-      {
-        "item_key": "d7b13ad87c6fe481",
-        "section": "paid",
-        "title": "KLETKA",
-        "url": "https://store.steampowered.com/app/1699480/",
-        "message_id": "1503430364092436520",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-05-11T16:15:31.702033+00:00",
-        "description": "KLETKA is a co-op (up to 6 players) horror game about going down in an elevator that is trying to eat you. Feed the elevator, explore deadly floors and descend deeper."
-      },
-      {
-        "item_key": "9317e7e731fac110",
-        "section": "paid",
-        "title": "Storage Hunter Simulator",
-        "url": "https://store.steampowered.com/app/1442430/",
-        "message_id": "1503430371604435115",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-05-11T16:15:33.827845+00:00",
-        "description": "Play as one of the bidders for abandoned warehouses and uncover hidden treasures! Storage Hunter is a garage auction simulation game. Bid, win, and sell for profit! Become the king of storage auction."
-      },
-      {
-        "item_key": "e4d7f1f4d41d51e8",
-        "section": "instagram",
-        "title": "@wilfratgaming",
-        "url": "https://www.instagram.com/p/DYK4AGNN6h4/",
-        "message_id": "1503430388427653141",
-        "channel_id": "592534544708796474",
-        "source_type": "instagram",
-        "posted_at": "2026-05-11T16:15:37.439917+00:00",
-        "description": "LIMINAL LOGISTICS! #newgames #gaming #gamestoplay"
-      },
-      {
-        "item_key": "2bb4ff617f584b4d",
-        "section": "instagram",
-        "title": "@wilfratgaming",
-        "url": "https://www.instagram.com/p/DYM-C2pN6ON/",
-        "message_id": "1503430395864023160",
-        "channel_id": "592534544708796474",
-        "source_type": "instagram",
-        "posted_at": "2026-05-11T16:15:39.220870+00:00",
-        "description": "In this game it's been 10 years since the outbreak! #gamestoplay #newgames #coopgame"
-      }
-    ],
-    "winners_state": {
-      "intro": {
-        "message_id": "1503546179349381292",
-        "channel_id": "1491294533751799809"
-      },
-      "section_headers": {
-        "paid": {
-          "message_id": "1503546183790886942",
-          "channel_id": "1491294533751799809"
-        }
-      },
-      "winner_messages": {
-        "https://store.steampowered.com/app/2141730/": {
-          "message_id": "1503546185464549527",
-          "channel_id": "1491294533751799809"
-        },
-        "https://store.steampowered.com/app/2567870/": {
-          "message_id": "1503546187737731194",
-          "channel_id": "1491294533751799809"
-        },
-        "https://store.steampowered.com/app/3643170/": {
-          "message_id": "1503546189730025603",
-          "channel_id": "1491294533751799809"
-        },
-        "https://store.steampowered.com/app/648800/": {
-          "message_id": "1503546192242544720",
-          "channel_id": "1491294533751799809"
-        }
-      },
-      "footer": {
-        "message_id": "1503546197674168320",
-        "channel_id": "1491294533751799809"
-      },
-      "message_id": "1503546179349381292",
-      "message_ids": [
-        "1503546179349381292",
-        "1503546183790886942",
-        "1503546185464549527",
-        "1503546187737731194",
-        "1503546189730025603",
-        "1503546192242544720",
-        "1503546197674168320"
-      ],
-      "last_action": "create",
-      "updated_at_utc": "2026-05-13T23:54:56.332727+00:00",
-      "posted_at_utc": "2026-05-11T23:55:48.585876+00:00",
-      "winner_keys": [
-        "https://store.steampowered.com/app/2141730/",
-        "https://store.steampowered.com/app/2567870/",
-        "https://store.steampowered.com/app/3643170/",
-        "https://store.steampowered.com/app/648800/"
-      ],
-      "winner_vote_counts": {
-        "https://store.steampowered.com/app/2141730/": 1,
-        "https://store.steampowered.com/app/2567870/": 1,
-        "https://store.steampowered.com/app/3643170/": 1,
-        "https://store.steampowered.com/app/648800/": 2
-      },
-      "winner_entries": [
-        {
-          "winner_key": "https://store.steampowered.com/app/2141730/",
-          "section": "paid",
-          "title": "Backrooms: Escape Together",
-          "url": "https://store.steampowered.com/app/2141730/",
-          "description": "A visually lifelike co-op horror for 1-6 people. Journey through 10 procedurally generated levels, using what's available to survive and progress deeper into the Backrooms.",
-          "human_votes": 1,
-          "voter_names": [
-            "Thomas"
-          ]
-        },
-        {
-          "winner_key": "https://store.steampowered.com/app/2567870/",
-          "section": "paid",
-          "title": "Chained Together",
-          "url": "https://store.steampowered.com/app/2567870/",
-          "description": "From the depths of hell, climb chained to your friends through diverse worlds. Solo or co-op, try to reach the summit and discover what awaits you there...",
-          "human_votes": 1,
-          "voter_names": [
-            "Thomas"
-          ]
-        },
-        {
-          "winner_key": "https://store.steampowered.com/app/3643170/",
-          "section": "paid",
-          "title": "Roadside Research",
-          "url": "https://store.steampowered.com/app/3643170/",
-          "description": "Roadside Research is a 1 to 4 player co-op gas station simulator. Except you’re aliens. And undercover. Do very human things like restocking shelves while preparing for the invasion. Just don’t get caught.",
-          "human_votes": 1,
-          "voter_names": [
-            "Thomas"
-          ]
-        },
-        {
-          "winner_key": "https://store.steampowered.com/app/648800/",
-          "section": "paid",
-          "title": "Raft",
-          "url": "https://store.steampowered.com/app/648800/",
-          "description": "Raft™ throws you and your friends into an epic oceanic adventure! Alone or together, players battle to survive a perilous voyage across a vast sea! Gather debris, scavenge reefs and build your own floating home, but be wary of the man-eating sharks!",
-          "human_votes": 2,
-          "voter_names": [
-            "Chocolie",
-            "Thomas"
-          ]
-        }
-      ]
-    }
-  },
   "2026-05-12": {
     "run_state": {
       "section_headers": {
@@ -6228,6 +5954,163 @@
         "source_type": "paid_under_20",
         "posted_at": "2026-06-09T16:12:20.815485+00:00",
         "description": "Welcome to the Reincarnation Insurance Program! This top-down roguelite shooter blends Diablo-style looting with Survivor-like mayhem. Face screen-filling zombie tides, use Divine Tech to liquidate them into ash, and farm god-tier gear to forge your OP build."
+      }
+    ]
+  },
+  "2026-06-10": {
+    "run_state": {
+      "section_headers": {
+        "demo_playtest": {
+          "message_id": "1514310791602638960",
+          "channel_id": "592534544708796474",
+          "posted_at_utc": "2026-06-10T16:50:27.509051+00:00"
+        },
+        "free": {
+          "message_id": "1514310810258768045",
+          "channel_id": "592534544708796474",
+          "posted_at_utc": "2026-06-10T16:50:32.186118+00:00"
+        },
+        "paid": {
+          "message_id": "1514310859407757442",
+          "channel_id": "592534544708796474",
+          "posted_at_utc": "2026-06-10T16:50:43.676953+00:00"
+        }
+      },
+      "last_attempt_at_utc": "2026-06-10T16:50:24.627817+00:00",
+      "intro": {
+        "message_id": "1514310780856832071",
+        "channel_id": "592534544708796474",
+        "posted_at_utc": "2026-06-10T16:50:25.923718+00:00"
+      },
+      "footer": {
+        "message_id": "1514310905297375363",
+        "channel_id": "592534544708796474",
+        "posted_at_utc": "2026-06-10T16:50:54.586760+00:00"
+      },
+      "completed": true,
+      "completed_at_utc": "2026-06-10T16:50:55.795258+00:00"
+    },
+    "items": [
+      {
+        "item_key": "5680068586244223",
+        "section": "demo_playtest",
+        "title": "Mall Rivals",
+        "url": "https://store.steampowered.com/app/4090330/",
+        "message_id": "1514310798791545042",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_demo_playtest",
+        "posted_at": "2026-06-10T16:50:30.334290+00:00",
+        "description": "Competitive mall simulation. 1-8 players open stores in the same mall, fight for customers, crush rivals. Team up or go solo. Fair play or dirty tricks? Your call. Procedural maps, employee system,mall cops, smugglers and physical mechanics."
+      },
+      {
+        "item_key": "3f07a48c127d13d9",
+        "section": "free",
+        "title": "RPG MO",
+        "url": "https://store.steampowered.com/app/372800/",
+        "message_id": "1514310817963573492",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-06-10T16:50:34.003845+00:00",
+        "description": "RPG MO is a nostalgic MMORPG that reminds of Ultima and Runescape Classic."
+      },
+      {
+        "item_key": "831e80a80857b652",
+        "section": "free",
+        "title": "Dead Maze",
+        "url": "https://store.steampowered.com/app/667890/",
+        "message_id": "1514310825630765116",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-06-10T16:50:36.229029+00:00",
+        "description": "Dead Maze is a 2D MMO game set in a destroyed contemporary world, filled with zombies. Explore the world, scavenge and craft as many items as possible, to survive the hostile environment and upgrade your gear and camp as you go."
+      },
+      {
+        "item_key": "07ce3d166b2fdf65",
+        "section": "free",
+        "title": "Nexus Rumble: The Ultimate Showdown",
+        "url": "https://store.steampowered.com/app/3027820/",
+        "message_id": "1514310834799509545",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-06-10T16:50:37.994161+00:00",
+        "description": "Welcome to Nexus Rumble, the ultimate showdown where champions clash in a fierce competition for survival! Prepare to embark on an adrenaline-fueled journey through diverse landscapes and exhilarating challenges in this heart-pounding multiplayer extravaganza."
+      },
+      {
+        "item_key": "0295aaffe478faad",
+        "section": "free",
+        "title": "Royal Revolt II",
+        "url": "https://store.steampowered.com/app/1571190/",
+        "message_id": "1514310842282283018",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-06-10T16:50:39.775503+00:00",
+        "description": "Royal Revolt 2 is an asynchronous PvP Reverse Tower Defense game full of medieval magic and action-laden battles.Can you set up your defenses so other Kings and Queens can't crash your castle gates? We're throwing down the gauntlet. Will you pick it up?"
+      },
+      {
+        "item_key": "9c266f0cdc48c7de",
+        "section": "free",
+        "title": "Growtopia",
+        "url": "https://store.steampowered.com/app/866020/",
+        "message_id": "1514310849983152310",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-06-10T16:50:42.062296+00:00",
+        "description": "Growtopia is a 2D sandbox game, that brings together millions of players in an expansive pixel world. Collaborate in building anything you can imagine, become anyone you want to be, and delve into numerous mini-games. Unleash your creativity and join the massive universe in Growtopia today!"
+      },
+      {
+        "item_key": "631233dcdbffe64c",
+        "section": "paid",
+        "title": "MIMESIS",
+        "url": "https://store.steampowered.com/app/2827200/",
+        "message_id": "1514310866038816808",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-06-10T16:50:45.632344+00:00",
+        "description": "4 Player co-op survival horror game. When the cursed rain falls, 'Mimesis' appear, perfectly imitating your teammates, bringing a new level of tension you've never experienced before."
+      },
+      {
+        "item_key": "0a22fc3f0beef7af",
+        "section": "paid",
+        "title": "Pummel Party",
+        "url": "https://store.steampowered.com/app/880940/",
+        "message_id": "1514310874242875524",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-06-10T16:50:47.396853+00:00",
+        "description": "Pummel Party is a 4-8 player online and local-multiplayer party game. Pummel friends or AI using a wide array of absurd items in the board mode and compete to destroy friendships in the unique collection of minigames."
+      },
+      {
+        "item_key": "8664a9582f92ec8f",
+        "section": "paid",
+        "title": "LOCKDOWN Protocol",
+        "url": "https://store.steampowered.com/app/2780980/",
+        "message_id": "1514310881654083840",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-06-10T16:50:49.056298+00:00",
+        "description": "A first person social deduction game, combining real time action and communication, playable up to 16 players. While most players will cooperate to complete objectives to ensure victory, a small portion of dissidents will try their best to stop them at all cost, without being caught."
+      },
+      {
+        "item_key": "c64ca026f4b2e72e",
+        "section": "paid",
+        "title": "People Playground",
+        "url": "https://store.steampowered.com/app/1118200/",
+        "message_id": "1514310888390131866",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-06-10T16:50:50.828597+00:00",
+        "description": "Shoot, stab, burn, poison, tear, vaporise, or crush ragdolls in a large open space."
+      },
+      {
+        "item_key": "a2edacdcc1a2c61d",
+        "section": "paid",
+        "title": "Green Hell",
+        "url": "https://store.steampowered.com/app/815370/",
+        "message_id": "1514310896430878890",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-06-10T16:50:52.867186+00:00",
+        "description": "Plunge into the open-world survival simulation set in the extreme conditions of the uncharted Amazon jungle. Use real-life survival techniques to craft, hunt, fight, and gather resources, set a makeshift shelter, or raise a fortress. Survive alone or team up with your friends and challenge the jungle together."
       }
     ]
   }
