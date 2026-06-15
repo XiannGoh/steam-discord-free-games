@@ -1,177 +1,4 @@
 {
-  "2026-05-15": {
-    "run_state": {
-      "section_headers": {
-        "free": {
-          "message_id": "1504869177251332299",
-          "channel_id": "592534544708796474",
-          "posted_at_utc": "2026-05-15T15:32:51.455436+00:00"
-        },
-        "paid": {
-          "message_id": "1504869227318874213",
-          "channel_id": "592534544708796474",
-          "posted_at_utc": "2026-05-15T15:33:03.239247+00:00"
-        },
-        "instagram": {
-          "message_id": "1504869278241915031",
-          "channel_id": "592534544708796474",
-          "posted_at_utc": "2026-05-15T15:33:15.350687+00:00"
-        }
-      },
-      "last_attempt_at_utc": "2026-05-15T15:32:45.611669+00:00",
-      "intro": {
-        "message_id": "1504869155487092789",
-        "channel_id": "592534544708796474",
-        "posted_at_utc": "2026-05-15T15:32:49.602432+00:00"
-      },
-      "footer": {
-        "message_id": "1504869301968961638",
-        "channel_id": "592534544708796474",
-        "posted_at_utc": "2026-05-15T15:33:21.135618+00:00"
-      },
-      "completed": true,
-      "completed_at_utc": "2026-05-15T15:33:22.346723+00:00"
-    },
-    "items": [
-      {
-        "item_key": "518dc0cccca04c22",
-        "section": "free",
-        "title": "MapleStory M",
-        "url": "https://store.steampowered.com/app/3969080/",
-        "message_id": "1504869185233355003",
-        "channel_id": "592534544708796474",
-        "source_type": "steam_free",
-        "posted_at": "2026-05-15T15:32:53.719951+00:00",
-        "description": "The MapleStory you missed is calling you. MapleStory M is an MMORPG full of MapleStory's signature charm and worldview. Enjoy jobs bursting with personality, lighthearted battles, an easy leveling-up system, and even co-op gameplay. Begin your own adventure in this adorable 2D side-scrolling world."
-      },
-      {
-        "item_key": "1a32bec1d0e4c322",
-        "section": "free",
-        "title": "KUBOOM",
-        "url": "https://store.steampowered.com/app/513000/",
-        "message_id": "1504869194515087420",
-        "channel_id": "592534544708796474",
-        "source_type": "steam_free",
-        "posted_at": "2026-05-15T15:32:55.670802+00:00",
-        "description": "Cross-platform hurricane online 3D Shooter"
-      },
-      {
-        "item_key": "5c0b4831c80506d9",
-        "section": "free",
-        "title": "Dirty Bomb®",
-        "url": "https://store.steampowered.com/app/333930/",
-        "message_id": "1504869202572611595",
-        "channel_id": "592534544708796474",
-        "source_type": "steam_free",
-        "posted_at": "2026-05-15T15:32:57.622703+00:00",
-        "description": "Work together or die alone! Fight to restore peace to London or tear it down for profit in the most challenging team based shooter around."
-      },
-      {
-        "item_key": "b3bf2841829fba33",
-        "section": "free",
-        "title": "E.T.E",
-        "url": "https://store.steampowered.com/app/3450390/",
-        "message_id": "1504869210768146534",
-        "channel_id": "592534544708796474",
-        "source_type": "steam_free",
-        "posted_at": "2026-05-15T15:32:59.504602+00:00",
-        "description": "The 3D anime-style shooting game \"E.T.E\" is launching early access soon. It offers three unique environments—sea, land, and air—plus a system for developing female characters and mechas. Famous voice actresses like Sakura Tange, Kana Hanazawa, Rie Tanaka, and Mikako Komatsu voice the characters."
-      },
-      {
-        "item_key": "8b1e7c45a2c5866c",
-        "section": "free",
-        "title": "Romans: Age of Caesar",
-        "url": "https://store.steampowered.com/app/872570/",
-        "message_id": "1504869218850570371",
-        "channel_id": "592534544708796474",
-        "source_type": "steam_free",
-        "posted_at": "2026-05-15T15:33:01.516607+00:00",
-        "description": "Build Rome Together! A co-operative grand strategy MMO from a team of veteran city builders, Romans: Age of Caesar is the latest historical strategy game from Firefly Studios."
-      },
-      {
-        "item_key": "ab3f50ce03d498e1",
-        "section": "paid",
-        "title": "The Crew™ 2",
-        "url": "https://store.steampowered.com/app/646910/",
-        "message_id": "1504869234415767705",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-05-15T15:33:05.379235+00:00",
-        "description": "Take on the American motorsports scene as you explore and dominate the land, air, and sea across the entire USA. New: play The Crew 2 offline or online with the new Hybrid mode, available now!"
-      },
-      {
-        "item_key": "3cc61548ff1af133",
-        "section": "paid",
-        "title": "Goofy Gorillas",
-        "url": "https://store.steampowered.com/app/2627570/",
-        "message_id": "1504869243257225370",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-05-15T15:33:07.485959+00:00",
-        "description": "Relive your childhood nostalgia at Goofy Gorillas, the largest virtual jungle gym! Battle it out with your friends in a wide range of casual but intense PvP gamemodes, or chill out and take part in some extra activities around the venue! Make the Goofy experience your own!"
-      },
-      {
-        "item_key": "014443da81bad2ec",
-        "section": "paid",
-        "title": "Hamster Hunter",
-        "url": "https://store.steampowered.com/app/2726490/",
-        "message_id": "1504869252308537496",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-05-15T15:33:09.542705+00:00",
-        "description": "You come home for an annual family reunion, only to find your family missing with an eerie note left by your father. After you discover what has happened you SEEK REVENGE!"
-      },
-      {
-        "item_key": "75aa0345ac8781b9",
-        "section": "paid",
-        "title": "I Know a Guy: Shady Life Simulator",
-        "url": "https://store.steampowered.com/app/4173620/",
-        "message_id": "1504869261108183058",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-05-15T15:33:11.616117+00:00",
-        "description": "Run your pizza shop up front and handle shady business out back. Help hand-crafted NPCs with favors that never go as planned. Play solo or online co-op with up to four players and expand your operation across Hobarey Town. In this darkly comedic management sim - become that guy everyone knows."
-      },
-      {
-        "item_key": "87520c3f28063632",
-        "section": "paid",
-        "title": "Crosshair X",
-        "url": "https://store.steampowered.com/app/1366800/",
-        "message_id": "1504869269828141338",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-05-15T15:33:13.722227+00:00",
-        "description": "Better aim starts with the perfect crosshair. Choose from thousands of community designs or create your own with the designer."
-      },
-      {
-        "item_key": "0c99f902f5f81e93",
-        "section": "instagram",
-        "title": "@wilfratgaming",
-        "url": "https://www.instagram.com/p/DYXI6R-Nu83/",
-        "message_id": "1504869285200396460",
-        "channel_id": "592534544708796474",
-        "source_type": "instagram",
-        "posted_at": "2026-05-15T15:33:17.195707+00:00",
-        "description": "THIS is a co-op survival horror game set in a post-apocalyptic Republic of Zaslavie. It was developed by a 19 years o..."
-      },
-      {
-        "item_key": "2fb8b02b8b226dde",
-        "section": "instagram",
-        "title": "@biffmatictv",
-        "url": "https://www.instagram.com/p/DYXEOimtxXH/",
-        "message_id": "1504869293106663515",
-        "channel_id": "592534544708796474",
-        "source_type": "instagram",
-        "posted_at": "2026-05-15T15:33:19.150321+00:00",
-        "description": "Destroy entire cities in this 32 Player Kaiju game! Beastlink!   #gaming #newgames #gamingwithfriends #multiplayer #k..."
-      }
-    ],
-    "winners_state": {
-      "status": "skipped",
-      "skipped_reason": "no_eligible_winners",
-      "updated_at_utc": "2026-05-15T23:55:47.320998+00:00"
-    }
-  },
   "2026-05-16": {
     "run_state": {
       "section_headers": {
@@ -4851,6 +4678,147 @@
         "source_type": "paid_under_20",
         "posted_at": "2026-06-13T15:17:42.985584+00:00",
         "description": "Set in the zombie apocalypse, Left 4 Dead 2 is a co-operative action horror FPS takes you and your friends through the cities, swamps and cemeteries of the Deep South, from Savannah to New Orleans across five expansive campaigns."
+      }
+    ]
+  },
+  "2026-06-14": {
+    "run_state": {
+      "section_headers": {
+        "free": {
+          "message_id": "1515738952844316775",
+          "channel_id": "592534544708796474",
+          "posted_at_utc": "2026-06-14T15:25:28.127270+00:00"
+        },
+        "paid": {
+          "message_id": "1515738999648419921",
+          "channel_id": "592534544708796474",
+          "posted_at_utc": "2026-06-14T15:25:38.772297+00:00"
+        }
+      },
+      "last_attempt_at_utc": "2026-06-14T15:25:23.123617+00:00",
+      "intro": {
+        "message_id": "1515738935509123248",
+        "channel_id": "592534544708796474",
+        "posted_at_utc": "2026-06-14T15:25:26.018525+00:00"
+      },
+      "footer": {
+        "message_id": "1515739047891435673",
+        "channel_id": "592534544708796474",
+        "posted_at_utc": "2026-06-14T15:25:50.315472+00:00"
+      },
+      "completed": true,
+      "completed_at_utc": "2026-06-14T15:25:51.522296+00:00"
+    },
+    "items": [
+      {
+        "item_key": "dfaebf39616a3342",
+        "section": "free",
+        "title": "WonderKing",
+        "url": "https://store.steampowered.com/app/3825780/",
+        "message_id": "1515738960926740603",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-06-14T15:25:29.919535+00:00",
+        "description": "The return of classic 2D side-scrolling action! WonderKing is a free-to-play MMORPG packed with flashy combat and deep progression. Advance through diverse classes, master unique combos, and party up with friends for epic boss raids. Start your adventure today!"
+      },
+      {
+        "item_key": "9c2bde7b16a027c8",
+        "section": "free",
+        "title": "Fistful of Frags",
+        "url": "https://store.steampowered.com/app/265630/",
+        "message_id": "1515738968858034246",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-06-14T15:25:31.780104+00:00",
+        "description": "Multiplayer based, first person enabled, action packed and skill demanding shooter set in the Wild West times. A unique combination of non stop action and slow but powerful weaponry."
+      },
+      {
+        "item_key": "7f2eef99465551f5",
+        "section": "free",
+        "title": "Star Conflict",
+        "url": "https://store.steampowered.com/app/212070/",
+        "message_id": "1515738976651313293",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-06-14T15:25:33.547400+00:00",
+        "description": "Star Conflict is an action-packed, massively multiplayer space simulation game that puts players in the role of elite pilots engaging in a widespread interplanetary skirmish. The whole world for PVP and PVE!"
+      },
+      {
+        "item_key": "5e5e784a5002716e",
+        "section": "free",
+        "title": "Hero Zero - Multiplayer RPG",
+        "url": "https://store.steampowered.com/app/482920/",
+        "message_id": "1515738984075235449",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-06-14T15:25:35.326747+00:00",
+        "description": "Become a hero, build your own Hide-Out and start by saving your neighbourhood. Level up your skills, collect incredibly weird superhero gadgets, and join a superhero team to save the world!"
+      },
+      {
+        "item_key": "9f68107e115ac58a",
+        "section": "free",
+        "title": "Thunder Tier One",
+        "url": "https://store.steampowered.com/app/377300/",
+        "message_id": "1515738991524315258",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-06-14T15:25:37.259957+00:00",
+        "description": "Thunder Tier One is a realistic top-down shooter where you join an elite special operations team tasked with stopping a dangerous terrorist organization wreaking havoc across the fictional Eastern European country of Salobia."
+      },
+      {
+        "item_key": "d15862fcc0449659",
+        "section": "paid",
+        "title": "Heroes of Hammerwatch II",
+        "url": "https://store.steampowered.com/app/619820/",
+        "message_id": "1515739006451581059",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-06-14T15:25:41.136872+00:00",
+        "description": "A rogue-lite action-rpg that offers extensive persistent progression. Build your town, upgrade and equip your heroes, before taking on the ever-changing Dark Citadel - either solo or with a team of friends."
+      },
+      {
+        "item_key": "fc3303a67cab4f26",
+        "section": "paid",
+        "title": "Guild Wars® Reforged",
+        "url": "https://store.steampowered.com/app/29720/",
+        "message_id": "1515739015981170789",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-06-14T15:25:43.003220+00:00",
+        "description": "Step into Guild Wars Reforged, the award-winning online roleplaying game enjoyed by millions, now re-energized with system enhancements and Steam Deck verified. Experience the complete saga— from the fall of Ascalon to the desperate stand against Nightfall. Your adventure is just getting started!"
+      },
+      {
+        "item_key": "c4826bd48cb5b7ba",
+        "section": "paid",
+        "title": "MISERY",
+        "url": "https://store.steampowered.com/app/2119830/",
+        "message_id": "1515739023602225194",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-06-14T15:25:44.856641+00:00",
+        "description": "MISERY is a 1–10 player co-op survival game set in a nuclear disaster zone. Here, every day is a struggle: search radioactive ruins for resources, build your bunker, craft weapons, and explore a weird, procedurally-generated world with your friends. Beware of anomalies, monsters, and armed bandits."
+      },
+      {
+        "item_key": "46500f5ecb3caeac",
+        "section": "paid",
+        "title": "The Escapists 2",
+        "url": "https://store.steampowered.com/app/641990/",
+        "message_id": "1515739031076470856",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-06-14T15:25:46.719620+00:00",
+        "description": "Craft, Steal, Brawl and Escape! It’s time to bust out of the toughest prisons in the world as you return to the life of an inmate in The Escapists 2, now with multiplayer! Have you got what it takes to escape?"
+      },
+      {
+        "item_key": "560cabb4dcdbf8e4",
+        "section": "paid",
+        "title": "WHERE the F$CK is my BITCOIN ⁉️",
+        "url": "https://store.steampowered.com/app/4705620/",
+        "message_id": "1515739039230329107",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-06-14T15:25:48.553669+00:00",
+        "description": "A co-op incremental dump-digging sim. Tear through endless trash, cash in your junk, upgrade your gear, and hunt for the Bitcoin you threw away. Dig with friends, get rich, get distracted, repeat."
       }
     ]
   }
