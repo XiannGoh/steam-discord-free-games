@@ -1,260 +1,4 @@
 {
-  "2026-05-19": {
-    "run_state": {
-      "section_headers": {
-        "free": {
-          "message_id": "1506412997541892210",
-          "channel_id": "592534544708796474",
-          "posted_at_utc": "2026-05-19T21:47:27.199972+00:00"
-        },
-        "paid": {
-          "message_id": "1506413046556397754",
-          "channel_id": "592534544708796474",
-          "posted_at_utc": "2026-05-19T21:47:38.811524+00:00"
-        }
-      },
-      "last_attempt_at_utc": "2026-05-19T21:47:26.199100+00:00",
-      "intro": {
-        "message_id": "1506334274595455210",
-        "channel_id": "592534544708796474",
-        "posted_at_utc": "2026-05-19T16:34:38.533630+00:00"
-      },
-      "footer": {
-        "message_id": "1506413098251321364",
-        "channel_id": "592534544708796474",
-        "posted_at_utc": "2026-05-19T21:47:50.625993+00:00"
-      },
-      "completed": true,
-      "completed_at_utc": "2026-05-19T21:47:51.835173+00:00"
-    },
-    "items": [
-      {
-        "item_key": "cadc257b39432194",
-        "section": "free",
-        "title": "War Planet Online: Global Conquest",
-        "url": "https://store.steampowered.com/app/719640/",
-        "message_id": "1506334291758415943",
-        "channel_id": "592534544708796474",
-        "source_type": "steam_free",
-        "posted_at": "2026-05-19T16:34:41.936636+00:00",
-        "description": "Build your army, dominate your region and lead your alliance to conquer the globe!"
-      },
-      {
-        "item_key": "f0db4ec3d1cfa079",
-        "section": "free",
-        "title": "Runes of Magic",
-        "url": "https://store.steampowered.com/app/808290/",
-        "message_id": "1506334299258093698",
-        "channel_id": "592534544708796474",
-        "source_type": "steam_free",
-        "posted_at": "2026-05-19T16:34:43.874477+00:00",
-        "description": "Start your heroic saga today in a world full of magic and excitement: Choose your race, build a home and discover the fantastic world of Taborea in the classic free-to-play MMO!"
-      },
-      {
-        "item_key": "dc309f6da2906d55",
-        "section": "free",
-        "title": "Pirate101",
-        "url": "https://store.steampowered.com/app/620620/",
-        "message_id": "1506334307331866655",
-        "channel_id": "592534544708796474",
-        "source_type": "steam_free",
-        "posted_at": "2026-05-19T16:34:45.662698+00:00",
-        "description": "Assemble your ragtag crew and prepare to plunder the skyways in search of the legendary map to El Dorado! Danger lurks around every corner as you outsmart clockwork soldiers, uncover hidden mysteries, and unleash powerful combos in this pirate turn-based tactics MMORPG."
-      },
-      {
-        "item_key": "83d1ebef4c82908e",
-        "section": "free",
-        "title": "Idle Hacking: An Inaction RPG",
-        "url": "https://store.steampowered.com/app/4453290/",
-        "message_id": "1506334314810572951",
-        "channel_id": "592534544708796474",
-        "source_type": "steam_free",
-        "posted_at": "2026-05-19T16:34:47.609862+00:00",
-        "description": "A persistent idle MMORPG, with a text-based hacking theme. Enjoy the \"Inaction RPG\" design philosophy by crafting equpiment using ARPG influenced prefix/suffix systems, build or join player managed syndicates, trade on the marketplace, and compete in community events."
-      },
-      {
-        "item_key": "7db9c3356cee2d5c",
-        "section": "free",
-        "title": "Alien Swarm: Reactive Drop",
-        "url": "https://store.steampowered.com/app/563560/",
-        "message_id": "1506334323052380242",
-        "channel_id": "592534544708796474",
-        "source_type": "steam_free",
-        "posted_at": "2026-05-19T16:34:49.574082+00:00",
-        "description": "Co-operative top-down shooter game available for free. An epic bug hunt featuring a unique blend of co-op play and squad-level tactics."
-      },
-      {
-        "item_key": "9273985576000974",
-        "section": "paid",
-        "title": "Long Drive North: Co-Op RV Simulator",
-        "url": "https://store.steampowered.com/app/3179350/",
-        "message_id": "1506334338822967347",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-05-19T16:34:53.236222+00:00",
-        "description": "Join the Early Access journey with this immersive driving-survival game. Explore the harsh American wilderness in the Long Drive North. Drive & repair your trusty RV, scavenge for parts, upgrade your vehicle, hunt & cook to survive; alone or with up to 4 players. SHARED RV MULTIPLAYER NOW AVAILABLE."
-      },
-      {
-        "item_key": "35f02635ea9bf463",
-        "section": "paid",
-        "title": "Salt 2: Shores of Gold",
-        "url": "https://store.steampowered.com/app/1574900/",
-        "message_id": "1506334346875895868",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-05-19T16:34:55.337517+00:00",
-        "description": "Salt 2 is a pirate-themed open world adventure focused on exploration, crafting, and survival. Play solo or with up to 5 friends, sailing the sea with your ship as a mobile base. Discover islands full of quests, towns, caves, and secrets. Level up, craft gear, hunt, fish, and customize your ship."
-      },
-      {
-        "item_key": "e13aa1d838650155",
-        "section": "paid",
-        "title": "Ultimate Chicken Horse",
-        "url": "https://store.steampowered.com/app/386940/",
-        "message_id": "1506334355390205982",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-05-19T16:34:57.095939+00:00",
-        "description": "Ultimate Chicken Horse is a party platformer game where you build the level as you play, placing traps and hazards to screw your friends over, but trying not to screw yourself."
-      },
-      {
-        "item_key": "86a4509d4f86143d",
-        "section": "paid",
-        "title": "Police Simulator: Patrol Officers",
-        "url": "https://store.steampowered.com/app/997010/",
-        "message_id": "1506334362780827799",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-05-19T16:34:59.007445+00:00",
-        "description": "Welcome to Brighton! Join the police force of this fictitious American city and experience the day to day life of a police officer."
-      },
-      {
-        "item_key": "859745d9e8cf3b9b",
-        "section": "paid",
-        "title": "Beach Invasion 1915-Gallipoli",
-        "url": "https://store.steampowered.com/app/3556670/",
-        "message_id": "1506334370473050163",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-05-19T16:35:00.942917+00:00",
-        "description": "Defend the shores of Gallipoli against landing forces in this WWI FPS game, as the enemy attacks you with troops, armored cars, planes, battleships and more! Use the iconic WWI weapons, prepare your defenses with mines, explosives and bonuses!"
-      },
-      {
-        "item_key": "e560b2aa183b7c3f",
-        "section": "free",
-        "title": "Life is Feudal: Arden",
-        "url": "https://store.steampowered.com/app/3285700/",
-        "message_id": "1506413006043746335",
-        "channel_id": "592534544708796474",
-        "source_type": "steam_free",
-        "posted_at": "2026-05-19T21:47:29.047599+00:00",
-        "description": "Life is Feudal: Arden is a new free-to-play open-world MMORPG set in the Middle Ages, built on the foundation of Life is Feudal: MMO. Engage in thrilling PvP combat, navigate political intrigue, master a variety of professions and craft unique items. Forge your own path to power and greatness!"
-      },
-      {
-        "item_key": "f684a47af1a802a6",
-        "section": "free",
-        "title": "VEGA Conflict",
-        "url": "https://store.steampowered.com/app/339600/",
-        "message_id": "1506413014092484648",
-        "channel_id": "592534544708796474",
-        "source_type": "steam_free",
-        "posted_at": "2026-05-19T21:47:31.140768+00:00",
-        "description": "Stake your claim, command your fleets, and wage epic war in space."
-      },
-      {
-        "item_key": "27aa756894abc3cb",
-        "section": "free",
-        "title": "Military Tanks",
-        "url": "https://store.steampowered.com/app/2342030/",
-        "message_id": "1506413022594465845",
-        "channel_id": "592534544708796474",
-        "source_type": "steam_free",
-        "posted_at": "2026-05-19T21:47:32.950711+00:00",
-        "description": "Do you like tanks game? Are you ready to feel the full power of a tank games?"
-      },
-      {
-        "item_key": "26d7272404624fe6",
-        "section": "free",
-        "title": "Professional Fishing",
-        "url": "https://store.steampowered.com/app/798420/",
-        "message_id": "1506413030559191110",
-        "channel_id": "592534544708796474",
-        "source_type": "steam_free",
-        "posted_at": "2026-05-19T21:47:34.881116+00:00",
-        "description": "Are you falling asleep with a rod? Never again! Professional Fishing will never let you fall asleep! Play an amazing fishing simulator and feel like a real angler! Create your own fishing club and compete with others!"
-      },
-      {
-        "item_key": "6a20104c09d6f033",
-        "section": "free",
-        "title": "Habbo Hotel: Origins",
-        "url": "https://store.steampowered.com/app/3809900/",
-        "message_id": "1506413038528630785",
-        "channel_id": "592534544708796474",
-        "source_type": "steam_free",
-        "posted_at": "2026-05-19T21:47:36.555687+00:00",
-        "description": "A pixel-art social simulation MMO where you customize your avatar, build and decorate rooms, trade rare items, and join live community events in a nostalgic yet ever-evolving virtual world."
-      },
-      {
-        "item_key": "15b60e219e4db0c3",
-        "section": "paid",
-        "title": "Panzer Corps 2",
-        "url": "https://store.steampowered.com/app/1072040/",
-        "message_id": "1506413054970302695",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-05-19T21:47:40.576021+00:00",
-        "description": "Panzer Corps 2 is the ultimate Second World War strategy game! Enjoy the time-proven gameplay formula which has been appreciated by millions of players over the years, brought to a whole new level of refinement up to the latest technical standards."
-      },
-      {
-        "item_key": "b649a2f5f1e3d54c",
-        "section": "paid",
-        "title": "Rise of Piracy",
-        "url": "https://store.steampowered.com/app/1400660/",
-        "message_id": "1506413062511661150",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-05-19T21:47:42.971876+00:00",
-        "description": "The perfect blend of Action, Adventure and RTS. Begin your journey as the lowly captain of a small vessel. End as the commander of a threatening fleet. Rise to glory how you see fit. Trade, fight, recruit, grow, pillage, ally, destroy & conquer."
-      },
-      {
-        "item_key": "62449cf848d257f4",
-        "section": "paid",
-        "title": "Rhythm Doctor",
-        "url": "https://store.steampowered.com/app/774181/",
-        "message_id": "1506413072896622602",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-05-19T21:47:45.289016+00:00",
-        "description": "Save patients with your rhythm mastery! Rhythm Doctor is a rhythm game where you heal patients by defibrillating in time to their heartbeats. Learn each patient's unique heartbeat and defeat boss viruses trying to sabotage your rhythm, all set to heart-pumping, soul-soothing music."
-      },
-      {
-        "item_key": "f179373e5392ad4b",
-        "section": "paid",
-        "title": "GigaBash",
-        "url": "https://store.steampowered.com/app/1546400/",
-        "message_id": "1506413082300252230",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-05-19T21:47:47.091977+00:00",
-        "description": "GigaBash is the ultimate Kaiju Fighting Game for 1-4 players, where you battle as film-inspired Kaijus and giant Heroes in fully destructible cityscapes."
-      },
-      {
-        "item_key": "ceccf2b17a1a5329",
-        "section": "paid",
-        "title": "100% Orange Juice",
-        "url": "https://store.steampowered.com/app/282800/",
-        "message_id": "1506413089518522525",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-05-19T21:47:48.928831+00:00",
-        "description": "100% Orange Juice is a digital multiplayer board game populated by developer Orange Juice's all-star cast. Characters from Flying Red Barrel, QP Shooting, Suguri and Sora come together with all-new characters to duke it out... with dice."
-      }
-    ],
-    "winners_state": {
-      "status": "skipped",
-      "skipped_reason": "no_eligible_winners",
-      "updated_at_utc": "2026-05-20T00:02:53.167216+00:00"
-    }
-  },
   "2026-05-20": {
     "run_state": {
       "section_headers": {
@@ -4649,6 +4393,147 @@
         "source_type": "paid_under_20",
         "posted_at": "2026-06-17T16:55:19.017797+00:00",
         "description": "The only aim in Rust is to survive. Everything wants you to die - the island’s wildlife, other inhabitants, the environment, and other survivors. Do whatever it takes to last another night."
+      }
+    ]
+  },
+  "2026-06-18": {
+    "run_state": {
+      "section_headers": {
+        "free": {
+          "message_id": "1517208145338957824",
+          "channel_id": "592534544708796474",
+          "posted_at_utc": "2026-06-18T16:43:30.477279+00:00"
+        },
+        "paid": {
+          "message_id": "1517208190906007626",
+          "channel_id": "592534544708796474",
+          "posted_at_utc": "2026-06-18T16:43:41.563305+00:00"
+        }
+      },
+      "last_attempt_at_utc": "2026-06-18T16:43:27.891630+00:00",
+      "intro": {
+        "message_id": "1517208136371408897",
+        "channel_id": "592534544708796474",
+        "posted_at_utc": "2026-06-18T16:43:28.838205+00:00"
+      },
+      "footer": {
+        "message_id": "1517208240973156522",
+        "channel_id": "592534544708796474",
+        "posted_at_utc": "2026-06-18T16:43:53.221522+00:00"
+      },
+      "completed": true,
+      "completed_at_utc": "2026-06-18T16:43:54.431217+00:00"
+    },
+    "items": [
+      {
+        "item_key": "0dfc4061cdf7030a",
+        "section": "free",
+        "title": "SCP: Containment Breach 2",
+        "url": "https://store.steampowered.com/app/3257000/",
+        "message_id": "1517208152200708146",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-06-18T16:43:32.543817+00:00",
+        "description": "Survive the chaos of SCP Foundation! Step into a thrilling SCP horror experience with story-driven co-op, intense PvP Breach mode, and randomized maps. Play as Class-D, scientist, SCPs, and more, each role bringing unique challenges in an unpredictable, immersive facility."
+      },
+      {
+        "item_key": "b6910706cbf47ec0",
+        "section": "free",
+        "title": "Idol Party 2 - Love Vibe",
+        "url": "https://store.steampowered.com/app/3798230/",
+        "message_id": "1517208161243627570",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-06-18T16:43:34.298511+00:00",
+        "description": "Step into a dreamy journey in Idol Party 2! Enjoy rhythm gameplay, fashion dress-up, face customization, social interaction, romantic marriage, fishing, and ranked battles—all in one vibrant world. Join now and start your exclusive singing and dancing adventur!"
+      },
+      {
+        "item_key": "97d163a3892a14c2",
+        "section": "free",
+        "title": "Poker Master - Texas Hold'em, Roulette, Blackjack, Baccarat, Omaha, Slots, Teen Patti",
+        "url": "https://store.steampowered.com/app/994910/",
+        "message_id": "1517208168093192354",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-06-18T16:43:35.970485+00:00",
+        "description": "Free chips!Including Texas Hold'em, Slots, Blackjack, Teen Patti, Omaha, Baccarat, Roulette, Mahjong, Landlord and more poker games."
+      },
+      {
+        "item_key": "f9d2fea77b1c976f",
+        "section": "free",
+        "title": "Champions Online",
+        "url": "https://store.steampowered.com/app/9880/",
+        "message_id": "1517208175219048578",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-06-18T16:43:37.764180+00:00",
+        "description": "Grab your cape and defend Millennium City in this comic book-style action MMORPG! Design your hero and costume from thousands of costume pieces, face super-villains like Dr. Destroyer, and create your own unique nemesis."
+      },
+      {
+        "item_key": "eddd844cc61dc574",
+        "section": "free",
+        "title": "Galaxy Life",
+        "url": "https://store.steampowered.com/app/1927780/",
+        "message_id": "1517208182865526885",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-06-18T16:43:39.773481+00:00",
+        "description": "The universe is full of Starlings, tiny orange aliens that want to take over the galaxy. Create your own space colony, fight epic battles and discover new planets. Train your soldiers, develop your technology and create unimaginable gadgets. Enjoy this huge social game with friends!"
+      },
+      {
+        "item_key": "6a0d1ebd072bea72",
+        "section": "paid",
+        "title": "Content Warning",
+        "url": "https://store.steampowered.com/app/2881650/",
+        "message_id": "1517208198702960770",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-06-18T16:43:43.388093+00:00",
+        "description": "Film your friends doing scary things to become SpöökTube famous! (strongly advised to not go alone)"
+      },
+      {
+        "item_key": "66a7d79dd0d186b6",
+        "section": "paid",
+        "title": "Species: Unknown",
+        "url": "https://store.steampowered.com/app/2747330/",
+        "message_id": "1517208207167193088",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-06-18T16:43:45.437949+00:00",
+        "description": "Species: Unknown is a 1 to 4 players co-op survival horror. Complete high-risk missions aboard an abandoned ship while being hunted by an unknown creature. Survive and upgrade your gear to face each new threat that lurks in the dark."
+      },
+      {
+        "item_key": "315917c19d6c3206",
+        "section": "paid",
+        "title": "Don't Starve Together",
+        "url": "https://store.steampowered.com/app/322330/",
+        "message_id": "1517208214993899691",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-06-18T16:43:47.431559+00:00",
+        "description": "Fight, Farm, Build and Explore Together in the standalone multiplayer expansion to the uncompromising wilderness survival game, Don't Starve."
+      },
+      {
+        "item_key": "7f31d9b79ee5acc6",
+        "section": "paid",
+        "title": "Golf With Your Friends",
+        "url": "https://store.steampowered.com/app/431240/",
+        "message_id": "1517208223697080360",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-06-18T16:43:49.743000+00:00",
+        "description": "Why have friends if not to play Golf... With Your Friends! Nothing is out of bounds as you take on courses filled with fast paced, exciting, simultaneous mini golf for up to 12 players!"
+      },
+      {
+        "item_key": "8ec1e052e5b3fad5",
+        "section": "paid",
+        "title": "BattleBlock Theater®",
+        "url": "https://store.steampowered.com/app/238460/",
+        "message_id": "1517208232962035732",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-06-18T16:43:51.504589+00:00",
+        "description": "Welcome to BattleBlock Theater! You’ve got no where to go but up...on stage. Play single player or co-op to free your friends and save Hatty Hattington! Jump, solve and battle your way through a mysterious theater inhabited by highly technological felines."
       }
     ]
   }
