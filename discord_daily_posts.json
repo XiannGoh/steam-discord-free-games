@@ -1,210 +1,4 @@
 {
-  "2026-05-18": {
-    "run_state": {
-      "section_headers": {
-        "free": {
-          "message_id": "1505973330597904517",
-          "channel_id": "592534544708796474",
-          "posted_at_utc": "2026-05-18T16:40:21.898976+00:00"
-        },
-        "paid": {
-          "message_id": "1505973391478489220",
-          "channel_id": "592534544708796474",
-          "posted_at_utc": "2026-05-18T16:40:36.515446+00:00"
-        },
-        "instagram": {
-          "message_id": "1505973439805128918",
-          "channel_id": "592534544708796474",
-          "posted_at_utc": "2026-05-18T16:40:48.322033+00:00"
-        }
-      },
-      "last_attempt_at_utc": "2026-05-18T16:40:18.586858+00:00",
-      "intro": {
-        "message_id": "1505973318212260061",
-        "channel_id": "592534544708796474",
-        "posted_at_utc": "2026-05-18T16:40:20.312351+00:00"
-      },
-      "footer": {
-        "message_id": "1505973487171272975",
-        "channel_id": "592534544708796474",
-        "posted_at_utc": "2026-05-18T16:40:59.434551+00:00"
-      },
-      "completed": true,
-      "completed_at_utc": "2026-05-18T16:41:00.649438+00:00"
-    },
-    "items": [
-      {
-        "item_key": "b5af5604704bda00",
-        "section": "free",
-        "title": "Fate War",
-        "url": "https://store.steampowered.com/app/3581600/",
-        "message_id": "1505973337598328883",
-        "channel_id": "592534544708796474",
-        "source_type": "steam_free",
-        "posted_at": "2026-05-18T16:40:23.812599+00:00",
-        "description": "2025's latest epic strategy simulation game! Lead your Tribe in a vast world with dynamic seasons. Survive using your wit and uncover the secrets of a lost god."
-      },
-      {
-        "item_key": "911ece2b5d05fe09",
-        "section": "free",
-        "title": "NosTale - Anime MMORPG",
-        "url": "https://store.steampowered.com/app/550470/",
-        "message_id": "1505973345911570503",
-        "channel_id": "592534544708796474",
-        "source_type": "steam_free",
-        "posted_at": "2026-05-18T16:40:28.503910+00:00",
-        "description": "NosTale is a free-to-play anime action MMORPG which takes you on an exciting journey through a world full of mystery with your friends. More than 30 specialist classes and tons of loyal pets provide plenty of excitement and variety in PvP, PvE and raids"
-      },
-      {
-        "item_key": "a432e161a87b9049",
-        "section": "free",
-        "title": "Space Aces",
-        "url": "https://store.steampowered.com/app/4220440/",
-        "message_id": "1505973365590986892",
-        "channel_id": "592534544708796474",
-        "source_type": "steam_free",
-        "posted_at": "2026-05-18T16:40:30.650758+00:00",
-        "description": "Space Aces is an indie space shooter that plunges you into an online universe full of action, strategy, and fierce competition. Step into the cockpit and evolve from a rookie pilot into the most feared Ace in the galaxy!"
-      },
-      {
-        "item_key": "bc465f58df2d3bb8",
-        "section": "free",
-        "title": "Off The Grid",
-        "url": "https://store.steampowered.com/app/3659280/",
-        "message_id": "1505973374239772745",
-        "channel_id": "592534544708796474",
-        "source_type": "steam_free",
-        "posted_at": "2026-05-18T16:40:33.045759+00:00",
-        "description": "Welcome to Off The Grid, the next-gen free to play Battle Royale from visionary director Neill Blomkamp. Set in a near-future world where contestants are cybernetically augmented and dropped into televised bloodsport. Death is temporary, but fame is forever."
-      },
-      {
-        "item_key": "5517ddf35b1462d0",
-        "section": "free",
-        "title": "RIFT",
-        "url": "https://store.steampowered.com/app/39120/",
-        "message_id": "1505973383853113426",
-        "channel_id": "592534544708796474",
-        "source_type": "steam_free",
-        "posted_at": "2026-05-18T16:40:34.843192+00:00",
-        "description": "Dive into a world of epic adventure! Create your perfect hero thanks to a uniquely customizable class system. Collect, craft, and customize your gear. Go it alone or group up to challenge dungeons, raids, dynamic open-world content, and your fellow players."
-      },
-      {
-        "item_key": "bc322dd39f0a4a41",
-        "section": "paid",
-        "title": "DRAGON BALL XENOVERSE 2",
-        "url": "https://store.steampowered.com/app/454650/",
-        "message_id": "1505973400068427938",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-05-18T16:40:39.100764+00:00",
-        "description": "DRAGON BALL XENOVERSE 2 builds upon the highly popular DRAGON BALL XENOVERSE with enhanced graphics that will further immerse players into the largest and most detailed Dragon Ball world ever developed."
-      },
-      {
-        "item_key": "2fbf60d98780e529",
-        "section": "paid",
-        "title": "Supermarket Simulator",
-        "url": "https://store.steampowered.com/app/2670630/",
-        "message_id": "1505973409308213248",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-05-18T16:40:41.141499+00:00",
-        "description": "Run your own supermarket! Stock shelves, set your prices, take payments, hire staff, expand your store, handle shoplifters, and design your layout. Purchase goods from online or local markets around town, and personally deliver online orders to your customers."
-      },
-      {
-        "item_key": "5251ea1e076b8b10",
-        "section": "paid",
-        "title": "DRAGON BALL FighterZ",
-        "url": "https://store.steampowered.com/app/678950/",
-        "message_id": "1505973418015850551",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-05-18T16:40:42.863073+00:00",
-        "description": "DRAGON BALL FighterZ is born from what makes the DRAGON BALL series so loved and famous: endless spectacular fights with its all-powerful fighters."
-      },
-      {
-        "item_key": "4544596ae21027fd",
-        "section": "paid",
-        "title": "Suit for Hire",
-        "url": "https://store.steampowered.com/app/1612420/",
-        "message_id": "1505973425246703696",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-05-18T16:40:44.599048+00:00",
-        "description": "Suit for Hire is a challenging action shooter, tactically blend weapons and martial arts together to unleash beautifully crafted violence."
-      },
-      {
-        "item_key": "8238ef5981c15c01",
-        "section": "paid",
-        "title": "StarRupture",
-        "url": "https://store.steampowered.com/app/1631270/",
-        "message_id": "1505973432196792353",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-05-18T16:40:46.433512+00:00",
-        "description": "StarRupture is a first-person open world base-building game with advanced combat and tons of exploration. Play alone or in a group on this sublime and ever-changing planet, extract and manage resources, create your complex industrial system and fight off hordes of alien monsters."
-      },
-      {
-        "item_key": "0d029f57520ba6ea",
-        "section": "instagram",
-        "title": "@wilfratgaming",
-        "url": "https://www.instagram.com/p/DYepZ9Cturb/",
-        "message_id": "1505973447505871099",
-        "channel_id": "592534544708796474",
-        "source_type": "instagram",
-        "posted_at": "2026-05-18T16:40:50.010393+00:00",
-        "description": "This is the best climbing system in a game I've ever played! [AD] #CairnPartner #gamestoplay #newgames #survivalgame"
-      },
-      {
-        "item_key": "16011ae41e9e84de",
-        "section": "instagram",
-        "title": "@mildsoss_official",
-        "url": "https://www.instagram.com/p/DYUsTWBJiS9/",
-        "message_id": "1505973454623608874",
-        "channel_id": "592534544708796474",
-        "source_type": "instagram",
-        "posted_at": "2026-05-18T16:40:51.754134+00:00",
-        "description": "Subnautica 2 is finally here and I just wanted to talk about why it was the most Wishlisted game on Steam  🎮 Subnauti..."
-      },
-      {
-        "item_key": "cd8d1b1a0a191461",
-        "section": "instagram",
-        "title": "@mildsoss_official",
-        "url": "https://www.instagram.com/p/DYTI3p8oWTy/",
-        "message_id": "1505973462517416099",
-        "channel_id": "592534544708796474",
-        "source_type": "instagram",
-        "posted_at": "2026-05-18T16:40:53.734533+00:00",
-        "description": "One of you plays as the king defending his kingdom while the other controls a giant leviathan building the kingdom  🎮..."
-      },
-      {
-        "item_key": "810a8108c416199f",
-        "section": "instagram",
-        "title": "@wilfratgaming",
-        "url": "https://www.instagram.com/p/DYc0uKDtt5o/",
-        "message_id": "1505973470704570538",
-        "channel_id": "592534544708796474",
-        "source_type": "instagram",
-        "posted_at": "2026-05-18T16:40:55.478512+00:00",
-        "description": "The streets are saying this might be the next RUST? #EnginefallPartner #coopgame #survivalgame  #newgames #gamestoplay"
-      },
-      {
-        "item_key": "09360ab1be63799f",
-        "section": "instagram",
-        "title": "@itzjaysasa",
-        "url": "https://www.instagram.com/p/DYfIRnuNiRh/",
-        "message_id": "1505973478073958421",
-        "channel_id": "592534544708796474",
-        "source_type": "instagram",
-        "posted_at": "2026-05-18T16:40:57.525344+00:00",
-        "description": "This new indie game has a unique way of approaching puzzles by challenging something deeper than logic. And it’s amaz..."
-      }
-    ],
-    "winners_state": {
-      "status": "skipped",
-      "skipped_reason": "no_eligible_winners",
-      "updated_at_utc": "2026-05-19T07:12:02.684858+00:00"
-    }
-  },
   "2026-05-19": {
     "run_state": {
       "section_headers": {
@@ -4714,6 +4508,147 @@
         "source_type": "paid_under_20",
         "posted_at": "2026-06-16T18:18:08.393065+00:00",
         "description": "Rounds is a 1v1 rogue-lite shooter where each round gets more intense. The losing player of each round unlocks clever upgrades to create a better build to counter their opponent."
+      }
+    ]
+  },
+  "2026-06-17": {
+    "run_state": {
+      "section_headers": {
+        "free": {
+          "message_id": "1516848638872256533",
+          "channel_id": "592534544708796474",
+          "posted_at_utc": "2026-06-17T16:54:57.706566+00:00"
+        },
+        "paid": {
+          "message_id": "1516848690051022928",
+          "channel_id": "592534544708796474",
+          "posted_at_utc": "2026-06-17T16:55:09.605517+00:00"
+        }
+      },
+      "last_attempt_at_utc": "2026-06-17T16:54:53.992595+00:00",
+      "intro": {
+        "message_id": "1516848626079498270",
+        "channel_id": "592534544708796474",
+        "posted_at_utc": "2026-06-17T16:54:55.805389+00:00"
+      },
+      "footer": {
+        "message_id": "1516848736754470952",
+        "channel_id": "592534544708796474",
+        "posted_at_utc": "2026-06-17T16:55:20.944299+00:00"
+      },
+      "completed": true,
+      "completed_at_utc": "2026-06-17T16:55:22.151249+00:00"
+    },
+    "items": [
+      {
+        "item_key": "25c6235f62039473",
+        "section": "free",
+        "title": "Stay Out",
+        "url": "https://store.steampowered.com/app/1180380/",
+        "message_id": "1516848646602358804",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-06-17T16:54:59.335598+00:00",
+        "description": "Stay Out - is a MMORPG with shooter elements, based on spirit of “stalking” - an urban exploration, searching and exploring mysterious, abandoned and forgotten by humanity pieces of our planet."
+      },
+      {
+        "item_key": "0af93b9f64b6af4c",
+        "section": "free",
+        "title": "Blood Strike",
+        "url": "https://store.steampowered.com/app/3199170/",
+        "message_id": "1516848653556514846",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-06-17T16:55:01.851301+00:00",
+        "description": "Gather your friends and dive into the action-packed Battle Royale, Squad Fight, or Hot Zone like there's no tomorrow! Blood Strike offers a wide range of playable Strikers, each with a unique active and passive ability letting you deploy drones, shield walls and everything in between."
+      },
+      {
+        "item_key": "2652c6d6be820ba8",
+        "section": "free",
+        "title": "Stumble Guys",
+        "url": "https://store.steampowered.com/app/1677740/",
+        "message_id": "1516848664172036228",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-06-17T16:55:04.598282+00:00",
+        "description": "Ready for the chaos? Stumble Guys is a 32-player, fast-paced multiplayer party royale where players dash, jump, and fall across hilarious obstacle courses in a fun race to be the last one standing."
+      },
+      {
+        "item_key": "4a78c067b5050537",
+        "section": "free",
+        "title": "Conqueror's Blade",
+        "url": "https://store.steampowered.com/app/835570/",
+        "message_id": "1516848675400323313",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-06-17T16:55:06.268784+00:00",
+        "description": "Conqueror's Blade gives you a chance to be a true warlord. Commanding medieval troops in epic 15 vs. 15 siege battles, conquering cities with allies in the open world or fighting against players from all over the world – it's you who make the choice."
+      },
+      {
+        "item_key": "dde6564766a0a301",
+        "section": "free",
+        "title": "GrandChase",
+        "url": "https://store.steampowered.com/app/985810/",
+        "message_id": "1516848682467594240",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-06-17T16:55:08.088284+00:00",
+        "description": "Grand Chase is a free side-scrolling online action RPG with anime inspired graphics. Enjoy exciting adventures in dungeons and PvP with unique characters."
+      },
+      {
+        "item_key": "056ae22a242246e7",
+        "section": "paid",
+        "title": "Project Zomboid",
+        "url": "https://store.steampowered.com/app/108600/",
+        "message_id": "1516848696489148537",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-06-17T16:55:11.404633+00:00",
+        "description": "Project Zomboid is the ultimate in zombie survival. Alone or in MP: you loot, build, craft, fight, farm and fish in a struggle to survive. A hardcore RPG skillset, a vast map, massively customisable sandbox and a cute tutorial raccoon await the unwary. So how will you die? All it takes is a bite.."
+      },
+      {
+        "item_key": "56d5db5fba840f6b",
+        "section": "paid",
+        "title": "MECCHA CHAMELEON",
+        "url": "https://store.steampowered.com/app/4704690/",
+        "message_id": "1516848703946625176",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-06-17T16:55:12.985501+00:00",
+        "description": "Paint yourself to blend in! \"Meccha Chameleon\" is a new-sensation hide-and-seek game where you paint your white body to mimic the stage. Spot, pose, and \"artistic skill\" are keys to survival. Deceive Seekers with techniques that put chameleons to shame! Supports public matches and streaming."
+      },
+      {
+        "item_key": "f3aa470bb2fa04b6",
+        "section": "paid",
+        "title": "Among Us",
+        "url": "https://store.steampowered.com/app/945360/",
+        "message_id": "1516848710603116654",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-06-17T16:55:14.780463+00:00",
+        "description": "An online and local party game of teamwork and betrayal for 4-15 players...in space!"
+      },
+      {
+        "item_key": "0f1e409befc2afe0",
+        "section": "paid",
+        "title": "OPERATOR",
+        "url": "https://store.steampowered.com/app/1913370/",
+        "message_id": "1516848718148669496",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-06-17T16:55:16.813412+00:00",
+        "description": "In OPERATOR, you will play as an elite Tier 1 operator undergoing dangerous clandestine operations all over the globe. With a strategic, measured, and unforgiving style of gameplay. You are the tactical advantage, Good luck."
+      },
+      {
+        "item_key": "168ceae0df7be7d9",
+        "section": "paid",
+        "title": "Rust",
+        "url": "https://store.steampowered.com/app/252490/",
+        "message_id": "1516848727107829942",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-06-17T16:55:19.017797+00:00",
+        "description": "The only aim in Rust is to survive. Everything wants you to die - the island’s wildlife, other inhabitants, the environment, and other survivors. Do whatever it takes to last another night."
       }
     ]
   }
