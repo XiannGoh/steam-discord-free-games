@@ -1,365 +1,4 @@
 {
-  "2026-05-20": {
-    "run_state": {
-      "section_headers": {
-        "free": {
-          "message_id": "1506527804676636712",
-          "channel_id": "592534544708796474",
-          "posted_at_utc": "2026-05-20T05:23:39.306187+00:00"
-        },
-        "paid": {
-          "message_id": "1506527853569638420",
-          "channel_id": "592534544708796474",
-          "posted_at_utc": "2026-05-20T05:23:50.637958+00:00"
-        }
-      },
-      "last_attempt_at_utc": "2026-05-20T16:42:36.968624+00:00",
-      "intro": {
-        "message_id": "1506460405067677726",
-        "channel_id": "592534544708796474",
-        "posted_at_utc": "2026-05-20T00:55:52.040556+00:00"
-      },
-      "footer": {
-        "message_id": "1506527907261190224",
-        "channel_id": "592534544708796474",
-        "posted_at_utc": "2026-05-20T05:24:03.418190+00:00"
-      },
-      "completed": true,
-      "completed_at_utc": "2026-05-20T05:24:04.627566+00:00"
-    },
-    "items": [
-      {
-        "item_key": "eef603b2c0988486",
-        "section": "free",
-        "title": "World Of Robots",
-        "url": "https://store.steampowered.com/app/576430/",
-        "message_id": "1506460429684310026",
-        "channel_id": "592534544708796474",
-        "source_type": "steam_free",
-        "posted_at": "2026-05-20T00:55:56.069539+00:00",
-        "description": "World of Robots is the tactical online shooter with simple controls"
-      },
-      {
-        "item_key": "50aee74db95f6af3",
-        "section": "free",
-        "title": "Navy War: Battleship Games",
-        "url": "https://store.steampowered.com/app/1991850/",
-        "message_id": "1506460439515496528",
-        "channel_id": "592534544708796474",
-        "source_type": "steam_free",
-        "posted_at": "2026-05-20T00:55:58.042373+00:00",
-        "description": "War & battle ships simulator PvP game with friends. Craft your modern ship fleet"
-      },
-      {
-        "item_key": "b685a0450e71e9ef",
-        "section": "free",
-        "title": "Darwin Project",
-        "url": "https://store.steampowered.com/app/544920/",
-        "message_id": "1506460447610765504",
-        "channel_id": "592534544708796474",
-        "source_type": "steam_free",
-        "posted_at": "2026-05-20T00:56:00.211497+00:00",
-        "description": "In Darwin Project, ten inmates must survive the elements, track each other, fight, craft tools, and use their social skills to be the last one standing. It's a unique take on battle royale with a Show Director to influence the match and Spectator Interactions to create a one-of-a-kind game show."
-      },
-      {
-        "item_key": "154b21db34c3494e",
-        "section": "free",
-        "title": "Palace of Cards",
-        "url": "https://store.steampowered.com/app/347950/",
-        "message_id": "1506460456263614596",
-        "channel_id": "592534544708796474",
-        "source_type": "steam_free",
-        "posted_at": "2026-05-20T00:56:01.817507+00:00",
-        "description": "Play cards online with other players from around the world and choose from 6 unique games: Rummy, Solitaire, Mau-Mau (Crazy Eights), Skat, Sheepshead & Doppelkopf. Each game comes with its own community, league systems, clubs, statistics & insights, and much more. Play now, for free!"
-      },
-      {
-        "item_key": "5687e558662514c9",
-        "section": "free",
-        "title": "WHO'S WHO 2.0",
-        "url": "https://store.steampowered.com/app/3391260/",
-        "message_id": "1506460463418970223",
-        "channel_id": "592534544708796474",
-        "source_type": "steam_free",
-        "posted_at": "2026-05-20T00:56:03.820538+00:00",
-        "description": "Who's Who 2.0 is back with brand new team! Looking for another dynamic party game? Each characters now holds unique skills which now will impact each modes with its own advantages! You can play solo, or party up with your friends and become the winner by eliminating the real players among the NPCs."
-      },
-      {
-        "item_key": "34ce8602a3f1a782",
-        "section": "paid",
-        "title": "Alchemy Factory",
-        "url": "https://store.steampowered.com/app/3669570/",
-        "message_id": "1506460478543626392",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-05-20T00:56:07.417519+00:00",
-        "description": "Craft your workshop as an alchemist!‌ Harness arcane devices to automate crafting. Sell alchemical goods, fulfill commissions, and rise to become a renowned alchemy magnate. ‌Multiplayer Supported!‌ Invite master designers to (ahem) contribute their expertise—let them optimize your production lines!"
-      },
-      {
-        "item_key": "519c5d71d46932dd",
-        "section": "paid",
-        "title": "Ranger’s Path: National Park Simulator",
-        "url": "https://store.steampowered.com/app/2502780/",
-        "message_id": "1506460486613336167",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-05-20T00:56:09.026796+00:00",
-        "description": "Begin your park ranger journey in Ranger’s Path: National Park Simulator. Maintain trails, assist visitors, check permits and respond to emergencies. Explore diverse biomes and observe varied animal behaviors across a wide range of species."
-      },
-      {
-        "item_key": "b5819e9102410df6",
-        "section": "paid",
-        "title": "Solar Nations 2",
-        "url": "https://store.steampowered.com/app/2275440/",
-        "message_id": "1506460493609439302",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-05-20T00:56:11.057202+00:00",
-        "description": "In this Grand Strategy game, you take control of the Solar System's Great Powers in 2092 and weather the storm of change as you navigate the uncertain waters of the future. Control the greatest military forces in the world and wage wars on an epic scale: outer space is yours to conquer!"
-      },
-      {
-        "item_key": "b402f094e955dcb3",
-        "section": "paid",
-        "title": "LEGO® Batman™ 3: Beyond Gotham",
-        "url": "https://store.steampowered.com/app/313690/",
-        "message_id": "1506460501994115223",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-05-20T00:56:12.836077+00:00",
-        "description": "The Caped Crusader joins forces with the super heroes of the DC Comics universe and blasts off to outer space to stop the evil Brainiac from destroying Earth."
-      },
-      {
-        "item_key": "5119fd7379b42c8c",
-        "section": "paid",
-        "title": "Clone Drone in the Danger Zone",
-        "url": "https://store.steampowered.com/app/597170/",
-        "message_id": "1506460509644394516",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-05-20T00:56:14.957479+00:00",
-        "description": "Clone Drone in the Danger Zone is a robot voxel slice-em-up where any part of your body can be sliced off. With your mind downloaded into a robot gladiator, you must survive the sinister trials of the arena."
-      },
-      {
-        "item_key": "cdabe708629b6e2f",
-        "section": "free",
-        "title": "Sky: Children of the Light",
-        "url": "https://store.steampowered.com/app/2325290/",
-        "message_id": "1506499810998489119",
-        "channel_id": "592534544708796474",
-        "source_type": "steam_free",
-        "posted_at": "2026-05-20T03:32:24.668703+00:00",
-        "description": "A breathtaking open-world adventure awaits! Explore magical realms, restore lost light, and form wordless bonds with players worldwide. Complete quests and solve puzzles in seasonal events that celebrate kindness, discovery, and heartfelt connection."
-      },
-      {
-        "item_key": "e132db62a13c2fea",
-        "section": "free",
-        "title": "Toram Online",
-        "url": "https://store.steampowered.com/app/1827180/",
-        "message_id": "1506499817780674650",
-        "channel_id": "592534544708796474",
-        "source_type": "steam_free",
-        "posted_at": "2026-05-20T03:32:26.430552+00:00",
-        "description": "The MMORPG of a massive and magnificent fantasy! Let's explore the MMO world!"
-      },
-      {
-        "item_key": "403862495ee9c4f8",
-        "section": "free",
-        "title": "Path of Exile",
-        "url": "https://store.steampowered.com/app/238960/",
-        "message_id": "1506499825200533554",
-        "channel_id": "592534544708796474",
-        "source_type": "steam_free",
-        "posted_at": "2026-05-20T03:32:28.299735+00:00",
-        "description": "You are an Exile, struggling to survive on the dark continent of Wraeclast, as you fight to earn power that will allow you to exact your revenge against those who wronged you. Path of Exile is an online Action RPG set in a dark fantasy world. The game is completely free and will never be pay-to-win."
-      },
-      {
-        "item_key": "675cc631a93c9ee2",
-        "section": "free",
-        "title": "Dragon Traveler",
-        "url": "https://store.steampowered.com/app/4104440/",
-        "message_id": "1506499833173901464",
-        "channel_id": "592534544708796474",
-        "source_type": "steam_free",
-        "posted_at": "2026-05-20T03:32:30.033089+00:00",
-        "description": "Love x Comedy x Isekai = The Ultimate Bishoujo RPG! Welcome to the wild world of Dragon Traveler!"
-      },
-      {
-        "item_key": "b936ee5ca6338fca",
-        "section": "free",
-        "title": "World of Warships: Legends",
-        "url": "https://store.steampowered.com/app/2964090/",
-        "message_id": "1506499846327238776",
-        "channel_id": "592534544708796474",
-        "source_type": "steam_free",
-        "posted_at": "2026-05-20T03:32:33.244147+00:00",
-        "description": "Join this free-to-play PvP online naval shooter with fast-paced combat, easy-to-learn gameplay, intuitive controls, and cross-platform play on Steam, console, and mobile. Choose from 600+ warships and 150+ Commanders, and master tactics on diverse maps. Play now and become a legend!"
-      },
-      {
-        "item_key": "7796da88ae6febc7",
-        "section": "paid",
-        "title": "Stormworks: Build and Rescue",
-        "url": "https://store.steampowered.com/app/573090/",
-        "message_id": "1506499866660966510",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-05-20T03:32:37.929520+00:00",
-        "description": "Join a world where you design, create and pilot your own air sea rescue service. Release your inner hero as you battle fierce storms out at sea to rescue those in need."
-      },
-      {
-        "item_key": "d40a3415a38e52c3",
-        "section": "paid",
-        "title": "MARVEL Cosmic Invasion",
-        "url": "https://store.steampowered.com/app/2753970/",
-        "message_id": "1506499873300545572",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-05-20T03:32:39.643459+00:00",
-        "description": "A cosmic battle awaits! Choose between 15 Marvel Super Heroes in this frenetic action beat ‘em up to fight against the deadly Annihilation Wave threatening the galaxy. From New York City to the depths of the Negative Zone, the future of the Marvel Universe will be fought for across the stars!"
-      },
-      {
-        "item_key": "d7b9752508f80d7c",
-        "section": "paid",
-        "title": "Abyssus",
-        "url": "https://store.steampowered.com/app/1721110/",
-        "message_id": "1506499880695365724",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-05-20T03:32:41.479030+00:00",
-        "description": "Choose your loadout, blast through the corrupted denizens of a sunken civilization, and wield godly powers in Abyssus – a fast-paced 1-to-4 players FPS and roguelite brinepunk adventure."
-      },
-      {
-        "item_key": "59759933af37b139",
-        "section": "paid",
-        "title": "Farm to Table",
-        "url": "https://store.steampowered.com/app/3582250/",
-        "message_id": "1506499888270147745",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-05-20T03:32:43.147777+00:00",
-        "description": "A farming & restaurant management sim with base building elements. Grow in backyard to cook & serve! Discover new recipes by exploring ingredients on the island; gather, fish, raise animals & produce with machines. Manage resources, hire staff & grow your organic business into a 5-star restaurant!"
-      },
-      {
-        "item_key": "898721e945a9ee50",
-        "section": "paid",
-        "title": "Gamble With Your Friends",
-        "url": "https://store.steampowered.com/app/3892270/",
-        "message_id": "1506499895295606935",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-05-20T03:32:44.739477+00:00",
-        "description": "An online 1-6 player co-op \"casino crawler\" where you and your friends share one bank account and one massive debt. Gamble, buy sketchy items, make terrible decisions, and climb an ominous casino tower to hit your loan shark’s daily quota in 5 minutes - or face the consequences."
-      },
-      {
-        "item_key": "15d0e1ced46d8127",
-        "section": "free",
-        "title": "Doomsday × Ghost in the Shell",
-        "url": "https://store.steampowered.com/app/2439510/",
-        "message_id": "1506527813392400424",
-        "channel_id": "592534544708796474",
-        "source_type": "steam_free",
-        "posted_at": "2026-05-20T05:23:41.157450+00:00",
-        "description": "Fight the Posthuman crisis in the Ghost in the Shell collab!"
-      },
-      {
-        "item_key": "dc8ee5414a02bb9d",
-        "section": "free",
-        "title": "Brighter Shores",
-        "url": "https://store.steampowered.com/app/2791440/",
-        "message_id": "1506527820732432458",
-        "channel_id": "592534544708796474",
-        "source_type": "steam_free",
-        "posted_at": "2026-05-20T05:23:42.851614+00:00",
-        "description": "Brighter Shores is an all new adventure from award winning MMORPG designer Andrew Gower. It is an enchanting point-and-click style RPG with hundreds of hours of gameplay, set in a land of magic and mysteries, with a huge number of professions to try, and something new to find around every corner."
-      },
-      {
-        "item_key": "1d6ea98507fdd211",
-        "section": "free",
-        "title": "Legend of YMIR",
-        "url": "https://store.steampowered.com/app/4172530/",
-        "message_id": "1506527828194103367",
-        "channel_id": "592534544708796474",
-        "source_type": "steam_free",
-        "posted_at": "2026-05-20T05:23:44.918433+00:00",
-        "description": "Forge your destiny in Legend of YMIR, a next-generation MMORPG inspired by Norse mythology and powered by Unreal Engine 5. Master skill-based combat, lead your clan to glory in massive server wars, and carve your name among the legends."
-      },
-      {
-        "item_key": "7d1c00171c996fe9",
-        "section": "free",
-        "title": "World of Warplanes",
-        "url": "https://store.steampowered.com/app/790710/",
-        "message_id": "1506527837090222150",
-        "channel_id": "592534544708796474",
-        "source_type": "steam_free",
-        "posted_at": "2026-05-20T05:23:46.775195+00:00",
-        "description": "World of Warplanes is an aerial combat MMO action game set in the Golden Age of military aviation. The game throws players into a never-ending battle for dominance of the skies."
-      },
-      {
-        "item_key": "90039f17c31caa39",
-        "section": "free",
-        "title": "Soul Dossier",
-        "url": "https://store.steampowered.com/app/1520470/",
-        "message_id": "1506527844719661136",
-        "channel_id": "592534544708796474",
-        "source_type": "steam_free",
-        "posted_at": "2026-05-20T05:23:48.630214+00:00",
-        "description": "Soul Dossier is a multiplayer game based on Oriental culture (5vS1). The game is based on a variety of traditional Oriental cultures, including five elements, eight diagrams and folklore."
-      },
-      {
-        "item_key": "d4bb643a9d9a8fe9",
-        "section": "paid",
-        "title": "Super Bunny Man",
-        "url": "https://store.steampowered.com/app/673750/",
-        "message_id": "1506527860733513750",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-05-20T05:23:52.415573+00:00",
-        "description": "A physics-based co-op platformer about a guy in a rabbit costume! Team up with a friend or three (local or online) to beat levels, find hidden carrots and race against the clock. Experience bunny madness. Embrace carrot chaos. Become Super Bunny Man."
-      },
-      {
-        "item_key": "5026ad9a19a58f7c",
-        "section": "paid",
-        "title": "Cluckmech Oasis",
-        "url": "https://store.steampowered.com/app/2453360/",
-        "message_id": "1506527868367274085",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-05-20T05:23:54.127651+00:00",
-        "description": "Cluckmech Oasis, a top-down shooting Roguelike tower defense game. Play as the Warcluck and lead your team of animal heroes in a fight for survival. Collect, build and upgrade defenses, and engage in intense battle against waves of plant enemies."
-      },
-      {
-        "item_key": "9cc8c353d8f9ea4d",
-        "section": "paid",
-        "title": "Voyagers of Nera",
-        "url": "https://store.steampowered.com/app/2686630/",
-        "message_id": "1506527875669557248",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-05-20T05:23:56.204698+00:00",
-        "description": "Voyagers of Nera is a cooperative survival-crafting game where you must survive a magical ocean world brimming with lost spirits and deadly monsters. Sail to distant islands, build beautiful villages and surf across the waves with up to 10 players."
-      },
-      {
-        "item_key": "768e82721d7436f2",
-        "section": "paid",
-        "title": "We Need To Go Deeper",
-        "url": "https://store.steampowered.com/app/307110/",
-        "message_id": "1506527890634833931",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-05-20T05:23:59.529844+00:00",
-        "description": "DIVE. DISCOVER. DIE. Crew a submarine with friends in We Need To Go Deeper - a 2-4-player cooperative submarine roguelike set in a Verne-inspired undersea universe."
-      },
-      {
-        "item_key": "381218f910dfc584",
-        "section": "paid",
-        "title": "CarX Street",
-        "url": "https://store.steampowered.com/app/1114150/",
-        "message_id": "1506527897882595380",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-05-20T05:24:01.394139+00:00",
-        "description": "Conquer mountain roads, highways, and city streets. Build your dream car with detailed tuning that unleashes the potential of “CarX Technology”© physics. Take part in thrilling races, enjoying realistic gameplay and dynamic driving."
-      }
-    ]
-  },
   "2026-05-21": {
     "run_state": {
       "section_headers": {
@@ -4534,6 +4173,147 @@
         "source_type": "paid_under_20",
         "posted_at": "2026-06-18T16:43:51.504589+00:00",
         "description": "Welcome to BattleBlock Theater! You’ve got no where to go but up...on stage. Play single player or co-op to free your friends and save Hatty Hattington! Jump, solve and battle your way through a mysterious theater inhabited by highly technological felines."
+      }
+    ]
+  },
+  "2026-06-19": {
+    "run_state": {
+      "section_headers": {
+        "free": {
+          "message_id": "1517564247884697652",
+          "channel_id": "592534544708796474",
+          "posted_at_utc": "2026-06-19T16:18:31.871767+00:00"
+        },
+        "paid": {
+          "message_id": "1517564293145559072",
+          "channel_id": "592534544708796474",
+          "posted_at_utc": "2026-06-19T16:18:42.677530+00:00"
+        }
+      },
+      "last_attempt_at_utc": "2026-06-19T16:18:28.748779+00:00",
+      "intro": {
+        "message_id": "1517564236820123708",
+        "channel_id": "592534544708796474",
+        "posted_at_utc": "2026-06-19T16:18:30.220915+00:00"
+      },
+      "footer": {
+        "message_id": "1517564339287101601",
+        "channel_id": "592534544708796474",
+        "posted_at_utc": "2026-06-19T16:18:53.729631+00:00"
+      },
+      "completed": true,
+      "completed_at_utc": "2026-06-19T16:18:54.934792+00:00"
+    },
+    "items": [
+      {
+        "item_key": "365fb7fbba472536",
+        "section": "free",
+        "title": "Project Entropy",
+        "url": "https://store.steampowered.com/app/2806410/",
+        "message_id": "1517564254876602570",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-06-19T16:18:33.847063+00:00",
+        "description": "Welcome, commander, to Project Entropy- an ultimate Sci-Fi and role-playing game with battles in space. In this immersive MMO experience, you will command alien civilizations, conquer uncharted planets, and build Hero fleets."
+      },
+      {
+        "item_key": "13c1c3d289159f35",
+        "section": "free",
+        "title": "Sword Art Online: Integral Factor",
+        "url": "https://store.steampowered.com/app/2371630/",
+        "message_id": "1517564262770282666",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-06-19T16:18:35.536223+00:00",
+        "description": "Aim to conquer Aincrad with Kirito and Asuna"
+      },
+      {
+        "item_key": "62d1e036a5cd91a0",
+        "section": "free",
+        "title": "Battle Tanks: World War II",
+        "url": "https://store.steampowered.com/app/782670/",
+        "message_id": "1517564269527302204",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-06-19T16:18:37.184360+00:00",
+        "description": "Are you ready to fight? Download this incredibly addictive tank game right now! Choose a tank and fight with your friends in dynamic real-time battles.Meet the legendary tank shooter Battle Tanks! Show the whole world who's in charge here!"
+      },
+      {
+        "item_key": "cadc257b39432194",
+        "section": "free",
+        "title": "War Planet Online: Global Conquest",
+        "url": "https://store.steampowered.com/app/719640/",
+        "message_id": "1517564276640845975",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-06-19T16:18:39.061452+00:00",
+        "description": "Build your army, dominate your region and lead your alliance to conquer the globe!"
+      },
+      {
+        "item_key": "df8ba87011407b3a",
+        "section": "free",
+        "title": "Soulworker",
+        "url": "https://store.steampowered.com/app/1377580/",
+        "message_id": "1517564284526268599",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-06-19T16:18:41.077190+00:00",
+        "description": "Fierce emotions help fuel SoulWorkers to save the world from the devastated scene of a post-apocalyptic world. In a world where only dark devastation reigns – you are the only SoulWorker to come to the rescue."
+      },
+      {
+        "item_key": "79c296ac256e6bcf",
+        "section": "paid",
+        "title": "s&box",
+        "url": "https://store.steampowered.com/app/590830/",
+        "message_id": "1517564299592073218",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-06-19T16:18:44.587898+00:00",
+        "description": "S&box is a game creation platform built on the Source 2 engine. Play, create, and share games, explore community creations, and experience endless sandbox fun with powerful modern tools."
+      },
+      {
+        "item_key": "7ed061294f04aa2b",
+        "section": "paid",
+        "title": "The Spell Brigade",
+        "url": "https://store.steampowered.com/app/2904000/",
+        "message_id": "1517564308114899004",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-06-19T16:18:46.796120+00:00",
+        "description": "Survivors-like with ONLINE CO-OP for 1-4 players. Team up with your wizard friends to slay hordes of dark creatures. Complete team-based objectives, unlock new upgrades and create overpowered spell synergies. Friend nor foe is safe in this friendly fire bullet hell!"
+      },
+      {
+        "item_key": "3cc61548ff1af133",
+        "section": "paid",
+        "title": "Goofy Gorillas",
+        "url": "https://store.steampowered.com/app/2627570/",
+        "message_id": "1517564316675477717",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-06-19T16:18:48.402087+00:00",
+        "description": "Relive your childhood nostalgia at Goofy Gorillas, the largest virtual jungle gym! Battle it out with your friends in a wide range of casual but intense PvP gamemodes, or chill out and take part in some extra activities around the venue! Make the Goofy experience your own!"
+      },
+      {
+        "item_key": "32ee86ed44818c2c",
+        "section": "paid",
+        "title": "Injustice™ 2",
+        "url": "https://store.steampowered.com/app/627270/",
+        "message_id": "1517564323592142899",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-06-19T16:18:50.175839+00:00",
+        "description": "Build and power up the ultimate version of your favourite DC legends in INJUSTICE 2. This is your Legend. Your Journey. Your Injustice."
+      },
+      {
+        "item_key": "75aa0345ac8781b9",
+        "section": "paid",
+        "title": "I Know a Guy: Shady Life Simulator",
+        "url": "https://store.steampowered.com/app/4173620/",
+        "message_id": "1517564331338764401",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-06-19T16:18:52.062079+00:00",
+        "description": "Run your pizza shop up front and handle shady business out back. Help hand-crafted NPCs with favors that never go as planned. Play solo or online co-op with up to four players and expand your operation across Hobarey Town. In this darkly comedic management sim - become that guy everyone knows."
       }
     ]
   }
