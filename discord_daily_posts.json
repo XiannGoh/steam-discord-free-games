@@ -1,215 +1,4 @@
 {
-  "2026-05-21": {
-    "run_state": {
-      "section_headers": {
-        "free": {
-          "message_id": "1507058671048327331",
-          "channel_id": "592534544708796474",
-          "posted_at_utc": "2026-05-21T16:33:07.633051+00:00"
-        },
-        "paid": {
-          "message_id": "1507058725138206811",
-          "channel_id": "592534544708796474",
-          "posted_at_utc": "2026-05-21T16:33:20.149612+00:00"
-        }
-      },
-      "last_attempt_at_utc": "2026-05-21T16:33:04.941206+00:00",
-      "intro": {
-        "message_id": "1507058662600999015",
-        "channel_id": "592534544708796474",
-        "posted_at_utc": "2026-05-21T16:33:05.662890+00:00"
-      },
-      "footer": {
-        "message_id": "1507058773053673702",
-        "channel_id": "592534544708796474",
-        "posted_at_utc": "2026-05-21T16:33:31.623018+00:00"
-      },
-      "completed": true,
-      "completed_at_utc": "2026-05-21T16:33:32.831861+00:00"
-    },
-    "items": [
-      {
-        "item_key": "54f4f3b502e550a1",
-        "section": "free",
-        "title": "Mobile Dungeon",
-        "url": "https://store.steampowered.com/app/707710/",
-        "message_id": "1507058679558705252",
-        "channel_id": "592534544708796474",
-        "source_type": "steam_free",
-        "posted_at": "2026-05-21T16:33:09.576904+00:00",
-        "description": "From the universe of Shakes & Fidget, the NEW Team Battle RPG dungeon crawler!"
-      },
-      {
-        "item_key": "cc37ba1d6fa83e79",
-        "section": "free",
-        "title": "Entropia Universe",
-        "url": "https://store.steampowered.com/app/3642750/",
-        "message_id": "1507058687544524820",
-        "channel_id": "592534544708796474",
-        "source_type": "steam_free",
-        "posted_at": "2026-05-21T16:33:11.612439+00:00",
-        "description": "Entropia Universe is a unique massively multiplayer online game (MMO) where virtual assets hold real-world value and players can participate in a thriving virtual sandbox economy."
-      },
-      {
-        "item_key": "1ccfe10be1c8ed69",
-        "section": "free",
-        "title": "Bakery Cafe Simulator: Prologue",
-        "url": "https://store.steampowered.com/app/3669720/",
-        "message_id": "1507058695958433972",
-        "channel_id": "592534544708796474",
-        "source_type": "steam_free",
-        "posted_at": "2026-05-21T16:33:14.879028+00:00",
-        "description": "Start bake, build, and grow your dream bakery cafe with prologue now! Create delicious pastries, design your space, and serve customers. Play solo or with friends in online co-op to expand your business and experience the excitement of running a bustling cafe!"
-      },
-      {
-        "item_key": "b9d5d7beb36faa1d",
-        "section": "free",
-        "title": "Escape Room - Der kranke Kollege",
-        "url": "https://store.steampowered.com/app/1301720/",
-        "message_id": "1507058710072004758",
-        "channel_id": "592534544708796474",
-        "source_type": "steam_free",
-        "posted_at": "2026-05-21T16:33:16.903452+00:00",
-        "description": "You only wanted to make a visit to your sick colleague, but what you encounter is beyond your imagination. Discover the secrets of your colleague and find a way to escape the trap."
-      },
-      {
-        "item_key": "c35ea6a9dae18954",
-        "section": "free",
-        "title": "GraalOnline Era",
-        "url": "https://store.steampowered.com/app/2358050/",
-        "message_id": "1507058718091644949",
-        "channel_id": "592534544708796474",
-        "source_type": "steam_free",
-        "posted_at": "2026-05-21T16:33:18.664157+00:00",
-        "description": "Era is a modern 2D action MMO RPG. Purchase weapons and work with a gang to compete in activities such as special events, base capturing and PvP battles in the Spar Complex, or start your own gang and chart your own path!"
-      },
-      {
-        "item_key": "4f6b0b8c2badac93",
-        "section": "paid",
-        "title": "Holdfast: Nations At War",
-        "url": "https://store.steampowered.com/app/589290/",
-        "message_id": "1507058731949752380",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-05-21T16:33:22.048928+00:00",
-        "description": "Fight on multiple fronts in Holdfast: Nations At War - A multiplayer first and third-person shooter set during the great Napoleonic Era and WW1. Charge into battle with over 150 players per server!"
-      },
-      {
-        "item_key": "ee503fc68685b190",
-        "section": "paid",
-        "title": "LEGO® Star Wars™ - The Complete Saga",
-        "url": "https://store.steampowered.com/app/32440/",
-        "message_id": "1507058739474075842",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-05-21T16:33:23.925351+00:00",
-        "description": "Kick Some Brick in I through VI! Play through all six Star Wars movies in one videogame! Adding new characters, new levels, new features and for the first time ever, the chance to build and battle your way through a fun Star Wars galaxy on your PC!"
-      },
-      {
-        "item_key": "03571ff49faff8aa",
-        "section": "paid",
-        "title": "Over The Top: WWI",
-        "url": "https://store.steampowered.com/app/2778610/",
-        "message_id": "1507058747833319546",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-05-21T16:33:26.029357+00:00",
-        "description": "Join 200-player battles in Over The Top: WWI - an intense shooter set in the gritty backdrop of World War I. Pick your class, choose from a vast arsenal, including rifles, artillery, airplanes and powerful tanks, and experience the chaos of fully destructible battlefields."
-      },
-      {
-        "item_key": "5902341bf02fcb40",
-        "section": "paid",
-        "title": "METAL GEAR & METAL GEAR 2: Solid Snake",
-        "url": "https://store.steampowered.com/app/2131680/",
-        "message_id": "1507058756008284315",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-05-21T16:33:27.898386+00:00",
-        "description": "The first and second title in the METAL GEAR series that established the stealth action genre, as well as the basic mechanics of the series."
-      },
-      {
-        "item_key": "8ba70b9d8b1265fa",
-        "section": "paid",
-        "title": "King of Tokyo - Richard Garfield",
-        "url": "https://store.steampowered.com/app/3232870/",
-        "message_id": "1507058764753141800",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-05-21T16:33:29.890932+00:00",
-        "description": "Play as a kaiju as you destroy everything in your path in this board game! Roll the dice and make the best possible combinations to heal yourself, attack, buy cards or win Victory Points."
-      }
-    ],
-    "winners_state": {
-      "intro": {
-        "message_id": "1507171571389829203",
-        "channel_id": "1491294533751799809"
-      },
-      "section_headers": {
-        "paid": {
-          "message_id": "1507171588988997673",
-          "channel_id": "1491294533751799809"
-        }
-      },
-      "winner_messages": {
-        "https://store.steampowered.com/app/1721110/": {
-          "message_id": "1507171659470340258",
-          "channel_id": "1491294533751799809"
-        },
-        "https://store.steampowered.com/app/2686630/": {
-          "message_id": "1507171665673453728",
-          "channel_id": "1491294533751799809"
-        }
-      },
-      "footer": {
-        "message_id": "1507171668462797003",
-        "channel_id": "1491294533751799809"
-      },
-      "message_id": "1507171571389829203",
-      "message_ids": [
-        "1507171571389829203",
-        "1507171588988997673",
-        "1507171659470340258",
-        "1507171665673453728",
-        "1507171668462797003"
-      ],
-      "last_action": "create",
-      "updated_at_utc": "2026-05-22T00:02:07.954125+00:00",
-      "posted_at_utc": "2026-05-22T00:02:07.954138+00:00",
-      "winner_keys": [
-        "https://store.steampowered.com/app/1721110/",
-        "https://store.steampowered.com/app/2686630/"
-      ],
-      "winner_vote_counts": {
-        "https://store.steampowered.com/app/1721110/": 2,
-        "https://store.steampowered.com/app/2686630/": 1
-      },
-      "winner_entries": [
-        {
-          "winner_key": "https://store.steampowered.com/app/1721110/",
-          "section": "paid",
-          "title": "Abyssus",
-          "url": "https://store.steampowered.com/app/1721110/",
-          "description": "Choose your loadout, blast through the corrupted denizens of a sunken civilization, and wield godly powers in Abyssus – a fast-paced 1-to-4 players FPS and roguelite brinepunk adventure.",
-          "human_votes": 2,
-          "voter_names": [
-            "Janithan",
-            "Thomas"
-          ]
-        },
-        {
-          "winner_key": "https://store.steampowered.com/app/2686630/",
-          "section": "paid",
-          "title": "Voyagers of Nera",
-          "url": "https://store.steampowered.com/app/2686630/",
-          "description": "Voyagers of Nera is a cooperative survival-crafting game where you must survive a magical ocean world brimming with lost spirits and deadly monsters. Sail to distant islands, build beautiful villages and surf across the waves with up to 10 players.",
-          "human_votes": 1,
-          "voter_names": [
-            "Thomas"
-          ]
-        }
-      ]
-    }
-  },
   "2026-05-22": {
     "run_state": {
       "section_headers": {
@@ -4314,6 +4103,147 @@
         "source_type": "paid_under_20",
         "posted_at": "2026-06-19T16:18:52.062079+00:00",
         "description": "Run your pizza shop up front and handle shady business out back. Help hand-crafted NPCs with favors that never go as planned. Play solo or online co-op with up to four players and expand your operation across Hobarey Town. In this darkly comedic management sim - become that guy everyone knows."
+      }
+    ]
+  },
+  "2026-06-20": {
+    "run_state": {
+      "section_headers": {
+        "free": {
+          "message_id": "1517912209693347961",
+          "channel_id": "592534544708796474",
+          "posted_at_utc": "2026-06-20T15:21:12.497093+00:00"
+        },
+        "paid": {
+          "message_id": "1517912252563591381",
+          "channel_id": "592534544708796474",
+          "posted_at_utc": "2026-06-20T15:21:22.687200+00:00"
+        }
+      },
+      "last_attempt_at_utc": "2026-06-20T15:21:09.742827+00:00",
+      "intro": {
+        "message_id": "1517912199987728545",
+        "channel_id": "592534544708796474",
+        "posted_at_utc": "2026-06-20T15:21:10.935579+00:00"
+      },
+      "footer": {
+        "message_id": "1517912296498925617",
+        "channel_id": "592534544708796474",
+        "posted_at_utc": "2026-06-20T15:21:33.183797+00:00"
+      },
+      "completed": true,
+      "completed_at_utc": "2026-06-20T15:21:34.390183+00:00"
+    },
+    "items": [
+      {
+        "item_key": "904d097ee2b3ff33",
+        "section": "free",
+        "title": "King of Crabs",
+        "url": "https://store.steampowered.com/app/1273710/",
+        "message_id": "1517912216282730629",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-06-20T15:21:14.265184+00:00",
+        "description": "Battle Royale with crabs! Intense multiplayer action, with up to 100 players! Scrap, scavenge and slaughter your way to becoming the King of Crabs!"
+      },
+      {
+        "item_key": "cc5239aef1abeed5",
+        "section": "free",
+        "title": "Wheelchair Wizards",
+        "url": "https://store.steampowered.com/app/3832630/",
+        "message_id": "1517912223693934612",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-06-20T15:21:15.852409+00:00",
+        "description": "Wheelchair Wizards is a 4 player party game where you battle your friends while upgrading your wizard."
+      },
+      {
+        "item_key": "5fabbdf33581454e",
+        "section": "free",
+        "title": "Lost Lives",
+        "url": "https://store.steampowered.com/app/1929230/",
+        "message_id": "1517912230241374461",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-06-20T15:21:17.449309+00:00",
+        "description": "Lost Lives is a multiplayer 2D shooter with RPG elements, in which you will find yourself in the conditions of post-Soviet devastation. As you play, you will have to fight other players and local factions, as well as find and sell loot. Choose your equipment wisely and defeat your enemies!"
+      },
+      {
+        "item_key": "8bfb81ce57272e6d",
+        "section": "free",
+        "title": "Anomaly Zone Renovation",
+        "url": "https://store.steampowered.com/app/4045370/",
+        "message_id": "1517912237061312553",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-06-20T15:21:19.368766+00:00",
+        "description": "A-Zone Renovation is a continuation of the legendary Zone, combining the classic stalker atmosphere with revised mechanics. A large-scale rebalancing, from weapons to economy, a new role-playing system, an improved interface, PvE and PvP activities - the Zone is ready to grow with its community."
+      },
+      {
+        "item_key": "41ee53ad2d4579da",
+        "section": "free",
+        "title": "Mitos.is: The Game",
+        "url": "https://store.steampowered.com/app/389570/",
+        "message_id": "1517912245164834846",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-06-20T15:21:21.123490+00:00",
+        "description": "Step into the microscopic world of Mitos.is! Eat or be eaten—become the ultimate cell in a highly addictive multiplayer game. Diverse modes, daily tournaments, guilds, and gear await! The BEST game of 2015 is back!"
+      },
+      {
+        "item_key": "b13bb1a5f6ce71a8",
+        "section": "paid",
+        "title": "Strange Brigade",
+        "url": "https://store.steampowered.com/app/312670/",
+        "message_id": "1517912258921890025",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-06-20T15:21:24.370159+00:00",
+        "description": "Embark on an exotic journey into danger in this rip-roaring 1930s third person adventure for 1-4 players! Encounter pulse-pounding action, treacherous traps and tales of derring-do!"
+      },
+      {
+        "item_key": "8a96e15e4ae86493",
+        "section": "paid",
+        "title": "Trail & Error",
+        "url": "https://store.steampowered.com/app/4322960/",
+        "message_id": "1517912266484224132",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-06-20T15:21:26.129943+00:00",
+        "description": "A chaotic co-op survival game for 1–4 players where you travel the trail, manage supplies, survive disasters, and argue with friends. Work together to keep the wagon moving, adapt to random events, and try to make it to the end in one piece."
+      },
+      {
+        "item_key": "73266fa75a67805c",
+        "section": "paid",
+        "title": "NARUTO TO BORUTO: SHINOBI STRIKER",
+        "url": "https://store.steampowered.com/app/633230/",
+        "message_id": "1517912273375592618",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-06-20T15:21:27.744714+00:00",
+        "description": "Battle as a team of 4 to compete against other teams online! Graphically, SHINOBI STRIKER is also built from the ground up in a completely new graphic style. Lead your team and fight online to see who the best ninjas are!"
+      },
+      {
+        "item_key": "d9adb5af7bae8960",
+        "section": "paid",
+        "title": "Unravel Two",
+        "url": "https://store.steampowered.com/app/1225570/",
+        "message_id": "1517912280271159508",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-06-20T15:21:29.696379+00:00",
+        "description": "When you cut ties to the past, new bonds form. Build relationships with other Yarnys in local co-op or as a single player, fostering friendship and support as you journey together."
+      },
+      {
+        "item_key": "e946b3ac2ee1ea96",
+        "section": "paid",
+        "title": "Oddsparks: An Automation Adventure",
+        "url": "https://store.steampowered.com/app/1817800/",
+        "message_id": "1517912288361971876",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-06-20T15:21:31.464794+00:00",
+        "description": "Oddsparks is a blend of automation and real-time strategy for both the die-hard fans of the automation genre and the automation-curious. Explore a strange fantasy world, uncover the mysteries of the past, automate your workshops, and go on adventures with your odd & adorable Sparks!"
       }
     ]
   }
