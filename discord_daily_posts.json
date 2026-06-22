@@ -1,150 +1,4 @@
 {
-  "2026-05-23": {
-    "run_state": {
-      "section_headers": {
-        "free": {
-          "message_id": "1507756757160824943",
-          "channel_id": "592534544708796474",
-          "posted_at_utc": "2026-05-23T14:47:03.917960+00:00"
-        },
-        "paid": {
-          "message_id": "1507756801003618326",
-          "channel_id": "592534544708796474",
-          "posted_at_utc": "2026-05-23T14:47:14.488728+00:00"
-        }
-      },
-      "last_attempt_at_utc": "2026-05-23T14:47:00.737938+00:00",
-      "intro": {
-        "message_id": "1507756745177436221",
-        "channel_id": "592534544708796474",
-        "posted_at_utc": "2026-05-23T14:47:02.363637+00:00"
-      },
-      "footer": {
-        "message_id": "1507756848529543199",
-        "channel_id": "592534544708796474",
-        "posted_at_utc": "2026-05-23T14:47:26.020064+00:00"
-      },
-      "completed": true,
-      "completed_at_utc": "2026-05-23T14:47:27.229605+00:00"
-    },
-    "items": [
-      {
-        "item_key": "6b3fc02e8112cd09",
-        "section": "free",
-        "title": "Goose Goose Duck",
-        "url": "https://store.steampowered.com/app/1568590/",
-        "message_id": "1507756763779305574",
-        "channel_id": "592534544708796474",
-        "source_type": "steam_free",
-        "posted_at": "2026-05-23T14:47:06.025639+00:00",
-        "description": "Goose Goose Duck is a game of social deduction for up to 16 players. Players are separated into different groups that are each assigned a different objective. Complete your team’s objective to win!"
-      },
-      {
-        "item_key": "a14c7658259ec305",
-        "section": "free",
-        "title": "Guild Wars 2®",
-        "url": "https://store.steampowered.com/app/1284210/",
-        "message_id": "1507756772260319406",
-        "channel_id": "592534544708796474",
-        "source_type": "steam_free",
-        "posted_at": "2026-05-23T14:47:07.750142+00:00",
-        "description": "Guild Wars 2 is an award-winning online roleplaying game with fast-paced action combat, deep character customization, and no subscription fee required. Choose from an arsenal of professions and weapons, explore a vast open world, compete in PVP modes and more. Join over 16 million players now!"
-      },
-      {
-        "item_key": "67aaf375ffc2ea0d",
-        "section": "free",
-        "title": "SUPREMACY: WORLD WAR 3",
-        "url": "https://store.steampowered.com/app/784950/",
-        "message_id": "1507756779763929209",
-        "channel_id": "592534544708796474",
-        "source_type": "steam_free",
-        "posted_at": "2026-05-23T14:47:09.418901+00:00",
-        "description": "This Long Term Strategy Game lets you take control of the armed forces of your nation. Become responsible for its military expansion, technological research and economic development. Form alliances and wage total war for global dominance on the battlefields of World War 3."
-      },
-      {
-        "item_key": "860518ba1377e9d7",
-        "section": "free",
-        "title": "Dungeons & Dragons Online®",
-        "url": "https://store.steampowered.com/app/206480/",
-        "message_id": "1507756786705236100",
-        "channel_id": "592534544708796474",
-        "source_type": "steam_free",
-        "posted_at": "2026-05-23T14:47:11.197497+00:00",
-        "description": "Enter a world of danger and adventure with Dungeons & Dragons Online® based on the beloved RPG that started it all."
-      },
-      {
-        "item_key": "9a9e4fd4bd874c90",
-        "section": "free",
-        "title": "Caliber",
-        "url": "https://store.steampowered.com/app/307950/",
-        "message_id": "1507756793785352214",
-        "channel_id": "592534544708796474",
-        "source_type": "steam_free",
-        "posted_at": "2026-05-23T14:47:12.863437+00:00",
-        "description": "Caliber is a team-based online shooter focused on special forces units from all over the world. More than 70 operators with unique abilities and weapons as well as various game modes and maps are waiting for you."
-      },
-      {
-        "item_key": "87961c7356af09f8",
-        "section": "paid",
-        "title": "Granvir",
-        "url": "https://store.steampowered.com/app/2743460/",
-        "message_id": "1507756807689343097",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-05-23T14:47:16.384411+00:00",
-        "description": "Granvir is a 3rd person action roguelite mech-builder with co-op multiplayer. Scavenge the battlefield for parts to replace and upgrade your Granvir and weaponry. PIlot your Granvir and manage your campaign between battles to find the best equipment and stay supplied while fighting a guerilla war."
-      },
-      {
-        "item_key": "9e0e1e52ebc99a54",
-        "section": "paid",
-        "title": "The Outlast Trials",
-        "url": "https://store.steampowered.com/app/1304930/",
-        "message_id": "1507756816103374909",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-05-23T14:47:18.109274+00:00",
-        "description": "Red Barrels invites you to experience mind-numbing terror, this time with friends. Whether you go through the trials alone or in teams, if you survive long enough and complete the therapy, Murkoff will happily let you leave… but will you be the same?"
-      },
-      {
-        "item_key": "81864721f2aaa492",
-        "section": "paid",
-        "title": "The House Always Wins",
-        "url": "https://store.steampowered.com/app/3412160/",
-        "message_id": "1507756823392944298",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-05-23T14:47:20.188813+00:00",
-        "description": "Build a top-tier business solo or in co-op (1–4 players). Start from scratch, keep the slot machines spinning and deal with chaotic events like vandals and alien invasions. Grow your fortune and show everyone why the house always wins."
-      },
-      {
-        "item_key": "8db85819a88a959b",
-        "section": "paid",
-        "title": "Warhammer: Vermintide 2",
-        "url": "https://store.steampowered.com/app/552500/",
-        "message_id": "1507756831873958020",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-05-23T14:47:21.976033+00:00",
-        "description": "The critically acclaimed Vermintide 2 is a visually stunning and groundbreaking melee action game pushing the boundaries of the first person co-op genre. Join the fight now!"
-      },
-      {
-        "item_key": "0e562ff797b6f22e",
-        "section": "paid",
-        "title": "Sunderfolk",
-        "url": "https://store.steampowered.com/app/2414270/",
-        "message_id": "1507756839272583283",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-05-23T14:47:24.034085+00:00",
-        "description": "Rediscover game night in this tactical RPG where shared strategy shapes every turn. Adventure across the Sunderlands with up to four players in online multiplayer using your mouse & keyboard or play couch co-op using phones as controllers."
-      }
-    ],
-    "winners_state": {
-      "status": "skipped",
-      "skipped_reason": "no_eligible_winners",
-      "updated_at_utc": "2026-05-23T23:57:25.805768+00:00"
-    }
-  },
   "2026-05-24": {
     "run_state": {
       "section_headers": {
@@ -4244,6 +4098,147 @@
         "source_type": "paid_under_20",
         "posted_at": "2026-06-21T15:28:10.802699+00:00",
         "description": "Sniper Elite 3 is a tactical third-person shooter that combines stealth, gameplay choice and genre-defining ballistics with huge, open levels and the exotic terrain of World War 2 North Africa."
+      }
+    ]
+  },
+  "2026-06-22": {
+    "run_state": {
+      "section_headers": {
+        "free": {
+          "message_id": "1518673898172846080",
+          "channel_id": "592534544708796474",
+          "posted_at_utc": "2026-06-22T17:47:53.173952+00:00"
+        },
+        "paid": {
+          "message_id": "1518673947422494854",
+          "channel_id": "592534544708796474",
+          "posted_at_utc": "2026-06-22T17:48:04.986084+00:00"
+        }
+      },
+      "last_attempt_at_utc": "2026-06-22T17:47:49.984517+00:00",
+      "intro": {
+        "message_id": "1518673886458413318",
+        "channel_id": "592534544708796474",
+        "posted_at_utc": "2026-06-22T17:47:51.627970+00:00"
+      },
+      "footer": {
+        "message_id": "1518673992700006632",
+        "channel_id": "592534544708796474",
+        "posted_at_utc": "2026-06-22T17:48:15.798488+00:00"
+      },
+      "completed": true,
+      "completed_at_utc": "2026-06-22T17:48:17.004876+00:00"
+    },
+    "items": [
+      {
+        "item_key": "7a1724acb16da7c3",
+        "section": "free",
+        "title": "Unturned",
+        "url": "https://store.steampowered.com/app/304930/",
+        "message_id": "1518673904556835020",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-06-22T17:47:55.117246+00:00",
+        "description": "You're a survivor in the zombie infested ruins of society, and must work with your friends and forge alliances to remain among the living."
+      },
+      {
+        "item_key": "a6805e1571a18754",
+        "section": "free",
+        "title": "Transformice",
+        "url": "https://store.steampowered.com/app/335240/",
+        "message_id": "1518673913356226711",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-06-22T17:47:57.170075+00:00",
+        "description": "Transformice is an MMO platformer about dozens of mice running to bring back the cheese! Will the almighty Shaman help you or just ruin everything? Millions of levels, hectic physics, skill trees, and more importantly... hats!"
+      },
+      {
+        "item_key": "0b4aa1a487c0dde7",
+        "section": "free",
+        "title": "Destiny 2",
+        "url": "https://store.steampowered.com/app/1085660/",
+        "message_id": "1518673921849819337",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-06-22T17:47:59.283654+00:00",
+        "description": "Explore the mysteries of Sol and experience exhilirating first-person shooter combat in Destiny 2. Unlock powerful abilities and collect unique gear across story missions, co-op, and PvP modes."
+      },
+      {
+        "item_key": "921f3c5f85c83c16",
+        "section": "free",
+        "title": "Shop Titans",
+        "url": "https://store.steampowered.com/app/1258080/",
+        "message_id": "1518673930372648990",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-06-22T17:48:01.096570+00:00",
+        "description": "Shop Titans is the ultimate RPG shopkeeper simulation. Craft powerful equipment, stock your shop and sell to aspiring heroes… at a markup! Hire heroes and explore dungeons to gather valuable materials to craft with. There’s never a dull moment in the world of Shop Titans!"
+      },
+      {
+        "item_key": "e35ee2f5e45d992e",
+        "section": "free",
+        "title": "Blue Protocol: Star Resonance",
+        "url": "https://store.steampowered.com/app/3681810/",
+        "message_id": "1518673938862051490",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-06-22T17:48:03.337650+00:00",
+        "description": "Blue Protocol: Star Resonance × FAIRY TAIL Limited time collaboration is available now! Join Natsu and Lucy and take on new challenges! Dress your hero in themed outfits, deck out your house with Fairy Tail collectibles, and hang out with Happy & Carla in the new Spirit Echo system!"
+      },
+      {
+        "item_key": "4affbef05b3672a0",
+        "section": "paid",
+        "title": "Fellowship",
+        "url": "https://store.steampowered.com/app/2352620/",
+        "message_id": "1518673954506539049",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-06-22T17:48:06.728764+00:00",
+        "description": "Choose your hero, form your group and battle through dungeons together in a Multiplayer Online Dungeon Adventure. Progress through Leagues, endlessly scaling Dungeons and chase new rewards with every fresh season. With a growing roster of Heroes and content there’s always something new in FELLOWSHIP"
+      },
+      {
+        "item_key": "bdcbd99a05120d17",
+        "section": "paid",
+        "title": "The Isle",
+        "url": "https://store.steampowered.com/app/376210/",
+        "message_id": "1518673961682993162",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-06-22T17:48:08.593285+00:00",
+        "description": "Experience fierce open world survival gameplay as you attempt to stay alive on an unforgiving island inhabited by dinosaurs! Hunt. Grow. Survive."
+      },
+      {
+        "item_key": "8307dba7849cd278",
+        "section": "paid",
+        "title": "theHunter: Call of the Wild™",
+        "url": "https://store.steampowered.com/app/518790/",
+        "message_id": "1518673969421488299",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-06-22T17:48:10.329602+00:00",
+        "description": "Discover an atmospheric hunting game like no other in this realistic, stunning open world – regularly updated in collaboration with the community. Immerse yourself in the single player campaign, or share the ultimate hunting experience with friends."
+      },
+      {
+        "item_key": "e615cc7082e28133",
+        "section": "paid",
+        "title": "Everwind",
+        "url": "https://store.steampowered.com/app/2253100/",
+        "message_id": "1518673976606462114",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-06-22T17:48:12.317904+00:00",
+        "description": "Everwind is a novel take on RPG and Sandbox Survival genre in First-Person-Perspective. Embark on the adventure with your friends - Build a base on a flying island-ship, gather resources, craft, loot, and fight while you rise above the clouds to uncover the mysteries of this world!"
+      },
+      {
+        "item_key": "2a1f281669517316",
+        "section": "paid",
+        "title": "NBA 2K26",
+        "url": "https://store.steampowered.com/app/3472040/",
+        "message_id": "1518673985129283584",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-06-22T17:48:14.039131+00:00",
+        "description": "Bragging rights are on the line in MyCAREER, MyTEAM, MyNBA, The W, and Play Now. Showcase your bag of moves with hyper realism, Powered by ProPLAY™, and challenge your friends, or rivals, in NBA 2K26’s competitive modes—and leave no doubt that you wear the crown."
       }
     ]
   }
