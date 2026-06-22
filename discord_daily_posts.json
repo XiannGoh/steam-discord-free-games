@@ -1,145 +1,4 @@
 {
-  "2026-05-22": {
-    "run_state": {
-      "section_headers": {
-        "free": {
-          "message_id": "1507414468760698982",
-          "channel_id": "592534544708796474",
-          "posted_at_utc": "2026-05-22T16:06:56.420702+00:00"
-        },
-        "paid": {
-          "message_id": "1507414520816074863",
-          "channel_id": "592534544708796474",
-          "posted_at_utc": "2026-05-22T16:07:08.649813+00:00"
-        }
-      },
-      "last_attempt_at_utc": "2026-05-22T16:06:50.826738+00:00",
-      "intro": {
-        "message_id": "1507414448812327022",
-        "channel_id": "592534544708796474",
-        "posted_at_utc": "2026-05-22T16:06:54.393404+00:00"
-      },
-      "footer": {
-        "message_id": "1507414579968344135",
-        "channel_id": "592534544708796474",
-        "posted_at_utc": "2026-05-22T16:07:22.741948+00:00"
-      },
-      "completed": true,
-      "completed_at_utc": "2026-05-22T16:07:23.951221+00:00"
-    },
-    "items": [
-      {
-        "item_key": "dfdac081c591c736",
-        "section": "free",
-        "title": "Shop Legends",
-        "url": "https://store.steampowered.com/app/982300/",
-        "message_id": "1507414477178667089",
-        "channel_id": "592534544708796474",
-        "source_type": "steam_free",
-        "posted_at": "2026-05-22T16:06:58.870711+00:00",
-        "description": "Immerse yourself in an Idle Simulation Tycoon RPG like no other, where you are tasked with managing a thriving item shop, crafting legendary gear for customers, commanding mighty heroes to loot rare artifacts & blueprints all while challenging top-ranked shopkeepers in an epic business adventure!"
-      },
-      {
-        "item_key": "b427aae91bb20930",
-        "section": "free",
-        "title": "Cubic Castles",
-        "url": "https://store.steampowered.com/app/317470/",
-        "message_id": "1507414487651848212",
-        "channel_id": "592534544708796474",
-        "source_type": "steam_free",
-        "posted_at": "2026-05-22T16:07:00.965280+00:00",
-        "description": "Your blocks, your castle, your world! Build anything you can dream up and explore with other players! Cubic Castles is a mini-MMO that combines the best of block-building and 3D platform action! Create fantastic parkour challenges, explore worlds made by other players, or even make friend!"
-      },
-      {
-        "item_key": "666af4979e126599",
-        "section": "free",
-        "title": "Modern Tanks: War Tank Games",
-        "url": "https://store.steampowered.com/app/782660/",
-        "message_id": "1507414496413618340",
-        "channel_id": "592534544708796474",
-        "source_type": "steam_free",
-        "posted_at": "2026-05-22T16:07:03.025074+00:00",
-        "description": "Command powerful armored vehicles in a dynamic arcade tank action game! This is a free-to-play third-person PvP game featuring fierce battles of mid-20th to early 21st-century war machines. Choose your class, upgrade your tank, and defeat enemies in intense team battles and solo modes."
-      },
-      {
-        "item_key": "3e53b847beac1948",
-        "section": "free",
-        "title": "Age of Conquest IV",
-        "url": "https://store.steampowered.com/app/314970/",
-        "message_id": "1507414504999227483",
-        "channel_id": "592534544708796474",
-        "source_type": "steam_free",
-        "posted_at": "2026-05-22T16:07:04.913103+00:00",
-        "description": "Age of Conquest is a turn-based grand strategy wargame."
-      },
-      {
-        "item_key": "a330450601d8a302",
-        "section": "free",
-        "title": "CS Diamantes Pipas PC : Jogo de pipa",
-        "url": "https://store.steampowered.com/app/1851200/",
-        "message_id": "1507414512847028244",
-        "channel_id": "592534544708796474",
-        "source_type": "steam_free",
-        "posted_at": "2026-05-22T16:07:06.747125+00:00",
-        "description": "This game will have to control a KITE and CUT other KITE LINES"
-      },
-      {
-        "item_key": "58dde40746164ada",
-        "section": "paid",
-        "title": "Dark Hours",
-        "url": "https://store.steampowered.com/app/2208570/",
-        "message_id": "1507414528776998984",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-05-22T16:07:10.622551+00:00",
-        "description": "Dark Hours is a co-op survival horror game for 1-4 players. Your heist has been disrupted by a supernatural event, and your team of robbers is now trapped with an evil entity. Forget your plan, your mission is to survive. Explore and cooperate to find a way out."
-      },
-      {
-        "item_key": "aec0a9d7776b8366",
-        "section": "paid",
-        "title": "Digimon Story Cyber Sleuth: Complete Edition",
-        "url": "https://store.steampowered.com/app/1042550/",
-        "message_id": "1507414536787857459",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-05-22T16:07:12.469965+00:00",
-        "description": "With engaging storylines, classic turn-based battles, and tons of Digimon to collect, Digimon Story Cyber Sleuth: Complete Edition delivers everything fans loved about Digimon Story: Cyber Sleuth and Digimon Story: Cyber Sleuth – Hacker’s Memory."
-      },
-      {
-        "item_key": "5470eebda8f2f9ac",
-        "section": "paid",
-        "title": "Brick Rigs",
-        "url": "https://store.steampowered.com/app/552100/",
-        "message_id": "1507414544585199737",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-05-22T16:07:14.259749+00:00",
-        "description": "Build your own vehicles or download one of the more than 200,000 creations already uploaded to the Workshop and experience the dynamic driving and destruction physics of Brick Rigs!"
-      },
-      {
-        "item_key": "2dff925456612347",
-        "section": "paid",
-        "title": "Farming Simulator 22",
-        "url": "https://store.steampowered.com/app/1248130/",
-        "message_id": "1507414552147656784",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-05-22T16:07:16.236038+00:00",
-        "description": "Create your farm and let the good times grow! Harvest crops, tend to animals, manage productions, and take on seasonal challenges."
-      },
-      {
-        "item_key": "def6267b272fa444",
-        "section": "paid",
-        "title": "Hobo: Tough Life",
-        "url": "https://store.steampowered.com/app/632300/",
-        "message_id": "1507414560674545756",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-05-22T16:07:20.765585+00:00",
-        "description": "Hobo: Tough Life is an urban survival role-playing game where you play as a homeless person. Play alone or team up in online co-op. Explore the streets of Praslav, scavenge for food and supplies, beg, steal, and do whatever else it takes to survive the forthcoming winter."
-      }
-    ]
-  },
   "2026-05-23": {
     "run_state": {
       "section_headers": {
@@ -4244,6 +4103,147 @@
         "source_type": "paid_under_20",
         "posted_at": "2026-06-20T15:21:31.464794+00:00",
         "description": "Oddsparks is a blend of automation and real-time strategy for both the die-hard fans of the automation genre and the automation-curious. Explore a strange fantasy world, uncover the mysteries of the past, automate your workshops, and go on adventures with your odd & adorable Sparks!"
+      }
+    ]
+  },
+  "2026-06-21": {
+    "run_state": {
+      "section_headers": {
+        "free": {
+          "message_id": "1518276254519005367",
+          "channel_id": "592534544708796474",
+          "posted_at_utc": "2026-06-21T15:27:47.562307+00:00"
+        },
+        "paid": {
+          "message_id": "1518276301507792999",
+          "channel_id": "592534544708796474",
+          "posted_at_utc": "2026-06-21T15:27:58.835778+00:00"
+        }
+      },
+      "last_attempt_at_utc": "2026-06-21T15:27:44.700820+00:00",
+      "intro": {
+        "message_id": "1518276243936510156",
+        "channel_id": "592534544708796474",
+        "posted_at_utc": "2026-06-21T15:27:45.987033+00:00"
+      },
+      "footer": {
+        "message_id": "1518276359401771240",
+        "channel_id": "592534544708796474",
+        "posted_at_utc": "2026-06-21T15:28:13.540953+00:00"
+      },
+      "completed": true,
+      "completed_at_utc": "2026-06-21T15:28:14.747129+00:00"
+    },
+    "items": [
+      {
+        "item_key": "1312f995d3aefb70",
+        "section": "free",
+        "title": "KurtzPel",
+        "url": "https://store.steampowered.com/app/844870/",
+        "message_id": "1518276261309452349",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-06-21T15:27:49.768527+00:00",
+        "description": "\"KurtzPel is an anime-styled, action battle game from a third-person perspective. Players can battle it out in both PvP and PvE mission-based battle modes with massive boss monsters. Players utilize Karmas (the method used to indicate weapon and class types) when charging into battle. Each character gets to use two types of Karmas."
+      },
+      {
+        "item_key": "47ca741ccc7bf825",
+        "section": "free",
+        "title": "War Rock",
+        "url": "https://store.steampowered.com/app/880850/",
+        "message_id": "1518276270117490811",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-06-21T15:27:51.965099+00:00",
+        "description": "War Rock is a fast-paced, large-scale multiplayer first person shooter that combines old-school tactical combat with explosive vehicular warfare. Choose your profession and battle in close quarters combat, vehicular warfare and terrifying Zombie Survival encounters. Enlist in War Rock today!"
+      },
+      {
+        "item_key": "8bceb3ab887dddb5",
+        "section": "free",
+        "title": "Warped Universe",
+        "url": "https://store.steampowered.com/app/3277880/",
+        "message_id": "1518276279173120074",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-06-21T15:27:53.609646+00:00",
+        "description": "A free-to-play sci-fi PvE looter shooter set in a volatile and expanding universe where every mission drives progress forward for the player and community together. Choose to play any mission in real-time action or turn-based tactics, and help to eradicate the Void."
+      },
+      {
+        "item_key": "1dc4f9fbf6250ce3",
+        "section": "free",
+        "title": "DK Online",
+        "url": "https://store.steampowered.com/app/781030/",
+        "message_id": "1518276286579998852",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-06-21T15:27:55.636330+00:00",
+        "description": "DK Online, a fantasy-themed classic MMORPG, invites you to combat monsters, engage in intense PvP, and prove your skills by leveling up. You can magically transform your look into stylish characters. Conquer achievements and explore a vast world as a Dragon Knight. Massive rewards await you!"
+      },
+      {
+        "item_key": "eef603b2c0988486",
+        "section": "free",
+        "title": "World Of Robots",
+        "url": "https://store.steampowered.com/app/576430/",
+        "message_id": "1518276294968606833",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-06-21T15:27:57.274266+00:00",
+        "description": "World of Robots is the tactical online shooter with simple controls"
+      },
+      {
+        "item_key": "abeacbb1857cf7a8",
+        "section": "paid",
+        "title": "Zombie Army Trilogy",
+        "url": "https://store.steampowered.com/app/301640/",
+        "message_id": "1518276308470333511",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-06-21T15:28:03.485235+00:00",
+        "description": "The cult horror shooter series comes to an apocalyptic conclusion with an epic new third chapter, a heart-pumping new horde mode, and remastered editions of the best-selling Nazi Zombie Army 1 & 2."
+      },
+      {
+        "item_key": "9af51d24031a0d1e",
+        "section": "paid",
+        "title": "Dungeons & Dragons Neverwinter Nights 2: Enhanced Edition",
+        "url": "https://store.steampowered.com/app/2738630/",
+        "message_id": "1518276328019853502",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-06-21T15:28:05.479130+00:00",
+        "description": "The Fate of The Forgotten Realms is in Your Hands. Return to the city of Neverwinter in Dungeons & Dragons Neverwinter Nights 2: Enhanced Edition."
+      },
+      {
+        "item_key": "c5f3538f6c839e4c",
+        "section": "paid",
+        "title": "Mechabellum",
+        "url": "https://store.steampowered.com/app/669330/",
+        "message_id": "1518276336056144077",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-06-21T15:28:07.173371+00:00",
+        "description": "Command massive armies in this epic mech auto-battler. Draft your troops, customize your units, master your formations, and crush enemies in spectacular 3D battles. All strategy, no clickfest. Outsmart opponents in 1v1, 2v2, free-for-all, or Survival Mode."
+      },
+      {
+        "item_key": "6a37f0f393ed7cc1",
+        "section": "paid",
+        "title": "Crime Simulator",
+        "url": "https://store.steampowered.com/app/2737070/",
+        "message_id": "1518276343408623656",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-06-21T15:28:09.155054+00:00",
+        "description": "You’re out of jail, but the debt isn’t gone. Sneak, steal, and break into houses solo or in 4-player co-op. Use lockpicks, sleeping gas, and brute force to complete jobs, outsmart security, and make enough money before time runs out. Will you pay back what you owe, or lose everything?"
+      },
+      {
+        "item_key": "bd865aa816503b40",
+        "section": "paid",
+        "title": "Sniper Elite 3",
+        "url": "https://store.steampowered.com/app/238090/",
+        "message_id": "1518276351411621910",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-06-21T15:28:10.802699+00:00",
+        "description": "Sniper Elite 3 is a tactical third-person shooter that combines stealth, gameplay choice and genre-defining ballistics with huge, open levels and the exotic terrain of World War 2 North Africa."
       }
     ]
   }
