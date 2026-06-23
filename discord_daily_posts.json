@@ -1,150 +1,4 @@
 {
-  "2026-05-24": {
-    "run_state": {
-      "section_headers": {
-        "free": {
-          "message_id": "1508117589606269008",
-          "channel_id": "592534544708796474",
-          "posted_at_utc": "2026-05-24T14:40:53.129807+00:00"
-        },
-        "paid": {
-          "message_id": "1508117635102019786",
-          "channel_id": "592534544708796474",
-          "posted_at_utc": "2026-05-24T14:41:03.884679+00:00"
-        }
-      },
-      "last_attempt_at_utc": "2026-05-24T14:40:49.580392+00:00",
-      "intro": {
-        "message_id": "1508117576310591621",
-        "channel_id": "592534544708796474",
-        "posted_at_utc": "2026-05-24T14:40:51.478467+00:00"
-      },
-      "footer": {
-        "message_id": "1508117682875138071",
-        "channel_id": "592534544708796474",
-        "posted_at_utc": "2026-05-24T14:41:15.399287+00:00"
-      },
-      "completed": true,
-      "completed_at_utc": "2026-05-24T14:41:16.608387+00:00"
-    },
-    "items": [
-      {
-        "item_key": "5c5f3c28ab405ede",
-        "section": "free",
-        "title": "Kings Call",
-        "url": "https://store.steampowered.com/app/2674290/",
-        "message_id": "1508117596896231484",
-        "channel_id": "592534544708796474",
-        "source_type": "steam_free",
-        "posted_at": "2026-05-24T14:40:55.226343+00:00",
-        "description": "Collect an array of creature and skill cards through quests, upgrades and trading, and craft your ultimate deck by choosing your favorite cards and prepare for epic battles. Dive into the exhilaration of strategic gameplay and let your inner tactician shine to outsmart your opponents!"
-      },
-      {
-        "item_key": "06dcc6804b1a0b34",
-        "section": "free",
-        "title": "Totally Accurate Battlegrounds",
-        "url": "https://store.steampowered.com/app/823130/",
-        "message_id": "1508117605272129656",
-        "channel_id": "592534544708796474",
-        "source_type": "steam_free",
-        "posted_at": "2026-05-24T14:40:56.955328+00:00",
-        "description": "Grab your balloon crossbow and trusty inflatable hammer, because things are about to get wobbly! Be the last weirdo standing in the world-leading physics-based Battle Royale game."
-      },
-      {
-        "item_key": "f3ba277773397747",
-        "section": "free",
-        "title": "Supremacy: Call of War 1942",
-        "url": "https://store.steampowered.com/app/672680/",
-        "message_id": "1508117612566024333",
-        "channel_id": "592534544708796474",
-        "source_type": "steam_free",
-        "posted_at": "2026-05-24T14:40:58.756270+00:00",
-        "description": "Take over the control of one of the mighty nations during the times of World War 2 in this persisting long-term strategy game. Conquer provinces, forge alliances and build up your economy in real-time. Research top secret weapons of World War 2 and become the one true superpower!"
-      },
-      {
-        "item_key": "88465a6d5ff5c917",
-        "section": "free",
-        "title": "WAKFU",
-        "url": "https://store.steampowered.com/app/215080/",
-        "message_id": "1508117620061110372",
-        "channel_id": "592534544708796474",
-        "source_type": "steam_free",
-        "posted_at": "2026-05-24T14:41:00.467389+00:00",
-        "description": "Immerse yourself in the WAKFU universe with this free to play MMORPG. Select your class, travel the world, meet adventurers to challenge powerful monsters in epic turn-based battles.Participate in the kingdom’s economy and politics and create your own legend!"
-      },
-      {
-        "item_key": "a9f0a3c453ca5faa",
-        "section": "free",
-        "title": "Supremacy: 1914",
-        "url": "https://store.steampowered.com/app/979920/",
-        "message_id": "1508117627283836999",
-        "channel_id": "592534544708796474",
-        "source_type": "steam_free",
-        "posted_at": "2026-05-24T14:41:02.310814+00:00",
-        "description": "Take over the control of one of the mighty nations during the times of World War 1 in the biggest WW1 strategy game of all time. Conquer provinces, forge alliances and build up your economy in real-time on persistent maps. Build experimental weapons of World War 1 and become the one true superpower!"
-      },
-      {
-        "item_key": "5f9e8186977f8437",
-        "section": "paid",
-        "title": "Rivals of Aether II",
-        "url": "https://store.steampowered.com/app/2217000/",
-        "message_id": "1508117641691140186",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-05-24T14:41:05.815383+00:00",
-        "description": "Rivals of Aether II is the sequel to the hit indie fighting game, Rivals of Aether. Play as both new and returning elemental fighters in the next generation of platform fighters."
-      },
-      {
-        "item_key": "fbc10b2aa20bd954",
-        "section": "paid",
-        "title": "Warhammer 40,000: Inquisitor - Martyr",
-        "url": "https://store.steampowered.com/app/527430/",
-        "message_id": "1508117649614311485",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-05-24T14:41:07.657538+00:00",
-        "description": "Enter the Chaos-infested Caligari Sector and purge the unclean with the most powerful agents of the Imperium of Man! W40k: Inquisitor – Martyr is a grim Action-RPG featuring multiple classes of the Inquisition who will carry out the Emperor’s will."
-      },
-      {
-        "item_key": "fc6b4119c5226bd3",
-        "section": "paid",
-        "title": "Gloomhaven",
-        "url": "https://store.steampowered.com/app/780290/",
-        "message_id": "1508117657386352711",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-05-24T14:41:09.513020+00:00",
-        "description": "Lead your band of mercenaries in the land of Gloomhaven, work with unsavoury individuals, shape the fate of the region, fight your way through horrific places and get rich or die trying in this ruthless Tactical-RPG."
-      },
-      {
-        "item_key": "819f45c7a9d812ab",
-        "section": "paid",
-        "title": "Castle Crashers®",
-        "url": "https://store.steampowered.com/app/204360/",
-        "message_id": "1508117665237958789",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-05-24T14:41:11.682962+00:00",
-        "description": "Hack, slash, and smash your way to victory in this award winning 2D arcade adventure from The Behemoth!"
-      },
-      {
-        "item_key": "a7ca09508466de71",
-        "section": "paid",
-        "title": "The Jackbox Party Pack 3",
-        "url": "https://store.steampowered.com/app/434170/",
-        "message_id": "1508117674343796866",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-05-24T14:41:13.576753+00:00",
-        "description": "The threequel to the party game phenomenon features the deadly quiz show Trivia Murder Party, the say-anything sequel Quiplash 2, the surprising survey game Guesspionage, the t-shirt slugfest Tee K.O., and the sneaky trickster game Fakin’ It."
-      }
-    ],
-    "winners_state": {
-      "status": "skipped",
-      "skipped_reason": "no_eligible_winners",
-      "updated_at_utc": "2026-05-24T23:58:36.803888+00:00"
-    }
-  },
   "2026-05-25": {
     "run_state": {
       "section_headers": {
@@ -4239,6 +4093,147 @@
         "source_type": "paid_under_20",
         "posted_at": "2026-06-22T17:48:14.039131+00:00",
         "description": "Bragging rights are on the line in MyCAREER, MyTEAM, MyNBA, The W, and Play Now. Showcase your bag of moves with hyper realism, Powered by ProPLAY™, and challenge your friends, or rivals, in NBA 2K26’s competitive modes—and leave no doubt that you wear the crown."
+      }
+    ]
+  },
+  "2026-06-23": {
+    "run_state": {
+      "section_headers": {
+        "free": {
+          "message_id": "1519010559234937013",
+          "channel_id": "592534544708796474",
+          "posted_at_utc": "2026-06-23T16:05:39.466453+00:00"
+        },
+        "paid": {
+          "message_id": "1519010610392731689",
+          "channel_id": "592534544708796474",
+          "posted_at_utc": "2026-06-23T16:05:51.999236+00:00"
+        }
+      },
+      "last_attempt_at_utc": "2026-06-23T16:05:36.106569+00:00",
+      "intro": {
+        "message_id": "1519010547113132193",
+        "channel_id": "592534544708796474",
+        "posted_at_utc": "2026-06-23T16:05:37.780514+00:00"
+      },
+      "footer": {
+        "message_id": "1519010663240827021",
+        "channel_id": "592534544708796474",
+        "posted_at_utc": "2026-06-23T16:06:04.186367+00:00"
+      },
+      "completed": true,
+      "completed_at_utc": "2026-06-23T16:06:05.392525+00:00"
+    },
+    "items": [
+      {
+        "item_key": "daf051a30c11f8df",
+        "section": "free",
+        "title": "SWORD OF JUSTICE",
+        "url": "https://store.steampowered.com/app/2782500/",
+        "message_id": "1519010566201409536",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-06-23T16:05:41.364381+00:00",
+        "description": "“Sword of Justice” is sparking a rebellion against outdated RPG builds! This groundbreaking Open World MMO defies tradition with stunning visuals and an immersive, lifelike atmosphere that deeply influences the game world. Step into \"The Pulsing Martial World\" and experience its breath-taking allure"
+      },
+      {
+        "item_key": "a432e161a87b9049",
+        "section": "free",
+        "title": "Space Aces",
+        "url": "https://store.steampowered.com/app/4220440/",
+        "message_id": "1519010574292488214",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-06-23T16:05:43.410380+00:00",
+        "description": "Space Aces is an indie space shooter that plunges you into an online universe full of action, strategy, and fierce competition. Step into the cockpit and evolve from a rookie pilot into the most feared Ace in the galaxy!"
+      },
+      {
+        "item_key": "98bf6c19e3b82ff4",
+        "section": "free",
+        "title": "Puzzle Pirates",
+        "url": "https://store.steampowered.com/app/99910/",
+        "message_id": "1519010583481942146",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-06-23T16:05:45.873502+00:00",
+        "description": "Every activity in Puzzle Pirates is a uniquely fun puzzle: be it sailing, gunning, or hauling treasure, your own puzzling skill determines your success!"
+      },
+      {
+        "item_key": "5517ddf35b1462d0",
+        "section": "free",
+        "title": "RIFT",
+        "url": "https://store.steampowered.com/app/39120/",
+        "message_id": "1519010592973656218",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-06-23T16:05:47.932219+00:00",
+        "description": "Dive into a world of epic adventure! Create your perfect hero thanks to a uniquely customizable class system. Collect, craft, and customize your gear. Go it alone or group up to challenge dungeons, raids, dynamic open-world content, and your fellow players."
+      },
+      {
+        "item_key": "90039f17c31caa39",
+        "section": "free",
+        "title": "Soul Dossier",
+        "url": "https://store.steampowered.com/app/1520470/",
+        "message_id": "1519010601945530600",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-06-23T16:05:49.978061+00:00",
+        "description": "Soul Dossier is a multiplayer game based on Oriental culture (5vS1). The game is based on a variety of traditional Oriental cultures, including five elements, eight diagrams and folklore."
+      },
+      {
+        "item_key": "4bdd7dec1e05f34f",
+        "section": "paid",
+        "title": "World War Z",
+        "url": "https://store.steampowered.com/app/699130/",
+        "message_id": "1519010618919882752",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-06-23T16:05:54.117668+00:00",
+        "description": "World War Z is a heart-pounding coop third-person shooter for up to 4 players featuring massive swarms of hundreds of zombies, focused on fast-paced, gruesomely spectacular action."
+      },
+      {
+        "item_key": "573e35c7c73d6556",
+        "section": "paid",
+        "title": "Zombie Army 4: Dead War",
+        "url": "https://store.steampowered.com/app/694280/",
+        "message_id": "1519010627975122977",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-06-23T16:05:56.828949+00:00",
+        "description": "Hitler’s hordes are back for more in this spine-chilling shooter from the makers of Sniper Elite 4! Abominable occult enemies, epic weapons and a harrowing new campaign for 1-4 players await in 1940s Europe, as you fight to save humankind from undead Armageddon!"
+      },
+      {
+        "item_key": "122d5cd5f545d6d0",
+        "section": "paid",
+        "title": "Overcooked! 2",
+        "url": "https://store.steampowered.com/app/728880/",
+        "message_id": "1519010639094222859",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-06-23T16:05:58.734918+00:00",
+        "description": "Overcooked returns with a brand-new helping of chaotic cooking action! Journey back to the Onion Kingdom and assemble your team of chefs in classic couch co-op or online play for up to four players. Hold onto your aprons… it’s time to save the world again!"
+      },
+      {
+        "item_key": "9f0eebf9c5d4a700",
+        "section": "paid",
+        "title": "The Lord of the Rings: Return to Moria™",
+        "url": "https://store.steampowered.com/app/2933130/",
+        "message_id": "1519010647076245544",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-06-23T16:06:00.676053+00:00",
+        "description": "A survival crafting adventure set in the Fourth Age of Middle-earth. Lead the Dwarves to reclaim Moria - mine, build, and battle through procedurally generated depths alone or with up to 8 players in co-op. It is time to return to Moria!"
+      },
+      {
+        "item_key": "b402f094e955dcb3",
+        "section": "paid",
+        "title": "LEGO® Batman™ 3: Beyond Gotham",
+        "url": "https://store.steampowered.com/app/313690/",
+        "message_id": "1519010654860607620",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-06-23T16:06:02.405320+00:00",
+        "description": "The Caped Crusader joins forces with the super heroes of the DC Comics universe and blasts off to outer space to stop the evil Brainiac from destroying Earth."
       }
     ]
   }
