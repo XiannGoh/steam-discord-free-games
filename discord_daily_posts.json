@@ -4235,6 +4235,368 @@
         "posted_at": "2026-06-23T16:06:02.405320+00:00",
         "description": "The Caped Crusader joins forces with the super heroes of the DC Comics universe and blasts off to outer space to stop the evil Brainiac from destroying Earth."
       }
-    ]
+    ],
+    "winners_state": {
+      "intro": {
+        "message_id": "1519128413900636376",
+        "channel_id": "1491294533751799809"
+      },
+      "section_headers": {
+        "free": {
+          "message_id": "1519128424126349332",
+          "channel_id": "1491294533751799809"
+        },
+        "paid": {
+          "message_id": "1519128439997599794",
+          "channel_id": "1491294533751799809"
+        }
+      },
+      "winner_messages": {
+        "https://store.steampowered.com/app/3601420/": {
+          "message_id": "1519128426101866686",
+          "channel_id": "1491294533751799809"
+        },
+        "https://store.steampowered.com/app/3798230/": {
+          "message_id": "1519128428337565828",
+          "channel_id": "1491294533751799809"
+        },
+        "https://store.steampowered.com/app/389570/": {
+          "message_id": "1519128430686240990",
+          "channel_id": "1491294533751799809"
+        },
+        "https://store.steampowered.com/app/4045370/": {
+          "message_id": "1519128432846442657",
+          "channel_id": "1491294533751799809"
+        },
+        "https://store.steampowered.com/app/880850/": {
+          "message_id": "1519128435920863322",
+          "channel_id": "1491294533751799809"
+        },
+        "https://store.steampowered.com/app/1134700/": {
+          "message_id": "1519128441486839838",
+          "channel_id": "1491294533751799809"
+        },
+        "https://store.steampowered.com/app/1324780/": {
+          "message_id": "1519128448063504475",
+          "channel_id": "1491294533751799809"
+        },
+        "https://store.steampowered.com/app/1817800/": {
+          "message_id": "1519128454442782862",
+          "channel_id": "1491294533751799809"
+        },
+        "https://store.steampowered.com/app/1929610/": {
+          "message_id": "1519128459350245416",
+          "channel_id": "1491294533751799809"
+        },
+        "https://store.steampowered.com/app/2234150/": {
+          "message_id": "1519128461531287562",
+          "channel_id": "1491294533751799809"
+        },
+        "https://store.steampowered.com/app/2253100/": {
+          "message_id": "1519128464173695170",
+          "channel_id": "1491294533751799809"
+        },
+        "https://store.steampowered.com/app/238460/": {
+          "message_id": "1519128466409263215",
+          "channel_id": "1491294533751799809"
+        },
+        "https://store.steampowered.com/app/2737070/": {
+          "message_id": "1519128468846280864",
+          "channel_id": "1491294533751799809"
+        },
+        "https://store.steampowered.com/app/2904000/": {
+          "message_id": "1519128471169663016",
+          "channel_id": "1491294533751799809"
+        },
+        "https://store.steampowered.com/app/301640/": {
+          "message_id": "1519128494897102890",
+          "channel_id": "1491294533751799809"
+        },
+        "https://store.steampowered.com/app/376210/": {
+          "message_id": "1519128498126459060",
+          "channel_id": "1491294533751799809"
+        },
+        "https://store.steampowered.com/app/590830/": {
+          "message_id": "1519128500735311872",
+          "channel_id": "1491294533751799809"
+        },
+        "https://store.steampowered.com/app/669330/": {
+          "message_id": "1519128503545630943",
+          "channel_id": "1491294533751799809"
+        }
+      },
+      "footer": {
+        "message_id": "1519128506334969898",
+        "channel_id": "1491294533751799809"
+      },
+      "message_id": "1519128413900636376",
+      "message_ids": [
+        "1519128413900636376",
+        "1519128424126349332",
+        "1519128426101866686",
+        "1519128428337565828",
+        "1519128430686240990",
+        "1519128432846442657",
+        "1519128435920863322",
+        "1519128439997599794",
+        "1519128441486839838",
+        "1519128448063504475",
+        "1519128454442782862",
+        "1519128459350245416",
+        "1519128461531287562",
+        "1519128464173695170",
+        "1519128466409263215",
+        "1519128468846280864",
+        "1519128471169663016",
+        "1519128494897102890",
+        "1519128498126459060",
+        "1519128500735311872",
+        "1519128503545630943",
+        "1519128506334969898"
+      ],
+      "last_action": "create",
+      "updated_at_utc": "2026-06-23T23:54:20.150789+00:00",
+      "posted_at_utc": "2026-06-23T23:54:20.150805+00:00",
+      "winner_keys": [
+        "https://store.steampowered.com/app/1134700/",
+        "https://store.steampowered.com/app/1324780/",
+        "https://store.steampowered.com/app/1817800/",
+        "https://store.steampowered.com/app/1929610/",
+        "https://store.steampowered.com/app/2234150/",
+        "https://store.steampowered.com/app/2253100/",
+        "https://store.steampowered.com/app/238460/",
+        "https://store.steampowered.com/app/2737070/",
+        "https://store.steampowered.com/app/2904000/",
+        "https://store.steampowered.com/app/301640/",
+        "https://store.steampowered.com/app/3601420/",
+        "https://store.steampowered.com/app/376210/",
+        "https://store.steampowered.com/app/3798230/",
+        "https://store.steampowered.com/app/389570/",
+        "https://store.steampowered.com/app/4045370/",
+        "https://store.steampowered.com/app/590830/",
+        "https://store.steampowered.com/app/669330/",
+        "https://store.steampowered.com/app/880850/"
+      ],
+      "winner_vote_counts": {
+        "https://store.steampowered.com/app/1134700/": 1,
+        "https://store.steampowered.com/app/1324780/": 1,
+        "https://store.steampowered.com/app/1817800/": 1,
+        "https://store.steampowered.com/app/1929610/": 1,
+        "https://store.steampowered.com/app/2234150/": 1,
+        "https://store.steampowered.com/app/2253100/": 1,
+        "https://store.steampowered.com/app/238460/": 1,
+        "https://store.steampowered.com/app/2737070/": 1,
+        "https://store.steampowered.com/app/2904000/": 1,
+        "https://store.steampowered.com/app/301640/": 1,
+        "https://store.steampowered.com/app/3601420/": 1,
+        "https://store.steampowered.com/app/376210/": 1,
+        "https://store.steampowered.com/app/3798230/": 1,
+        "https://store.steampowered.com/app/389570/": 1,
+        "https://store.steampowered.com/app/4045370/": 1,
+        "https://store.steampowered.com/app/590830/": 1,
+        "https://store.steampowered.com/app/669330/": 1,
+        "https://store.steampowered.com/app/880850/": 1
+      },
+      "winner_entries": [
+        {
+          "winner_key": "https://store.steampowered.com/app/1134700/",
+          "section": "paid",
+          "title": "Wild Terra 2: New Lands",
+          "url": "https://store.steampowered.com/app/1134700/",
+          "description": "MMORPG full of details that create a unique immersion and the spirit of adventure! Play your role in the life-filled medieval world controlled by players.",
+          "human_votes": 1,
+          "voter_names": [
+            "Chocolie"
+          ]
+        },
+        {
+          "winner_key": "https://store.steampowered.com/app/1324780/",
+          "section": "paid",
+          "title": "Easy Red 2",
+          "url": "https://store.steampowered.com/app/1324780/",
+          "description": "Experience massive battles with infantry, tanks, artillery, and aircraft on large destructible open-world maps. Equip yourself, coordinate with your squad, and fight through World War II in singleplayer, co-op, or multiplayer!",
+          "human_votes": 1,
+          "voter_names": [
+            "Chocolie"
+          ]
+        },
+        {
+          "winner_key": "https://store.steampowered.com/app/1817800/",
+          "section": "paid",
+          "title": "Oddsparks: An Automation Adventure",
+          "url": "https://store.steampowered.com/app/1817800/",
+          "description": "Oddsparks is a blend of automation and real-time strategy for both the die-hard fans of the automation genre and the automation-curious. Explore a strange fantasy world, uncover the mysteries of the past, automate your workshops, and go on adventures with your odd & adorable Sparks!",
+          "human_votes": 1,
+          "voter_names": [
+            "Chocolie"
+          ]
+        },
+        {
+          "winner_key": "https://store.steampowered.com/app/1929610/",
+          "section": "paid",
+          "title": "Demonologist",
+          "url": "https://store.steampowered.com/app/1929610/",
+          "description": "Demonologist is a Co-Op horror game that can be played with at least 1 and up to 4 players. Your goal is to identify the type of evil spirit in cursed places and exorcise it using your equipment, either alone or with your team.",
+          "human_votes": 1,
+          "voter_names": [
+            "Chocolie"
+          ]
+        },
+        {
+          "winner_key": "https://store.steampowered.com/app/2234150/",
+          "section": "paid",
+          "title": "BACKROOMS: APPREHENSION",
+          "url": "https://store.steampowered.com/app/2234150/",
+          "description": "A terrifying multiplayer horror experience with social deduction elements. Trapped in the Backrooms, up to 12 players must try to work together to survive and expose the shapeshifting Skin Stealer hiding among them before it’s too late. Who will you trust?",
+          "human_votes": 1,
+          "voter_names": [
+            "Chocolie"
+          ]
+        },
+        {
+          "winner_key": "https://store.steampowered.com/app/2253100/",
+          "section": "paid",
+          "title": "Everwind",
+          "url": "https://store.steampowered.com/app/2253100/",
+          "description": "Everwind is a novel take on RPG and Sandbox Survival genre in First-Person-Perspective. Embark on the adventure with your friends - Build a base on a flying island-ship, gather resources, craft, loot, and fight while you rise above the clouds to uncover the mysteries of this world!",
+          "human_votes": 1,
+          "voter_names": [
+            "Chocolie"
+          ]
+        },
+        {
+          "winner_key": "https://store.steampowered.com/app/238460/",
+          "section": "paid",
+          "title": "BattleBlock Theater®",
+          "url": "https://store.steampowered.com/app/238460/",
+          "description": "Welcome to BattleBlock Theater! You’ve got no where to go but up...on stage. Play single player or co-op to free your friends and save Hatty Hattington! Jump, solve and battle your way through a mysterious theater inhabited by highly technological felines.",
+          "human_votes": 1,
+          "voter_names": [
+            "Chocolie"
+          ]
+        },
+        {
+          "winner_key": "https://store.steampowered.com/app/2737070/",
+          "section": "paid",
+          "title": "Crime Simulator",
+          "url": "https://store.steampowered.com/app/2737070/",
+          "description": "You’re out of jail, but the debt isn’t gone. Sneak, steal, and break into houses solo or in 4-player co-op. Use lockpicks, sleeping gas, and brute force to complete jobs, outsmart security, and make enough money before time runs out. Will you pay back what you owe, or lose everything?",
+          "human_votes": 1,
+          "voter_names": [
+            "Chocolie"
+          ]
+        },
+        {
+          "winner_key": "https://store.steampowered.com/app/2904000/",
+          "section": "paid",
+          "title": "The Spell Brigade",
+          "url": "https://store.steampowered.com/app/2904000/",
+          "description": "Survivors-like with ONLINE CO-OP for 1-4 players. Team up with your wizard friends to slay hordes of dark creatures. Complete team-based objectives, unlock new upgrades and create overpowered spell synergies. Friend nor foe is safe in this friendly fire bullet hell!",
+          "human_votes": 1,
+          "voter_names": [
+            "Chocolie"
+          ]
+        },
+        {
+          "winner_key": "https://store.steampowered.com/app/301640/",
+          "section": "paid",
+          "title": "Zombie Army Trilogy",
+          "url": "https://store.steampowered.com/app/301640/",
+          "description": "The cult horror shooter series comes to an apocalyptic conclusion with an epic new third chapter, a heart-pumping new horde mode, and remastered editions of the best-selling Nazi Zombie Army 1 & 2.",
+          "human_votes": 1,
+          "voter_names": [
+            "Chocolie"
+          ]
+        },
+        {
+          "winner_key": "https://store.steampowered.com/app/3601420/",
+          "section": "free",
+          "title": "Casino Roulette: Roulettist",
+          "url": "https://store.steampowered.com/app/3601420/",
+          "description": "Test your luck! Play casino roulette with stunning, realistic 3D graphics! Feel the risk as you dive into the casino atmosphere and hit the big time!",
+          "human_votes": 1,
+          "voter_names": [
+            "Chocolie"
+          ]
+        },
+        {
+          "winner_key": "https://store.steampowered.com/app/376210/",
+          "section": "paid",
+          "title": "The Isle",
+          "url": "https://store.steampowered.com/app/376210/",
+          "description": "Experience fierce open world survival gameplay as you attempt to stay alive on an unforgiving island inhabited by dinosaurs! Hunt. Grow. Survive.",
+          "human_votes": 1,
+          "voter_names": [
+            "Chocolie"
+          ]
+        },
+        {
+          "winner_key": "https://store.steampowered.com/app/3798230/",
+          "section": "free",
+          "title": "Idol Party 2 - Love Vibe",
+          "url": "https://store.steampowered.com/app/3798230/",
+          "description": "Step into a dreamy journey in Idol Party 2! Enjoy rhythm gameplay, fashion dress-up, face customization, social interaction, romantic marriage, fishing, and ranked battles—all in one vibrant world. Join now and start your exclusive singing and dancing adventur!",
+          "human_votes": 1,
+          "voter_names": [
+            "Chocolie"
+          ]
+        },
+        {
+          "winner_key": "https://store.steampowered.com/app/389570/",
+          "section": "free",
+          "title": "Mitos.is: The Game",
+          "url": "https://store.steampowered.com/app/389570/",
+          "description": "Step into the microscopic world of Mitos.is! Eat or be eaten—become the ultimate cell in a highly addictive multiplayer game. Diverse modes, daily tournaments, guilds, and gear await! The BEST game of 2015 is back!",
+          "human_votes": 1,
+          "voter_names": [
+            "Chocolie"
+          ]
+        },
+        {
+          "winner_key": "https://store.steampowered.com/app/4045370/",
+          "section": "free",
+          "title": "Anomaly Zone Renovation",
+          "url": "https://store.steampowered.com/app/4045370/",
+          "description": "A-Zone Renovation is a continuation of the legendary Zone, combining the classic stalker atmosphere with revised mechanics. A large-scale rebalancing, from weapons to economy, a new role-playing system, an improved interface, PvE and PvP activities - the Zone is ready to grow with its community.",
+          "human_votes": 1,
+          "voter_names": [
+            "Chocolie"
+          ]
+        },
+        {
+          "winner_key": "https://store.steampowered.com/app/590830/",
+          "section": "paid",
+          "title": "s&box",
+          "url": "https://store.steampowered.com/app/590830/",
+          "description": "S&box is a game creation platform built on the Source 2 engine. Play, create, and share games, explore community creations, and experience endless sandbox fun with powerful modern tools.",
+          "human_votes": 1,
+          "voter_names": [
+            "Chocolie"
+          ]
+        },
+        {
+          "winner_key": "https://store.steampowered.com/app/669330/",
+          "section": "paid",
+          "title": "Mechabellum",
+          "url": "https://store.steampowered.com/app/669330/",
+          "description": "Command massive armies in this epic mech auto-battler. Draft your troops, customize your units, master your formations, and crush enemies in spectacular 3D battles. All strategy, no clickfest. Outsmart opponents in 1v1, 2v2, free-for-all, or Survival Mode.",
+          "human_votes": 1,
+          "voter_names": [
+            "Chocolie"
+          ]
+        },
+        {
+          "winner_key": "https://store.steampowered.com/app/880850/",
+          "section": "free",
+          "title": "War Rock",
+          "url": "https://store.steampowered.com/app/880850/",
+          "description": "War Rock is a fast-paced, large-scale multiplayer first person shooter that combines old-school tactical combat with explosive vehicular warfare. Choose your profession and battle in close quarters combat, vehicular warfare and terrifying Zombie Survival encounters. Enlist in War Rock today!",
+          "human_votes": 1,
+          "voter_names": [
+            "Chocolie"
+          ]
+        }
+      ]
+    }
   }
 }
