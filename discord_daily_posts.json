@@ -1,145 +1,4 @@
 {
-  "2026-05-25": {
-    "run_state": {
-      "section_headers": {
-        "free": {
-          "message_id": "1508501907939791060",
-          "channel_id": "592534544708796474",
-          "posted_at_utc": "2026-05-25T16:08:01.898128+00:00"
-        },
-        "paid": {
-          "message_id": "1508501952491950231",
-          "channel_id": "592534544708796474",
-          "posted_at_utc": "2026-05-25T16:08:12.344304+00:00"
-        }
-      },
-      "last_attempt_at_utc": "2026-05-25T16:07:58.621653+00:00",
-      "intro": {
-        "message_id": "1508501896166375475",
-        "channel_id": "592534544708796474",
-        "posted_at_utc": "2026-05-25T16:08:00.067212+00:00"
-      },
-      "footer": {
-        "message_id": "1508502000738897990",
-        "channel_id": "592534544708796474",
-        "posted_at_utc": "2026-05-25T16:08:23.848785+00:00"
-      },
-      "completed": true,
-      "completed_at_utc": "2026-05-25T16:08:25.057635+00:00"
-    },
-    "items": [
-      {
-        "item_key": "33fdce47595ecdad",
-        "section": "free",
-        "title": "Shadowbane: Resurgence",
-        "url": "https://store.steampowered.com/app/4371680/",
-        "message_id": "1508501915372097648",
-        "channel_id": "592534544708796474",
-        "source_type": "steam_free",
-        "posted_at": "2026-05-25T16:08:03.599987+00:00",
-        "description": "A classic dark fantasy open-world MMORPG with unrestricted global PVP & a player-driven dynamic world. 12 unique races, flexible 22+48 class system. Build fortresses, conquer kingdoms, reshape the continent. Steam version supports multi-systems, no pay-to-win, hardcore fair gameplay."
-      },
-      {
-        "item_key": "1d2058c8559f7ea3",
-        "section": "free",
-        "title": "王于兴师/Order of Kings",
-        "url": "https://store.steampowered.com/app/4192650/",
-        "message_id": "1508501922611593288",
-        "channel_id": "592534544708796474",
-        "source_type": "steam_free",
-        "posted_at": "2026-05-25T16:08:05.509824+00:00",
-        "description": "Jump into a true real-time strategy, and fully 3D battles! Order of Kings is an MMO game mixing RTS and SLG. You can control massive troops, plan combining 3D terrain and physical collision effects, join in alliances with friends, compete with other server players, and build your own legend!"
-      },
-      {
-        "item_key": "28e68ab9b5609c38",
-        "section": "free",
-        "title": "America's Army: Proving Grounds",
-        "url": "https://store.steampowered.com/app/203290/",
-        "message_id": "1508501930362802255",
-        "channel_id": "592534544708796474",
-        "source_type": "steam_free",
-        "posted_at": "2026-05-25T16:08:07.329849+00:00",
-        "description": "America’s Army: Proving Grounds is the official game of the U.S. Army and part of the highly acclaimed America’s Army game series. This free military game focuses on small unit tactical maneuvers and puts you to the test in a wide variety of new America’s Army maps and AA fan favorites."
-      },
-      {
-        "item_key": "96c8e910a13ad2fb",
-        "section": "free",
-        "title": "IOSoccer",
-        "url": "https://store.steampowered.com/app/673560/",
-        "message_id": "1508501938126323845",
-        "channel_id": "592534544708796474",
-        "source_type": "steam_free",
-        "posted_at": "2026-05-25T16:08:08.967421+00:00",
-        "description": "IOSoccer is a free non-commercial competitive third-person online multiplayer soccer game that offers unparalleled freedom in ball control and gameplay depth."
-      },
-      {
-        "item_key": "f9e145ab23830f6c",
-        "section": "free",
-        "title": "BLOCKADE",
-        "url": "https://store.steampowered.com/app/1049800/",
-        "message_id": "1508501944824496169",
-        "channel_id": "592534544708796474",
-        "source_type": "steam_free",
-        "posted_at": "2026-05-25T16:08:10.777497+00:00",
-        "description": "BLOCKADE Classic! First Person Shooter in an editable procedural cubic world. A large arsenal of weapons, 4 teams at the same time and up to 32 players on one map. A large number of game modes!"
-      },
-      {
-        "item_key": "c0e4282865539963",
-        "section": "paid",
-        "title": "Vortica",
-        "url": "https://store.steampowered.com/app/2980170/",
-        "message_id": "1508501959110430761",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-05-25T16:08:14.262985+00:00",
-        "description": "Vortica is a 2D action roguelite set in a solar system overrun by hostile aliens. Suit up, loot up, and shoot up as you battle against enemy hordes, explore derelict outposts, and hunt giant bosses. Each mission gets you one step closer to returning to Earth and saving the human race."
-      },
-      {
-        "item_key": "bfdeed31d3e6572f",
-        "section": "paid",
-        "title": "The Jackbox Party Pack 9",
-        "url": "https://store.steampowered.com/app/1850960/",
-        "message_id": "1508501967872331918",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-05-25T16:08:16.872458+00:00",
-        "description": "Save your next party! 5 new games in 1 Party Pack: the trivia bluff-off Fibbage 4, the team test Quixort, the joke auction Junktopia, the silly guessfest Nonsensory and the reality TV game Roomerang."
-      },
-      {
-        "item_key": "ebdeea4856c9d610",
-        "section": "paid",
-        "title": "Ember Knights",
-        "url": "https://store.steampowered.com/app/1135230/",
-        "message_id": "1508501978278396014",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-05-25T16:08:18.704961+00:00",
-        "description": "Ember Knights is an action rogue-lite for 1-4 players where you play as legendary knights, the last spark of hope against the mad sorcerer Praxis and his hordes of unwavering fiends. Wield weapons & skills, build synergies with game-changing relics and free the universe of Praxis’ corruption."
-      },
-      {
-        "item_key": "7b0446fa50ff8bd3",
-        "section": "paid",
-        "title": "Generation Zero®",
-        "url": "https://store.steampowered.com/app/704270/",
-        "message_id": "1508501985727348970",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-05-25T16:08:20.603934+00:00",
-        "description": "Generation Zero is a stealth-action shooter where you wage guerilla warfare against lethal mechanical enemies. Explore a vast open world map inspired by the Swedish Cold War era, take part in the resistance alone or with up to three friends in seamless co-op."
-      },
-      {
-        "item_key": "3c5bf2dcc05240d7",
-        "section": "paid",
-        "title": "ONE PIECE: PIRATE WARRIORS 4",
-        "url": "https://store.steampowered.com/app/1089090/",
-        "message_id": "1508501993813966949",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-05-25T16:08:22.177416+00:00",
-        "description": "ONE PIECE: PIRATE WARRIORS 4 is the latest evolution of PIRATE WARRIORS action! Based on the concept of \"experiencing a real ONE PIECE battlefield,\" buildings will come crashing down during the action and attacks will throw up smoke and dust, placing you in the thick of the ONE PIECE world!"
-      }
-    ]
-  },
   "2026-05-26": {
     "run_state": {
       "section_headers": {
@@ -4598,5 +4457,146 @@
         }
       ]
     }
+  },
+  "2026-06-24": {
+    "run_state": {
+      "section_headers": {
+        "free": {
+          "message_id": "1519369375935889570",
+          "channel_id": "592534544708796474",
+          "posted_at_utc": "2026-06-24T15:51:28.365294+00:00"
+        },
+        "paid": {
+          "message_id": "1519369420760158259",
+          "channel_id": "592534544708796474",
+          "posted_at_utc": "2026-06-24T15:51:38.765110+00:00"
+        }
+      },
+      "last_attempt_at_utc": "2026-06-24T15:51:25.280519+00:00",
+      "intro": {
+        "message_id": "1519369366137737278",
+        "channel_id": "592534544708796474",
+        "posted_at_utc": "2026-06-24T15:51:26.353598+00:00"
+      },
+      "footer": {
+        "message_id": "1519369462695071784",
+        "channel_id": "592534544708796474",
+        "posted_at_utc": "2026-06-24T15:51:48.685056+00:00"
+      },
+      "completed": true,
+      "completed_at_utc": "2026-06-24T15:51:49.891136+00:00"
+    },
+    "items": [
+      {
+        "item_key": "a8795def8b427ac2",
+        "section": "free",
+        "title": "Summoners War: Chronicles",
+        "url": "https://store.steampowered.com/app/2167580/",
+        "message_id": "1519369384127238364",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-06-24T15:51:30.251315+00:00",
+        "description": "The King of Rahil is looking for a Summoner to protect the kingdom against Tefo's enormous conspiracy. Explore a vast world with your Monsters by your side in this new Action RPG set in the Summoners War Universe."
+      },
+      {
+        "item_key": "7b020dbec34cb3b9",
+        "section": "free",
+        "title": "Global Strike",
+        "url": "https://store.steampowered.com/app/2322660/",
+        "message_id": "1519369391563608127",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-06-24T15:51:31.953262+00:00",
+        "description": "Global Strike is a free FPS game which has more than 300 million faithful players in China. Now the battle is on, there are various modes and weapons for you to explore! Call your friends and join us,get into the battle field now!"
+      },
+      {
+        "item_key": "bc465f58df2d3bb8",
+        "section": "free",
+        "title": "Off The Grid",
+        "url": "https://store.steampowered.com/app/3659280/",
+        "message_id": "1519369398991720659",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-06-24T15:51:33.515764+00:00",
+        "description": "Welcome to Off The Grid, the next-gen free to play Battle Royale from visionary director Neill Blomkamp. Set in a near-future world where contestants are cybernetically augmented and dropped into televised bloodsport. Death is temporary, but fame is forever."
+      },
+      {
+        "item_key": "b8ce4902847aeb2e",
+        "section": "free",
+        "title": "Atlantica Global",
+        "url": "https://store.steampowered.com/app/1232420/",
+        "message_id": "1519369405660790844",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-06-24T15:51:35.259101+00:00",
+        "description": "Atlantica Global is a free-to-play (F2P) massive multiplayer online role-playing game (MMORPG), with a tactical combat system. Venture out in to the world of Atlantis where you'll find otherworldly monsters, amazing gear, and even more battle-hardened adventurers like yourself."
+      },
+      {
+        "item_key": "1d6ea98507fdd211",
+        "section": "free",
+        "title": "Legend of YMIR",
+        "url": "https://store.steampowered.com/app/4172530/",
+        "message_id": "1519369412904353953",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-06-24T15:51:37.104398+00:00",
+        "description": "Forge your destiny in Legend of YMIR, a next-generation MMORPG inspired by Norse mythology and powered by Unreal Engine 5. Master skill-based combat, lead your clan to glory in massive server wars, and carve your name among the legends."
+      },
+      {
+        "item_key": "da993ab1c67eae3a",
+        "section": "paid",
+        "title": "UNO",
+        "url": "https://store.steampowered.com/app/470220/",
+        "message_id": "1519369427727024350",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-06-24T15:51:40.447949+00:00",
+        "description": "UNO™ is the iconic card game reimagined with a large variety of gameplay and customization options. Play solo or with friends, personalize your experience from rules to cosmetics, and try the Happy Hour!"
+      },
+      {
+        "item_key": "6d5237f03028b967",
+        "section": "paid",
+        "title": "MAZEBOUND: Hunt, Gather, Run!",
+        "url": "https://store.steampowered.com/app/3616260/",
+        "message_id": "1519369434752487515",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-06-24T15:51:42.034545+00:00",
+        "description": "In this survival horror, you're surrounded by sea and a towering gate ahead. Walk into the maze, hunt, gather, and run to survive, alone or with friends. Remember: You're not the only one starving..."
+      },
+      {
+        "item_key": "63c96828ed2fdb77",
+        "section": "paid",
+        "title": "Chained Together",
+        "url": "https://store.steampowered.com/app/2567870/",
+        "message_id": "1519369441379483698",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-06-24T15:51:43.710842+00:00",
+        "description": "Climb up from the depths of Hell. Scale various worlds solo or chained together with your friends in the 1-4 player platforming sensation."
+      },
+      {
+        "item_key": "65a7f77f97f0f2e5",
+        "section": "paid",
+        "title": "Need for Speed™ Heat",
+        "url": "https://store.steampowered.com/app/1222680/",
+        "message_id": "1519369447960219823",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-06-24T15:51:45.294500+00:00",
+        "description": "Hustle by day and risk it all at night in Need for Speed™ Heat Deluxe Edition, a white-knuckle street racer, where the lines of the law fade as the sun starts to set."
+      },
+      {
+        "item_key": "5d31022df37cdb0e",
+        "section": "paid",
+        "title": "Dead Space™ 2",
+        "url": "https://store.steampowered.com/app/47780/",
+        "message_id": "1519369455053045861",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-06-24T15:51:47.010019+00:00",
+        "description": "Three years after the Necromorph infestation aboard the USS Ishimura, Isaac Clarke awakens from a coma, confused, disoriented, and on a space station called The Sprawl. Explore this world and its zero-g environments to discover the truth about the Unitology and its role in the Necromorph epidemic."
+      }
+    ]
   }
 }
