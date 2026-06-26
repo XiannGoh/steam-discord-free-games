@@ -1,150 +1,4 @@
 {
-  "2026-05-27": {
-    "run_state": {
-      "section_headers": {
-        "free": {
-          "message_id": "1509238330099896380",
-          "channel_id": "592534544708796474",
-          "posted_at_utc": "2026-05-27T16:54:18.623170+00:00"
-        },
-        "paid": {
-          "message_id": "1509238380398120970",
-          "channel_id": "592534544708796474",
-          "posted_at_utc": "2026-05-27T16:54:30.687351+00:00"
-        }
-      },
-      "last_attempt_at_utc": "2026-05-27T16:54:14.653428+00:00",
-      "intro": {
-        "message_id": "1509238316191453335",
-        "channel_id": "592534544708796474",
-        "posted_at_utc": "2026-05-27T16:54:16.806968+00:00"
-      },
-      "footer": {
-        "message_id": "1509238428716372009",
-        "channel_id": "592534544708796474",
-        "posted_at_utc": "2026-05-27T16:54:42.365199+00:00"
-      },
-      "completed": true,
-      "completed_at_utc": "2026-05-27T16:54:43.574490+00:00"
-    },
-    "items": [
-      {
-        "item_key": "56c07b7c68ecde19",
-        "section": "free",
-        "title": "H.I.A: Horror Investigation Agency",
-        "url": "https://store.steampowered.com/app/2363590/",
-        "message_id": "1509238338295435294",
-        "channel_id": "592534544708796474",
-        "source_type": "steam_free",
-        "posted_at": "2026-05-27T16:54:20.830299+00:00",
-        "description": "H.I.A: Horror Investigation Agency is a fun multiplayer horror game in which you and co-players have to investigate exciting horror cases. Among finding victims and evidence of the horror event that has taken place, you will be faced with jumpscares and scary monsters along your investigation."
-      },
-      {
-        "item_key": "e6d5956cab5dd43d",
-        "section": "free",
-        "title": "Closers",
-        "url": "https://store.steampowered.com/app/215830/",
-        "message_id": "1509238346797289664",
-        "channel_id": "592534544708796474",
-        "source_type": "steam_free",
-        "posted_at": "2026-05-27T16:54:23.035624+00:00",
-        "description": "Closers is an episodic anime action RPG bursting with spectacular battles and steeped in an epic storyline. Choose your Closer, gather your friends or dive in solo, and use your amazing powers to protect Earth, in mankind’s desperate battle against horrific monsters from another dimension!"
-      },
-      {
-        "item_key": "f068cbcc6224605c",
-        "section": "free",
-        "title": "Godzilla x Kong: Titan Chasers",
-        "url": "https://store.steampowered.com/app/3670140/",
-        "message_id": "1509238356125548715",
-        "channel_id": "592534544708796474",
-        "source_type": "steam_free",
-        "posted_at": "2026-05-27T16:54:25.017159+00:00",
-        "description": "Hunt, capture, and command the monsters of the Monsterverse. Build your base, recruit elite Titan Chasers, and lead squads into tactical turn-based battles. Expand your territory in a shared online world, forge alliances, and face colossal threats like Godzilla, Kong, and Skullcrawlers."
-      },
-      {
-        "item_key": "47b9695f3f72f0a5",
-        "section": "free",
-        "title": "Anarchy Online",
-        "url": "https://store.steampowered.com/app/396280/",
-        "message_id": "1509238364392656927",
-        "channel_id": "592534544708796474",
-        "source_type": "steam_free",
-        "posted_at": "2026-05-27T16:54:26.814575+00:00",
-        "description": "Anarchy Online – the first ever science fiction MMO – is now on Steam! Compete and cooperate with thousands of players simultaneously on a vast, alien world. Join humanity nearly 30,000 years in the future in a world of perpetual conflict and scientific marvel."
-      },
-      {
-        "item_key": "ab3ca91055660117",
-        "section": "free",
-        "title": "Emporea: Realms of War and Magic",
-        "url": "https://store.steampowered.com/app/416450/",
-        "message_id": "1509238371858387056",
-        "channel_id": "592534544708796474",
-        "source_type": "steam_free",
-        "posted_at": "2026-05-27T16:54:28.824885+00:00",
-        "description": "Emporea is an oldschool fantasy strategy game, where cooperation with other players is necessary to achieve victory. Only the best alliance can win! Multiple realms available, with new ones starting every two weeks."
-      },
-      {
-        "item_key": "7e415fa7788247cb",
-        "section": "paid",
-        "title": "Plants vs. Zombies™: Replanted",
-        "url": "https://store.steampowered.com/app/3654560/",
-        "message_id": "1509238388073697451",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-05-27T16:54:32.582756+00:00",
-        "description": "The classic Plants vs. Zombies returns in glorious HD! The original battle between Plants and Zombies is back — bigger, brighter, and crazier than ever before! Experience the game that started it all, now remastered with stunning HD graphics and packed with new secrets and content to uncover."
-      },
-      {
-        "item_key": "5ae07c3a1817b040",
-        "section": "paid",
-        "title": "Wildmender",
-        "url": "https://store.steampowered.com/app/1599330/",
-        "message_id": "1509238396046802974",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-05-27T16:54:34.533410+00:00",
-        "description": "A desert gardening survival game. Start from a tiny spring and cultivate a blooming garden. Explore a vast world amid the sands and uncover its mysteries. Can you defend against the relentless forces of nature and mysterious wraith corruption, to bring life to a dying world?"
-      },
-      {
-        "item_key": "dcf290c74dc8045c",
-        "section": "paid",
-        "title": "LEGO® Marvel™ Super Heroes",
-        "url": "https://store.steampowered.com/app/249130/",
-        "message_id": "1509238404267638895",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-05-27T16:54:36.314279+00:00",
-        "description": "LEGO® Marvel™ Super Heroes features an original story crossing the entire Marvel Universe. Players take control of Iron Man, Spider-Man, the Hulk, Captain America, Wolverine and many more Marvel characters as they unite to stop Loki and a host of other Marvel villains from assembling a super-weapon capable of destroying the world."
-      },
-      {
-        "item_key": "14f11b7cf6dbaf43",
-        "section": "paid",
-        "title": "Metro 2033 Redux",
-        "url": "https://store.steampowered.com/app/286690/",
-        "message_id": "1509238411926438039",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-05-27T16:54:38.374622+00:00",
-        "description": "In 2013 the world was devastated by an apocalyptic event, annihilating almost all mankind and turning the Earth's surface into a poisonous wasteland. A handful of survivors took refuge in the depths of the Moscow underground, and human civilization entered a new Dark Age. The year is 2033."
-      },
-      {
-        "item_key": "926f87553eb0e389",
-        "section": "paid",
-        "title": "The Jackbox Party Pack 5",
-        "url": "https://store.steampowered.com/app/774461/",
-        "message_id": "1509238420436816087",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-05-27T16:54:40.267255+00:00",
-        "description": "It’s the biggest Party Pack yet, including the return of the classic pop culture trivia mash-up YOU DON’T KNOW JACK: Full Stream; the game of hilarious hypotheticals Split the Room; the lyric-writing, robot rap battle Mad Verse City; the inventive drawing game Patently Stupid; and the outer space fling-fest Zeeple Dome."
-      }
-    ],
-    "winners_state": {
-      "status": "skipped",
-      "skipped_reason": "no_eligible_winners",
-      "updated_at_utc": "2026-05-27T23:59:54.203068+00:00"
-    }
-  },
   "2026-05-28": {
     "run_state": {
       "section_headers": {
@@ -4612,6 +4466,147 @@
         "source_type": "paid_under_20",
         "posted_at": "2026-06-25T15:59:12.684542+00:00",
         "description": "Revenge of the Savage Planet is an upbeat, satirical action adventure Sci-Fi. Jump, shoot and collect your way across vibrant alien worlds, uncovering new gear and upgrades, while discovering various hidden secrets."
+      }
+    ]
+  },
+  "2026-06-26": {
+    "run_state": {
+      "section_headers": {
+        "free": {
+          "message_id": "1520091935774081045",
+          "channel_id": "592534544708796474",
+          "posted_at_utc": "2026-06-26T15:42:39.774724+00:00"
+        },
+        "paid": {
+          "message_id": "1520091979986374800",
+          "channel_id": "592534544708796474",
+          "posted_at_utc": "2026-06-26T15:42:50.281810+00:00"
+        }
+      },
+      "last_attempt_at_utc": "2026-06-26T15:42:37.082423+00:00",
+      "intro": {
+        "message_id": "1520091926475571300",
+        "channel_id": "592534544708796474",
+        "posted_at_utc": "2026-06-26T15:42:38.195553+00:00"
+      },
+      "footer": {
+        "message_id": "1520092024026431669",
+        "channel_id": "592534544708796474",
+        "posted_at_utc": "2026-06-26T15:43:00.732683+00:00"
+      },
+      "completed": true,
+      "completed_at_utc": "2026-06-26T15:43:01.939589+00:00"
+    },
+    "items": [
+      {
+        "item_key": "2b5681cb41d4d239",
+        "section": "free",
+        "title": "Smithworks",
+        "url": "https://store.steampowered.com/app/1568540/",
+        "message_id": "1520091942787088426",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-06-26T15:42:41.621599+00:00",
+        "description": "Smithworks is a first-person 3D cooperative multiplayer game where players play as fledgling blacksmiths. It is a humorous and chaotic experience where players will need to communicate effectively in order to craft these weapons quickly before the customers get angry."
+      },
+      {
+        "item_key": "cb818c91b6f9e202",
+        "section": "free",
+        "title": "Anomaly Zone",
+        "url": "https://store.steampowered.com/app/1157250/",
+        "message_id": "1520091950445891644",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-06-26T15:42:43.229016+00:00",
+        "description": "Anomaly Zone is an open world MMORPG and a post-apocalyptic shooter. Be a scientist, a soldier, a hunter or an engineer. Explore anomalous territories, search for artifacts, fight mutants and other players. Participate in mass PvP and PvE battles. The Zone is waiting!"
+      },
+      {
+        "item_key": "8651ac155a83de2a",
+        "section": "free",
+        "title": "WWII Online",
+        "url": "https://store.steampowered.com/app/251950/",
+        "message_id": "1520091957580533880",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-06-26T15:42:45.324859+00:00",
+        "description": "WWII Online is a massive, persistent free-to-play MMO FPS driven entirely by players. Fight as Army, Air, or Naval forces and earn Victory Points to access more units. One global server. No scripts. Real outcomes. No zones. Huge world (300,000 km²). ENLIST NOW!"
+      },
+      {
+        "item_key": "b427aae91bb20930",
+        "section": "free",
+        "title": "Cubic Castles",
+        "url": "https://store.steampowered.com/app/317470/",
+        "message_id": "1520091966212276516",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-06-26T15:42:47.150809+00:00",
+        "description": "Your blocks, your castle, your world! Build anything you can dream up and explore with other players! Cubic Castles is a mini-MMO that combines the best of block-building and 3D platform action! Create fantastic parkour challenges, explore worlds made by other players, or even make friend!"
+      },
+      {
+        "item_key": "154b21db34c3494e",
+        "section": "free",
+        "title": "Palace of Cards",
+        "url": "https://store.steampowered.com/app/347950/",
+        "message_id": "1520091973346656319",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-06-26T15:42:48.744730+00:00",
+        "description": "Play cards online with other players from around the world and choose from 6 unique games: Rummy, Solitaire, Mau-Mau (Crazy Eights), Skat, Sheepshead & Doppelkopf. Each game comes with its own community, league systems, clubs, statistics & insights, and much more. Play now, for free!"
+      },
+      {
+        "item_key": "5d5b49a1542c14b1",
+        "section": "paid",
+        "title": "Conquest of Elysium 5",
+        "url": "https://store.steampowered.com/app/1606340/",
+        "message_id": "1520091986789662780",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-06-26T15:42:52.099766+00:00",
+        "description": "Conquest of Elysium 5 is a quick turn based fantasy strategy game with a touch of rogue-like. The game is full of depth, details and monsters. There are also a huge number of factions, each with its own unique gameplay and magic rituals."
+      },
+      {
+        "item_key": "36bf48b66e7fcf4e",
+        "section": "paid",
+        "title": "ATLYSS",
+        "url": "https://store.steampowered.com/app/2768430/",
+        "message_id": "1520091994435748060",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-06-26T15:42:53.767636+00:00",
+        "description": "Enter the world of ATLYSS, a Singleplayer/Online RPG where you can fight with or against friends in a surreal world filled with creatures beyond comprehension. Customize and progress your character(s), complete quests, and discover strange locations."
+      },
+      {
+        "item_key": "2e5df6d1552fd007",
+        "section": "paid",
+        "title": "Incursion Red River",
+        "url": "https://store.steampowered.com/app/2116120/",
+        "message_id": "1520092001385709679",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-06-26T15:42:55.302879+00:00",
+        "description": "IRR is a tactical PvE Co-Op extract shooter set in a de-stabilized and immersive modern-day Vietnam. As a PMC for a mysterious organization, deal with 3 factions that stand to gain from the chaos. Engage in ruthless combat, plan your deployment, and explore the world as your journey unfolds."
+      },
+      {
+        "item_key": "57e7c80ab28eee97",
+        "section": "paid",
+        "title": "HumanitZ",
+        "url": "https://store.steampowered.com/app/1766060/",
+        "message_id": "1520092007639290108",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-06-26T15:42:57.046693+00:00",
+        "description": "HumanitZ is an isometric, open-world sandbox survival game set in a world ended by a zombie outbreak. Survive alone or with friends by scavenging, crafting, building, and fighting to last as long as ‘humanly’ possible. You can’t change the past, but you can fight for the future of humanity."
+      },
+      {
+        "item_key": "963624ddd4289e82",
+        "section": "paid",
+        "title": "LEGO® Pirates of the Caribbean: The Video Game",
+        "url": "https://store.steampowered.com/app/311770/",
+        "message_id": "1520092015403204659",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-06-26T15:42:59.098579+00:00",
+        "description": "LEGO® Pirates of the Caribbean: The Video Game is an action adventure game that brings the Pirates of the Caribbean world and all its colorful characters to life in LEGO Brick form. Players experience all the memorable scenes from all four films in the humorous and quirky LEGO Video Games style."
       }
     ]
   }
