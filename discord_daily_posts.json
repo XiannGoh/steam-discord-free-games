@@ -1,145 +1,4 @@
 {
-  "2026-05-26": {
-    "run_state": {
-      "section_headers": {
-        "free": {
-          "message_id": "1508876889396347021",
-          "channel_id": "592534544708796474",
-          "posted_at_utc": "2026-05-26T16:58:04.830788+00:00"
-        },
-        "paid": {
-          "message_id": "1508876940029984958",
-          "channel_id": "592534544708796474",
-          "posted_at_utc": "2026-05-26T16:58:16.408339+00:00"
-        }
-      },
-      "last_attempt_at_utc": "2026-05-26T16:58:01.436959+00:00",
-      "intro": {
-        "message_id": "1508876878729969705",
-        "channel_id": "592534544708796474",
-        "posted_at_utc": "2026-05-26T16:58:02.639256+00:00"
-      },
-      "footer": {
-        "message_id": "1508876988088324216",
-        "channel_id": "592534544708796474",
-        "posted_at_utc": "2026-05-26T16:58:27.759248+00:00"
-      },
-      "completed": true,
-      "completed_at_utc": "2026-05-26T16:58:28.968691+00:00"
-    },
-    "items": [
-      {
-        "item_key": "19d29711af410717",
-        "section": "free",
-        "title": "Frontline 1942: Battles of the World War 2",
-        "url": "https://store.steampowered.com/app/2564660/",
-        "message_id": "1508876898485407744",
-        "channel_id": "592534544708796474",
-        "source_type": "steam_free",
-        "posted_at": "2026-05-26T16:58:06.936812+00:00",
-        "description": "Immerse yourself in the times of the Second World War II and become a real hero! Shoot, capture, win – the path to glory is paved with shells!"
-      },
-      {
-        "item_key": "6d8774a24b8a866b",
-        "section": "free",
-        "title": "Nova Empire",
-        "url": "https://store.steampowered.com/app/1962770/",
-        "message_id": "1508876907448635533",
-        "channel_id": "592534544708796474",
-        "source_type": "steam_free",
-        "posted_at": "2026-05-26T16:58:08.951251+00:00",
-        "description": "Build up a Space Empire and establish control of the Galaxy and the Universe! Nova Empire is a multiplayer space game in which the aim is to build your empire and conquer the galaxy in epic space battles against your rivals with other allies worldwide!"
-      },
-      {
-        "item_key": "2ff7701b63b7b2c5",
-        "section": "free",
-        "title": "Combat Arms: Reloaded",
-        "url": "https://store.steampowered.com/app/905640/",
-        "message_id": "1508876915656757419",
-        "channel_id": "592534544708796474",
-        "source_type": "steam_free",
-        "posted_at": "2026-05-26T16:58:10.945975+00:00",
-        "description": "Combat Arms is a multiplayer game, free-to-play modern first-person shooter. The game enlists players into various battlefields across the globe to face-off against other ambitious soldiers of fortune, delivering gamers a high-quality FPS with an extensive arsenal of weapons."
-      },
-      {
-        "item_key": "0e60c97c732e51d5",
-        "section": "free",
-        "title": "Holyday City: Reloaded",
-        "url": "https://store.steampowered.com/app/728730/",
-        "message_id": "1508876923919663285",
-        "channel_id": "592534544708796474",
-        "source_type": "steam_free",
-        "posted_at": "2026-05-26T16:58:12.892120+00:00",
-        "description": "Build, manage & grow your city in Holyday City: Reloaded! An idle clicker game where you're the business tycoon, expanding your metropolis. Master resource & time management to upgrade businesses and thrive. Experience the ultimate town builder adventure with Holyday City."
-      },
-      {
-        "item_key": "ca575b2d4ebb9cfa",
-        "section": "free",
-        "title": "Galaxy Control: 3D Strategy",
-        "url": "https://store.steampowered.com/app/435440/",
-        "message_id": "1508876931792113665",
-        "channel_id": "592534544708796474",
-        "source_type": "steam_free",
-        "posted_at": "2026-05-26T16:58:14.739471+00:00",
-        "description": "Build your base and battle with other players to control the galaxy! Galaxy Control is an ultimate space combat strategy game with fast-paced combats! Gather minerals and extract uranium, defend your base with laser towers, missile turrets, cannons, walls and mines."
-      },
-      {
-        "item_key": "bbe832c5d3641844",
-        "section": "paid",
-        "title": "SYNTHETIK 2",
-        "url": "https://store.steampowered.com/app/1471410/",
-        "message_id": "1508876946866442271",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-05-26T16:58:18.369960+00:00",
-        "description": "SYNTHETIK 2 is a unrelenting tactical-shooter rogue-lite. Play alone or with friends. Loot powerful tech. Experience the next level in gun-play. Upgrade your androids to rival the machine gods!"
-      },
-      {
-        "item_key": "b91e033e0ec43248",
-        "section": "paid",
-        "title": "FINAL FANTASY® XI: Ultimate Collection Seekers Edition",
-        "url": "https://store.steampowered.com/app/230330/",
-        "message_id": "1508876955133673562",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-05-26T16:58:20.174281+00:00",
-        "description": "BEGIN A NEW JOURNEY WITH THE COMPLETE EDITION OF FINAL FANTASY XIEnter an online multiplayer RPG that challenges players to journey through the world of Vana’diel® — a world of fantasy, adventure, and exploration.Heed the call and join players from around the world to become the hero that Vana’diel needs."
-      },
-      {
-        "item_key": "20d13fdf0f16e567",
-        "section": "paid",
-        "title": "The Jackbox Party Pack 6",
-        "url": "https://store.steampowered.com/app/1005300/",
-        "message_id": "1508876962402144389",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-05-26T16:58:22.049694+00:00",
-        "description": "It’s the wildest Party Pack yet, with the absurd deathmatch Trivia Murder Party 2, the weird word circus Dictionarium, the hidden identity game Push The Button, the comedy contest Joke Boat and the offbeat personality test Role Models."
-      },
-      {
-        "item_key": "e6506a2ff9dd8d15",
-        "section": "paid",
-        "title": "The Jackbox Party Pack 4",
-        "url": "https://store.steampowered.com/app/610180/",
-        "message_id": "1508876970824306829",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-05-26T16:58:24.040137+00:00",
-        "description": "The fourth pack in this storied party game franchise features Fibbage 3 and its new game mode, Fibbage: Enough About You; the twisted web game Survive the Internet; the dating contest Monster Seeking Monster; the deranged debate match Bracketeering; and the one-up art game Civic Doodle."
-      },
-      {
-        "item_key": "e1e8f573c5083bd6",
-        "section": "paid",
-        "title": "Magicraft",
-        "url": "https://store.steampowered.com/app/2103140/",
-        "message_id": "1508876979187875963",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-05-26T16:58:26.101777+00:00",
-        "description": "\"Magicraft\" is a Roguelike game that uses a variety of spells to match unimaginable spell effects, and the construction of ultra-high degrees of freedom cannot even be exhausted by developers."
-      }
-    ]
-  },
   "2026-05-27": {
     "run_state": {
       "section_headers": {
@@ -4596,6 +4455,163 @@
         "source_type": "paid_under_20",
         "posted_at": "2026-06-24T15:51:47.010019+00:00",
         "description": "Three years after the Necromorph infestation aboard the USS Ishimura, Isaac Clarke awakens from a coma, confused, disoriented, and on a space station called The Sprawl. Explore this world and its zero-g environments to discover the truth about the Unitology and its role in the Necromorph epidemic."
+      }
+    ]
+  },
+  "2026-06-25": {
+    "run_state": {
+      "section_headers": {
+        "demo_playtest": {
+          "message_id": "1519733598767546560",
+          "channel_id": "592534544708796474",
+          "posted_at_utc": "2026-06-25T15:58:45.665250+00:00"
+        },
+        "free": {
+          "message_id": "1519733615217344594",
+          "channel_id": "592534544708796474",
+          "posted_at_utc": "2026-06-25T15:58:49.492025+00:00"
+        },
+        "paid": {
+          "message_id": "1519733665607847979",
+          "channel_id": "592534544708796474",
+          "posted_at_utc": "2026-06-25T15:59:01.519950+00:00"
+        }
+      },
+      "last_attempt_at_utc": "2026-06-25T15:58:43.396217+00:00",
+      "intro": {
+        "message_id": "1519733591498686605",
+        "channel_id": "592534544708796474",
+        "posted_at_utc": "2026-06-25T15:58:43.919291+00:00"
+      },
+      "footer": {
+        "message_id": "1519733719961964756",
+        "channel_id": "592534544708796474",
+        "posted_at_utc": "2026-06-25T15:59:14.598969+00:00"
+      },
+      "completed": true,
+      "completed_at_utc": "2026-06-25T15:59:15.805060+00:00"
+    },
+    "items": [
+      {
+        "item_key": "029567fd38aafec0",
+        "section": "demo_playtest",
+        "title": "Legend Battles",
+        "url": "https://store.steampowered.com/app/3649730/",
+        "message_id": "1519733606338265170",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_demo_playtest",
+        "posted_at": "2026-06-25T15:58:47.772160+00:00",
+        "description": "Free-to-play UE 5.6 Extraction Battle Royale in 400 km² neo-futuristic world with destructible environment and vehicles, massive ET-ACUs, armored Aliens, ferocious Monsters, heavily armed MetaHumans, complete missions to attack, defend, loot, extract facing dynamic weathers."
+      },
+      {
+        "item_key": "b3bf2841829fba33",
+        "section": "free",
+        "title": "E.T.E",
+        "url": "https://store.steampowered.com/app/3450390/",
+        "message_id": "1519733622469427280",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-06-25T15:58:51.461610+00:00",
+        "description": "The 3D anime-style shooting game \"E.T.E\" is launching early access soon. It offers three unique environments—sea, land, and air—plus a system for developing female characters and mechas. Famous voice actresses like Sakura Tange, Kana Hanazawa, Rie Tanaka, and Mikako Komatsu voice the characters."
+      },
+      {
+        "item_key": "5c0b4831c80506d9",
+        "section": "free",
+        "title": "Dirty Bomb®",
+        "url": "https://store.steampowered.com/app/333930/",
+        "message_id": "1519733630585278474",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-06-25T15:58:53.584475+00:00",
+        "description": "Work together or die alone! Fight to restore peace to London or tear it down for profit in the most challenging team based shooter around."
+      },
+      {
+        "item_key": "96c8e910a13ad2fb",
+        "section": "free",
+        "title": "IOSoccer",
+        "url": "https://store.steampowered.com/app/673560/",
+        "message_id": "1519733639183728711",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-06-25T15:58:55.367695+00:00",
+        "description": "IOSoccer is a free non-commercial competitive third-person online multiplayer soccer game that offers unparalleled freedom in ball control and gameplay depth."
+      },
+      {
+        "item_key": "8b1e7c45a2c5866c",
+        "section": "free",
+        "title": "Romans: Age of Caesar",
+        "url": "https://store.steampowered.com/app/872570/",
+        "message_id": "1519733646825623656",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-06-25T15:58:57.193298+00:00",
+        "description": "Build Rome Together! A co-operative grand strategy MMO from a team of veteran city builders, Romans: Age of Caesar is the latest historical strategy game from Firefly Studios."
+      },
+      {
+        "item_key": "f699873d284ce8fb",
+        "section": "free",
+        "title": "Aero Tales Online: The World - Anime MMORPG",
+        "url": "https://store.steampowered.com/app/1943610/",
+        "message_id": "1519733654568440040",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-06-25T15:58:59.659703+00:00",
+        "description": "Aero Tales Online is a free Cross-Platform Anime MMORPG with PvP, PvE, Fortress War, Faction War, Guild War, and life-sim features like Cooking, Farming, Fishing, Housing, Marriage, and even flying freely across the world. Uncover the mystery of the Key of Skylight and begin your adventure!"
+      },
+      {
+        "item_key": "309766e217e8ed38",
+        "section": "paid",
+        "title": "SOS OPS!",
+        "url": "https://store.steampowered.com/app/2475460/",
+        "message_id": "1519733672742228049",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-06-25T15:59:03.293115+00:00",
+        "description": "SOS OPS! is more than a game. Your task is to save the city. You will find yourself in the epicenter of madness, where co-op missions with friends will raise the adrenaline to the limit!"
+      },
+      {
+        "item_key": "aff72c9e3ffe8efe",
+        "section": "paid",
+        "title": "Across the Obelisk",
+        "url": "https://store.steampowered.com/app/1385380/",
+        "message_id": "1519733680451620874",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-06-25T15:59:05.232119+00:00",
+        "description": "Set forth in a co-op roguelite deckbuilder where every choice matters! Craft decks of breathtaking power. Journey alone or with up to three friends. Plot your party’s path to glory and face powerful enemies in deep tactical combat on your quest to save the kingdom of Senenthia in Across the Obelisk!"
+      },
+      {
+        "item_key": "70e8c50aef764e37",
+        "section": "paid",
+        "title": "Stolen Realm",
+        "url": "https://store.steampowered.com/app/1330000/",
+        "message_id": "1519733688131387539",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-06-25T15:59:07.261479+00:00",
+        "description": "Stolen Realm is a simultaneous turn-based tactical dungeon crawling looter with action RPG elements where you control up to 6 heroes, solo or through online co-op, venturing forth in adventures set in a high-fantasy, low-poly world."
+      },
+      {
+        "item_key": "5c667ed5606c0f7b",
+        "section": "paid",
+        "title": "DarkStone Restoration",
+        "url": "https://store.steampowered.com/app/4557490/",
+        "message_id": "1519733697191088390",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-06-25T15:59:10.660338+00:00",
+        "description": "Darkstone Restoration brings the classic action RPG back to modern PCs with improved stability, compatibility, controls, readability, and quality-of-life improvements — while preserving the spirit of the original game."
+      },
+      {
+        "item_key": "e4d6998d591698f1",
+        "section": "paid",
+        "title": "Revenge of the Savage Planet",
+        "url": "https://store.steampowered.com/app/2787320/",
+        "message_id": "1519733711170572389",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-06-25T15:59:12.684542+00:00",
+        "description": "Revenge of the Savage Planet is an upbeat, satirical action adventure Sci-Fi. Jump, shoot and collect your way across vibrant alien worlds, uncovering new gear and upgrades, while discovering various hidden secrets."
       }
     ]
   }
