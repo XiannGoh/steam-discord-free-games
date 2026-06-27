@@ -4608,6 +4608,11 @@
         "posted_at": "2026-06-27T14:43:57.474540+00:00",
         "description": "DRAGON BALL XENOVERSE 2 builds upon the highly popular DRAGON BALL XENOVERSE with enhanced graphics that will further immerse players into the largest and most detailed Dragon Ball world ever developed."
       }
-    ]
+    ],
+    "winners_state": {
+      "status": "skipped",
+      "skipped_reason": "no_eligible_winners",
+      "updated_at_utc": "2026-06-27T23:58:46.960884+00:00"
+    }
   }
 }
