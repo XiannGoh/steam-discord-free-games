@@ -1,145 +1,4 @@
 {
-  "2026-05-28": {
-    "run_state": {
-      "section_headers": {
-        "free": {
-          "message_id": "1509604409187762206",
-          "channel_id": "592534544708796474",
-          "posted_at_utc": "2026-05-28T17:08:58.504457+00:00"
-        },
-        "paid": {
-          "message_id": "1509604457539698748",
-          "channel_id": "592534544708796474",
-          "posted_at_utc": "2026-05-28T17:09:10.075553+00:00"
-        }
-      },
-      "last_attempt_at_utc": "2026-05-28T17:08:56.137244+00:00",
-      "intro": {
-        "message_id": "1509604401185296535",
-        "channel_id": "592534544708796474",
-        "posted_at_utc": "2026-05-28T17:08:56.922922+00:00"
-      },
-      "footer": {
-        "message_id": "1509604507439468614",
-        "channel_id": "592534544708796474",
-        "posted_at_utc": "2026-05-28T17:09:21.970294+00:00"
-      },
-      "completed": true,
-      "completed_at_utc": "2026-05-28T17:09:23.178548+00:00"
-    },
-    "items": [
-      {
-        "item_key": "7d6acbe0564df6cd",
-        "section": "free",
-        "title": "EVE Online",
-        "url": "https://store.steampowered.com/app/8500/",
-        "message_id": "1509604416020283527",
-        "channel_id": "592534544708796474",
-        "source_type": "steam_free",
-        "posted_at": "2026-05-28T17:09:00.658391+00:00",
-        "description": "Over 20 years of legendary space battles! Explore a massive living universe of danger and opportunity in a challenging and highly rewarding space adventure. Fight, trade, build, and connect with a universe driven and shaped directly by players."
-      },
-      {
-        "item_key": "288c3768c5988af7",
-        "section": "free",
-        "title": "Asphalt Legends",
-        "url": "https://store.steampowered.com/app/1815780/",
-        "message_id": "1509604424949956759",
-        "channel_id": "592534544708796474",
-        "source_type": "steam_free",
-        "posted_at": "2026-05-28T17:09:02.732055+00:00",
-        "description": "Spark your competitive soul with Asphalt Legends and feel the collective heartbeat of the road! Join forces with other players to speed through intense arcade races, perform jaw-dropping stunts, and charge towards victory while driving the finest hypercars!"
-      },
-      {
-        "item_key": "e28f4852271fa5c8",
-        "section": "free",
-        "title": "Astral Party",
-        "url": "https://store.steampowered.com/app/2622000/",
-        "message_id": "1509604433518919933",
-        "channel_id": "592534544708796474",
-        "source_type": "steam_free",
-        "posted_at": "2026-05-28T17:09:04.618352+00:00",
-        "description": "Astral Party is a multiplayer party game populated by cute anime girls! Choose your favorite character, strategize skills & cards, and roll the dice to destroy friendships in this unique board game."
-      },
-      {
-        "item_key": "7c74f858efb0f6cb",
-        "section": "free",
-        "title": "DC Universe™ Online",
-        "url": "https://store.steampowered.com/app/24200/",
-        "message_id": "1509604441408536586",
-        "channel_id": "592534544708796474",
-        "source_type": "steam_free",
-        "posted_at": "2026-05-28T17:09:06.572953+00:00",
-        "description": "DC Universe Online is a Free-to-Play, massive multiplayer online action game set in the popular DC Universe. Become one of a new breed of Heroes or Villains and wield incredible powers as you go to war with legendary characters such as Batman, Superman, Lex Luthor and The Joker."
-      },
-      {
-        "item_key": "6035eb1b54c2c81a",
-        "section": "free",
-        "title": "Myth of Empires: Throne",
-        "url": "https://store.steampowered.com/app/4510830/",
-        "message_id": "1509604449537233127",
-        "channel_id": "592534544708796474",
-        "source_type": "steam_free",
-        "posted_at": "2026-05-28T17:09:08.419940+00:00",
-        "description": "Myth of Empires: Throne is a free seasonal multiplayer warfare sandbox. Explore vast lands inspired by multiple civilizations, tame creatures, forge powerful weapons, and build your guild. Lead cross-server expeditions, conquer territories, and compete with players worldwide for the ultimate throne!"
-      },
-      {
-        "item_key": "46879bf183b508ad",
-        "section": "paid",
-        "title": "LEGO® Harry Potter™ Collection",
-        "url": "https://store.steampowered.com/app/2950340/",
-        "message_id": "1509604464590454814",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-05-28T17:09:11.987324+00:00",
-        "description": "The LEGO® Harry Potter™: Collection brings LEGO® Harry Potter™: Years 1-4 and LEGO® Harry Potter™: Years 5-7 together in one game, now remastered with enhanced graphics."
-      },
-      {
-        "item_key": "103362a85cdd5381",
-        "section": "paid",
-        "title": "PowerWash Simulator",
-        "url": "https://store.steampowered.com/app/1290000/",
-        "message_id": "1509604472370892811",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-05-28T17:09:14.473728+00:00",
-        "description": "Release the Pressure with PowerWash Simulator! Wash away your worries with the soothing sounds of high-pressure water. Fire up your power washer and blast away every speck of dirt and grime you can find, all with the simple satisfaction of power-washing to a sparkling finish."
-      },
-      {
-        "item_key": "7e48bf7d40ceab6d",
-        "section": "paid",
-        "title": "9 Kings",
-        "url": "https://store.steampowered.com/app/2784470/",
-        "message_id": "1509604482781020401",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-05-28T17:09:16.303929+00:00",
-        "description": "A fast-paced roguelike kingdom builder. Grow your empire and fight massive battles against powerful rival kings. Break the game with thousands of insane builds to become the King of Kings."
-      },
-      {
-        "item_key": "439acd03e520d7a7",
-        "section": "paid",
-        "title": "Ranch Simulator: Build, Hunt, Farm",
-        "url": "https://store.steampowered.com/app/1119730/",
-        "message_id": "1509604490439954572",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-05-28T17:09:18.262327+00:00",
-        "description": "Builder. Farmer. Hunter. Trader. Ranching certainly isn’t your average job. Think you have the skills to turn your family’s rundown homestead into the most prosperous ranch in the valley? Then it’s time to head out into the wilderness in this captivating single and multiplayer open-world simulator."
-      },
-      {
-        "item_key": "b440e5990902ab07",
-        "section": "paid",
-        "title": "Risk of Rain 2",
-        "url": "https://store.steampowered.com/app/632360/",
-        "message_id": "1509604498723836087",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-05-28T17:09:20.190426+00:00",
-        "description": "Escape a chaotic alien planet by fighting through hordes of frenzied monsters – with your friends, or on your own. Combine loot in surprising ways and master each character until you become the havoc you feared upon your first crash landing."
-      }
-    ]
-  },
   "2026-05-29": {
     "run_state": {
       "section_headers": {
@@ -4607,6 +4466,147 @@
         "source_type": "paid_under_20",
         "posted_at": "2026-06-26T15:42:59.098579+00:00",
         "description": "LEGO® Pirates of the Caribbean: The Video Game is an action adventure game that brings the Pirates of the Caribbean world and all its colorful characters to life in LEGO Brick form. Players experience all the memorable scenes from all four films in the humorous and quirky LEGO Video Games style."
+      }
+    ]
+  },
+  "2026-06-27": {
+    "run_state": {
+      "section_headers": {
+        "free": {
+          "message_id": "1520439463929708544",
+          "channel_id": "592534544708796474",
+          "posted_at_utc": "2026-06-27T14:43:36.862521+00:00"
+        },
+        "paid": {
+          "message_id": "1520439508997509331",
+          "channel_id": "592534544708796474",
+          "posted_at_utc": "2026-06-27T14:43:47.721498+00:00"
+        }
+      },
+      "last_attempt_at_utc": "2026-06-27T14:43:33.819247+00:00",
+      "intro": {
+        "message_id": "1520439452558954640",
+        "channel_id": "592534544708796474",
+        "posted_at_utc": "2026-06-27T14:43:35.144863+00:00"
+      },
+      "footer": {
+        "message_id": "1520439557680791684",
+        "channel_id": "592534544708796474",
+        "posted_at_utc": "2026-06-27T14:43:59.451328+00:00"
+      },
+      "completed": true,
+      "completed_at_utc": "2026-06-27T14:44:00.656976+00:00"
+    },
+    "items": [
+      {
+        "item_key": "3acb607b2bf31801",
+        "section": "free",
+        "title": "Once Human",
+        "url": "https://store.steampowered.com/app/2139460/",
+        "message_id": "1520439470686601226",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-06-27T14:43:38.619534+00:00",
+        "description": "Once Human is a multiplayer open-world survival game set in a strange, post-apocalyptic future. Unite with friends to fight monstrous enemies, uncover secret plots, compete for resources, and build your own territory. Once, you were merely human. Now, you have the power to remake the world."
+      },
+      {
+        "item_key": "9a7b54283952e9ea",
+        "section": "free",
+        "title": "Enlisted",
+        "url": "https://store.steampowered.com/app/2051620/",
+        "message_id": "1520439478035153058",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-06-27T14:43:40.268239+00:00",
+        "description": "In Enlisted, you are not only commanding a single soldier, but an entire squad! This MMO squad based shooter recreates the key battles of the bloodiest war of the 20th century, with hundreds of soldiers, tanks and aircraft taking part in each battle."
+      },
+      {
+        "item_key": "04a8e7a2f9ef80a2",
+        "section": "free",
+        "title": "The Lord of the Rings Online™",
+        "url": "https://store.steampowered.com/app/212500/",
+        "message_id": "1520439484812890145",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-06-27T14:43:42.108193+00:00",
+        "description": "Join the world’s greatest fellowship of players in the award-winning online re-creation of J. R. R. Tolkien’s legendary Middle-earth."
+      },
+      {
+        "item_key": "cd9971e021325cde",
+        "section": "free",
+        "title": "Realm of the Mad God Exalt",
+        "url": "https://store.steampowered.com/app/200210/",
+        "message_id": "1520439492757029056",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-06-27T14:43:44.030198+00:00",
+        "description": "Embark on an exhilarating journey into the pixelated Realm of the Mad God! Join, an action-packed, free-to-play MMO bullet hell game. Discover a world with danger, challenges, and hidden treasures as you battle through waves of enemies. Team up with players and conquer dungeons to become a legend!"
+      },
+      {
+        "item_key": "cdabe708629b6e2f",
+        "section": "free",
+        "title": "Sky: Children of the Light",
+        "url": "https://store.steampowered.com/app/2325290/",
+        "message_id": "1520439501338443908",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-06-27T14:43:46.033333+00:00",
+        "description": "A breathtaking open-world adventure awaits! Explore magical realms, restore lost light, and form wordless bonds with players worldwide. Complete quests and solve puzzles in seasonal events that celebrate kindness, discovery, and heartfelt connection."
+      },
+      {
+        "item_key": "9e0e1e52ebc99a54",
+        "section": "paid",
+        "title": "The Outlast Trials",
+        "url": "https://store.steampowered.com/app/1304930/",
+        "message_id": "1520439516358508625",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-06-27T14:43:49.586619+00:00",
+        "description": "Red Barrels invites you to experience mind-numbing terror, this time with friends. Whether you go through the trials alone or in teams, if you survive long enough and complete the therapy, Murkoff will happily let you leave… but will you be the same?"
+      },
+      {
+        "item_key": "23566794276c4c59",
+        "section": "paid",
+        "title": "Schedule I",
+        "url": "https://store.steampowered.com/app/3164500/",
+        "message_id": "1520439523790819329",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-06-27T14:43:51.233899+00:00",
+        "description": "From small-time dope pusher to kingpin - manufacture and distribute a range of drugs throughout the grungy city of Hyland Point. Expand your empire with properties, businesses, employees and more."
+      },
+      {
+        "item_key": "26b4eb00f1c74c6e",
+        "section": "paid",
+        "title": "PowerWash Simulator 2",
+        "url": "https://store.steampowered.com/app/2968420/",
+        "message_id": "1520439530786656389",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-06-27T14:43:53.400273+00:00",
+        "description": "PowerWash Simulator is back, bubbling with fresh locations, soap-erior equipment and splashy features. Effortlessly transform soiled surroundings into clean, serene scenes, solo or with pals. Satisfaction is a spray away!"
+      },
+      {
+        "item_key": "5fe93d83d04114a8",
+        "section": "paid",
+        "title": "EA SPORTS FC™ 26",
+        "url": "https://store.steampowered.com/app/3405690/",
+        "message_id": "1520439540253327433",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-06-27T14:43:55.544499+00:00",
+        "description": "The Club is Yours in EA SPORTS FC™ 26. Play your way with an overhauled gameplay experience powered by community feedback, Manager Live Challenges that bring fresh storylines to the new season, and Archetypes inspired by greats of the game."
+      },
+      {
+        "item_key": "bc322dd39f0a4a41",
+        "section": "paid",
+        "title": "DRAGON BALL XENOVERSE 2",
+        "url": "https://store.steampowered.com/app/454650/",
+        "message_id": "1520439549124284428",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-06-27T14:43:57.474540+00:00",
+        "description": "DRAGON BALL XENOVERSE 2 builds upon the highly popular DRAGON BALL XENOVERSE with enhanced graphics that will further immerse players into the largest and most detailed Dragon Ball world ever developed."
       }
     ]
   }
