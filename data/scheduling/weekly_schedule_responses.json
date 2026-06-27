@@ -1203,6 +1203,55 @@
   },
   "2026-06-29_to_2026-07-05": {
     "date_range": "Jun 29–Jul 5, 2026",
-    "users": {}
+    "users": {
+      "195462430535581708": {
+        "username": "thomasgoh",
+        "global_name": "Thomas",
+        "days": {
+          "Monday": {
+            "reactions": [
+              "🌙"
+            ],
+            "custom_reply": null
+          },
+          "Tuesday": {
+            "reactions": [
+              "🌙"
+            ],
+            "custom_reply": null
+          },
+          "Wednesday": {
+            "reactions": [
+              "🌙"
+            ],
+            "custom_reply": null
+          },
+          "Thursday": {
+            "reactions": [
+              "🌙"
+            ],
+            "custom_reply": null
+          },
+          "Friday": {
+            "reactions": [
+              "🌙"
+            ],
+            "custom_reply": null
+          },
+          "Saturday": {
+            "reactions": [
+              "🌙"
+            ],
+            "custom_reply": null
+          },
+          "Sunday": {
+            "reactions": [
+              "🌙"
+            ],
+            "custom_reply": null
+          }
+        }
+      }
+    }
   }
 }
