@@ -1,150 +1,4 @@
 {
-  "2026-05-30": {
-    "run_state": {
-      "section_headers": {
-        "free": {
-          "message_id": "1510293351214350368",
-          "channel_id": "592534544708796474",
-          "posted_at_utc": "2026-05-30T14:46:35.332338+00:00"
-        },
-        "paid": {
-          "message_id": "1510293398530035722",
-          "channel_id": "592534544708796474",
-          "posted_at_utc": "2026-05-30T14:46:46.567084+00:00"
-        }
-      },
-      "last_attempt_at_utc": "2026-05-30T14:46:32.617873+00:00",
-      "intro": {
-        "message_id": "1510293342481678416",
-        "channel_id": "592534544708796474",
-        "posted_at_utc": "2026-05-30T14:46:33.536761+00:00"
-      },
-      "footer": {
-        "message_id": "1510293445044867333",
-        "channel_id": "592534544708796474",
-        "posted_at_utc": "2026-05-30T14:46:57.796701+00:00"
-      },
-      "completed": true,
-      "completed_at_utc": "2026-05-30T14:46:59.006026+00:00"
-    },
-    "items": [
-      {
-        "item_key": "64cb69ed70eb3312",
-        "section": "free",
-        "title": "Chicken Invaders Universe",
-        "url": "https://store.steampowered.com/app/1510460/",
-        "message_id": "1510293358902509781",
-        "channel_id": "592534544708796474",
-        "source_type": "steam_free",
-        "posted_at": "2026-05-30T14:46:37.125432+00:00",
-        "description": "A deliciously addictive core of finger-blistering shooting action, surrounded by delectable morsels of galactic exploration, spacecraft customization, and community competitions."
-      },
-      {
-        "item_key": "258b8b0c0b54348a",
-        "section": "free",
-        "title": "Sniper Fury",
-        "url": "https://store.steampowered.com/app/591740/",
-        "message_id": "1510293366472966316",
-        "channel_id": "592534544708796474",
-        "source_type": "steam_free",
-        "posted_at": "2026-05-30T14:46:38.937350+00:00",
-        "description": "Sniper Fury is an action-sharpshooting game set in a world threatened by violence. Neutralize threats using an ever-growing arsenal of modern firepower. Customize everything: weapons, gear sets, bullets! Join other snipers in Clan Wars, challenge them in PvP mode, & try events for extra surprises."
-      },
-      {
-        "item_key": "f998ea55f45aa832",
-        "section": "free",
-        "title": "CRSED: Cuisine Royale",
-        "url": "https://store.steampowered.com/app/884660/",
-        "message_id": "1510293374312382665",
-        "channel_id": "592534544708796474",
-        "source_type": "steam_free",
-        "posted_at": "2026-05-30T14:46:41.402921+00:00",
-        "description": "CRSED: Cuisine Royale – is a brutal MMO last-man-standing shooter with realistic weaponry, elements of lethal mystic forces and incredible superpowers!"
-      },
-      {
-        "item_key": "aff21777cabefb9a",
-        "section": "free",
-        "title": "Nova: Space Armada",
-        "url": "https://store.steampowered.com/app/1108270/",
-        "message_id": "1510293384089174018",
-        "channel_id": "592534544708796474",
-        "source_type": "steam_free",
-        "posted_at": "2026-05-30T14:46:43.132487+00:00",
-        "description": "An exceptional sci-fi strategy game based on space adventure as its core."
-      },
-      {
-        "item_key": "7250ceba81932608",
-        "section": "free",
-        "title": "Blackjack Championship",
-        "url": "https://store.steampowered.com/app/1178160/",
-        "message_id": "1510293391550709860",
-        "channel_id": "592534544708796474",
-        "source_type": "steam_free",
-        "posted_at": "2026-05-30T14:46:44.756645+00:00",
-        "description": "Play the most authentic BLACKJACK GAME with players all over the world! Spend some lovely and relaxing time with our top-of-the-line game provided with many special features for you to feel real casino atmosphere."
-      },
-      {
-        "item_key": "bf78de1c883f021f",
-        "section": "paid",
-        "title": "Reaper Actual",
-        "url": "https://store.steampowered.com/app/2995670/",
-        "message_id": "1510293405677387920",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-05-30T14:46:48.547274+00:00",
-        "description": "Reaper Actual is an Open-World Persistent Shooter where hundreds of players engage in FPS combat against each other and 5 NPC Factions on the massive war-torn island of Marova. Level your Reapers, maintain a home Base, and complete missions to earn gear and reshape the world."
-      },
-      {
-        "item_key": "f6e5f8b2f94ae175",
-        "section": "paid",
-        "title": "Aloft",
-        "url": "https://store.steampowered.com/app/1660080/",
-        "message_id": "1510293414313197670",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-05-30T14:46:50.354042+00:00",
-        "description": "Soar the skies in Aloft, the co-op sandbox survival game set in a world of floating islands. Build any island into a skyship, your home in the clouds. Find lost knowledge, cure the fungal corruption, and brave the hurricane to restore the ecosystem."
-      },
-      {
-        "item_key": "e90aadb249870b3c",
-        "section": "paid",
-        "title": "Dune: Spice Wars",
-        "url": "https://store.steampowered.com/app/1605220/",
-        "message_id": "1510293421577863210",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-05-30T14:46:52.076994+00:00",
-        "description": "A 4X real-time strategy game from the developers of the critically acclaimed Northgard. Set in Frank Herbert’s groundbreaking Dune universe, you must lead your faction and battle for control and dominance over the harsh desert planet of Arrakis."
-      },
-      {
-        "item_key": "661daa2d5acae100",
-        "section": "paid",
-        "title": "Automaton Heart",
-        "url": "https://store.steampowered.com/app/3070020/",
-        "message_id": "1510293430234779739",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-05-30T14:46:54.105627+00:00",
-        "description": "Automaton Heart is an RPG with platforming elements where you visit obscure and interesting places while upgrading your organs and strategizing about which items to bring along."
-      },
-      {
-        "item_key": "323827ebcd2557cb",
-        "section": "paid",
-        "title": "Luma Island",
-        "url": "https://store.steampowered.com/app/2408820/",
-        "message_id": "1510293437319221281",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-05-30T14:46:55.763091+00:00",
-        "description": "Get ready to explore, farm, fish, mine, craft, and raise magical Lumas as you solve puzzles and embark on quests across Luma Island. Play solo, or team up with friends in 1-4 player online co-op. Choose relaxing Cozy, challenging Adventure, or epic Hero mode to match your mood and playstyle."
-      }
-    ],
-    "winners_state": {
-      "status": "skipped",
-      "skipped_reason": "no_eligible_winners",
-      "updated_at_utc": "2026-05-30T23:59:36.625987+00:00"
-    }
-  },
   "2026-05-31": {
     "run_state": {
       "section_headers": {
@@ -4612,6 +4466,185 @@
         "source_type": "paid_under_20",
         "posted_at": "2026-06-28T15:05:34.325175+00:00",
         "description": "Hack, slash, and smash your way to victory in this award winning 2D arcade adventure from The Behemoth!"
+      }
+    ]
+  },
+  "2026-06-29": {
+    "run_state": {
+      "section_headers": {
+        "demo_playtest": {
+          "message_id": "1521197530069729342",
+          "channel_id": "592534544708796474",
+          "posted_at_utc": "2026-06-29T16:55:53.922188+00:00"
+        },
+        "free": {
+          "message_id": "1521197560826429591",
+          "channel_id": "592534544708796474",
+          "posted_at_utc": "2026-06-29T16:56:01.418481+00:00"
+        },
+        "paid": {
+          "message_id": "1521197603528900708",
+          "channel_id": "592534544708796474",
+          "posted_at_utc": "2026-06-29T16:56:11.596314+00:00"
+        }
+      },
+      "last_attempt_at_utc": "2026-06-29T16:55:50.965066+00:00",
+      "intro": {
+        "message_id": "1521197519357612262",
+        "channel_id": "592534544708796474",
+        "posted_at_utc": "2026-06-29T16:55:52.316550+00:00"
+      },
+      "footer": {
+        "message_id": "1521197652715245698",
+        "channel_id": "592534544708796474",
+        "posted_at_utc": "2026-06-29T16:56:23.119985+00:00"
+      },
+      "completed": true,
+      "completed_at_utc": "2026-06-29T16:56:24.326859+00:00"
+    },
+    "items": [
+      {
+        "item_key": "836387ee3d78588f",
+        "section": "demo_playtest",
+        "title": "galaksia online",
+        "url": "https://store.steampowered.com/app/4789820/",
+        "message_id": "1521197536545607742",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_demo_playtest",
+        "posted_at": "2026-06-29T16:55:55.728454+00:00",
+        "description": "Galaksia Online is an action-packed, 2D multiplayer space MMORPG blending retro pixel art aesthetics with mechanics. Forge alliances, custom-build your starships block by block, and engage in massive faction-based PvP wars or challenging PvE raid battles across dangerous stellar sectors."
+      },
+      {
+        "item_key": "359cdcf8347cff62",
+        "section": "demo_playtest",
+        "title": "Push The Cart Together",
+        "url": "https://store.steampowered.com/app/4360180/",
+        "message_id": "1521197544246608016",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_demo_playtest",
+        "posted_at": "2026-06-29T16:55:57.819888+00:00",
+        "description": "Cargo loaded, cart ready, the customer is waiting. Alone or with a friend, push the load to the finish line. Physics and the world around you won’t be friendly. The cargo will explode many times — so will you. It’ll be very hard, but don’t worry… eventually you’ll make it. Right?"
+      },
+      {
+        "item_key": "8e74fe2cbee2a34d",
+        "section": "demo_playtest",
+        "title": "Danmaku Fighters",
+        "url": "https://store.steampowered.com/app/2826160/",
+        "message_id": "1521197553180217355",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_demo_playtest",
+        "posted_at": "2026-06-29T16:55:59.651013+00:00",
+        "description": "《Danmaku Fighters》is a new feeling, fast-paced 2D bullet-hell fighting game. Choose your favorite character, and fight against other players in online play!"
+      },
+      {
+        "item_key": "33fdce47595ecdad",
+        "section": "free",
+        "title": "Shadowbane: Resurgence",
+        "url": "https://store.steampowered.com/app/4371680/",
+        "message_id": "1521197568191762523",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-06-29T16:56:03.040269+00:00",
+        "description": "A classic dark fantasy open-world MMORPG with unrestricted global PVP & a player-driven dynamic world. 12 unique races, flexible 22+48 class system. Build fortresses, conquer kingdoms, reshape the continent. Steam version supports multi-systems, no pay-to-win, hardcore fair gameplay."
+      },
+      {
+        "item_key": "1d2058c8559f7ea3",
+        "section": "free",
+        "title": "王于兴师/Order of Kings",
+        "url": "https://store.steampowered.com/app/4192650/",
+        "message_id": "1521197574978011196",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-06-29T16:56:04.697731+00:00",
+        "description": "Jump into a true real-time strategy, and fully 3D battles! Order of Kings is an MMO game mixing RTS and SLG. You can control massive troops, plan combining 3D terrain and physical collision effects, join in alliances with friends, compete with other server players, and build your own legend!"
+      },
+      {
+        "item_key": "f0db4ec3d1cfa079",
+        "section": "free",
+        "title": "Runes of Magic",
+        "url": "https://store.steampowered.com/app/808290/",
+        "message_id": "1521197582028898385",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-06-29T16:56:06.456730+00:00",
+        "description": "Start your heroic saga today in a world full of magic and excitement: Choose your race, build a home and discover the fantastic world of Taborea in the classic free-to-play MMO!"
+      },
+      {
+        "item_key": "dc309f6da2906d55",
+        "section": "free",
+        "title": "Pirate101",
+        "url": "https://store.steampowered.com/app/620620/",
+        "message_id": "1521197589268271175",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-06-29T16:56:08.050333+00:00",
+        "description": "Assemble your ragtag crew and prepare to plunder the skyways in search of the legendary map to El Dorado! Danger lurks around every corner as you outsmart clockwork soldiers, uncover hidden mysteries, and unleash powerful combos in this pirate turn-based tactics MMORPG."
+      },
+      {
+        "item_key": "83d1ebef4c82908e",
+        "section": "free",
+        "title": "Idle Hacking: An Inaction RPG",
+        "url": "https://store.steampowered.com/app/4453290/",
+        "message_id": "1521197596096593920",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-06-29T16:56:09.831263+00:00",
+        "description": "A persistent idle MMORPG, with a text-based hacking theme. Enjoy the \"Inaction RPG\" design philosophy by crafting equpiment using ARPG influenced prefix/suffix systems, build or join player managed syndicates, trade on the marketplace, and compete in community events."
+      },
+      {
+        "item_key": "7f698dd7e8eaa446",
+        "section": "paid",
+        "title": "Sineus Arena Survivors",
+        "url": "https://store.steampowered.com/app/4227400/",
+        "message_id": "1521197611158077551",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-06-29T16:56:13.456190+00:00",
+        "description": "Fight hordes and defend your Stronghold in a bullet heaven survivor-like with co-op and tower defense. Gain power-ups every level, collect random artifacts from chests and grow stronger to survive, defeat the boss and claim a top spot on the Sineus Arena leaderboards!"
+      },
+      {
+        "item_key": "09a2d3caec706660",
+        "section": "paid",
+        "title": "Shape of Dreams",
+        "url": "https://store.steampowered.com/app/2444750/",
+        "message_id": "1521197618867212348",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-06-29T16:56:15.305822+00:00",
+        "description": "Shape of Dreams delivers fast-paced top-down roguelite action with chaotic projectile-filled battles, fluid combat, and high-stakes co-op. Play solo or with up to three friends as you dodge overwhelming attacks and unleash devastating builds."
+      },
+      {
+        "item_key": "7796da88ae6febc7",
+        "section": "paid",
+        "title": "Stormworks: Build and Rescue",
+        "url": "https://store.steampowered.com/app/573090/",
+        "message_id": "1521197626568081579",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-06-29T16:56:17.362005+00:00",
+        "description": "Join a world where you design, create and pilot your own air sea rescue service. Release your inner hero as you battle fierce storms out at sea to rescue those in need."
+      },
+      {
+        "item_key": "46879bf183b508ad",
+        "section": "paid",
+        "title": "LEGO® Harry Potter™ Collection",
+        "url": "https://store.steampowered.com/app/2950340/",
+        "message_id": "1521197635824783400",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-06-29T16:56:19.302731+00:00",
+        "description": "The LEGO® Harry Potter™: Collection brings LEGO® Harry Potter™: Years 1-4 and LEGO® Harry Potter™: Years 5-7 together in one game, now remastered with enhanced graphics."
+      },
+      {
+        "item_key": "8db85819a88a959b",
+        "section": "paid",
+        "title": "Warhammer: Vermintide 2",
+        "url": "https://store.steampowered.com/app/552500/",
+        "message_id": "1521197643743891588",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-06-29T16:56:21.416632+00:00",
+        "description": "The critically acclaimed Vermintide 2 is a visually stunning and groundbreaking melee action game pushing the boundaries of the first person co-op genre. Join the fight now!"
       }
     ]
   }
