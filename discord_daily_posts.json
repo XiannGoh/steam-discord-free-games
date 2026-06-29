@@ -1,145 +1,4 @@
 {
-  "2026-05-29": {
-    "run_state": {
-      "section_headers": {
-        "free": {
-          "message_id": "1509963634124783690",
-          "channel_id": "592534544708796474",
-          "posted_at_utc": "2026-05-29T16:56:24.561457+00:00"
-        },
-        "paid": {
-          "message_id": "1509963686473629847",
-          "channel_id": "592534544708796474",
-          "posted_at_utc": "2026-05-29T16:56:36.937762+00:00"
-        }
-      },
-      "last_attempt_at_utc": "2026-05-29T16:56:21.170377+00:00",
-      "intro": {
-        "message_id": "1509963622355308776",
-        "channel_id": "592534544708796474",
-        "posted_at_utc": "2026-05-29T16:56:22.566657+00:00"
-      },
-      "footer": {
-        "message_id": "1509963736709074964",
-        "channel_id": "592534544708796474",
-        "posted_at_utc": "2026-05-29T16:56:48.909905+00:00"
-      },
-      "completed": true,
-      "completed_at_utc": "2026-05-29T16:56:50.119079+00:00"
-    },
-    "items": [
-      {
-        "item_key": "825f4b77af82a00e",
-        "section": "free",
-        "title": "Auto Chess",
-        "url": "https://store.steampowered.com/app/1530300/",
-        "message_id": "1509963641515147365",
-        "channel_id": "592534544708796474",
-        "source_type": "steam_free",
-        "posted_at": "2026-05-29T16:56:26.616044+00:00",
-        "description": "Original Auto Chess"
-      },
-      {
-        "item_key": "91b32cc2fe0eb3c4",
-        "section": "free",
-        "title": "Infinity Kingdom",
-        "url": "https://store.steampowered.com/app/1573360/",
-        "message_id": "1509963650079916082",
-        "channel_id": "592534544708796474",
-        "source_type": "steam_free",
-        "posted_at": "2026-05-29T16:56:28.648848+00:00",
-        "description": "Conquer the city, discover the Infinity! Infinity Kingdom is a cartoon-style mmo strategy game. As a resourceful lord, you must defend the land of Norheim against the evil gnomes while protecting yourself from other invading players!"
-      },
-      {
-        "item_key": "1aebaefad310e01b",
-        "section": "free",
-        "title": "Star Hunter - Infinite Lagrange",
-        "url": "https://store.steampowered.com/app/1755920/",
-        "message_id": "1509963658913124584",
-        "channel_id": "592534544708796474",
-        "source_type": "steam_free",
-        "posted_at": "2026-05-29T16:56:31.006449+00:00",
-        "description": "In a remote corner of the Milky Way, you, a star hunter, will control a fleet, take on a wide variety of bounty contracts and missions, and venture into the vastness of space. You will hunt for mysterious items for your employers and explore specific targets in uncharted territory."
-      },
-      {
-        "item_key": "fe32a6d1518e68e6",
-        "section": "free",
-        "title": "PICO PARK:Classic Edition",
-        "url": "https://store.steampowered.com/app/461040/",
-        "message_id": "1509963668107038895",
-        "channel_id": "592534544708796474",
-        "source_type": "steam_free",
-        "posted_at": "2026-05-29T16:56:32.993765+00:00",
-        "description": "PICO PARK:Classic Edition is a cooperative local/online multiplay action puzzle game for 2-10 players."
-      },
-      {
-        "item_key": "cbda4b7c95cb42af",
-        "section": "free",
-        "title": "Burger Shift: Team Rush: Prologue",
-        "url": "https://store.steampowered.com/app/3821150/",
-        "message_id": "1509963677002895532",
-        "channel_id": "592534544708796474",
-        "source_type": "steam_free",
-        "posted_at": "2026-05-29T16:56:35.289679+00:00",
-        "description": "Run the world's most chaotic fast food joint! Play solo or with up to 8 friends as you take orders, make burgers, and hustle to keep customers happy. Grow your business with every shift."
-      },
-      {
-        "item_key": "6ab4a008cf259a07",
-        "section": "paid",
-        "title": "LEGO® The Lord of the Rings™",
-        "url": "https://store.steampowered.com/app/214510/",
-        "message_id": "1509963693067206808",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-05-29T16:56:38.951961+00:00",
-        "description": "Based on The Lord of the Rings motion picture trilogy, LEGO® The Lord of the Rings follows the original story-lines of The Lord of the Rings: The Fellowship of the Ring, The Lord of the Rings: The Two Towers, and The Lord of the Rings: The Return of the King, taking players through the epic story events re-imagined with the humor and endl"
-      },
-      {
-        "item_key": "f4e596d0175a581a",
-        "section": "paid",
-        "title": "Wartales",
-        "url": "https://store.steampowered.com/app/1527950/",
-        "message_id": "1509963701829242960",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-05-29T16:56:40.982204+00:00",
-        "description": "Wartales is an open world RPG in which you lead a group of mercenaries in their search for wealth across a massive medieval universe. Explore the world, recruit companions, collect bounties and unravel the secrets of the tombs of the ancients!"
-      },
-      {
-        "item_key": "511df190859494bc",
-        "section": "paid",
-        "title": "House Flipper",
-        "url": "https://store.steampowered.com/app/613100/",
-        "message_id": "1509963710460858610",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-05-29T16:56:43.260191+00:00",
-        "description": "House Flipper is a unique chance to become a one-man renovation crew. Buy, repair and remodel devastated houses. Give them a second life and sell them at a profit!"
-      },
-      {
-        "item_key": "5467ad4a7474aadb",
-        "section": "paid",
-        "title": "Door Kickers 2: Task Force North",
-        "url": "https://store.steampowered.com/app/1239080/",
-        "message_id": "1509963720019677255",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-05-29T16:56:45.125911+00:00",
-        "description": "Command military Special Ops Teams in gripping tactical combat against a Middle East-based terrorist network. Sequel to RockPaperShotgun's \"Best Tactics Game of 2014\"."
-      },
-      {
-        "item_key": "9c5468be5c6756af",
-        "section": "paid",
-        "title": "Barotrauma",
-        "url": "https://store.steampowered.com/app/602960/",
-        "message_id": "1509963728097902602",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-05-29T16:56:47.087722+00:00",
-        "description": "Barotrauma is a 2D co-op submarine simulator – in space, with survival horror and RPG elements. Steer your submarine, complete missions, fight monsters, fix leaks, operate machinery, man the guns and craft items, and stay alert: danger in Barotrauma doesn’t announce itself!"
-      }
-    ]
-  },
   "2026-05-30": {
     "run_state": {
       "section_headers": {
@@ -4614,5 +4473,146 @@
       "skipped_reason": "no_eligible_winners",
       "updated_at_utc": "2026-06-27T23:58:46.960884+00:00"
     }
+  },
+  "2026-06-28": {
+    "run_state": {
+      "section_headers": {
+        "free": {
+          "message_id": "1520807288858738858",
+          "channel_id": "592534544708796474",
+          "posted_at_utc": "2026-06-28T15:05:13.096813+00:00"
+        },
+        "paid": {
+          "message_id": "1520807338624286972",
+          "channel_id": "592534544708796474",
+          "posted_at_utc": "2026-06-28T15:05:25.127571+00:00"
+        }
+      },
+      "last_attempt_at_utc": "2026-06-28T15:05:10.512003+00:00",
+      "intro": {
+        "message_id": "1520807279392198666",
+        "channel_id": "592534544708796474",
+        "posted_at_utc": "2026-06-28T15:05:11.577760+00:00"
+      },
+      "footer": {
+        "message_id": "1520807385269272638",
+        "channel_id": "592534544708796474",
+        "posted_at_utc": "2026-06-28T15:05:36.334339+00:00"
+      },
+      "completed": true,
+      "completed_at_utc": "2026-06-28T15:05:37.540915+00:00"
+    },
+    "items": [
+      {
+        "item_key": "15d0e1ced46d8127",
+        "section": "free",
+        "title": "Doomsday: Last Survivors",
+        "url": "https://store.steampowered.com/app/2439510/",
+        "message_id": "1520807295548653759",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-06-28T15:05:15.226029+00:00",
+        "description": "Z-Virus Adventure upgrade! Defend the survivors' last shelter from the zombies!"
+      },
+      {
+        "item_key": "5c5f3c28ab405ede",
+        "section": "free",
+        "title": "Kings Call",
+        "url": "https://store.steampowered.com/app/2674290/",
+        "message_id": "1520807304998551553",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-06-28T15:05:17.390897+00:00",
+        "description": "Collect an array of creature and skill cards through quests, upgrades and trading, and craft your ultimate deck by choosing your favorite cards and prepare for epic battles. Dive into the exhilaration of strategic gameplay and let your inner tactician shine to outsmart your opponents!"
+      },
+      {
+        "item_key": "dc8ee5414a02bb9d",
+        "section": "free",
+        "title": "Brighter Shores",
+        "url": "https://store.steampowered.com/app/2791440/",
+        "message_id": "1520807313802268804",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-06-28T15:05:19.645295+00:00",
+        "description": "Brighter Shores is an all new adventure from award winning MMORPG designer Andrew Gower. It is an enchanting point-and-click style RPG with hundreds of hours of gameplay, set in a land of magic and mysteries, with a huge number of professions to try, and something new to find around every corner."
+      },
+      {
+        "item_key": "dd1e09011e9909bb",
+        "section": "free",
+        "title": "Dungeon Fighter Online",
+        "url": "https://store.steampowered.com/app/495910/",
+        "message_id": "1520807322937725009",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-06-28T15:05:21.621727+00:00",
+        "description": "Get ready for the ultimate brawl! Dungeon Fighter Online is a classic beat-em up 2D action game with an epic storyline and RPG elements! Choose from 17 diverse classes, and unravel ancient mysteries as you punch, slash, shoot, or summon your way to victory!"
+      },
+      {
+        "item_key": "7d1c00171c996fe9",
+        "section": "free",
+        "title": "World of Warplanes",
+        "url": "https://store.steampowered.com/app/790710/",
+        "message_id": "1520807330915155990",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-06-28T15:05:23.400501+00:00",
+        "description": "World of Warplanes is an aerial combat MMO action game set in the Golden Age of military aviation. The game throws players into a never-ending battle for dominance of the skies."
+      },
+      {
+        "item_key": "7951dbfd7743197c",
+        "section": "paid",
+        "title": "Drive Beyond Horizons",
+        "url": "https://store.steampowered.com/app/2625420/",
+        "message_id": "1520807345695887380",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-06-28T15:05:26.830017+00:00",
+        "description": "Explore, survive, and push the boundaries of the horizon in a vast, procedurally generated world. Customize your vehicle, face unpredictable events, gather resources, and embark on a unique adventure, alone or with up to 4 players."
+      },
+      {
+        "item_key": "5f9e8186977f8437",
+        "section": "paid",
+        "title": "Rivals of Aether II",
+        "url": "https://store.steampowered.com/app/2217000/",
+        "message_id": "1520807352901832826",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-06-28T15:05:28.567067+00:00",
+        "description": "Rivals of Aether II is the sequel to the hit indie fighting game, Rivals of Aether. Play as both new and returning elemental fighters in the next generation of platform fighters."
+      },
+      {
+        "item_key": "d5762db1bbaea2aa",
+        "section": "paid",
+        "title": "Call of Duty®: Modern Warfare® 3 (2011)",
+        "url": "https://store.steampowered.com/app/42680/",
+        "message_id": "1520807360317227139",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-06-28T15:05:30.570876+00:00",
+        "description": "The best-selling first-person action series of all-time returns with an epic sequel to the multiple GOTY award winner Call of Duty®: Modern Warfare® 2"
+      },
+      {
+        "item_key": "7cbb99bf092cb898",
+        "section": "paid",
+        "title": "Squad",
+        "url": "https://store.steampowered.com/app/393380/",
+        "message_id": "1520807368680538267",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-06-28T15:05:32.629736+00:00",
+        "description": "Squad is a tactical FPS that provides authentic combat experiences through teamwork, communication, and realistic combat. It bridges the gap between arcade shooter and military realism with 100-player battles, combined-arms warfare, and base building."
+      },
+      {
+        "item_key": "819f45c7a9d812ab",
+        "section": "paid",
+        "title": "Castle Crashers®",
+        "url": "https://store.steampowered.com/app/204360/",
+        "message_id": "1520807377207558154",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-06-28T15:05:34.325175+00:00",
+        "description": "Hack, slash, and smash your way to victory in this award winning 2D arcade adventure from The Behemoth!"
+      }
+    ]
   }
 }
