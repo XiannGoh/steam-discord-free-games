@@ -1,123 +1,4 @@
 {
-  "2026-05-31": {
-    "run_state": {
-      "section_headers": {
-        "free": {
-          "message_id": "1510655665469919312",
-          "channel_id": "592534544708796474",
-          "posted_at_utc": "2026-05-31T14:46:17.557818+00:00"
-        },
-        "paid": {
-          "message_id": "1510655695559590073",
-          "channel_id": "592534544708796474",
-          "posted_at_utc": "2026-05-31T14:46:24.719865+00:00"
-        }
-      },
-      "last_attempt_at_utc": "2026-05-31T14:46:14.561829+00:00",
-      "intro": {
-        "message_id": "1510655654937886741",
-        "channel_id": "592534544708796474",
-        "posted_at_utc": "2026-05-31T14:46:15.950317+00:00"
-      },
-      "footer": {
-        "message_id": "1510655744469499944",
-        "channel_id": "592534544708796474",
-        "posted_at_utc": "2026-05-31T14:46:36.524412+00:00"
-      },
-      "completed": true,
-      "completed_at_utc": "2026-05-31T14:46:37.733696+00:00"
-    },
-    "items": [
-      {
-        "item_key": "18f002406ba867dd",
-        "section": "free",
-        "title": "Dawn of Ages",
-        "url": "https://store.steampowered.com/app/3247200/",
-        "message_id": "1510655671769497811",
-        "channel_id": "592534544708796474",
-        "source_type": "steam_free",
-        "posted_at": "2026-05-31T14:46:19.280567+00:00",
-        "description": "Experience authentic medieval warfare. Command vast armies in brutal mass battles, utilizing diverse weapons and tactics. Embark on historical campaigns against rival kingdoms or challenge real opponents in epic PvP wars."
-      },
-      {
-        "item_key": "cab22b7a437091bb",
-        "section": "free",
-        "title": "MONSTER CARDS",
-        "url": "https://store.steampowered.com/app/2010530/",
-        "message_id": "1510655679411654748",
-        "channel_id": "592534544708796474",
-        "source_type": "steam_free",
-        "posted_at": "2026-05-31T14:46:21.320853+00:00",
-        "description": "Bring your original deck of cards and play against everyone!"
-      },
-      {
-        "item_key": "98db022726e5caee",
-        "section": "free",
-        "title": "Hamster Playground",
-        "url": "https://store.steampowered.com/app/1442670/",
-        "message_id": "1510655688018362369",
-        "channel_id": "592534544708796474",
-        "source_type": "steam_free",
-        "posted_at": "2026-05-31T14:46:23.140662+00:00",
-        "description": "Prepare for cuteness overload, relentless training, and fierce rivalry as you and your hamsters take on challenges while traversing the maze and riding a skateboard, with more modes coming soon! Be the first to cross the finish line to earn rewards and yummy treats!"
-      },
-      {
-        "item_key": "b8827d6a437610f9",
-        "section": "paid",
-        "title": "VALHALL: Harbinger",
-        "url": "https://store.steampowered.com/app/908740/",
-        "message_id": "1510655702853746769",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-05-31T14:46:26.726616+00:00",
-        "description": "VALHALL is a blend of multiple genres, combining first & third person directional physical combat slasher with a survival experience set in a brutal world of Vikings. Survive, feel Thor's power, become an einherjar, and enter the ultimate battlefield!"
-      },
-      {
-        "item_key": "4b5ed7e772aaaf0c",
-        "section": "paid",
-        "title": "Flashing Lights - Police, Firefighting, Emergency Services (EMS) Simulator",
-        "url": "https://store.steampowered.com/app/605740/",
-        "message_id": "1510655710877450260",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-05-31T14:46:28.769355+00:00",
-        "description": "Play solo or in up to 10-player multiplayer co-op! Flashing Lights is an open world police, firefighting and EMS simulator game with plenty of opportunity for role-play or more relaxed fun with friends. Become the law or save lives! Discover leagues of player-created mods!"
-      },
-      {
-        "item_key": "87da3489835d60c7",
-        "section": "paid",
-        "title": "Animal Shelter 2",
-        "url": "https://store.steampowered.com/app/2658510/",
-        "message_id": "1510655719391760385",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-05-31T14:46:30.729346+00:00",
-        "description": "Welcome back to the heartwarming world of Animal Shelter 2! Provide a loving home for every four-legged friend in need – play with them, pet them, even dress them up! Get to know them and find them a loving family. Play with your friends and manage your shelter together in co-op!"
-      },
-      {
-        "item_key": "5efadb19d10dc88a",
-        "section": "paid",
-        "title": "Flock Around",
-        "url": "https://store.steampowered.com/app/3618030/",
-        "message_id": "1510655727587430502",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-05-31T14:46:32.896319+00:00",
-        "description": "Flock Around is a multiplayer bird watching game. Explore a nature sanctuary with friends, snap pictures of birds, and fill out the guide book!"
-      },
-      {
-        "item_key": "2e4ed5e12379f512",
-        "section": "paid",
-        "title": "Crystal Project",
-        "url": "https://store.steampowered.com/app/1637730/",
-        "message_id": "1510655736617636073",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-05-31T14:46:34.651178+00:00",
-        "description": "Crystal Project is a non-linear JRPG where you are the maker of your own adventure. Explore the world while you find Crystals, unlock classes, learn abilities, and create a strategy capable of taking down the world's toughest bosses. Or just stick to exploring; it's up to you."
-      }
-    ]
-  },
   "2026-06-01": {
     "run_state": {
       "section_headers": {
@@ -4652,5 +4533,173 @@
       "skipped_reason": "no_eligible_winners",
       "updated_at_utc": "2026-06-30T00:00:37.859229+00:00"
     }
+  },
+  "2026-06-30": {
+    "run_state": {
+      "section_headers": {
+        "demo_playtest": {
+          "message_id": "1521542381780861069",
+          "channel_id": "592534544708796474",
+          "posted_at_utc": "2026-06-30T15:46:13.229802+00:00"
+        },
+        "free": {
+          "message_id": "1521542409388036096",
+          "channel_id": "592534544708796474",
+          "posted_at_utc": "2026-06-30T15:46:19.516043+00:00"
+        },
+        "paid": {
+          "message_id": "1521542462349246504",
+          "channel_id": "592534544708796474",
+          "posted_at_utc": "2026-06-30T15:46:32.211278+00:00"
+        }
+      },
+      "last_attempt_at_utc": "2026-06-30T15:46:09.635131+00:00",
+      "intro": {
+        "message_id": "1521542369474904247",
+        "channel_id": "592534544708796474",
+        "posted_at_utc": "2026-06-30T15:46:11.287427+00:00"
+      },
+      "footer": {
+        "message_id": "1521542507761242123",
+        "channel_id": "592534544708796474",
+        "posted_at_utc": "2026-06-30T15:46:42.949261+00:00"
+      },
+      "completed": true,
+      "completed_at_utc": "2026-06-30T15:46:44.155643+00:00"
+    },
+    "items": [
+      {
+        "item_key": "b36fc80b81e01691",
+        "section": "demo_playtest",
+        "title": "Mall Simulator Together",
+        "url": "https://store.steampowered.com/app/4594460/",
+        "message_id": "1521542389741650082",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_demo_playtest",
+        "posted_at": "2026-06-30T15:46:15.556857+00:00",
+        "description": "Mall Simulator Together is a multiplayer shopping mall management simulator where you can open stores, manage deliveries, organize products, hire employees and grow your own mall together with friends."
+      },
+      {
+        "item_key": "2e743688a44cf869",
+        "section": "demo_playtest",
+        "title": "The Echoes",
+        "url": "https://store.steampowered.com/app/4708080/",
+        "message_id": "1521542399422107689",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_demo_playtest",
+        "posted_at": "2026-06-30T15:46:17.916060+00:00",
+        "description": "The Echoes is a 1-4 player co-op horror game. To escape a loop, you must observe your surroundings, memorize details, solve puzzles, and survive."
+      },
+      {
+        "item_key": "6d086f64a6fc3788",
+        "section": "free",
+        "title": "Godius Eternal War",
+        "url": "https://store.steampowered.com/app/4559140/",
+        "message_id": "1521542416014901249",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-06-30T15:46:21.353896+00:00",
+        "description": "A classic 2D pixel MMORPG inspired by the golden age of online RPGs. Join nation wars, explore an open multiplayer world, trade with players, battle in PvP, and experience a community-driven adventure that has continued since 1999."
+      },
+      {
+        "item_key": "518dc0cccca04c22",
+        "section": "free",
+        "title": "MapleStory M",
+        "url": "https://store.steampowered.com/app/3969080/",
+        "message_id": "1521542423807791194",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-06-30T15:46:23.083886+00:00",
+        "description": "The MapleStory you missed is calling you. MapleStory M is an MMORPG full of MapleStory's signature charm and worldview. Enjoy jobs bursting with personality, lighthearted battles, an easy leveling-up system, and even co-op gameplay. Begin your own adventure in this adorable 2D side-scrolling world."
+      },
+      {
+        "item_key": "e560b2aa183b7c3f",
+        "section": "free",
+        "title": "Life is Feudal: Arden",
+        "url": "https://store.steampowered.com/app/3285700/",
+        "message_id": "1521542430955147384",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-06-30T15:46:24.828369+00:00",
+        "description": "Life is Feudal: Arden is a new free-to-play open-world MMORPG set in the Middle Ages, built on the foundation of Life is Feudal: MMO. Engage in thrilling PvP combat, navigate political intrigue, master a variety of professions and craft unique items. Forge your own path to power and greatness!"
+      },
+      {
+        "item_key": "26d7272404624fe6",
+        "section": "free",
+        "title": "Professional Fishing",
+        "url": "https://store.steampowered.com/app/798420/",
+        "message_id": "1521542438588780855",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-06-30T15:46:26.849147+00:00",
+        "description": "Are you falling asleep with a rod? Never again! Professional Fishing will never let you fall asleep! Play an amazing fishing simulator and feel like a real angler! Create your own fishing club and compete with others!"
+      },
+      {
+        "item_key": "6a20104c09d6f033",
+        "section": "free",
+        "title": "Habbo Hotel: Origins",
+        "url": "https://store.steampowered.com/app/3809900/",
+        "message_id": "1521542446926921871",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-06-30T15:46:30.485660+00:00",
+        "description": "A pixel-art social simulation MMO where you customize your avatar, build and decorate rooms, trade rare items, and join live community events in a nostalgic yet ever-evolving virtual world."
+      },
+      {
+        "item_key": "ba330d77dd4afb4a",
+        "section": "paid",
+        "title": "Plants vs. Zombies™ Garden Warfare 2: Deluxe Edition",
+        "url": "https://store.steampowered.com/app/1922560/",
+        "message_id": "1521542469098147974",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-06-30T15:46:34.206190+00:00",
+        "description": "Ready the Peashooters and prepare for the craziest, funniest shooter in the universe: Plants vs. Zombies Garden Warfare 2."
+      },
+      {
+        "item_key": "83c5b1e06c56eb7c",
+        "section": "paid",
+        "title": "Foxhole",
+        "url": "https://store.steampowered.com/app/505460/",
+        "message_id": "1521542477650198608",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-06-30T15:46:35.922678+00:00",
+        "description": "Foxhole is a massively multiplayer game where thousands of players shape the outcome of a persistent online war. Every individual soldier is a player that contributes to the war effort through logistics, base building, reconnaissance, combat, and more."
+      },
+      {
+        "item_key": "e957a8f2d758267c",
+        "section": "paid",
+        "title": "A Way Out",
+        "url": "https://store.steampowered.com/app/1222700/",
+        "message_id": "1521542484830715974",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-06-30T15:46:37.683807+00:00",
+        "description": "A Way Out is an exclusively co-op adventure where you play the role of one of two prisoners making their daring escape from prison."
+      },
+      {
+        "item_key": "7b0446fa50ff8bd3",
+        "section": "paid",
+        "title": "Generation Zero®",
+        "url": "https://store.steampowered.com/app/704270/",
+        "message_id": "1521542492225536080",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-06-30T15:46:39.456374+00:00",
+        "description": "Generation Zero is a stealth-action shooter where you wage guerilla warfare against lethal mechanical enemies. Explore a vast open world map inspired by the Swedish Cold War era, take part in the resistance alone or with up to three friends in seamless co-op."
+      },
+      {
+        "item_key": "f43d9c8bfc161b38",
+        "section": "paid",
+        "title": "Tiny Tina's Wonderlands",
+        "url": "https://store.steampowered.com/app/1286680/",
+        "message_id": "1521542499716304916",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-06-30T15:46:41.197266+00:00",
+        "description": "Embark on an epic adventure full of whimsy, wonder, and high-powered weaponry! Roll your own multiclass hero then shoot, loot, slash, and cast on a quest to stop the Dragon Lord."
+      }
+    ]
   }
 }
