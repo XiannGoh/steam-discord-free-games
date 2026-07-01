@@ -15,12 +15,12 @@
       "assignments": {
         "195462430535581708": {
           "status": "dropped",
-          "updated_at_utc": "2026-07-01T14:33:37.782703+00:00"
+          "updated_at_utc": "2026-07-01T17:13:21.092490+00:00"
         }
       },
       "archived": true,
       "created_at_utc": "2026-04-10T09:39:19.389733+00:00",
-      "updated_at_utc": "2026-07-01T14:33:37.782731+00:00",
+      "updated_at_utc": "2026-07-01T17:13:21.092516+00:00",
       "conflicting_users": [],
       "last_activity_date": "2026-07-01"
     },
@@ -38,12 +38,12 @@
       "assignments": {
         "195462430535581708": {
           "status": "dropped",
-          "updated_at_utc": "2026-07-01T14:33:43.651554+00:00"
+          "updated_at_utc": "2026-07-01T17:13:27.233816+00:00"
         }
       },
       "archived": true,
       "created_at_utc": "2026-04-10T09:39:31.041650+00:00",
-      "updated_at_utc": "2026-07-01T14:33:43.651581+00:00",
+      "updated_at_utc": "2026-07-01T17:13:27.233840+00:00",
       "conflicting_users": [],
       "last_activity_date": "2026-07-01"
     },
@@ -61,12 +61,12 @@
       "assignments": {
         "195462430535581708": {
           "status": "dropped",
-          "updated_at_utc": "2026-07-01T14:33:43.213857+00:00"
+          "updated_at_utc": "2026-07-01T17:13:26.699149+00:00"
         }
       },
       "archived": true,
       "created_at_utc": "2026-04-13T09:19:36.758638+00:00",
-      "updated_at_utc": "2026-07-01T14:33:43.213887+00:00",
+      "updated_at_utc": "2026-07-01T17:13:26.699173+00:00",
       "conflicting_users": [],
       "last_activity_date": "2026-07-01"
     },
@@ -84,12 +84,12 @@
       "assignments": {
         "195462430535581708": {
           "status": "dropped",
-          "updated_at_utc": "2026-07-01T14:33:32.257143+00:00"
+          "updated_at_utc": "2026-07-01T17:13:15.481871+00:00"
         }
       },
       "archived": true,
       "created_at_utc": "2026-04-13T09:19:36.851684+00:00",
-      "updated_at_utc": "2026-07-01T14:33:32.257173+00:00",
+      "updated_at_utc": "2026-07-01T17:13:15.481897+00:00",
       "conflicting_users": [],
       "last_activity_date": "2026-07-01"
     },
@@ -107,12 +107,12 @@
       "assignments": {
         "195462430535581708": {
           "status": "dropped",
-          "updated_at_utc": "2026-07-01T14:33:49.593127+00:00"
+          "updated_at_utc": "2026-07-01T17:13:33.299779+00:00"
         }
       },
       "archived": true,
       "created_at_utc": "2026-04-13T09:19:41.011252+00:00",
-      "updated_at_utc": "2026-07-01T14:33:49.593155+00:00",
+      "updated_at_utc": "2026-07-01T17:13:33.299808+00:00",
       "conflicting_users": [],
       "last_activity_date": "2026-07-01"
     },
@@ -130,12 +130,12 @@
       "assignments": {
         "195462430535581708": {
           "status": "dropped",
-          "updated_at_utc": "2026-07-01T14:33:49.120811+00:00"
+          "updated_at_utc": "2026-07-01T17:13:32.839035+00:00"
         }
       },
       "archived": true,
       "created_at_utc": "2026-04-13T09:19:41.234758+00:00",
-      "updated_at_utc": "2026-07-01T14:33:49.120839+00:00",
+      "updated_at_utc": "2026-07-01T17:13:32.839064+00:00",
       "conflicting_users": [],
       "last_activity_date": "2026-07-01"
     },
@@ -149,12 +149,12 @@
       "assignments": {
         "195462430535581708": {
           "status": "dropped",
-          "updated_at_utc": "2026-07-01T14:47:28.072914+00:00"
+          "updated_at_utc": "2026-07-01T17:27:36.581955+00:00"
         }
       },
       "archived": true,
       "created_at_utc": "2026-05-11T08:58:07.272764+00:00",
-      "updated_at_utc": "2026-07-01T14:47:28.072940+00:00",
+      "updated_at_utc": "2026-07-01T17:27:36.581978+00:00",
       "last_activity_date": "2026-07-01",
       "conflicting_users": []
     },
@@ -172,12 +172,12 @@
       "assignments": {
         "195462430535581708": {
           "status": "dropped",
-          "updated_at_utc": "2026-07-01T14:47:16.832689+00:00"
+          "updated_at_utc": "2026-07-01T17:27:25.492012+00:00"
         }
       },
       "archived": true,
       "created_at_utc": "2026-05-12T02:54:35.624275+00:00",
-      "updated_at_utc": "2026-07-01T14:47:16.832716+00:00",
+      "updated_at_utc": "2026-07-01T17:27:25.492035+00:00",
       "last_activity_date": "2026-07-01",
       "conflicting_users": []
     },
@@ -195,16 +195,16 @@
       "assignments": {
         "195462430535581708": {
           "status": "dropped",
-          "updated_at_utc": "2026-07-01T14:47:16.400326+00:00"
+          "updated_at_utc": "2026-07-01T17:27:25.004575+00:00"
         },
         "137123568952672257": {
           "status": "dropped",
-          "updated_at_utc": "2026-07-01T14:47:39.254369+00:00"
+          "updated_at_utc": "2026-07-01T17:27:48.358080+00:00"
         }
       },
       "archived": true,
       "created_at_utc": "2026-05-12T02:54:41.069604+00:00",
-      "updated_at_utc": "2026-07-01T14:47:39.254396+00:00",
+      "updated_at_utc": "2026-07-01T17:27:48.358103+00:00",
       "last_activity_date": "2026-07-01",
       "conflicting_users": []
     },
@@ -222,12 +222,12 @@
       "assignments": {
         "195462430535581708": {
           "status": "dropped",
-          "updated_at_utc": "2026-07-01T14:34:12.184039+00:00"
+          "updated_at_utc": "2026-07-01T17:13:56.866678+00:00"
         }
       },
       "archived": true,
       "created_at_utc": "2026-05-13T01:59:55.906699+00:00",
-      "updated_at_utc": "2026-07-01T14:34:12.184065+00:00",
+      "updated_at_utc": "2026-07-01T17:13:56.866702+00:00",
       "last_activity_date": "2026-07-01",
       "conflicting_users": []
     },
@@ -245,12 +245,12 @@
       "assignments": {
         "195462430535581708": {
           "status": "dropped",
-          "updated_at_utc": "2026-07-01T14:34:17.611624+00:00"
+          "updated_at_utc": "2026-07-01T17:14:02.486528+00:00"
         }
       },
       "archived": true,
       "created_at_utc": "2026-05-13T01:59:56.299096+00:00",
-      "updated_at_utc": "2026-07-01T14:34:17.611650+00:00",
+      "updated_at_utc": "2026-07-01T17:14:02.486553+00:00",
       "last_activity_date": "2026-07-01",
       "conflicting_users": []
     },
@@ -264,11 +264,11 @@
       "assignments": {
         "195462430535581708": {
           "status": "dropped",
-          "updated_at_utc": "2026-07-01T14:47:27.725528+00:00"
+          "updated_at_utc": "2026-07-01T17:27:35.963820+00:00"
         },
         "137123568952672257": {
           "status": "dropped",
-          "updated_at_utc": "2026-07-01T14:47:44.698379+00:00"
+          "updated_at_utc": "2026-07-01T17:27:53.978630+00:00"
         },
         "164270274928181248": {
           "status": "active",
@@ -277,7 +277,7 @@
       },
       "archived": false,
       "created_at_utc": "2026-05-13T02:00:36.917438+00:00",
-      "updated_at_utc": "2026-07-01T14:47:44.698407+00:00",
+      "updated_at_utc": "2026-07-01T17:27:53.978656+00:00",
       "last_activity_date": "2026-07-01",
       "conflicting_users": []
     },
@@ -295,12 +295,12 @@
       "assignments": {
         "195462430535581708": {
           "status": "dropped",
-          "updated_at_utc": "2026-07-01T14:47:22.261702+00:00"
+          "updated_at_utc": "2026-07-01T17:27:31.136577+00:00"
         }
       },
       "archived": true,
       "created_at_utc": "2026-05-19T09:41:20.701657+00:00",
-      "updated_at_utc": "2026-07-01T14:47:22.261728+00:00",
+      "updated_at_utc": "2026-07-01T17:27:31.136600+00:00",
       "last_activity_date": "2026-07-01",
       "conflicting_users": []
     }
