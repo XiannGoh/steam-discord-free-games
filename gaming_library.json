@@ -3501,6 +3501,44 @@
       },
       "completed": true,
       "completed_at_utc": "2026-07-01T04:00:29.419880+00:00"
+    },
+    "2026-07-02": {
+      "messages": {
+        "header": {
+          "message_id": "1522085769991164025",
+          "channel_id": "1492038691248410676"
+        },
+        "section:other": {
+          "message_id": "1522085772247961620",
+          "channel_id": "1492038691248410676"
+        },
+        "steam:3041230": {
+          "message_id": "1522085773678088272",
+          "channel_id": "1492038691248410676"
+        },
+        "empty:demo_playtest": {
+          "message_id": "1522085785799757907",
+          "channel_id": "1492038691248410676"
+        },
+        "empty:free_picks": {
+          "message_id": "1522085786927894538",
+          "channel_id": "1492038691248410676"
+        },
+        "empty:paid_picks": {
+          "message_id": "1522085788471263232",
+          "channel_id": "1492038691248410676"
+        },
+        "empty:creator_picks": {
+          "message_id": "1522085789499133953",
+          "channel_id": "1492038691248410676"
+        },
+        "footer": {
+          "message_id": "1522085792103534765",
+          "channel_id": "1492038691248410676"
+        }
+      },
+      "completed": true,
+      "completed_at_utc": "2026-07-02T03:45:32.346227+00:00"
     }
   },
   "previous_day_games": {
@@ -3518,14 +3556,14 @@
       "assignments": {
         "195462430535581708": {
           "status": "dropped",
-          "updated_at_utc": "2026-06-30T22:15:21.011816+00:00"
+          "updated_at_utc": "2026-07-01T22:16:59.969126+00:00"
         }
       },
       "archived": true,
       "created_at_utc": "2026-04-10T09:39:19.389733+00:00",
-      "updated_at_utc": "2026-06-30T22:15:21.011840+00:00",
+      "updated_at_utc": "2026-07-01T22:16:59.969149+00:00",
       "conflicting_users": [],
-      "last_activity_date": "2026-06-30"
+      "last_activity_date": "2026-07-01"
     },
     "url:https://www.instagram.com/p/dw6y_zjj2tc/": {
       "identity_key": "url:https://www.instagram.com/p/dw6y_zjj2tc/",
@@ -3541,14 +3579,14 @@
       "assignments": {
         "195462430535581708": {
           "status": "dropped",
-          "updated_at_utc": "2026-06-30T22:15:26.474656+00:00"
+          "updated_at_utc": "2026-07-01T22:17:06.396115+00:00"
         }
       },
       "archived": true,
       "created_at_utc": "2026-04-10T09:39:31.041650+00:00",
-      "updated_at_utc": "2026-06-30T22:15:26.474680+00:00",
+      "updated_at_utc": "2026-07-01T22:17:06.396138+00:00",
       "conflicting_users": [],
-      "last_activity_date": "2026-06-30"
+      "last_activity_date": "2026-07-01"
     },
     "steam:3716600": {
       "identity_key": "steam:3716600",
@@ -3564,14 +3602,14 @@
       "assignments": {
         "195462430535581708": {
           "status": "dropped",
-          "updated_at_utc": "2026-06-30T22:15:25.862023+00:00"
+          "updated_at_utc": "2026-07-01T22:17:05.863694+00:00"
         }
       },
       "archived": true,
       "created_at_utc": "2026-04-13T09:19:36.758638+00:00",
-      "updated_at_utc": "2026-06-30T22:15:25.862082+00:00",
+      "updated_at_utc": "2026-07-01T22:17:05.863758+00:00",
       "conflicting_users": [],
-      "last_activity_date": "2026-06-30"
+      "last_activity_date": "2026-07-01"
     },
     "steam:408400": {
       "identity_key": "steam:408400",
@@ -3587,14 +3625,14 @@
       "assignments": {
         "195462430535581708": {
           "status": "dropped",
-          "updated_at_utc": "2026-06-30T22:15:15.051298+00:00"
+          "updated_at_utc": "2026-07-01T22:16:55.292015+00:00"
         }
       },
       "archived": true,
       "created_at_utc": "2026-04-13T09:19:36.851684+00:00",
-      "updated_at_utc": "2026-06-30T22:15:15.051323+00:00",
+      "updated_at_utc": "2026-07-01T22:16:55.292064+00:00",
       "conflicting_users": [],
-      "last_activity_date": "2026-06-30"
+      "last_activity_date": "2026-07-01"
     },
     "url:https://www.instagram.com/p/dwrvg40brws/": {
       "identity_key": "url:https://www.instagram.com/p/dwrvg40brws/",
@@ -3610,14 +3648,14 @@
       "assignments": {
         "195462430535581708": {
           "status": "dropped",
-          "updated_at_utc": "2026-06-30T22:15:31.790845+00:00"
+          "updated_at_utc": "2026-07-01T22:17:13.616674+00:00"
         }
       },
       "archived": true,
       "created_at_utc": "2026-04-13T09:19:41.011252+00:00",
-      "updated_at_utc": "2026-06-30T22:15:31.790869+00:00",
+      "updated_at_utc": "2026-07-01T22:17:13.616695+00:00",
       "conflicting_users": [],
-      "last_activity_date": "2026-06-30"
+      "last_activity_date": "2026-07-01"
     },
     "url:https://www.instagram.com/p/dwrqgefhfmd/": {
       "identity_key": "url:https://www.instagram.com/p/dwrqgefhfmd/",
@@ -3633,14 +3671,14 @@
       "assignments": {
         "195462430535581708": {
           "status": "dropped",
-          "updated_at_utc": "2026-06-30T22:15:31.328512+00:00"
+          "updated_at_utc": "2026-07-01T22:17:13.060295+00:00"
         }
       },
       "archived": true,
       "created_at_utc": "2026-04-13T09:19:41.234758+00:00",
-      "updated_at_utc": "2026-06-30T22:15:31.328539+00:00",
+      "updated_at_utc": "2026-07-01T22:17:13.060322+00:00",
       "conflicting_users": [],
-      "last_activity_date": "2026-06-30"
+      "last_activity_date": "2026-07-01"
     },
     "steam:2422870": {
       "identity_key": "steam:2422870",
@@ -3652,13 +3690,13 @@
       "assignments": {
         "195462430535581708": {
           "status": "dropped",
-          "updated_at_utc": "2026-06-30T22:29:08.930180+00:00"
+          "updated_at_utc": "2026-07-01T22:31:13.733242+00:00"
         }
       },
       "archived": true,
       "created_at_utc": "2026-05-11T08:58:07.272764+00:00",
-      "updated_at_utc": "2026-06-30T22:29:08.930204+00:00",
-      "last_activity_date": "2026-06-30",
+      "updated_at_utc": "2026-07-01T22:31:13.733264+00:00",
+      "last_activity_date": "2026-07-01",
       "conflicting_users": []
     },
     "steam:2141730": {
@@ -3675,13 +3713,13 @@
       "assignments": {
         "195462430535581708": {
           "status": "dropped",
-          "updated_at_utc": "2026-06-30T22:28:55.489305+00:00"
+          "updated_at_utc": "2026-07-01T22:31:02.686147+00:00"
         }
       },
       "archived": true,
       "created_at_utc": "2026-05-12T02:54:35.624275+00:00",
-      "updated_at_utc": "2026-06-30T22:28:55.489329+00:00",
-      "last_activity_date": "2026-06-30",
+      "updated_at_utc": "2026-07-01T22:31:02.686169+00:00",
+      "last_activity_date": "2026-07-01",
       "conflicting_users": []
     },
     "steam:648800": {
@@ -3698,17 +3736,17 @@
       "assignments": {
         "195462430535581708": {
           "status": "dropped",
-          "updated_at_utc": "2026-06-30T22:28:54.935907+00:00"
+          "updated_at_utc": "2026-07-01T22:31:02.007566+00:00"
         },
         "137123568952672257": {
-          "status": "paused",
-          "updated_at_utc": "2026-06-30T22:16:39.390228+00:00"
+          "status": "dropped",
+          "updated_at_utc": "2026-07-01T22:31:25.553187+00:00"
         }
       },
-      "archived": false,
+      "archived": true,
       "created_at_utc": "2026-05-12T02:54:41.069604+00:00",
-      "updated_at_utc": "2026-06-30T22:29:12.786881+00:00",
-      "last_activity_date": "2026-06-30",
+      "updated_at_utc": "2026-07-01T22:31:25.553210+00:00",
+      "last_activity_date": "2026-07-01",
       "conflicting_users": []
     },
     "steam:3643170": {
@@ -3725,13 +3763,13 @@
       "assignments": {
         "195462430535581708": {
           "status": "dropped",
-          "updated_at_utc": "2026-06-30T22:15:54.560894+00:00"
+          "updated_at_utc": "2026-07-01T22:17:35.170455+00:00"
         }
       },
       "archived": true,
       "created_at_utc": "2026-05-13T01:59:55.906699+00:00",
-      "updated_at_utc": "2026-06-30T22:15:54.560916+00:00",
-      "last_activity_date": "2026-06-30",
+      "updated_at_utc": "2026-07-01T22:17:35.170479+00:00",
+      "last_activity_date": "2026-07-01",
       "conflicting_users": []
     },
     "url:https://www.instagram.com/p/dynmtimtvfg/": {
@@ -3748,13 +3786,13 @@
       "assignments": {
         "195462430535581708": {
           "status": "dropped",
-          "updated_at_utc": "2026-06-30T22:15:59.267869+00:00"
+          "updated_at_utc": "2026-07-01T22:17:39.984528+00:00"
         }
       },
       "archived": true,
       "created_at_utc": "2026-05-13T01:59:56.299096+00:00",
-      "updated_at_utc": "2026-06-30T22:15:59.267893+00:00",
-      "last_activity_date": "2026-06-30",
+      "updated_at_utc": "2026-07-01T22:17:39.984557+00:00",
+      "last_activity_date": "2026-07-01",
       "conflicting_users": []
     },
     "steam:3041230": {
@@ -3767,11 +3805,11 @@
       "assignments": {
         "195462430535581708": {
           "status": "dropped",
-          "updated_at_utc": "2026-06-30T22:29:08.361010+00:00"
+          "updated_at_utc": "2026-07-01T22:31:13.166311+00:00"
         },
         "137123568952672257": {
-          "status": "paused",
-          "updated_at_utc": "2026-06-30T22:16:39.898360+00:00"
+          "status": "dropped",
+          "updated_at_utc": "2026-07-01T22:31:31.201176+00:00"
         },
         "164270274928181248": {
           "status": "active",
@@ -3780,8 +3818,8 @@
       },
       "archived": false,
       "created_at_utc": "2026-05-13T02:00:36.917438+00:00",
-      "updated_at_utc": "2026-06-30T22:29:13.277340+00:00",
-      "last_activity_date": "2026-06-30",
+      "updated_at_utc": "2026-07-01T22:31:31.201202+00:00",
+      "last_activity_date": "2026-07-01",
       "conflicting_users": []
     },
     "steam:3527290": {
@@ -3798,13 +3836,13 @@
       "assignments": {
         "195462430535581708": {
           "status": "dropped",
-          "updated_at_utc": "2026-06-30T22:29:01.308109+00:00"
+          "updated_at_utc": "2026-07-01T22:31:07.461382+00:00"
         }
       },
       "archived": true,
       "created_at_utc": "2026-05-19T09:41:20.701657+00:00",
-      "updated_at_utc": "2026-06-30T22:29:01.308133+00:00",
-      "last_activity_date": "2026-06-30",
+      "updated_at_utc": "2026-07-01T22:31:07.461408+00:00",
+      "last_activity_date": "2026-07-01",
       "conflicting_users": []
     }
   },
