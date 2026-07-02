@@ -1,145 +1,4 @@
 {
-  "2026-06-01": {
-    "run_state": {
-      "section_headers": {
-        "free": {
-          "message_id": "1511081144181854354",
-          "channel_id": "592534544708796474",
-          "posted_at_utc": "2026-06-01T18:56:59.569721+00:00"
-        },
-        "paid": {
-          "message_id": "1511081191187419176",
-          "channel_id": "592534544708796474",
-          "posted_at_utc": "2026-06-01T18:57:11.041018+00:00"
-        }
-      },
-      "last_attempt_at_utc": "2026-06-01T18:56:57.734895+00:00",
-      "intro": {
-        "message_id": "1511081137722626189",
-        "channel_id": "592534544708796474",
-        "posted_at_utc": "2026-06-01T18:56:58.082129+00:00"
-      },
-      "footer": {
-        "message_id": "1511081245763960933",
-        "channel_id": "592534544708796474",
-        "posted_at_utc": "2026-06-01T18:57:23.871871+00:00"
-      },
-      "completed": true,
-      "completed_at_utc": "2026-06-01T18:57:25.080883+00:00"
-    },
-    "items": [
-      {
-        "item_key": "2d73e8db0227f3b0",
-        "section": "free",
-        "title": "Tank Team",
-        "url": "https://store.steampowered.com/app/2587450/",
-        "message_id": "1511081150922100806",
-        "channel_id": "592534544708796474",
-        "source_type": "steam_free",
-        "posted_at": "2026-06-01T18:57:01.730640+00:00",
-        "description": "A team based PVP game where groups of up to 8 players must work together to operate a tank!"
-      },
-      {
-        "item_key": "40d9e5f3ba62ec44",
-        "section": "free",
-        "title": "Tobacco Shop Simulator: Prologue",
-        "url": "https://store.steampowered.com/app/3211690/",
-        "message_id": "1511081159818346556",
-        "channel_id": "592534544708796474",
-        "source_type": "steam_free",
-        "posted_at": "2026-06-01T18:57:03.387454+00:00",
-        "description": "Run your tobacco shop in this free prologue version of the game. Sign contracts with leading brands, order products, and meet customer needs. Play with friends or go solo, and enjoy the growth of your shop."
-      },
-      {
-        "item_key": "decc0ede01fbe397",
-        "section": "free",
-        "title": "Florensia",
-        "url": "https://store.steampowered.com/app/384030/",
-        "message_id": "1511081166806188072",
-        "channel_id": "592534544708796474",
-        "source_type": "steam_free",
-        "posted_at": "2026-06-01T18:57:05.229306+00:00",
-        "description": "Florensia is a Free-to-Play MMORPG and shows you its legendary worlds ashore and at sea with its 3D anime style. Mysterious islands, the great ocean, dungeons, picturesque pirates and dangerous monsters are waiting to be discovered."
-      },
-      {
-        "item_key": "223552356283d15c",
-        "section": "free",
-        "title": "Fishing Grind",
-        "url": "https://store.steampowered.com/app/3019850/",
-        "message_id": "1511081174460530788",
-        "channel_id": "592534544708796474",
-        "source_type": "steam_free",
-        "posted_at": "2026-06-01T18:57:07.061438+00:00",
-        "description": "Fishing Grind is a first person 1-6 player co-op fishing game with a twist. The place you are fishing may not always be safe..."
-      },
-      {
-        "item_key": "64847de652bdd408",
-        "section": "free",
-        "title": "Rumble Fighter: Unleashed",
-        "url": "https://store.steampowered.com/app/357500/",
-        "message_id": "1511081182253813770",
-        "channel_id": "592534544708796474",
-        "source_type": "steam_free",
-        "posted_at": "2026-06-01T18:57:09.213761+00:00",
-        "description": "Rumble Fighter is a free-to-play fighting MMO game with real mixed martial arts and fast-paced beat-em-up action! Brawl with your friends and train to become the top Rumble Fighter!"
-      },
-      {
-        "item_key": "adc1b004ccb149ce",
-        "section": "paid",
-        "title": "The Crew Motorfest",
-        "url": "https://store.steampowered.com/app/2698940/",
-        "message_id": "1511081198921715954",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-06-01T18:57:12.905742+00:00",
-        "description": "Welcome to Motorfest, the ultimate open-world driving experience. Explore the Hawaiian islands of O'ahu and Maui. Celebrate the best of car culture through 20+ themed campaigns (street racing, offroad, drift...) and collect hundreds of iconic vehicles. Enjoy the game free for five hours!"
-      },
-      {
-        "item_key": "5905da31de4a76f0",
-        "section": "paid",
-        "title": "Saleblazers",
-        "url": "https://store.steampowered.com/app/1419850/",
-        "message_id": "1511081206870179890",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-06-01T18:57:14.730941+00:00",
-        "description": "You’re a humble shopkeeper trying to live a peaceful new life, finding yourself surrounded by warring factions and dangerous creatures. Will you be able to carve out a new home for yourself and your customers in this open-world survival shopkeeping simulator?"
-      },
-      {
-        "item_key": "840383195fc555dd",
-        "section": "paid",
-        "title": "FBC: Firebreak",
-        "url": "https://store.steampowered.com/app/2272540/",
-        "message_id": "1511081214654550169",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-06-01T18:57:18.265658+00:00",
-        "description": "Purchase FBC: Firebreak and invite your friends to play the full game for free on any platform. FBC: Firebreak is a three-player cooperative first-person shooter set within a mysterious federal agency under assault by otherworldly forces."
-      },
-      {
-        "item_key": "595c8a887854a201",
-        "section": "paid",
-        "title": "He is Coming",
-        "url": "https://store.steampowered.com/app/2824490/",
-        "message_id": "1511081229246660779",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-06-01T18:57:20.132816+00:00",
-        "description": "Deep in the forgotten corners of the world, a dark force stirs – the Demon King rises once more. Sharpen your wits, seek out powerful artifacts, and stand firm in the face of the apocalypse in this roguelite RPG auto battler."
-      },
-      {
-        "item_key": "c00341d9d3323bb2",
-        "section": "paid",
-        "title": "Warhammer 40,000: Speed Freeks",
-        "url": "https://store.steampowered.com/app/2078450/",
-        "message_id": "1511081237022769393",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-06-01T18:57:22.045634+00:00",
-        "description": "High-orktane combat racing in the Warhammer 40,000 universe! Drive buggies, tanks and helicopters, mastering advanced movement and explosive weaponry online or against bots. Unlock gear, customize your rides and use the NEW Creation Workshop to create, share, and play custom maps from the community!"
-      }
-    ]
-  },
   "2026-06-02": {
     "run_state": {
       "section_headers": {
@@ -4699,6 +4558,163 @@
         "source_type": "paid_under_20",
         "posted_at": "2026-06-30T15:46:41.197266+00:00",
         "description": "Embark on an epic adventure full of whimsy, wonder, and high-powered weaponry! Roll your own multiclass hero then shoot, loot, slash, and cast on a quest to stop the Dragon Lord."
+      }
+    ]
+  },
+  "2026-07-01": {
+    "run_state": {
+      "section_headers": {
+        "demo_playtest": {
+          "message_id": "1521907599166148668",
+          "channel_id": "592534544708796474",
+          "posted_at_utc": "2026-07-01T15:57:27.762472+00:00"
+        },
+        "free": {
+          "message_id": "1521907614802251937",
+          "channel_id": "592534544708796474",
+          "posted_at_utc": "2026-07-01T15:57:31.266373+00:00"
+        },
+        "paid": {
+          "message_id": "1521907667763855573",
+          "channel_id": "592534544708796474",
+          "posted_at_utc": "2026-07-01T15:57:44.056786+00:00"
+        }
+      },
+      "last_attempt_at_utc": "2026-07-01T15:57:25.078370+00:00",
+      "intro": {
+        "message_id": "1521907590051791051",
+        "channel_id": "592534544708796474",
+        "posted_at_utc": "2026-07-01T15:57:25.953600+00:00"
+      },
+      "footer": {
+        "message_id": "1521907719118913590",
+        "channel_id": "592534544708796474",
+        "posted_at_utc": "2026-07-01T15:57:56.471444+00:00"
+      },
+      "completed": true,
+      "completed_at_utc": "2026-07-01T15:57:57.678259+00:00"
+    },
+    "items": [
+      {
+        "item_key": "4e7baf646e8fedee",
+        "section": "demo_playtest",
+        "title": "Terrinoth®: Heroes of Descent Demo",
+        "url": "https://store.steampowered.com/app/4162860/",
+        "message_id": "1521907606732668940",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_demo_playtest",
+        "posted_at": "2026-07-01T15:57:29.679550+00:00",
+        "description": "Step into the epic fantasy universe of Descent with the first co-op tactical RPG forged from the legendary dungeon crawling boardgame. Lead a company of fearless heroes across Terrinoth, survive against epic boss battles in turn-based combat, and settle the fate of a world facing unending darkness."
+      },
+      {
+        "item_key": "1822bf4d96efbf16",
+        "section": "free",
+        "title": "M.A.R.S.",
+        "url": "https://store.steampowered.com/app/314430/",
+        "message_id": "1521907621572116532",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-07-01T15:57:33.119811+00:00",
+        "description": "MARS is a Free-To-Play Third Person Shooter set in an evolving sci-fi world. From the hilarious Headhunter mode, to Huge Mecha vs Mecha battles, to fully customizable loadouts; whether Co-op or PvP, M.A.R.S. has something for everyone. Kill, Die, Repeat."
+      },
+      {
+        "item_key": "ae77eb1305e80eeb",
+        "section": "free",
+        "title": "Soccer Field Pro 3D",
+        "url": "https://store.steampowered.com/app/3468160/",
+        "message_id": "1521907629759397888",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-07-01T15:57:36.933922+00:00",
+        "description": "Free-to-play 3D football game with realistic physics, fast-paced multiplayer matches, player customization, and room creation. Play with friends or compete online!"
+      },
+      {
+        "item_key": "5687e558662514c9",
+        "section": "free",
+        "title": "WHO'S WHO 2.0",
+        "url": "https://store.steampowered.com/app/3391260/",
+        "message_id": "1521907644850245734",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-07-01T15:57:38.644476+00:00",
+        "description": "Who's Who 2.0 is back with brand new team! Looking for another dynamic party game? Each characters now holds unique skills which now will impact each modes with its own advantages! You can play solo, or party up with your friends and become the winner by eliminating the real players among the NPCs."
+      },
+      {
+        "item_key": "d51f32c65cd5396f",
+        "section": "free",
+        "title": "Age of Empires Mobile: PC Edition",
+        "url": "https://store.steampowered.com/app/2783360/",
+        "message_id": "1521907652077031498",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-07-01T15:57:40.482235+00:00",
+        "description": "Build empires, forge alliances and conquer hundreds of players in real time."
+      },
+      {
+        "item_key": "3e53b847beac1948",
+        "section": "free",
+        "title": "Age of Conquest IV",
+        "url": "https://store.steampowered.com/app/314970/",
+        "message_id": "1521907660058919054",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-07-01T15:57:42.404952+00:00",
+        "description": "Age of Conquest is a turn-based grand strategy wargame."
+      },
+      {
+        "item_key": "413574035ebeaef3",
+        "section": "paid",
+        "title": "Pax Dei",
+        "url": "https://store.steampowered.com/app/1995520/",
+        "message_id": "1521907675086979246",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-07-01T15:57:46.009775+00:00",
+        "description": "Welcome to a vast, social sandbox MMO inspired by the legends of the medieval era. Here, myths are real, ghosts exist, and magic is unquestioned. Join thousands of players as you explore the land, build your home, forge your reputation, and craft your own stories. What world will you make?"
+      },
+      {
+        "item_key": "999496915dcc5b11",
+        "section": "paid",
+        "title": "War of Rights",
+        "url": "https://store.steampowered.com/app/424030/",
+        "message_id": "1521907683282653185",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-07-01T15:57:47.835661+00:00",
+        "description": "War of Rights is a first person multiplayer game featuring massive 400 player battles with a focus on historical authenticity, teamplay and immersion. It is set during the perilous days of the American Civil War, in the Maryland Campaign of September, 1862."
+      },
+      {
+        "item_key": "2d32960d0ad99e86",
+        "section": "paid",
+        "title": "Equinox: Homecoming",
+        "url": "https://store.steampowered.com/app/3258290/",
+        "message_id": "1521907691021144296",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-07-01T15:57:50.086648+00:00",
+        "description": "Saddle up with friends and investigate a dark mystery, where each trail leads to wonder and intrigue. A string of events has set the idyllic island on edge. Discover the truth behind your mother’s disappearance and a local's sudden death. For fans of horses, murder mysteries, and cozy exploration!"
+      },
+      {
+        "item_key": "1b35e22b671eba22",
+        "section": "paid",
+        "title": "Riders Republic",
+        "url": "https://store.steampowered.com/app/2290180/",
+        "message_id": "1521907700513112156",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-07-01T15:57:52.626040+00:00",
+        "description": "Jump into a massive multiplayer playground! Bike, ski, snowboard, or wingsuit across an open world sports paradise where the rules are yours to make or break."
+      },
+      {
+        "item_key": "34ce8602a3f1a782",
+        "section": "paid",
+        "title": "Alchemy Factory",
+        "url": "https://store.steampowered.com/app/3669570/",
+        "message_id": "1521907710977638451",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-07-01T15:57:54.421017+00:00",
+        "description": "Craft your workshop as an alchemist!‌ Harness arcane devices to automate crafting. Sell alchemical goods, fulfill commissions, and rise to become a renowned alchemy magnate. ‌Multiplayer Supported!‌ Invite master designers to (ahem) contribute their expertise—let them optimize your production lines!"
       }
     ]
   }
