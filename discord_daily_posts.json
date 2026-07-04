@@ -1,145 +1,4 @@
 {
-  "2026-06-03": {
-    "run_state": {
-      "section_headers": {
-        "free": {
-          "message_id": "1511796064137515199",
-          "channel_id": "592534544708796474",
-          "posted_at_utc": "2026-06-03T18:17:49.716337+00:00"
-        },
-        "paid": {
-          "message_id": "1511796110300287076",
-          "channel_id": "592534544708796474",
-          "posted_at_utc": "2026-06-03T18:18:00.966907+00:00"
-        }
-      },
-      "last_attempt_at_utc": "2026-06-03T18:17:44.265566+00:00",
-      "intro": {
-        "message_id": "1511796042826256534",
-        "channel_id": "592534544708796474",
-        "posted_at_utc": "2026-06-03T18:17:48.200604+00:00"
-      },
-      "footer": {
-        "message_id": "1511796156970041526",
-        "channel_id": "592534544708796474",
-        "posted_at_utc": "2026-06-03T18:18:12.578144+00:00"
-      },
-      "completed": true,
-      "completed_at_utc": "2026-06-03T18:18:13.789166+00:00"
-    },
-    "items": [
-      {
-        "item_key": "c543ff8efa536dff",
-        "section": "free",
-        "title": "Counter-Strike Nexon",
-        "url": "https://store.steampowered.com/app/273110/",
-        "message_id": "1511796071070699741",
-        "channel_id": "592534544708796474",
-        "source_type": "steam_free",
-        "posted_at": "2026-06-03T18:17:51.736855+00:00",
-        "description": "Counter-Strike Nexon is a Free to Play MMOFPS offering competitive PvP and PvE action including content from the original Counter-Strike and all new game modes, map creation function, weapons, and hordes of Zombies!"
-      },
-      {
-        "item_key": "1d666d4c3e5c8e74",
-        "section": "free",
-        "title": "Kathana",
-        "url": "https://store.steampowered.com/app/2081880/",
-        "message_id": "1511796078943404044",
-        "channel_id": "592534544708796474",
-        "source_type": "steam_free",
-        "posted_at": "2026-06-03T18:17:53.505017+00:00",
-        "description": "Adventure awaits in Kathana Select your character, quest with friends, face challenging bosses, explore dungeons, and engage in guild wars and PvP battles!"
-      },
-      {
-        "item_key": "6c0d01c2e32dc347",
-        "section": "free",
-        "title": "Stash",
-        "url": "https://store.steampowered.com/app/466660/",
-        "message_id": "1511796086400876677",
-        "channel_id": "592534544708796474",
-        "source_type": "steam_free",
-        "posted_at": "2026-06-03T18:17:55.185423+00:00",
-        "description": "Stash is an MMO with turn based grid combat, custom housing, a tabletop art style, and more loot than you can fit in a portable hole. Stash has the charm of a pen-and-paper gaming group with the gameplay of a deep, interesting, unique RPG. Join our friendly community!"
-      },
-      {
-        "item_key": "bd3602edb09f77a2",
-        "section": "free",
-        "title": "EverQuest",
-        "url": "https://store.steampowered.com/app/205710/",
-        "message_id": "1511796093439054028",
-        "channel_id": "592534544708796474",
-        "source_type": "steam_free",
-        "posted_at": "2026-06-03T18:17:57.148144+00:00",
-        "description": "Welcome to EverQuest® - the original fantasy MMORPG. Explore huge worlds, fight challenging foes, and grow your character with friends. Discover why players have quested, grouped, and raided in Norrath for more than two decades."
-      },
-      {
-        "item_key": "0c8811f9c34d64ca",
-        "section": "free",
-        "title": "Pool 2D - Poolians",
-        "url": "https://store.steampowered.com/app/891040/",
-        "message_id": "1511796101726867476",
-        "channel_id": "592534544708796474",
-        "source_type": "steam_free",
-        "posted_at": "2026-06-03T18:17:58.979334+00:00",
-        "description": "Pool 2D is a free pool game including 8-ball,9-ball,15-ball,3-ball,rotation and blackjack. The graphics are spectacular and the physics are realistic and accurate. Whether you play against the computer or against real players from all over the world online, the action is smooth and fast paced!"
-      },
-      {
-        "item_key": "386a83670cc2949d",
-        "section": "paid",
-        "title": "Super Battle Golf",
-        "url": "https://store.steampowered.com/app/4069520/",
-        "message_id": "1511796117749108778",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-06-03T18:18:02.764709+00:00",
-        "description": "An online 1-8 player golf game where everyone plays at the same time. Swing, shoot, sabotage, and finish first by any means necessary in a free-for-all rush to the hole."
-      },
-      {
-        "item_key": "9fa49d9bfa7a8a9e",
-        "section": "paid",
-        "title": "SCUM",
-        "url": "https://store.steampowered.com/app/513710/",
-        "message_id": "1511796125479473172",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-06-03T18:18:04.661198+00:00",
-        "description": "Welcome to SCUM, a ruthless open-world survival game where deep character customization defines the prisoner you become. Loot, craft, hunt, build, and fight to outlast a hostile island where every choice can change your fate. Stay alive. Stay dangerous. Become harder to kill."
-      },
-      {
-        "item_key": "0b2cd79257d29d06",
-        "section": "paid",
-        "title": "Pratfall",
-        "url": "https://store.steampowered.com/app/4244510/",
-        "message_id": "1511796133217697963",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-06-03T18:18:06.476477+00:00",
-        "description": "A co-op game for 1-6+ players where you fall, dig, and explode your way down a dangerous cave system to find your lost dog. Catch your friends and watch your step on this journey full of traps, hazards, and the most deadly force of all: gravity. Will you jump into the unknown to rescue your dog?"
-      },
-      {
-        "item_key": "a6e1c846804faed8",
-        "section": "paid",
-        "title": "Barony",
-        "url": "https://store.steampowered.com/app/371970/",
-        "message_id": "1511796140918571200",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-06-03T18:18:08.383748+00:00",
-        "description": "Barony is the premier first-person roguelike with cooperative play! Adventure alone, or gather a party with iconic and unusual RPG classes to face off against the brutal dungeons. Test your resourcefulness, wits, and friendships, on your quest to lift the evil lich's curse!"
-      },
-      {
-        "item_key": "ff293b98411fd935",
-        "section": "paid",
-        "title": "Cheap Car Repair",
-        "url": "https://store.steampowered.com/app/2904040/",
-        "message_id": "1511796148963250206",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-06-03T18:18:10.189554+00:00",
-        "description": "Cheap Car Repair - go back in time to Poland of the 90's. Run your own Cheap Car Repair shop. Look for savings wherever you can. Make lots of money and avoid angry customers!"
-      }
-    ]
-  },
   "2026-06-04": {
     "run_state": {
       "section_headers": {
@@ -4715,6 +4574,147 @@
         "source_type": "paid_under_20",
         "posted_at": "2026-07-02T15:28:04.409784+00:00",
         "description": "Experience legendary American trucks and deliver various cargoes across sunny California, sandy Nevada, and the Grand Canyon State of Arizona. American Truck Simulator takes you on a journey through the breathtaking landscapes and widely recognized landmarks around the States."
+      }
+    ]
+  },
+  "2026-07-03": {
+    "run_state": {
+      "section_headers": {
+        "free": {
+          "message_id": "1522623693249843351",
+          "channel_id": "592534544708796474",
+          "posted_at_utc": "2026-07-03T15:22:57.648731+00:00"
+        },
+        "paid": {
+          "message_id": "1522623748279242954",
+          "channel_id": "592534544708796474",
+          "posted_at_utc": "2026-07-03T15:23:10.873094+00:00"
+        }
+      },
+      "last_attempt_at_utc": "2026-07-03T15:22:55.473085+00:00",
+      "intro": {
+        "message_id": "1522623685066752001",
+        "channel_id": "592534544708796474",
+        "posted_at_utc": "2026-07-03T15:22:56.130044+00:00"
+      },
+      "footer": {
+        "message_id": "1522623793355292783",
+        "channel_id": "592534544708796474",
+        "posted_at_utc": "2026-07-03T15:23:21.608682+00:00"
+      },
+      "completed": true,
+      "completed_at_utc": "2026-07-03T15:23:22.815446+00:00"
+    },
+    "items": [
+      {
+        "item_key": "b5af5604704bda00",
+        "section": "free",
+        "title": "Fate War",
+        "url": "https://store.steampowered.com/app/3581600/",
+        "message_id": "1522623701248507916",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-07-03T15:23:00.184752+00:00",
+        "description": "2025's latest epic strategy simulation game! Lead your Tribe in a vast world with dynamic seasons. Survive using your wit and uncover the secrets of a lost god."
+      },
+      {
+        "item_key": "5af0ed46ebe477e1",
+        "section": "free",
+        "title": "Pixel Starships",
+        "url": "https://store.steampowered.com/app/378760/",
+        "message_id": "1522623710127849605",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-07-03T15:23:03.900253+00:00",
+        "description": "Pixel Starships is an FTL-style online sci-fi strategy builder and management game with a competitive PVP tournament. Set in the retro galaxy, your role is to explore space, meet aliens, and develop your ship, crew and AI. The game contains deep strategic and 4x elements. PSS is community-driven."
+      },
+      {
+        "item_key": "06dcc6804b1a0b34",
+        "section": "free",
+        "title": "Totally Accurate Battlegrounds",
+        "url": "https://store.steampowered.com/app/823130/",
+        "message_id": "1522623725864878181",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-07-03T15:23:05.790862+00:00",
+        "description": "Grab your balloon crossbow and trusty inflatable hammer, because things are about to get wobbly! Be the last weirdo standing in the world-leading physics-based Battle Royale game."
+      },
+      {
+        "item_key": "f3ba277773397747",
+        "section": "free",
+        "title": "Supremacy: Call of War 1942",
+        "url": "https://store.steampowered.com/app/672680/",
+        "message_id": "1522623733859352577",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-07-03T15:23:07.549853+00:00",
+        "description": "Take over the control of one of the mighty nations during the times of World War 2 in this persisting long-term strategy game. Conquer provinces, forge alliances and build up your economy in real-time. Research top secret weapons of World War 2 and become the one true superpower!"
+      },
+      {
+        "item_key": "a9f0a3c453ca5faa",
+        "section": "free",
+        "title": "Supremacy: 1914",
+        "url": "https://store.steampowered.com/app/979920/",
+        "message_id": "1522623741123625031",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-07-03T15:23:09.253842+00:00",
+        "description": "Take over the control of one of the mighty nations during the times of World War 1 in the biggest WW1 strategy game of all time. Conquer provinces, forge alliances and build up your economy in real-time on persistent maps. Build experimental weapons of World War 1 and become the one true superpower!"
+      },
+      {
+        "item_key": "38dc14d4b53a9b8c",
+        "section": "paid",
+        "title": "Watch Dogs®: Legion",
+        "url": "https://store.steampowered.com/app/2239550/",
+        "message_id": "1522623755204169889",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-07-03T15:23:12.705963+00:00",
+        "description": "Build a resistance as you fight to take back a near-future London facing its downfall. Welcome to the Resistance."
+      },
+      {
+        "item_key": "88c4bdf410d9f4c5",
+        "section": "paid",
+        "title": "Teardown",
+        "url": "https://store.steampowered.com/app/1167630/",
+        "message_id": "1522623762393071647",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-07-03T15:23:14.497912+00:00",
+        "description": "Prepare the perfect heist in a fully destructible, simulated voxel world. Tear down walls with vehicles or use explosives to create your own shortcuts. Shape the environment to your advantage in the most creative ways you can imagine. Play solo or with up to 12 players in multiplayer."
+      },
+      {
+        "item_key": "782e51dff04df74a",
+        "section": "paid",
+        "title": "Call to Arms - Gates of Hell: Ostfront",
+        "url": "https://store.steampowered.com/app/400750/",
+        "message_id": "1522623770383089814",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-07-03T15:23:16.232433+00:00",
+        "description": "Call to Arms - Gates of Hell is a realistic RTS/ RTT game that offers endless replay value. Command all types of troops in historical singleplayer, dynamic campaign, PvP and PvE battles. Are you ready for some serious immersion in World War 2?"
+      },
+      {
+        "item_key": "a505d3175d582e5e",
+        "section": "paid",
+        "title": "REMATCH",
+        "url": "https://store.steampowered.com/app/2138720/",
+        "message_id": "1522623777475923981",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-07-03T15:23:18.219018+00:00",
+        "description": "Rematch is an online multiplayer football game. Control one player and compete with your team in fast-paced 5v5 matches from an immersive third-person perspective. Team up with your friends and join the action."
+      },
+      {
+        "item_key": "a55bdf94b5643fc2",
+        "section": "paid",
+        "title": "Tom Clancy's Ghost Recon® Wildlands",
+        "url": "https://store.steampowered.com/app/460930/",
+        "message_id": "1522623785868722417",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-07-03T15:23:19.866761+00:00",
+        "description": "Create a team with up to 3 friends in Tom Clancy’s Ghost Recon® Wildlands and enjoy the ultimate military shooter experience set in a massive, dangerous, and responsive open world."
       }
     ]
   }
