@@ -4716,6 +4716,98 @@
         "posted_at": "2026-07-04T14:44:48.013122+00:00",
         "description": "Respawn Entertainment gives you the most advanced titan technology in its new, single player campaign & multiplayer experience. Combine & conquer with new titans & pilots, deadlier weapons, & customization and progression systems that help you and your titan flow as one unstoppable killing force."
       }
-    ]
+    ],
+    "winners_state": {
+      "intro": {
+        "message_id": "1523115912243314693",
+        "channel_id": "1491294533751799809"
+      },
+      "section_headers": {
+        "demo_playtest": {
+          "message_id": "1523115920812408953",
+          "channel_id": "1491294533751799809"
+        },
+        "free": {
+          "message_id": "1523115924671037482",
+          "channel_id": "1491294533751799809"
+        }
+      },
+      "winner_messages": {
+        "https://store.steampowered.com/app/4594460/": {
+          "message_id": "1523115921651138654",
+          "channel_id": "1491294533751799809"
+        },
+        "https://store.steampowered.com/app/3285700/": {
+          "message_id": "1523115927141613670",
+          "channel_id": "1491294533751799809"
+        },
+        "https://store.steampowered.com/app/3809900/": {
+          "message_id": "1523115929859522650",
+          "channel_id": "1491294533751799809"
+        }
+      },
+      "footer": {
+        "message_id": "1523115933282074786",
+        "channel_id": "1491294533751799809"
+      },
+      "message_id": "1523115912243314693",
+      "message_ids": [
+        "1523115912243314693",
+        "1523115920812408953",
+        "1523115921651138654",
+        "1523115924671037482",
+        "1523115927141613670",
+        "1523115929859522650",
+        "1523115933282074786"
+      ],
+      "last_action": "create",
+      "updated_at_utc": "2026-07-04T23:58:56.829821+00:00",
+      "posted_at_utc": "2026-07-04T23:58:56.829836+00:00",
+      "winner_keys": [
+        "https://store.steampowered.com/app/3285700/",
+        "https://store.steampowered.com/app/3809900/",
+        "https://store.steampowered.com/app/4594460/"
+      ],
+      "winner_vote_counts": {
+        "https://store.steampowered.com/app/3285700/": 1,
+        "https://store.steampowered.com/app/3809900/": 1,
+        "https://store.steampowered.com/app/4594460/": 1
+      },
+      "winner_entries": [
+        {
+          "winner_key": "https://store.steampowered.com/app/3285700/",
+          "section": "free",
+          "title": "Life is Feudal: Arden",
+          "url": "https://store.steampowered.com/app/3285700/",
+          "description": "Life is Feudal: Arden is a new free-to-play open-world MMORPG set in the Middle Ages, built on the foundation of Life is Feudal: MMO. Engage in thrilling PvP combat, navigate political intrigue, master a variety of professions and craft unique items. Forge your own path to power and greatness!",
+          "human_votes": 1,
+          "voter_names": [
+            "Chocolie"
+          ]
+        },
+        {
+          "winner_key": "https://store.steampowered.com/app/3809900/",
+          "section": "free",
+          "title": "Habbo Hotel: Origins",
+          "url": "https://store.steampowered.com/app/3809900/",
+          "description": "A pixel-art social simulation MMO where you customize your avatar, build and decorate rooms, trade rare items, and join live community events in a nostalgic yet ever-evolving virtual world.",
+          "human_votes": 1,
+          "voter_names": [
+            "Chocolie"
+          ]
+        },
+        {
+          "winner_key": "https://store.steampowered.com/app/4594460/",
+          "section": "demo_playtest",
+          "title": "Mall Simulator Together",
+          "url": "https://store.steampowered.com/app/4594460/",
+          "description": "Mall Simulator Together is a multiplayer shopping mall management simulator where you can open stores, manage deliveries, organize products, hire employees and grow your own mall together with friends.",
+          "human_votes": 1,
+          "voter_names": [
+            "Chocolie"
+          ]
+        }
+      ]
+    }
   }
 }
