@@ -1,145 +1,4 @@
 {
-  "2026-06-04": {
-    "run_state": {
-      "section_headers": {
-        "free": {
-          "message_id": "1512133083992686873",
-          "channel_id": "592534544708796474",
-          "posted_at_utc": "2026-06-04T16:37:01.654838+00:00"
-        },
-        "paid": {
-          "message_id": "1512133130256126063",
-          "channel_id": "592534544708796474",
-          "posted_at_utc": "2026-06-04T16:37:12.692902+00:00"
-        }
-      },
-      "last_attempt_at_utc": "2026-06-04T16:36:58.865778+00:00",
-      "intro": {
-        "message_id": "1512133074786193561",
-        "channel_id": "592534544708796474",
-        "posted_at_utc": "2026-06-04T16:36:59.918388+00:00"
-      },
-      "footer": {
-        "message_id": "1512133185423671591",
-        "channel_id": "592534544708796474",
-        "posted_at_utc": "2026-06-04T16:37:26.080905+00:00"
-      },
-      "completed": true,
-      "completed_at_utc": "2026-06-04T16:37:27.288254+00:00"
-    },
-    "items": [
-      {
-        "item_key": "d368d0ab0443fed7",
-        "section": "free",
-        "title": "Farm RPG",
-        "url": "https://store.steampowered.com/app/2287550/",
-        "message_id": "1512133090921681039",
-        "channel_id": "592534544708796474",
-        "source_type": "steam_free",
-        "posted_at": "2026-06-04T16:37:03.555627+00:00",
-        "description": "Farm RPG is a menu based farming RPG/MMO. Build your farm, grow crops, fish, craft, and explore. Unlock a variety of exciting daily activities as you progress. Engage with helpful townsfolk and collaborate with fellow players in a vibrant community for trading and teamwork."
-      },
-      {
-        "item_key": "4c27f8040f09e32e",
-        "section": "free",
-        "title": "EverQuest II",
-        "url": "https://store.steampowered.com/app/201230/",
-        "message_id": "1512133099029397694",
-        "channel_id": "592534544708796474",
-        "source_type": "steam_free",
-        "posted_at": "2026-06-04T16:37:05.219153+00:00",
-        "description": "EverQuest® II is a deep fantasy MMORPG with over two decades of content, a thriving world, and ongoing expansions that keep Norrath growing. Create your hero and adventure through a massively rich, ever-evolving universe."
-      },
-      {
-        "item_key": "ea8513961566bae6",
-        "section": "free",
-        "title": "Hades' Star",
-        "url": "https://store.steampowered.com/app/755800/",
-        "message_id": "1512133106382147714",
-        "channel_id": "592534544708796474",
-        "source_type": "steam_free",
-        "posted_at": "2026-06-04T16:37:07.406519+00:00",
-        "description": "A unique space strategy game where thousands of players participate in one shared galaxy."
-      },
-      {
-        "item_key": "491443d1ed4b4c23",
-        "section": "free",
-        "title": "Hotel Hideaway: Avatar & Chat",
-        "url": "https://store.steampowered.com/app/3829340/",
-        "message_id": "1512133115169079346",
-        "channel_id": "592534544708796474",
-        "source_type": "steam_free",
-        "posted_at": "2026-06-04T16:37:09.263105+00:00",
-        "description": "An immersive 3D social simulation MMO where you customize your avatar, build and decorate rooms, collect rare items, and join live community events in a nostalgic yet ever-evolving virtual world."
-      },
-      {
-        "item_key": "f5bf342d969da9ce",
-        "section": "free",
-        "title": "Order of Battle: World War II",
-        "url": "https://store.steampowered.com/app/312450/",
-        "message_id": "1512133123075215631",
-        "channel_id": "592534544708796474",
-        "source_type": "steam_free",
-        "posted_at": "2026-06-04T16:37:10.991674+00:00",
-        "description": "Order of Battle: World War II is a breath of fresh air for all strategy fans. It is a game that takes wargaming to a new level by upgrading every single game element and rebooting the genre for a new generation of players."
-      },
-      {
-        "item_key": "b6bbf85646a3b03c",
-        "section": "paid",
-        "title": "NEBULOUS: Fleet Command",
-        "url": "https://store.steampowered.com/app/887570/",
-        "message_id": "1512133137700884481",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-06-04T16:37:14.579929+00:00",
-        "description": "Take command of your hand-tailored fleet of space warships and use realistic radar, electronic warfare, advanced movement controls in 3D space, and precision targeting to outmaneuver and outwit your opponents in a simulation-heavy tactical space game like no other."
-      },
-      {
-        "item_key": "04fe4e3bbb2f3bd8",
-        "section": "paid",
-        "title": "Untitled Goose Game",
-        "url": "https://store.steampowered.com/app/837470/",
-        "message_id": "1512133147968671785",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-06-04T16:37:16.924060+00:00",
-        "description": "It's a lovely morning in the village and you are a horrible goose."
-      },
-      {
-        "item_key": "59147b4a831bb294",
-        "section": "paid",
-        "title": "Construction Simulator",
-        "url": "https://store.steampowered.com/app/1273400/",
-        "message_id": "1512133154712977569",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-06-04T16:37:19.285979+00:00",
-        "description": "Construction Simulator has returned – larger and more impressive than ever! Fulfil your ambition to become a successful construction entrepreneur by establishing your business from scratch, assisted by your mentor Hape."
-      },
-      {
-        "item_key": "636291c96f3f880c",
-        "section": "paid",
-        "title": "Deadzone: Rogue",
-        "url": "https://store.steampowered.com/app/3228590/",
-        "message_id": "1512133165576093806",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-06-04T16:37:21.812256+00:00",
-        "description": "Deadzone: Rogue is a roguelite FPS set in space. Blast through swarms of hostile machines, combine powerful augments and elements to forge your build, and grow stronger with each run — solo or in co-op."
-      },
-      {
-        "item_key": "d19a5a214e109118",
-        "section": "paid",
-        "title": "Outlast",
-        "url": "https://store.steampowered.com/app/238320/",
-        "message_id": "1512133175902474350",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-06-04T16:37:23.944537+00:00",
-        "description": "Hell is an experiment you can't survive in Outlast, a first-person survival horror game developed by veterans of some of the biggest game franchises in history. As investigative journalist Miles Upshur, explore Mount Massive Asylum and try to survive long enough to discover its terrible secret... if you dare."
-      }
-    ]
-  },
   "2026-06-05": {
     "run_state": {
       "section_headers": {
@@ -4715,6 +4574,147 @@
         "source_type": "paid_under_20",
         "posted_at": "2026-07-03T15:23:19.866761+00:00",
         "description": "Create a team with up to 3 friends in Tom Clancy’s Ghost Recon® Wildlands and enjoy the ultimate military shooter experience set in a massive, dangerous, and responsive open world."
+      }
+    ]
+  },
+  "2026-07-04": {
+    "run_state": {
+      "section_headers": {
+        "free": {
+          "message_id": "1522976394336796732",
+          "channel_id": "592534544708796474",
+          "posted_at_utc": "2026-07-04T14:44:28.210265+00:00"
+        },
+        "paid": {
+          "message_id": "1522976439517974548",
+          "channel_id": "592534544708796474",
+          "posted_at_utc": "2026-07-04T14:44:38.923452+00:00"
+        }
+      },
+      "last_attempt_at_utc": "2026-07-04T14:44:25.378976+00:00",
+      "intro": {
+        "message_id": "1522976384102957078",
+        "channel_id": "592534544708796474",
+        "posted_at_utc": "2026-07-04T14:44:26.617442+00:00"
+      },
+      "footer": {
+        "message_id": "1522976484388638865",
+        "channel_id": "592534544708796474",
+        "posted_at_utc": "2026-07-04T14:44:49.831864+00:00"
+      },
+      "completed": true,
+      "completed_at_utc": "2026-07-04T14:44:51.039037+00:00"
+    },
+    "items": [
+      {
+        "item_key": "7db9c3356cee2d5c",
+        "section": "free",
+        "title": "Alien Swarm: Reactive Drop",
+        "url": "https://store.steampowered.com/app/563560/",
+        "message_id": "1522976401177837578",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-07-04T14:44:30.255923+00:00",
+        "description": "Co-operative top-down shooter game available for free. An epic bug hunt featuring a unique blend of co-op play and squad-level tactics."
+      },
+      {
+        "item_key": "996dd1fff34588e1",
+        "section": "free",
+        "title": "Freestyle 2: Street Basketball",
+        "url": "https://store.steampowered.com/app/339610/",
+        "message_id": "1522976409507856584",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-07-04T14:44:31.923574+00:00",
+        "description": "Freestyle 2: Street Basketball is a fast paced online arcade basketball game. Create your own unique player and compete in the online street league! Use variety of b-ball moves and customize your player! Team up with the best street ballers online and rise to the top!"
+      },
+      {
+        "item_key": "3c8026c927cc11c2",
+        "section": "free",
+        "title": "CosmicBreak Universal",
+        "url": "https://store.steampowered.com/app/1140620/",
+        "message_id": "1522976416340115538",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-07-04T14:44:33.523056+00:00",
+        "description": "CosmicBreak Universal is an MMO action game that lets you play massive battles of up to 30 vs 30 players using customizable robots and humanoids! Create your own original character and aim for victory with your allies!"
+      },
+      {
+        "item_key": "825f4b77af82a00e",
+        "section": "free",
+        "title": "Auto Chess",
+        "url": "https://store.steampowered.com/app/1530300/",
+        "message_id": "1522976423302791315",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-07-04T14:44:35.341098+00:00",
+        "description": "Original Auto Chess"
+      },
+      {
+        "item_key": "eeb623a042e4108c",
+        "section": "free",
+        "title": "Deadswitch Combat",
+        "url": "https://store.steampowered.com/app/3408170/",
+        "message_id": "1522976430726844439",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-07-04T14:44:37.394869+00:00",
+        "description": "DEADSWITCH COMBAT is a fast-paced 2D multiplayer shooter. Experience action-packed combat with hundreds of weapons, vehicle combat, and plenty of team-based game modes."
+      },
+      {
+        "item_key": "9fa49d9bfa7a8a9e",
+        "section": "paid",
+        "title": "SCUM",
+        "url": "https://store.steampowered.com/app/513710/",
+        "message_id": "1522976445927002403",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-07-04T14:44:40.753888+00:00",
+        "description": "Welcome to SCUM, a ruthless open-world survival game where deep character customization defines the prisoner you become. Loot, craft, hunt, build, and fight to outlast a hostile island where every choice can change your fate. Stay alive. Stay dangerous. Become harder to kill."
+      },
+      {
+        "item_key": "72f49e98b0b39a89",
+        "section": "paid",
+        "title": "The Jackbox Party Pack 7",
+        "url": "https://store.steampowered.com/app/1211630/",
+        "message_id": "1522976453749243905",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-07-04T14:44:42.937175+00:00",
+        "description": "Five new games: the hit threequel Quiplash 3, the collaborative chaos of The Devils and the Details, the fierce drawing game Champ’d Up, the speech game Talking Points and the guessing game Blather 'Round. Use phones or tablets as controllers and play with up to 8 players, and an audience of 10,000!"
+      },
+      {
+        "item_key": "14f11b7cf6dbaf43",
+        "section": "paid",
+        "title": "Metro 2033 Redux",
+        "url": "https://store.steampowered.com/app/286690/",
+        "message_id": "1522976462796493101",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-07-04T14:44:44.629130+00:00",
+        "description": "In 2013 the world was devastated by an apocalyptic event, annihilating almost all mankind and turning the Earth's surface into a poisonous wasteland. A handful of survivors took refuge in the depths of the Moscow underground, and human civilization entered a new Dark Age. The year is 2033."
+      },
+      {
+        "item_key": "a7ca09508466de71",
+        "section": "paid",
+        "title": "The Jackbox Party Pack 3",
+        "url": "https://store.steampowered.com/app/434170/",
+        "message_id": "1522976469775683675",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-07-04T14:44:46.331270+00:00",
+        "description": "The threequel to the party game phenomenon features the deadly quiz show Trivia Murder Party, the say-anything sequel Quiplash 2, the surprising survey game Guesspionage, the t-shirt slugfest Tee K.O., and the sneaky trickster game Fakin’ It."
+      },
+      {
+        "item_key": "6a2647acf8348b66",
+        "section": "paid",
+        "title": "Titanfall® 2",
+        "url": "https://store.steampowered.com/app/1237970/",
+        "message_id": "1522976477077962972",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-07-04T14:44:48.013122+00:00",
+        "description": "Respawn Entertainment gives you the most advanced titan technology in its new, single player campaign & multiplayer experience. Combine & conquer with new titans & pilots, deadlier weapons, & customization and progression systems that help you and your titan flow as one unstoppable killing force."
       }
     ]
   }
