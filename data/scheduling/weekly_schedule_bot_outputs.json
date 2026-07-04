@@ -1,23 +1,4 @@
 {
-  "2026-04-13_to_2026-04-19": {
-    "summary_posted": true,
-    "reminder_missing_users": [
-      "161248274970443776",
-      "162382481369071617",
-      "239951450082377740",
-      "245393360490201089",
-      "277285824935231488",
-      "321367835525775381",
-      "412746386271109130",
-      "711603470544797747",
-      "740065988812341280"
-    ],
-    "summary_message_id": "1491305083965804544",
-    "reminder_message_id": "1491675670386839703",
-    "summary_message_content": "📊 Availability Summary — Apr 13–19, 2026\n\n*5 of 14 people responded • 9 still missing*\n*Last updated: Apr 9, 2:08 AM ET*\n\n**Monday 4/13**\n✅ 1 — Janithan\n🌙 4 — TheMonkeyKing, Chocolie, Thomas, DatVNguyen\n\n**Tuesday 4/14**\n✅ 1 — Janithan\n🌅 1 — TheMonkeyKing\n☀️ 1 — TheMonkeyKing\n🌙 2 — Thomas, DatVNguyen\n\n**Wednesday 4/15**\n✅ 1 — TheMonkeyKing\n🌙 3 — Chocolie, Thomas, DatVNguyen\n\n**Thursday 4/16**\n✅ 1 — TheMonkeyKing\n🌙 2 — Thomas, DatVNguyen\n\n**Friday 4/17**\n☀️ 1 — TheMonkeyKing\n🌙 4 — Janithan, Chocolie, Thomas, DatVNguyen\n\n**Saturday 4/18**\n☀️ 2 — TheMonkeyKing, DatVNguyen\n🌙 1 — Thomas\n\n**Sunday 4/19**\n✅ 1 — TheMonkeyKing\n☀️ 1 — DatVNguyen\n🌙 1 — Thomas",
-    "last_reminder_local_date": "2026-04-09",
-    "summary_data_signature": "d774d899b54540fb728e780d24c39154fa055f11e4a707013ac177f76b19684b"
-  },
   "2026-04-20_to_2026-04-26": {
     "summary_last_synced_at_utc": "2026-04-19T17:07:30.691425+00:00",
     "summary_data_signature": "e7e48eeab332a261a852b6a432472465376b7270cd56066edb0ab121686f6d4a",
@@ -338,5 +319,36 @@
       "740065988812341280"
     ],
     "last_reminder_local_date": "2026-06-28"
+  },
+  "2026-07-06_to_2026-07-12": {
+    "summary_last_synced_at_utc": "2026-07-04T16:18:37.263863+00:00",
+    "summary_data_signature": "05f4b3bcf756f1f0ad43222ea38222a59a72a3769a464686a678c04355d84d30",
+    "summary_posted": true,
+    "summary_message_id": "1523000090413760523",
+    "summary_message_ids": [
+      "1523000090413760523"
+    ],
+    "summary_message_content": "📊 Availability Summary — Jul 6–12, 2026\n\n*0 of 14 people responded • 14 still missing*\nMissing: <@137123568952672257> <@150522802292785152> <@161248274970443776> <@162382481369071617> <@164270274928181248> <@195462430535581708> <@204517030395641856> <@239951450082377740> <@245393360490201089> <@277285824935231488> <@321367835525775381> <@412746386271109130> <@711603470544797747> <@740065988812341280>\n*Last updated: Jul 4, 12:18 PM ET*\n\n**Monday 7/6**\nNo responses\n\n**Tuesday 7/7**\nNo responses\n\n**Wednesday 7/8**\nNo responses\n\n**Thursday 7/9**\nNo responses\n\n**Friday 7/10**\nNo responses\n\n**Saturday 7/11**\nNo responses\n\n**Sunday 7/12**\nNo responses",
+    "reminder_message_id": "1523000092540272843",
+    "reminder_message_ids": [
+      "1523000092540272843"
+    ],
+    "reminder_missing_users": [
+      "137123568952672257",
+      "150522802292785152",
+      "161248274970443776",
+      "162382481369071617",
+      "164270274928181248",
+      "195462430535581708",
+      "204517030395641856",
+      "239951450082377740",
+      "245393360490201089",
+      "277285824935231488",
+      "321367835525775381",
+      "412746386271109130",
+      "711603470544797747",
+      "740065988812341280"
+    ],
+    "last_reminder_local_date": "2026-07-04"
   }
 }
