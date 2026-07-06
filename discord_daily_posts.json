@@ -1,112 +1,4 @@
 {
-  "2026-06-05": {
-    "run_state": {
-      "section_headers": {
-        "free": {
-          "message_id": "1512489340331233481",
-          "channel_id": "592534544708796474",
-          "posted_at_utc": "2026-06-05T16:12:39.851028+00:00"
-        },
-        "paid": {
-          "message_id": "1512489364251213824",
-          "channel_id": "592534544708796474",
-          "posted_at_utc": "2026-06-05T16:12:45.444504+00:00"
-        }
-      },
-      "last_attempt_at_utc": "2026-06-05T16:12:36.895153+00:00",
-      "intro": {
-        "message_id": "1512489330453774387",
-        "channel_id": "592534544708796474",
-        "posted_at_utc": "2026-06-05T16:12:38.053050+00:00"
-      },
-      "footer": {
-        "message_id": "1512489411777003534",
-        "channel_id": "592534544708796474",
-        "posted_at_utc": "2026-06-05T16:12:56.869811+00:00"
-      },
-      "completed": true,
-      "completed_at_utc": "2026-06-05T16:12:58.078578+00:00"
-    },
-    "items": [
-      {
-        "item_key": "b13bdbe2bfd52174",
-        "section": "free",
-        "title": "Mini World: CREATA",
-        "url": "https://store.steampowered.com/app/814480/",
-        "message_id": "1512489347973386431",
-        "channel_id": "592534544708796474",
-        "source_type": "steam_free",
-        "posted_at": "2026-06-05T16:12:41.890512+00:00",
-        "description": "Mini World is a 3D free sandbox game about adventure, exploration, and creating your dream worlds. There is no grinding or leveling up. No IAP gate that locks features from free to play players. Everyone can enjoy the game’s full features with great freedom"
-      },
-      {
-        "item_key": "4b76953a2361a3a2",
-        "section": "free",
-        "title": "Starborne: Frontiers",
-        "url": "https://store.steampowered.com/app/3021540/",
-        "message_id": "1512489356408127578",
-        "channel_id": "592534544708796474",
-        "source_type": "steam_free",
-        "posted_at": "2026-06-05T16:12:43.726809+00:00",
-        "description": "Starborne: Frontiers is a free-to-play tactical autobattler with hundreds of unique ships. Form your fleet, customize it with a variety of equipment, and use strategy to create the perfect battlefield formation. Take on bounties, engage in the PvP arena, and bring order to the Frontier."
-      },
-      {
-        "item_key": "539a57c70093fda2",
-        "section": "paid",
-        "title": "The Greatest Penguin Heist of All Time",
-        "url": "https://store.steampowered.com/app/1451480/",
-        "message_id": "1512489371427799121",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-06-05T16:12:47.508574+00:00",
-        "description": "The Greatest Penguin Heist of All Time is a sandboxy physics game for 1-8 players, with everything from sneaky heists to hilarous stupidity to baking pizzas. With continuous updates, plenty of maps, and hundreds of items, clothes and quests, it has something for everyone."
-      },
-      {
-        "item_key": "bb99a4e40aed45c1",
-        "section": "paid",
-        "title": "Kingdom Two Crowns",
-        "url": "https://store.steampowered.com/app/701160/",
-        "message_id": "1512489379967275059",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-06-05T16:12:49.289722+00:00",
-        "description": "Gather coins, build defenses and reclaim your fallen Kingdom. Explore and uncover secrets, unlock new technologies and protect your crown versus waves of Greed monsters that come at night. Kingdom is a solo or co-op micro-strategy and tower defense game set in an atmospheric pixel world."
-      },
-      {
-        "item_key": "7c4b8388fa059433",
-        "section": "paid",
-        "title": "Street Fighter 30th Anniversary Collection",
-        "url": "https://store.steampowered.com/app/586200/",
-        "message_id": "1512489387554771106",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-06-05T16:12:51.110927+00:00",
-        "description": "Celebrate Street Fighter’s historic legacy with the Street Fighter 30th Anniversary Collection. In this collection of 12 Street Fighter games, four groundbreaking titles let you hop online and relive the arcade experience through the online Arcade Mode or play with friends."
-      },
-      {
-        "item_key": "247efdb95585a028",
-        "section": "paid",
-        "title": "Funko Fusion",
-        "url": "https://store.steampowered.com/app/1843310/",
-        "message_id": "1512489395125747872",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-06-05T16:12:52.830876+00:00",
-        "description": "Experience a festival of fandom like never before in Funko Fusion! Play through iconic worlds and mashup characters inspired by some of your favorite franchises in an action-adventure game with uniquely authentic, irreverent humor from the creative minds of 10:10 Games."
-      },
-      {
-        "item_key": "cf40ae4aa0975d2c",
-        "section": "paid",
-        "title": "THE GAME OF LIFE 2",
-        "url": "https://store.steampowered.com/app/1455630/",
-        "message_id": "1512489401886707973",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-06-05T16:12:54.933227+00:00",
-        "description": "The official sequel to the hit board game played by 50 million fans! The Game of Life 2 adds vibrant 3D animation and brand-new choices in every turn. Customise your peg, spin the spinner and build your best life!"
-      }
-    ]
-  },
   "2026-06-06": {
     "run_state": {
       "section_headers": {
@@ -4809,5 +4701,146 @@
         }
       ]
     }
+  },
+  "2026-07-05": {
+    "run_state": {
+      "section_headers": {
+        "free": {
+          "message_id": "1523339440984952832",
+          "channel_id": "592534544708796474",
+          "posted_at_utc": "2026-07-05T14:47:05.483669+00:00"
+        },
+        "paid": {
+          "message_id": "1523339484832338111",
+          "channel_id": "592534544708796474",
+          "posted_at_utc": "2026-07-05T14:47:15.759792+00:00"
+        }
+      },
+      "last_attempt_at_utc": "2026-07-05T14:47:01.485088+00:00",
+      "intro": {
+        "message_id": "1523339427555049533",
+        "channel_id": "592534544708796474",
+        "posted_at_utc": "2026-07-05T14:47:03.622621+00:00"
+      },
+      "footer": {
+        "message_id": "1523339530021765120",
+        "channel_id": "592534544708796474",
+        "posted_at_utc": "2026-07-05T14:47:26.633857+00:00"
+      },
+      "completed": true,
+      "completed_at_utc": "2026-07-05T14:47:27.840797+00:00"
+    },
+    "items": [
+      {
+        "item_key": "70ece899d34064dd",
+        "section": "free",
+        "title": "Mighty Party",
+        "url": "https://store.steampowered.com/app/575720/",
+        "message_id": "1523339448551604294",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-07-05T14:47:07.407455+00:00",
+        "description": "Lead your MIGHTY PARTY to victory! Fast 3-MINUTE BATTLES will not let you get bored! Dozens of heroes reveal THOUSANDS of unique tactics to defeat all the opponents! Play Imperial Archer, protect him with Wind Ninja, strengthen them with Magic of Divinity and destroy opponent’s forces!"
+      },
+      {
+        "item_key": "27aa756894abc3cb",
+        "section": "free",
+        "title": "Military Tanks",
+        "url": "https://store.steampowered.com/app/2342030/",
+        "message_id": "1523339456458002585",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-07-05T14:47:08.994034+00:00",
+        "description": "Do you like tanks game? Are you ready to feel the full power of a tank games?"
+      },
+      {
+        "item_key": "cc37ba1d6fa83e79",
+        "section": "free",
+        "title": "Entropia Universe",
+        "url": "https://store.steampowered.com/app/3642750/",
+        "message_id": "1523339463273480334",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-07-05T14:47:10.654206+00:00",
+        "description": "Entropia Universe is a unique massively multiplayer online game (MMO) where virtual assets hold real-world value and players can participate in a thriving virtual sandbox economy."
+      },
+      {
+        "item_key": "54f4f3b502e550a1",
+        "section": "free",
+        "title": "Mobile Dungeon",
+        "url": "https://store.steampowered.com/app/707710/",
+        "message_id": "1523339470118719538",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-07-05T14:47:12.571244+00:00",
+        "description": "From the universe of Shakes & Fidget, the NEW Team Battle RPG dungeon crawler!"
+      },
+      {
+        "item_key": "c35ea6a9dae18954",
+        "section": "free",
+        "title": "GraalOnline Era",
+        "url": "https://store.steampowered.com/app/2358050/",
+        "message_id": "1523339478134030364",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-07-05T14:47:14.151158+00:00",
+        "description": "Era is a modern 2D action MMO RPG. Purchase weapons and work with a gang to compete in activities such as special events, base capturing and PvP battles in the Spar Complex, or start your own gang and chart your own path!"
+      },
+      {
+        "item_key": "aa488a4eb76c8256",
+        "section": "paid",
+        "title": "Car Service Together",
+        "url": "https://store.steampowered.com/app/3501070/",
+        "message_id": "1523339491199291404",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-07-05T14:47:17.510149+00:00",
+        "description": "Car Service Together is a 1-4 co-op & single player simulation game where you and/or with your friends start from scratch and build your way up. Work together to successfully run your own service center. Team up, manage your business, and create the ultimate car service !"
+      },
+      {
+        "item_key": "adc1b004ccb149ce",
+        "section": "paid",
+        "title": "The Crew Motorfest",
+        "url": "https://store.steampowered.com/app/2698940/",
+        "message_id": "1523339498858086410",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-07-05T14:47:19.096851+00:00",
+        "description": "Welcome to Motorfest, the ultimate open-world driving experience. Explore the Hawaiian islands of O'ahu and Maui. Celebrate the best of car culture through 20+ themed campaigns (street racing, offroad, drift...) and collect hundreds of iconic vehicles. Enjoy the game free for five hours!"
+      },
+      {
+        "item_key": "cf3bb94e4f46c1c1",
+        "section": "paid",
+        "title": "Scrap Mechanic",
+        "url": "https://store.steampowered.com/app/387990/",
+        "message_id": "1523339505577230346",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-07-05T14:47:20.728818+00:00",
+        "description": "Enter the creative paradise of Scrap Mechanic! Build fantastic machines, go on adventures with your friends and defend against waves of evil Farmbots in this imaginative multiplayer survival sandbox. With Scrap Mechanic’s powerful creation tools you can engineer your own adventures!"
+      },
+      {
+        "item_key": "81864721f2aaa492",
+        "section": "paid",
+        "title": "The House Always Wins",
+        "url": "https://store.steampowered.com/app/3412160/",
+        "message_id": "1523339512716066936",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-07-05T14:47:22.936499+00:00",
+        "description": "Build a top-tier business solo or in co-op (1–4 players). Start from scratch, keep the slot machines spinning and deal with chaotic events like vandals and alien invasions. Grow your fortune and show everyone why the house always wins."
+      },
+      {
+        "item_key": "a27abaed30b43475",
+        "section": "paid",
+        "title": "Dead Space™ 3",
+        "url": "https://store.steampowered.com/app/1238060/",
+        "message_id": "1523339521616248844",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-07-05T14:47:24.803433+00:00",
+        "description": "Journey across space to the icy planet of Tau Volantis with Isaac Clarke and Sgt. John Carver to discover and destroy the source of the Necromorph outbreak."
+      }
+    ]
   }
 }
