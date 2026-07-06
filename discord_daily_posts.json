@@ -1,150 +1,4 @@
 {
-  "2026-06-06": {
-    "run_state": {
-      "section_headers": {
-        "free": {
-          "message_id": "1512829729504366603",
-          "channel_id": "592534544708796474",
-          "posted_at_utc": "2026-06-06T14:45:14.761986+00:00"
-        },
-        "paid": {
-          "message_id": "1512829770952478971",
-          "channel_id": "592534544708796474",
-          "posted_at_utc": "2026-06-06T14:45:24.908306+00:00"
-        }
-      },
-      "last_attempt_at_utc": "2026-06-06T14:45:11.213248+00:00",
-      "intro": {
-        "message_id": "1512829716027936888",
-        "channel_id": "592534544708796474",
-        "posted_at_utc": "2026-06-06T14:45:13.177348+00:00"
-      },
-      "footer": {
-        "message_id": "1512829820118237277",
-        "channel_id": "592534544708796474",
-        "posted_at_utc": "2026-06-06T14:45:36.440791+00:00"
-      },
-      "completed": true,
-      "completed_at_utc": "2026-06-06T14:45:37.649505+00:00"
-    },
-    "items": [
-      {
-        "item_key": "437ebfb76e7351ab",
-        "section": "free",
-        "title": "Grind Hero: MMORPG",
-        "url": "https://store.steampowered.com/app/3882310/",
-        "message_id": "1512829735611404300",
-        "channel_id": "592534544708796474",
-        "source_type": "steam_free",
-        "posted_at": "2026-06-06T14:45:16.434379+00:00",
-        "description": "2D MMORPG with PvP, guilds, bosses, sigils, and a vast world to explore!"
-      },
-      {
-        "item_key": "ae47b024fcbbb789",
-        "section": "free",
-        "title": "9Dragons",
-        "url": "https://store.steampowered.com/app/390100/",
-        "message_id": "1512829742943047820",
-        "channel_id": "592534544708796474",
-        "source_type": "steam_free",
-        "posted_at": "2026-06-06T14:45:18.015894+00:00",
-        "description": "9Dragons is a free to play MMORPG with fluid martial arts combat, lush environments, and intense PvP. Immerse yourself in a mesmerizing world set in ancient China at the beginning of martial arts chivalry."
-      },
-      {
-        "item_key": "4ce737d2d494f70a",
-        "section": "free",
-        "title": "Champions of Regnum",
-        "url": "https://store.steampowered.com/app/222520/",
-        "message_id": "1512829749653803170",
-        "channel_id": "592534544708796474",
-        "source_type": "steam_free",
-        "posted_at": "2026-06-06T14:45:19.646081+00:00",
-        "description": "Choose your Realm and engage in the most dynamic player driven battlefield available on any MMO. Fight for the Alsius Empire, protect the woods of Syrtis or avenge the Brotherhood of Ignis."
-      },
-      {
-        "item_key": "ea3b57ec9e6660eb",
-        "section": "free",
-        "title": "Different Strokes",
-        "url": "https://store.steampowered.com/app/2102020/",
-        "message_id": "1512829756599435324",
-        "channel_id": "592534544708796474",
-        "source_type": "steam_free",
-        "posted_at": "2026-06-06T14:45:21.376998+00:00",
-        "description": "A collaborative online painting game where players can create, edit, and rate each other's art!"
-      },
-      {
-        "item_key": "c88ae3286bbaaff2",
-        "section": "free",
-        "title": "The Expendabros",
-        "url": "https://store.steampowered.com/app/312990/",
-        "message_id": "1512829763671036165",
-        "channel_id": "592534544708796474",
-        "source_type": "steam_free",
-        "posted_at": "2026-06-06T14:45:23.035230+00:00",
-        "description": "The Expendabros have assembled and set their sights on the forces of ruthless arms dealer Conrad Stonebanks in the forests of Eastern Europe."
-      },
-      {
-        "item_key": "32ff51fed41e5105",
-        "section": "paid",
-        "title": "Minecraft Legends",
-        "url": "https://store.steampowered.com/app/1928870/",
-        "message_id": "1512829778481119283",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-06-06T14:45:26.479910+00:00",
-        "description": "Discover the mysteries of Minecraft Legends, a new action strategy game. Explore a gentle land of rich resources and lush biomes on the brink of destruction. The ravaging piglins have arrived, and it’s up to you to inspire your allies and lead them in strategic battles to save the Overworld!"
-      },
-      {
-        "item_key": "f70400a3ed6456cf",
-        "section": "paid",
-        "title": "Just Shapes & Beats",
-        "url": "https://store.steampowered.com/app/531510/",
-        "message_id": "1512829785192005832",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-06-06T14:45:28.259500+00:00",
-        "description": "\"Just Shapes & Beats\" is a chaotic co-op musical bullet-hell based on three simple things: avoid Shapes, move to the kick-ass Beats, and die, repeatedly."
-      },
-      {
-        "item_key": "414f693c8f118ca1",
-        "section": "paid",
-        "title": "Crab Champions",
-        "url": "https://store.steampowered.com/app/774801/",
-        "message_id": "1512829792859193386",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-06-06T14:45:30.776236+00:00",
-        "description": "Claw your way across exotic islands combining fluid movement with fast paced combat to become a Crab Champion in this third person roguelike shooter."
-      },
-      {
-        "item_key": "6e5074dde2d07c4e",
-        "section": "paid",
-        "title": "Sword Art Online: Fatal Bullet",
-        "url": "https://store.steampowered.com/app/626690/",
-        "message_id": "1512829803399479397",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-06-06T14:45:32.841120+00:00",
-        "description": "Experience an original story where you are the protagonist in the world of Gun Gale Online. Create your own avatar and explore devastated lands while experiencing exciting third person shooting in this action RPG."
-      },
-      {
-        "item_key": "0081726478f69331",
-        "section": "paid",
-        "title": "LEGO® The Hobbit™",
-        "url": "https://store.steampowered.com/app/285160/",
-        "message_id": "1512829812371357869",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-06-06T14:45:34.798658+00:00",
-        "description": "Reclaim the Lost Kingdom brick by brick! Join Bilbo Baggins, Gandalf, Thorin and his company of Dwarves in an epic adventure across Middle-earth to recapture the Lonely Mountain in the most expansive LEGO game to date."
-      }
-    ],
-    "winners_state": {
-      "status": "skipped",
-      "skipped_reason": "no_eligible_winners",
-      "updated_at_utc": "2026-06-07T00:01:39.243127+00:00"
-    }
-  },
   "2026-06-07": {
     "run_state": {
       "section_headers": {
@@ -4840,6 +4694,240 @@
         "source_type": "paid_under_20",
         "posted_at": "2026-07-05T14:47:24.803433+00:00",
         "description": "Journey across space to the icy planet of Tau Volantis with Isaac Clarke and Sgt. John Carver to discover and destroy the source of the Necromorph outbreak."
+      }
+    ]
+  },
+  "2026-07-06": {
+    "run_state": {
+      "section_headers": {
+        "free": {
+          "message_id": "1523728688770846910",
+          "channel_id": "592534544708796474",
+          "posted_at_utc": "2026-07-06T16:33:49.262272+00:00"
+        },
+        "paid": {
+          "message_id": "1523728732202991648",
+          "channel_id": "592534544708796474",
+          "posted_at_utc": "2026-07-06T16:33:59.605644+00:00"
+        },
+        "instagram": {
+          "message_id": "1523728782505148586",
+          "channel_id": "592534544708796474",
+          "posted_at_utc": "2026-07-06T16:34:11.554663+00:00"
+        }
+      },
+      "last_attempt_at_utc": "2026-07-06T16:33:43.673554+00:00",
+      "intro": {
+        "message_id": "1523728667702853723",
+        "channel_id": "592534544708796474",
+        "posted_at_utc": "2026-07-06T16:33:47.589923+00:00"
+      },
+      "footer": {
+        "message_id": "1523728851467767818",
+        "channel_id": "592534544708796474",
+        "posted_at_utc": "2026-07-06T16:34:28.105888+00:00"
+      },
+      "completed": true,
+      "completed_at_utc": "2026-07-06T16:34:29.313097+00:00"
+    },
+    "items": [
+      {
+        "item_key": "19dfe233c1f0b1b6",
+        "section": "free",
+        "title": "Darza's Dominion",
+        "url": "https://store.steampowered.com/app/1895130/",
+        "message_id": "1523728695838245116",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-07-06T16:33:50.989920+00:00",
+        "description": "The Dominion takes no prisoners! Fight for your survival in the unforgiving terrains that surround you, strengthen your hero through slaying dangerous creatures, gather a group of allies and bring the battle to Darza in this fast-paced roguelike cooperative bullet-hell MMO!"
+      },
+      {
+        "item_key": "93b96eb78c131711",
+        "section": "free",
+        "title": "Iron Order 1919",
+        "url": "https://store.steampowered.com/app/1997780/",
+        "message_id": "1523728702834348143",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-07-06T16:33:52.847444+00:00",
+        "description": "An unique long-term strategy game with week-long matches with up to 101 players, set in the alternate reality of 1919."
+      },
+      {
+        "item_key": "a330450601d8a302",
+        "section": "free",
+        "title": "CS Diamantes Pipas PC : Jogo de pipa",
+        "url": "https://store.steampowered.com/app/1851200/",
+        "message_id": "1523728710962774056",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-07-06T16:33:54.622250+00:00",
+        "description": "This game will have to control a KITE and CUT other KITE LINES"
+      },
+      {
+        "item_key": "56c07b7c68ecde19",
+        "section": "free",
+        "title": "H.I.A: Horror Investigation Agency",
+        "url": "https://store.steampowered.com/app/2363590/",
+        "message_id": "1523728718252736784",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-07-06T16:33:56.289378+00:00",
+        "description": "H.I.A: Horror Investigation Agency is a fun multiplayer horror game in which you and co-players have to investigate exciting horror cases. Among finding victims and evidence of the horror event that has taken place, you will be faced with jumpscares and scary monsters along your investigation."
+      },
+      {
+        "item_key": "f068cbcc6224605c",
+        "section": "free",
+        "title": "Godzilla x Kong: Titan Chasers",
+        "url": "https://store.steampowered.com/app/3670140/",
+        "message_id": "1523728725278064731",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-07-06T16:33:57.957798+00:00",
+        "description": "Hunt, capture, and command the monsters of the Monsterverse. Build your base, recruit elite Titan Chasers, and lead squads into tactical turn-based battles. Expand your territory in a shared online world, forge alliances, and face colossal threats like Godzilla, Kong, and Skullcrawlers."
+      },
+      {
+        "item_key": "bfdeed31d3e6572f",
+        "section": "paid",
+        "title": "The Jackbox Party Pack 9",
+        "url": "https://store.steampowered.com/app/1850960/",
+        "message_id": "1523728739484172450",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-07-06T16:34:02.128093+00:00",
+        "description": "Save your next party! 5 new games in 1 Party Pack: the trivia bluff-off Fibbage 4, the team test Quixort, the joke auction Junktopia, the silly guessfest Nonsensory and the reality TV game Roomerang."
+      },
+      {
+        "item_key": "6871916b20bf7f79",
+        "section": "paid",
+        "title": "Call of the Wild: The Angler™",
+        "url": "https://store.steampowered.com/app/1408610/",
+        "message_id": "1523728749508562985",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-07-06T16:34:04.158169+00:00",
+        "description": "The Angler is an open world fishing game that can be played solo or with friends. Discover and catch a wide variety of unique fish species, from common to rare, on your journey to become a master angler."
+      },
+      {
+        "item_key": "bf43a024f75b7251",
+        "section": "paid",
+        "title": "Out of Ore",
+        "url": "https://store.steampowered.com/app/2009350/",
+        "message_id": "1523728758337441833",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-07-06T16:34:06.035226+00:00",
+        "description": "Build your own mining company from the ground up. Extract resources, operate heavy machinery, construct infrastructure, and grow from a laborer to the King of Klondike."
+      },
+      {
+        "item_key": "7e48bf7d40ceab6d",
+        "section": "paid",
+        "title": "9 Kings",
+        "url": "https://store.steampowered.com/app/2784470/",
+        "message_id": "1523728766214344775",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-07-06T16:34:07.783591+00:00",
+        "description": "A fast-paced roguelike kingdom builder. Grow your empire and fight massive battles against powerful rival kings. Break the game with thousands of insane builds to become the King of Kings."
+      },
+      {
+        "item_key": "04fe4e3bbb2f3bd8",
+        "section": "paid",
+        "title": "Untitled Goose Game",
+        "url": "https://store.steampowered.com/app/837470/",
+        "message_id": "1523728773722280006",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-07-06T16:34:09.904149+00:00",
+        "description": "It's a lovely morning in the village and you are a horrible goose."
+      },
+      {
+        "item_key": "e03dc47241401db9",
+        "section": "instagram",
+        "title": "@sharedxp_official",
+        "url": "https://www.instagram.com/p/DadPaWVMh6n/",
+        "message_id": "1523728789442527364",
+        "channel_id": "592534544708796474",
+        "source_type": "instagram",
+        "posted_at": "2026-07-06T16:34:13.478759+00:00",
+        "description": "Fourleaf Fields is a tiny COOP cosy farming sim   ✅ Multiplayer Confirmed (1-4 palyers) ✅ JOIN THE PLAYTEST ✅ Expecte..."
+      },
+      {
+        "item_key": "fb099e252a137ee9",
+        "section": "instagram",
+        "title": "@sharedxp_official",
+        "url": "https://www.instagram.com/p/DaYyrc7qGWa/",
+        "message_id": "1523728797491400855",
+        "channel_id": "592534544708796474",
+        "source_type": "instagram",
+        "posted_at": "2026-07-06T16:34:15.345438+00:00",
+        "description": "Cemetery Simulator (AD)  1–4 player cemetery management game   ✅ Solo Play ✅ 1–4 Player Co-op ✅ Online Co-op ✅ Demo A..."
+      },
+      {
+        "item_key": "c97fc1e1cbf61710",
+        "section": "instagram",
+        "title": "@mildsoss_official",
+        "url": "https://www.instagram.com/p/DaYIg_wosQK/",
+        "message_id": "1523728805070372885",
+        "channel_id": "592534544708796474",
+        "source_type": "instagram",
+        "posted_at": "2026-07-06T16:34:17.145832+00:00",
+        "description": "This co-op horror game has a demon that feeds on your teams fear  🎮 Fearwoods 🗓️ Q3 2026 👥 1-3 Players 🖥️ PC (Steam),..."
+      },
+      {
+        "item_key": "ddd86aa1d98d2a45",
+        "section": "instagram",
+        "title": "@mildsoss_official",
+        "url": "https://www.instagram.com/p/DaWjkn4IpyE/",
+        "message_id": "1523728812402147440",
+        "channel_id": "592534544708796474",
+        "source_type": "instagram",
+        "posted_at": "2026-07-06T16:34:19.094833+00:00",
+        "description": "From arcades and escape rooms to escape rooms at home. The story of Coin Crew Games  #gaming #newgame #indiegame #puz..."
+      },
+      {
+        "item_key": "76f3cd506342e271",
+        "section": "instagram",
+        "title": "@wilfratgaming",
+        "url": "https://www.instagram.com/p/DaWMUA5JV7h/",
+        "message_id": "1523728820866121808",
+        "channel_id": "592534544708796474",
+        "source_type": "instagram",
+        "posted_at": "2026-07-06T16:34:20.882045+00:00",
+        "description": "|AD| Game name: Pale Tide! zombie apocalypse extraction survival shooter! #steamgames #gaming #videogames #gamestoplay"
+      },
+      {
+        "item_key": "691f391fe7f55b14",
+        "section": "instagram",
+        "title": "@wilfratgaming",
+        "url": "https://www.instagram.com/p/DaVhNC1piSp/",
+        "message_id": "1523728828411674664",
+        "channel_id": "592534544708796474",
+        "source_type": "instagram",
+        "posted_at": "2026-07-06T16:34:22.651441+00:00",
+        "description": "|AD| Delta Force is having its biggest update of 2026 on June 30th with a new nuclear power plant map, a new operator..."
+      },
+      {
+        "item_key": "e97a3190d01feab4",
+        "section": "instagram",
+        "title": "@biffmatictv",
+        "url": "https://www.instagram.com/p/DaVpo_FINSA/",
+        "message_id": "1523728835856699402",
+        "channel_id": "592534544708796474",
+        "source_type": "instagram",
+        "posted_at": "2026-07-06T16:34:24.425856+00:00",
+        "description": "Ad - This roguelite actually lets you SEE your progression! Galactic Vault!  #gaming #roguelite #roguelike #fps #scifi"
+      },
+      {
+        "item_key": "fb8cd18c063189cf",
+        "section": "instagram",
+        "title": "@biffmatictv",
+        "url": "https://www.instagram.com/p/DaUVk3Po0_o/",
+        "message_id": "1523728843255578664",
+        "channel_id": "592534544708796474",
+        "source_type": "instagram",
+        "posted_at": "2026-07-06T16:34:26.191616+00:00",
+        "description": "Easily one of the most exciting games this year! Nivalis Nights   #gaming #cyberpunk #lifesim #simulator #nivalis"
       }
     ]
   }
