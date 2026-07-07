@@ -5011,6 +5011,11 @@
         "posted_at": "2026-07-07T16:01:46.209772+00:00",
         "description": "#ad RuneScape Dragonwilds just had its biggest update yet! @rsdragonwilds  #gaming #survivalgame #runescapedragonwild..."
       }
-    ]
+    ],
+    "winners_state": {
+      "status": "skipped",
+      "skipped_reason": "no_eligible_winners",
+      "updated_at_utc": "2026-07-07T23:55:55.996793+00:00"
+    }
   }
 }
