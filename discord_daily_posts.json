@@ -1,145 +1,4 @@
 {
-  "2026-06-08": {
-    "run_state": {
-      "section_headers": {
-        "free": {
-          "message_id": "1513589497210605710",
-          "channel_id": "592534544708796474",
-          "posted_at_utc": "2026-06-08T17:04:17.540231+00:00"
-        },
-        "paid": {
-          "message_id": "1513589545080455251",
-          "channel_id": "592534544708796474",
-          "posted_at_utc": "2026-06-08T17:04:29.220573+00:00"
-        }
-      },
-      "last_attempt_at_utc": "2026-06-08T17:04:14.038841+00:00",
-      "intro": {
-        "message_id": "1513589484460052523",
-        "channel_id": "592534544708796474",
-        "posted_at_utc": "2026-06-08T17:04:15.867189+00:00"
-      },
-      "footer": {
-        "message_id": "1513589601300906060",
-        "channel_id": "592534544708796474",
-        "posted_at_utc": "2026-06-08T17:04:42.732724+00:00"
-      },
-      "completed": true,
-      "completed_at_utc": "2026-06-08T17:04:43.940442+00:00"
-    },
-    "items": [
-      {
-        "item_key": "559af6fdab9918bb",
-        "section": "free",
-        "title": "Vegas Casino & Slots: Slottist",
-        "url": "https://store.steampowered.com/app/3673150/",
-        "message_id": "1513589504353763520",
-        "channel_id": "592534544708796474",
-        "source_type": "steam_free",
-        "posted_at": "2026-06-08T17:04:19.926387+00:00",
-        "description": "Discover the world's best Casino Slots Games! Play slots with unique game mechanics, explore amazing mini-games and master your casino skills!"
-      },
-      {
-        "item_key": "c5e41153a7c16244",
-        "section": "free",
-        "title": "Lost Light",
-        "url": "https://store.steampowered.com/app/1797880/",
-        "message_id": "1513589513845477428",
-        "channel_id": "592534544708796474",
-        "source_type": "steam_free",
-        "posted_at": "2026-06-08T17:04:22.016828+00:00",
-        "description": "Join the \"Firefly\" task force and unveil the sinister plot behind the exclusion zone in the world of Lost Light. You could either scavenge for supplies or go out with guns blazing and plunder. Survive the brutal domain where danger lurks in every corner!"
-      },
-      {
-        "item_key": "b496c1a2a9e50cad",
-        "section": "free",
-        "title": "Global City",
-        "url": "https://store.steampowered.com/app/1731270/",
-        "message_id": "1513589522624151755",
-        "channel_id": "592534544708796474",
-        "source_type": "steam_free",
-        "posted_at": "2026-06-08T17:04:23.938000+00:00",
-        "description": "Become the mayor and build the city of your dreams! In this game, anything is possible. Whatever you can imagine in a city-building and development simulator, you can do. Start from the very beginning and unlock new possibilities for developing your city in Global City!"
-      },
-      {
-        "item_key": "2c4b7a4b3bbad73f",
-        "section": "free",
-        "title": "Bit Heroes Quest",
-        "url": "https://store.steampowered.com/app/666860/",
-        "message_id": "1513589530798854204",
-        "channel_id": "592534544708796474",
-        "source_type": "steam_free",
-        "posted_at": "2026-06-08T17:04:25.645600+00:00",
-        "description": "Collect and craft thousands of pieces of loot to increase your power. Build your team by capturing monsters and bosses to fight at your side in old school, turn-based combat. Prove you’re the mightiest hero in the land by competing in the PvP arena, Raids, and weekly events for awesome prizes!"
-      },
-      {
-        "item_key": "ce93245037889f53",
-        "section": "free",
-        "title": "TrackMania Nations Forever",
-        "url": "https://store.steampowered.com/app/11020/",
-        "message_id": "1513589537908068422",
-        "channel_id": "592534544708796474",
-        "source_type": "steam_free",
-        "posted_at": "2026-06-08T17:04:27.435169+00:00",
-        "description": "A free game in the truest sense of the word, TrackMania Nations Forever lets you drive at mind-blowing speeds on fun and spectacular tracks in solo and multiplayer modes.TrackMania Nations Forever offers a new \"Forever\" version of the Stadium environment, a solid solo mode and 65 brand new, progressively challenging tracks."
-      },
-      {
-        "item_key": "318e32de877df775",
-        "section": "paid",
-        "title": "Airport Security Sucks!",
-        "url": "https://store.steampowered.com/app/4285690/",
-        "message_id": "1513589552407773278",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-06-08T17:04:31.073455+00:00",
-        "description": "Embody your inner power-tripping TSA agent and hunt down other players attempting to blend in and smuggle contraband past you. Control the crowd and your problematic K9 with authoritative voice commands, and use \"compliance devices\" to apprehend smugglers making mischief or hiding in plain sight."
-      },
-      {
-        "item_key": "093ac4dabf2cba7f",
-        "section": "paid",
-        "title": "Lethal Company",
-        "url": "https://store.steampowered.com/app/1966720/",
-        "message_id": "1513589561132056767",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-06-08T17:04:34.719754+00:00",
-        "description": "A co-op horror about scavenging at abandoned moons to sell scrap to the Company."
-      },
-      {
-        "item_key": "4887c0147ece771c",
-        "section": "paid",
-        "title": "Roadside Research",
-        "url": "https://store.steampowered.com/app/3643170/",
-        "message_id": "1513589576118173797",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-06-08T17:04:36.704738+00:00",
-        "description": "Roadside Research is a 1 to 4 player co-op gas station simulator. Except you’re aliens. And undercover. Do very human things like restocking shelves while preparing for the invasion. Just don’t get caught."
-      },
-      {
-        "item_key": "c92e8d4d65b2d835",
-        "section": "paid",
-        "title": "GTFO",
-        "url": "https://store.steampowered.com/app/493520/",
-        "message_id": "1513589584238350348",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-06-08T17:04:38.513628+00:00",
-        "description": "GTFO is a hardcore cooperative horror shooter that throws you from gripping suspense to explosive action in a heartbeat. Stealth, strategy, and teamwork are necessary to survive in your deadly, underground prison. Work together or die together."
-      },
-      {
-        "item_key": "21cd21780355d74f",
-        "section": "paid",
-        "title": "WARNO",
-        "url": "https://store.steampowered.com/app/1611600/",
-        "message_id": "1513589592127963207",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-06-08T17:04:40.581598+00:00",
-        "description": "Realistic, immersive, breathtaking. WARNO is the ultimate World War III battle simulator from the masters of strategy, Eugen Systems. A Cold War turns decisively hot as you command hundreds of units on a beautiful and brutal battlefield. Outsmart, outfight, and lead your forces to total victory."
-      }
-    ]
-  },
   "2026-06-09": {
     "run_state": {
       "section_headers": {
@@ -5017,5 +4876,184 @@
       "skipped_reason": "no_eligible_winners",
       "updated_at_utc": "2026-07-07T23:55:55.996793+00:00"
     }
+  },
+  "2026-07-08": {
+    "run_state": {
+      "section_headers": {
+        "free": {
+          "message_id": "1524438000522625125",
+          "channel_id": "592534544708796474",
+          "posted_at_utc": "2026-07-08T15:32:22.253340+00:00"
+        },
+        "paid": {
+          "message_id": "1524438046274228224",
+          "channel_id": "592534544708796474",
+          "posted_at_utc": "2026-07-08T15:32:33.432133+00:00"
+        },
+        "instagram": {
+          "message_id": "1524438089605320780",
+          "channel_id": "592534544708796474",
+          "posted_at_utc": "2026-07-08T15:32:43.560126+00:00"
+        }
+      },
+      "last_attempt_at_utc": "2026-07-08T15:32:19.077694+00:00",
+      "intro": {
+        "message_id": "1524437988837298378",
+        "channel_id": "592534544708796474",
+        "posted_at_utc": "2026-07-08T15:32:20.708281+00:00"
+      },
+      "footer": {
+        "message_id": "1524438119116439574",
+        "channel_id": "592534544708796474",
+        "posted_at_utc": "2026-07-08T15:32:50.589328+00:00"
+      },
+      "completed": true,
+      "completed_at_utc": "2026-07-08T15:32:51.796247+00:00"
+    },
+    "items": [
+      {
+        "item_key": "c543ff8efa536dff",
+        "section": "free",
+        "title": "Counter-Strike Nexon",
+        "url": "https://store.steampowered.com/app/273110/",
+        "message_id": "1524438007221063692",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-07-08T15:32:24.352698+00:00",
+        "description": "Counter-Strike Nexon is a Free to Play MMOFPS offering competitive PvP and PvE action including content from the original Counter-Strike and all new game modes, map creation function, weapons, and hordes of Zombies!"
+      },
+      {
+        "item_key": "1647e12fb0b4f9d5",
+        "section": "free",
+        "title": "Vindictus",
+        "url": "https://store.steampowered.com/app/212160/",
+        "message_id": "1524438015752142858",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-07-08T15:32:25.936081+00:00",
+        "description": "Vindictus is an Action RPG that delivers the highest level of combat mechanics and high-quality visuals. Featuring a fully interactive environment, dungeon objects and monsters become part of your arsenal. Experience unique, creative action gameplay that sets a new standard for online RPGs."
+      },
+      {
+        "item_key": "669d70b9ebda3512",
+        "section": "free",
+        "title": "Avakin Life",
+        "url": "https://store.steampowered.com/app/3165680/",
+        "message_id": "1524438022538661898",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-07-08T15:32:27.605008+00:00",
+        "description": "Avakin Life is an endless social world waiting for you. Live your dream life, from unique and customizable avatars to stylish fashion outfits and personalized dream homes. Hang out with friends, join parties, and embark on adventures in a world where you are in control of everything."
+      },
+      {
+        "item_key": "28f48d0f24928ff1",
+        "section": "free",
+        "title": "Milky Way Idle",
+        "url": "https://store.steampowered.com/app/3224420/",
+        "message_id": "1524438029861912800",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-07-08T15:32:29.398626+00:00",
+        "description": "Milky Way Idle: A multiplayer idle RPG where automation replaces grinding. Level up skills, gather resources, craft powerful items, and battle monsters—all while AFK. Trade in the marketplace, join a guild, team up for party combat, and socialize in chat as you progress effortlessly."
+      },
+      {
+        "item_key": "88465a6d5ff5c917",
+        "section": "free",
+        "title": "WAKFU",
+        "url": "https://store.steampowered.com/app/215080/",
+        "message_id": "1524438037159739514",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-07-08T15:32:31.459388+00:00",
+        "description": "Immerse yourself in the WAKFU universe with this free to play MMORPG. Select your class, travel the world, meet adventurers to challenge powerful monsters in epic turn-based battles.Participate in the kingdom’s economy and politics and create your own legend!"
+      },
+      {
+        "item_key": "386a83670cc2949d",
+        "section": "paid",
+        "title": "Super Battle Golf",
+        "url": "https://store.steampowered.com/app/4069520/",
+        "message_id": "1524438053874040852",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-07-08T15:32:35.108601+00:00",
+        "description": "An online 1-8 player golf game where everyone plays at the same time. Swing, shoot, sabotage, and finish first by any means necessary in a free-for-all rush to the hole."
+      },
+      {
+        "item_key": "0b2cd79257d29d06",
+        "section": "paid",
+        "title": "Pratfall",
+        "url": "https://store.steampowered.com/app/4244510/",
+        "message_id": "1524438060782321776",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-07-08T15:32:36.883451+00:00",
+        "description": "A co-op game for 1-6+ players where you fall, dig, and explode your way down a dangerous cave system to find your lost dog. Catch your friends and watch your step on this journey full of traps, hazards, and the most deadly force of all: gravity. Will you jump into the unknown to rescue your dog?"
+      },
+      {
+        "item_key": "050a182498b86046",
+        "section": "paid",
+        "title": "MONSTER HUNTER RISE",
+        "url": "https://store.steampowered.com/app/1446780/",
+        "message_id": "1524438068382269781",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-07-08T15:32:38.535799+00:00",
+        "description": "Rise to the challenge and join the hunt! In Monster Hunter Rise, the latest installment in the award-winning and top-selling Monster Hunter series, you’ll become a hunter, explore brand new maps and use a variety of weapons to take down fearsome monsters as part of an all-new storyline."
+      },
+      {
+        "item_key": "356215af07bbed65",
+        "section": "paid",
+        "title": "V Rising",
+        "url": "https://store.steampowered.com/app/1604030/",
+        "message_id": "1524438075231436872",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-07-08T15:32:40.272516+00:00",
+        "description": "Awaken as a Vampire. Hunt for blood in nearby settlements to regain your strength and evade the scorching sun to survive. Raise your castle and thrive in an ever-changing, open world full of mystery. Gain allies online and conquer the land of the living."
+      },
+      {
+        "item_key": "f8b545abb1757657",
+        "section": "paid",
+        "title": "SnowRunner",
+        "url": "https://store.steampowered.com/app/1465360/",
+        "message_id": "1524438082684977233",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-07-08T15:32:42.028234+00:00",
+        "description": "Get ready for the next-generation off-road experience! Drive powerful vehicles and overcome extreme open environments to complete dozens of challenging missions solo or with up to 3 friends!"
+      },
+      {
+        "item_key": "dab23f381e293568",
+        "section": "instagram",
+        "title": "@sharedxp_official",
+        "url": "https://www.instagram.com/p/DaV73CcMj_n/",
+        "message_id": "1524438096417001623",
+        "channel_id": "592534544708796474",
+        "source_type": "instagram",
+        "posted_at": "2026-07-08T15:32:45.349188+00:00",
+        "description": "Anime Shop Simulator (AD)   Build your dream ANIME shop  ✅ Online Co-op ❌ Split-Screen Not Confirmed ✅ Up to 4 Player..."
+      },
+      {
+        "item_key": "1d5d35b7bbc4c8f5",
+        "section": "instagram",
+        "title": "@mildsoss_official",
+        "url": "https://www.instagram.com/p/DagFiiuITaZ/",
+        "message_id": "1524438103882858517",
+        "channel_id": "592534544708796474",
+        "source_type": "instagram",
+        "posted_at": "2026-07-08T15:32:47.107530+00:00",
+        "description": "Echo Point Nova is the definition of a hidden gem. You need to try it out  #gaming #coopgames #steamgames #fpsgames #..."
+      },
+      {
+        "item_key": "e20e5620c97a39cb",
+        "section": "instagram",
+        "title": "@sharedxp_official",
+        "url": "https://www.instagram.com/p/DagUV-usQ92/",
+        "message_id": "1524438111327879199",
+        "channel_id": "592534544708796474",
+        "source_type": "instagram",
+        "posted_at": "2026-07-08T15:32:48.862696+00:00",
+        "description": "Hela is a cosy co-op adventure where you play as tiny mouse familiars exploring a Scandinavian-inspired world, using ..."
+      }
+    ]
   }
 }
