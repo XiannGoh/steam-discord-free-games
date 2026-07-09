@@ -1,161 +1,4 @@
 {
-  "2026-06-09": {
-    "run_state": {
-      "section_headers": {
-        "demo_playtest": {
-          "message_id": "1513938708708065540",
-          "channel_id": "592534544708796474",
-          "posted_at_utc": "2026-06-09T16:11:56.033808+00:00"
-        },
-        "free": {
-          "message_id": "1513938723425751102",
-          "channel_id": "592534544708796474",
-          "posted_at_utc": "2026-06-09T16:11:59.557688+00:00"
-        },
-        "paid": {
-          "message_id": "1513938770812993668",
-          "channel_id": "592534544708796474",
-          "posted_at_utc": "2026-06-09T16:12:11.586077+00:00"
-        }
-      },
-      "last_attempt_at_utc": "2026-06-09T16:11:52.007693+00:00",
-      "intro": {
-        "message_id": "1513938694053302456",
-        "channel_id": "592534544708796474",
-        "posted_at_utc": "2026-06-09T16:11:54.456870+00:00"
-      },
-      "footer": {
-        "message_id": "1513938819643342878",
-        "channel_id": "592534544708796474",
-        "posted_at_utc": "2026-06-09T16:12:22.446492+00:00"
-      },
-      "completed": true,
-      "completed_at_utc": "2026-06-09T16:12:23.655454+00:00"
-    },
-    "items": [
-      {
-        "item_key": "6b90686bf0b6451a",
-        "section": "demo_playtest",
-        "title": "666 Malevolence Lane",
-        "url": "https://store.steampowered.com/app/4450260/",
-        "message_id": "1513938715129417912",
-        "channel_id": "592534544708796474",
-        "source_type": "steam_demo_playtest",
-        "posted_at": "2026-06-09T16:11:57.972927+00:00",
-        "description": "Trapped in a haunted Mansion filled with monsters and minigames, you must out maneuver, out think, and out play your friends to escape before your fear makes it impossible to do so."
-      },
-      {
-        "item_key": "992218c63c675154",
-        "section": "free",
-        "title": "Born Again",
-        "url": "https://store.steampowered.com/app/2332210/",
-        "message_id": "1513938730627371139",
-        "channel_id": "592534544708796474",
-        "source_type": "steam_free",
-        "posted_at": "2026-06-09T16:12:01.678352+00:00",
-        "description": "Hack-n-slash your way through the evil brewing in the Outer Realm! Stop the ominous Overlords in their tracks, but tread lightly, for every corner hosts a monster in waiting!"
-      },
-      {
-        "item_key": "3daf6efde8a71830",
-        "section": "free",
-        "title": "Ragnarok X: Next Generation",
-        "url": "https://store.steampowered.com/app/4007140/",
-        "message_id": "1513938739179683930",
-        "channel_id": "592534544708796474",
-        "source_type": "steam_free",
-        "posted_at": "2026-06-09T16:12:03.420731+00:00",
-        "description": "ROX is the official next-gen evolution of the classic Ragnarok Online MMORPG. With enhanced visuals, strategic combat, and diverse gameplay, ROX stays true to its roots while offering Fair Loot, Free Trading, and True Adventures. Your legend begins now— Are you ready?"
-      },
-      {
-        "item_key": "794406c592444e9f",
-        "section": "free",
-        "title": "Force of Warships: Battleship Games",
-        "url": "https://store.steampowered.com/app/1991860/",
-        "message_id": "1513938746087837838",
-        "channel_id": "592534544708796474",
-        "source_type": "steam_free",
-        "posted_at": "2026-06-09T16:12:05.423633+00:00",
-        "description": "Direct your battleship to glorious victory! Online battle under your leadership!"
-      },
-      {
-        "item_key": "43d98e264df42a63",
-        "section": "free",
-        "title": "Nexus Legacy",
-        "url": "https://store.steampowered.com/app/4661910/",
-        "message_id": "1513938754648150248",
-        "channel_id": "592534544708796474",
-        "source_type": "steam_free",
-        "posted_at": "2026-06-09T16:12:07.075565+00:00",
-        "description": "Rebuild civilization from a single planet in Nexus Legacy, a persistent sci-fi 4X MMO. Colonize worlds, manage resources, research technologies, command fleets, forge alliances, and fight for control of a living galaxy."
-      },
-      {
-        "item_key": "1bf1a9a5957a8fd5",
-        "section": "free",
-        "title": "The Four Kings Casino and Slots",
-        "url": "https://store.steampowered.com/app/260430/",
-        "message_id": "1513938761656832250",
-        "channel_id": "592534544708796474",
-        "source_type": "steam_free",
-        "posted_at": "2026-06-09T16:12:09.056569+00:00",
-        "description": "The Four Kings Casino & Slots is a rich social online multiplayer casino gaming experience. Play all of your favorite casino games like Poker, Blackjack, Roulette, Craps, Baccarat, Slots and more! Meet friends, climb the leaderboards and win rewards to customize your avatar."
-      },
-      {
-        "item_key": "4f8ecd505e129d5a",
-        "section": "paid",
-        "title": "The Other Side",
-        "url": "https://store.steampowered.com/app/2764750/",
-        "message_id": "1513938780665680048",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-06-09T16:12:13.598502+00:00",
-        "description": "The Other Side is a co-op psychological thriller for up to 6 players. Your goal is to investigate haunted locations using modern ghost hunting equipment, gather evidence, identify entities, and cleanse them from the location. Customize your character, headquarters, and more."
-      },
-      {
-        "item_key": "126e4bcd756b1d73",
-        "section": "paid",
-        "title": "Jump Space",
-        "url": "https://store.steampowered.com/app/1757300/",
-        "message_id": "1513938789037506671",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-06-09T16:12:15.700803+00:00",
-        "description": "Jump Space (formerly Jump Ship) is a mission based co-op PvE for 1-4 players, where you are the crew of a spaceship. Transition seamlessly from crewing the ship to on-foot exploration and space walks. Explore, upgrade, and survive intense encounters in deep space together."
-      },
-      {
-        "item_key": "e9650158f9c790c8",
-        "section": "paid",
-        "title": "Party Animals",
-        "url": "https://store.steampowered.com/app/1260320/",
-        "message_id": "1513938797568594083",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-06-09T16:12:17.541286+00:00",
-        "description": "Fight your friends as puppies, kittens and other fuzzy creatures in PARTY ANIMALS! Paw it out with your friends remotely, or huddle together for chaotic fun on the same screen. Interact with the world under our realistic physics engine. Did I mention PUPPIES?"
-      },
-      {
-        "item_key": "478d1569bc6deab5",
-        "section": "paid",
-        "title": "Wasteland 3",
-        "url": "https://store.steampowered.com/app/719040/",
-        "message_id": "1513938805349027881",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-06-09T16:12:19.112322+00:00",
-        "description": "Following the critically acclaimed 2014 Game of the Year winner Wasteland 2, the RPG series that pioneered the post-apocalyptic genre in video games returns with Wasteland 3."
-      },
-      {
-        "item_key": "b9102ffcc6c229ed",
-        "section": "paid",
-        "title": "R.I.P. - Reincarnation Insurance Program",
-        "url": "https://store.steampowered.com/app/3985950/",
-        "message_id": "1513938812135407819",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-06-09T16:12:20.815485+00:00",
-        "description": "Welcome to the Reincarnation Insurance Program! This top-down roguelite shooter blends Diablo-style looting with Survivor-like mayhem. Face screen-filling zombie tides, use Divine Tech to liquidate them into ash, and farm god-tier gear to forge your OP build."
-      }
-    ]
-  },
   "2026-06-10": {
     "run_state": {
       "section_headers": {
@@ -5053,6 +4896,190 @@
         "source_type": "instagram",
         "posted_at": "2026-07-08T15:32:48.862696+00:00",
         "description": "Hela is a cosy co-op adventure where you play as tiny mouse familiars exploring a Scandinavian-inspired world, using ..."
+      }
+    ]
+  },
+  "2026-07-09": {
+    "run_state": {
+      "section_headers": {
+        "demo_playtest": {
+          "message_id": "1524810879005233374",
+          "channel_id": "592534544708796474",
+          "posted_at_utc": "2026-07-09T16:14:03.534157+00:00"
+        },
+        "free": {
+          "message_id": "1524810894037483673",
+          "channel_id": "592534544708796474",
+          "posted_at_utc": "2026-07-09T16:14:07.042738+00:00"
+        },
+        "paid": {
+          "message_id": "1524810938081869888",
+          "channel_id": "592534544708796474",
+          "posted_at_utc": "2026-07-09T16:14:17.620121+00:00"
+        },
+        "instagram": {
+          "message_id": "1524810984416612402",
+          "channel_id": "592534544708796474",
+          "posted_at_utc": "2026-07-09T16:14:28.645160+00:00"
+        }
+      },
+      "last_attempt_at_utc": "2026-07-09T16:14:01.247104+00:00",
+      "intro": {
+        "message_id": "1524810871551819916",
+        "channel_id": "592534544708796474",
+        "posted_at_utc": "2026-07-09T16:14:01.838757+00:00"
+      },
+      "footer": {
+        "message_id": "1524811007191548066",
+        "channel_id": "592534544708796474",
+        "posted_at_utc": "2026-07-09T16:14:34.125481+00:00"
+      },
+      "completed": true,
+      "completed_at_utc": "2026-07-09T16:14:35.332862+00:00"
+    },
+    "items": [
+      {
+        "item_key": "c9e78491c63a3d45",
+        "section": "demo_playtest",
+        "title": "Sghetti Fighter Demo",
+        "url": "https://store.steampowered.com/app/4448390/",
+        "message_id": "1524810886131220581",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_demo_playtest",
+        "posted_at": "2026-07-09T16:14:05.498605+00:00",
+        "description": "A traditional 1v1 indie fighter that takes place in the Sghetti Universe. Play as characters from The Sauce Monsters, and Freddy Sghetti, with more characters coming soon! Combos, air fighting, and special moves make this a fun, strategic game. Play online with friends too!"
+      },
+      {
+        "item_key": "f60eae9251b69c17",
+        "section": "free",
+        "title": "Combat Arms: the Classic",
+        "url": "https://store.steampowered.com/app/1263550/",
+        "message_id": "1524810900635258941",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-07-09T16:14:08.792946+00:00",
+        "description": "Combat Arms: the Classic is a multiplayer game, free-to-play modern first-person shooter. The game is a relaunch of Combat Arms in its glory days delivering gamers a nostalgic high-quality FPS with an extensive arsenal of weapons."
+      },
+      {
+        "item_key": "d368d0ab0443fed7",
+        "section": "free",
+        "title": "Farm RPG",
+        "url": "https://store.steampowered.com/app/2287550/",
+        "message_id": "1524810908231274688",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-07-09T16:14:10.648489+00:00",
+        "description": "Farm RPG is a menu based farming RPG/MMO. Build your farm, grow crops, fish, craft, and explore. Unlock a variety of exciting daily activities as you progress. Engage with helpful townsfolk and collaborate with fellow players in a vibrant community for trading and teamwork."
+      },
+      {
+        "item_key": "28e68ab9b5609c38",
+        "section": "free",
+        "title": "America's Army: Proving Grounds",
+        "url": "https://store.steampowered.com/app/203290/",
+        "message_id": "1524810915935944805",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-07-09T16:14:12.351807+00:00",
+        "description": "America’s Army: Proving Grounds is the official game of the U.S. Army and part of the highly acclaimed America’s Army game series. This free military game focuses on small unit tactical maneuvers and puts you to the test in a wide variety of new America’s Army maps and AA fan favorites."
+      },
+      {
+        "item_key": "f9e145ab23830f6c",
+        "section": "free",
+        "title": "BLOCKADE",
+        "url": "https://store.steampowered.com/app/1049800/",
+        "message_id": "1524810922827186279",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-07-09T16:14:14.098489+00:00",
+        "description": "BLOCKADE Classic! First Person Shooter in an editable procedural cubic world. A large arsenal of weapons, 4 teams at the same time and up to 32 players on one map. A large number of game modes!"
+      },
+      {
+        "item_key": "9fc0ab1b6e4803d5",
+        "section": "free",
+        "title": "Winds of Valen",
+        "url": "https://store.steampowered.com/app/4135880/",
+        "message_id": "1524810930473402509",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-07-09T16:14:15.983310+00:00",
+        "description": "Winds of Valen is a free fantasy sandbox MMORPG. Experience old-school progression where every level, skill, and drop is earned through effort. Train your combat, mining, and smithing skills, and hunt for rare and unique items in a seamless open world filled with danger and discovery."
+      },
+      {
+        "item_key": "cd12988bfcc6bd39",
+        "section": "paid",
+        "title": "Romestead",
+        "url": "https://store.steampowered.com/app/1805320/",
+        "message_id": "1524810945246003273",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-07-09T16:14:19.630624+00:00",
+        "description": "Rome has fallen! Rebuild civilization in this action-adventure survival game for 1-8 players. Fight hordes of the walking dead, build settlements, restore the Roman gods... or kick back and farm with friends."
+      },
+      {
+        "item_key": "4887c0147ece771c",
+        "section": "paid",
+        "title": "Roadside Research",
+        "url": "https://store.steampowered.com/app/3643170/",
+        "message_id": "1524810953567506472",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-07-09T16:14:21.318901+00:00",
+        "description": "Roadside Research is a 1 to 4 player co-op gas station simulator. Except you’re aliens. And undercover. Do very human things like restocking shelves while preparing for the invasion. Just don’t get caught."
+      },
+      {
+        "item_key": "c92e8d4d65b2d835",
+        "section": "paid",
+        "title": "GTFO",
+        "url": "https://store.steampowered.com/app/493520/",
+        "message_id": "1524810960886562846",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-07-09T16:14:23.171396+00:00",
+        "description": "GTFO is a hardcore cooperative horror shooter that throws you from gripping suspense to explosive action in a heartbeat. Stealth, strategy, and teamwork are necessary to survive in your deadly, underground prison. Work together or die together."
+      },
+      {
+        "item_key": "21cd21780355d74f",
+        "section": "paid",
+        "title": "WARNO",
+        "url": "https://store.steampowered.com/app/1611600/",
+        "message_id": "1524810968494768298",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-07-09T16:14:25.020348+00:00",
+        "description": "Realistic, immersive, breathtaking. WARNO is the ultimate World War III battle simulator from the masters of strategy, Eugen Systems. A Cold War turns decisively hot as you command hundreds of units on a beautiful and brutal battlefield. Outsmart, outfight, and lead your forces to total victory."
+      },
+      {
+        "item_key": "bc949172a440e9dd",
+        "section": "paid",
+        "title": "Sackboy™: A Big Adventure",
+        "url": "https://store.steampowered.com/app/1599660/",
+        "message_id": "1524810976216616982",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-07-09T16:14:26.928590+00:00",
+        "description": "PERFECTLY CRAFTED FOR PC. PlayStation® icon Sackboy bursts into action on PC in a huge 3D multiplayer platforming adventure. An epic journey stuffed with platforming challenges. Deeply immersive controls. Collaborative, chaotic and joyful multiplayer fun."
+      },
+      {
+        "item_key": "dfad55ce4c8374d1",
+        "section": "instagram",
+        "title": "@sharedxp_official",
+        "url": "https://www.instagram.com/p/DaVrm7XMBOj/",
+        "message_id": "1524810991408381963",
+        "channel_id": "592534544708796474",
+        "source_type": "instagram",
+        "posted_at": "2026-07-09T16:14:30.354537+00:00",
+        "description": "Moonshiner Simulator (Build a booze empire)  ✅ Co-op for Up to 8 Players (online) ❌ Split-Screen Not Confirmed ✅ STEA..."
+      },
+      {
+        "item_key": "c6bfab1d685ad9ab",
+        "section": "instagram",
+        "title": "@biffmatictv",
+        "url": "https://www.instagram.com/p/DakhEe1ttqQ/",
+        "message_id": "1524810998869917796",
+        "channel_id": "592534544708796474",
+        "source_type": "instagram",
+        "posted_at": "2026-07-09T16:14:32.240051+00:00",
+        "description": "Every viral game gets copied.. (ad)  Ore Factory Squad!   #gaming #newgame #factorysim #coop #gamingwithfriends"
       }
     ]
   }
