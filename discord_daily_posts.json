@@ -5146,6 +5146,11 @@
         "posted_at": "2026-07-10T15:47:45.604802+00:00",
         "description": "||AD|| CAT MAIL CO. Deliver mail as an adorable cat while exploring a cozy island full of charming characters and rel..."
       }
-    ]
+    ],
+    "winners_state": {
+      "status": "skipped",
+      "skipped_reason": "no_eligible_winners",
+      "updated_at_utc": "2026-07-10T23:56:44.932104+00:00"
+    }
   }
 }
