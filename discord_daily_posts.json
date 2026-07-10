@@ -1,161 +1,4 @@
 {
-  "2026-06-10": {
-    "run_state": {
-      "section_headers": {
-        "demo_playtest": {
-          "message_id": "1514310791602638960",
-          "channel_id": "592534544708796474",
-          "posted_at_utc": "2026-06-10T16:50:27.509051+00:00"
-        },
-        "free": {
-          "message_id": "1514310810258768045",
-          "channel_id": "592534544708796474",
-          "posted_at_utc": "2026-06-10T16:50:32.186118+00:00"
-        },
-        "paid": {
-          "message_id": "1514310859407757442",
-          "channel_id": "592534544708796474",
-          "posted_at_utc": "2026-06-10T16:50:43.676953+00:00"
-        }
-      },
-      "last_attempt_at_utc": "2026-06-10T16:50:24.627817+00:00",
-      "intro": {
-        "message_id": "1514310780856832071",
-        "channel_id": "592534544708796474",
-        "posted_at_utc": "2026-06-10T16:50:25.923718+00:00"
-      },
-      "footer": {
-        "message_id": "1514310905297375363",
-        "channel_id": "592534544708796474",
-        "posted_at_utc": "2026-06-10T16:50:54.586760+00:00"
-      },
-      "completed": true,
-      "completed_at_utc": "2026-06-10T16:50:55.795258+00:00"
-    },
-    "items": [
-      {
-        "item_key": "5680068586244223",
-        "section": "demo_playtest",
-        "title": "Mall Rivals",
-        "url": "https://store.steampowered.com/app/4090330/",
-        "message_id": "1514310798791545042",
-        "channel_id": "592534544708796474",
-        "source_type": "steam_demo_playtest",
-        "posted_at": "2026-06-10T16:50:30.334290+00:00",
-        "description": "Competitive mall simulation. 1-8 players open stores in the same mall, fight for customers, crush rivals. Team up or go solo. Fair play or dirty tricks? Your call. Procedural maps, employee system,mall cops, smugglers and physical mechanics."
-      },
-      {
-        "item_key": "3f07a48c127d13d9",
-        "section": "free",
-        "title": "RPG MO",
-        "url": "https://store.steampowered.com/app/372800/",
-        "message_id": "1514310817963573492",
-        "channel_id": "592534544708796474",
-        "source_type": "steam_free",
-        "posted_at": "2026-06-10T16:50:34.003845+00:00",
-        "description": "RPG MO is a nostalgic MMORPG that reminds of Ultima and Runescape Classic."
-      },
-      {
-        "item_key": "831e80a80857b652",
-        "section": "free",
-        "title": "Dead Maze",
-        "url": "https://store.steampowered.com/app/667890/",
-        "message_id": "1514310825630765116",
-        "channel_id": "592534544708796474",
-        "source_type": "steam_free",
-        "posted_at": "2026-06-10T16:50:36.229029+00:00",
-        "description": "Dead Maze is a 2D MMO game set in a destroyed contemporary world, filled with zombies. Explore the world, scavenge and craft as many items as possible, to survive the hostile environment and upgrade your gear and camp as you go."
-      },
-      {
-        "item_key": "07ce3d166b2fdf65",
-        "section": "free",
-        "title": "Nexus Rumble: The Ultimate Showdown",
-        "url": "https://store.steampowered.com/app/3027820/",
-        "message_id": "1514310834799509545",
-        "channel_id": "592534544708796474",
-        "source_type": "steam_free",
-        "posted_at": "2026-06-10T16:50:37.994161+00:00",
-        "description": "Welcome to Nexus Rumble, the ultimate showdown where champions clash in a fierce competition for survival! Prepare to embark on an adrenaline-fueled journey through diverse landscapes and exhilarating challenges in this heart-pounding multiplayer extravaganza."
-      },
-      {
-        "item_key": "0295aaffe478faad",
-        "section": "free",
-        "title": "Royal Revolt II",
-        "url": "https://store.steampowered.com/app/1571190/",
-        "message_id": "1514310842282283018",
-        "channel_id": "592534544708796474",
-        "source_type": "steam_free",
-        "posted_at": "2026-06-10T16:50:39.775503+00:00",
-        "description": "Royal Revolt 2 is an asynchronous PvP Reverse Tower Defense game full of medieval magic and action-laden battles.Can you set up your defenses so other Kings and Queens can't crash your castle gates? We're throwing down the gauntlet. Will you pick it up?"
-      },
-      {
-        "item_key": "9c266f0cdc48c7de",
-        "section": "free",
-        "title": "Growtopia",
-        "url": "https://store.steampowered.com/app/866020/",
-        "message_id": "1514310849983152310",
-        "channel_id": "592534544708796474",
-        "source_type": "steam_free",
-        "posted_at": "2026-06-10T16:50:42.062296+00:00",
-        "description": "Growtopia is a 2D sandbox game, that brings together millions of players in an expansive pixel world. Collaborate in building anything you can imagine, become anyone you want to be, and delve into numerous mini-games. Unleash your creativity and join the massive universe in Growtopia today!"
-      },
-      {
-        "item_key": "631233dcdbffe64c",
-        "section": "paid",
-        "title": "MIMESIS",
-        "url": "https://store.steampowered.com/app/2827200/",
-        "message_id": "1514310866038816808",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-06-10T16:50:45.632344+00:00",
-        "description": "4 Player co-op survival horror game. When the cursed rain falls, 'Mimesis' appear, perfectly imitating your teammates, bringing a new level of tension you've never experienced before."
-      },
-      {
-        "item_key": "0a22fc3f0beef7af",
-        "section": "paid",
-        "title": "Pummel Party",
-        "url": "https://store.steampowered.com/app/880940/",
-        "message_id": "1514310874242875524",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-06-10T16:50:47.396853+00:00",
-        "description": "Pummel Party is a 4-8 player online and local-multiplayer party game. Pummel friends or AI using a wide array of absurd items in the board mode and compete to destroy friendships in the unique collection of minigames."
-      },
-      {
-        "item_key": "8664a9582f92ec8f",
-        "section": "paid",
-        "title": "LOCKDOWN Protocol",
-        "url": "https://store.steampowered.com/app/2780980/",
-        "message_id": "1514310881654083840",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-06-10T16:50:49.056298+00:00",
-        "description": "A first person social deduction game, combining real time action and communication, playable up to 16 players. While most players will cooperate to complete objectives to ensure victory, a small portion of dissidents will try their best to stop them at all cost, without being caught."
-      },
-      {
-        "item_key": "c64ca026f4b2e72e",
-        "section": "paid",
-        "title": "People Playground",
-        "url": "https://store.steampowered.com/app/1118200/",
-        "message_id": "1514310888390131866",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-06-10T16:50:50.828597+00:00",
-        "description": "Shoot, stab, burn, poison, tear, vaporise, or crush ragdolls in a large open space."
-      },
-      {
-        "item_key": "a2edacdcc1a2c61d",
-        "section": "paid",
-        "title": "Green Hell",
-        "url": "https://store.steampowered.com/app/815370/",
-        "message_id": "1514310896430878890",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-06-10T16:50:52.867186+00:00",
-        "description": "Plunge into the open-world survival simulation set in the extreme conditions of the uncharted Amazon jungle. Use real-life survival techniques to craft, hunt, fight, and gather resources, set a makeshift shelter, or raise a fortress. Survive alone or team up with your friends and challenge the jungle together."
-      }
-    ]
-  },
   "2026-06-11": {
     "run_state": {
       "section_headers": {
@@ -5087,5 +4930,222 @@
       "skipped_reason": "no_eligible_winners",
       "updated_at_utc": "2026-07-10T00:02:08.820755+00:00"
     }
+  },
+  "2026-07-10": {
+    "run_state": {
+      "section_headers": {
+        "demo_playtest": {
+          "message_id": "1525166506068017281",
+          "channel_id": "592534544708796474",
+          "posted_at_utc": "2026-07-10T15:47:11.791962+00:00"
+        },
+        "free": {
+          "message_id": "1525166521327026288",
+          "channel_id": "592534544708796474",
+          "posted_at_utc": "2026-07-10T15:47:15.316888+00:00"
+        },
+        "paid": {
+          "message_id": "1525166566982025266",
+          "channel_id": "592534544708796474",
+          "posted_at_utc": "2026-07-10T15:47:26.199511+00:00"
+        },
+        "instagram": {
+          "message_id": "1525166609814261841",
+          "channel_id": "592534544708796474",
+          "posted_at_utc": "2026-07-10T15:47:36.264055+00:00"
+        }
+      },
+      "last_attempt_at_utc": "2026-07-10T15:47:08.413874+00:00",
+      "intro": {
+        "message_id": "1525166494588207134",
+        "channel_id": "592534544708796474",
+        "posted_at_utc": "2026-07-10T15:47:09.916806+00:00"
+      },
+      "footer": {
+        "message_id": "1525166656211390654",
+        "channel_id": "592534544708796474",
+        "posted_at_utc": "2026-07-10T15:47:47.311840+00:00"
+      },
+      "completed": true,
+      "completed_at_utc": "2026-07-10T15:47:48.519191+00:00"
+    },
+    "items": [
+      {
+        "item_key": "f6511edc2ddc0308",
+        "section": "demo_playtest",
+        "title": "Miniature Legends",
+        "url": "https://store.steampowered.com/app/3824640/",
+        "message_id": "1525166513781215393",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_demo_playtest",
+        "posted_at": "2026-07-10T15:47:13.585294+00:00",
+        "description": "Survive in tiny lands—alone or with friends in online co-op! Battle endless waves of creatures in small arenas, collect and upgrade powerful abilities, unlock charming characters, and become a legend in this chaotic roguelike board-battler."
+      },
+      {
+        "item_key": "992218c63c675154",
+        "section": "free",
+        "title": "Born Again",
+        "url": "https://store.steampowered.com/app/2332210/",
+        "message_id": "1525166528562200658",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-07-10T15:47:17.004476+00:00",
+        "description": "Hack-n-slash your way through the evil brewing in the Outer Realm! Stop the ominous Overlords in their tracks, but tread lightly, for every corner hosts a monster in waiting!"
+      },
+      {
+        "item_key": "b13bdbe2bfd52174",
+        "section": "free",
+        "title": "Mini World: CREATA",
+        "url": "https://store.steampowered.com/app/814480/",
+        "message_id": "1525166535692255312",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-07-10T15:47:18.702500+00:00",
+        "description": "Mini World is a 3D free sandbox game about adventure, exploration, and creating your dream worlds. There is no grinding or leveling up. No IAP gate that locks features from free to play players. Everyone can enjoy the game’s full features with great freedom"
+      },
+      {
+        "item_key": "ab3ca91055660117",
+        "section": "free",
+        "title": "Emporea: Realms of War and Magic",
+        "url": "https://store.steampowered.com/app/416450/",
+        "message_id": "1525166543095201852",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-07-10T15:47:20.810390+00:00",
+        "description": "Emporea is an oldschool fantasy strategy game, where cooperation with other players is necessary to achieve victory. Only the best alliance can win! Multiple realms available, with new ones starting every two weeks."
+      },
+      {
+        "item_key": "b9d5d7beb36faa1d",
+        "section": "free",
+        "title": "Escape Room - Der kranke Kollege",
+        "url": "https://store.steampowered.com/app/1301720/",
+        "message_id": "1525166551601516728",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-07-10T15:47:22.733664+00:00",
+        "description": "You only wanted to make a visit to your sick colleague, but what you encounter is beyond your imagination. Discover the secrets of your colleague and find a way to escape the trap."
+      },
+      {
+        "item_key": "19d29711af410717",
+        "section": "free",
+        "title": "Frontline 1942: Battles of the World War 2",
+        "url": "https://store.steampowered.com/app/2564660/",
+        "message_id": "1525166559746588702",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-07-10T15:47:24.424241+00:00",
+        "description": "Immerse yourself in the times of the Second World War II and become a real hero! Shoot, capture, win – the path to glory is paved with shells!"
+      },
+      {
+        "item_key": "f5f7dde96cab53a9",
+        "section": "paid",
+        "title": "Total War: ATTILA",
+        "url": "https://store.steampowered.com/app/325610/",
+        "message_id": "1525166573898432584",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-07-10T15:47:27.912170+00:00",
+        "description": "Against a darkening background of famine, disease and war, a new power is rising in the great steppes of the East. With a million horsemen at his back, the ultimate warrior king approaches, and his sights are set on Rome… The next instalment in the multi award-winning PC series that combines turn-based strategy with real-time tactics,..."
+      },
+      {
+        "item_key": "3c5bf2dcc05240d7",
+        "section": "paid",
+        "title": "ONE PIECE: PIRATE WARRIORS 4",
+        "url": "https://store.steampowered.com/app/1089090/",
+        "message_id": "1525166581385007104",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-07-10T15:47:29.620984+00:00",
+        "description": "ONE PIECE: PIRATE WARRIORS 4 is the latest evolution of PIRATE WARRIORS action! Based on the concept of \"experiencing a real ONE PIECE battlefield,\" buildings will come crashing down during the action and attacks will throw up smoke and dust, placing you in the thick of the ONE PIECE world!"
+      },
+      {
+        "item_key": "e13aa1d838650155",
+        "section": "paid",
+        "title": "Ultimate Chicken Horse",
+        "url": "https://store.steampowered.com/app/386940/",
+        "message_id": "1525166588565786664",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-07-10T15:47:31.313943+00:00",
+        "description": "Ultimate Chicken Horse is a party platformer game where you build the level as you play, placing traps and hazards to screw your friends over, but trying not to screw yourself."
+      },
+      {
+        "item_key": "fa1138bddb222469",
+        "section": "paid",
+        "title": "Total War: SHOGUN 2",
+        "url": "https://store.steampowered.com/app/201270/",
+        "message_id": "1525166595742367764",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-07-10T15:47:33.070037+00:00",
+        "description": "Total War: SHOGUN 2 is the perfect mix of real-time and turn-based strategy gaming for newcomers and veterans alike."
+      },
+      {
+        "item_key": "55f6fe5331ee14f0",
+        "section": "paid",
+        "title": "Brotato",
+        "url": "https://store.steampowered.com/app/1942280/",
+        "message_id": "1525166603052777634",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-07-10T15:47:34.765518+00:00",
+        "description": "Brotato is a top-down arena shooter roguelite where you play a potato wielding up to 6 weapons at a time to fight off hordes of aliens. Choose from a variety of traits and items to create unique builds and survive until help arrives."
+      },
+      {
+        "item_key": "a18de5e47102ea71",
+        "section": "instagram",
+        "title": "@sharedxp_official",
+        "url": "https://www.instagram.com/p/DalBo8XsFSy/",
+        "message_id": "1525166616432607322",
+        "channel_id": "592534544708796474",
+        "source_type": "instagram",
+        "posted_at": "2026-07-10T15:47:38.053063+00:00",
+        "description": "Cat Mail Co. (AD)  is a cosy postal sim where you restore a forgotten cat post office, sort parcels, serve customers,..."
+      },
+      {
+        "item_key": "fb101e5daf8b514e",
+        "section": "instagram",
+        "title": "@mildsoss_official",
+        "url": "https://www.instagram.com/p/Dalr8j1I8IG/",
+        "message_id": "1525166623961382922",
+        "channel_id": "592534544708796474",
+        "source_type": "instagram",
+        "posted_at": "2026-07-10T15:47:39.845062+00:00",
+        "description": "Once Human is coming to consoles on August 25th with 4K graphics and crossplay. You and your friends are not going to..."
+      },
+      {
+        "item_key": "51595a91942e38a1",
+        "section": "instagram",
+        "title": "@sharedxp_official",
+        "url": "https://www.instagram.com/p/DaneSFQMUOp/",
+        "message_id": "1525166631838416966",
+        "channel_id": "592534544708796474",
+        "source_type": "instagram",
+        "posted_at": "2026-07-10T15:47:41.862976+00:00",
+        "description": "Sponge Break   is a funny 1–4 player co-op game where you play as sponges escaping the kitchen sink on a collapsing r..."
+      },
+      {
+        "item_key": "a918b7717f8cc272",
+        "section": "instagram",
+        "title": "@wilfratgaming",
+        "url": "https://www.instagram.com/p/DaneQngtTXs/",
+        "message_id": "1525166640030028056",
+        "channel_id": "592534544708796474",
+        "source_type": "instagram",
+        "posted_at": "2026-07-10T15:47:43.783677+00:00",
+        "description": "#ad Step into Ormod Directive, a fast-paced co-op extraction shooter where every mission is high-risk, high-reward.  ..."
+      },
+      {
+        "item_key": "9ae942801d2999a3",
+        "section": "instagram",
+        "title": "@wilfratgaming",
+        "url": "https://www.instagram.com/p/DalXqSVN0Xf/",
+        "message_id": "1525166647730503865",
+        "channel_id": "592534544708796474",
+        "source_type": "instagram",
+        "posted_at": "2026-07-10T15:47:45.604802+00:00",
+        "description": "||AD|| CAT MAIL CO. Deliver mail as an adorable cat while exploring a cozy island full of charming characters and rel..."
+      }
+    ]
   }
 }
