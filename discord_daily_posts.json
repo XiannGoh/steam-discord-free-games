@@ -5081,6 +5081,11 @@
         "posted_at": "2026-07-09T16:14:32.240051+00:00",
         "description": "Every viral game gets copied.. (ad)  Ore Factory Squad!   #gaming #newgame #factorysim #coop #gamingwithfriends"
       }
-    ]
+    ],
+    "winners_state": {
+      "status": "skipped",
+      "skipped_reason": "no_eligible_winners",
+      "updated_at_utc": "2026-07-10T00:02:08.820755+00:00"
+    }
   }
 }
