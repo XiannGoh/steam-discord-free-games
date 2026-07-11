@@ -1,9 +1,9 @@
 {
-  "run_at": "2026-07-10T15:47:08Z",
+  "run_at": "2026-07-11T14:40:32Z",
   "total_creators": 8,
   "creators_with_posts": 3,
-  "total_posts_collected": 5,
-  "total_skipped_seen": 6,
+  "total_posts_collected": 3,
+  "total_skipped_seen": 14,
   "total_skipped_caption": 0,
   "failed_creators": [],
   "creators": {
@@ -26,8 +26,8 @@
       "failure_reason": null
     },
     "mildsoss_official": {
-      "fetched": 5,
-      "collected": 1,
+      "fetched": 4,
+      "collected": 0,
       "skipped_seen": 3,
       "skipped_age": 1,
       "skipped_caption": 0,
@@ -35,19 +35,19 @@
       "failure_reason": null
     },
     "sharedxp_official": {
-      "fetched": 2,
-      "collected": 2,
-      "skipped_seen": 0,
-      "skipped_age": 0,
+      "fetched": 9,
+      "collected": 1,
+      "skipped_seen": 7,
+      "skipped_age": 1,
       "skipped_caption": 0,
       "failed": false,
       "failure_reason": null
     },
     "wilfratgaming": {
-      "fetched": 2,
-      "collected": 2,
-      "skipped_seen": 0,
-      "skipped_age": 0,
+      "fetched": 4,
+      "collected": 1,
+      "skipped_seen": 2,
+      "skipped_age": 1,
       "skipped_caption": 0,
       "failed": false,
       "failure_reason": null
@@ -63,8 +63,8 @@
     },
     "biffmatictv": {
       "fetched": 4,
-      "collected": 0,
-      "skipped_seen": 3,
+      "collected": 1,
+      "skipped_seen": 2,
       "skipped_age": 1,
       "skipped_caption": 0,
       "failed": false,
