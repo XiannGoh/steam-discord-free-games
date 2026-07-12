@@ -1,145 +1,4 @@
 {
-  "2026-06-12": {
-    "run_state": {
-      "section_headers": {
-        "free": {
-          "message_id": "1515031628101976104",
-          "channel_id": "592534544708796474",
-          "posted_at_utc": "2026-06-12T16:34:48.302629+00:00"
-        },
-        "paid": {
-          "message_id": "1515031672767250442",
-          "channel_id": "592534544708796474",
-          "posted_at_utc": "2026-06-12T16:34:58.937996+00:00"
-        }
-      },
-      "last_attempt_at_utc": "2026-06-12T16:34:45.385639+00:00",
-      "intro": {
-        "message_id": "1515031617352110124",
-        "channel_id": "592534544708796474",
-        "posted_at_utc": "2026-06-12T16:34:46.710472+00:00"
-      },
-      "footer": {
-        "message_id": "1515031721018654793",
-        "channel_id": "592534544708796474",
-        "posted_at_utc": "2026-06-12T16:35:10.681362+00:00"
-      },
-      "completed": true,
-      "completed_at_utc": "2026-06-12T16:35:11.888866+00:00"
-    },
-    "items": [
-      {
-        "item_key": "cbb19f06a72d2f9f",
-        "section": "free",
-        "title": "Mecha BREAK",
-        "url": "https://store.steampowered.com/app/2452280/",
-        "message_id": "1515031634725044455",
-        "channel_id": "592534544708796474",
-        "source_type": "steam_free",
-        "posted_at": "2026-06-12T16:34:50.133779+00:00",
-        "description": "Squad up in Mecha BREAK, a multiplayer third-person shooter offering three intense game modes filled with ground and aerial combat. Pilot your Striker into the breach and neutralize enemies. Are you ready for the ultimate showdown?"
-      },
-      {
-        "item_key": "4e1afa8cfe14d47c",
-        "section": "free",
-        "title": "Pixel Worlds: MMO Sandbox",
-        "url": "https://store.steampowered.com/app/636040/",
-        "message_id": "1515031642480185564",
-        "channel_id": "592534544708796474",
-        "source_type": "steam_free",
-        "posted_at": "2026-06-12T16:34:51.994977+00:00",
-        "description": "Pixel Worlds is a free-to-play sandbox MMO where players build worlds, craft items, explore dungeons, farm resources, and trade in a player-driven economy, all within a shared online universe rebuilt as a fresh start for a fair and stable long-term experience."
-      },
-      {
-        "item_key": "a0c1fdeec14345a2",
-        "section": "free",
-        "title": "Dead Frontier 2",
-        "url": "https://store.steampowered.com/app/744900/",
-        "message_id": "1515031650239643791",
-        "channel_id": "592534544708796474",
-        "source_type": "steam_free",
-        "posted_at": "2026-06-12T16:34:53.946203+00:00",
-        "description": "Survival horror MMO. As one of the few survivors of the outbreak, you must scratch a living out of the decaying ruins of society. Scavenge for supplies, improve your skills, and trade with other players. All the while, keeping your eyes peeled for the infected lurking around every corner."
-      },
-      {
-        "item_key": "dafad9bfeff042d1",
-        "section": "free",
-        "title": "Neverwinter",
-        "url": "https://store.steampowered.com/app/109600/",
-        "message_id": "1515031658506616982",
-        "channel_id": "592534544708796474",
-        "source_type": "steam_free",
-        "posted_at": "2026-06-12T16:34:55.635134+00:00",
-        "description": "Neverwinter is a free, action MMORPG based on the acclaimed Dungeons & Dragons fantasy roleplaying game. Epic stories, action combat and classic roleplaying await those heroes courageous enough to enter the fantastic world of Neverwinter!"
-      },
-      {
-        "item_key": "650e7dd035e49da5",
-        "section": "free",
-        "title": "War Robots: Frontiers",
-        "url": "https://store.steampowered.com/app/1491000/",
-        "message_id": "1515031665297326252",
-        "channel_id": "592534544708796474",
-        "source_type": "steam_free",
-        "posted_at": "2026-06-12T16:34:57.363117+00:00",
-        "description": "Gear up for tactical mech action in War Robots: Frontiers, a free-to-play multiplayer mech shooter. Construct and customize, squad up with Pilots online, and fire up your engines in massive intergalactic battles."
-      },
-      {
-        "item_key": "9121000d2c1eb5fa",
-        "section": "paid",
-        "title": "Backrooms: Escape Together",
-        "url": "https://store.steampowered.com/app/2141730/",
-        "message_id": "1515031679599906857",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-06-12T16:35:00.845798+00:00",
-        "description": "A visually lifelike co-op horror game for 1-6 people. Journey through 11 procedurally generated levels, using what's available to survive and progress deeper into the Backrooms."
-      },
-      {
-        "item_key": "b4bce9738198b4a7",
-        "section": "paid",
-        "title": "Killer Bean",
-        "url": "https://store.steampowered.com/app/1597080/",
-        "message_id": "1515031687690453184",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-06-12T16:35:03.003822+00:00",
-        "description": "You are Killer Bean, a rogue assassin coffee bean, who takes out the trash in this world, one bullet at a time. This is a first person / third person action roguelike."
-      },
-      {
-        "item_key": "34759c5b9757946c",
-        "section": "paid",
-        "title": "Gunfire Reborn",
-        "url": "https://store.steampowered.com/app/1217060/",
-        "message_id": "1515031696226123797",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-06-12T16:35:04.695452+00:00",
-        "description": "Gunfire Reborn is a level-based adventure game featuring FPS, Roguelite and RPG. Players can control heroes with various abilities to experience diverse Build gameplay, use various weapons to explore procedurally-generated levels. You can play the game alone, or join 4-player coop."
-      },
-      {
-        "item_key": "eb3bc8b84efbea79",
-        "section": "paid",
-        "title": "Burglin' Gnomes",
-        "url": "https://store.steampowered.com/app/3844970/",
-        "message_id": "1515031703897243858",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-06-12T16:35:06.699275+00:00",
-        "description": "An online Co-op game about breaking into houses and causing havoc as a tiny gnome. Avoid danger, repurpose stolen household items, and complete tasks to meet the High-Gnome’s demands. Craft equipment and upgrade your home to make your missions easier and more successful."
-      },
-      {
-        "item_key": "e2f3b8cdbfc39eda",
-        "section": "paid",
-        "title": "33 Immortals",
-        "url": "https://store.steampowered.com/app/958520/",
-        "message_id": "1515031712051232962",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-06-12T16:35:08.602555+00:00",
-        "description": "33 Immortals is a co-op action-roguelike for 33 players. Jump straight into runs, solo or with friends. Battle hordes of monsters, defeat massive bosses, and grow stronger each run. Use in-game emotes to coordinate and combine powers with your fellow rebels, and face the Wrath of God, together."
-      }
-    ]
-  },
   "2026-06-13": {
     "run_state": {
       "section_headers": {
@@ -5195,5 +5054,162 @@
       "skipped_reason": "no_eligible_winners",
       "updated_at_utc": "2026-07-11T23:51:42.637271+00:00"
     }
+  },
+  "2026-07-12": {
+    "run_state": {
+      "section_headers": {
+        "free": {
+          "message_id": "1525875842675249264",
+          "channel_id": "592534544708796474",
+          "posted_at_utc": "2026-07-12T14:45:50.525340+00:00"
+        },
+        "paid": {
+          "message_id": "1525875887235403786",
+          "channel_id": "592534544708796474",
+          "posted_at_utc": "2026-07-12T14:46:01.246525+00:00"
+        },
+        "instagram": {
+          "message_id": "1525875934173859930",
+          "channel_id": "592534544708796474",
+          "posted_at_utc": "2026-07-12T14:46:12.331326+00:00"
+        }
+      },
+      "last_attempt_at_utc": "2026-07-12T14:45:47.977489+00:00",
+      "intro": {
+        "message_id": "1525875833238192310",
+        "channel_id": "592534544708796474",
+        "posted_at_utc": "2026-07-12T14:45:48.947141+00:00"
+      },
+      "footer": {
+        "message_id": "1525875949994901516",
+        "channel_id": "592534544708796474",
+        "posted_at_utc": "2026-07-12T14:46:16.141950+00:00"
+      },
+      "completed": true,
+      "completed_at_utc": "2026-07-12T14:46:17.349479+00:00"
+    },
+    "items": [
+      {
+        "item_key": "71ba5815333f79aa",
+        "section": "free",
+        "title": "Angels Online Global",
+        "url": "https://store.steampowered.com/app/4018020/",
+        "message_id": "1525875849339994313",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-07-12T14:45:52.528089+00:00",
+        "description": "Angels Online Global is a charming 2D fantasy MMORPG featuring flexible builds, faction warfare, and deep customization. Enjoy 4× leveling, expanded inventory, real-time chat translation, and dungeon-earned outfits with fusion upgrades!"
+      },
+      {
+        "item_key": "9c3b0d3a74e9b7f1",
+        "section": "free",
+        "title": "The Eminence in Shadow: Master of Garden",
+        "url": "https://store.steampowered.com/app/2776900/",
+        "message_id": "1525875857657299004",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-07-12T14:45:54.305691+00:00",
+        "description": "Enter the world of The Eminence in Shadow: Master of Garden, a multiplayer, narrative driven, action-RPG where players form their own party from a deep roster of unique characters, voiced by the actors from the anime, and engage in new stories, to take down the world-threatening Cult of Diabolos."
+      },
+      {
+        "item_key": "6b3fc02e8112cd09",
+        "section": "free",
+        "title": "Goose Goose Duck",
+        "url": "https://store.steampowered.com/app/1568590/",
+        "message_id": "1525875865152524419",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-07-12T14:45:56.142425+00:00",
+        "description": "Goose Goose Duck is a game of social deduction for up to 16 players. Players are separated into different groups that are each assigned a different objective. Complete your team’s objective to win!"
+      },
+      {
+        "item_key": "cdf769d86ca6fea6",
+        "section": "free",
+        "title": "Crossout",
+        "url": "https://store.steampowered.com/app/386180/",
+        "message_id": "1525875872874238062",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-07-12T14:45:57.827172+00:00",
+        "description": "Crossout - the postapocalyptic MMO action game where you can create a unique design for an armoured vehicle from dozens of parts and then drive it into multiplayer battles raging on land and in the skies alike."
+      },
+      {
+        "item_key": "860518ba1377e9d7",
+        "section": "free",
+        "title": "Dungeons & Dragons Online®",
+        "url": "https://store.steampowered.com/app/206480/",
+        "message_id": "1525875879908212967",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-07-12T14:45:59.546425+00:00",
+        "description": "Enter a world of danger and adventure with Dungeons & Dragons Online® based on the beloved RPG that started it all."
+      },
+      {
+        "item_key": "2c4280ed7d5afd2c",
+        "section": "paid",
+        "title": "PEAK",
+        "url": "https://store.steampowered.com/app/3527290/",
+        "message_id": "1525875894290481374",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-07-12T14:46:03.145445+00:00",
+        "description": "PEAK is a co-op climbing game where the slightest mistake can spell your doom. Either solo or as a group of lost nature scouts, your only hope of rescue from a mysterious island is to scale the mountain at its center. Do you have what it takes to reach the PEAK?"
+      },
+      {
+        "item_key": "595c8a887854a201",
+        "section": "paid",
+        "title": "He is Coming",
+        "url": "https://store.steampowered.com/app/2824490/",
+        "message_id": "1525875902397808771",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-07-12T14:46:05.351631+00:00",
+        "description": "Deep in the forgotten corners of the world, a dark force stirs – the Demon King rises once more. Sharpen your wits, seek out powerful artifacts, and stand firm in the face of the apocalypse in this roguelite RPG auto battler."
+      },
+      {
+        "item_key": "880aa10a164c4218",
+        "section": "paid",
+        "title": "EA Play",
+        "url": "https://store.steampowered.com/app/1289670/",
+        "message_id": "1525875911394726099",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-07-12T14:46:07.091102+00:00",
+        "description": "Unlock a world of thrill. Get unlimited access to a collection of EA’s top titles, trials of select new games, & member discounts and rewards*."
+      },
+      {
+        "item_key": "f4e596d0175a581a",
+        "section": "paid",
+        "title": "Wartales",
+        "url": "https://store.steampowered.com/app/1527950/",
+        "message_id": "1525875918739083385",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-07-12T14:46:08.879743+00:00",
+        "description": "Wartales is an open world RPG in which you lead a group of mercenaries in their search for wealth across a massive medieval universe. Explore the world, recruit companions, collect bounties and unravel the secrets of the tombs of the ancients!"
+      },
+      {
+        "item_key": "4f6b0b8c2badac93",
+        "section": "paid",
+        "title": "Holdfast: Nations At War",
+        "url": "https://store.steampowered.com/app/589290/",
+        "message_id": "1525875926167064709",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-07-12T14:46:10.702061+00:00",
+        "description": "Fight on multiple fronts in Holdfast: Nations At War - A multiplayer first and third-person shooter set during the great Napoleonic Era and WW1. Charge into battle with over 150 players per server!"
+      },
+      {
+        "item_key": "eaa0b1a464567e1c",
+        "section": "instagram",
+        "title": "@wilfratgaming",
+        "url": "https://www.instagram.com/p/DaqDractiXY/",
+        "message_id": "1525875940461121732",
+        "channel_id": "592534544708796474",
+        "source_type": "instagram",
+        "posted_at": "2026-07-12T14:46:14.210078+00:00",
+        "description": "AD - The hit open-world survival game is finally making its way to consoles, bringing its massive world, strange crea..."
+      }
+    ]
   }
 }
