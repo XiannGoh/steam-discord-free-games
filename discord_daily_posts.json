@@ -1,145 +1,4 @@
 {
-  "2026-06-11": {
-    "run_state": {
-      "section_headers": {
-        "free": {
-          "message_id": "1514677680539303959",
-          "channel_id": "592534544708796474",
-          "posted_at_utc": "2026-06-11T17:08:20.751037+00:00"
-        },
-        "paid": {
-          "message_id": "1514677731437314178",
-          "channel_id": "592534544708796474",
-          "posted_at_utc": "2026-06-11T17:08:32.836487+00:00"
-        }
-      },
-      "last_attempt_at_utc": "2026-06-11T17:08:18.644608+00:00",
-      "intro": {
-        "message_id": "1514677673702457505",
-        "channel_id": "592534544708796474",
-        "posted_at_utc": "2026-06-11T17:08:19.112687+00:00"
-      },
-      "footer": {
-        "message_id": "1514677779894108291",
-        "channel_id": "592534544708796474",
-        "posted_at_utc": "2026-06-11T17:08:44.553144+00:00"
-      },
-      "completed": true,
-      "completed_at_utc": "2026-06-11T17:08:45.761231+00:00"
-    },
-    "items": [
-      {
-        "item_key": "34e36ca6b990b017",
-        "section": "free",
-        "title": "XERA: Survival",
-        "url": "https://store.steampowered.com/app/625340/",
-        "message_id": "1514677687657173012",
-        "channel_id": "592534544708796474",
-        "source_type": "steam_free",
-        "posted_at": "2026-06-11T17:08:23.702014+00:00",
-        "description": "Action-focused, open world survival shooter, PvPvE against fellow mercenaries and lethal XOIDS. Raid for resources alone or with team-mates, build and defend your base, stash your gear and survive against the odds. You are the hunters. You are the hunted. And the robots never sleep…"
-      },
-      {
-        "item_key": "70284b80978d9bc8",
-        "section": "free",
-        "title": "Warborne Above Ashes",
-        "url": "https://store.steampowered.com/app/3142050/",
-        "message_id": "1514677700458188810",
-        "channel_id": "592534544708796474",
-        "source_type": "steam_free",
-        "posted_at": "2026-06-11T17:08:25.756123+00:00",
-        "description": "Warborne is a top-down PvP loot-and-extract MMO. Every choice in the Abyss is a high-stakes gamble. Pick your gear wisely, employ cunning tactics, and plunder every treasure you can from a battlefield teeming with deception. And pray you make it out alive. Trade your spoils to grow your might."
-      },
-      {
-        "item_key": "042f5780bfb9ef4a",
-        "section": "free",
-        "title": "Heroes Of The Dark",
-        "url": "https://store.steampowered.com/app/1851330/",
-        "message_id": "1514677708792139856",
-        "channel_id": "592534544708796474",
-        "source_type": "steam_free",
-        "posted_at": "2026-06-11T17:08:27.469077+00:00",
-        "description": "Battle Vampires, Werewolves and Humans in a dark Imperial Age strategy game! Collect and upgrade Heroes for 5v5 action, forge alliances, and restore world order."
-      },
-      {
-        "item_key": "2fb5c98374843165",
-        "section": "free",
-        "title": "PANZERKAMPF®",
-        "url": "https://store.steampowered.com/app/2771910/",
-        "message_id": "1514677715905544264",
-        "channel_id": "592534544708796474",
-        "source_type": "steam_free",
-        "posted_at": "2026-06-11T17:08:29.360073+00:00",
-        "description": "World war of tanks rages on. Join the battle in one of our real-world tanks! Upgrade your vehicles and destroy the enemy! Play with friends and dominate the war! Play for free, in intuitive and easy to grasp UI, with state-of-the-art graphics, particle effects and authentic sound!"
-      },
-      {
-        "item_key": "3e622801d55d3565",
-        "section": "free",
-        "title": "FreestyleFootball R",
-        "url": "https://store.steampowered.com/app/1826980/",
-        "message_id": "1514677723795292220",
-        "channel_id": "592534544708796474",
-        "source_type": "steam_free",
-        "posted_at": "2026-06-11T17:08:31.146548+00:00",
-        "description": "《FreestyleFootball》 is a street hip-hop animation style soccer ACG game created by JCE and published by HOGA. In the game, you will collect and play as different characters in PVP team Competition. The game mode includes 4v4 team competition and club league."
-      },
-      {
-        "item_key": "1edd7298b1274d9d",
-        "section": "paid",
-        "title": "SCP: 5K",
-        "url": "https://store.steampowered.com/app/872670/",
-        "message_id": "1514677738257256549",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-06-11T17:08:34.474132+00:00",
-        "description": "SCP: 5K is a co-op or singleplayer tactical horror FPS project that puts players in the midst of a conspiracy where the SCP Foundation has turned on humanity. Enjoy Early Access as we continue to work towards a completed full release of the project!"
-      },
-      {
-        "item_key": "2e4e39124f5e450a",
-        "section": "paid",
-        "title": "ASKA",
-        "url": "https://store.steampowered.com/app/1898300/",
-        "message_id": "1514677745290969229",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-06-11T17:08:36.446668+00:00",
-        "description": "A new Viking age dawns with you at its helm. Forge a thriving colony from nothing in this mythic open-world survival sim. Earn the gods' favor and survive in a land ruled by ancient terrors and unforgiving seasons. Rally unique villagers, expand your settlement and defend your tribe - solo or co-op!"
-      },
-      {
-        "item_key": "c852b130b932ef6c",
-        "section": "paid",
-        "title": "Left 4 Dead",
-        "url": "https://store.steampowered.com/app/500/",
-        "message_id": "1514677753977245716",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-06-11T17:08:38.895107+00:00",
-        "description": "From Valve (the creators of Counter-Strike, Half-Life and more) comes Left 4 Dead, a co-op action horror game for the PC and Xbox 360 that casts up to four players in an epic struggle for survival against swarming zombie hordes and terrifying mutant monsters."
-      },
-      {
-        "item_key": "3e5b113ddaca45c1",
-        "section": "paid",
-        "title": "Fast Food Simulator",
-        "url": "https://store.steampowered.com/app/2916430/",
-        "message_id": "1514677763674603632",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-06-11T17:08:40.626715+00:00",
-        "description": "Welcome to the world's most chaotic place! Play solo or co-op with up to 6 players. Run a fast-food restaurant, and work with your friends to expand your business. Take orders, make burgers, and increase your earnings by dealing with customers."
-      },
-      {
-        "item_key": "cc1549a730e63057",
-        "section": "paid",
-        "title": "Rest Area Simulator",
-        "url": "https://store.steampowered.com/app/3732960/",
-        "message_id": "1514677770922364988",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-06-11T17:08:42.622108+00:00",
-        "description": "Take over the gas station and convenience store at a roadside rest area and expand by purchasing new businesses. Manage a living world shaped by dynamic economy and random events. Upgrade your facilities, satisfy your customers, and play solo or with friends."
-      }
-    ]
-  },
   "2026-06-12": {
     "run_state": {
       "section_headers": {
@@ -5151,6 +5010,190 @@
       "status": "skipped",
       "skipped_reason": "no_eligible_winners",
       "updated_at_utc": "2026-07-10T23:56:44.932104+00:00"
+    }
+  },
+  "2026-07-11": {
+    "run_state": {
+      "section_headers": {
+        "free": {
+          "message_id": "1525512131775299594",
+          "channel_id": "592534544708796474",
+          "posted_at_utc": "2026-07-11T14:40:35.184941+00:00"
+        },
+        "paid": {
+          "message_id": "1525512178877075608",
+          "channel_id": "592534544708796474",
+          "posted_at_utc": "2026-07-11T14:40:46.483778+00:00"
+        },
+        "instagram": {
+          "message_id": "1525512224322490408",
+          "channel_id": "592534544708796474",
+          "posted_at_utc": "2026-07-11T14:40:57.129075+00:00"
+        }
+      },
+      "last_attempt_at_utc": "2026-07-11T14:40:32.651450+00:00",
+      "intro": {
+        "message_id": "1525512123105415428",
+        "channel_id": "592534544708796474",
+        "posted_at_utc": "2026-07-11T14:40:33.532998+00:00"
+      },
+      "footer": {
+        "message_id": "1525512256845123694",
+        "channel_id": "592534544708796474",
+        "posted_at_utc": "2026-07-11T14:41:05.113185+00:00"
+      },
+      "completed": true,
+      "completed_at_utc": "2026-07-11T14:41:06.320336+00:00"
+    },
+    "items": [
+      {
+        "item_key": "50aee74db95f6af3",
+        "section": "free",
+        "title": "Navy War: Battleship Games",
+        "url": "https://store.steampowered.com/app/1991850/",
+        "message_id": "1525512138733650090",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-07-11T14:40:37.248806+00:00",
+        "description": "War & battle ships simulator PvP game with friends. Craft your modern ship fleet"
+      },
+      {
+        "item_key": "47b9695f3f72f0a5",
+        "section": "free",
+        "title": "Anarchy Online",
+        "url": "https://store.steampowered.com/app/396280/",
+        "message_id": "1525512147289768128",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-07-11T14:40:38.999214+00:00",
+        "description": "Anarchy Online – the first ever science fiction MMO – is now on Steam! Compete and cooperate with thousands of players simultaneously on a vast, alien world. Join humanity nearly 30,000 years in the future in a world of perpetual conflict and scientific marvel."
+      },
+      {
+        "item_key": "2d73e8db0227f3b0",
+        "section": "free",
+        "title": "Tank Team",
+        "url": "https://store.steampowered.com/app/2587450/",
+        "message_id": "1525512156626288640",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-07-11T14:40:41.384887+00:00",
+        "description": "A team based PVP game where groups of up to 8 players must work together to operate a tank!"
+      },
+      {
+        "item_key": "40d9e5f3ba62ec44",
+        "section": "free",
+        "title": "Tobacco Shop Simulator: Prologue",
+        "url": "https://store.steampowered.com/app/3211690/",
+        "message_id": "1525512164654317649",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-07-11T14:40:43.115308+00:00",
+        "description": "Run your tobacco shop in this free prologue version of the game. Sign contracts with leading brands, order products, and meet customer needs. Play with friends or go solo, and enjoy the growth of your shop."
+      },
+      {
+        "item_key": "decc0ede01fbe397",
+        "section": "free",
+        "title": "Florensia",
+        "url": "https://store.steampowered.com/app/384030/",
+        "message_id": "1525512171902206035",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-07-11T14:40:44.790659+00:00",
+        "description": "Florensia is a Free-to-Play MMORPG and shows you its legendary worlds ashore and at sea with its 3D anime style. Mysterious islands, the great ocean, dungeons, picturesque pirates and dangerous monsters are waiting to be discovered."
+      },
+      {
+        "item_key": "ee6129cd548c42c7",
+        "section": "paid",
+        "title": "Sitting Ducks",
+        "url": "https://store.steampowered.com/app/4397060/",
+        "message_id": "1525512186145931455",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-07-11T14:40:48.193403+00:00",
+        "description": "A chaotic co-op armageddon game where you build ridiculous structures to survive world-ending disasters with sticky hands, physics chaos & friends who probably won’t save you. Don´t be a Sitting Duck!"
+      },
+      {
+        "item_key": "6f708f09fc0827e6",
+        "section": "paid",
+        "title": "Make Way",
+        "url": "https://store.steampowered.com/app/1445790/",
+        "message_id": "1525512192953159703",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-07-11T14:40:49.991894+00:00",
+        "description": "Speed around loops, dart through train crossings, drift around helter skelters, and unleash wacky weaponry in this modern take on classic top-down multiplayer racing games such as Micro Machines and Mashed. The twist? You build the track."
+      },
+      {
+        "item_key": "6560c520629e5d9c",
+        "section": "paid",
+        "title": "CluDoku",
+        "url": "https://store.steampowered.com/app/4860070/",
+        "message_id": "1525512201123795035",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-07-11T14:40:52.088788+00:00",
+        "description": "A murder mystery blended with sudoku-style logic. Explore suspicious rooms, examine weapon evidence, and piece together clues through sharp deduction to reveal the killer. Play alone or work online with up to 4 detectives to solve the case together."
+      },
+      {
+        "item_key": "997362ca9b49062e",
+        "section": "paid",
+        "title": "NO BACKUP",
+        "url": "https://store.steampowered.com/app/3894440/",
+        "message_id": "1525512209340432528",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-07-11T14:40:53.867472+00:00",
+        "description": "Escape together or die alone. A relentless creature is hunting you in this intense co-op bodycam horror experience. Communicate. Stay quiet. Survive. Every move matters. Every sound could be your last. Made by one developer."
+      },
+      {
+        "item_key": "ebdeea4856c9d610",
+        "section": "paid",
+        "title": "Ember Knights",
+        "url": "https://store.steampowered.com/app/1135230/",
+        "message_id": "1525512217095831773",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-07-11T14:40:55.612804+00:00",
+        "description": "Ember Knights is an action rogue-lite for 1-4 players where you play as legendary knights, the last spark of hope against the mad sorcerer Praxis and his hordes of unwavering fiends. Wield weapons & skills, build synergies with game-changing relics and free the universe of Praxis’ corruption."
+      },
+      {
+        "item_key": "83d7dba6601eabc4",
+        "section": "instagram",
+        "title": "@sharedxp_official",
+        "url": "https://www.instagram.com/p/Dan70eRMDlM/",
+        "message_id": "1525512230760747038",
+        "channel_id": "592534544708796474",
+        "source_type": "instagram",
+        "posted_at": "2026-07-11T14:40:59.006265+00:00",
+        "description": "Shady Job is a physics-based co-op adventure where you and your mates drag a definitely-not-suspicious package up a s..."
+      },
+      {
+        "item_key": "255a1ae630930d3a",
+        "section": "instagram",
+        "title": "@wilfratgaming",
+        "url": "https://www.instagram.com/p/Dan5kuRNPFd/",
+        "message_id": "1525512238650097845",
+        "channel_id": "592534544708796474",
+        "source_type": "instagram",
+        "posted_at": "2026-07-11T14:41:01.338095+00:00",
+        "description": "AD - The Outlast Trials Project Boneyard is out on July 14th!   - 😱 1–4 Player Co-op Horror - 🖥️ Available on PC, Pla..."
+      },
+      {
+        "item_key": "55fc1c97e38e4fe8",
+        "section": "instagram",
+        "title": "@biffmatictv",
+        "url": "https://www.instagram.com/p/Dao5loYohHL/",
+        "message_id": "1525512248423088208",
+        "channel_id": "592534544708796474",
+        "source_type": "instagram",
+        "posted_at": "2026-07-11T14:41:03.136596+00:00",
+        "description": "Can this game live up to Star Wars Battlefront 2 space battles?  Angels Fall First  #gaming #newgames #spacegame #spa..."
+      }
+    ],
+    "winners_state": {
+      "status": "skipped",
+      "skipped_reason": "no_eligible_winners",
+      "updated_at_utc": "2026-07-11T23:51:42.637271+00:00"
     }
   }
 }
