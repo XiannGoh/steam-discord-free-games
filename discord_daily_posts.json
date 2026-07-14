@@ -1,145 +1,4 @@
 {
-  "2026-06-13": {
-    "run_state": {
-      "section_headers": {
-        "free": {
-          "message_id": "1515374527201280200",
-          "channel_id": "592534544708796474",
-          "posted_at_utc": "2026-06-13T15:17:21.797798+00:00"
-        },
-        "paid": {
-          "message_id": "1515374576748597319",
-          "channel_id": "592534544708796474",
-          "posted_at_utc": "2026-06-13T15:17:33.710762+00:00"
-        }
-      },
-      "last_attempt_at_utc": "2026-06-13T15:17:18.729497+00:00",
-      "intro": {
-        "message_id": "1515374515935379566",
-        "channel_id": "592534544708796474",
-        "posted_at_utc": "2026-06-13T15:17:20.226305+00:00"
-      },
-      "footer": {
-        "message_id": "1515374623338791034",
-        "channel_id": "592534544708796474",
-        "posted_at_utc": "2026-06-13T15:17:44.764334+00:00"
-      },
-      "completed": true,
-      "completed_at_utc": "2026-06-13T15:17:45.971184+00:00"
-    },
-    "items": [
-      {
-        "item_key": "e83563e66619daf9",
-        "section": "free",
-        "title": "Undawn",
-        "url": "https://store.steampowered.com/app/1881700/",
-        "message_id": "1515374533907972136",
-        "channel_id": "592534544708796474",
-        "source_type": "steam_free",
-        "posted_at": "2026-06-13T15:17:23.677425+00:00",
-        "description": "Explore, adapt, and survive in Undawn, a free-to-play open-world survival RPG for mobile and PC developed by LightSpeed Studios and published by Level Infinite. Embark on an adventure with other survivors four years after a worldwide disaster where hordes of infected roam a shattered world."
-      },
-      {
-        "item_key": "34e59783073defe9",
-        "section": "free",
-        "title": "POLYGON",
-        "url": "https://store.steampowered.com/app/1241100/",
-        "message_id": "1515374541944258612",
-        "channel_id": "592534544708796474",
-        "source_type": "steam_free",
-        "posted_at": "2026-06-13T15:17:26.104275+00:00",
-        "description": "POLYGON is a tactical multiplayer team 1st person shooter. Using various weapons, you will battle with up to 32 players on large-scale maps. Properly managing your arsenal and skills, you will lead your team to victory!"
-      },
-      {
-        "item_key": "35e27df4a18168df",
-        "section": "free",
-        "title": "Blade & Soul NEO",
-        "url": "https://store.steampowered.com/app/3669060/",
-        "message_id": "1515374552102731840",
-        "channel_id": "592534544708796474",
-        "source_type": "steam_free",
-        "posted_at": "2026-06-13T15:17:28.279219+00:00",
-        "description": "Relive an iconic tale with Blade & Soul NEO. Fully remastered where players reconnect with the original spirit of the free-to-play, open-world MMORPG. Experience a richer visually enhanced experience set in a world of Wuxia mythology where fast-paced combat collides with the stunning visual beauty."
-      },
-      {
-        "item_key": "cd908e700ec513ce",
-        "section": "free",
-        "title": "SAS: Zombie Assault 4",
-        "url": "https://store.steampowered.com/app/678800/",
-        "message_id": "1515374561112359013",
-        "channel_id": "592534544708796474",
-        "source_type": "steam_free",
-        "posted_at": "2026-06-13T15:17:30.230312+00:00",
-        "description": "Purge the undead! Intense action-shooter with deep rpg elements, including upgradeable guns and armor, unique class skills, and class special abilities. Entire game can be played single player or as a 4-player online co-op game, including PvP events like Last Man Standing."
-      },
-      {
-        "item_key": "6d4cf87fb35c6aa4",
-        "section": "free",
-        "title": "AdventureQuest 3D",
-        "url": "https://store.steampowered.com/app/429790/",
-        "message_id": "1515374569198845972",
-        "channel_id": "592534544708796474",
-        "source_type": "steam_free",
-        "posted_at": "2026-06-13T15:17:32.087022+00:00",
-        "description": "The Void King is raising an army in secret. Death has chosen you as his champion to bring him down. Adventure & quest alongside your friends in this bizarre cross-platform MMORPG from the creators of the original, and comically-redundantly named... AdventureQuest! Weekly releases!"
-      },
-      {
-        "item_key": "763903c5b1237b94",
-        "section": "paid",
-        "title": "Farever",
-        "url": "https://store.steampowered.com/app/3672400/",
-        "message_id": "1515374583346102484",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-06-13T15:17:35.402216+00:00",
-        "description": "Forge your legend in a forgotten realm! Farever is an online multiplayer action RPG set in a vast fantasy open world. Alone or with friends, embark on an epic journey together! Explore wild lands and dangerous dungeons, craft powerful gear, and carve your path through dynamic combat and platforming."
-      },
-      {
-        "item_key": "3f075733622b4252",
-        "section": "paid",
-        "title": "Overcooked! All You Can Eat",
-        "url": "https://store.steampowered.com/app/1243830/",
-        "message_id": "1515374590925340835",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-06-13T15:17:37.146335+00:00",
-        "description": "Experience all the Onion Kingdom has to offer, Overcooked! 1 & 2 infused with 4k goodness running at a smooth 60 FPS. Fully remastered and cooked up from scratch. Enjoy 200+ levels (22 new) and 80+ chefs (3 new), this is the ultimate Overcooked! experience."
-      },
-      {
-        "item_key": "29f7a49e9542f504",
-        "section": "paid",
-        "title": "Raft",
-        "url": "https://store.steampowered.com/app/648800/",
-        "message_id": "1515374597833490505",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-06-13T15:17:38.851352+00:00",
-        "description": "Raft™ throws you and your friends into an epic oceanic adventure! Alone or together, players battle to survive a perilous voyage across a vast sea! Gather debris, scavenge reefs and build your own floating home, but be wary of the man-eating sharks!"
-      },
-      {
-        "item_key": "128a3b188c25d291",
-        "section": "paid",
-        "title": "Goblin Cleanup",
-        "url": "https://store.steampowered.com/app/2748340/",
-        "message_id": "1515374605370396682",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-06-13T15:17:40.750589+00:00",
-        "description": "A co-op cleaning game where you have to clean and rearrange a dungeon before the next adventurers come to complete it again."
-      },
-      {
-        "item_key": "749d344db1a47ff9",
-        "section": "paid",
-        "title": "Left 4 Dead 2",
-        "url": "https://store.steampowered.com/app/550/",
-        "message_id": "1515374613155287274",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-06-13T15:17:42.985584+00:00",
-        "description": "Set in the zombie apocalypse, Left 4 Dead 2 is a co-operative action horror FPS takes you and your friends through the cities, swamps and cemeteries of the Deep South, from Savannah to New Orleans across five expansive campaigns."
-      }
-    ]
-  },
   "2026-06-14": {
     "run_state": {
       "section_headers": {
@@ -5215,6 +5074,190 @@
       "status": "skipped",
       "skipped_reason": "no_eligible_winners",
       "updated_at_utc": "2026-07-12T23:49:46.756355+00:00"
+    }
+  },
+  "2026-07-13": {
+    "run_state": {
+      "section_headers": {
+        "free": {
+          "message_id": "1526257687095152680",
+          "channel_id": "592534544708796474",
+          "posted_at_utc": "2026-07-13T16:03:09.488249+00:00"
+        },
+        "paid": {
+          "message_id": "1526257737707688046",
+          "channel_id": "592534544708796474",
+          "posted_at_utc": "2026-07-13T16:03:21.585764+00:00"
+        },
+        "instagram": {
+          "message_id": "1526257781945008138",
+          "channel_id": "592534544708796474",
+          "posted_at_utc": "2026-07-13T16:03:31.999950+00:00"
+        }
+      },
+      "last_attempt_at_utc": "2026-07-13T16:03:06.160949+00:00",
+      "intro": {
+        "message_id": "1526257675371937925",
+        "channel_id": "592534544708796474",
+        "posted_at_utc": "2026-07-13T16:03:07.687308+00:00"
+      },
+      "footer": {
+        "message_id": "1526257812416499842",
+        "channel_id": "592534544708796474",
+        "posted_at_utc": "2026-07-13T16:03:39.222395+00:00"
+      },
+      "completed": true,
+      "completed_at_utc": "2026-07-13T16:03:40.430024+00:00"
+    },
+    "items": [
+      {
+        "item_key": "34e59783073defe9",
+        "section": "free",
+        "title": "POLYGON",
+        "url": "https://store.steampowered.com/app/1241100/",
+        "message_id": "1526257694472667206",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-07-13T16:03:11.613249+00:00",
+        "description": "POLYGON is a tactical multiplayer team 1st person shooter. Using various weapons, you will battle with up to 32 players on large-scale maps. Properly managing your arsenal and skills, you will lead your team to victory!"
+      },
+      {
+        "item_key": "cd908e700ec513ce",
+        "section": "free",
+        "title": "SAS: Zombie Assault 4",
+        "url": "https://store.steampowered.com/app/678800/",
+        "message_id": "1526257703280967882",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-07-13T16:03:13.566039+00:00",
+        "description": "Purge the undead! Intense action-shooter with deep rpg elements, including upgradeable guns and armor, unique class skills, and class special abilities. Entire game can be played single player or as a 4-player online co-op game, including PvP events like Last Man Standing."
+      },
+      {
+        "item_key": "6d4cf87fb35c6aa4",
+        "section": "free",
+        "title": "AdventureQuest 3D",
+        "url": "https://store.steampowered.com/app/429790/",
+        "message_id": "1526257711904198719",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-07-13T16:03:16.058028+00:00",
+        "description": "The Void King is raising an army in secret. Death has chosen you as his champion to bring him down. Adventure & quest alongside your friends in this bizarre cross-platform MMORPG from the creators of the original, and comically-redundantly named... AdventureQuest! Weekly releases!"
+      },
+      {
+        "item_key": "559af6fdab9918bb",
+        "section": "free",
+        "title": "Vegas Casino & Slots: Slottist",
+        "url": "https://store.steampowered.com/app/3673150/",
+        "message_id": "1526257722071187546",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-07-13T16:03:17.857508+00:00",
+        "description": "Discover the world's best Casino Slots Games! Play slots with unique game mechanics, explore amazing mini-games and master your casino skills!"
+      },
+      {
+        "item_key": "ae86d368049003ec",
+        "section": "free",
+        "title": "Modern Warships",
+        "url": "https://store.steampowered.com/app/3144230/",
+        "message_id": "1526257729864466474",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-07-13T16:03:19.762274+00:00",
+        "description": "Modern Warships is an online action game about contemporary military vehicles. Join now and detect the enemy with recon aircraft, launch volleys of guided missiles from cruisers, sneak up to surface vessels with submarines, and provide cover to the allied fleet with jet fighters and helicopters."
+      },
+      {
+        "item_key": "749d344db1a47ff9",
+        "section": "paid",
+        "title": "Left 4 Dead 2",
+        "url": "https://store.steampowered.com/app/550/",
+        "message_id": "1526257744871686276",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-07-13T16:03:23.455373+00:00",
+        "description": "Set in the zombie apocalypse, Left 4 Dead 2 is a co-operative action horror FPS takes you and your friends through the cities, swamps and cemeteries of the Deep South, from Savannah to New Orleans across five expansive campaigns."
+      },
+      {
+        "item_key": "093ac4dabf2cba7f",
+        "section": "paid",
+        "title": "Lethal Company",
+        "url": "https://store.steampowered.com/app/1966720/",
+        "message_id": "1526257752966566091",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-07-13T16:03:25.200383+00:00",
+        "description": "A co-op horror about scavenging at abandoned moons to sell scrap to the Company."
+      },
+      {
+        "item_key": "267e1cf9e482c1ea",
+        "section": "paid",
+        "title": "Cursed Companions",
+        "url": "https://store.steampowered.com/app/3265230/",
+        "message_id": "1526257760025710755",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-07-13T16:03:26.913055+00:00",
+        "description": "If we say the wrong words... WE DIE! This game kills you with your own voices! Online co-op where everyone gets a forbidden word, say it and you kill your friends. Explore spooky dungeons, cast spells and defeat monsters with your voices. 8-player Co-op Mode. 16-player Traitor Mode"
+      },
+      {
+        "item_key": "4f8ecd505e129d5a",
+        "section": "paid",
+        "title": "The Other Side",
+        "url": "https://store.steampowered.com/app/2764750/",
+        "message_id": "1526257767353155656",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-07-13T16:03:28.625706+00:00",
+        "description": "The Other Side is a co-op psychological thriller for up to 6 players. Your goal is to investigate haunted locations using modern ghost hunting equipment, gather evidence, identify entities, and cleanse them from the location. Customize your character, headquarters, and more."
+      },
+      {
+        "item_key": "e9650158f9c790c8",
+        "section": "paid",
+        "title": "Party Animals",
+        "url": "https://store.steampowered.com/app/1260320/",
+        "message_id": "1526257774428684380",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-07-13T16:03:30.372211+00:00",
+        "description": "Fight your friends as puppies, kittens and other fuzzy creatures in PARTY ANIMALS! Paw it out with your friends remotely, or huddle together for chaotic fun on the same screen. Interact with the world under our realistic physics engine. Did I mention PUPPIES?"
+      },
+      {
+        "item_key": "3999bf68cc7721ec",
+        "section": "instagram",
+        "title": "@mildsoss_official",
+        "url": "https://www.instagram.com/p/DavN1p6Ic08/",
+        "message_id": "1526257788592979970",
+        "channel_id": "592534544708796474",
+        "source_type": "instagram",
+        "posted_at": "2026-07-13T16:03:33.837754+00:00",
+        "description": "This free extraction shooter takes place in the Chernobyl Exclusion Zone. A new player event is live right now. Use t..."
+      },
+      {
+        "item_key": "63a320680a6cbafa",
+        "section": "instagram",
+        "title": "@wilfratgaming",
+        "url": "https://www.instagram.com/p/Das6QAXtsR6/",
+        "message_id": "1526257796335534111",
+        "channel_id": "592534544708796474",
+        "source_type": "instagram",
+        "posted_at": "2026-07-13T16:03:35.693965+00:00",
+        "description": "Instead of defending a base, your base is a school bus that you and your crew must keep running as you drive through ..."
+      },
+      {
+        "item_key": "cd666c9459ed65c1",
+        "section": "instagram",
+        "title": "@biffmatictv",
+        "url": "https://www.instagram.com/p/DavA_73NLx0/",
+        "message_id": "1526257804271288340",
+        "channel_id": "592534544708796474",
+        "source_type": "instagram",
+        "posted_at": "2026-07-13T16:03:37.508316+00:00",
+        "description": "AD - Masters of Mayhem enters Open Beta today! Free to play social deduction game!   @mastersofmayhemgame   #gaming #..."
+      }
+    ],
+    "winners_state": {
+      "status": "skipped",
+      "skipped_reason": "no_eligible_winners",
+      "updated_at_utc": "2026-07-13T23:51:55.078276+00:00"
     }
   }
 }
