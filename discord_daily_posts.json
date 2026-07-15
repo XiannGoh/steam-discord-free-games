@@ -5372,6 +5372,11 @@
         "posted_at": "2026-07-15T15:04:18.788405+00:00",
         "description": "AD - This game has only 4 buttons..  KAZ!  #gaming #roguelike #arcadegame #newgame #newgames"
       }
-    ]
+    ],
+    "winners_state": {
+      "status": "skipped",
+      "skipped_reason": "no_eligible_winners",
+      "updated_at_utc": "2026-07-15T23:57:02.903909+00:00"
+    }
   }
 }
