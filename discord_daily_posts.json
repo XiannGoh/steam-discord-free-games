@@ -1,145 +1,4 @@
 {
-  "2026-06-14": {
-    "run_state": {
-      "section_headers": {
-        "free": {
-          "message_id": "1515738952844316775",
-          "channel_id": "592534544708796474",
-          "posted_at_utc": "2026-06-14T15:25:28.127270+00:00"
-        },
-        "paid": {
-          "message_id": "1515738999648419921",
-          "channel_id": "592534544708796474",
-          "posted_at_utc": "2026-06-14T15:25:38.772297+00:00"
-        }
-      },
-      "last_attempt_at_utc": "2026-06-14T15:25:23.123617+00:00",
-      "intro": {
-        "message_id": "1515738935509123248",
-        "channel_id": "592534544708796474",
-        "posted_at_utc": "2026-06-14T15:25:26.018525+00:00"
-      },
-      "footer": {
-        "message_id": "1515739047891435673",
-        "channel_id": "592534544708796474",
-        "posted_at_utc": "2026-06-14T15:25:50.315472+00:00"
-      },
-      "completed": true,
-      "completed_at_utc": "2026-06-14T15:25:51.522296+00:00"
-    },
-    "items": [
-      {
-        "item_key": "dfaebf39616a3342",
-        "section": "free",
-        "title": "WonderKing",
-        "url": "https://store.steampowered.com/app/3825780/",
-        "message_id": "1515738960926740603",
-        "channel_id": "592534544708796474",
-        "source_type": "steam_free",
-        "posted_at": "2026-06-14T15:25:29.919535+00:00",
-        "description": "The return of classic 2D side-scrolling action! WonderKing is a free-to-play MMORPG packed with flashy combat and deep progression. Advance through diverse classes, master unique combos, and party up with friends for epic boss raids. Start your adventure today!"
-      },
-      {
-        "item_key": "9c2bde7b16a027c8",
-        "section": "free",
-        "title": "Fistful of Frags",
-        "url": "https://store.steampowered.com/app/265630/",
-        "message_id": "1515738968858034246",
-        "channel_id": "592534544708796474",
-        "source_type": "steam_free",
-        "posted_at": "2026-06-14T15:25:31.780104+00:00",
-        "description": "Multiplayer based, first person enabled, action packed and skill demanding shooter set in the Wild West times. A unique combination of non stop action and slow but powerful weaponry."
-      },
-      {
-        "item_key": "7f2eef99465551f5",
-        "section": "free",
-        "title": "Star Conflict",
-        "url": "https://store.steampowered.com/app/212070/",
-        "message_id": "1515738976651313293",
-        "channel_id": "592534544708796474",
-        "source_type": "steam_free",
-        "posted_at": "2026-06-14T15:25:33.547400+00:00",
-        "description": "Star Conflict is an action-packed, massively multiplayer space simulation game that puts players in the role of elite pilots engaging in a widespread interplanetary skirmish. The whole world for PVP and PVE!"
-      },
-      {
-        "item_key": "5e5e784a5002716e",
-        "section": "free",
-        "title": "Hero Zero - Multiplayer RPG",
-        "url": "https://store.steampowered.com/app/482920/",
-        "message_id": "1515738984075235449",
-        "channel_id": "592534544708796474",
-        "source_type": "steam_free",
-        "posted_at": "2026-06-14T15:25:35.326747+00:00",
-        "description": "Become a hero, build your own Hide-Out and start by saving your neighbourhood. Level up your skills, collect incredibly weird superhero gadgets, and join a superhero team to save the world!"
-      },
-      {
-        "item_key": "9f68107e115ac58a",
-        "section": "free",
-        "title": "Thunder Tier One",
-        "url": "https://store.steampowered.com/app/377300/",
-        "message_id": "1515738991524315258",
-        "channel_id": "592534544708796474",
-        "source_type": "steam_free",
-        "posted_at": "2026-06-14T15:25:37.259957+00:00",
-        "description": "Thunder Tier One is a realistic top-down shooter where you join an elite special operations team tasked with stopping a dangerous terrorist organization wreaking havoc across the fictional Eastern European country of Salobia."
-      },
-      {
-        "item_key": "d15862fcc0449659",
-        "section": "paid",
-        "title": "Heroes of Hammerwatch II",
-        "url": "https://store.steampowered.com/app/619820/",
-        "message_id": "1515739006451581059",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-06-14T15:25:41.136872+00:00",
-        "description": "A rogue-lite action-rpg that offers extensive persistent progression. Build your town, upgrade and equip your heroes, before taking on the ever-changing Dark Citadel - either solo or with a team of friends."
-      },
-      {
-        "item_key": "fc3303a67cab4f26",
-        "section": "paid",
-        "title": "Guild Wars® Reforged",
-        "url": "https://store.steampowered.com/app/29720/",
-        "message_id": "1515739015981170789",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-06-14T15:25:43.003220+00:00",
-        "description": "Step into Guild Wars Reforged, the award-winning online roleplaying game enjoyed by millions, now re-energized with system enhancements and Steam Deck verified. Experience the complete saga— from the fall of Ascalon to the desperate stand against Nightfall. Your adventure is just getting started!"
-      },
-      {
-        "item_key": "c4826bd48cb5b7ba",
-        "section": "paid",
-        "title": "MISERY",
-        "url": "https://store.steampowered.com/app/2119830/",
-        "message_id": "1515739023602225194",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-06-14T15:25:44.856641+00:00",
-        "description": "MISERY is a 1–10 player co-op survival game set in a nuclear disaster zone. Here, every day is a struggle: search radioactive ruins for resources, build your bunker, craft weapons, and explore a weird, procedurally-generated world with your friends. Beware of anomalies, monsters, and armed bandits."
-      },
-      {
-        "item_key": "46500f5ecb3caeac",
-        "section": "paid",
-        "title": "The Escapists 2",
-        "url": "https://store.steampowered.com/app/641990/",
-        "message_id": "1515739031076470856",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-06-14T15:25:46.719620+00:00",
-        "description": "Craft, Steal, Brawl and Escape! It’s time to bust out of the toughest prisons in the world as you return to the life of an inmate in The Escapists 2, now with multiplayer! Have you got what it takes to escape?"
-      },
-      {
-        "item_key": "560cabb4dcdbf8e4",
-        "section": "paid",
-        "title": "WHERE the F$CK is my BITCOIN ⁉️",
-        "url": "https://store.steampowered.com/app/4705620/",
-        "message_id": "1515739039230329107",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-06-14T15:25:48.553669+00:00",
-        "description": "A co-op incremental dump-digging sim. Tear through endless trash, cash in your junk, upgrade your gear, and hunt for the Bitcoin you threw away. Dig with friends, get rich, get distracted, repeat."
-      }
-    ]
-  },
   "2026-06-15": {
     "run_state": {
       "section_headers": {
@@ -5258,6 +5117,190 @@
       "status": "skipped",
       "skipped_reason": "no_eligible_winners",
       "updated_at_utc": "2026-07-13T23:51:55.078276+00:00"
+    }
+  },
+  "2026-07-14": {
+    "run_state": {
+      "section_headers": {
+        "free": {
+          "message_id": "1526605331482939466",
+          "channel_id": "592534544708796474",
+          "posted_at_utc": "2026-07-14T15:04:34.503020+00:00"
+        },
+        "paid": {
+          "message_id": "1526605374894112971",
+          "channel_id": "592534544708796474",
+          "posted_at_utc": "2026-07-14T15:04:44.585251+00:00"
+        },
+        "instagram": {
+          "message_id": "1526605419370381491",
+          "channel_id": "592534544708796474",
+          "posted_at_utc": "2026-07-14T15:04:55.177570+00:00"
+        }
+      },
+      "last_attempt_at_utc": "2026-07-14T15:04:30.817691+00:00",
+      "intro": {
+        "message_id": "1526605318958612551",
+        "channel_id": "592534544708796474",
+        "posted_at_utc": "2026-07-14T15:04:32.754274+00:00"
+      },
+      "footer": {
+        "message_id": "1526605452895322122",
+        "channel_id": "592534544708796474",
+        "posted_at_utc": "2026-07-14T15:05:03.693113+00:00"
+      },
+      "completed": true,
+      "completed_at_utc": "2026-07-14T15:05:04.902201+00:00"
+    },
+    "items": [
+      {
+        "item_key": "3daf6efde8a71830",
+        "section": "free",
+        "title": "Ragnarok X: Next Generation",
+        "url": "https://store.steampowered.com/app/4007140/",
+        "message_id": "1526605339565359235",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-07-14T15:04:36.338757+00:00",
+        "description": "ROX is the official next-gen evolution of the classic Ragnarok Online MMORPG. With enhanced visuals, strategic combat, and diverse gameplay, ROX stays true to its roots while offering Fair Loot, Free Trading, and True Adventures. Your legend begins now— Are you ready?"
+      },
+      {
+        "item_key": "5a9891a252b8d794",
+        "section": "free",
+        "title": "Dungeon Crusher: Soul Hunters",
+        "url": "https://store.steampowered.com/app/842980/",
+        "message_id": "1526605346846540051",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-07-14T15:04:38.057511+00:00",
+        "description": "A social multiplayer incremental idle rpg with clans, PvP arenas, a wonderful 3d fantasy world with a story/missions and much more."
+      },
+      {
+        "item_key": "258b8b0c0b54348a",
+        "section": "free",
+        "title": "Sniper Fury",
+        "url": "https://store.steampowered.com/app/591740/",
+        "message_id": "1526605354102952057",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-07-14T15:04:39.755342+00:00",
+        "description": "Sniper Fury is an action-sharpshooting game set in a world threatened by violence. Neutralize threats using an ever-growing arsenal of modern firepower. Customize everything: weapons, gear sets, bullets! Join other snipers in Clan Wars, challenge them in PvP mode, & try events for extra surprises."
+      },
+      {
+        "item_key": "f998ea55f45aa832",
+        "section": "free",
+        "title": "CRSED: Cuisine Royale",
+        "url": "https://store.steampowered.com/app/884660/",
+        "message_id": "1526605360763506873",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-07-14T15:04:41.342756+00:00",
+        "description": "CRSED: Cuisine Royale – is a brutal MMO last-man-standing shooter with realistic weaponry, elements of lethal mystic forces and incredible superpowers!"
+      },
+      {
+        "item_key": "dfcc22790e765813",
+        "section": "free",
+        "title": "Top Heroes",
+        "url": "https://store.steampowered.com/app/4007740/",
+        "message_id": "1526605367835099256",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-07-14T15:04:43.039278+00:00",
+        "description": "◆ Embark on an Adventure Explore unknown lands, unlock ancient ruins, and brave dangerous dungeons! ◆ Build Your Kingdom Create a thriving realm from scratch and turn your dream city into reality! ◆ Achieve Glory with Your Guild Form powerful alliances with players worldwide, and conquer the world!"
+      },
+      {
+        "item_key": "763903c5b1237b94",
+        "section": "paid",
+        "title": "Farever",
+        "url": "https://store.steampowered.com/app/3672400/",
+        "message_id": "1526605381307076629",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-07-14T15:04:46.429368+00:00",
+        "description": "Forge your legend in a forgotten realm! Farever is an online multiplayer action RPG set in a vast fantasy open world. Alone or with friends, embark on an epic journey together! Explore wild lands and dangerous dungeons, craft powerful gear, and carve your path through dynamic combat and platforming."
+      },
+      {
+        "item_key": "34759c5b9757946c",
+        "section": "paid",
+        "title": "Gunfire Reborn",
+        "url": "https://store.steampowered.com/app/1217060/",
+        "message_id": "1526605389339164772",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-07-14T15:04:48.154044+00:00",
+        "description": "Gunfire Reborn is a level-based adventure game featuring FPS, Roguelite and RPG. Players can control heroes with various abilities to experience diverse Build gameplay, use various weapons to explore procedurally-generated levels. You can play the game alone, or join 4-player coop."
+      },
+      {
+        "item_key": "8d1960dd4bae162e",
+        "section": "paid",
+        "title": "Phantom Tower",
+        "url": "https://store.steampowered.com/app/3988410/",
+        "message_id": "1526605396951826463",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-07-14T15:04:50.250626+00:00",
+        "description": "Phantom Tower is an Action RPG inspired by the hack and slash genre. Explore an immense tower that hides treasures and dangers: slay monsters, forge your equipment, and grow stronger."
+      },
+      {
+        "item_key": "bb99a4e40aed45c1",
+        "section": "paid",
+        "title": "Kingdom Two Crowns",
+        "url": "https://store.steampowered.com/app/701160/",
+        "message_id": "1526605405235712020",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-07-14T15:04:51.925602+00:00",
+        "description": "Gather coins, build defenses and reclaim your fallen Kingdom. Explore and uncover secrets, unlock new technologies and protect your crown versus waves of Greed monsters that come at night. Kingdom is a solo or co-op micro-strategy and tower defense game set in an atmospheric pixel world."
+      },
+      {
+        "item_key": "e90aadb249870b3c",
+        "section": "paid",
+        "title": "Dune: Spice Wars",
+        "url": "https://store.steampowered.com/app/1605220/",
+        "message_id": "1526605412135211070",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-07-14T15:04:53.608682+00:00",
+        "description": "A 4X real-time strategy game from the developers of the critically acclaimed Northgard. Set in Frank Herbert’s groundbreaking Dune universe, you must lead your faction and battle for control and dominance over the harsh desert planet of Arrakis."
+      },
+      {
+        "item_key": "58cc04b1464ce88d",
+        "section": "instagram",
+        "title": "@sharedxp_official",
+        "url": "https://www.instagram.com/p/Dav3z62sxS0/",
+        "message_id": "1526605426316283955",
+        "channel_id": "592534544708796474",
+        "source_type": "instagram",
+        "posted_at": "2026-07-14T15:04:57.261532+00:00",
+        "description": "Data Breach (AD) steal what you can, then sprint for the train before your battery dies.  ✅ Online co-op (1-4 players..."
+      },
+      {
+        "item_key": "7272c1d4ce8a032e",
+        "section": "instagram",
+        "title": "@mildsoss_official",
+        "url": "https://www.instagram.com/p/DawDioUoy2h/",
+        "message_id": "1526605434671071332",
+        "channel_id": "592534544708796474",
+        "source_type": "instagram",
+        "posted_at": "2026-07-14T15:04:59.275108+00:00",
+        "description": "Manage a bunker full of survivors with your dog in this zombie survival game! Pale Tide!  #gaming #newgame #survivalgame"
+      },
+      {
+        "item_key": "8f9907aef55e8736",
+        "section": "instagram",
+        "title": "@wilfratgaming",
+        "url": "https://www.instagram.com/p/DaveB2wNsaG/",
+        "message_id": "1526605443047362743",
+        "channel_id": "592534544708796474",
+        "source_type": "instagram",
+        "posted_at": "2026-07-14T15:05:01.391270+00:00",
+        "description": "#ad Partnered with @11bitstudios to check out The Alters: Last Variable — a new 20-hour expansion with underground ba..."
+      }
+    ],
+    "winners_state": {
+      "status": "skipped",
+      "skipped_reason": "no_eligible_winners",
+      "updated_at_utc": "2026-07-14T23:50:32.514818+00:00"
     }
   }
 }

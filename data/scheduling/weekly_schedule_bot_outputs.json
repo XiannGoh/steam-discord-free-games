@@ -323,14 +323,14 @@
     "last_reminder_local_date": "2026-07-05"
   },
   "2026-07-13_to_2026-07-19": {
-    "summary_last_synced_at_utc": "2026-07-11T16:09:45.689166+00:00",
-    "summary_data_signature": "a8b09c7fd2bc00dfc58dab62ca37f983fa276cdaab6aa5422d62e3f6aecf0bd6",
+    "summary_last_synced_at_utc": "2026-07-14T08:29:03.268073+00:00",
+    "summary_data_signature": "7f0e860091f9d795b0434cb4b03fbe1e09404ca1a5899be8e8774f5f513d0aef",
     "summary_posted": true,
     "summary_message_id": "1525534575961313302",
     "summary_message_ids": [
       "1525534575961313302"
     ],
-    "summary_message_content": "📊 Availability Summary — Jul 13–19, 2026\n\n*0 of 14 people responded • 14 still missing*\nMissing: <@137123568952672257> <@150522802292785152> <@161248274970443776> <@162382481369071617> <@164270274928181248> <@195462430535581708> <@204517030395641856> <@239951450082377740> <@245393360490201089> <@277285824935231488> <@321367835525775381> <@412746386271109130> <@711603470544797747> <@740065988812341280>\n*Last updated: Jul 11, 12:09 PM ET*\n\n**Monday 7/13**\nNo responses\n\n**Tuesday 7/14**\nNo responses\n\n**Wednesday 7/15**\nNo responses\n\n**Thursday 7/16**\nNo responses\n\n**Friday 7/17**\nNo responses\n\n**Saturday 7/18**\nNo responses\n\n**Sunday 7/19**\nNo responses",
+    "summary_message_content": "📊 Availability Summary — Jul 13–19, 2026\n\n*1 of 14 people responded • 13 still missing*\nMissing: <@137123568952672257> <@150522802292785152> <@161248274970443776> <@162382481369071617> <@164270274928181248> <@204517030395641856> <@239951450082377740> <@245393360490201089> <@277285824935231488> <@321367835525775381> <@412746386271109130> <@711603470544797747> <@740065988812341280>\n*Last updated: Jul 14, 4:29 AM ET*\n\n**Monday 7/13**\nNo responses\n\n**Tuesday 7/14**\nNo responses\n\n**Wednesday 7/15**\nNo responses\n\n**Thursday 7/16**\nNo responses\n\n**Friday 7/17**\nNo responses\n\n**Saturday 7/18**\nNo responses\n\n**Sunday 7/19**\nNo responses",
     "reminder_message_id": "1525534577790156970",
     "reminder_message_ids": [
       "1525534577790156970"
@@ -341,7 +341,6 @@
       "161248274970443776",
       "162382481369071617",
       "164270274928181248",
-      "195462430535581708",
       "204517030395641856",
       "239951450082377740",
       "245393360490201089",
@@ -351,6 +350,6 @@
       "711603470544797747",
       "740065988812341280"
     ],
-    "last_reminder_local_date": "2026-07-11"
+    "last_reminder_local_date": "2026-07-14"
   }
 }
