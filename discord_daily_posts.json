@@ -1,145 +1,4 @@
 {
-  "2026-06-15": {
-    "run_state": {
-      "section_headers": {
-        "free": {
-          "message_id": "1516143064782078024",
-          "channel_id": "592534544708796474",
-          "posted_at_utc": "2026-06-15T18:11:15.801775+00:00"
-        },
-        "paid": {
-          "message_id": "1516143115327504544",
-          "channel_id": "592534544708796474",
-          "posted_at_utc": "2026-06-15T18:11:27.547061+00:00"
-        }
-      },
-      "last_attempt_at_utc": "2026-06-15T18:11:11.490372+00:00",
-      "intro": {
-        "message_id": "1516143049833578647",
-        "channel_id": "592534544708796474",
-        "posted_at_utc": "2026-06-15T18:11:13.835948+00:00"
-      },
-      "footer": {
-        "message_id": "1516143157660618754",
-        "channel_id": "592534544708796474",
-        "posted_at_utc": "2026-06-15T18:11:37.702128+00:00"
-      },
-      "completed": true,
-      "completed_at_utc": "2026-06-15T18:11:38.908817+00:00"
-    },
-    "items": [
-      {
-        "item_key": "016e82147d0b491e",
-        "section": "free",
-        "title": "Bro Falls",
-        "url": "https://store.steampowered.com/app/1590320/",
-        "message_id": "1516143072365510789",
-        "channel_id": "592534544708796474",
-        "source_type": "steam_free",
-        "posted_at": "2026-06-15T18:11:19.038609+00:00",
-        "description": "Bro Falls is an asymmetric massively multiplayer party game with chaotic elements, trap activations and big Falls. Up-to 60 online players in a showdown party and only one who can get the victory. Play as Brokkoli to activate the traps or avoid them as a juicy food and win the rounds."
-      },
-      {
-        "item_key": "14ebbba28775a8f0",
-        "section": "free",
-        "title": "Grand Fantasia : ORIGIN",
-        "url": "https://store.steampowered.com/app/3010230/",
-        "message_id": "1516143086198063205",
-        "channel_id": "592534544708796474",
-        "source_type": "steam_free",
-        "posted_at": "2026-06-15T18:11:20.844465+00:00",
-        "description": "New engine, New gameplay, New adventure, the classic MMORPG 《Grand Fantasia：ORIGIN》technological innovation, reigniting the heart of adventure, and composing a new chapter of the fantasy World with Sprites."
-      },
-      {
-        "item_key": "5750921a0f2f8cac",
-        "section": "free",
-        "title": "Pixel Strike 3D",
-        "url": "https://store.steampowered.com/app/915320/",
-        "message_id": "1516143093919776849",
-        "channel_id": "592534544708796474",
-        "source_type": "steam_free",
-        "posted_at": "2026-06-15T18:11:22.666193+00:00",
-        "description": "Pixel Strike 3D is a Multiplayer First-Person Shooter that features fast-paced gameplay and a wide variety of player customization. Battle friends and foes from all around the world in over 20 unique game modes, with over 70 available weapons."
-      },
-      {
-        "item_key": "36031786c8d40617",
-        "section": "free",
-        "title": "BLOCKPOST LEGACY",
-        "url": "https://store.steampowered.com/app/706990/",
-        "message_id": "1516143101440426014",
-        "channel_id": "592534544708796474",
-        "source_type": "steam_free",
-        "posted_at": "2026-06-15T18:11:24.199717+00:00",
-        "description": "Procedural cubic 3D-shooter in the best traditions of the genre. The game is a rich cocktail consisting of the most popular and functional gaming solutions. Customization of characters, opening cases and improving the existing arsenal — all this is available in the game now!"
-      },
-      {
-        "item_key": "cc11aa6f098818b7",
-        "section": "free",
-        "title": "Casino Roulette: Roulettist",
-        "url": "https://store.steampowered.com/app/3601420/",
-        "message_id": "1516143107907911784",
-        "channel_id": "592534544708796474",
-        "source_type": "steam_free",
-        "posted_at": "2026-06-15T18:11:25.953503+00:00",
-        "description": "Test your luck! Play casino roulette with stunning, realistic 3D graphics! Feel the risk as you dive into the casino atmosphere and hit the big time!"
-      },
-      {
-        "item_key": "97141802a4d20646",
-        "section": "paid",
-        "title": "SWAPMEAT",
-        "url": "https://store.steampowered.com/app/2790700/",
-        "message_id": "1516143121916760084",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-06-15T18:11:29.102797+00:00",
-        "description": "Rip through hostile alien worlds, harvest mutant body parts mid-combat, and adapt faster than your enemies. Every alien you harvest gives you new body parts with unique powers, like triple-jump legs, turret-dropping torsos, grenade-launching turkey heads. Steal, swap, survive."
-      },
-      {
-        "item_key": "2c25d103f74ec41d",
-        "section": "paid",
-        "title": "GONE Fishing",
-        "url": "https://store.steampowered.com/app/3645890/",
-        "message_id": "1516143128514527273",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-06-15T18:11:30.736160+00:00",
-        "description": "GONE Fishing is a 1-8 player survival horror game where you and your friends must work together to stay alive, by fishing. The only way to survive is to keep feeding the lake’s insatiable hunger before it feeds on you. Can you satisfy the hunger... or will you become the next offering?"
-      },
-      {
-        "item_key": "632d55b415b03495",
-        "section": "paid",
-        "title": "Motor Town: Behind The Wheel",
-        "url": "https://store.steampowered.com/app/1369670/",
-        "message_id": "1516143135267225681",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-06-15T18:11:32.604485+00:00",
-        "description": "Enjoy realistic driving in the open world. Relaxing cargo deliveries or driving buses and taxis will give you enough money to buy new cars and parts. You can test your driving skills at the race track. It's all about pure driving pleasure!"
-      },
-      {
-        "item_key": "404ccb3a120170bc",
-        "section": "paid",
-        "title": "PlateUp!",
-        "url": "https://store.steampowered.com/app/1599600/",
-        "message_id": "1516143143253311578",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-06-15T18:11:34.358417+00:00",
-        "description": "Cook and serve your dishes, design and decorate your restaurants, and expand your culinary kingdom with new unlocks, abilities and dishes in procedurally-generated locations. Classic cooking action with permanent roguelite progression. Hire your friends - or do it all yourself!"
-      },
-      {
-        "item_key": "388c989d83c37b36",
-        "section": "paid",
-        "title": "Wizard with a Gun",
-        "url": "https://store.steampowered.com/app/1150530/",
-        "message_id": "1516143150551273635",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-06-15T18:11:36.001850+00:00",
-        "description": "Wizard with a Gun is an online sandbox survival game for 1 - 4 players set in a magical wilderness wrought with dangerous creatures and arcane mysteries. Embark on a journey alone or with a friend to collect, craft, and outfit your wizard however you see fit as you explore the unknown."
-      }
-    ]
-  },
   "2026-06-16": {
     "run_state": {
       "section_headers": {
@@ -5302,5 +5161,217 @@
       "skipped_reason": "no_eligible_winners",
       "updated_at_utc": "2026-07-14T23:50:32.514818+00:00"
     }
+  },
+  "2026-07-15": {
+    "run_state": {
+      "section_headers": {
+        "free": {
+          "message_id": "1526967520966479914",
+          "channel_id": "592534544708796474",
+          "posted_at_utc": "2026-07-15T15:03:46.953138+00:00"
+        },
+        "paid": {
+          "message_id": "1526967567824982157",
+          "channel_id": "592534544708796474",
+          "posted_at_utc": "2026-07-15T15:03:58.162423+00:00"
+        },
+        "instagram": {
+          "message_id": "1526967610845958406",
+          "channel_id": "592534544708796474",
+          "posted_at_utc": "2026-07-15T15:04:08.361521+00:00"
+        }
+      },
+      "last_attempt_at_utc": "2026-07-15T15:03:44.626865+00:00",
+      "intro": {
+        "message_id": "1526967512854696206",
+        "channel_id": "592534544708796474",
+        "posted_at_utc": "2026-07-15T15:03:45.425059+00:00"
+      },
+      "footer": {
+        "message_id": "1526967661626654870",
+        "channel_id": "592534544708796474",
+        "posted_at_utc": "2026-07-15T15:04:20.429859+00:00"
+      },
+      "completed": true,
+      "completed_at_utc": "2026-07-15T15:04:21.637558+00:00"
+    },
+    "items": [
+      {
+        "item_key": "3f07a48c127d13d9",
+        "section": "free",
+        "title": "RPG MO",
+        "url": "https://store.steampowered.com/app/372800/",
+        "message_id": "1526967527626899580",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-07-15T15:03:49.768608+00:00",
+        "description": "RPG MO is a nostalgic MMORPG that reminds of Ultima and Runescape Classic."
+      },
+      {
+        "item_key": "35e27df4a18168df",
+        "section": "free",
+        "title": "Blade & Soul NEO",
+        "url": "https://store.steampowered.com/app/3669060/",
+        "message_id": "1526967539308036098",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-07-15T15:03:51.530940+00:00",
+        "description": "Relive an iconic tale with Blade & Soul NEO. Fully remastered where players reconnect with the original spirit of the free-to-play, open-world MMORPG. Experience a richer visually enhanced experience set in a world of Wuxia mythology where fast-paced combat collides with the stunning visual beauty."
+      },
+      {
+        "item_key": "07ce3d166b2fdf65",
+        "section": "free",
+        "title": "Nexus Rumble: The Ultimate Showdown",
+        "url": "https://store.steampowered.com/app/3027820/",
+        "message_id": "1526967546736283873",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-07-15T15:03:53.198452+00:00",
+        "description": "Ready to rumble? Nexus Rumble is a 30-player, fast-paced multiplayer party royale where players race, hide, fight, and outlast rivals across 30+ chaotic mini-games in a battle to be the last one standing. Crossplay on PC & mobile!"
+      },
+      {
+        "item_key": "7f2eef99465551f5",
+        "section": "free",
+        "title": "Star Conflict",
+        "url": "https://store.steampowered.com/app/212070/",
+        "message_id": "1526967553807876156",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-07-15T15:03:54.929406+00:00",
+        "description": "Star Conflict is an action-packed, massively multiplayer space simulation game that puts players in the role of elite pilots engaging in a widespread interplanetary skirmish. The whole world for PVP and PVE!"
+      },
+      {
+        "item_key": "9c266f0cdc48c7de",
+        "section": "free",
+        "title": "Growtopia",
+        "url": "https://store.steampowered.com/app/866020/",
+        "message_id": "1526967561021948074",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-07-15T15:03:56.564734+00:00",
+        "description": "Growtopia is a 2D sandbox game, that brings together millions of players in an expansive pixel world. Collaborate in building anything you can imagine, become anyone you want to be, and delve into numerous mini-games. Unleash your creativity and join the massive universe in Growtopia today!"
+      },
+      {
+        "item_key": "631233dcdbffe64c",
+        "section": "paid",
+        "title": "MIMESIS",
+        "url": "https://store.steampowered.com/app/2827200/",
+        "message_id": "1526967574644920593",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-07-15T15:03:59.828017+00:00",
+        "description": "4 Player co-op survival horror game. When the cursed rain falls, 'Mimesis' appear, perfectly imitating your teammates, bringing a new level of tension you've never experienced before."
+      },
+      {
+        "item_key": "1edd7298b1274d9d",
+        "section": "paid",
+        "title": "SCP: 5K",
+        "url": "https://store.steampowered.com/app/872670/",
+        "message_id": "1526967581519642715",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-07-15T15:04:01.617771+00:00",
+        "description": "SCP: 5K is a co-op or singleplayer tactical horror FPS project that puts players in the midst of a conspiracy where the SCP Foundation has turned on humanity. Enjoy Early Access as we continue to work towards a completed full release of the project!"
+      },
+      {
+        "item_key": "0a22fc3f0beef7af",
+        "section": "paid",
+        "title": "Pummel Party",
+        "url": "https://store.steampowered.com/app/880940/",
+        "message_id": "1526967589060739072",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-07-15T15:04:03.257497+00:00",
+        "description": "Pummel Party is a 4-8 player online and local-multiplayer party game. Pummel friends or AI using a wide array of absurd items in the board mode and compete to destroy friendships in the unique collection of minigames."
+      },
+      {
+        "item_key": "76119421024549cd",
+        "section": "paid",
+        "title": "Cloudheim",
+        "url": "https://store.steampowered.com/app/2070270/",
+        "message_id": "1526967596069421186",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-07-15T15:04:05.100343+00:00",
+        "description": "Master chaotic physics-based combat inspired by Zelda and Devil May Cry. Explore islands and dungeons, smash monsters, loot and craft powerful gear, and grow your home in the sky. Play solo or online co-op with up to 4 players."
+      },
+      {
+        "item_key": "c4826bd48cb5b7ba",
+        "section": "paid",
+        "title": "MISERY",
+        "url": "https://store.steampowered.com/app/2119830/",
+        "message_id": "1526967603820761179",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-07-15T15:04:06.801894+00:00",
+        "description": "MISERY is a 1–10 player co-op survival game set in a nuclear disaster zone. Here, every day is a struggle: search radioactive ruins for resources, build your bunker, craft weapons, and explore a weird, procedurally-generated world with your friends. Beware of anomalies, monsters, and armed bandits."
+      },
+      {
+        "item_key": "68e859ea79de7035",
+        "section": "instagram",
+        "title": "@mildsoss_official",
+        "url": "https://www.instagram.com/p/Da0SUUHoLh9/",
+        "message_id": "1526967617980469430",
+        "channel_id": "592534544708796474",
+        "source_type": "instagram",
+        "posted_at": "2026-07-15T15:04:10.095249+00:00",
+        "description": "Be careful who you trust in this game  🎮 The Mound: Omen Of Cthulhu 🗓️ Available Now 👥 1-4 Players 🖥️ PC, Xbox, PlayS..."
+      },
+      {
+        "item_key": "553fbb9839697a5e",
+        "section": "instagram",
+        "title": "@mildsoss_official",
+        "url": "https://www.instagram.com/p/DazLEgcIJur/",
+        "message_id": "1526967624636825650",
+        "channel_id": "592534544708796474",
+        "source_type": "instagram",
+        "posted_at": "2026-07-15T15:04:11.802919+00:00",
+        "description": "Was it worth the wait?  🎮 Angels Fall First 🗓️ Available Now 👥 64 Players 🖥️ PC (Steam)  #gaming #newgame #coop #star..."
+      },
+      {
+        "item_key": "8860bb525aede9b2",
+        "section": "instagram",
+        "title": "@sharedxp_official",
+        "url": "https://www.instagram.com/p/DayLpnkMzQQ/",
+        "message_id": "1526967631930982603",
+        "channel_id": "592534544708796474",
+        "source_type": "instagram",
+        "posted_at": "2026-07-15T15:04:13.536970+00:00",
+        "description": "Dear Passengers  Crew the world's worst airline — fly the plane, wrangle the cabin, and try not to lose the cargo alo..."
+      },
+      {
+        "item_key": "6f31c025be08babc",
+        "section": "instagram",
+        "title": "@sharedxp_official",
+        "url": "https://www.instagram.com/p/Dax1FFesXvg/",
+        "message_id": "1526967639044522185",
+        "channel_id": "592534544708796474",
+        "source_type": "instagram",
+        "posted_at": "2026-07-15T15:04:15.212841+00:00",
+        "description": "Age Twisters  Grandad & granddaughter swap ages to solve puzzles and track down her missing mum — total It Takes Two ..."
+      },
+      {
+        "item_key": "70f7a4ec1ca23a1d",
+        "section": "instagram",
+        "title": "@wilfratgaming",
+        "url": "https://www.instagram.com/p/Da0RN-ntFnU/",
+        "message_id": "1526967645788835885",
+        "channel_id": "592534544708796474",
+        "source_type": "instagram",
+        "posted_at": "2026-07-15T15:04:17.155115+00:00",
+        "description": "Survival Machine turns your base into a moving fortress. Gather resources by day, upgrade your vehicle, and survive r..."
+      },
+      {
+        "item_key": "97c580e2b22cba11",
+        "section": "instagram",
+        "title": "@biffmatictv",
+        "url": "https://www.instagram.com/p/DayZ-_FNhOR/",
+        "message_id": "1526967654160797952",
+        "channel_id": "592534544708796474",
+        "source_type": "instagram",
+        "posted_at": "2026-07-15T15:04:18.788405+00:00",
+        "description": "AD - This game has only 4 buttons..  KAZ!  #gaming #roguelike #arcadegame #newgame #newgames"
+      }
+    ]
   }
 }
