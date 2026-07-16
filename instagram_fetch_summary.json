@@ -1,9 +1,9 @@
 {
-  "run_at": "2026-07-15T15:03:44Z",
+  "run_at": "2026-07-16T15:15:38Z",
   "total_creators": 8,
   "creators_with_posts": 4,
   "total_posts_collected": 6,
-  "total_skipped_seen": 9,
+  "total_skipped_seen": 10,
   "total_skipped_caption": 0,
   "failed_creators": [],
   "creators": {
@@ -44,9 +44,9 @@
       "failure_reason": null
     },
     "wilfratgaming": {
-      "fetched": 8,
+      "fetched": 9,
       "collected": 1,
-      "skipped_seen": 6,
+      "skipped_seen": 7,
       "skipped_age": 1,
       "skipped_caption": 0,
       "failed": false,
