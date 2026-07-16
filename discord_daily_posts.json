@@ -5432,6 +5432,11 @@
         "posted_at": "2026-07-16T15:16:13.029120+00:00",
         "description": "All roads lead to Source…  Codename Cure 2   #gaming #newgames #zombiegame #gamingwithfriends #mods"
       }
-    ]
+    ],
+    "winners_state": {
+      "status": "skipped",
+      "skipped_reason": "no_eligible_winners",
+      "updated_at_utc": "2026-07-16T23:56:33.240659+00:00"
+    }
   }
 }
