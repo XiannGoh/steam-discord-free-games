@@ -5497,6 +5497,11 @@
         "posted_at": "2026-07-17T14:48:39.766098+00:00",
         "description": "AD - Finally this game is releasing..  Low Budget Repairs   #gaming #newgames #simulator #repairsim #handymansim"
       }
-    ]
+    ],
+    "winners_state": {
+      "status": "skipped",
+      "skipped_reason": "no_eligible_winners",
+      "updated_at_utc": "2026-07-17T23:49:36.740990+00:00"
+    }
   }
 }
