@@ -5573,6 +5573,11 @@
         "posted_at": "2026-07-18T14:39:47.929602+00:00",
         "description": "@vivion_lab 7 Days To Think About It is a psychological horror game where every choice pulls you deeper into a distur..."
       }
-    ]
+    ],
+    "winners_state": {
+      "status": "skipped",
+      "skipped_reason": "no_eligible_winners",
+      "updated_at_utc": "2026-07-18T23:50:28.459975+00:00"
+    }
   }
 }
