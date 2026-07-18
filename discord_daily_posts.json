@@ -1,145 +1,4 @@
 {
-  "2026-06-18": {
-    "run_state": {
-      "section_headers": {
-        "free": {
-          "message_id": "1517208145338957824",
-          "channel_id": "592534544708796474",
-          "posted_at_utc": "2026-06-18T16:43:30.477279+00:00"
-        },
-        "paid": {
-          "message_id": "1517208190906007626",
-          "channel_id": "592534544708796474",
-          "posted_at_utc": "2026-06-18T16:43:41.563305+00:00"
-        }
-      },
-      "last_attempt_at_utc": "2026-06-18T16:43:27.891630+00:00",
-      "intro": {
-        "message_id": "1517208136371408897",
-        "channel_id": "592534544708796474",
-        "posted_at_utc": "2026-06-18T16:43:28.838205+00:00"
-      },
-      "footer": {
-        "message_id": "1517208240973156522",
-        "channel_id": "592534544708796474",
-        "posted_at_utc": "2026-06-18T16:43:53.221522+00:00"
-      },
-      "completed": true,
-      "completed_at_utc": "2026-06-18T16:43:54.431217+00:00"
-    },
-    "items": [
-      {
-        "item_key": "0dfc4061cdf7030a",
-        "section": "free",
-        "title": "SCP: Containment Breach 2",
-        "url": "https://store.steampowered.com/app/3257000/",
-        "message_id": "1517208152200708146",
-        "channel_id": "592534544708796474",
-        "source_type": "steam_free",
-        "posted_at": "2026-06-18T16:43:32.543817+00:00",
-        "description": "Survive the chaos of SCP Foundation! Step into a thrilling SCP horror experience with story-driven co-op, intense PvP Breach mode, and randomized maps. Play as Class-D, scientist, SCPs, and more, each role bringing unique challenges in an unpredictable, immersive facility."
-      },
-      {
-        "item_key": "b6910706cbf47ec0",
-        "section": "free",
-        "title": "Idol Party 2 - Love Vibe",
-        "url": "https://store.steampowered.com/app/3798230/",
-        "message_id": "1517208161243627570",
-        "channel_id": "592534544708796474",
-        "source_type": "steam_free",
-        "posted_at": "2026-06-18T16:43:34.298511+00:00",
-        "description": "Step into a dreamy journey in Idol Party 2! Enjoy rhythm gameplay, fashion dress-up, face customization, social interaction, romantic marriage, fishing, and ranked battles—all in one vibrant world. Join now and start your exclusive singing and dancing adventur!"
-      },
-      {
-        "item_key": "97d163a3892a14c2",
-        "section": "free",
-        "title": "Poker Master - Texas Hold'em, Roulette, Blackjack, Baccarat, Omaha, Slots, Teen Patti",
-        "url": "https://store.steampowered.com/app/994910/",
-        "message_id": "1517208168093192354",
-        "channel_id": "592534544708796474",
-        "source_type": "steam_free",
-        "posted_at": "2026-06-18T16:43:35.970485+00:00",
-        "description": "Free chips!Including Texas Hold'em, Slots, Blackjack, Teen Patti, Omaha, Baccarat, Roulette, Mahjong, Landlord and more poker games."
-      },
-      {
-        "item_key": "f9d2fea77b1c976f",
-        "section": "free",
-        "title": "Champions Online",
-        "url": "https://store.steampowered.com/app/9880/",
-        "message_id": "1517208175219048578",
-        "channel_id": "592534544708796474",
-        "source_type": "steam_free",
-        "posted_at": "2026-06-18T16:43:37.764180+00:00",
-        "description": "Grab your cape and defend Millennium City in this comic book-style action MMORPG! Design your hero and costume from thousands of costume pieces, face super-villains like Dr. Destroyer, and create your own unique nemesis."
-      },
-      {
-        "item_key": "eddd844cc61dc574",
-        "section": "free",
-        "title": "Galaxy Life",
-        "url": "https://store.steampowered.com/app/1927780/",
-        "message_id": "1517208182865526885",
-        "channel_id": "592534544708796474",
-        "source_type": "steam_free",
-        "posted_at": "2026-06-18T16:43:39.773481+00:00",
-        "description": "The universe is full of Starlings, tiny orange aliens that want to take over the galaxy. Create your own space colony, fight epic battles and discover new planets. Train your soldiers, develop your technology and create unimaginable gadgets. Enjoy this huge social game with friends!"
-      },
-      {
-        "item_key": "6a0d1ebd072bea72",
-        "section": "paid",
-        "title": "Content Warning",
-        "url": "https://store.steampowered.com/app/2881650/",
-        "message_id": "1517208198702960770",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-06-18T16:43:43.388093+00:00",
-        "description": "Film your friends doing scary things to become SpöökTube famous! (strongly advised to not go alone)"
-      },
-      {
-        "item_key": "66a7d79dd0d186b6",
-        "section": "paid",
-        "title": "Species: Unknown",
-        "url": "https://store.steampowered.com/app/2747330/",
-        "message_id": "1517208207167193088",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-06-18T16:43:45.437949+00:00",
-        "description": "Species: Unknown is a 1 to 4 players co-op survival horror. Complete high-risk missions aboard an abandoned ship while being hunted by an unknown creature. Survive and upgrade your gear to face each new threat that lurks in the dark."
-      },
-      {
-        "item_key": "315917c19d6c3206",
-        "section": "paid",
-        "title": "Don't Starve Together",
-        "url": "https://store.steampowered.com/app/322330/",
-        "message_id": "1517208214993899691",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-06-18T16:43:47.431559+00:00",
-        "description": "Fight, Farm, Build and Explore Together in the standalone multiplayer expansion to the uncompromising wilderness survival game, Don't Starve."
-      },
-      {
-        "item_key": "7f31d9b79ee5acc6",
-        "section": "paid",
-        "title": "Golf With Your Friends",
-        "url": "https://store.steampowered.com/app/431240/",
-        "message_id": "1517208223697080360",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-06-18T16:43:49.743000+00:00",
-        "description": "Why have friends if not to play Golf... With Your Friends! Nothing is out of bounds as you take on courses filled with fast paced, exciting, simultaneous mini golf for up to 12 players!"
-      },
-      {
-        "item_key": "8ec1e052e5b3fad5",
-        "section": "paid",
-        "title": "BattleBlock Theater®",
-        "url": "https://store.steampowered.com/app/238460/",
-        "message_id": "1517208232962035732",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-06-18T16:43:51.504589+00:00",
-        "description": "Welcome to BattleBlock Theater! You’ve got no where to go but up...on stage. Play single player or co-op to free your friends and save Hatty Hattington! Jump, solve and battle your way through a mysterious theater inhabited by highly technological felines."
-      }
-    ]
-  },
   "2026-06-19": {
     "run_state": {
       "section_headers": {
@@ -5503,5 +5362,217 @@
       "skipped_reason": "no_eligible_winners",
       "updated_at_utc": "2026-07-17T23:49:36.740990+00:00"
     }
+  },
+  "2026-07-18": {
+    "run_state": {
+      "section_headers": {
+        "free": {
+          "message_id": "1528048504335765635",
+          "channel_id": "592534544708796474",
+          "posted_at_utc": "2026-07-18T14:39:13.422747+00:00"
+        },
+        "paid": {
+          "message_id": "1528048551920140498",
+          "channel_id": "592534544708796474",
+          "posted_at_utc": "2026-07-18T14:39:24.775628+00:00"
+        },
+        "instagram": {
+          "message_id": "1528048601270587473",
+          "channel_id": "592534544708796474",
+          "posted_at_utc": "2026-07-18T14:39:36.553088+00:00"
+        }
+      },
+      "last_attempt_at_utc": "2026-07-18T14:39:10.585856+00:00",
+      "intro": {
+        "message_id": "1528048493963251832",
+        "channel_id": "592534544708796474",
+        "posted_at_utc": "2026-07-18T14:39:11.709682+00:00"
+      },
+      "footer": {
+        "message_id": "1528048656542863401",
+        "channel_id": "592534544708796474",
+        "posted_at_utc": "2026-07-18T14:39:49.872707+00:00"
+      },
+      "completed": true,
+      "completed_at_utc": "2026-07-18T14:39:51.078694+00:00"
+    },
+    "items": [
+      {
+        "item_key": "e83563e66619daf9",
+        "section": "free",
+        "title": "Undawn",
+        "url": "https://store.steampowered.com/app/1881700/",
+        "message_id": "1528048511252430980",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-07-18T14:39:15.708084+00:00",
+        "description": "Explore, adapt, and survive in Undawn, a free-to-play open-world survival RPG for mobile and PC developed by LightSpeed Studios and published by Level Infinite. Embark on an adventure with other survivors four years after a worldwide disaster where hordes of infected roam a shattered world."
+      },
+      {
+        "item_key": "1d666d4c3e5c8e74",
+        "section": "free",
+        "title": "Kathana",
+        "url": "https://store.steampowered.com/app/2081880/",
+        "message_id": "1528048520538362107",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-07-18T14:39:17.511878+00:00",
+        "description": "Adventure awaits in Kathana Select your character, quest with friends, face challenging bosses, explore dungeons, and engage in guild wars and PvP battles!"
+      },
+      {
+        "item_key": "91b32cc2fe0eb3c4",
+        "section": "free",
+        "title": "Infinity Kingdom",
+        "url": "https://store.steampowered.com/app/1573360/",
+        "message_id": "1528048528096755902",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-07-18T14:39:19.210942+00:00",
+        "description": "Conquer the city, discover the Infinity! Infinity Kingdom is a cartoon-style mmo strategy game. As a resourceful lord, you must defend the land of Norheim against the evil gnomes while protecting yourself from other invading players!"
+      },
+      {
+        "item_key": "bd3602edb09f77a2",
+        "section": "free",
+        "title": "EverQuest",
+        "url": "https://store.steampowered.com/app/205710/",
+        "message_id": "1528048535356965048",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-07-18T14:39:21.291243+00:00",
+        "description": "Welcome to EverQuest® - the original fantasy MMORPG. Explore huge worlds, fight challenging foes, and grow your character with friends. Discover why players have quested, grouped, and raided in Norrath for more than two decades."
+      },
+      {
+        "item_key": "cbda4b7c95cb42af",
+        "section": "free",
+        "title": "Burger Shift: Team Rush: Prologue",
+        "url": "https://store.steampowered.com/app/3821150/",
+        "message_id": "1528048544299094116",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-07-18T14:39:23.184328+00:00",
+        "description": "Run the world's most chaotic fast food joint! Play solo or with up to 8 friends as you take orders, make burgers, and hustle to keep customers happy. Grow your business with every shift."
+      },
+      {
+        "item_key": "29f7a49e9542f504",
+        "section": "paid",
+        "title": "Raft",
+        "url": "https://store.steampowered.com/app/648800/",
+        "message_id": "1528048558752923719",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-07-18T14:39:26.999618+00:00",
+        "description": "Raft™ throws you and your friends into an epic oceanic adventure! Alone or together, players battle to survive a perilous voyage across a vast sea! Gather debris, scavenge reefs and build your own floating home, but be wary of the man-eating sharks!"
+      },
+      {
+        "item_key": "fc3303a67cab4f26",
+        "section": "paid",
+        "title": "Guild Wars® Reforged",
+        "url": "https://store.steampowered.com/app/29720/",
+        "message_id": "1528048568407949354",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-07-18T14:39:29.011198+00:00",
+        "description": "Step into Guild Wars Reforged, the award-winning online roleplaying game enjoyed by millions, now re-energized with system enhancements and Steam Deck verified. Experience the complete saga— from the fall of Ascalon to the desperate stand against Nightfall. Your adventure is just getting started!"
+      },
+      {
+        "item_key": "f3aa470bb2fa04b6",
+        "section": "paid",
+        "title": "Among Us",
+        "url": "https://store.steampowered.com/app/945360/",
+        "message_id": "1528048576502956143",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-07-18T14:39:30.793818+00:00",
+        "description": "An online and local party game of teamwork and betrayal for 4-15 players...in space!"
+      },
+      {
+        "item_key": "5efadb19d10dc88a",
+        "section": "paid",
+        "title": "Flock Around",
+        "url": "https://store.steampowered.com/app/3618030/",
+        "message_id": "1528048584338047107",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-07-18T14:39:32.934559+00:00",
+        "description": "Flock Around is a multiplayer bird watching game. Explore a nature sanctuary with friends, snap pictures of birds, and fill out the guide book!"
+      },
+      {
+        "item_key": "86a4509d4f86143d",
+        "section": "paid",
+        "title": "Police Simulator: Patrol Officers",
+        "url": "https://store.steampowered.com/app/997010/",
+        "message_id": "1528048593477304401",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-07-18T14:39:34.893264+00:00",
+        "description": "Welcome to Brighton! Join the police force of this fictitious American city and experience the day to day life of a police officer."
+      },
+      {
+        "item_key": "c1d3fae058bd9c73",
+        "section": "instagram",
+        "title": "@sharedxp_official",
+        "url": "https://www.instagram.com/p/Da5pgpHMEDp/",
+        "message_id": "1528048608308625511",
+        "channel_id": "592534544708796474",
+        "source_type": "instagram",
+        "posted_at": "2026-07-18T14:39:38.742550+00:00",
+        "description": "Capy Castaway (AD)  A capybara pup and a clever crow solve puzzles and explore a flood-swept island together — cozy, ..."
+      },
+      {
+        "item_key": "5b875a2f57817ef1",
+        "section": "instagram",
+        "title": "@biffmatictv",
+        "url": "https://www.instagram.com/p/Da5oiqpNngg/",
+        "message_id": "1528048617183772842",
+        "channel_id": "592534544708796474",
+        "source_type": "instagram",
+        "posted_at": "2026-07-18T14:39:40.513727+00:00",
+        "description": "The coolest thing a game can have is a world that’s ALIVE! - AD   Stalzone!   #gaming #openworld #mmo #newgames #stal..."
+      },
+      {
+        "item_key": "5f38871e22672ce9",
+        "section": "instagram",
+        "title": "@itzjaysasa",
+        "url": "https://www.instagram.com/p/Da6aIghv9q2/",
+        "message_id": "1528048624716742760",
+        "channel_id": "592534544708796474",
+        "source_type": "instagram",
+        "posted_at": "2026-07-18T14:39:42.561832+00:00",
+        "description": "A fun co-op horror game to play with friends | Game Name: Happy’s Humble Burger Cult   #pcgaming #whattoplay #newgame..."
+      },
+      {
+        "item_key": "8c49283aadbca4ca",
+        "section": "instagram",
+        "title": "@mildsoss_official",
+        "url": "https://www.instagram.com/p/Dax0Es1I8mm/",
+        "message_id": "1528048633168007258",
+        "channel_id": "592534544708796474",
+        "source_type": "instagram",
+        "posted_at": "2026-07-18T14:39:44.282754+00:00",
+        "description": "This game takes place in a utopia designed to maximize happiness. But your job is to solve problems that could impact..."
+      },
+      {
+        "item_key": "16758ccd328ea054",
+        "section": "instagram",
+        "title": "@sharedxp_official",
+        "url": "https://www.instagram.com/p/Da78K9rMVHa/",
+        "message_id": "1528048640344592384",
+        "channel_id": "592534544708796474",
+        "source_type": "instagram",
+        "posted_at": "2026-07-18T14:39:46.040832+00:00",
+        "description": "Go-Go Town!   Mayor sim gone chaotic — build, farm, fish, and automate your way to a thriving town, with a giant garb..."
+      },
+      {
+        "item_key": "b7a0652f4ca32cbb",
+        "section": "instagram",
+        "title": "@wilfratgaming",
+        "url": "https://www.instagram.com/p/Da6WRgTtPYv/",
+        "message_id": "1528048647793672213",
+        "channel_id": "592534544708796474",
+        "source_type": "instagram",
+        "posted_at": "2026-07-18T14:39:47.929602+00:00",
+        "description": "@vivion_lab 7 Days To Think About It is a psychological horror game where every choice pulls you deeper into a distur..."
+      }
+    ]
   }
 }
