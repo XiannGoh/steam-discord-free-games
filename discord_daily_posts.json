@@ -1,145 +1,4 @@
 {
-  "2026-06-19": {
-    "run_state": {
-      "section_headers": {
-        "free": {
-          "message_id": "1517564247884697652",
-          "channel_id": "592534544708796474",
-          "posted_at_utc": "2026-06-19T16:18:31.871767+00:00"
-        },
-        "paid": {
-          "message_id": "1517564293145559072",
-          "channel_id": "592534544708796474",
-          "posted_at_utc": "2026-06-19T16:18:42.677530+00:00"
-        }
-      },
-      "last_attempt_at_utc": "2026-06-19T16:18:28.748779+00:00",
-      "intro": {
-        "message_id": "1517564236820123708",
-        "channel_id": "592534544708796474",
-        "posted_at_utc": "2026-06-19T16:18:30.220915+00:00"
-      },
-      "footer": {
-        "message_id": "1517564339287101601",
-        "channel_id": "592534544708796474",
-        "posted_at_utc": "2026-06-19T16:18:53.729631+00:00"
-      },
-      "completed": true,
-      "completed_at_utc": "2026-06-19T16:18:54.934792+00:00"
-    },
-    "items": [
-      {
-        "item_key": "365fb7fbba472536",
-        "section": "free",
-        "title": "Project Entropy",
-        "url": "https://store.steampowered.com/app/2806410/",
-        "message_id": "1517564254876602570",
-        "channel_id": "592534544708796474",
-        "source_type": "steam_free",
-        "posted_at": "2026-06-19T16:18:33.847063+00:00",
-        "description": "Welcome, commander, to Project Entropy- an ultimate Sci-Fi and role-playing game with battles in space. In this immersive MMO experience, you will command alien civilizations, conquer uncharted planets, and build Hero fleets."
-      },
-      {
-        "item_key": "13c1c3d289159f35",
-        "section": "free",
-        "title": "Sword Art Online: Integral Factor",
-        "url": "https://store.steampowered.com/app/2371630/",
-        "message_id": "1517564262770282666",
-        "channel_id": "592534544708796474",
-        "source_type": "steam_free",
-        "posted_at": "2026-06-19T16:18:35.536223+00:00",
-        "description": "Aim to conquer Aincrad with Kirito and Asuna"
-      },
-      {
-        "item_key": "62d1e036a5cd91a0",
-        "section": "free",
-        "title": "Battle Tanks: World War II",
-        "url": "https://store.steampowered.com/app/782670/",
-        "message_id": "1517564269527302204",
-        "channel_id": "592534544708796474",
-        "source_type": "steam_free",
-        "posted_at": "2026-06-19T16:18:37.184360+00:00",
-        "description": "Are you ready to fight? Download this incredibly addictive tank game right now! Choose a tank and fight with your friends in dynamic real-time battles.Meet the legendary tank shooter Battle Tanks! Show the whole world who's in charge here!"
-      },
-      {
-        "item_key": "cadc257b39432194",
-        "section": "free",
-        "title": "War Planet Online: Global Conquest",
-        "url": "https://store.steampowered.com/app/719640/",
-        "message_id": "1517564276640845975",
-        "channel_id": "592534544708796474",
-        "source_type": "steam_free",
-        "posted_at": "2026-06-19T16:18:39.061452+00:00",
-        "description": "Build your army, dominate your region and lead your alliance to conquer the globe!"
-      },
-      {
-        "item_key": "df8ba87011407b3a",
-        "section": "free",
-        "title": "Soulworker",
-        "url": "https://store.steampowered.com/app/1377580/",
-        "message_id": "1517564284526268599",
-        "channel_id": "592534544708796474",
-        "source_type": "steam_free",
-        "posted_at": "2026-06-19T16:18:41.077190+00:00",
-        "description": "Fierce emotions help fuel SoulWorkers to save the world from the devastated scene of a post-apocalyptic world. In a world where only dark devastation reigns – you are the only SoulWorker to come to the rescue."
-      },
-      {
-        "item_key": "79c296ac256e6bcf",
-        "section": "paid",
-        "title": "s&box",
-        "url": "https://store.steampowered.com/app/590830/",
-        "message_id": "1517564299592073218",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-06-19T16:18:44.587898+00:00",
-        "description": "S&box is a game creation platform built on the Source 2 engine. Play, create, and share games, explore community creations, and experience endless sandbox fun with powerful modern tools."
-      },
-      {
-        "item_key": "7ed061294f04aa2b",
-        "section": "paid",
-        "title": "The Spell Brigade",
-        "url": "https://store.steampowered.com/app/2904000/",
-        "message_id": "1517564308114899004",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-06-19T16:18:46.796120+00:00",
-        "description": "Survivors-like with ONLINE CO-OP for 1-4 players. Team up with your wizard friends to slay hordes of dark creatures. Complete team-based objectives, unlock new upgrades and create overpowered spell synergies. Friend nor foe is safe in this friendly fire bullet hell!"
-      },
-      {
-        "item_key": "3cc61548ff1af133",
-        "section": "paid",
-        "title": "Goofy Gorillas",
-        "url": "https://store.steampowered.com/app/2627570/",
-        "message_id": "1517564316675477717",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-06-19T16:18:48.402087+00:00",
-        "description": "Relive your childhood nostalgia at Goofy Gorillas, the largest virtual jungle gym! Battle it out with your friends in a wide range of casual but intense PvP gamemodes, or chill out and take part in some extra activities around the venue! Make the Goofy experience your own!"
-      },
-      {
-        "item_key": "32ee86ed44818c2c",
-        "section": "paid",
-        "title": "Injustice™ 2",
-        "url": "https://store.steampowered.com/app/627270/",
-        "message_id": "1517564323592142899",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-06-19T16:18:50.175839+00:00",
-        "description": "Build and power up the ultimate version of your favourite DC legends in INJUSTICE 2. This is your Legend. Your Journey. Your Injustice."
-      },
-      {
-        "item_key": "75aa0345ac8781b9",
-        "section": "paid",
-        "title": "I Know a Guy: Shady Life Simulator",
-        "url": "https://store.steampowered.com/app/4173620/",
-        "message_id": "1517564331338764401",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-06-19T16:18:52.062079+00:00",
-        "description": "Run your pizza shop up front and handle shady business out back. Help hand-crafted NPCs with favors that never go as planned. Play solo or online co-op with up to four players and expand your operation across Hobarey Town. In this darkly comedic management sim - become that guy everyone knows."
-      }
-    ]
-  },
   "2026-06-20": {
     "run_state": {
       "section_headers": {
@@ -5579,5 +5438,184 @@
       "skipped_reason": "no_eligible_winners",
       "updated_at_utc": "2026-07-18T23:50:28.459975+00:00"
     }
+  },
+  "2026-07-19": {
+    "run_state": {
+      "section_headers": {
+        "free": {
+          "message_id": "1528411565479432222",
+          "channel_id": "592534544708796474",
+          "posted_at_utc": "2026-07-19T14:41:54.006204+00:00"
+        },
+        "paid": {
+          "message_id": "1528411612711489546",
+          "channel_id": "592534544708796474",
+          "posted_at_utc": "2026-07-19T14:42:05.302213+00:00"
+        },
+        "instagram": {
+          "message_id": "1528411656835829850",
+          "channel_id": "592534544708796474",
+          "posted_at_utc": "2026-07-19T14:42:15.719556+00:00"
+        }
+      },
+      "last_attempt_at_utc": "2026-07-19T14:41:50.428519+00:00",
+      "intro": {
+        "message_id": "1528411552405917717",
+        "channel_id": "592534544708796474",
+        "posted_at_utc": "2026-07-19T14:41:52.404516+00:00"
+      },
+      "footer": {
+        "message_id": "1528411687026167949",
+        "channel_id": "592534544708796474",
+        "posted_at_utc": "2026-07-19T14:42:22.918798+00:00"
+      },
+      "completed": true,
+      "completed_at_utc": "2026-07-19T14:42:24.126510+00:00"
+    },
+    "items": [
+      {
+        "item_key": "9c2bde7b16a027c8",
+        "section": "free",
+        "title": "Fistful of Frags",
+        "url": "https://store.steampowered.com/app/265630/",
+        "message_id": "1528411572307755059",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-07-19T14:41:56.016654+00:00",
+        "description": "Multiplayer based, first person enabled, action packed and skill demanding shooter set in the Wild West times. A unique combination of non stop action and slow but powerful weaponry."
+      },
+      {
+        "item_key": "5e5e784a5002716e",
+        "section": "free",
+        "title": "Hero Zero - Multiplayer RPG",
+        "url": "https://store.steampowered.com/app/482920/",
+        "message_id": "1528411580650360982",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-07-19T14:41:57.694494+00:00",
+        "description": "Become a hero, build your own Hide-Out and start by saving your neighbourhood. Level up your skills, collect incredibly weird superhero gadgets, and join a superhero team to save the world!"
+      },
+      {
+        "item_key": "9f68107e115ac58a",
+        "section": "free",
+        "title": "Thunder Tier One",
+        "url": "https://store.steampowered.com/app/377300/",
+        "message_id": "1528411587541729322",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-07-19T14:41:59.625031+00:00",
+        "description": "Thunder Tier One is a realistic top-down shooter where you join an elite special operations team tasked with stopping a dangerous terrorist organization wreaking havoc across the fictional Eastern European country of Salobia."
+      },
+      {
+        "item_key": "dfaebf39616a3342",
+        "section": "free",
+        "title": "WonderKing",
+        "url": "https://store.steampowered.com/app/3825780/",
+        "message_id": "1528411595183493262",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-07-19T14:42:01.407130+00:00",
+        "description": "The return of classic 2D side-scrolling action! WonderKing is a free-to-play MMORPG packed with flashy combat and deep progression. Advance through diverse classes, master unique combos, and party up with friends for epic boss raids. Start your adventure today!"
+      },
+      {
+        "item_key": "794406c592444e9f",
+        "section": "free",
+        "title": "Force of Warships: Battleship Games",
+        "url": "https://store.steampowered.com/app/1991860/",
+        "message_id": "1528411603773554689",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-07-19T14:42:03.633828+00:00",
+        "description": "Direct your battleship to glorious victory! Online battle under your leadership!"
+      },
+      {
+        "item_key": "58dde40746164ada",
+        "section": "paid",
+        "title": "Dark Hours",
+        "url": "https://store.steampowered.com/app/2208570/",
+        "message_id": "1528411619246211083",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-07-19T14:42:07.001307+00:00",
+        "description": "Dark Hours is a co-op survival horror game for 1-4 players. Your heist has been disrupted by a supernatural event, and your team of robbers is now trapped with an evil entity. Forget your plan, your mission is to survive. Explore and cooperate to find a way out."
+      },
+      {
+        "item_key": "315917c19d6c3206",
+        "section": "paid",
+        "title": "Don't Starve Together",
+        "url": "https://store.steampowered.com/app/322330/",
+        "message_id": "1528411626754146454",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-07-19T14:42:08.800661+00:00",
+        "description": "Fight, Farm, Build and Explore Together in the standalone multiplayer expansion to the uncompromising wilderness survival game, Don't Starve."
+      },
+      {
+        "item_key": "2c25d103f74ec41d",
+        "section": "paid",
+        "title": "GONE Fishing",
+        "url": "https://store.steampowered.com/app/3645890/",
+        "message_id": "1528411634266144808",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-07-19T14:42:10.486459+00:00",
+        "description": "GONE Fishing is a 1-8 player survival horror game where you and your friends must work together to stay alive, by fishing. The only way to survive is to keep feeding the lake’s insatiable hunger before it feeds on you. Can you satisfy the hunger... or will you become the next offering?"
+      },
+      {
+        "item_key": "7f31d9b79ee5acc6",
+        "section": "paid",
+        "title": "Golf With Your Friends",
+        "url": "https://store.steampowered.com/app/431240/",
+        "message_id": "1528411641291477093",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-07-19T14:42:12.308920+00:00",
+        "description": "Why have friends if not to play Golf... With Your Friends! Nothing is out of bounds as you take on courses filled with fast paced, exciting, simultaneous mini golf for up to 12 players!"
+      },
+      {
+        "item_key": "632d55b415b03495",
+        "section": "paid",
+        "title": "Motor Town: Behind The Wheel",
+        "url": "https://store.steampowered.com/app/1369670/",
+        "message_id": "1528411649109790780",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-07-19T14:42:14.194224+00:00",
+        "description": "Enjoy realistic driving in the open world. Relaxing cargo deliveries or driving buses and taxis will give you enough money to buy new cars and parts. You can test your driving skills at the race track. It's all about pure driving pleasure!"
+      },
+      {
+        "item_key": "19688d857b2e2efd",
+        "section": "instagram",
+        "title": "@mildsoss_official",
+        "url": "https://www.instagram.com/p/Da8RpkiOFVs/",
+        "message_id": "1528411663286665308",
+        "channel_id": "592534544708796474",
+        "source_type": "instagram",
+        "posted_at": "2026-07-19T14:42:17.464960+00:00",
+        "description": "Gotta go angel mode on them  🎮 Crimson Moon 🗓️ September 2026 👥 1-2 Players 🖥️ PC, Xbox, PlayStation  #gaming #newgam..."
+      },
+      {
+        "item_key": "5417056745b4fd49",
+        "section": "instagram",
+        "title": "@sharedxp_official",
+        "url": "https://www.instagram.com/p/DavT_qCMZOd/",
+        "message_id": "1528411670521577564",
+        "channel_id": "592534544708796474",
+        "source_type": "instagram",
+        "posted_at": "2026-07-19T14:42:19.262471+00:00",
+        "description": "Sineus Arena Survivors [A][D] build your base mid-fight while defending the one flame keeping your team alive.  ✅ Onl..."
+      },
+      {
+        "item_key": "63dd494ead089642",
+        "section": "instagram",
+        "title": "@wilfratgaming",
+        "url": "https://www.instagram.com/p/Da-gDbWt-UE/",
+        "message_id": "1528411678197415966",
+        "channel_id": "592534544708796474",
+        "source_type": "instagram",
+        "posted_at": "2026-07-19T14:42:21.139450+00:00",
+        "description": "Streetdog BMX brings fast-paced arcade BMX action with huge trick combos, stylish lines, and maps built for creative ..."
+      }
+    ]
   }
 }
