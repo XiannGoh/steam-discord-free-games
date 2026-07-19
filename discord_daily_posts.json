@@ -5616,6 +5616,11 @@
         "posted_at": "2026-07-19T14:42:21.139450+00:00",
         "description": "Streetdog BMX brings fast-paced arcade BMX action with huge trick combos, stylish lines, and maps built for creative ..."
       }
-    ]
+    ],
+    "winners_state": {
+      "status": "skipped",
+      "skipped_reason": "no_eligible_winners",
+      "updated_at_utc": "2026-07-19T23:54:58.975734+00:00"
+    }
   }
 }
