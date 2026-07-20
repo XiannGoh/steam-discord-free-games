@@ -1,145 +1,4 @@
 {
-  "2026-06-20": {
-    "run_state": {
-      "section_headers": {
-        "free": {
-          "message_id": "1517912209693347961",
-          "channel_id": "592534544708796474",
-          "posted_at_utc": "2026-06-20T15:21:12.497093+00:00"
-        },
-        "paid": {
-          "message_id": "1517912252563591381",
-          "channel_id": "592534544708796474",
-          "posted_at_utc": "2026-06-20T15:21:22.687200+00:00"
-        }
-      },
-      "last_attempt_at_utc": "2026-06-20T15:21:09.742827+00:00",
-      "intro": {
-        "message_id": "1517912199987728545",
-        "channel_id": "592534544708796474",
-        "posted_at_utc": "2026-06-20T15:21:10.935579+00:00"
-      },
-      "footer": {
-        "message_id": "1517912296498925617",
-        "channel_id": "592534544708796474",
-        "posted_at_utc": "2026-06-20T15:21:33.183797+00:00"
-      },
-      "completed": true,
-      "completed_at_utc": "2026-06-20T15:21:34.390183+00:00"
-    },
-    "items": [
-      {
-        "item_key": "904d097ee2b3ff33",
-        "section": "free",
-        "title": "King of Crabs",
-        "url": "https://store.steampowered.com/app/1273710/",
-        "message_id": "1517912216282730629",
-        "channel_id": "592534544708796474",
-        "source_type": "steam_free",
-        "posted_at": "2026-06-20T15:21:14.265184+00:00",
-        "description": "Battle Royale with crabs! Intense multiplayer action, with up to 100 players! Scrap, scavenge and slaughter your way to becoming the King of Crabs!"
-      },
-      {
-        "item_key": "cc5239aef1abeed5",
-        "section": "free",
-        "title": "Wheelchair Wizards",
-        "url": "https://store.steampowered.com/app/3832630/",
-        "message_id": "1517912223693934612",
-        "channel_id": "592534544708796474",
-        "source_type": "steam_free",
-        "posted_at": "2026-06-20T15:21:15.852409+00:00",
-        "description": "Wheelchair Wizards is a 4 player party game where you battle your friends while upgrading your wizard."
-      },
-      {
-        "item_key": "5fabbdf33581454e",
-        "section": "free",
-        "title": "Lost Lives",
-        "url": "https://store.steampowered.com/app/1929230/",
-        "message_id": "1517912230241374461",
-        "channel_id": "592534544708796474",
-        "source_type": "steam_free",
-        "posted_at": "2026-06-20T15:21:17.449309+00:00",
-        "description": "Lost Lives is a multiplayer 2D shooter with RPG elements, in which you will find yourself in the conditions of post-Soviet devastation. As you play, you will have to fight other players and local factions, as well as find and sell loot. Choose your equipment wisely and defeat your enemies!"
-      },
-      {
-        "item_key": "8bfb81ce57272e6d",
-        "section": "free",
-        "title": "Anomaly Zone Renovation",
-        "url": "https://store.steampowered.com/app/4045370/",
-        "message_id": "1517912237061312553",
-        "channel_id": "592534544708796474",
-        "source_type": "steam_free",
-        "posted_at": "2026-06-20T15:21:19.368766+00:00",
-        "description": "A-Zone Renovation is a continuation of the legendary Zone, combining the classic stalker atmosphere with revised mechanics. A large-scale rebalancing, from weapons to economy, a new role-playing system, an improved interface, PvE and PvP activities - the Zone is ready to grow with its community."
-      },
-      {
-        "item_key": "41ee53ad2d4579da",
-        "section": "free",
-        "title": "Mitos.is: The Game",
-        "url": "https://store.steampowered.com/app/389570/",
-        "message_id": "1517912245164834846",
-        "channel_id": "592534544708796474",
-        "source_type": "steam_free",
-        "posted_at": "2026-06-20T15:21:21.123490+00:00",
-        "description": "Step into the microscopic world of Mitos.is! Eat or be eaten—become the ultimate cell in a highly addictive multiplayer game. Diverse modes, daily tournaments, guilds, and gear await! The BEST game of 2015 is back!"
-      },
-      {
-        "item_key": "b13bb1a5f6ce71a8",
-        "section": "paid",
-        "title": "Strange Brigade",
-        "url": "https://store.steampowered.com/app/312670/",
-        "message_id": "1517912258921890025",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-06-20T15:21:24.370159+00:00",
-        "description": "Embark on an exotic journey into danger in this rip-roaring 1930s third person adventure for 1-4 players! Encounter pulse-pounding action, treacherous traps and tales of derring-do!"
-      },
-      {
-        "item_key": "8a96e15e4ae86493",
-        "section": "paid",
-        "title": "Trail & Error",
-        "url": "https://store.steampowered.com/app/4322960/",
-        "message_id": "1517912266484224132",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-06-20T15:21:26.129943+00:00",
-        "description": "A chaotic co-op survival game for 1–4 players where you travel the trail, manage supplies, survive disasters, and argue with friends. Work together to keep the wagon moving, adapt to random events, and try to make it to the end in one piece."
-      },
-      {
-        "item_key": "73266fa75a67805c",
-        "section": "paid",
-        "title": "NARUTO TO BORUTO: SHINOBI STRIKER",
-        "url": "https://store.steampowered.com/app/633230/",
-        "message_id": "1517912273375592618",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-06-20T15:21:27.744714+00:00",
-        "description": "Battle as a team of 4 to compete against other teams online! Graphically, SHINOBI STRIKER is also built from the ground up in a completely new graphic style. Lead your team and fight online to see who the best ninjas are!"
-      },
-      {
-        "item_key": "d9adb5af7bae8960",
-        "section": "paid",
-        "title": "Unravel Two",
-        "url": "https://store.steampowered.com/app/1225570/",
-        "message_id": "1517912280271159508",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-06-20T15:21:29.696379+00:00",
-        "description": "When you cut ties to the past, new bonds form. Build relationships with other Yarnys in local co-op or as a single player, fostering friendship and support as you journey together."
-      },
-      {
-        "item_key": "e946b3ac2ee1ea96",
-        "section": "paid",
-        "title": "Oddsparks: An Automation Adventure",
-        "url": "https://store.steampowered.com/app/1817800/",
-        "message_id": "1517912288361971876",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-06-20T15:21:31.464794+00:00",
-        "description": "Oddsparks is a blend of automation and real-time strategy for both the die-hard fans of the automation genre and the automation-curious. Explore a strange fantasy world, uncover the mysteries of the past, automate your workshops, and go on adventures with your odd & adorable Sparks!"
-      }
-    ]
-  },
   "2026-06-21": {
     "run_state": {
       "section_headers": {
@@ -5622,5 +5481,189 @@
       "skipped_reason": "no_eligible_winners",
       "updated_at_utc": "2026-07-19T23:54:58.975734+00:00"
     }
+  },
+  "2026-07-20": {
+    "run_state": {
+      "section_headers": {
+        "demo_playtest": {
+          "message_id": "1528784903846760460",
+          "channel_id": "592534544708796474",
+          "posted_at_utc": "2026-07-20T15:25:24.852318+00:00"
+        },
+        "free": {
+          "message_id": "1528784918568632581",
+          "channel_id": "592534544708796474",
+          "posted_at_utc": "2026-07-20T15:25:28.411191+00:00"
+        },
+        "paid": {
+          "message_id": "1528784964814901249",
+          "channel_id": "592534544708796474",
+          "posted_at_utc": "2026-07-20T15:25:39.482480+00:00"
+        },
+        "instagram": {
+          "message_id": "1528785010348527779",
+          "channel_id": "592534544708796474",
+          "posted_at_utc": "2026-07-20T15:25:50.363457+00:00"
+        }
+      },
+      "last_attempt_at_utc": "2026-07-20T15:25:21.172199+00:00",
+      "intro": {
+        "message_id": "1528784890303348779",
+        "channel_id": "592534544708796474",
+        "posted_at_utc": "2026-07-20T15:25:23.264186+00:00"
+      },
+      "footer": {
+        "message_id": "1528785033413001257",
+        "channel_id": "592534544708796474",
+        "posted_at_utc": "2026-07-20T15:25:55.635353+00:00"
+      },
+      "completed": true,
+      "completed_at_utc": "2026-07-20T15:25:56.843225+00:00"
+    },
+    "items": [
+      {
+        "item_key": "42d016051409c7b7",
+        "section": "demo_playtest",
+        "title": "Scapewatch: Idle MMO Demo",
+        "url": "https://store.steampowered.com/app/4750660/",
+        "message_id": "1528784910876283050",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_demo_playtest",
+        "posted_at": "2026-07-20T15:25:26.662042+00:00",
+        "description": "30 skills. Three combat styles. Clans, raids, hiscores, pets, capes. Set up your queue, close the tab, come back richer. Scapewatch is the idle MMO for people who actually like the grind."
+      },
+      {
+        "item_key": "2cfa6e0d711965ea",
+        "section": "free",
+        "title": "Pax Dei",
+        "url": "https://store.steampowered.com/app/1995520/",
+        "message_id": "1528784925556346891",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-07-20T15:25:30.115602+00:00",
+        "description": "Welcome to a vast, social sandbox MMO inspired by the legends of the medieval era. Here, myths are real, ghosts exist, and magic is unquestioned. Join thousands of players as you explore the land, build your home, forge your reputation, and craft your own stories. What world will you make?"
+      },
+      {
+        "item_key": "5750921a0f2f8cac",
+        "section": "free",
+        "title": "Pixel Strike 3D",
+        "url": "https://store.steampowered.com/app/915320/",
+        "message_id": "1528784933005426698",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-07-20T15:25:31.791339+00:00",
+        "description": "Pixel Strike 3D is a Multiplayer First-Person Shooter that features fast-paced gameplay and a wide variety of player customization. Battle friends and foes from all around the world in over 20 unique game modes, with over 70 available weapons."
+      },
+      {
+        "item_key": "36031786c8d40617",
+        "section": "free",
+        "title": "BLOCKPOST LEGACY",
+        "url": "https://store.steampowered.com/app/706990/",
+        "message_id": "1528784939934416919",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-07-20T15:25:33.727379+00:00",
+        "description": "Procedural cubic 3D-shooter in the best traditions of the genre. The game is a rich cocktail consisting of the most popular and functional gaming solutions. Customization of characters, opening cases and improving the existing arsenal — all this is available in the game now!"
+      },
+      {
+        "item_key": "cc11aa6f098818b7",
+        "section": "free",
+        "title": "Casino Roulette: Roulettist",
+        "url": "https://store.steampowered.com/app/3601420/",
+        "message_id": "1528784948021035062",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-07-20T15:25:35.598918+00:00",
+        "description": "Test your luck! Play casino roulette with stunning, realistic 3D graphics! Feel the risk as you dive into the casino atmosphere and hit the big time!"
+      },
+      {
+        "item_key": "d5a7c40177d58cd1",
+        "section": "free",
+        "title": "Mesozoic Dawn",
+        "url": "https://store.steampowered.com/app/4334840/",
+        "message_id": "1528784956363641034",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-07-20T15:25:37.717451+00:00",
+        "description": "Mesozoic Dawn is a multiplayer online dinosaur survival game. Starting as a vulnerable juvenile dinosaur, you must navigate the perils of the prehistoric wilderness, utilizing the core \"Growth + Nesting = Evolution\" system to achieve leapfrog species iteration and evolution."
+      },
+      {
+        "item_key": "87961c7356af09f8",
+        "section": "paid",
+        "title": "Granvir",
+        "url": "https://store.steampowered.com/app/2743460/",
+        "message_id": "1528784972389941309",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-07-20T15:25:41.296965+00:00",
+        "description": "Granvir is a 3rd person action roguelite mech-builder with co-op multiplayer. Scavenge the battlefield for parts to replace and upgrade your Granvir and weaponry. PIlot your Granvir and manage your campaign between battles to find the best equipment and stay supplied while fighting a guerilla war."
+      },
+      {
+        "item_key": "c852b130b932ef6c",
+        "section": "paid",
+        "title": "Left 4 Dead",
+        "url": "https://store.steampowered.com/app/500/",
+        "message_id": "1528784979960660050",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-07-20T15:25:43.217346+00:00",
+        "description": "From Valve (the creators of Counter-Strike, Half-Life and more) comes Left 4 Dead, a co-op action horror game for the PC and Xbox 360 that casts up to four players in an epic struggle for survival against swarming zombie hordes and terrifying mutant monsters."
+      },
+      {
+        "item_key": "3cc61548ff1af133",
+        "section": "paid",
+        "title": "Goofy Gorillas",
+        "url": "https://store.steampowered.com/app/2627570/",
+        "message_id": "1528784987984498879",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-07-20T15:25:44.976210+00:00",
+        "description": "Relive your childhood nostalgia at Goofy Gorillas, the largest virtual jungle gym! Battle it out with your friends in a wide range of casual but intense PvP gamemodes, or chill out and take part in some extra activities around the venue! Make the Goofy experience your own!"
+      },
+      {
+        "item_key": "9cc8c353d8f9ea4d",
+        "section": "paid",
+        "title": "Voyagers of Nera",
+        "url": "https://store.steampowered.com/app/2686630/",
+        "message_id": "1528784995114553437",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-07-20T15:25:46.685884+00:00",
+        "description": "Voyagers of Nera is a cooperative survival-crafting game where you must survive a magical ocean world brimming with lost spirits and deadly monsters. Sail to distant islands, build beautiful villages and surf across the waves with up to 10 players."
+      },
+      {
+        "item_key": "a7a29c6286a060ca",
+        "section": "paid",
+        "title": "Clue/Cluedo",
+        "url": "https://store.steampowered.com/app/2506480/",
+        "message_id": "1528785002417098813",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-07-20T15:25:48.441782+00:00",
+        "description": "Experience a fresh take on the classic crime-solving board game. Step into new mysteries and use your skills of deduction to find out whodunit, with what weapon and where."
+      },
+      {
+        "item_key": "5bb248936281d6e1",
+        "section": "instagram",
+        "title": "@wilfratgaming",
+        "url": "https://www.instagram.com/p/Da_SwHvtFgR/",
+        "message_id": "1528785017738891415",
+        "channel_id": "592534544708796474",
+        "source_type": "instagram",
+        "posted_at": "2026-07-20T15:25:52.183883+00:00",
+        "description": "DATA BREACH is a co-op horror game where you play as disposable robots stealing data before your battery dies... and ..."
+      },
+      {
+        "item_key": "0748bdf3a3fb6c9b",
+        "section": "instagram",
+        "title": "@biffmatictv",
+        "url": "https://www.instagram.com/p/Da_dJl5N1gn/",
+        "message_id": "1528785025573585026",
+        "channel_id": "592534544708796474",
+        "source_type": "instagram",
+        "posted_at": "2026-07-20T15:25:53.961300+00:00",
+        "description": "Outer Wilds but on one PLANET! Flux Empyrean   #gaming #outerwilds #explorationgame #newgame #openworld"
+      }
+    ]
   }
 }
