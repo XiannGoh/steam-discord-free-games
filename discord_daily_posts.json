@@ -5664,6 +5664,11 @@
         "posted_at": "2026-07-20T15:25:53.961300+00:00",
         "description": "Outer Wilds but on one PLANET! Flux Empyrean   #gaming #outerwilds #explorationgame #newgame #openworld"
       }
-    ]
+    ],
+    "winners_state": {
+      "status": "skipped",
+      "skipped_reason": "no_eligible_winners",
+      "updated_at_utc": "2026-07-20T23:55:39.830842+00:00"
+    }
   }
 }
