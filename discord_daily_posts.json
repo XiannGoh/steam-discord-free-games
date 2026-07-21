@@ -5707,6 +5707,11 @@
         "posted_at": "2026-07-21T15:18:44.128935+00:00",
         "description": "|AD| Railborn is a survival game where your train isn't just transport—it's your home, your farm, and your only chanc..."
       }
-    ]
+    ],
+    "winners_state": {
+      "status": "skipped",
+      "skipped_reason": "no_eligible_winners",
+      "updated_at_utc": "2026-07-21T23:54:41.506291+00:00"
+    }
   }
 }
