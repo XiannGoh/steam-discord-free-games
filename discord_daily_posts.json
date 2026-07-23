@@ -5777,6 +5777,11 @@
         "posted_at": "2026-07-22T15:19:33.970849+00:00",
         "description": "Dirty Business   Build a criminal empire from a hidden underground hangar — produce drugs, forge cash, craft weapons,..."
       }
-    ]
+    ],
+    "winners_state": {
+      "status": "skipped",
+      "skipped_reason": "no_eligible_winners",
+      "updated_at_utc": "2026-07-23T00:00:21.310355+00:00"
+    }
   }
 }
