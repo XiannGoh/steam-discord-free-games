@@ -1,161 +1,4 @@
 {
-  "2026-06-25": {
-    "run_state": {
-      "section_headers": {
-        "demo_playtest": {
-          "message_id": "1519733598767546560",
-          "channel_id": "592534544708796474",
-          "posted_at_utc": "2026-06-25T15:58:45.665250+00:00"
-        },
-        "free": {
-          "message_id": "1519733615217344594",
-          "channel_id": "592534544708796474",
-          "posted_at_utc": "2026-06-25T15:58:49.492025+00:00"
-        },
-        "paid": {
-          "message_id": "1519733665607847979",
-          "channel_id": "592534544708796474",
-          "posted_at_utc": "2026-06-25T15:59:01.519950+00:00"
-        }
-      },
-      "last_attempt_at_utc": "2026-06-25T15:58:43.396217+00:00",
-      "intro": {
-        "message_id": "1519733591498686605",
-        "channel_id": "592534544708796474",
-        "posted_at_utc": "2026-06-25T15:58:43.919291+00:00"
-      },
-      "footer": {
-        "message_id": "1519733719961964756",
-        "channel_id": "592534544708796474",
-        "posted_at_utc": "2026-06-25T15:59:14.598969+00:00"
-      },
-      "completed": true,
-      "completed_at_utc": "2026-06-25T15:59:15.805060+00:00"
-    },
-    "items": [
-      {
-        "item_key": "029567fd38aafec0",
-        "section": "demo_playtest",
-        "title": "Legend Battles",
-        "url": "https://store.steampowered.com/app/3649730/",
-        "message_id": "1519733606338265170",
-        "channel_id": "592534544708796474",
-        "source_type": "steam_demo_playtest",
-        "posted_at": "2026-06-25T15:58:47.772160+00:00",
-        "description": "Free-to-play UE 5.6 Extraction Battle Royale in 400 km² neo-futuristic world with destructible environment and vehicles, massive ET-ACUs, armored Aliens, ferocious Monsters, heavily armed MetaHumans, complete missions to attack, defend, loot, extract facing dynamic weathers."
-      },
-      {
-        "item_key": "b3bf2841829fba33",
-        "section": "free",
-        "title": "E.T.E",
-        "url": "https://store.steampowered.com/app/3450390/",
-        "message_id": "1519733622469427280",
-        "channel_id": "592534544708796474",
-        "source_type": "steam_free",
-        "posted_at": "2026-06-25T15:58:51.461610+00:00",
-        "description": "The 3D anime-style shooting game \"E.T.E\" is launching early access soon. It offers three unique environments—sea, land, and air—plus a system for developing female characters and mechas. Famous voice actresses like Sakura Tange, Kana Hanazawa, Rie Tanaka, and Mikako Komatsu voice the characters."
-      },
-      {
-        "item_key": "5c0b4831c80506d9",
-        "section": "free",
-        "title": "Dirty Bomb®",
-        "url": "https://store.steampowered.com/app/333930/",
-        "message_id": "1519733630585278474",
-        "channel_id": "592534544708796474",
-        "source_type": "steam_free",
-        "posted_at": "2026-06-25T15:58:53.584475+00:00",
-        "description": "Work together or die alone! Fight to restore peace to London or tear it down for profit in the most challenging team based shooter around."
-      },
-      {
-        "item_key": "96c8e910a13ad2fb",
-        "section": "free",
-        "title": "IOSoccer",
-        "url": "https://store.steampowered.com/app/673560/",
-        "message_id": "1519733639183728711",
-        "channel_id": "592534544708796474",
-        "source_type": "steam_free",
-        "posted_at": "2026-06-25T15:58:55.367695+00:00",
-        "description": "IOSoccer is a free non-commercial competitive third-person online multiplayer soccer game that offers unparalleled freedom in ball control and gameplay depth."
-      },
-      {
-        "item_key": "8b1e7c45a2c5866c",
-        "section": "free",
-        "title": "Romans: Age of Caesar",
-        "url": "https://store.steampowered.com/app/872570/",
-        "message_id": "1519733646825623656",
-        "channel_id": "592534544708796474",
-        "source_type": "steam_free",
-        "posted_at": "2026-06-25T15:58:57.193298+00:00",
-        "description": "Build Rome Together! A co-operative grand strategy MMO from a team of veteran city builders, Romans: Age of Caesar is the latest historical strategy game from Firefly Studios."
-      },
-      {
-        "item_key": "f699873d284ce8fb",
-        "section": "free",
-        "title": "Aero Tales Online: The World - Anime MMORPG",
-        "url": "https://store.steampowered.com/app/1943610/",
-        "message_id": "1519733654568440040",
-        "channel_id": "592534544708796474",
-        "source_type": "steam_free",
-        "posted_at": "2026-06-25T15:58:59.659703+00:00",
-        "description": "Aero Tales Online is a free Cross-Platform Anime MMORPG with PvP, PvE, Fortress War, Faction War, Guild War, and life-sim features like Cooking, Farming, Fishing, Housing, Marriage, and even flying freely across the world. Uncover the mystery of the Key of Skylight and begin your adventure!"
-      },
-      {
-        "item_key": "309766e217e8ed38",
-        "section": "paid",
-        "title": "SOS OPS!",
-        "url": "https://store.steampowered.com/app/2475460/",
-        "message_id": "1519733672742228049",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-06-25T15:59:03.293115+00:00",
-        "description": "SOS OPS! is more than a game. Your task is to save the city. You will find yourself in the epicenter of madness, where co-op missions with friends will raise the adrenaline to the limit!"
-      },
-      {
-        "item_key": "aff72c9e3ffe8efe",
-        "section": "paid",
-        "title": "Across the Obelisk",
-        "url": "https://store.steampowered.com/app/1385380/",
-        "message_id": "1519733680451620874",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-06-25T15:59:05.232119+00:00",
-        "description": "Set forth in a co-op roguelite deckbuilder where every choice matters! Craft decks of breathtaking power. Journey alone or with up to three friends. Plot your party’s path to glory and face powerful enemies in deep tactical combat on your quest to save the kingdom of Senenthia in Across the Obelisk!"
-      },
-      {
-        "item_key": "70e8c50aef764e37",
-        "section": "paid",
-        "title": "Stolen Realm",
-        "url": "https://store.steampowered.com/app/1330000/",
-        "message_id": "1519733688131387539",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-06-25T15:59:07.261479+00:00",
-        "description": "Stolen Realm is a simultaneous turn-based tactical dungeon crawling looter with action RPG elements where you control up to 6 heroes, solo or through online co-op, venturing forth in adventures set in a high-fantasy, low-poly world."
-      },
-      {
-        "item_key": "5c667ed5606c0f7b",
-        "section": "paid",
-        "title": "DarkStone Restoration",
-        "url": "https://store.steampowered.com/app/4557490/",
-        "message_id": "1519733697191088390",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-06-25T15:59:10.660338+00:00",
-        "description": "Darkstone Restoration brings the classic action RPG back to modern PCs with improved stability, compatibility, controls, readability, and quality-of-life improvements — while preserving the spirit of the original game."
-      },
-      {
-        "item_key": "e4d6998d591698f1",
-        "section": "paid",
-        "title": "Revenge of the Savage Planet",
-        "url": "https://store.steampowered.com/app/2787320/",
-        "message_id": "1519733711170572389",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-06-25T15:59:12.684542+00:00",
-        "description": "Revenge of the Savage Planet is an upbeat, satirical action adventure Sci-Fi. Jump, shoot and collect your way across vibrant alien worlds, uncovering new gear and upgrades, while discovering various hidden secrets."
-      }
-    ]
-  },
   "2026-06-26": {
     "run_state": {
       "section_headers": {
@@ -5529,5 +5372,195 @@
       "skipped_reason": "no_eligible_winners",
       "updated_at_utc": "2026-07-25T00:00:42.109810+00:00"
     }
+  },
+  "2026-07-25": {
+    "run_state": {
+      "section_headers": {
+        "free": {
+          "message_id": "1530587595984080927",
+          "channel_id": "592534544708796474",
+          "posted_at_utc": "2026-07-25T14:48:40.144604+00:00"
+        },
+        "paid": {
+          "message_id": "1530587641320571021",
+          "channel_id": "592534544708796474",
+          "posted_at_utc": "2026-07-25T14:48:51.008984+00:00"
+        },
+        "instagram": {
+          "message_id": "1530587686866256003",
+          "channel_id": "592534544708796474",
+          "posted_at_utc": "2026-07-25T14:49:01.821998+00:00"
+        }
+      },
+      "last_attempt_at_utc": "2026-07-25T14:48:36.674938+00:00",
+      "intro": {
+        "message_id": "1530587583275602011",
+        "channel_id": "592534544708796474",
+        "posted_at_utc": "2026-07-25T14:48:38.456466+00:00"
+      },
+      "footer": {
+        "message_id": "1530587722283225322",
+        "channel_id": "592534544708796474",
+        "posted_at_utc": "2026-07-25T14:49:10.211415+00:00"
+      },
+      "completed": true,
+      "completed_at_utc": "2026-07-25T14:49:11.419206+00:00"
+    },
+    "items": [
+      {
+        "item_key": "016e82147d0b491e",
+        "section": "free",
+        "title": "Bro Falls",
+        "url": "https://store.steampowered.com/app/1590320/",
+        "message_id": "1530587602959466700",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-07-25T14:48:42.000578+00:00",
+        "description": "Bro Falls is an asymmetric massively multiplayer party game with chaotic elements, trap activations and big Falls. Up-to 60 online players in a showdown party and only one who can get the victory. Play as Brokkoli to activate the traps or avoid them as a juicy food and win the rounds."
+      },
+      {
+        "item_key": "904d097ee2b3ff33",
+        "section": "free",
+        "title": "King of Crabs",
+        "url": "https://store.steampowered.com/app/1273710/",
+        "message_id": "1530587611138097174",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-07-25T14:48:44.020188+00:00",
+        "description": "Battle Royale with crabs! Intense multiplayer action, with up to 100 players! Scrap, scavenge and slaughter your way to becoming the King of Crabs!"
+      },
+      {
+        "item_key": "5fabbdf33581454e",
+        "section": "free",
+        "title": "Lost Lives",
+        "url": "https://store.steampowered.com/app/1929230/",
+        "message_id": "1530587619430371378",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-07-25T14:48:45.801186+00:00",
+        "description": "Lost Lives is a multiplayer 2D shooter with RPG elements, in which you will find yourself in the conditions of post-Soviet devastation. As you play, you will have to fight other players and local factions, as well as find and sell loot. Choose your equipment wisely and defeat your enemies!"
+      },
+      {
+        "item_key": "f7df30a1b5b4e473",
+        "section": "free",
+        "title": "Killer Queen Black",
+        "url": "https://store.steampowered.com/app/663670/",
+        "message_id": "1530587626476798062",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-07-25T14:48:47.467188+00:00",
+        "description": "Killer Queen Black is a fast-paced, team-based action strategy game where two teams battle for victory in a frantic arcade arena. Coordinate with your queen and workers to outmaneuver the enemy, riding snails, collecting berries, and fighting for military dominance across multiple win conditions."
+      },
+      {
+        "item_key": "41ee53ad2d4579da",
+        "section": "free",
+        "title": "Mitos.is: The Game",
+        "url": "https://store.steampowered.com/app/389570/",
+        "message_id": "1530587633690869851",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-07-25T14:48:49.314082+00:00",
+        "description": "Step into the microscopic world of Mitos.is! Eat or be eaten—become the ultimate cell in a highly addictive multiplayer game. Diverse modes, daily tournaments, guilds, and gear await! The BEST game of 2015 is back!"
+      },
+      {
+        "item_key": "7ed061294f04aa2b",
+        "section": "paid",
+        "title": "The Spell Brigade",
+        "url": "https://store.steampowered.com/app/2904000/",
+        "message_id": "1530587648358350868",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-07-25T14:48:52.718919+00:00",
+        "description": "Survivors-like with ONLINE CO-OP for 1-4 players. Team up with your wizard friends to slay hordes of dark creatures. Complete team-based objectives, unlock new upgrades and create overpowered spell synergies. Friend nor foe is safe in this friendly fire bullet hell!"
+      },
+      {
+        "item_key": "9ce301d03bd49ea1",
+        "section": "paid",
+        "title": "Forest Doesn’t Care",
+        "url": "https://store.steampowered.com/app/3922100/",
+        "message_id": "1530587655518290001",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-07-25T14:48:54.357115+00:00",
+        "description": "A peaceful life in nature or a fight for survival? Explore a realistic forest, survive, discover abandoned places, and uncover why the forest refuses to let you leave."
+      },
+      {
+        "item_key": "514fc2bed0d21bdc",
+        "section": "paid",
+        "title": "OxyRail",
+        "url": "https://store.steampowered.com/app/3907790/",
+        "message_id": "1530587662463799519",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-07-25T14:48:56.695484+00:00",
+        "description": "Oxygen Train is an open-world survival train game. Wake up in a world lacking oxygen. Chop trees, mine, gather resources, upgrade your unique train. Survive by planting, fishing, farming, exploring, fighting. Build your train kingdom. Supports 1-8 online co-op."
+      },
+      {
+        "item_key": "404ccb3a120170bc",
+        "section": "paid",
+        "title": "PlateUp!",
+        "url": "https://store.steampowered.com/app/1599600/",
+        "message_id": "1530587672287117433",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-07-25T14:48:58.549443+00:00",
+        "description": "Cook and serve your dishes, design and decorate your restaurants, and expand your culinary kingdom with new unlocks, abilities and dishes in procedurally-generated locations. Classic cooking action with permanent roguelite progression. Hire your friends - or do it all yourself!"
+      },
+      {
+        "item_key": "c00ef523241c42f9",
+        "section": "paid",
+        "title": "Erenshor",
+        "url": "https://store.steampowered.com/app/2382520/",
+        "message_id": "1530587679966625942",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-07-25T14:49:00.190531+00:00",
+        "description": "Erenshor is a single player RPG with the soul of a classic MMO - built for players who miss the journey. Partner up with Erenshor's signature SimPlayers and explore an open world where every reward comes with a story. Discover thousands of items, quests, raids, and secrets - all at your own pace."
+      },
+      {
+        "item_key": "b573f46d11936dd1",
+        "section": "instagram",
+        "title": "@sharedxp_official",
+        "url": "https://www.instagram.com/p/DbNpO5EsODq/",
+        "message_id": "1530587693761957998",
+        "channel_id": "592534544708796474",
+        "source_type": "instagram",
+        "posted_at": "2026-07-25T14:49:03.465859+00:00",
+        "description": "Amazon Luna (AD)  Cloud gaming service that lets you and your partner play local co-op games together, even when you'..."
+      },
+      {
+        "item_key": "369d398feb84307b",
+        "section": "instagram",
+        "title": "@sharedxp_official",
+        "url": "https://www.instagram.com/p/DbL2FUgMcA4/",
+        "message_id": "1530587700560662650",
+        "channel_id": "592534544708796474",
+        "source_type": "instagram",
+        "posted_at": "2026-07-25T14:49:05.021471+00:00",
+        "description": "An Eggstremely Hard Game  Two geese, one fragile egg, zero guarantee your partner won't \"accidentally\" launch you off..."
+      },
+      {
+        "item_key": "71ff71264652dfc7",
+        "section": "instagram",
+        "title": "@wilfratgaming",
+        "url": "https://www.instagram.com/p/DbL3uD3trpB/",
+        "message_id": "1530587707187794061",
+        "channel_id": "592534544708796474",
+        "source_type": "instagram",
+        "posted_at": "2026-07-25T14:49:06.738621+00:00",
+        "description": "| A D | SKOS: 13.86 throws Chernobyl stalkers into the 14th century, where you'll raid modern-day Pripyat for weapons..."
+      },
+      {
+        "item_key": "2d56a8efb46f1d1e",
+        "section": "instagram",
+        "title": "@biffmatictv",
+        "url": "https://www.instagram.com/p/DbLxEpZNjEC/",
+        "message_id": "1530587714188083378",
+        "channel_id": "592534544708796474",
+        "source_type": "instagram",
+        "posted_at": "2026-07-25T14:49:08.464612+00:00",
+        "description": "KSP 2’s demise created this space factory sim!  Launch Window  #gaming #spacesim #factorygame #space #newgame"
+      }
+    ]
   }
 }
