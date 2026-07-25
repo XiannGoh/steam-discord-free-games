@@ -5523,6 +5523,11 @@
         "posted_at": "2026-07-24T15:07:55.589691+00:00",
         "description": "AD - STALKERS in the Middle Ages somehow JUST WORKS.. SKOS: 13.86   #gaming #skos1386 #middleages #medieval #newgames"
       }
-    ]
+    ],
+    "winners_state": {
+      "status": "skipped",
+      "skipped_reason": "no_eligible_winners",
+      "updated_at_utc": "2026-07-25T00:00:42.109810+00:00"
+    }
   }
 }
