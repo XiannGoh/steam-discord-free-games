@@ -1,145 +1,4 @@
 {
-  "2026-06-24": {
-    "run_state": {
-      "section_headers": {
-        "free": {
-          "message_id": "1519369375935889570",
-          "channel_id": "592534544708796474",
-          "posted_at_utc": "2026-06-24T15:51:28.365294+00:00"
-        },
-        "paid": {
-          "message_id": "1519369420760158259",
-          "channel_id": "592534544708796474",
-          "posted_at_utc": "2026-06-24T15:51:38.765110+00:00"
-        }
-      },
-      "last_attempt_at_utc": "2026-06-24T15:51:25.280519+00:00",
-      "intro": {
-        "message_id": "1519369366137737278",
-        "channel_id": "592534544708796474",
-        "posted_at_utc": "2026-06-24T15:51:26.353598+00:00"
-      },
-      "footer": {
-        "message_id": "1519369462695071784",
-        "channel_id": "592534544708796474",
-        "posted_at_utc": "2026-06-24T15:51:48.685056+00:00"
-      },
-      "completed": true,
-      "completed_at_utc": "2026-06-24T15:51:49.891136+00:00"
-    },
-    "items": [
-      {
-        "item_key": "a8795def8b427ac2",
-        "section": "free",
-        "title": "Summoners War: Chronicles",
-        "url": "https://store.steampowered.com/app/2167580/",
-        "message_id": "1519369384127238364",
-        "channel_id": "592534544708796474",
-        "source_type": "steam_free",
-        "posted_at": "2026-06-24T15:51:30.251315+00:00",
-        "description": "The King of Rahil is looking for a Summoner to protect the kingdom against Tefo's enormous conspiracy. Explore a vast world with your Monsters by your side in this new Action RPG set in the Summoners War Universe."
-      },
-      {
-        "item_key": "7b020dbec34cb3b9",
-        "section": "free",
-        "title": "Global Strike",
-        "url": "https://store.steampowered.com/app/2322660/",
-        "message_id": "1519369391563608127",
-        "channel_id": "592534544708796474",
-        "source_type": "steam_free",
-        "posted_at": "2026-06-24T15:51:31.953262+00:00",
-        "description": "Global Strike is a free FPS game which has more than 300 million faithful players in China. Now the battle is on, there are various modes and weapons for you to explore! Call your friends and join us,get into the battle field now!"
-      },
-      {
-        "item_key": "bc465f58df2d3bb8",
-        "section": "free",
-        "title": "Off The Grid",
-        "url": "https://store.steampowered.com/app/3659280/",
-        "message_id": "1519369398991720659",
-        "channel_id": "592534544708796474",
-        "source_type": "steam_free",
-        "posted_at": "2026-06-24T15:51:33.515764+00:00",
-        "description": "Welcome to Off The Grid, the next-gen free to play Battle Royale from visionary director Neill Blomkamp. Set in a near-future world where contestants are cybernetically augmented and dropped into televised bloodsport. Death is temporary, but fame is forever."
-      },
-      {
-        "item_key": "b8ce4902847aeb2e",
-        "section": "free",
-        "title": "Atlantica Global",
-        "url": "https://store.steampowered.com/app/1232420/",
-        "message_id": "1519369405660790844",
-        "channel_id": "592534544708796474",
-        "source_type": "steam_free",
-        "posted_at": "2026-06-24T15:51:35.259101+00:00",
-        "description": "Atlantica Global is a free-to-play (F2P) massive multiplayer online role-playing game (MMORPG), with a tactical combat system. Venture out in to the world of Atlantis where you'll find otherworldly monsters, amazing gear, and even more battle-hardened adventurers like yourself."
-      },
-      {
-        "item_key": "1d6ea98507fdd211",
-        "section": "free",
-        "title": "Legend of YMIR",
-        "url": "https://store.steampowered.com/app/4172530/",
-        "message_id": "1519369412904353953",
-        "channel_id": "592534544708796474",
-        "source_type": "steam_free",
-        "posted_at": "2026-06-24T15:51:37.104398+00:00",
-        "description": "Forge your destiny in Legend of YMIR, a next-generation MMORPG inspired by Norse mythology and powered by Unreal Engine 5. Master skill-based combat, lead your clan to glory in massive server wars, and carve your name among the legends."
-      },
-      {
-        "item_key": "da993ab1c67eae3a",
-        "section": "paid",
-        "title": "UNO",
-        "url": "https://store.steampowered.com/app/470220/",
-        "message_id": "1519369427727024350",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-06-24T15:51:40.447949+00:00",
-        "description": "UNO™ is the iconic card game reimagined with a large variety of gameplay and customization options. Play solo or with friends, personalize your experience from rules to cosmetics, and try the Happy Hour!"
-      },
-      {
-        "item_key": "6d5237f03028b967",
-        "section": "paid",
-        "title": "MAZEBOUND: Hunt, Gather, Run!",
-        "url": "https://store.steampowered.com/app/3616260/",
-        "message_id": "1519369434752487515",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-06-24T15:51:42.034545+00:00",
-        "description": "In this survival horror, you're surrounded by sea and a towering gate ahead. Walk into the maze, hunt, gather, and run to survive, alone or with friends. Remember: You're not the only one starving..."
-      },
-      {
-        "item_key": "63c96828ed2fdb77",
-        "section": "paid",
-        "title": "Chained Together",
-        "url": "https://store.steampowered.com/app/2567870/",
-        "message_id": "1519369441379483698",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-06-24T15:51:43.710842+00:00",
-        "description": "Climb up from the depths of Hell. Scale various worlds solo or chained together with your friends in the 1-4 player platforming sensation."
-      },
-      {
-        "item_key": "65a7f77f97f0f2e5",
-        "section": "paid",
-        "title": "Need for Speed™ Heat",
-        "url": "https://store.steampowered.com/app/1222680/",
-        "message_id": "1519369447960219823",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-06-24T15:51:45.294500+00:00",
-        "description": "Hustle by day and risk it all at night in Need for Speed™ Heat Deluxe Edition, a white-knuckle street racer, where the lines of the law fade as the sun starts to set."
-      },
-      {
-        "item_key": "5d31022df37cdb0e",
-        "section": "paid",
-        "title": "Dead Space™ 2",
-        "url": "https://store.steampowered.com/app/47780/",
-        "message_id": "1519369455053045861",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-06-24T15:51:47.010019+00:00",
-        "description": "Three years after the Necromorph infestation aboard the USS Ishimura, Isaac Clarke awakens from a coma, confused, disoriented, and on a space station called The Sprawl. Explore this world and its zero-g environments to discover the truth about the Unitology and its role in the Necromorph epidemic."
-      }
-    ]
-  },
   "2026-06-25": {
     "run_state": {
       "section_headers": {
@@ -5463,6 +5322,212 @@
       "status": "skipped",
       "skipped_reason": "no_eligible_winners",
       "updated_at_utc": "2026-07-23T23:57:50.141610+00:00"
+    }
+  },
+  "2026-07-24": {
+    "run_state": {
+      "section_headers": {
+        "free": {
+          "message_id": "1530229932083642430",
+          "channel_id": "592534544708796474",
+          "posted_at_utc": "2026-07-24T15:07:26.455374+00:00"
+        },
+        "paid": {
+          "message_id": "1530229976085954763",
+          "channel_id": "592534544708796474",
+          "posted_at_utc": "2026-07-24T15:07:36.925295+00:00"
+        },
+        "instagram": {
+          "message_id": "1530230018016280636",
+          "channel_id": "592534544708796474",
+          "posted_at_utc": "2026-07-24T15:07:46.811941+00:00"
+        }
+      },
+      "last_attempt_at_utc": "2026-07-24T15:07:22.664769+00:00",
+      "intro": {
+        "message_id": "1530229918431182968",
+        "channel_id": "592534544708796474",
+        "posted_at_utc": "2026-07-24T15:07:24.873800+00:00"
+      },
+      "footer": {
+        "message_id": "1530230061494567064",
+        "channel_id": "592534544708796474",
+        "posted_at_utc": "2026-07-24T15:07:57.402895+00:00"
+      },
+      "completed": true,
+      "completed_at_utc": "2026-07-24T15:07:58.610673+00:00"
+    },
+    "items": [
+      {
+        "item_key": "365fb7fbba472536",
+        "section": "free",
+        "title": "Project Entropy",
+        "url": "https://store.steampowered.com/app/2806410/",
+        "message_id": "1530229939071357148",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-07-24T15:07:28.145451+00:00",
+        "description": "Welcome, commander, to Project Entropy- an ultimate Sci-Fi and role-playing game with battles in space. In this immersive MMO experience, you will command alien civilizations, conquer uncharted planets, and build Hero fleets."
+      },
+      {
+        "item_key": "62d1e036a5cd91a0",
+        "section": "free",
+        "title": "Battle Tanks: World War II",
+        "url": "https://store.steampowered.com/app/782670/",
+        "message_id": "1530229946243481761",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-07-24T15:07:29.873755+00:00",
+        "description": "Are you ready to fight? Download this incredibly addictive tank game right now! Choose a tank and fight with your friends in dynamic real-time battles.Meet the legendary tank shooter Battle Tanks! Show the whole world who's in charge here!"
+      },
+      {
+        "item_key": "cadc257b39432194",
+        "section": "free",
+        "title": "War Planet Online: Global Conquest",
+        "url": "https://store.steampowered.com/app/719640/",
+        "message_id": "1530229953403158610",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-07-24T15:07:31.594272+00:00",
+        "description": "Build your army, dominate your region and lead your alliance to conquer the globe!"
+      },
+      {
+        "item_key": "276d4e04f23771ce",
+        "section": "free",
+        "title": "Secret World Legends",
+        "url": "https://store.steampowered.com/app/215280/",
+        "message_id": "1530229960579612833",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-07-24T15:07:33.256289+00:00",
+        "description": "Secret World Legends is a story-driven, shared-world action RPG that plunges players into a shadowy war against the supernatural, where ancient myths and legends cross over into the modern day."
+      },
+      {
+        "item_key": "8bfb81ce57272e6d",
+        "section": "free",
+        "title": "Anomaly Zone Renovation",
+        "url": "https://store.steampowered.com/app/4045370/",
+        "message_id": "1530229967605207195",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-07-24T15:07:35.206485+00:00",
+        "description": "A-Zone Renovation is a continuation of the legendary Zone, combining the classic stalker atmosphere with revised mechanics. A large-scale rebalancing, from weapons to economy, a new role-playing system, an improved interface, PvE and PvP activities - the Zone is ready to grow with its community."
+      },
+      {
+        "item_key": "b70079fa32283d4c",
+        "section": "paid",
+        "title": "Wild Assault",
+        "url": "https://store.steampowered.com/app/2827230/",
+        "message_id": "1530229982901698603",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-07-24T15:07:38.610619+00:00",
+        "description": "Wild Assault is an anthro-themed tactical shooter built with Unreal Engine 5, featuring large-scale battlefield gameplay centered around Valiant abilities. Work closely with your team, harness your instincts, and charge into battle to secure victory."
+      },
+      {
+        "item_key": "66a7d79dd0d186b6",
+        "section": "paid",
+        "title": "Species: Unknown",
+        "url": "https://store.steampowered.com/app/2747330/",
+        "message_id": "1530229990153519189",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-07-24T15:07:40.332882+00:00",
+        "description": "Species: Unknown is a 1 to 4 players co-op survival horror. Complete high-risk missions aboard an abandoned ship while being hunted by an unknown creature. Survive and upgrade your gear to face each new threat that lurks in the dark."
+      },
+      {
+        "item_key": "3f893ab69ab5c4f3",
+        "section": "paid",
+        "title": "Trainz Railroad Simulator 2022",
+        "url": "https://store.steampowered.com/app/1784570/",
+        "message_id": "1530229997112131767",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-07-24T15:07:42.007908+00:00",
+        "description": "Drive, Explore, Operate and Create the railroad of your dreams - and now you can collaborate in real time with Multiplayer Surveyor! TRS22 showcases a range of high quality routes, sessions and trains to drive, plus all the scenery you need to make your own masterpiece."
+      },
+      {
+        "item_key": "4ce3b6c1b8095fc2",
+        "section": "paid",
+        "title": "An Eggstremely Hard Game",
+        "url": "https://store.steampowered.com/app/4112070/",
+        "message_id": "1530230004158562436",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-07-24T15:07:43.648662+00:00",
+        "description": "As highly qualified goose parents, work together to bring your little egg home safely. Every crack makes it harder to control, every mistake more hilarious. A co-op physics game for 2 or 4 players about teamwork, clumsiness and honking. HONK!"
+      },
+      {
+        "item_key": "15b60e219e4db0c3",
+        "section": "paid",
+        "title": "Panzer Corps 2",
+        "url": "https://store.steampowered.com/app/1072040/",
+        "message_id": "1530230011146014751",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-07-24T15:07:45.254929+00:00",
+        "description": "Panzer Corps 2 is the ultimate Second World War strategy game! Enjoy the time-proven gameplay formula which has been appreciated by millions of players over the years, brought to a whole new level of refinement up to the latest technical standards."
+      },
+      {
+        "item_key": "74bcf31bda26731c",
+        "section": "instagram",
+        "title": "@mildsoss_official",
+        "url": "https://www.instagram.com/p/DbKJQVbNe3S/",
+        "message_id": "1530230024530169936",
+        "channel_id": "592534544708796474",
+        "source_type": "instagram",
+        "posted_at": "2026-07-24T15:07:48.446109+00:00",
+        "description": "This ain’t a normal gas station  🎮 Shift At Midnight 🗓️ Available Now 👥 1-3 Players 🖥️ PC, Xbox  #gaming #newgame #co..."
+      },
+      {
+        "item_key": "b0f14e6b0d2f7db4",
+        "section": "instagram",
+        "title": "@sharedxp_official",
+        "url": "https://www.instagram.com/p/DbLhKADsGlm/",
+        "message_id": "1530230031308030213",
+        "channel_id": "592534544708796474",
+        "source_type": "instagram",
+        "posted_at": "2026-07-24T15:07:50.055751+00:00",
+        "description": "3 GREAT 2 PLAYER COOP GAMES   🎮 Capy Castaway A capybara pup and a clever crow solve puzzles and explore a flood-swep..."
+      },
+      {
+        "item_key": "4b903d03c2a18990",
+        "section": "instagram",
+        "title": "@sharedxp_official",
+        "url": "https://www.instagram.com/p/DbJEKCSsNv5/",
+        "message_id": "1530230038266515547",
+        "channel_id": "592534544708796474",
+        "source_type": "instagram",
+        "posted_at": "2026-07-24T15:07:52.060587+00:00",
+        "description": "The One Fish  Keep one enormous, always-hungry fish fed — but you never know what's on your line, and its appetite on..."
+      },
+      {
+        "item_key": "968b6beb9d519158",
+        "section": "instagram",
+        "title": "@wilfratgaming",
+        "url": "https://www.instagram.com/p/DbLUl6QNp4N/",
+        "message_id": "1530230046596268244",
+        "channel_id": "592534544708796474",
+        "source_type": "instagram",
+        "posted_at": "2026-07-24T15:07:53.807792+00:00",
+        "description": "New Heights: Realistic Climbing and Bouldering is a climbing simulator focused on realistic movement, route reading, ..."
+      },
+      {
+        "item_key": "d389ce84bd496b96",
+        "section": "instagram",
+        "title": "@biffmatictv",
+        "url": "https://www.instagram.com/p/DbJCb2rNvJs/",
+        "message_id": "1530230053856608337",
+        "channel_id": "592534544708796474",
+        "source_type": "instagram",
+        "posted_at": "2026-07-24T15:07:55.589691+00:00",
+        "description": "AD - STALKERS in the Middle Ages somehow JUST WORKS.. SKOS: 13.86   #gaming #skos1386 #middleages #medieval #newgames"
+      }
+    ],
+    "winners_state": {
+      "status": "skipped",
+      "skipped_reason": "no_eligible_winners",
+      "updated_at_utc": "2026-07-25T00:00:42.109810+00:00"
     }
   }
 }
