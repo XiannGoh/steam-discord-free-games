@@ -1,57 +1,4 @@
 {
-  "2026-05-04_to_2026-05-10": {
-    "date_range": "May 4–10, 2026",
-    "users": {
-      "137123568952672257": {
-        "username": "janithan",
-        "global_name": "Janithan",
-        "days": {
-          "Monday": {
-            "reactions": [
-              "❌"
-            ],
-            "custom_reply": null
-          },
-          "Tuesday": {
-            "reactions": [
-              "✅"
-            ],
-            "custom_reply": null
-          },
-          "Wednesday": {
-            "reactions": [
-              "❌"
-            ],
-            "custom_reply": null
-          },
-          "Thursday": {
-            "reactions": [
-              "❌"
-            ],
-            "custom_reply": null
-          },
-          "Friday": {
-            "reactions": [
-              "📝"
-            ],
-            "custom_reply": null
-          },
-          "Saturday": {
-            "reactions": [
-              "❌"
-            ],
-            "custom_reply": null
-          },
-          "Sunday": {
-            "reactions": [
-              "❌"
-            ],
-            "custom_reply": null
-          }
-        }
-      }
-    }
-  },
   "2026-05-11_to_2026-05-17": {
     "date_range": "May 11–17, 2026",
     "users": {
@@ -870,6 +817,10 @@
   },
   "2026-07-20_to_2026-07-26": {
     "date_range": "Jul 20–26, 2026",
+    "users": {}
+  },
+  "2026-07-27_to_2026-08-02": {
+    "date_range": "Jul 27–Aug 2, 2026",
     "users": {}
   }
 }
