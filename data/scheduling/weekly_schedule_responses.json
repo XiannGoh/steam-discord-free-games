@@ -1,105 +1,4 @@
 {
-  "2026-05-25_to_2026-05-31": {
-    "date_range": "May 25–31, 2026",
-    "users": {
-      "137123568952672257": {
-        "username": "janithan",
-        "global_name": "Janithan",
-        "days": {
-          "Monday": {
-            "reactions": [
-              "❌"
-            ],
-            "custom_reply": null
-          },
-          "Tuesday": {
-            "reactions": [
-              "❌"
-            ],
-            "custom_reply": null
-          },
-          "Wednesday": {
-            "reactions": [
-              "❌"
-            ],
-            "custom_reply": null
-          },
-          "Thursday": {
-            "reactions": [
-              "✅"
-            ],
-            "custom_reply": null
-          },
-          "Friday": {
-            "reactions": [
-              "❌"
-            ],
-            "custom_reply": null
-          },
-          "Saturday": {
-            "reactions": [
-              "❌"
-            ],
-            "custom_reply": null
-          },
-          "Sunday": {
-            "reactions": [
-              "❌"
-            ],
-            "custom_reply": null
-          }
-        }
-      },
-      "195462430535581708": {
-        "username": "thomasgoh",
-        "global_name": "Thomas",
-        "days": {
-          "Monday": {
-            "reactions": [
-              "🌙"
-            ],
-            "custom_reply": null
-          },
-          "Tuesday": {
-            "reactions": [
-              "🌙"
-            ],
-            "custom_reply": null
-          },
-          "Wednesday": {
-            "reactions": [
-              "🌙"
-            ],
-            "custom_reply": null
-          },
-          "Thursday": {
-            "reactions": [
-              "🌙"
-            ],
-            "custom_reply": null
-          },
-          "Friday": {
-            "reactions": [
-              "🌙"
-            ],
-            "custom_reply": null
-          },
-          "Saturday": {
-            "reactions": [
-              "🌙"
-            ],
-            "custom_reply": null
-          },
-          "Sunday": {
-            "reactions": [
-              "🌙"
-            ],
-            "custom_reply": null
-          }
-        }
-      }
-    }
-  },
   "2026-06-01_to_2026-06-07": {
     "date_range": "Jun 1–7, 2026",
     "users": {
@@ -581,6 +480,10 @@
   },
   "2026-08-10_to_2026-08-16": {
     "date_range": "Aug 10–16, 2026",
+    "users": {}
+  },
+  "2026-08-17_to_2026-08-23": {
+    "date_range": "Aug 17–23, 2026",
     "users": {}
   }
 }
