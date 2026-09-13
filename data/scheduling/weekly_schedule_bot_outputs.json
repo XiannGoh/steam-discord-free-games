@@ -1,33 +1,4 @@
 {
-  "2026-06-22_to_2026-06-28": {
-    "summary_last_synced_at_utc": "2026-06-23T04:16:53.465249+00:00",
-    "summary_data_signature": "d7486c6aaadb83192c07f36b4d017da9a12305415e119477dab560cf3492e43b",
-    "summary_posted": true,
-    "summary_message_id": "1517930448221765723",
-    "summary_message_ids": [
-      "1517930448221765723"
-    ],
-    "summary_message_content": "📊 Availability Summary — Jun 22–28, 2026\n\n*2 of 14 people responded • 12 still missing*\nMissing: <@137123568952672257> <@150522802292785152> <@161248274970443776> <@162382481369071617> <@204517030395641856> <@239951450082377740> <@245393360490201089> <@277285824935231488> <@321367835525775381> <@412746386271109130> <@711603470544797747> <@740065988812341280>\n*Last updated: Jun 23, 12:16 AM ET*\n\n**Monday 6/22**\n🌙 1 — Chocolie\n\n**Tuesday 6/23**\n🌙 1 — Chocolie\n\n**Wednesday 6/24**\nNo responses\n\n**Thursday 6/25**\nNo responses\n\n**Friday 6/26**\nNo responses\n\n**Saturday 6/27**\nNo responses\n\n**Sunday 6/28**\nNo responses",
-    "reminder_message_id": "1517930451170492488",
-    "reminder_message_ids": [
-      "1517930451170492488"
-    ],
-    "reminder_missing_users": [
-      "137123568952672257",
-      "150522802292785152",
-      "161248274970443776",
-      "162382481369071617",
-      "204517030395641856",
-      "239951450082377740",
-      "245393360490201089",
-      "277285824935231488",
-      "321367835525775381",
-      "412746386271109130",
-      "711603470544797747",
-      "740065988812341280"
-    ],
-    "last_reminder_local_date": "2026-06-23"
-  },
   "2026-06-29_to_2026-07-05": {
     "summary_last_synced_at_utc": "2026-06-27T19:48:03.344518+00:00",
     "summary_data_signature": "1300efe8e481d07b7e17051ea9ea1d56da5156547f34d40a675f867d7252c0eb",
@@ -365,5 +336,36 @@
       "740065988812341280"
     ],
     "last_reminder_local_date": "2026-09-05"
+  },
+  "2026-09-14_to_2026-09-20": {
+    "summary_last_synced_at_utc": "2026-09-12T20:35:11.580462+00:00",
+    "summary_data_signature": "b9d46eac57b937b690da1268ecbc5ec8e4d70e21c31e12f94770934a54ada226",
+    "summary_posted": true,
+    "summary_message_id": "1548431809572905101",
+    "summary_message_ids": [
+      "1548431809572905101"
+    ],
+    "summary_message_content": "📊 Availability Summary — Sep 14–20, 2026\n\n*0 of 14 people responded • 14 still missing*\nMissing: <@137123568952672257> <@150522802292785152> <@161248274970443776> <@162382481369071617> <@164270274928181248> <@195462430535581708> <@204517030395641856> <@239951450082377740> <@245393360490201089> <@277285824935231488> <@321367835525775381> <@412746386271109130> <@711603470544797747> <@740065988812341280>\n*Last updated: Sep 12, 4:35 PM ET*\n\n**Monday 9/14**\nNo responses\n\n**Tuesday 9/15**\nNo responses\n\n**Wednesday 9/16**\nNo responses\n\n**Thursday 9/17**\nNo responses\n\n**Friday 9/18**\nNo responses\n\n**Saturday 9/19**\nNo responses\n\n**Sunday 9/20**\nNo responses",
+    "reminder_message_id": "1548431812420829227",
+    "reminder_message_ids": [
+      "1548431812420829227"
+    ],
+    "reminder_missing_users": [
+      "137123568952672257",
+      "150522802292785152",
+      "161248274970443776",
+      "162382481369071617",
+      "164270274928181248",
+      "195462430535581708",
+      "204517030395641856",
+      "239951450082377740",
+      "245393360490201089",
+      "277285824935231488",
+      "321367835525775381",
+      "412746386271109130",
+      "711603470544797747",
+      "740065988812341280"
+    ],
+    "last_reminder_local_date": "2026-09-12"
   }
 }
