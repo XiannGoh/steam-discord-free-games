@@ -1,145 +1,4 @@
 {
-  "2026-06-26": {
-    "run_state": {
-      "section_headers": {
-        "free": {
-          "message_id": "1520091935774081045",
-          "channel_id": "592534544708796474",
-          "posted_at_utc": "2026-06-26T15:42:39.774724+00:00"
-        },
-        "paid": {
-          "message_id": "1520091979986374800",
-          "channel_id": "592534544708796474",
-          "posted_at_utc": "2026-06-26T15:42:50.281810+00:00"
-        }
-      },
-      "last_attempt_at_utc": "2026-06-26T15:42:37.082423+00:00",
-      "intro": {
-        "message_id": "1520091926475571300",
-        "channel_id": "592534544708796474",
-        "posted_at_utc": "2026-06-26T15:42:38.195553+00:00"
-      },
-      "footer": {
-        "message_id": "1520092024026431669",
-        "channel_id": "592534544708796474",
-        "posted_at_utc": "2026-06-26T15:43:00.732683+00:00"
-      },
-      "completed": true,
-      "completed_at_utc": "2026-06-26T15:43:01.939589+00:00"
-    },
-    "items": [
-      {
-        "item_key": "2b5681cb41d4d239",
-        "section": "free",
-        "title": "Smithworks",
-        "url": "https://store.steampowered.com/app/1568540/",
-        "message_id": "1520091942787088426",
-        "channel_id": "592534544708796474",
-        "source_type": "steam_free",
-        "posted_at": "2026-06-26T15:42:41.621599+00:00",
-        "description": "Smithworks is a first-person 3D cooperative multiplayer game where players play as fledgling blacksmiths. It is a humorous and chaotic experience where players will need to communicate effectively in order to craft these weapons quickly before the customers get angry."
-      },
-      {
-        "item_key": "cb818c91b6f9e202",
-        "section": "free",
-        "title": "Anomaly Zone",
-        "url": "https://store.steampowered.com/app/1157250/",
-        "message_id": "1520091950445891644",
-        "channel_id": "592534544708796474",
-        "source_type": "steam_free",
-        "posted_at": "2026-06-26T15:42:43.229016+00:00",
-        "description": "Anomaly Zone is an open world MMORPG and a post-apocalyptic shooter. Be a scientist, a soldier, a hunter or an engineer. Explore anomalous territories, search for artifacts, fight mutants and other players. Participate in mass PvP and PvE battles. The Zone is waiting!"
-      },
-      {
-        "item_key": "8651ac155a83de2a",
-        "section": "free",
-        "title": "WWII Online",
-        "url": "https://store.steampowered.com/app/251950/",
-        "message_id": "1520091957580533880",
-        "channel_id": "592534544708796474",
-        "source_type": "steam_free",
-        "posted_at": "2026-06-26T15:42:45.324859+00:00",
-        "description": "WWII Online is a massive, persistent free-to-play MMO FPS driven entirely by players. Fight as Army, Air, or Naval forces and earn Victory Points to access more units. One global server. No scripts. Real outcomes. No zones. Huge world (300,000 km²). ENLIST NOW!"
-      },
-      {
-        "item_key": "b427aae91bb20930",
-        "section": "free",
-        "title": "Cubic Castles",
-        "url": "https://store.steampowered.com/app/317470/",
-        "message_id": "1520091966212276516",
-        "channel_id": "592534544708796474",
-        "source_type": "steam_free",
-        "posted_at": "2026-06-26T15:42:47.150809+00:00",
-        "description": "Your blocks, your castle, your world! Build anything you can dream up and explore with other players! Cubic Castles is a mini-MMO that combines the best of block-building and 3D platform action! Create fantastic parkour challenges, explore worlds made by other players, or even make friend!"
-      },
-      {
-        "item_key": "154b21db34c3494e",
-        "section": "free",
-        "title": "Palace of Cards",
-        "url": "https://store.steampowered.com/app/347950/",
-        "message_id": "1520091973346656319",
-        "channel_id": "592534544708796474",
-        "source_type": "steam_free",
-        "posted_at": "2026-06-26T15:42:48.744730+00:00",
-        "description": "Play cards online with other players from around the world and choose from 6 unique games: Rummy, Solitaire, Mau-Mau (Crazy Eights), Skat, Sheepshead & Doppelkopf. Each game comes with its own community, league systems, clubs, statistics & insights, and much more. Play now, for free!"
-      },
-      {
-        "item_key": "5d5b49a1542c14b1",
-        "section": "paid",
-        "title": "Conquest of Elysium 5",
-        "url": "https://store.steampowered.com/app/1606340/",
-        "message_id": "1520091986789662780",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-06-26T15:42:52.099766+00:00",
-        "description": "Conquest of Elysium 5 is a quick turn based fantasy strategy game with a touch of rogue-like. The game is full of depth, details and monsters. There are also a huge number of factions, each with its own unique gameplay and magic rituals."
-      },
-      {
-        "item_key": "36bf48b66e7fcf4e",
-        "section": "paid",
-        "title": "ATLYSS",
-        "url": "https://store.steampowered.com/app/2768430/",
-        "message_id": "1520091994435748060",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-06-26T15:42:53.767636+00:00",
-        "description": "Enter the world of ATLYSS, a Singleplayer/Online RPG where you can fight with or against friends in a surreal world filled with creatures beyond comprehension. Customize and progress your character(s), complete quests, and discover strange locations."
-      },
-      {
-        "item_key": "2e5df6d1552fd007",
-        "section": "paid",
-        "title": "Incursion Red River",
-        "url": "https://store.steampowered.com/app/2116120/",
-        "message_id": "1520092001385709679",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-06-26T15:42:55.302879+00:00",
-        "description": "IRR is a tactical PvE Co-Op extract shooter set in a de-stabilized and immersive modern-day Vietnam. As a PMC for a mysterious organization, deal with 3 factions that stand to gain from the chaos. Engage in ruthless combat, plan your deployment, and explore the world as your journey unfolds."
-      },
-      {
-        "item_key": "57e7c80ab28eee97",
-        "section": "paid",
-        "title": "HumanitZ",
-        "url": "https://store.steampowered.com/app/1766060/",
-        "message_id": "1520092007639290108",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-06-26T15:42:57.046693+00:00",
-        "description": "HumanitZ is an isometric, open-world sandbox survival game set in a world ended by a zombie outbreak. Survive alone or with friends by scavenging, crafting, building, and fighting to last as long as ‘humanly’ possible. You can’t change the past, but you can fight for the future of humanity."
-      },
-      {
-        "item_key": "963624ddd4289e82",
-        "section": "paid",
-        "title": "LEGO® Pirates of the Caribbean: The Video Game",
-        "url": "https://store.steampowered.com/app/311770/",
-        "message_id": "1520092015403204659",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-06-26T15:42:59.098579+00:00",
-        "description": "LEGO® Pirates of the Caribbean: The Video Game is an action adventure game that brings the Pirates of the Caribbean world and all its colorful characters to life in LEGO Brick form. Players experience all the memorable scenes from all four films in the humorous and quirky LEGO Video Games style."
-      }
-    ]
-  },
   "2026-06-27": {
     "run_state": {
       "section_headers": {
@@ -5567,5 +5426,173 @@
       "skipped_reason": "no_eligible_winners",
       "updated_at_utc": "2026-07-25T23:57:43.579323+00:00"
     }
+  },
+  "2026-10-12": {
+    "run_state": {
+      "section_headers": {
+        "demo_playtest": {
+          "message_id": "1559322287004454973",
+          "channel_id": "592534544708796474",
+          "posted_at_utc": "2026-10-12T21:50:04.433120+00:00"
+        },
+        "free": {
+          "message_id": "1559322309062295556",
+          "channel_id": "592534544708796474",
+          "posted_at_utc": "2026-10-12T21:50:09.830280+00:00"
+        },
+        "paid": {
+          "message_id": "1559322374703292469",
+          "channel_id": "592534544708796474",
+          "posted_at_utc": "2026-10-12T21:50:25.529977+00:00"
+        }
+      },
+      "last_attempt_at_utc": "2026-10-12T21:50:00.329607+00:00",
+      "intro": {
+        "message_id": "1559322272005628006",
+        "channel_id": "592534544708796474",
+        "posted_at_utc": "2026-10-12T21:50:02.648476+00:00"
+      },
+      "footer": {
+        "message_id": "1559322422468022363",
+        "channel_id": "592534544708796474",
+        "posted_at_utc": "2026-10-12T21:50:36.604344+00:00"
+      },
+      "completed": true,
+      "completed_at_utc": "2026-10-12T21:50:37.811846+00:00"
+    },
+    "items": [
+      {
+        "item_key": "42d016051409c7b7",
+        "section": "demo_playtest",
+        "title": "Scapewatch: Idle MMO Demo",
+        "url": "https://store.steampowered.com/app/4750660/",
+        "message_id": "1559322294248017922",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_demo_playtest",
+        "posted_at": "2026-10-12T21:50:06.316109+00:00",
+        "description": "30 skills. Three combat styles. Clans, raids, hiscores, pets, capes. Set up your queue, close the tab, come back richer. Scapewatch is the idle MMO for people who actually like the grind."
+      },
+      {
+        "item_key": "1bb833d6ec0a3321",
+        "section": "demo_playtest",
+        "title": "The Gate Must Stand",
+        "url": "https://store.steampowered.com/app/3975750/",
+        "message_id": "1559322302112604220",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_demo_playtest",
+        "posted_at": "2026-10-12T21:50:08.043427+00:00",
+        "description": "Fend off brutal waves of demonic hordes in this epic fantasy tower defense survivors like! Hack and slash among the action or zoom to strategically control the battlefield. You are the city’s last line of defense, build your base, defend the gate!"
+      },
+      {
+        "item_key": "831e80a80857b652",
+        "section": "free",
+        "title": "Dead Maze",
+        "url": "https://store.steampowered.com/app/667890/",
+        "message_id": "1559322316436021341",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-10-12T21:50:11.541268+00:00",
+        "description": "Dead Maze is a 2D MMO game set in a destroyed contemporary world, filled with zombies. Explore the world, scavenge and craft as many items as possible, to survive the hostile environment and upgrade your gear and camp as you go."
+      },
+      {
+        "item_key": "35e27df4a18168df",
+        "section": "free",
+        "title": "Blade & Soul NEO",
+        "url": "https://store.steampowered.com/app/3669060/",
+        "message_id": "1559322324069650584",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-10-12T21:50:14.457974+00:00",
+        "description": "Relive an iconic tale with Blade & Soul NEO. Fully remastered where players reconnect with the original spirit of the free-to-play, open-world MMORPG. Experience a richer visually enhanced experience set in a world of Wuxia mythology where fast-paced combat collides with the stunning visual beauty."
+      },
+      {
+        "item_key": "e188714550640a4b",
+        "section": "free",
+        "title": "Alien Swarm",
+        "url": "https://store.steampowered.com/app/630/",
+        "message_id": "1559322336543645697",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-10-12T21:50:16.305020+00:00",
+        "description": "Co-operative multiplayer game and complete code base available for free."
+      },
+      {
+        "item_key": "41ee53ad2d4579da",
+        "section": "free",
+        "title": "Mitos.is: The Game",
+        "url": "https://store.steampowered.com/app/389570/",
+        "message_id": "1559322343854186679",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-10-12T21:50:21.454410+00:00",
+        "description": "Step into the microscopic world of Mitos.is! Eat or be eaten—become the ultimate cell in a highly addictive multiplayer game. Diverse modes, daily tournaments, guilds, and gear await! The BEST game of 2015 is back!"
+      },
+      {
+        "item_key": "dfaebf39616a3342",
+        "section": "free",
+        "title": "WonderKing",
+        "url": "https://store.steampowered.com/app/3825780/",
+        "message_id": "1559322365702307990",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-10-12T21:50:23.537883+00:00",
+        "description": "The return of classic 2D side-scrolling action! WonderKing is a free-to-play MMORPG packed with flashy combat and deep progression. Advance through diverse classes, master unique combos, and party up with friends for epic boss raids. Start your adventure today!"
+      },
+      {
+        "item_key": "c98b8d4b867f00eb",
+        "section": "paid",
+        "title": "Walk of Life",
+        "url": "https://store.steampowered.com/app/1910150/",
+        "message_id": "1559322382701830265",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-10-12T21:50:27.305385+00:00",
+        "description": "Walk of Life is a competitive life simulator for up to 6 players! Choose from a cast of unique roles and duke it out with your friends, bots, or by yourself, in this wacky and ever-surprising party game!"
+      },
+      {
+        "item_key": "1edd7298b1274d9d",
+        "section": "paid",
+        "title": "SCP: 5K",
+        "url": "https://store.steampowered.com/app/872670/",
+        "message_id": "1559322390197178609",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-10-12T21:50:29.058082+00:00",
+        "description": "SCP: 5K is a co-op or singleplayer tactical horror FPS project that puts players in the midst of a conspiracy where the SCP Foundation has turned on humanity. Enjoy Early Access as we continue to work towards a completed full release of the project!"
+      },
+      {
+        "item_key": "fc3303a67cab4f26",
+        "section": "paid",
+        "title": "Guild Wars® Reforged",
+        "url": "https://store.steampowered.com/app/29720/",
+        "message_id": "1559322397491073054",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-10-12T21:50:30.704168+00:00",
+        "description": "Step into Guild Wars Reforged, the award-winning online roleplaying game enjoyed by millions, now re-energized with system enhancements and Steam Deck verified. Experience the complete saga— from the fall of Ascalon to the desperate stand against Nightfall. Your adventure is just getting started!"
+      },
+      {
+        "item_key": "c4826bd48cb5b7ba",
+        "section": "paid",
+        "title": "MISERY",
+        "url": "https://store.steampowered.com/app/2119830/",
+        "message_id": "1559322404625453056",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-10-12T21:50:32.425088+00:00",
+        "description": "MISERY is a 1–10 player co-op survival game set in a nuclear disaster zone. Here, every day is a struggle: search radioactive ruins for resources, build your bunker, craft weapons, and explore a weird, procedurally-generated world with your friends. Beware of anomalies, monsters, and armed bandits."
+      },
+      {
+        "item_key": "f8669e32a3eb0f1b",
+        "section": "paid",
+        "title": "LORT",
+        "url": "https://store.steampowered.com/app/2956680/",
+        "message_id": "1559322411696918529",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-10-12T21:50:34.865398+00:00",
+        "description": "LORT is a 1–8 player co-op action roguelite. Team up with your friends to battle, loot, and stack ridiculous power-ups across a cursed fantasy world. Fight toward escape, revive your homies, and get absolutely chadded as you evolve from goblin tickler to god slapper."
+      }
+    ]
   }
 }
