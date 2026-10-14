@@ -1,150 +1,4 @@
 {
-  "2026-06-27": {
-    "run_state": {
-      "section_headers": {
-        "free": {
-          "message_id": "1520439463929708544",
-          "channel_id": "592534544708796474",
-          "posted_at_utc": "2026-06-27T14:43:36.862521+00:00"
-        },
-        "paid": {
-          "message_id": "1520439508997509331",
-          "channel_id": "592534544708796474",
-          "posted_at_utc": "2026-06-27T14:43:47.721498+00:00"
-        }
-      },
-      "last_attempt_at_utc": "2026-06-27T14:43:33.819247+00:00",
-      "intro": {
-        "message_id": "1520439452558954640",
-        "channel_id": "592534544708796474",
-        "posted_at_utc": "2026-06-27T14:43:35.144863+00:00"
-      },
-      "footer": {
-        "message_id": "1520439557680791684",
-        "channel_id": "592534544708796474",
-        "posted_at_utc": "2026-06-27T14:43:59.451328+00:00"
-      },
-      "completed": true,
-      "completed_at_utc": "2026-06-27T14:44:00.656976+00:00"
-    },
-    "items": [
-      {
-        "item_key": "3acb607b2bf31801",
-        "section": "free",
-        "title": "Once Human",
-        "url": "https://store.steampowered.com/app/2139460/",
-        "message_id": "1520439470686601226",
-        "channel_id": "592534544708796474",
-        "source_type": "steam_free",
-        "posted_at": "2026-06-27T14:43:38.619534+00:00",
-        "description": "Once Human is a multiplayer open-world survival game set in a strange, post-apocalyptic future. Unite with friends to fight monstrous enemies, uncover secret plots, compete for resources, and build your own territory. Once, you were merely human. Now, you have the power to remake the world."
-      },
-      {
-        "item_key": "9a7b54283952e9ea",
-        "section": "free",
-        "title": "Enlisted",
-        "url": "https://store.steampowered.com/app/2051620/",
-        "message_id": "1520439478035153058",
-        "channel_id": "592534544708796474",
-        "source_type": "steam_free",
-        "posted_at": "2026-06-27T14:43:40.268239+00:00",
-        "description": "In Enlisted, you are not only commanding a single soldier, but an entire squad! This MMO squad based shooter recreates the key battles of the bloodiest war of the 20th century, with hundreds of soldiers, tanks and aircraft taking part in each battle."
-      },
-      {
-        "item_key": "04a8e7a2f9ef80a2",
-        "section": "free",
-        "title": "The Lord of the Rings Online™",
-        "url": "https://store.steampowered.com/app/212500/",
-        "message_id": "1520439484812890145",
-        "channel_id": "592534544708796474",
-        "source_type": "steam_free",
-        "posted_at": "2026-06-27T14:43:42.108193+00:00",
-        "description": "Join the world’s greatest fellowship of players in the award-winning online re-creation of J. R. R. Tolkien’s legendary Middle-earth."
-      },
-      {
-        "item_key": "cd9971e021325cde",
-        "section": "free",
-        "title": "Realm of the Mad God Exalt",
-        "url": "https://store.steampowered.com/app/200210/",
-        "message_id": "1520439492757029056",
-        "channel_id": "592534544708796474",
-        "source_type": "steam_free",
-        "posted_at": "2026-06-27T14:43:44.030198+00:00",
-        "description": "Embark on an exhilarating journey into the pixelated Realm of the Mad God! Join, an action-packed, free-to-play MMO bullet hell game. Discover a world with danger, challenges, and hidden treasures as you battle through waves of enemies. Team up with players and conquer dungeons to become a legend!"
-      },
-      {
-        "item_key": "cdabe708629b6e2f",
-        "section": "free",
-        "title": "Sky: Children of the Light",
-        "url": "https://store.steampowered.com/app/2325290/",
-        "message_id": "1520439501338443908",
-        "channel_id": "592534544708796474",
-        "source_type": "steam_free",
-        "posted_at": "2026-06-27T14:43:46.033333+00:00",
-        "description": "A breathtaking open-world adventure awaits! Explore magical realms, restore lost light, and form wordless bonds with players worldwide. Complete quests and solve puzzles in seasonal events that celebrate kindness, discovery, and heartfelt connection."
-      },
-      {
-        "item_key": "9e0e1e52ebc99a54",
-        "section": "paid",
-        "title": "The Outlast Trials",
-        "url": "https://store.steampowered.com/app/1304930/",
-        "message_id": "1520439516358508625",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-06-27T14:43:49.586619+00:00",
-        "description": "Red Barrels invites you to experience mind-numbing terror, this time with friends. Whether you go through the trials alone or in teams, if you survive long enough and complete the therapy, Murkoff will happily let you leave… but will you be the same?"
-      },
-      {
-        "item_key": "23566794276c4c59",
-        "section": "paid",
-        "title": "Schedule I",
-        "url": "https://store.steampowered.com/app/3164500/",
-        "message_id": "1520439523790819329",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-06-27T14:43:51.233899+00:00",
-        "description": "From small-time dope pusher to kingpin - manufacture and distribute a range of drugs throughout the grungy city of Hyland Point. Expand your empire with properties, businesses, employees and more."
-      },
-      {
-        "item_key": "26b4eb00f1c74c6e",
-        "section": "paid",
-        "title": "PowerWash Simulator 2",
-        "url": "https://store.steampowered.com/app/2968420/",
-        "message_id": "1520439530786656389",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-06-27T14:43:53.400273+00:00",
-        "description": "PowerWash Simulator is back, bubbling with fresh locations, soap-erior equipment and splashy features. Effortlessly transform soiled surroundings into clean, serene scenes, solo or with pals. Satisfaction is a spray away!"
-      },
-      {
-        "item_key": "5fe93d83d04114a8",
-        "section": "paid",
-        "title": "EA SPORTS FC™ 26",
-        "url": "https://store.steampowered.com/app/3405690/",
-        "message_id": "1520439540253327433",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-06-27T14:43:55.544499+00:00",
-        "description": "The Club is Yours in EA SPORTS FC™ 26. Play your way with an overhauled gameplay experience powered by community feedback, Manager Live Challenges that bring fresh storylines to the new season, and Archetypes inspired by greats of the game."
-      },
-      {
-        "item_key": "bc322dd39f0a4a41",
-        "section": "paid",
-        "title": "DRAGON BALL XENOVERSE 2",
-        "url": "https://store.steampowered.com/app/454650/",
-        "message_id": "1520439549124284428",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-06-27T14:43:57.474540+00:00",
-        "description": "DRAGON BALL XENOVERSE 2 builds upon the highly popular DRAGON BALL XENOVERSE with enhanced graphics that will further immerse players into the largest and most detailed Dragon Ball world ever developed."
-      }
-    ],
-    "winners_state": {
-      "status": "skipped",
-      "skipped_reason": "no_eligible_winners",
-      "updated_at_utc": "2026-06-27T23:58:46.960884+00:00"
-    }
-  },
   "2026-06-28": {
     "run_state": {
       "section_headers": {
@@ -5592,6 +5446,147 @@
         "source_type": "paid_under_20",
         "posted_at": "2026-10-12T21:50:34.865398+00:00",
         "description": "LORT is a 1–8 player co-op action roguelite. Team up with your friends to battle, loot, and stack ridiculous power-ups across a cursed fantasy world. Fight toward escape, revive your homies, and get absolutely chadded as you evolve from goblin tickler to god slapper."
+      }
+    ]
+  },
+  "2026-10-13": {
+    "run_state": {
+      "section_headers": {
+        "free": {
+          "message_id": "1559656803921559553",
+          "channel_id": "592534544708796474",
+          "posted_at_utc": "2026-10-13T19:59:19.326553+00:00"
+        },
+        "paid": {
+          "message_id": "1559656855788195924",
+          "channel_id": "592534544708796474",
+          "posted_at_utc": "2026-10-13T19:59:31.787789+00:00"
+        }
+      },
+      "last_attempt_at_utc": "2026-10-13T19:59:14.028689+00:00",
+      "intro": {
+        "message_id": "1559656784145162323",
+        "channel_id": "592534544708796474",
+        "posted_at_utc": "2026-10-13T19:59:17.712061+00:00"
+      },
+      "footer": {
+        "message_id": "1559656910955741199",
+        "channel_id": "592534544708796474",
+        "posted_at_utc": "2026-10-13T19:59:44.960292+00:00"
+      },
+      "completed": true,
+      "completed_at_utc": "2026-10-13T19:59:46.167777+00:00"
+    },
+    "items": [
+      {
+        "item_key": "5b6ca1c954dd7047",
+        "section": "free",
+        "title": "CPM 2",
+        "url": "https://store.steampowered.com/app/4252340/",
+        "message_id": "1559656810716201030",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-10-13T19:59:21.583366+00:00",
+        "description": "Open-world racing sandbox with cross-platform multiplayer. Complete parking challenges, drift, and participate in races: drag, rally, circuit, and Drift. Tune cars and organize car meets with friends."
+      },
+      {
+        "item_key": "25c6235f62039473",
+        "section": "free",
+        "title": "Stay Out",
+        "url": "https://store.steampowered.com/app/1180380/",
+        "message_id": "1559656820211978351",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-10-13T19:59:23.471624+00:00",
+        "description": "Stay Out - is a MMORPG with shooter elements, based on spirit of “stalking” - an urban exploration, searching and exploring mysterious, abandoned and forgotten by humanity pieces of our planet."
+      },
+      {
+        "item_key": "cd9971e021325cde",
+        "section": "free",
+        "title": "Realm of the Mad God Exalt",
+        "url": "https://store.steampowered.com/app/200210/",
+        "message_id": "1559656829741699135",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-10-13T19:59:25.879395+00:00",
+        "description": "Embark on an exhilarating journey into the pixelated Realm of the Mad God! Join, an action-packed, free-to-play MMO bullet hell game. Discover a world with danger, challenges, and hidden treasures as you battle through waves of enemies. Team up with players and conquer dungeons to become a legend!"
+      },
+      {
+        "item_key": "b94f5ee75e0cfc6b",
+        "section": "free",
+        "title": "Delta Force",
+        "url": "https://store.steampowered.com/app/2507950/",
+        "message_id": "1559656837945630783",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-10-13T19:59:27.887091+00:00",
+        "description": "Play for free in operator-based extraction and full-scale combined arms warfare. Become elite Operators, customize an ever-expanding arsenal of weapons, and deploy into thrill-packed missions across multiple modes."
+      },
+      {
+        "item_key": "432602b0c566f837",
+        "section": "free",
+        "title": "Where Winds Meet",
+        "url": "https://store.steampowered.com/app/3564740/",
+        "message_id": "1559656846321520663",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-10-13T19:59:30.160630+00:00",
+        "description": "Step into an open-world action-adventure RPG set in ancient China. Uncover the secrets of your own identity as you rise from a humble village wanderer to the sword master of the imperial capital. Learn martial arts and build your reputation as a hero or a bringer of chaos in this free wuxia world."
+      },
+      {
+        "item_key": "c6c0f302a99e2a82",
+        "section": "paid",
+        "title": "Haunted Heist",
+        "url": "https://store.steampowered.com/app/4024440/",
+        "message_id": "1559656863736397854",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-10-13T19:59:34.070493+00:00",
+        "description": "Haunted Heist is a 3-8 player round-based PvP horror party game where Heisters find and retrieve gems in a procedurally generated mansion, while Tricksters use chaotic abilities to distress, disrupt, and dispose of them to protect their home."
+      },
+      {
+        "item_key": "e02d05fd8ff778a5",
+        "section": "paid",
+        "title": "Invokyr",
+        "url": "https://store.steampowered.com/app/3883570/",
+        "message_id": "1559656873387368512",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-10-13T19:59:37.196778+00:00",
+        "description": "A co-op survival horror game about a cursed board game. Play in a group of 6 players. Roll the dice, survive the horrors that are summoned, and beat the Gamemaster to win your freedom."
+      },
+      {
+        "item_key": "38c23ade58d8b927",
+        "section": "paid",
+        "title": "Barfender: CO-OP Bar Simulator",
+        "url": "https://store.steampowered.com/app/4159680/",
+        "message_id": "1559656885366562868",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-10-13T19:59:39.092201+00:00",
+        "description": "Barfender is a chaotic 1–4 player co-op bar sim where you pour drinks, clean disasters, stop fights, and try to keep the bar alive while everything falls apart. Build the place, serve the crowd, survive the night."
+      },
+      {
+        "item_key": "3810dfeb3d965196",
+        "section": "paid",
+        "title": "R.E.P.O.",
+        "url": "https://store.steampowered.com/app/3241660/",
+        "message_id": "1559656893947977848",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-10-13T19:59:41.147733+00:00",
+        "description": "An online co-op horror game with up to 6 players. Locate valuable, fully physics-based objects and handle them with care as you retrieve and extract to satisfy your creator's desires."
+      },
+      {
+        "item_key": "3e7aa9833531aa80",
+        "section": "paid",
+        "title": "BOMBANANA!",
+        "url": "https://store.steampowered.com/app/4656000/",
+        "message_id": "1559656902315606087",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-10-13T19:59:43.058854+00:00",
+        "description": "Chaotic bomb disposal fun with friends & monkeys! Work together as a 3-player co-op team of blind, deaf, and mute monkeys. Each player has only part of the needed information. Communicate, solve puzzles, and race against the clock. Can you defuse the bombs before they explode?"
       }
     ]
   }
