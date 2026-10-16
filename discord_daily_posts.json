@@ -1,172 +1,4 @@
 {
-  "2026-06-30": {
-    "run_state": {
-      "section_headers": {
-        "demo_playtest": {
-          "message_id": "1521542381780861069",
-          "channel_id": "592534544708796474",
-          "posted_at_utc": "2026-06-30T15:46:13.229802+00:00"
-        },
-        "free": {
-          "message_id": "1521542409388036096",
-          "channel_id": "592534544708796474",
-          "posted_at_utc": "2026-06-30T15:46:19.516043+00:00"
-        },
-        "paid": {
-          "message_id": "1521542462349246504",
-          "channel_id": "592534544708796474",
-          "posted_at_utc": "2026-06-30T15:46:32.211278+00:00"
-        }
-      },
-      "last_attempt_at_utc": "2026-06-30T15:46:09.635131+00:00",
-      "intro": {
-        "message_id": "1521542369474904247",
-        "channel_id": "592534544708796474",
-        "posted_at_utc": "2026-06-30T15:46:11.287427+00:00"
-      },
-      "footer": {
-        "message_id": "1521542507761242123",
-        "channel_id": "592534544708796474",
-        "posted_at_utc": "2026-06-30T15:46:42.949261+00:00"
-      },
-      "completed": true,
-      "completed_at_utc": "2026-06-30T15:46:44.155643+00:00"
-    },
-    "items": [
-      {
-        "item_key": "b36fc80b81e01691",
-        "section": "demo_playtest",
-        "title": "Mall Simulator Together",
-        "url": "https://store.steampowered.com/app/4594460/",
-        "message_id": "1521542389741650082",
-        "channel_id": "592534544708796474",
-        "source_type": "steam_demo_playtest",
-        "posted_at": "2026-06-30T15:46:15.556857+00:00",
-        "description": "Mall Simulator Together is a multiplayer shopping mall management simulator where you can open stores, manage deliveries, organize products, hire employees and grow your own mall together with friends."
-      },
-      {
-        "item_key": "2e743688a44cf869",
-        "section": "demo_playtest",
-        "title": "The Echoes",
-        "url": "https://store.steampowered.com/app/4708080/",
-        "message_id": "1521542399422107689",
-        "channel_id": "592534544708796474",
-        "source_type": "steam_demo_playtest",
-        "posted_at": "2026-06-30T15:46:17.916060+00:00",
-        "description": "The Echoes is a 1-4 player co-op horror game. To escape a loop, you must observe your surroundings, memorize details, solve puzzles, and survive."
-      },
-      {
-        "item_key": "6d086f64a6fc3788",
-        "section": "free",
-        "title": "Godius Eternal War",
-        "url": "https://store.steampowered.com/app/4559140/",
-        "message_id": "1521542416014901249",
-        "channel_id": "592534544708796474",
-        "source_type": "steam_free",
-        "posted_at": "2026-06-30T15:46:21.353896+00:00",
-        "description": "A classic 2D pixel MMORPG inspired by the golden age of online RPGs. Join nation wars, explore an open multiplayer world, trade with players, battle in PvP, and experience a community-driven adventure that has continued since 1999."
-      },
-      {
-        "item_key": "518dc0cccca04c22",
-        "section": "free",
-        "title": "MapleStory M",
-        "url": "https://store.steampowered.com/app/3969080/",
-        "message_id": "1521542423807791194",
-        "channel_id": "592534544708796474",
-        "source_type": "steam_free",
-        "posted_at": "2026-06-30T15:46:23.083886+00:00",
-        "description": "The MapleStory you missed is calling you. MapleStory M is an MMORPG full of MapleStory's signature charm and worldview. Enjoy jobs bursting with personality, lighthearted battles, an easy leveling-up system, and even co-op gameplay. Begin your own adventure in this adorable 2D side-scrolling world."
-      },
-      {
-        "item_key": "e560b2aa183b7c3f",
-        "section": "free",
-        "title": "Life is Feudal: Arden",
-        "url": "https://store.steampowered.com/app/3285700/",
-        "message_id": "1521542430955147384",
-        "channel_id": "592534544708796474",
-        "source_type": "steam_free",
-        "posted_at": "2026-06-30T15:46:24.828369+00:00",
-        "description": "Life is Feudal: Arden is a new free-to-play open-world MMORPG set in the Middle Ages, built on the foundation of Life is Feudal: MMO. Engage in thrilling PvP combat, navigate political intrigue, master a variety of professions and craft unique items. Forge your own path to power and greatness!"
-      },
-      {
-        "item_key": "26d7272404624fe6",
-        "section": "free",
-        "title": "Professional Fishing",
-        "url": "https://store.steampowered.com/app/798420/",
-        "message_id": "1521542438588780855",
-        "channel_id": "592534544708796474",
-        "source_type": "steam_free",
-        "posted_at": "2026-06-30T15:46:26.849147+00:00",
-        "description": "Are you falling asleep with a rod? Never again! Professional Fishing will never let you fall asleep! Play an amazing fishing simulator and feel like a real angler! Create your own fishing club and compete with others!"
-      },
-      {
-        "item_key": "6a20104c09d6f033",
-        "section": "free",
-        "title": "Habbo Hotel: Origins",
-        "url": "https://store.steampowered.com/app/3809900/",
-        "message_id": "1521542446926921871",
-        "channel_id": "592534544708796474",
-        "source_type": "steam_free",
-        "posted_at": "2026-06-30T15:46:30.485660+00:00",
-        "description": "A pixel-art social simulation MMO where you customize your avatar, build and decorate rooms, trade rare items, and join live community events in a nostalgic yet ever-evolving virtual world."
-      },
-      {
-        "item_key": "ba330d77dd4afb4a",
-        "section": "paid",
-        "title": "Plants vs. Zombies™ Garden Warfare 2: Deluxe Edition",
-        "url": "https://store.steampowered.com/app/1922560/",
-        "message_id": "1521542469098147974",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-06-30T15:46:34.206190+00:00",
-        "description": "Ready the Peashooters and prepare for the craziest, funniest shooter in the universe: Plants vs. Zombies Garden Warfare 2."
-      },
-      {
-        "item_key": "83c5b1e06c56eb7c",
-        "section": "paid",
-        "title": "Foxhole",
-        "url": "https://store.steampowered.com/app/505460/",
-        "message_id": "1521542477650198608",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-06-30T15:46:35.922678+00:00",
-        "description": "Foxhole is a massively multiplayer game where thousands of players shape the outcome of a persistent online war. Every individual soldier is a player that contributes to the war effort through logistics, base building, reconnaissance, combat, and more."
-      },
-      {
-        "item_key": "e957a8f2d758267c",
-        "section": "paid",
-        "title": "A Way Out",
-        "url": "https://store.steampowered.com/app/1222700/",
-        "message_id": "1521542484830715974",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-06-30T15:46:37.683807+00:00",
-        "description": "A Way Out is an exclusively co-op adventure where you play the role of one of two prisoners making their daring escape from prison."
-      },
-      {
-        "item_key": "7b0446fa50ff8bd3",
-        "section": "paid",
-        "title": "Generation Zero®",
-        "url": "https://store.steampowered.com/app/704270/",
-        "message_id": "1521542492225536080",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-06-30T15:46:39.456374+00:00",
-        "description": "Generation Zero is a stealth-action shooter where you wage guerilla warfare against lethal mechanical enemies. Explore a vast open world map inspired by the Swedish Cold War era, take part in the resistance alone or with up to three friends in seamless co-op."
-      },
-      {
-        "item_key": "f43d9c8bfc161b38",
-        "section": "paid",
-        "title": "Tiny Tina's Wonderlands",
-        "url": "https://store.steampowered.com/app/1286680/",
-        "message_id": "1521542499716304916",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-06-30T15:46:41.197266+00:00",
-        "description": "Embark on an epic adventure full of whimsy, wonder, and high-powered weaponry! Roll your own multiclass hero then shoot, loot, slash, and cast on a quest to stop the Dragon Lord."
-      }
-    ]
-  },
   "2026-07-01": {
     "run_state": {
       "section_headers": {
@@ -5544,6 +5376,147 @@
         "source_type": "paid_under_20",
         "posted_at": "2026-10-15T17:50:08.713114+00:00",
         "description": "A proximity voice chat social deduction game where criminals must commit secret crimes while a Supervisor hunts them, and a hidden Snitch betrays them from within."
+      }
+    ]
+  },
+  "2026-10-16": {
+    "run_state": {
+      "section_headers": {
+        "free": {
+          "message_id": "1560704944367992832",
+          "channel_id": "592534544708796474",
+          "posted_at_utc": "2026-10-16T17:24:15.529384+00:00"
+        },
+        "paid": {
+          "message_id": "1560704988764708976",
+          "channel_id": "592534544708796474",
+          "posted_at_utc": "2026-10-16T17:24:26.187055+00:00"
+        }
+      },
+      "last_attempt_at_utc": "2026-10-16T17:24:09.587472+00:00",
+      "intro": {
+        "message_id": "1560704921312170070",
+        "channel_id": "592534544708796474",
+        "posted_at_utc": "2026-10-16T17:24:13.876422+00:00"
+      },
+      "footer": {
+        "message_id": "1560705032792318143",
+        "channel_id": "592534544708796474",
+        "posted_at_utc": "2026-10-16T17:24:36.549397+00:00"
+      },
+      "completed": true,
+      "completed_at_utc": "2026-10-16T17:24:37.756790+00:00"
+    },
+    "items": [
+      {
+        "item_key": "7f2eef99465551f5",
+        "section": "free",
+        "title": "Star Conflict",
+        "url": "https://store.steampowered.com/app/212070/",
+        "message_id": "1560704951330799626",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-10-16T17:24:17.327038+00:00",
+        "description": "Star Conflict is a thrilling space action game that lets you take the helm of a combat starship and take part in large-scale battles. Build your own fleet and set out to explore the galaxy!"
+      },
+      {
+        "item_key": "f0db4ec3d1cfa079",
+        "section": "free",
+        "title": "Runes of Magic",
+        "url": "https://store.steampowered.com/app/808290/",
+        "message_id": "1560704958758789251",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-10-16T17:24:19.013658+00:00",
+        "description": "Start your heroic saga today in a world full of magic and excitement: Choose your race, build a home and discover the fantastic world of Taborea in the classic free-to-play MMO!"
+      },
+      {
+        "item_key": "cc11aa6f098818b7",
+        "section": "free",
+        "title": "Casino Roulette: Roulettist",
+        "url": "https://store.steampowered.com/app/3601420/",
+        "message_id": "1560704965947826277",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-10-16T17:24:20.800454+00:00",
+        "description": "Test your luck! Play casino roulette with stunning, realistic 3D graphics! Feel the risk as you dive into the casino atmosphere and hit the big time!"
+      },
+      {
+        "item_key": "365fb7fbba472536",
+        "section": "free",
+        "title": "Project Entropy",
+        "url": "https://store.steampowered.com/app/2806410/",
+        "message_id": "1560704973359292497",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-10-16T17:24:22.734385+00:00",
+        "description": "Welcome, commander, to Project Entropy- an ultimate Sci-Fi and role-playing game with battles in space. In this immersive MMO experience, you will command alien civilizations, conquer uncharted planets, and build Hero fleets."
+      },
+      {
+        "item_key": "83d1ebef4c82908e",
+        "section": "free",
+        "title": "Idle Hacking: An Inaction RPG",
+        "url": "https://store.steampowered.com/app/4453290/",
+        "message_id": "1560704981454159962",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-10-16T17:24:24.484601+00:00",
+        "description": "A persistent idle MMORPG, with a text-based hacking theme. Enjoy the \"Inaction RPG\" design philosophy by crafting equpiment using ARPG influenced prefix/suffix systems, build or join player managed syndicates, trade on the marketplace, and compete in community events."
+      },
+      {
+        "item_key": "0a22fc3f0beef7af",
+        "section": "paid",
+        "title": "Pummel Party",
+        "url": "https://store.steampowered.com/app/880940/",
+        "message_id": "1560704995521859700",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-10-16T17:24:27.825339+00:00",
+        "description": "Pummel Party is a 4-8 player online and local-multiplayer party game. Pummel friends or AI using a wide array of absurd items in the board mode and compete to destroy friendships in the unique collection of minigames."
+      },
+      {
+        "item_key": "cd12988bfcc6bd39",
+        "section": "paid",
+        "title": "Romestead",
+        "url": "https://store.steampowered.com/app/1805320/",
+        "message_id": "1560705002778005635",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-10-16T17:24:29.594811+00:00",
+        "description": "Rome has fallen! Rebuild civilization in this action-adventure survival game for 1-8 players. Fight hordes of the walking dead, build settlements, restore the Roman gods... or kick back and farm with friends."
+      },
+      {
+        "item_key": "4887c0147ece771c",
+        "section": "paid",
+        "title": "Roadside Research",
+        "url": "https://store.steampowered.com/app/3643170/",
+        "message_id": "1560705010298527855",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-10-16T17:24:31.485778+00:00",
+        "description": "Roadside Research is a 1 to 4 player co-op gas station simulator. Except you’re aliens. And undercover. Do very human things like restocking shelves while preparing for the invasion. Just don’t get caught."
+      },
+      {
+        "item_key": "cf1f1465468976bd",
+        "section": "paid",
+        "title": "Subsistence",
+        "url": "https://store.steampowered.com/app/418030/",
+        "message_id": "1560705018082885702",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-10-16T17:24:33.076254+00:00",
+        "description": "Subsistence is a sandbox, first person, solo or co-op, PvE open-world survival game. Struggle through changing seasons to build a base, develop technology and gear-up in the hostile environment. Defend yourself from wildlife, the elements and AI hunters (who also build bases in the world)."
+      },
+      {
+        "item_key": "759aa5871a6f3bb9",
+        "section": "paid",
+        "title": "GRAIN ROT",
+        "url": "https://store.steampowered.com/app/4450620/",
+        "message_id": "1560705024919863336",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-10-16T17:24:34.721819+00:00",
+        "description": "A horror co-op extraction builder set in a scorched wasteland where everything burns. Descend with your friends into shifting ruins, rip out furniture, and scavenge for loot before the Corrupted close in. Make it back alive, then rebuild the Outpost to better your chances for the next run."
       }
     ]
   }
