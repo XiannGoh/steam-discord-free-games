@@ -1,161 +1,4 @@
 {
-  "2026-07-01": {
-    "run_state": {
-      "section_headers": {
-        "demo_playtest": {
-          "message_id": "1521907599166148668",
-          "channel_id": "592534544708796474",
-          "posted_at_utc": "2026-07-01T15:57:27.762472+00:00"
-        },
-        "free": {
-          "message_id": "1521907614802251937",
-          "channel_id": "592534544708796474",
-          "posted_at_utc": "2026-07-01T15:57:31.266373+00:00"
-        },
-        "paid": {
-          "message_id": "1521907667763855573",
-          "channel_id": "592534544708796474",
-          "posted_at_utc": "2026-07-01T15:57:44.056786+00:00"
-        }
-      },
-      "last_attempt_at_utc": "2026-07-01T15:57:25.078370+00:00",
-      "intro": {
-        "message_id": "1521907590051791051",
-        "channel_id": "592534544708796474",
-        "posted_at_utc": "2026-07-01T15:57:25.953600+00:00"
-      },
-      "footer": {
-        "message_id": "1521907719118913590",
-        "channel_id": "592534544708796474",
-        "posted_at_utc": "2026-07-01T15:57:56.471444+00:00"
-      },
-      "completed": true,
-      "completed_at_utc": "2026-07-01T15:57:57.678259+00:00"
-    },
-    "items": [
-      {
-        "item_key": "4e7baf646e8fedee",
-        "section": "demo_playtest",
-        "title": "Terrinoth®: Heroes of Descent Demo",
-        "url": "https://store.steampowered.com/app/4162860/",
-        "message_id": "1521907606732668940",
-        "channel_id": "592534544708796474",
-        "source_type": "steam_demo_playtest",
-        "posted_at": "2026-07-01T15:57:29.679550+00:00",
-        "description": "Step into the epic fantasy universe of Descent with the first co-op tactical RPG forged from the legendary dungeon crawling boardgame. Lead a company of fearless heroes across Terrinoth, survive against epic boss battles in turn-based combat, and settle the fate of a world facing unending darkness."
-      },
-      {
-        "item_key": "1822bf4d96efbf16",
-        "section": "free",
-        "title": "M.A.R.S.",
-        "url": "https://store.steampowered.com/app/314430/",
-        "message_id": "1521907621572116532",
-        "channel_id": "592534544708796474",
-        "source_type": "steam_free",
-        "posted_at": "2026-07-01T15:57:33.119811+00:00",
-        "description": "MARS is a Free-To-Play Third Person Shooter set in an evolving sci-fi world. From the hilarious Headhunter mode, to Huge Mecha vs Mecha battles, to fully customizable loadouts; whether Co-op or PvP, M.A.R.S. has something for everyone. Kill, Die, Repeat."
-      },
-      {
-        "item_key": "ae77eb1305e80eeb",
-        "section": "free",
-        "title": "Soccer Field Pro 3D",
-        "url": "https://store.steampowered.com/app/3468160/",
-        "message_id": "1521907629759397888",
-        "channel_id": "592534544708796474",
-        "source_type": "steam_free",
-        "posted_at": "2026-07-01T15:57:36.933922+00:00",
-        "description": "Free-to-play 3D football game with realistic physics, fast-paced multiplayer matches, player customization, and room creation. Play with friends or compete online!"
-      },
-      {
-        "item_key": "5687e558662514c9",
-        "section": "free",
-        "title": "WHO'S WHO 2.0",
-        "url": "https://store.steampowered.com/app/3391260/",
-        "message_id": "1521907644850245734",
-        "channel_id": "592534544708796474",
-        "source_type": "steam_free",
-        "posted_at": "2026-07-01T15:57:38.644476+00:00",
-        "description": "Who's Who 2.0 is back with brand new team! Looking for another dynamic party game? Each characters now holds unique skills which now will impact each modes with its own advantages! You can play solo, or party up with your friends and become the winner by eliminating the real players among the NPCs."
-      },
-      {
-        "item_key": "d51f32c65cd5396f",
-        "section": "free",
-        "title": "Age of Empires Mobile: PC Edition",
-        "url": "https://store.steampowered.com/app/2783360/",
-        "message_id": "1521907652077031498",
-        "channel_id": "592534544708796474",
-        "source_type": "steam_free",
-        "posted_at": "2026-07-01T15:57:40.482235+00:00",
-        "description": "Build empires, forge alliances and conquer hundreds of players in real time."
-      },
-      {
-        "item_key": "3e53b847beac1948",
-        "section": "free",
-        "title": "Age of Conquest IV",
-        "url": "https://store.steampowered.com/app/314970/",
-        "message_id": "1521907660058919054",
-        "channel_id": "592534544708796474",
-        "source_type": "steam_free",
-        "posted_at": "2026-07-01T15:57:42.404952+00:00",
-        "description": "Age of Conquest is a turn-based grand strategy wargame."
-      },
-      {
-        "item_key": "413574035ebeaef3",
-        "section": "paid",
-        "title": "Pax Dei",
-        "url": "https://store.steampowered.com/app/1995520/",
-        "message_id": "1521907675086979246",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-07-01T15:57:46.009775+00:00",
-        "description": "Welcome to a vast, social sandbox MMO inspired by the legends of the medieval era. Here, myths are real, ghosts exist, and magic is unquestioned. Join thousands of players as you explore the land, build your home, forge your reputation, and craft your own stories. What world will you make?"
-      },
-      {
-        "item_key": "999496915dcc5b11",
-        "section": "paid",
-        "title": "War of Rights",
-        "url": "https://store.steampowered.com/app/424030/",
-        "message_id": "1521907683282653185",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-07-01T15:57:47.835661+00:00",
-        "description": "War of Rights is a first person multiplayer game featuring massive 400 player battles with a focus on historical authenticity, teamplay and immersion. It is set during the perilous days of the American Civil War, in the Maryland Campaign of September, 1862."
-      },
-      {
-        "item_key": "2d32960d0ad99e86",
-        "section": "paid",
-        "title": "Equinox: Homecoming",
-        "url": "https://store.steampowered.com/app/3258290/",
-        "message_id": "1521907691021144296",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-07-01T15:57:50.086648+00:00",
-        "description": "Saddle up with friends and investigate a dark mystery, where each trail leads to wonder and intrigue. A string of events has set the idyllic island on edge. Discover the truth behind your mother’s disappearance and a local's sudden death. For fans of horses, murder mysteries, and cozy exploration!"
-      },
-      {
-        "item_key": "1b35e22b671eba22",
-        "section": "paid",
-        "title": "Riders Republic",
-        "url": "https://store.steampowered.com/app/2290180/",
-        "message_id": "1521907700513112156",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-07-01T15:57:52.626040+00:00",
-        "description": "Jump into a massive multiplayer playground! Bike, ski, snowboard, or wingsuit across an open world sports paradise where the rules are yours to make or break."
-      },
-      {
-        "item_key": "34ce8602a3f1a782",
-        "section": "paid",
-        "title": "Alchemy Factory",
-        "url": "https://store.steampowered.com/app/3669570/",
-        "message_id": "1521907710977638451",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-07-01T15:57:54.421017+00:00",
-        "description": "Craft your workshop as an alchemist!‌ Harness arcane devices to automate crafting. Sell alchemical goods, fulfill commissions, and rise to become a renowned alchemy magnate. ‌Multiplayer Supported!‌ Invite master designers to (ahem) contribute their expertise—let them optimize your production lines!"
-      }
-    ]
-  },
   "2026-07-02": {
     "run_state": {
       "section_headers": {
@@ -5517,6 +5360,147 @@
         "source_type": "paid_under_20",
         "posted_at": "2026-10-16T17:24:34.721819+00:00",
         "description": "A horror co-op extraction builder set in a scorched wasteland where everything burns. Descend with your friends into shifting ruins, rip out furniture, and scavenge for loot before the Corrupted close in. Make it back alive, then rebuild the Outpost to better your chances for the next run."
+      }
+    ]
+  },
+  "2026-10-17": {
+    "run_state": {
+      "section_headers": {
+        "free": {
+          "message_id": "1561051981056053317",
+          "channel_id": "592534544708796474",
+          "posted_at_utc": "2026-10-17T16:23:15.506825+00:00"
+        },
+        "paid": {
+          "message_id": "1561052031899410453",
+          "channel_id": "592534544708796474",
+          "posted_at_utc": "2026-10-17T16:23:27.642665+00:00"
+        }
+      },
+      "last_attempt_at_utc": "2026-10-17T16:23:11.694360+00:00",
+      "intro": {
+        "message_id": "1561051967185363005",
+        "channel_id": "592534544708796474",
+        "posted_at_utc": "2026-10-17T16:23:13.892414+00:00"
+      },
+      "footer": {
+        "message_id": "1561052080654000320",
+        "channel_id": "592534544708796474",
+        "posted_at_utc": "2026-10-17T16:23:39.366979+00:00"
+      },
+      "completed": true,
+      "completed_at_utc": "2026-10-17T16:23:40.573266+00:00"
+    },
+    "items": [
+      {
+        "item_key": "b13bdbe2bfd52174",
+        "section": "free",
+        "title": "Mini World: CREATA",
+        "url": "https://store.steampowered.com/app/814480/",
+        "message_id": "1561051988102479964",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-10-17T16:23:17.449719+00:00",
+        "description": "Mini World is a 3D free sandbox game about adventure, exploration, and creating your dream worlds. There is no grinding or leveling up. No IAP gate that locks features from free to play players. Everyone can enjoy the game’s full features with great freedom"
+      },
+      {
+        "item_key": "e6e2db2be1df3235",
+        "section": "free",
+        "title": "DarkOrbit Reloaded",
+        "url": "https://store.steampowered.com/app/4054110/",
+        "message_id": "1561051997006987304",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-10-17T16:23:19.409718+00:00",
+        "description": "Dark Orbit is a free-2-play space MMO where three companies battle for galactic domination. Customize ships, trade resources, fight aliens and uncover a grand conspiracy on your epic cosmic journey. Thrilling PvP and PvE missions await! Will you lead your faction beyond the final frontier?"
+      },
+      {
+        "item_key": "5c0b4831c80506d9",
+        "section": "free",
+        "title": "Dirty Bomb®",
+        "url": "https://store.steampowered.com/app/333930/",
+        "message_id": "1561052004791488553",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-10-17T16:23:21.423406+00:00",
+        "description": "Work together or die alone! Fight to restore peace to London or tear it down for profit in the most challenging team based shooter around."
+      },
+      {
+        "item_key": "cc5239aef1abeed5",
+        "section": "free",
+        "title": "Wheelchair Wizards",
+        "url": "https://store.steampowered.com/app/3832630/",
+        "message_id": "1561052012790161540",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-10-17T16:23:23.240557+00:00",
+        "description": "Wheelchair Wizards is a 2-8 player party game where you battle your friends while upgrading your wizard."
+      },
+      {
+        "item_key": "33fdce47595ecdad",
+        "section": "free",
+        "title": "Shadowbane: Resurgence",
+        "url": "https://store.steampowered.com/app/4371680/",
+        "message_id": "1561052021916958760",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-10-17T16:23:25.887774+00:00",
+        "description": "A classic dark fantasy open-world MMORPG with unrestricted global PVP & a player-driven dynamic world. 12 unique races, flexible 22+48 class system. Build fortresses, conquer kingdoms, reshape the continent. Steam version supports multi-systems, no pay-to-win, hardcore fair gameplay."
+      },
+      {
+        "item_key": "d15862fcc0449659",
+        "section": "paid",
+        "title": "Heroes of Hammerwatch II",
+        "url": "https://store.steampowered.com/app/619820/",
+        "message_id": "1561052039050563785",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-10-17T16:23:29.414197+00:00",
+        "description": "A rogue-lite action-rpg that offers extensive persistent progression. Build your town, upgrade and equip your heroes, before taking on the ever-changing Dark Citadel - either solo or with a team of friends."
+      },
+      {
+        "item_key": "a19664bcaf82b74d",
+        "section": "paid",
+        "title": "Gauntlet™ Slayer Edition",
+        "url": "https://store.steampowered.com/app/258970/",
+        "message_id": "1561052046617083925",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-10-17T16:23:31.182613+00:00",
+        "description": "The classic Gauntlet 4-player co-op action gameplay returns in a completely new experience! Battle the endless hordes of foes as you and your friends fight for treasure and glory via both local and online co-op multiplayer. Invade the Darkness!"
+      },
+      {
+        "item_key": "97904cb506b8ab29",
+        "section": "paid",
+        "title": "Supermarket Chaos",
+        "url": "https://store.steampowered.com/app/4800590/",
+        "message_id": "1561052054061850634",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-10-17T16:23:33.093788+00:00",
+        "description": "Supermarket Chaos is a cozy organizing simulator where you sort 4,668 products in a messy supermarket. Enjoy the satisfaction of stocking shelves in a calm, relaxing atmosphere."
+      },
+      {
+        "item_key": "b728c2963051a57f",
+        "section": "paid",
+        "title": "Astro Colony",
+        "url": "https://store.steampowered.com/app/1614550/",
+        "message_id": "1561052061737422877",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-10-17T16:23:34.902207+00:00",
+        "description": "Astro Colony throws you into an endless Universe of exploration, automation and survival! Build interconnected colonies, alone or with friends, and turn planets into thriving industrial hubs! Design conveyor systems and take care of your Astronauts as you expand your intergalactic empire!"
+      },
+      {
+        "item_key": "c852b130b932ef6c",
+        "section": "paid",
+        "title": "Left 4 Dead",
+        "url": "https://store.steampowered.com/app/500/",
+        "message_id": "1561052069689827459",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-10-17T16:23:37.351306+00:00",
+        "description": "From Valve (the creators of Counter-Strike, Half-Life and more) comes Left 4 Dead, a co-op action horror game for the PC and Xbox 360 that casts up to four players in an epic struggle for survival against swarming zombie hordes and terrifying mutant monsters."
       }
     ]
   }
