@@ -341,21 +341,20 @@
     "last_reminder_local_date": "2026-10-10"
   },
   "2026-10-19_to_2026-10-25": {
-    "summary_last_synced_at_utc": "2026-10-17T20:34:33.711355+00:00",
-    "summary_data_signature": "45ff2394c48426cc17315e461ace74e310211492d134ce9bb3aad2680da5c5f8",
+    "summary_last_synced_at_utc": "2026-10-18T10:56:57.989277+00:00",
+    "summary_data_signature": "af973bbaef98be06be87d3100ecbcf6158225b9375099a6e3d37b7a9f4553f49",
     "summary_posted": true,
     "summary_message_id": "1561115225812369419",
     "summary_message_ids": [
       "1561115225812369419"
     ],
-    "summary_message_content": "📊 Availability Summary — Oct 19–25, 2026\n\n*0 of 14 people responded • 14 still missing*\nMissing: <@137123568952672257> <@150522802292785152> <@161248274970443776> <@162382481369071617> <@164270274928181248> <@195462430535581708> <@204517030395641856> <@239951450082377740> <@245393360490201089> <@277285824935231488> <@321367835525775381> <@412746386271109130> <@711603470544797747> <@740065988812341280>\n*Last updated: Oct 17, 4:34 PM ET*\n\n**Monday 10/19**\nNo responses\n\n**Tuesday 10/20**\nNo responses\n\n**Wednesday 10/21**\nNo responses\n\n**Thursday 10/22**\nNo responses\n\n**Friday 10/23**\nNo responses\n\n**Saturday 10/24**\nNo responses\n\n**Sunday 10/25**\nNo responses",
+    "summary_message_content": "📊 Availability Summary — Oct 19–25, 2026\n\n*1 of 14 people responded • 13 still missing*\nMissing: <@137123568952672257> <@161248274970443776> <@162382481369071617> <@164270274928181248> <@195462430535581708> <@204517030395641856> <@239951450082377740> <@245393360490201089> <@277285824935231488> <@321367835525775381> <@412746386271109130> <@711603470544797747> <@740065988812341280>\n*Last updated: Oct 18, 6:56 AM ET*\n\n**Monday 10/19**\n🌙 1 — TheMonkeyKing\n\n**Tuesday 10/20**\n🌙 1 — TheMonkeyKing\n\n**Wednesday 10/21**\n🌙 1 — TheMonkeyKing\n\n**Thursday 10/22**\n🌙 1 — TheMonkeyKing\n\n**Friday 10/23**\n🌙 1 — TheMonkeyKing\n\n**Saturday 10/24**\n🌙 1 — TheMonkeyKing\n\n**Sunday 10/25**\n🌙 1 — TheMonkeyKing",
     "reminder_message_id": "1561115227624579348",
     "reminder_message_ids": [
       "1561115227624579348"
     ],
     "reminder_missing_users": [
       "137123568952672257",
-      "150522802292785152",
       "161248274970443776",
       "162382481369071617",
       "164270274928181248",
@@ -369,6 +368,6 @@
       "711603470544797747",
       "740065988812341280"
     ],
-    "last_reminder_local_date": "2026-10-17"
+    "last_reminder_local_date": "2026-10-18"
   }
 }

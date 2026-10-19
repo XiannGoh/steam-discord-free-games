@@ -1,145 +1,4 @@
 {
-  "2026-07-02": {
-    "run_state": {
-      "section_headers": {
-        "free": {
-          "message_id": "1522262506720985182",
-          "channel_id": "592534544708796474",
-          "posted_at_utc": "2026-07-02T15:27:44.367955+00:00"
-        },
-        "paid": {
-          "message_id": "1522262552854139130",
-          "channel_id": "592534544708796474",
-          "posted_at_utc": "2026-07-02T15:27:55.254257+00:00"
-        }
-      },
-      "last_attempt_at_utc": "2026-07-02T15:27:42.159152+00:00",
-      "intro": {
-        "message_id": "1522262500127674560",
-        "channel_id": "592534544708796474",
-        "posted_at_utc": "2026-07-02T15:27:42.545273+00:00"
-      },
-      "footer": {
-        "message_id": "1522262598739955752",
-        "channel_id": "592534544708796474",
-        "posted_at_utc": "2026-07-02T15:28:06.047396+00:00"
-      },
-      "completed": true,
-      "completed_at_utc": "2026-07-02T15:28:07.253778+00:00"
-    },
-    "items": [
-      {
-        "item_key": "c4efb8b6ef2537ef",
-        "section": "free",
-        "title": "Star Trek Online",
-        "url": "https://store.steampowered.com/app/9900/",
-        "message_id": "1522262514547556468",
-        "channel_id": "592534544708796474",
-        "source_type": "steam_free",
-        "posted_at": "2026-07-02T15:27:46.596941+00:00",
-        "description": "In Star Trek Online, the Star Trek universe appears for the first time on a truly massive scale. Players take the captain's chair as they command their own starship and crew. Explore strange new worlds, seek out new life and new civilizations, and boldly go where no one has gone before."
-      },
-      {
-        "item_key": "e132db62a13c2fea",
-        "section": "free",
-        "title": "Toram Online",
-        "url": "https://store.steampowered.com/app/1827180/",
-        "message_id": "1522262523724693609",
-        "channel_id": "592534544708796474",
-        "source_type": "steam_free",
-        "posted_at": "2026-07-02T15:27:48.378834+00:00",
-        "description": "The MMORPG of a massive and magnificent fantasy! Let's explore the MMO world!"
-      },
-      {
-        "item_key": "403862495ee9c4f8",
-        "section": "free",
-        "title": "Path of Exile",
-        "url": "https://store.steampowered.com/app/238960/",
-        "message_id": "1522262530930769953",
-        "channel_id": "592534544708796474",
-        "source_type": "steam_free",
-        "posted_at": "2026-07-02T15:27:50.156989+00:00",
-        "description": "You are an Exile, struggling to survive on the dark continent of Wraeclast, as you fight to earn power that will allow you to exact your revenge against those who wronged you. Path of Exile is an online Action RPG set in a dark fantasy world. The game is completely free and will never be pay-to-win."
-      },
-      {
-        "item_key": "155f3cf7f568e8b3",
-        "section": "free",
-        "title": "War Selection",
-        "url": "https://store.steampowered.com/app/1022450/",
-        "message_id": "1522262538736238675",
-        "channel_id": "592534544708796474",
-        "source_type": "steam_free",
-        "posted_at": "2026-07-02T15:27:51.913812+00:00",
-        "description": "War Selection is a compelling RTS game featuring base building, resource extraction and warfare. Evolve from a stone age tribe to a distinct industrial nation with unique game mechanics and battle for supremacy with dozens of players on a unique procedurally generated map."
-      },
-      {
-        "item_key": "672c821eaac946fe",
-        "section": "free",
-        "title": "World of Tanks Blitz",
-        "url": "https://store.steampowered.com/app/444200/",
-        "message_id": "1522262545979801630",
-        "channel_id": "592534544708796474",
-        "source_type": "steam_free",
-        "posted_at": "2026-07-02T15:27:53.560519+00:00",
-        "description": "Blow off steam and tank turrets in a free-to-play online 7v7 tank shooter! Drive hundreds of tanks, from museum classics to \"did-that-ever-exist?\" specials, in quick 5 to 7-minute brawls packed with metal mayhem. Play solo or team up with a friend and enjoy smooth action even on modest hardware!"
-      },
-      {
-        "item_key": "0fa97ea9f5fbcd51",
-        "section": "paid",
-        "title": "Sea of Thieves: 2026 Edition",
-        "url": "https://store.steampowered.com/app/1172620/",
-        "message_id": "1522262560257343498",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-07-02T15:27:57.126360+00:00",
-        "description": "Sea of Thieves is a smash-hit pirate adventure game, offering the quintessential pirate experience of plundering lost treasures, intense battles, vanquishing sea monsters and more. Dive in with this revised edition of the game, which includes access to digital bonus media."
-      },
-      {
-        "item_key": "3103431d30b3b1a3",
-        "section": "paid",
-        "title": "Avatar: Frontiers of Pandora™",
-        "url": "https://store.steampowered.com/app/2840770/",
-        "message_id": "1522262567819673620",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-07-02T15:27:59.025309+00:00",
-        "description": "Avatar: Frontiers of Pandora™ is a third and first-person action-adventure game set in the Western Frontier. Reconnect with your lost heritage and discover what it means to be Na'vi."
-      },
-      {
-        "item_key": "4c1bd97bf69d6b74",
-        "section": "paid",
-        "title": "Warhammer 40,000: Rogue Trader",
-        "url": "https://store.steampowered.com/app/2186680/",
-        "message_id": "1522262576086388917",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-07-02T15:28:00.999558+00:00",
-        "description": "Made in a close partnership with Games Workshop, Warhammer 40,000: Rogue Trader is a story-rich classical RPG from Owlcat Games, developers of the critically acclaimed game, Pathfinder: Wrath of the Righteous."
-      },
-      {
-        "item_key": "fd28d443a1777d69",
-        "section": "paid",
-        "title": "MechWarrior 5: Mercenaries",
-        "url": "https://store.steampowered.com/app/784080/",
-        "message_id": "1522262584101703701",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-07-02T15:28:02.714538+00:00",
-        "description": "The year is 3015. The battlefields are dominated by war machines known as BattleMechs. Level entire cities and decimate the enemy in your BattleMech. Follow a quest for glory and revenge. Manage an expanding mercenary company. Fight alongside your friends with a four-player PvE co-op."
-      },
-      {
-        "item_key": "fc0fcef30cd200d4",
-        "section": "paid",
-        "title": "American Truck Simulator",
-        "url": "https://store.steampowered.com/app/270880/",
-        "message_id": "1522262591353651210",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-07-02T15:28:04.409784+00:00",
-        "description": "Experience legendary American trucks and deliver various cargoes across sunny California, sandy Nevada, and the Grand Canyon State of Arizona. American Truck Simulator takes you on a journey through the breathtaking landscapes and widely recognized landmarks around the States."
-      }
-    ]
-  },
   "2026-07-03": {
     "run_state": {
       "section_headers": {
@@ -5501,6 +5360,147 @@
         "source_type": "paid_under_20",
         "posted_at": "2026-10-17T16:23:37.351306+00:00",
         "description": "From Valve (the creators of Counter-Strike, Half-Life and more) comes Left 4 Dead, a co-op action horror game for the PC and Xbox 360 that casts up to four players in an epic struggle for survival against swarming zombie hordes and terrifying mutant monsters."
+      }
+    ]
+  },
+  "2026-10-18": {
+    "run_state": {
+      "section_headers": {
+        "free": {
+          "message_id": "1561416740313768058",
+          "channel_id": "592534544708796474",
+          "posted_at_utc": "2026-10-18T16:32:41.079944+00:00"
+        },
+        "paid": {
+          "message_id": "1561416793157931099",
+          "channel_id": "592534544708796474",
+          "posted_at_utc": "2026-10-18T16:32:53.345677+00:00"
+        }
+      },
+      "last_attempt_at_utc": "2026-10-18T16:32:34.850327+00:00",
+      "intro": {
+        "message_id": "1561416717056610375",
+        "channel_id": "592534544708796474",
+        "posted_at_utc": "2026-10-18T16:32:39.335167+00:00"
+      },
+      "footer": {
+        "message_id": "1561416838573719665",
+        "channel_id": "592534544708796474",
+        "posted_at_utc": "2026-10-18T16:33:04.290881+00:00"
+      },
+      "completed": true,
+      "completed_at_utc": "2026-10-18T16:33:05.498533+00:00"
+    },
+    "items": [
+      {
+        "item_key": "2652c6d6be820ba8",
+        "section": "free",
+        "title": "Stumble Guys",
+        "url": "https://store.steampowered.com/app/1677740/",
+        "message_id": "1561416747813314600",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-10-18T16:32:42.881972+00:00",
+        "description": "Ready for the chaos? Stumble Guys is a 32-player, fast-paced multiplayer party royale where players dash, jump, and fall across hilarious obstacle courses in a fun race to be the last one standing."
+      },
+      {
+        "item_key": "dde6564766a0a301",
+        "section": "free",
+        "title": "GrandChase",
+        "url": "https://store.steampowered.com/app/985810/",
+        "message_id": "1561416754989891678",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-10-18T16:32:44.890906+00:00",
+        "description": "Grand Chase is a free side-scrolling online action RPG with anime inspired graphics. Enjoy exciting adventures in dungeons and PvP with unique characters."
+      },
+      {
+        "item_key": "a6805e1571a18754",
+        "section": "free",
+        "title": "Transformice",
+        "url": "https://store.steampowered.com/app/335240/",
+        "message_id": "1561416763705655380",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-10-18T16:32:47.343812+00:00",
+        "description": "Transformice is an MMO platformer about dozens of mice running to bring back the cheese! Will the almighty Shaman help you or just ruin everything? Millions of levels, hectic physics, skill trees, and more importantly... hats!"
+      },
+      {
+        "item_key": "fbfb1e901978e20d",
+        "section": "free",
+        "title": "STALZONE",
+        "url": "https://store.steampowered.com/app/1818450/",
+        "message_id": "1561416774035972159",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-10-18T16:32:49.200779+00:00",
+        "description": "STALZONE is the PvPvE extraction shooter where you don't have to start over — and the only one with persistent world worth belonging to. You are invited to explore the Chernobyl Exclusion Zone twisted by anomalies and divided between rival factions whose territories shape the danger around you"
+      },
+      {
+        "item_key": "0b4aa1a487c0dde7",
+        "section": "free",
+        "title": "Destiny 2",
+        "url": "https://store.steampowered.com/app/1085660/",
+        "message_id": "1561416785259921570",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-10-18T16:32:51.875198+00:00",
+        "description": "Explore the mysteries of Sol and experience exhilirating first-person shooter combat in Destiny 2. Unlock powerful abilities and collect unique gear across story missions, co-op, and PvP modes."
+      },
+      {
+        "item_key": "347cc4d21236c756",
+        "section": "paid",
+        "title": "Chained Beasts",
+        "url": "https://store.steampowered.com/app/3569420/",
+        "message_id": "1561416799365369987",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-10-18T16:32:55.057161+00:00",
+        "description": "Chained Beasts is a 1-4 player co-op gladiator roguelike. Fight chaotic battles chained to your friends. Use your chains or the arena to beat up foes in creative ways and win over the bloodthirsty crowd. Endure physical and mental injuries to defeat fearsome bosses and survive the day."
+      },
+      {
+        "item_key": "aaabe8bc498dd077",
+        "section": "paid",
+        "title": "Scam With Your Friends",
+        "url": "https://store.steampowered.com/app/4954910/",
+        "message_id": "1561416806491627682",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-10-18T16:32:57.202878+00:00",
+        "description": "Run a scam call center with your friends. Use increasingly ridiculous schemes to trick AI callers out of their life savings. Hit your daily quota, cause chaos around the office, and survive a brutal performance review from your rageaholic boss."
+      },
+      {
+        "item_key": "56d5db5fba840f6b",
+        "section": "paid",
+        "title": "MECCHA CHAMELEON",
+        "url": "https://store.steampowered.com/app/4704690/",
+        "message_id": "1561416815765225513",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-10-18T16:32:58.986852+00:00",
+        "description": "Paint yourself to blend in! \"Meccha Chameleon\" is a new-sensation hide-and-seek game where you paint your white body to mimic the stage. Spot, pose, and \"artistic skill\" are keys to survival. Deceive Seekers with techniques that put chameleons to shame! Supports public matches and streaming."
+      },
+      {
+        "item_key": "09e9845cfe953ed4",
+        "section": "paid",
+        "title": "Brick by Brick: Tidy Up the Small Town!",
+        "url": "https://store.steampowered.com/app/5228920/",
+        "message_id": "1561416822815981601",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-10-18T16:33:00.992852+00:00",
+        "description": "Brick By Brick is a relaxing tidy-up game you can play solo or co-op with up to 5 players. Collect, sort, and place 18,490 bricks to rebuild a charming town. Unlock helpful abilities and watch scattered piles become finished buildings. One brick at a time!"
+      },
+      {
+        "item_key": "46879bf183b508ad",
+        "section": "paid",
+        "title": "LEGO® Harry Potter™ Collection",
+        "url": "https://store.steampowered.com/app/2950340/",
+        "message_id": "1561416831305130105",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-10-18T16:33:02.713959+00:00",
+        "description": "The LEGO® Harry Potter™: Collection brings LEGO® Harry Potter™: Years 1-4 and LEGO® Harry Potter™: Years 5-7 together in one game, now remastered with enhanced graphics."
       }
     ]
   }

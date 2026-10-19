@@ -45,6 +45,55 @@
   },
   "2026-10-19_to_2026-10-25": {
     "date_range": "Oct 19–25, 2026",
-    "users": {}
+    "users": {
+      "150522802292785152": {
+        "username": "leimana",
+        "global_name": "TheMonkeyKing",
+        "days": {
+          "Monday": {
+            "reactions": [
+              "🌙"
+            ],
+            "custom_reply": null
+          },
+          "Tuesday": {
+            "reactions": [
+              "🌙"
+            ],
+            "custom_reply": null
+          },
+          "Wednesday": {
+            "reactions": [
+              "🌙"
+            ],
+            "custom_reply": null
+          },
+          "Thursday": {
+            "reactions": [
+              "🌙"
+            ],
+            "custom_reply": null
+          },
+          "Friday": {
+            "reactions": [
+              "🌙"
+            ],
+            "custom_reply": null
+          },
+          "Saturday": {
+            "reactions": [
+              "🌙"
+            ],
+            "custom_reply": null
+          },
+          "Sunday": {
+            "reactions": [
+              "🌙"
+            ],
+            "custom_reply": null
+          }
+        }
+      }
+    }
   }
 }
