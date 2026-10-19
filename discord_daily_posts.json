@@ -1,145 +1,4 @@
 {
-  "2026-07-03": {
-    "run_state": {
-      "section_headers": {
-        "free": {
-          "message_id": "1522623693249843351",
-          "channel_id": "592534544708796474",
-          "posted_at_utc": "2026-07-03T15:22:57.648731+00:00"
-        },
-        "paid": {
-          "message_id": "1522623748279242954",
-          "channel_id": "592534544708796474",
-          "posted_at_utc": "2026-07-03T15:23:10.873094+00:00"
-        }
-      },
-      "last_attempt_at_utc": "2026-07-03T15:22:55.473085+00:00",
-      "intro": {
-        "message_id": "1522623685066752001",
-        "channel_id": "592534544708796474",
-        "posted_at_utc": "2026-07-03T15:22:56.130044+00:00"
-      },
-      "footer": {
-        "message_id": "1522623793355292783",
-        "channel_id": "592534544708796474",
-        "posted_at_utc": "2026-07-03T15:23:21.608682+00:00"
-      },
-      "completed": true,
-      "completed_at_utc": "2026-07-03T15:23:22.815446+00:00"
-    },
-    "items": [
-      {
-        "item_key": "b5af5604704bda00",
-        "section": "free",
-        "title": "Fate War",
-        "url": "https://store.steampowered.com/app/3581600/",
-        "message_id": "1522623701248507916",
-        "channel_id": "592534544708796474",
-        "source_type": "steam_free",
-        "posted_at": "2026-07-03T15:23:00.184752+00:00",
-        "description": "2025's latest epic strategy simulation game! Lead your Tribe in a vast world with dynamic seasons. Survive using your wit and uncover the secrets of a lost god."
-      },
-      {
-        "item_key": "5af0ed46ebe477e1",
-        "section": "free",
-        "title": "Pixel Starships",
-        "url": "https://store.steampowered.com/app/378760/",
-        "message_id": "1522623710127849605",
-        "channel_id": "592534544708796474",
-        "source_type": "steam_free",
-        "posted_at": "2026-07-03T15:23:03.900253+00:00",
-        "description": "Pixel Starships is an FTL-style online sci-fi strategy builder and management game with a competitive PVP tournament. Set in the retro galaxy, your role is to explore space, meet aliens, and develop your ship, crew and AI. The game contains deep strategic and 4x elements. PSS is community-driven."
-      },
-      {
-        "item_key": "06dcc6804b1a0b34",
-        "section": "free",
-        "title": "Totally Accurate Battlegrounds",
-        "url": "https://store.steampowered.com/app/823130/",
-        "message_id": "1522623725864878181",
-        "channel_id": "592534544708796474",
-        "source_type": "steam_free",
-        "posted_at": "2026-07-03T15:23:05.790862+00:00",
-        "description": "Grab your balloon crossbow and trusty inflatable hammer, because things are about to get wobbly! Be the last weirdo standing in the world-leading physics-based Battle Royale game."
-      },
-      {
-        "item_key": "f3ba277773397747",
-        "section": "free",
-        "title": "Supremacy: Call of War 1942",
-        "url": "https://store.steampowered.com/app/672680/",
-        "message_id": "1522623733859352577",
-        "channel_id": "592534544708796474",
-        "source_type": "steam_free",
-        "posted_at": "2026-07-03T15:23:07.549853+00:00",
-        "description": "Take over the control of one of the mighty nations during the times of World War 2 in this persisting long-term strategy game. Conquer provinces, forge alliances and build up your economy in real-time. Research top secret weapons of World War 2 and become the one true superpower!"
-      },
-      {
-        "item_key": "a9f0a3c453ca5faa",
-        "section": "free",
-        "title": "Supremacy: 1914",
-        "url": "https://store.steampowered.com/app/979920/",
-        "message_id": "1522623741123625031",
-        "channel_id": "592534544708796474",
-        "source_type": "steam_free",
-        "posted_at": "2026-07-03T15:23:09.253842+00:00",
-        "description": "Take over the control of one of the mighty nations during the times of World War 1 in the biggest WW1 strategy game of all time. Conquer provinces, forge alliances and build up your economy in real-time on persistent maps. Build experimental weapons of World War 1 and become the one true superpower!"
-      },
-      {
-        "item_key": "38dc14d4b53a9b8c",
-        "section": "paid",
-        "title": "Watch Dogs®: Legion",
-        "url": "https://store.steampowered.com/app/2239550/",
-        "message_id": "1522623755204169889",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-07-03T15:23:12.705963+00:00",
-        "description": "Build a resistance as you fight to take back a near-future London facing its downfall. Welcome to the Resistance."
-      },
-      {
-        "item_key": "88c4bdf410d9f4c5",
-        "section": "paid",
-        "title": "Teardown",
-        "url": "https://store.steampowered.com/app/1167630/",
-        "message_id": "1522623762393071647",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-07-03T15:23:14.497912+00:00",
-        "description": "Prepare the perfect heist in a fully destructible, simulated voxel world. Tear down walls with vehicles or use explosives to create your own shortcuts. Shape the environment to your advantage in the most creative ways you can imagine. Play solo or with up to 12 players in multiplayer."
-      },
-      {
-        "item_key": "782e51dff04df74a",
-        "section": "paid",
-        "title": "Call to Arms - Gates of Hell: Ostfront",
-        "url": "https://store.steampowered.com/app/400750/",
-        "message_id": "1522623770383089814",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-07-03T15:23:16.232433+00:00",
-        "description": "Call to Arms - Gates of Hell is a realistic RTS/ RTT game that offers endless replay value. Command all types of troops in historical singleplayer, dynamic campaign, PvP and PvE battles. Are you ready for some serious immersion in World War 2?"
-      },
-      {
-        "item_key": "a505d3175d582e5e",
-        "section": "paid",
-        "title": "REMATCH",
-        "url": "https://store.steampowered.com/app/2138720/",
-        "message_id": "1522623777475923981",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-07-03T15:23:18.219018+00:00",
-        "description": "Rematch is an online multiplayer football game. Control one player and compete with your team in fast-paced 5v5 matches from an immersive third-person perspective. Team up with your friends and join the action."
-      },
-      {
-        "item_key": "a55bdf94b5643fc2",
-        "section": "paid",
-        "title": "Tom Clancy's Ghost Recon® Wildlands",
-        "url": "https://store.steampowered.com/app/460930/",
-        "message_id": "1522623785868722417",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-07-03T15:23:19.866761+00:00",
-        "description": "Create a team with up to 3 friends in Tom Clancy’s Ghost Recon® Wildlands and enjoy the ultimate military shooter experience set in a massive, dangerous, and responsive open world."
-      }
-    ]
-  },
   "2026-07-04": {
     "run_state": {
       "section_headers": {
@@ -5501,6 +5360,147 @@
         "source_type": "paid_under_20",
         "posted_at": "2026-10-18T16:33:02.713959+00:00",
         "description": "The LEGO® Harry Potter™: Collection brings LEGO® Harry Potter™: Years 1-4 and LEGO® Harry Potter™: Years 5-7 together in one game, now remastered with enhanced graphics."
+      }
+    ]
+  },
+  "2026-10-19": {
+    "run_state": {
+      "section_headers": {
+        "free": {
+          "message_id": "1561819736134651935",
+          "channel_id": "592534544708796474",
+          "posted_at_utc": "2026-10-19T19:14:02.740496+00:00"
+        },
+        "paid": {
+          "message_id": "1561819791214510142",
+          "channel_id": "592534544708796474",
+          "posted_at_utc": "2026-10-19T19:14:15.875512+00:00"
+        }
+      },
+      "last_attempt_at_utc": "2026-10-19T19:13:57.988401+00:00",
+      "intro": {
+        "message_id": "1561819718892003399",
+        "channel_id": "592534544708796474",
+        "posted_at_utc": "2026-10-19T19:14:00.890455+00:00"
+      },
+      "footer": {
+        "message_id": "1561819840648318998",
+        "channel_id": "592534544708796474",
+        "posted_at_utc": "2026-10-19T19:14:27.434073+00:00"
+      },
+      "completed": true,
+      "completed_at_utc": "2026-10-19T19:14:28.641461+00:00"
+    },
+    "items": [
+      {
+        "item_key": "eddd844cc61dc574",
+        "section": "free",
+        "title": "Galaxy Life",
+        "url": "https://store.steampowered.com/app/1927780/",
+        "message_id": "1561819743437201532",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-10-19T19:14:06.485703+00:00",
+        "description": "The universe is full of Starlings, tiny orange aliens that want to take over the galaxy. Create your own space colony, fight epic battles and discover new planets. Train your soldiers, develop your technology and create unimaginable gadgets. Enjoy this huge social game with friends!"
+      },
+      {
+        "item_key": "e35ee2f5e45d992e",
+        "section": "free",
+        "title": "Blue Protocol: Star Resonance",
+        "url": "https://store.steampowered.com/app/3681810/",
+        "message_id": "1561819759136481382",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-10-19T19:14:08.257209+00:00",
+        "description": "Blue Protocol: Star Resonance expands the Blue Protocol universe with a vibrant MMORPG experience. Create your own hero, team up for strategic raids, or simply relax and have fun with friends fishing, crafting, and endless exploration. Adventure awaits!"
+      },
+      {
+        "item_key": "cf0f2664906f023b",
+        "section": "free",
+        "title": "UNDECEMBER: The Farside",
+        "url": "https://store.steampowered.com/app/1549250/",
+        "message_id": "1561819766891610232",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-10-19T19:14:10.037822+00:00",
+        "description": "UNDECEMBER is a Hack & Slash Action RPG in which players are able to surpass the conventional limits of skills by endlessly combining variety of Skill and Link Runes. Become a Rune Hunter and experience the joy of farming and growth!"
+      },
+      {
+        "item_key": "4e1afa8cfe14d47c",
+        "section": "free",
+        "title": "Pixel Worlds: MMO Sandbox",
+        "url": "https://store.steampowered.com/app/636040/",
+        "message_id": "1561819774684495892",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-10-19T19:14:12.184750+00:00",
+        "description": "Pixel Worlds is a free-to-play sandbox MMO where players build worlds, craft items, explore dungeons, farm resources, and trade in a player-driven economy, all within a shared online universe rebuilt as a fresh start for a fair and stable long-term experience."
+      },
+      {
+        "item_key": "1abc235a956fb47a",
+        "section": "free",
+        "title": "Tower of Fantasy",
+        "url": "https://store.steampowered.com/app/2064650/",
+        "message_id": "1561819783257784401",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-10-19T19:14:14.012367+00:00",
+        "description": "Embark together on your fantasy adventure! Set hundreds of years in the future on the distant planet of Aida, the shared open-world RPG, anime-infused sci-fi adventure Tower of Fantasy now is officially available on Steam."
+      },
+      {
+        "item_key": "3b8a6d6d027fa3f4",
+        "section": "paid",
+        "title": "Far Far West",
+        "url": "https://store.steampowered.com/app/3124540/",
+        "message_id": "1561819798948548749",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-10-19T19:14:17.741428+00:00",
+        "description": "Yee-haw, Cowboys! Team up in this chaotic 1-4 player co-op shooter. Journey to the Far Far West to blast monsters, sling spells, complete missions, and collect bounties. Work as a team to get in, get paid and get out (mostly) alive."
+      },
+      {
+        "item_key": "a16e49cbc785853c",
+        "section": "paid",
+        "title": "Dumb Ways to Build",
+        "url": "https://store.steampowered.com/app/4412320/",
+        "message_id": "1561819806817062972",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-10-19T19:14:19.814883+00:00",
+        "description": "Dumb Ways to Build is a chaotic, physics-based co-op game. Team up with friends to assemble your crew and take-on dangerous construction jobs. With all the gear and no idea, work together to build your path forward, or die trying!"
+      },
+      {
+        "item_key": "749d344db1a47ff9",
+        "section": "paid",
+        "title": "Left 4 Dead 2",
+        "url": "https://store.steampowered.com/app/550/",
+        "message_id": "1561819815318917313",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-10-19T19:14:21.669244+00:00",
+        "description": "Set in the zombie apocalypse, Left 4 Dead 2 is a co-operative action horror FPS takes you and your friends through the cities, swamps and cemeteries of the Deep South, from Savannah to New Orleans across five expansive campaigns."
+      },
+      {
+        "item_key": "9121000d2c1eb5fa",
+        "section": "paid",
+        "title": "Backrooms: Escape Together",
+        "url": "https://store.steampowered.com/app/2141730/",
+        "message_id": "1561819823305138286",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-10-19T19:14:23.537244+00:00",
+        "description": "A visually lifelike co-op horror game for 1-6 people. Journey through 11 procedurally generated levels, using what's available to survive and progress deeper into the Backrooms."
+      },
+      {
+        "item_key": "318e32de877df775",
+        "section": "paid",
+        "title": "Airport Security Sucks!",
+        "url": "https://store.steampowered.com/app/4285690/",
+        "message_id": "1561819831253205095",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-10-19T19:14:25.670796+00:00",
+        "description": "Embody your inner power-tripping TSA agent and hunt down other players attempting to blend in and smuggle contraband past you. Control the crowd and your problematic K9 with authoritative voice commands, and use \"compliance devices\" to apprehend smugglers making mischief or hiding in plain sight."
       }
     ]
   }
