@@ -1,145 +1,4 @@
 {
-  "2026-07-05": {
-    "run_state": {
-      "section_headers": {
-        "free": {
-          "message_id": "1523339440984952832",
-          "channel_id": "592534544708796474",
-          "posted_at_utc": "2026-07-05T14:47:05.483669+00:00"
-        },
-        "paid": {
-          "message_id": "1523339484832338111",
-          "channel_id": "592534544708796474",
-          "posted_at_utc": "2026-07-05T14:47:15.759792+00:00"
-        }
-      },
-      "last_attempt_at_utc": "2026-07-05T14:47:01.485088+00:00",
-      "intro": {
-        "message_id": "1523339427555049533",
-        "channel_id": "592534544708796474",
-        "posted_at_utc": "2026-07-05T14:47:03.622621+00:00"
-      },
-      "footer": {
-        "message_id": "1523339530021765120",
-        "channel_id": "592534544708796474",
-        "posted_at_utc": "2026-07-05T14:47:26.633857+00:00"
-      },
-      "completed": true,
-      "completed_at_utc": "2026-07-05T14:47:27.840797+00:00"
-    },
-    "items": [
-      {
-        "item_key": "70ece899d34064dd",
-        "section": "free",
-        "title": "Mighty Party",
-        "url": "https://store.steampowered.com/app/575720/",
-        "message_id": "1523339448551604294",
-        "channel_id": "592534544708796474",
-        "source_type": "steam_free",
-        "posted_at": "2026-07-05T14:47:07.407455+00:00",
-        "description": "Lead your MIGHTY PARTY to victory! Fast 3-MINUTE BATTLES will not let you get bored! Dozens of heroes reveal THOUSANDS of unique tactics to defeat all the opponents! Play Imperial Archer, protect him with Wind Ninja, strengthen them with Magic of Divinity and destroy opponent’s forces!"
-      },
-      {
-        "item_key": "27aa756894abc3cb",
-        "section": "free",
-        "title": "Military Tanks",
-        "url": "https://store.steampowered.com/app/2342030/",
-        "message_id": "1523339456458002585",
-        "channel_id": "592534544708796474",
-        "source_type": "steam_free",
-        "posted_at": "2026-07-05T14:47:08.994034+00:00",
-        "description": "Do you like tanks game? Are you ready to feel the full power of a tank games?"
-      },
-      {
-        "item_key": "cc37ba1d6fa83e79",
-        "section": "free",
-        "title": "Entropia Universe",
-        "url": "https://store.steampowered.com/app/3642750/",
-        "message_id": "1523339463273480334",
-        "channel_id": "592534544708796474",
-        "source_type": "steam_free",
-        "posted_at": "2026-07-05T14:47:10.654206+00:00",
-        "description": "Entropia Universe is a unique massively multiplayer online game (MMO) where virtual assets hold real-world value and players can participate in a thriving virtual sandbox economy."
-      },
-      {
-        "item_key": "54f4f3b502e550a1",
-        "section": "free",
-        "title": "Mobile Dungeon",
-        "url": "https://store.steampowered.com/app/707710/",
-        "message_id": "1523339470118719538",
-        "channel_id": "592534544708796474",
-        "source_type": "steam_free",
-        "posted_at": "2026-07-05T14:47:12.571244+00:00",
-        "description": "From the universe of Shakes & Fidget, the NEW Team Battle RPG dungeon crawler!"
-      },
-      {
-        "item_key": "c35ea6a9dae18954",
-        "section": "free",
-        "title": "GraalOnline Era",
-        "url": "https://store.steampowered.com/app/2358050/",
-        "message_id": "1523339478134030364",
-        "channel_id": "592534544708796474",
-        "source_type": "steam_free",
-        "posted_at": "2026-07-05T14:47:14.151158+00:00",
-        "description": "Era is a modern 2D action MMO RPG. Purchase weapons and work with a gang to compete in activities such as special events, base capturing and PvP battles in the Spar Complex, or start your own gang and chart your own path!"
-      },
-      {
-        "item_key": "aa488a4eb76c8256",
-        "section": "paid",
-        "title": "Car Service Together",
-        "url": "https://store.steampowered.com/app/3501070/",
-        "message_id": "1523339491199291404",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-07-05T14:47:17.510149+00:00",
-        "description": "Car Service Together is a 1-4 co-op & single player simulation game where you and/or with your friends start from scratch and build your way up. Work together to successfully run your own service center. Team up, manage your business, and create the ultimate car service !"
-      },
-      {
-        "item_key": "adc1b004ccb149ce",
-        "section": "paid",
-        "title": "The Crew Motorfest",
-        "url": "https://store.steampowered.com/app/2698940/",
-        "message_id": "1523339498858086410",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-07-05T14:47:19.096851+00:00",
-        "description": "Welcome to Motorfest, the ultimate open-world driving experience. Explore the Hawaiian islands of O'ahu and Maui. Celebrate the best of car culture through 20+ themed campaigns (street racing, offroad, drift...) and collect hundreds of iconic vehicles. Enjoy the game free for five hours!"
-      },
-      {
-        "item_key": "cf3bb94e4f46c1c1",
-        "section": "paid",
-        "title": "Scrap Mechanic",
-        "url": "https://store.steampowered.com/app/387990/",
-        "message_id": "1523339505577230346",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-07-05T14:47:20.728818+00:00",
-        "description": "Enter the creative paradise of Scrap Mechanic! Build fantastic machines, go on adventures with your friends and defend against waves of evil Farmbots in this imaginative multiplayer survival sandbox. With Scrap Mechanic’s powerful creation tools you can engineer your own adventures!"
-      },
-      {
-        "item_key": "81864721f2aaa492",
-        "section": "paid",
-        "title": "The House Always Wins",
-        "url": "https://store.steampowered.com/app/3412160/",
-        "message_id": "1523339512716066936",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-07-05T14:47:22.936499+00:00",
-        "description": "Build a top-tier business solo or in co-op (1–4 players). Start from scratch, keep the slot machines spinning and deal with chaotic events like vandals and alien invasions. Grow your fortune and show everyone why the house always wins."
-      },
-      {
-        "item_key": "a27abaed30b43475",
-        "section": "paid",
-        "title": "Dead Space™ 3",
-        "url": "https://store.steampowered.com/app/1238060/",
-        "message_id": "1523339521616248844",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-07-05T14:47:24.803433+00:00",
-        "description": "Journey across space to the icy planet of Tau Volantis with Isaac Clarke and Sgt. John Carver to discover and destroy the source of the Necromorph outbreak."
-      }
-    ]
-  },
   "2026-07-06": {
     "run_state": {
       "section_headers": {
@@ -5409,6 +5268,147 @@
         "source_type": "paid_under_20",
         "posted_at": "2026-10-20T17:59:07.153762+00:00",
         "description": "One hunter & up to 9 friends disguised as deer. A game of hide-and-seek where every move could be your last. Will you blend in with the herd or stand out? Oh Deer..."
+      }
+    ]
+  },
+  "2026-10-21": {
+    "run_state": {
+      "section_headers": {
+        "free": {
+          "message_id": "1562527644912979980",
+          "channel_id": "592534544708796474",
+          "posted_at_utc": "2026-10-21T18:07:01.168037+00:00"
+        },
+        "paid": {
+          "message_id": "1562527695022071952",
+          "channel_id": "592534544708796474",
+          "posted_at_utc": "2026-10-21T18:07:13.407802+00:00"
+        }
+      },
+      "last_attempt_at_utc": "2026-10-21T18:06:57.083366+00:00",
+      "intro": {
+        "message_id": "1562527629712687165",
+        "channel_id": "592534544708796474",
+        "posted_at_utc": "2026-10-21T18:06:59.533827+00:00"
+      },
+      "footer": {
+        "message_id": "1562527746280788119",
+        "channel_id": "592534544708796474",
+        "posted_at_utc": "2026-10-21T18:07:25.455240+00:00"
+      },
+      "completed": true,
+      "completed_at_utc": "2026-10-21T18:07:26.660679+00:00"
+    },
+    "items": [
+      {
+        "item_key": "e166c700b5b8e572",
+        "section": "free",
+        "title": "Rakion Chaos Force",
+        "url": "https://store.steampowered.com/app/1218740/",
+        "message_id": "1562527652101759058",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-10-21T18:07:03.445826+00:00",
+        "description": "Enter the arena in Rakion, an online free-to-play action RPG built for fast-paced, skill-based combat. Customize powerful warriors, unleash summoned creatures, and dominate dynamic PvP battles solo or with your team."
+      },
+      {
+        "item_key": "b8ce4902847aeb2e",
+        "section": "free",
+        "title": "Atlantica Global",
+        "url": "https://store.steampowered.com/app/1232420/",
+        "message_id": "1562527661266309130",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-10-21T18:07:05.295557+00:00",
+        "description": "Atlantica Global is a free-to-play (F2P) massive multiplayer online role-playing game (MMORPG), with a tactical combat system. Venture out in to the world of Atlantis where you'll find otherworldly monsters, amazing gear, and even more battle-hardened adventurers like yourself."
+      },
+      {
+        "item_key": "1d2058c8559f7ea3",
+        "section": "free",
+        "title": "王于兴师/Order of Kings",
+        "url": "https://store.steampowered.com/app/4192650/",
+        "message_id": "1562527669004935342",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-10-21T18:07:07.209473+00:00",
+        "description": "Jump into a true real-time strategy, and fully 3D battles! Order of Kings is an MMO game mixing RTS and SLG. You can control massive troops, plan combining 3D terrain and physical collision effects, join in alliances with friends, compete with other server players, and build your own legend!"
+      },
+      {
+        "item_key": "70ece899d34064dd",
+        "section": "free",
+        "title": "Mighty Party",
+        "url": "https://store.steampowered.com/app/575720/",
+        "message_id": "1562527677405991034",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-10-21T18:07:09.529847+00:00",
+        "description": "Lead your MIGHTY PARTY to victory! Fast 3-MINUTE BATTLES will not let you get bored! Dozens of heroes reveal THOUSANDS of unique tactics to defeat all the opponents! Play Imperial Archer, protect him with Wind Ninja, strengthen them with Magic of Divinity and destroy opponent’s forces!"
+      },
+      {
+        "item_key": "b2904d4e4dd76fa2",
+        "section": "free",
+        "title": "Zula Global",
+        "url": "https://store.steampowered.com/app/747610/",
+        "message_id": "1562527686327537666",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-10-21T18:07:11.436995+00:00",
+        "description": "Zula is an intense free-to-play FPS in which you can play cooperatively with your teammates to overthrow the enemy side. You can enjoy new content weekly and receive gifts every day. Variety of maps and weapons from the real world so you can immerse yourself 100%."
+      },
+      {
+        "item_key": "58dde40746164ada",
+        "section": "paid",
+        "title": "Dark Hours",
+        "url": "https://store.steampowered.com/app/2208570/",
+        "message_id": "1562527702811148401",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-10-21T18:07:15.369206+00:00",
+        "description": "Dark Hours is a co-op survival horror game for 1-4 players. Your heist has been disrupted by a supernatural event, and your team of robbers is now trapped with an evil entity. Forget your plan, your mission is to survive. Explore and cooperate to find a way out."
+      },
+      {
+        "item_key": "d8024a45e66a4e5f",
+        "section": "paid",
+        "title": "OpenFront",
+        "url": "https://store.steampowered.com/app/3560670/",
+        "message_id": "1562527711421796472",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-10-21T18:07:17.182600+00:00",
+        "description": "A massively multiplayer real-time strategy game pitting hundreds of players against one another. Over one million nuke each other every month."
+      },
+      {
+        "item_key": "d307868883e1679b",
+        "section": "paid",
+        "title": "Demonologist",
+        "url": "https://store.steampowered.com/app/1929610/",
+        "message_id": "1562527718963417178",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-10-21T18:07:19.365840+00:00",
+        "description": "Demonologist is a Co-Op horror game that can be played with at least 1 and up to 4 players. Your goal is to identify the type of evil spirit in cursed places and exorcise it using your equipment, either alone or with your team."
+      },
+      {
+        "item_key": "1e56a58615ed3d6c",
+        "section": "paid",
+        "title": "Witchspire",
+        "url": "https://store.steampowered.com/app/2679100/",
+        "message_id": "1562527728094417048",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-10-21T18:07:21.354571+00:00",
+        "description": "An open-world witch survival adventure for 1-6 players. Master magic on your journey through the world, gather resources to build your base, battle creatures and bond with familiars as you face a spreading corruption of magic."
+      },
+      {
+        "item_key": "7f31d9b79ee5acc6",
+        "section": "paid",
+        "title": "Golf With Your Friends",
+        "url": "https://store.steampowered.com/app/431240/",
+        "message_id": "1562527736692736020",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-10-21T18:07:23.441749+00:00",
+        "description": "Why have friends if not to play Golf... With Your Friends! Nothing is out of bounds as you take on courses filled with fast paced, exciting, simultaneous mini golf for up to 12 players!"
       }
     ]
   }
