@@ -1,232 +1,4 @@
 {
-  "2026-07-07": {
-    "run_state": {
-      "section_headers": {
-        "free": {
-          "message_id": "1524082855469121718",
-          "channel_id": "592534544708796474",
-          "posted_at_utc": "2026-07-07T16:01:09.422113+00:00"
-        },
-        "paid": {
-          "message_id": "1524082907105329295",
-          "channel_id": "592534544708796474",
-          "posted_at_utc": "2026-07-07T16:01:21.470639+00:00"
-        },
-        "instagram": {
-          "message_id": "1524082955838816288",
-          "channel_id": "592534544708796474",
-          "posted_at_utc": "2026-07-07T16:01:33.083751+00:00"
-        }
-      },
-      "last_attempt_at_utc": "2026-07-07T16:01:06.926661+00:00",
-      "intro": {
-        "message_id": "1524082848028426290",
-        "channel_id": "592534544708796474",
-        "posted_at_utc": "2026-07-07T16:01:07.393789+00:00"
-      },
-      "footer": {
-        "message_id": "1524083018975805612",
-        "channel_id": "592534544708796474",
-        "posted_at_utc": "2026-07-07T16:01:48.358097+00:00"
-      },
-      "completed": true,
-      "completed_at_utc": "2026-07-07T16:01:49.565315+00:00"
-    },
-    "items": [
-      {
-        "item_key": "b94f5ee75e0cfc6b",
-        "section": "free",
-        "title": "Delta Force",
-        "url": "https://store.steampowered.com/app/2507950/",
-        "message_id": "1524082863220326491",
-        "channel_id": "592534544708796474",
-        "source_type": "steam_free",
-        "posted_at": "2026-07-07T16:01:11.301510+00:00",
-        "description": "Play for free in operator-based extraction and full-scale combined arms warfare. Become elite Operators, customize an ever-expanding arsenal of weapons, and deploy into thrill-packed missions across multiple modes."
-      },
-      {
-        "item_key": "01428812cfa237ab",
-        "section": "free",
-        "title": "Farlight 84",
-        "url": "https://store.steampowered.com/app/1928420/",
-        "message_id": "1524082871118336153",
-        "channel_id": "592534544708796474",
-        "source_type": "steam_free",
-        "posted_at": "2026-07-07T16:01:13.077270+00:00",
-        "description": "Hey Lightcatchers! Are you ready for massive 60-player shootouts? Enjoy fast-paced hero shooter action in Farlight 84!"
-      },
-      {
-        "item_key": "a87ab608d8f55464",
-        "section": "free",
-        "title": "World of Sea Battle",
-        "url": "https://store.steampowered.com/app/2948190/",
-        "message_id": "1524082879351754956",
-        "channel_id": "592534544708796474",
-        "source_type": "steam_free",
-        "posted_at": "2026-07-07T16:01:15.822876+00:00",
-        "description": "Set sail in World of Sea Battle, an action-packed open-world MMO in the Golden Age of Sail! Command historic ships, battle in PvP & PvE, shape the economy, and engage in territorial guild wars in your quest for glory across the high seas!"
-      },
-      {
-        "item_key": "1108b3b6c3b3f596",
-        "section": "free",
-        "title": "Arena Breakout: Infinite",
-        "url": "https://store.steampowered.com/app/2073620/",
-        "message_id": "1524082890583834828",
-        "channel_id": "592534544708796474",
-        "source_type": "steam_free",
-        "posted_at": "2026-07-07T16:01:17.997797+00:00",
-        "description": "Arena Breakout: Infinite is a high-stakes tactical extraction shooter where every decision matters. Fight, loot, and extract—or lose it all. With stunningly realistic visuals, lifelike sound, and unforgiving PvPvE combat, every raid is a gamble between glory and ruin."
-      },
-      {
-        "item_key": "916b73b07eb4cf03",
-        "section": "free",
-        "title": "PlanetSide 2",
-        "url": "https://store.steampowered.com/app/218230/",
-        "message_id": "1524082899232489545",
-        "channel_id": "592534544708796474",
-        "source_type": "steam_free",
-        "posted_at": "2026-07-07T16:01:19.851735+00:00",
-        "description": "PlanetSide 2 is an all-out planetary war, where thousands of players battle as one across enormous continents. Utilize infantry, ground and air vehicles, and teamwork to destroy your enemies in this revolutionary first-person shooter on a massive scale."
-      },
-      {
-        "item_key": "3b8a6d6d027fa3f4",
-        "section": "paid",
-        "title": "Far Far West",
-        "url": "https://store.steampowered.com/app/3124540/",
-        "message_id": "1524082914231582901",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-07-07T16:01:23.278797+00:00",
-        "description": "Yee-haw, Cowboys! Team up in this chaotic 1-4 player co-op shooter. Journey to the Far Far West to blast monsters, sling spells, complete missions, and collect bounties. Work as a team to get in, get paid and get out (mostly) alive."
-      },
-      {
-        "item_key": "c56800ecc6a623fe",
-        "section": "paid",
-        "title": "Escape the Backrooms",
-        "url": "https://store.steampowered.com/app/1943950/",
-        "message_id": "1524082921898643537",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-07-07T16:01:25.472274+00:00",
-        "description": "Escape the Backrooms is a 1-4 player co-op horror exploration game. Traverse 30+ eerie backrooms levels while avoiding entities and other dangers. Try to escape but be warned: survival isn't guaranteed."
-      },
-      {
-        "item_key": "3810dfeb3d965196",
-        "section": "paid",
-        "title": "R.E.P.O.",
-        "url": "https://store.steampowered.com/app/3241660/",
-        "message_id": "1524082931319046274",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-07-07T16:01:27.664645+00:00",
-        "description": "An online co-op horror game with up to 6 players. Locate valuable, fully physics-based objects and handle them with care as you retrieve and extract to satisfy your creator's desires."
-      },
-      {
-        "item_key": "08c4ca79bac06635",
-        "section": "paid",
-        "title": "Black Desert",
-        "url": "https://store.steampowered.com/app/582660/",
-        "message_id": "1524082939665842247",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-07-07T16:01:29.444511+00:00",
-        "description": "Played by over 20 million Adventurers - Black Desert Online is an open-world, action MMORPG. Experience intense, action-packed combat, battle massive world bosses, fight alongside friends to siege and conquer castles, and train in professions such as fishing, trading, crafting, cooking, and more!"
-      },
-      {
-        "item_key": "a6e1c846804faed8",
-        "section": "paid",
-        "title": "Barony",
-        "url": "https://store.steampowered.com/app/371970/",
-        "message_id": "1524082947638952078",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-07-07T16:01:31.429628+00:00",
-        "description": "Barony is the premier first-person roguelike with cooperative play! Adventure alone, or gather a party with iconic and unusual RPG classes to face off against the brutal dungeons. Test your resourcefulness, wits, and friendships, on your quest to lift the evil lich's curse!"
-      },
-      {
-        "item_key": "5bd53c535111d4e9",
-        "section": "instagram",
-        "title": "@sharedxp_official",
-        "url": "https://www.instagram.com/p/Dadoqk8sRrm/",
-        "message_id": "1524082962751160430",
-        "channel_id": "592534544708796474",
-        "source_type": "instagram",
-        "posted_at": "2026-07-07T16:01:34.869542+00:00",
-        "description": "Botfestation (AD)   is a 1–4 player couch co-op tower defence game where you plan your towers before each run, pilot ..."
-      },
-      {
-        "item_key": "9b56629910e8c464",
-        "section": "instagram",
-        "title": "@mildsoss_official",
-        "url": "https://www.instagram.com/p/DaRZBU7NIGq/",
-        "message_id": "1524082970774736917",
-        "channel_id": "592534544708796474",
-        "source_type": "instagram",
-        "posted_at": "2026-07-07T16:01:37.322522+00:00",
-        "description": "Every battle influences the galactic war  🎮 ZeroSpace 🗓️ July 20, 2026 🖥️ PC (Steam)  #gaming #starcraft #newgame #ze..."
-      },
-      {
-        "item_key": "7b3d4aa5636d12db",
-        "section": "instagram",
-        "title": "@mildsoss_official",
-        "url": "https://www.instagram.com/p/DaJK0Wlo8Er/",
-        "message_id": "1524082980534882384",
-        "channel_id": "592534544708796474",
-        "source_type": "instagram",
-        "posted_at": "2026-07-07T16:01:39.114516+00:00",
-        "description": "This indie studio is making a co-op soulslike about hunting witches for the King  🎮 Crimson Capes 🗓️ Available Now 👥 ..."
-      },
-      {
-        "item_key": "085a1665f6ed2f63",
-        "section": "instagram",
-        "title": "@wilfratgaming",
-        "url": "https://www.instagram.com/p/DaVIVeQJ5dT/",
-        "message_id": "1524082988282024087",
-        "channel_id": "592534544708796474",
-        "source_type": "instagram",
-        "posted_at": "2026-07-07T16:01:40.984336+00:00",
-        "description": "Build your own life in a neon cyberpunk city where you can grow a tiny food stall into a nightlife empire, make frien..."
-      },
-      {
-        "item_key": "6634a9ee56412c73",
-        "section": "instagram",
-        "title": "@wilfratgaming",
-        "url": "https://www.instagram.com/p/DaTIATtNraW/",
-        "message_id": "1524082995773051092",
-        "channel_id": "592534544708796474",
-        "source_type": "instagram",
-        "posted_at": "2026-07-07T16:01:42.776998+00:00",
-        "description": "You can play the new demo for FLASK on steam now in my bio! @chopchopgames  #Flask #FLASKdemo #earlyaccess"
-      },
-      {
-        "item_key": "d838eff5f51ee0f4",
-        "section": "instagram",
-        "title": "@biffmatictv",
-        "url": "https://www.instagram.com/p/DafCH7stE24/",
-        "message_id": "1524083003096039605",
-        "channel_id": "592534544708796474",
-        "source_type": "instagram",
-        "posted_at": "2026-07-07T16:01:44.535904+00:00",
-        "description": "There needs to be more games like this one.. ANEURISM IV   #gaming #sandbox #roleplaygame #roleplay #immersivesim"
-      },
-      {
-        "item_key": "1a218c38f19fc36e",
-        "section": "instagram",
-        "title": "@biffmatictv",
-        "url": "https://www.instagram.com/p/DaN6v2-tQGq/",
-        "message_id": "1524083010541191291",
-        "channel_id": "592534544708796474",
-        "source_type": "instagram",
-        "posted_at": "2026-07-07T16:01:46.209772+00:00",
-        "description": "#ad RuneScape Dragonwilds just had its biggest update yet! @rsdragonwilds  #gaming #survivalgame #runescapedragonwild..."
-      }
-    ],
-    "winners_state": {
-      "status": "skipped",
-      "skipped_reason": "no_eligible_winners",
-      "updated_at_utc": "2026-07-07T23:55:55.996793+00:00"
-    }
-  },
   "2026-07-08": {
     "run_state": {
       "section_headers": {
@@ -5332,6 +5104,163 @@
         "source_type": "paid_under_20",
         "posted_at": "2026-10-22T18:05:46.500271+00:00",
         "description": "Ember Knights is an action rogue-lite for 1-4 players where you play as legendary knights, the last spark of hope against the mad sorcerer Praxis and his hordes of unwavering fiends. Wield weapons & skills, build synergies with game-changing relics and free the universe of Praxis’ corruption."
+      }
+    ]
+  },
+  "2026-10-23": {
+    "run_state": {
+      "section_headers": {
+        "demo_playtest": {
+          "message_id": "1563249508148715595",
+          "channel_id": "592534544708796474",
+          "posted_at_utc": "2026-10-23T17:55:26.949572+00:00"
+        },
+        "free": {
+          "message_id": "1563249523483082844",
+          "channel_id": "592534544708796474",
+          "posted_at_utc": "2026-10-23T17:55:30.447260+00:00"
+        },
+        "paid": {
+          "message_id": "1563249573189648425",
+          "channel_id": "592534544708796474",
+          "posted_at_utc": "2026-10-23T17:55:42.251364+00:00"
+        }
+      },
+      "last_attempt_at_utc": "2026-10-23T17:55:23.697471+00:00",
+      "intro": {
+        "message_id": "1563249496534679566",
+        "channel_id": "592534544708796474",
+        "posted_at_utc": "2026-10-23T17:55:25.168509+00:00"
+      },
+      "footer": {
+        "message_id": "1563249621587726337",
+        "channel_id": "592534544708796474",
+        "posted_at_utc": "2026-10-23T17:55:53.749358+00:00"
+      },
+      "completed": true,
+      "completed_at_utc": "2026-10-23T17:55:54.956409+00:00"
+    },
+    "items": [
+      {
+        "item_key": "a51c9d84fc05b6a1",
+        "section": "demo_playtest",
+        "title": "Chained Beasts",
+        "url": "https://store.steampowered.com/app/3569420/",
+        "message_id": "1563249515652186212",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_demo_playtest",
+        "posted_at": "2026-10-23T17:55:28.820229+00:00",
+        "description": "Chained Beasts is a 1-4 player co-op gladiator roguelike. Fight chaotic battles chained to your friends. Use your chains or the arena to beat up foes in creative ways and win over the bloodthirsty crowd. Endure physical and mental injuries to defeat fearsome bosses and survive the day."
+      },
+      {
+        "item_key": "0af93b9f64b6af4c",
+        "section": "free",
+        "title": "Blood Strike",
+        "url": "https://store.steampowered.com/app/3199170/",
+        "message_id": "1563249530495828138",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-10-23T17:55:32.297202+00:00",
+        "description": "Gather your friends and dive into the action-packed Battle Royale, Squad Fight, or Hot Zone like there's no tomorrow! Blood Strike offers a wide range of playable Strikers, each with a unique active and passive ability letting you deploy drones, shield walls and everything in between."
+      },
+      {
+        "item_key": "3acb607b2bf31801",
+        "section": "free",
+        "title": "Once Human",
+        "url": "https://store.steampowered.com/app/2139460/",
+        "message_id": "1563249539253534830",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-10-23T17:55:34.577549+00:00",
+        "description": "Once Human is a Strange Worlds Survival Game set in a strange, post-apocalyptic future. Unite with friends to fight monstrous enemies, uncover secret plots, compete for resources, and build your own territory. Once, you were merely human. Now, you have the power to remake the world."
+      },
+      {
+        "item_key": "9a7b54283952e9ea",
+        "section": "free",
+        "title": "Enlisted",
+        "url": "https://store.steampowered.com/app/2051620/",
+        "message_id": "1563249547596140714",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-10-23T17:55:36.394041+00:00",
+        "description": "In Enlisted, you are not only commanding a single soldier, but an entire squad! This MMO squad based shooter recreates the key battles of the bloodiest war of the 20th century, with hundreds of soldiers, tanks and aircraft taking part in each battle."
+      },
+      {
+        "item_key": "04a8e7a2f9ef80a2",
+        "section": "free",
+        "title": "The Lord of the Rings Online™",
+        "url": "https://store.steampowered.com/app/212500/",
+        "message_id": "1563249555406061628",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-10-23T17:55:38.550871+00:00",
+        "description": "Join the world’s greatest fellowship of players in the award-winning online re-creation of J. R. R. Tolkien’s legendary Middle-earth."
+      },
+      {
+        "item_key": "cdabe708629b6e2f",
+        "section": "free",
+        "title": "Sky: Children of the Light",
+        "url": "https://store.steampowered.com/app/2325290/",
+        "message_id": "1563249564314509504",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-10-23T17:55:40.629090+00:00",
+        "description": "A breathtaking open-world adventure awaits! Explore magical realms, restore lost light, and form wordless bonds with players worldwide. Complete quests and solve puzzles in seasonal events that celebrate kindness, discovery, and heartfelt connection."
+      },
+      {
+        "item_key": "2c25d103f74ec41d",
+        "section": "paid",
+        "title": "GONE Fishing",
+        "url": "https://store.steampowered.com/app/3645890/",
+        "message_id": "1563249579963711559",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-10-23T17:55:44.209769+00:00",
+        "description": "GONE Fishing is a 1-8 player survival horror game where you and your friends must work together to stay alive, by fishing. The only way to survive is to keep feeding the lake’s insatiable hunger before it feeds on you. Can you satisfy the hunger... or will you become the next offering?"
+      },
+      {
+        "item_key": "a1f3607f408fcd54",
+        "section": "paid",
+        "title": "Deep Dish Dungeon",
+        "url": "https://store.steampowered.com/app/2871520/",
+        "message_id": "1563249588050075858",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-10-23T17:55:46.172421+00:00",
+        "description": "A survival exploration game where you navigate through a puzzly hand-crafted dungeon, with metroidvania and crafting elements. Unravel the enigmas of the dungeon’s depths solo or online co-op multiplayer."
+      },
+      {
+        "item_key": "1fd56795a17d7ba8",
+        "section": "paid",
+        "title": "Shift At Midnight",
+        "url": "https://store.steampowered.com/app/3722330/",
+        "message_id": "1563249596266713148",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-10-23T17:55:47.927776+00:00",
+        "description": "An online co-op detective horror for up to 3 players. Work together across randomly generated shifts to investigate your customers, as some are only pretending to be human. Make one mistake, and you’ll be forced to board up, set traps, and hide."
+      },
+      {
+        "item_key": "23566794276c4c59",
+        "section": "paid",
+        "title": "Schedule I",
+        "url": "https://store.steampowered.com/app/3164500/",
+        "message_id": "1563249603845951659",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-10-23T17:55:49.838105+00:00",
+        "description": "From small-time dope pusher to kingpin - manufacture and distribute a range of drugs throughout the grungy city of Hyland Point. Expand your empire with properties, businesses, employees and more."
+      },
+      {
+        "item_key": "bc322dd39f0a4a41",
+        "section": "paid",
+        "title": "DRAGON BALL XENOVERSE 2",
+        "url": "https://store.steampowered.com/app/454650/",
+        "message_id": "1563249611882102894",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-10-23T17:55:51.966569+00:00",
+        "description": "DRAGON BALL XENOVERSE 2 builds upon the highly popular DRAGON BALL XENOVERSE with enhanced graphics that will further immerse players into the largest and most detailed Dragon Ball world ever developed."
       }
     ]
   }
