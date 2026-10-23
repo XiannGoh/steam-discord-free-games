@@ -1,238 +1,4 @@
 {
-  "2026-07-06": {
-    "run_state": {
-      "section_headers": {
-        "free": {
-          "message_id": "1523728688770846910",
-          "channel_id": "592534544708796474",
-          "posted_at_utc": "2026-07-06T16:33:49.262272+00:00"
-        },
-        "paid": {
-          "message_id": "1523728732202991648",
-          "channel_id": "592534544708796474",
-          "posted_at_utc": "2026-07-06T16:33:59.605644+00:00"
-        },
-        "instagram": {
-          "message_id": "1523728782505148586",
-          "channel_id": "592534544708796474",
-          "posted_at_utc": "2026-07-06T16:34:11.554663+00:00"
-        }
-      },
-      "last_attempt_at_utc": "2026-07-06T16:33:43.673554+00:00",
-      "intro": {
-        "message_id": "1523728667702853723",
-        "channel_id": "592534544708796474",
-        "posted_at_utc": "2026-07-06T16:33:47.589923+00:00"
-      },
-      "footer": {
-        "message_id": "1523728851467767818",
-        "channel_id": "592534544708796474",
-        "posted_at_utc": "2026-07-06T16:34:28.105888+00:00"
-      },
-      "completed": true,
-      "completed_at_utc": "2026-07-06T16:34:29.313097+00:00"
-    },
-    "items": [
-      {
-        "item_key": "19dfe233c1f0b1b6",
-        "section": "free",
-        "title": "Darza's Dominion",
-        "url": "https://store.steampowered.com/app/1895130/",
-        "message_id": "1523728695838245116",
-        "channel_id": "592534544708796474",
-        "source_type": "steam_free",
-        "posted_at": "2026-07-06T16:33:50.989920+00:00",
-        "description": "The Dominion takes no prisoners! Fight for your survival in the unforgiving terrains that surround you, strengthen your hero through slaying dangerous creatures, gather a group of allies and bring the battle to Darza in this fast-paced roguelike cooperative bullet-hell MMO!"
-      },
-      {
-        "item_key": "93b96eb78c131711",
-        "section": "free",
-        "title": "Iron Order 1919",
-        "url": "https://store.steampowered.com/app/1997780/",
-        "message_id": "1523728702834348143",
-        "channel_id": "592534544708796474",
-        "source_type": "steam_free",
-        "posted_at": "2026-07-06T16:33:52.847444+00:00",
-        "description": "An unique long-term strategy game with week-long matches with up to 101 players, set in the alternate reality of 1919."
-      },
-      {
-        "item_key": "a330450601d8a302",
-        "section": "free",
-        "title": "CS Diamantes Pipas PC : Jogo de pipa",
-        "url": "https://store.steampowered.com/app/1851200/",
-        "message_id": "1523728710962774056",
-        "channel_id": "592534544708796474",
-        "source_type": "steam_free",
-        "posted_at": "2026-07-06T16:33:54.622250+00:00",
-        "description": "This game will have to control a KITE and CUT other KITE LINES"
-      },
-      {
-        "item_key": "56c07b7c68ecde19",
-        "section": "free",
-        "title": "H.I.A: Horror Investigation Agency",
-        "url": "https://store.steampowered.com/app/2363590/",
-        "message_id": "1523728718252736784",
-        "channel_id": "592534544708796474",
-        "source_type": "steam_free",
-        "posted_at": "2026-07-06T16:33:56.289378+00:00",
-        "description": "H.I.A: Horror Investigation Agency is a fun multiplayer horror game in which you and co-players have to investigate exciting horror cases. Among finding victims and evidence of the horror event that has taken place, you will be faced with jumpscares and scary monsters along your investigation."
-      },
-      {
-        "item_key": "f068cbcc6224605c",
-        "section": "free",
-        "title": "Godzilla x Kong: Titan Chasers",
-        "url": "https://store.steampowered.com/app/3670140/",
-        "message_id": "1523728725278064731",
-        "channel_id": "592534544708796474",
-        "source_type": "steam_free",
-        "posted_at": "2026-07-06T16:33:57.957798+00:00",
-        "description": "Hunt, capture, and command the monsters of the Monsterverse. Build your base, recruit elite Titan Chasers, and lead squads into tactical turn-based battles. Expand your territory in a shared online world, forge alliances, and face colossal threats like Godzilla, Kong, and Skullcrawlers."
-      },
-      {
-        "item_key": "bfdeed31d3e6572f",
-        "section": "paid",
-        "title": "The Jackbox Party Pack 9",
-        "url": "https://store.steampowered.com/app/1850960/",
-        "message_id": "1523728739484172450",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-07-06T16:34:02.128093+00:00",
-        "description": "Save your next party! 5 new games in 1 Party Pack: the trivia bluff-off Fibbage 4, the team test Quixort, the joke auction Junktopia, the silly guessfest Nonsensory and the reality TV game Roomerang."
-      },
-      {
-        "item_key": "6871916b20bf7f79",
-        "section": "paid",
-        "title": "Call of the Wild: The Angler™",
-        "url": "https://store.steampowered.com/app/1408610/",
-        "message_id": "1523728749508562985",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-07-06T16:34:04.158169+00:00",
-        "description": "The Angler is an open world fishing game that can be played solo or with friends. Discover and catch a wide variety of unique fish species, from common to rare, on your journey to become a master angler."
-      },
-      {
-        "item_key": "bf43a024f75b7251",
-        "section": "paid",
-        "title": "Out of Ore",
-        "url": "https://store.steampowered.com/app/2009350/",
-        "message_id": "1523728758337441833",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-07-06T16:34:06.035226+00:00",
-        "description": "Build your own mining company from the ground up. Extract resources, operate heavy machinery, construct infrastructure, and grow from a laborer to the King of Klondike."
-      },
-      {
-        "item_key": "7e48bf7d40ceab6d",
-        "section": "paid",
-        "title": "9 Kings",
-        "url": "https://store.steampowered.com/app/2784470/",
-        "message_id": "1523728766214344775",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-07-06T16:34:07.783591+00:00",
-        "description": "A fast-paced roguelike kingdom builder. Grow your empire and fight massive battles against powerful rival kings. Break the game with thousands of insane builds to become the King of Kings."
-      },
-      {
-        "item_key": "04fe4e3bbb2f3bd8",
-        "section": "paid",
-        "title": "Untitled Goose Game",
-        "url": "https://store.steampowered.com/app/837470/",
-        "message_id": "1523728773722280006",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-07-06T16:34:09.904149+00:00",
-        "description": "It's a lovely morning in the village and you are a horrible goose."
-      },
-      {
-        "item_key": "e03dc47241401db9",
-        "section": "instagram",
-        "title": "@sharedxp_official",
-        "url": "https://www.instagram.com/p/DadPaWVMh6n/",
-        "message_id": "1523728789442527364",
-        "channel_id": "592534544708796474",
-        "source_type": "instagram",
-        "posted_at": "2026-07-06T16:34:13.478759+00:00",
-        "description": "Fourleaf Fields is a tiny COOP cosy farming sim   ✅ Multiplayer Confirmed (1-4 palyers) ✅ JOIN THE PLAYTEST ✅ Expecte..."
-      },
-      {
-        "item_key": "fb099e252a137ee9",
-        "section": "instagram",
-        "title": "@sharedxp_official",
-        "url": "https://www.instagram.com/p/DaYyrc7qGWa/",
-        "message_id": "1523728797491400855",
-        "channel_id": "592534544708796474",
-        "source_type": "instagram",
-        "posted_at": "2026-07-06T16:34:15.345438+00:00",
-        "description": "Cemetery Simulator (AD)  1–4 player cemetery management game   ✅ Solo Play ✅ 1–4 Player Co-op ✅ Online Co-op ✅ Demo A..."
-      },
-      {
-        "item_key": "c97fc1e1cbf61710",
-        "section": "instagram",
-        "title": "@mildsoss_official",
-        "url": "https://www.instagram.com/p/DaYIg_wosQK/",
-        "message_id": "1523728805070372885",
-        "channel_id": "592534544708796474",
-        "source_type": "instagram",
-        "posted_at": "2026-07-06T16:34:17.145832+00:00",
-        "description": "This co-op horror game has a demon that feeds on your teams fear  🎮 Fearwoods 🗓️ Q3 2026 👥 1-3 Players 🖥️ PC (Steam),..."
-      },
-      {
-        "item_key": "ddd86aa1d98d2a45",
-        "section": "instagram",
-        "title": "@mildsoss_official",
-        "url": "https://www.instagram.com/p/DaWjkn4IpyE/",
-        "message_id": "1523728812402147440",
-        "channel_id": "592534544708796474",
-        "source_type": "instagram",
-        "posted_at": "2026-07-06T16:34:19.094833+00:00",
-        "description": "From arcades and escape rooms to escape rooms at home. The story of Coin Crew Games  #gaming #newgame #indiegame #puz..."
-      },
-      {
-        "item_key": "76f3cd506342e271",
-        "section": "instagram",
-        "title": "@wilfratgaming",
-        "url": "https://www.instagram.com/p/DaWMUA5JV7h/",
-        "message_id": "1523728820866121808",
-        "channel_id": "592534544708796474",
-        "source_type": "instagram",
-        "posted_at": "2026-07-06T16:34:20.882045+00:00",
-        "description": "|AD| Game name: Pale Tide! zombie apocalypse extraction survival shooter! #steamgames #gaming #videogames #gamestoplay"
-      },
-      {
-        "item_key": "691f391fe7f55b14",
-        "section": "instagram",
-        "title": "@wilfratgaming",
-        "url": "https://www.instagram.com/p/DaVhNC1piSp/",
-        "message_id": "1523728828411674664",
-        "channel_id": "592534544708796474",
-        "source_type": "instagram",
-        "posted_at": "2026-07-06T16:34:22.651441+00:00",
-        "description": "|AD| Delta Force is having its biggest update of 2026 on June 30th with a new nuclear power plant map, a new operator..."
-      },
-      {
-        "item_key": "e97a3190d01feab4",
-        "section": "instagram",
-        "title": "@biffmatictv",
-        "url": "https://www.instagram.com/p/DaVpo_FINSA/",
-        "message_id": "1523728835856699402",
-        "channel_id": "592534544708796474",
-        "source_type": "instagram",
-        "posted_at": "2026-07-06T16:34:24.425856+00:00",
-        "description": "Ad - This roguelite actually lets you SEE your progression! Galactic Vault!  #gaming #roguelite #roguelike #fps #scifi"
-      },
-      {
-        "item_key": "fb8cd18c063189cf",
-        "section": "instagram",
-        "title": "@biffmatictv",
-        "url": "https://www.instagram.com/p/DaUVk3Po0_o/",
-        "message_id": "1523728843255578664",
-        "channel_id": "592534544708796474",
-        "source_type": "instagram",
-        "posted_at": "2026-07-06T16:34:26.191616+00:00",
-        "description": "Easily one of the most exciting games this year! Nivalis Nights   #gaming #cyberpunk #lifesim #simulator #nivalis"
-      }
-    ]
-  },
   "2026-07-07": {
     "run_state": {
       "section_headers": {
@@ -5409,6 +5175,163 @@
         "source_type": "paid_under_20",
         "posted_at": "2026-10-21T18:07:23.441749+00:00",
         "description": "Why have friends if not to play Golf... With Your Friends! Nothing is out of bounds as you take on courses filled with fast paced, exciting, simultaneous mini golf for up to 12 players!"
+      }
+    ]
+  },
+  "2026-10-22": {
+    "run_state": {
+      "section_headers": {
+        "demo_playtest": {
+          "message_id": "1562889617898741831",
+          "channel_id": "592534544708796474",
+          "posted_at_utc": "2026-10-22T18:05:22.141244+00:00"
+        },
+        "free": {
+          "message_id": "1562889634336215113",
+          "channel_id": "592534544708796474",
+          "posted_at_utc": "2026-10-22T18:05:26.312950+00:00"
+        },
+        "paid": {
+          "message_id": "1562889680477753377",
+          "channel_id": "592534544708796474",
+          "posted_at_utc": "2026-10-22T18:05:37.095222+00:00"
+        }
+      },
+      "last_attempt_at_utc": "2026-10-22T18:05:18.809313+00:00",
+      "intro": {
+        "message_id": "1562889605811015821",
+        "channel_id": "592534544708796474",
+        "posted_at_utc": "2026-10-22T18:05:20.626404+00:00"
+      },
+      "footer": {
+        "message_id": "1562889728758648934",
+        "channel_id": "592534544708796474",
+        "posted_at_utc": "2026-10-22T18:05:48.761076+00:00"
+      },
+      "completed": true,
+      "completed_at_utc": "2026-10-22T18:05:49.968871+00:00"
+    },
+    "items": [
+      {
+        "item_key": "0c474883904cc39e",
+        "section": "demo_playtest",
+        "title": "Hawthorn Proof-of-Concept Demo",
+        "url": "https://store.steampowered.com/app/4787870/",
+        "message_id": "1562889624643174420",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_demo_playtest",
+        "posted_at": "2026-10-22T18:05:24.555080+00:00",
+        "description": "Former developers from Bethesda, BioWare, and Naughty Dog bring you a sandbox RPG realm of anthropomorphic animals and fairy creatures. Play co-op or solo as you build a village of memorable NPCs, farm, craft, explore, and celebrate the seasons in an ever-changing world bigger than you."
+      },
+      {
+        "item_key": "71ba5815333f79aa",
+        "section": "free",
+        "title": "Angels Online Global",
+        "url": "https://store.steampowered.com/app/4018020/",
+        "message_id": "1562889641521189046",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-10-22T18:05:28.255200+00:00",
+        "description": "Angels Online Global is a charming 2D fantasy MMORPG featuring flexible builds, faction warfare, and deep customization. Enjoy 4× leveling, expanded inventory, real-time chat translation, and dungeon-earned outfits with fusion upgrades!"
+      },
+      {
+        "item_key": "016e82147d0b491e",
+        "section": "free",
+        "title": "Bro Falls",
+        "url": "https://store.steampowered.com/app/1590320/",
+        "message_id": "1562889650069053612",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-10-22T18:05:30.041625+00:00",
+        "description": "Bro Falls is an asymmetric massively multiplayer party game with chaotic elements, trap activations and big Falls. Up-to 60 online players in a showdown party and only one who can get the victory. Play as Brokkoli to activate the traps or avoid them as a juicy food and win the rounds."
+      },
+      {
+        "item_key": "b685a0450e71e9ef",
+        "section": "free",
+        "title": "Darwin Project",
+        "url": "https://store.steampowered.com/app/544920/",
+        "message_id": "1562889657405014136",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-10-22T18:05:31.772324+00:00",
+        "description": "In Darwin Project, ten inmates must survive the elements, track each other, fight, craft tools, and use their social skills to be the last one standing. It's a unique take on battle royale with a Show Director to influence the match and Spectator Interactions to create a one-of-a-kind game show."
+      },
+      {
+        "item_key": "eeb623a042e4108c",
+        "section": "free",
+        "title": "Deadswitch Combat",
+        "url": "https://store.steampowered.com/app/3408170/",
+        "message_id": "1562889664669417695",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-10-22T18:05:33.678625+00:00",
+        "description": "DEADSWITCH COMBAT is a fast-paced 2D multiplayer shooter. Experience action-packed combat with hundreds of weapons, vehicle combat, and plenty of team-based game modes."
+      },
+      {
+        "item_key": "f9e145ab23830f6c",
+        "section": "free",
+        "title": "BLOCKADE",
+        "url": "https://store.steampowered.com/app/1049800/",
+        "message_id": "1562889672294928427",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-10-22T18:05:35.518822+00:00",
+        "description": "BLOCKADE Classic! First Person Shooter in an editable procedural cubic world. A large arsenal of weapons, 4 teams at the same time and up to 32 players on one map. A large number of game modes!"
+      },
+      {
+        "item_key": "8f12c68f24631b0a",
+        "section": "paid",
+        "title": "The Lord of the Rings: War in the North™ - Legacy Edition",
+        "url": "https://store.steampowered.com/app/2523770/",
+        "message_id": "1562889686953889883",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-10-22T18:05:38.976727+00:00",
+        "description": "Step into a darker, grittier Middle-earth. The Lord of the Rings: War in the North™ - Legacy Edition expands Tolkien’s epic legendarium, delving into the brutal, untold story of Agandaûr, a Black Númenórean and servant of Sauron who has rallied an immense force in the ruins of Fornost."
+      },
+      {
+        "item_key": "1dd07d6916fa627b",
+        "section": "paid",
+        "title": "Folk-Tography",
+        "url": "https://store.steampowered.com/app/4941420/",
+        "message_id": "1562889694864211988",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-10-22T18:05:40.704249+00:00",
+        "description": "Folk-Tography is a 4-player co-op cryptid photography extraction game. Photograph legendary creatures, investigate paranormal anomalies, manage scarce resources, and survive various dangers to escape with the evidence before the valley consumes you."
+      },
+      {
+        "item_key": "51cfb5f2b7d1dc83",
+        "section": "paid",
+        "title": "Human Host",
+        "url": "https://store.steampowered.com/app/2393970/",
+        "message_id": "1562889701822566512",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-10-22T18:05:42.601432+00:00",
+        "description": "Human Host is an open-world zombie survival crafting game. In this endless procedurally generated world, terrain, buildings, trees, rocks—everything is destructible! Build massive mobile bases, dig deep underground, construct trap-filled fortresses, scavenge supplies, and survive as long as you can!"
+      },
+      {
+        "item_key": "d84949c5c3ef827c",
+        "section": "paid",
+        "title": "Nested Lands",
+        "url": "https://store.steampowered.com/app/2553040/",
+        "message_id": "1562889709812715532",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-10-22T18:05:44.325894+00:00",
+        "description": "Nested Lands is a ruthless medieval RPG game featuring in-depth village building, large-scale social management and combats. Gather survivors, build a settlement, craft, master your skills, survive, and endure alone or in online co-op."
+      },
+      {
+        "item_key": "ebdeea4856c9d610",
+        "section": "paid",
+        "title": "Ember Knights",
+        "url": "https://store.steampowered.com/app/1135230/",
+        "message_id": "1562889717635354705",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-10-22T18:05:46.500271+00:00",
+        "description": "Ember Knights is an action rogue-lite for 1-4 players where you play as legendary knights, the last spark of hope against the mad sorcerer Praxis and his hordes of unwavering fiends. Wield weapons & skills, build synergies with game-changing relics and free the universe of Praxis’ corruption."
       }
     ]
   }
