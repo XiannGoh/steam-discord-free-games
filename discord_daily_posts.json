@@ -1,183 +1,4 @@
 {
-  "2026-07-08": {
-    "run_state": {
-      "section_headers": {
-        "free": {
-          "message_id": "1524438000522625125",
-          "channel_id": "592534544708796474",
-          "posted_at_utc": "2026-07-08T15:32:22.253340+00:00"
-        },
-        "paid": {
-          "message_id": "1524438046274228224",
-          "channel_id": "592534544708796474",
-          "posted_at_utc": "2026-07-08T15:32:33.432133+00:00"
-        },
-        "instagram": {
-          "message_id": "1524438089605320780",
-          "channel_id": "592534544708796474",
-          "posted_at_utc": "2026-07-08T15:32:43.560126+00:00"
-        }
-      },
-      "last_attempt_at_utc": "2026-07-08T15:32:19.077694+00:00",
-      "intro": {
-        "message_id": "1524437988837298378",
-        "channel_id": "592534544708796474",
-        "posted_at_utc": "2026-07-08T15:32:20.708281+00:00"
-      },
-      "footer": {
-        "message_id": "1524438119116439574",
-        "channel_id": "592534544708796474",
-        "posted_at_utc": "2026-07-08T15:32:50.589328+00:00"
-      },
-      "completed": true,
-      "completed_at_utc": "2026-07-08T15:32:51.796247+00:00"
-    },
-    "items": [
-      {
-        "item_key": "c543ff8efa536dff",
-        "section": "free",
-        "title": "Counter-Strike Nexon",
-        "url": "https://store.steampowered.com/app/273110/",
-        "message_id": "1524438007221063692",
-        "channel_id": "592534544708796474",
-        "source_type": "steam_free",
-        "posted_at": "2026-07-08T15:32:24.352698+00:00",
-        "description": "Counter-Strike Nexon is a Free to Play MMOFPS offering competitive PvP and PvE action including content from the original Counter-Strike and all new game modes, map creation function, weapons, and hordes of Zombies!"
-      },
-      {
-        "item_key": "1647e12fb0b4f9d5",
-        "section": "free",
-        "title": "Vindictus",
-        "url": "https://store.steampowered.com/app/212160/",
-        "message_id": "1524438015752142858",
-        "channel_id": "592534544708796474",
-        "source_type": "steam_free",
-        "posted_at": "2026-07-08T15:32:25.936081+00:00",
-        "description": "Vindictus is an Action RPG that delivers the highest level of combat mechanics and high-quality visuals. Featuring a fully interactive environment, dungeon objects and monsters become part of your arsenal. Experience unique, creative action gameplay that sets a new standard for online RPGs."
-      },
-      {
-        "item_key": "669d70b9ebda3512",
-        "section": "free",
-        "title": "Avakin Life",
-        "url": "https://store.steampowered.com/app/3165680/",
-        "message_id": "1524438022538661898",
-        "channel_id": "592534544708796474",
-        "source_type": "steam_free",
-        "posted_at": "2026-07-08T15:32:27.605008+00:00",
-        "description": "Avakin Life is an endless social world waiting for you. Live your dream life, from unique and customizable avatars to stylish fashion outfits and personalized dream homes. Hang out with friends, join parties, and embark on adventures in a world where you are in control of everything."
-      },
-      {
-        "item_key": "28f48d0f24928ff1",
-        "section": "free",
-        "title": "Milky Way Idle",
-        "url": "https://store.steampowered.com/app/3224420/",
-        "message_id": "1524438029861912800",
-        "channel_id": "592534544708796474",
-        "source_type": "steam_free",
-        "posted_at": "2026-07-08T15:32:29.398626+00:00",
-        "description": "Milky Way Idle: A multiplayer idle RPG where automation replaces grinding. Level up skills, gather resources, craft powerful items, and battle monsters—all while AFK. Trade in the marketplace, join a guild, team up for party combat, and socialize in chat as you progress effortlessly."
-      },
-      {
-        "item_key": "88465a6d5ff5c917",
-        "section": "free",
-        "title": "WAKFU",
-        "url": "https://store.steampowered.com/app/215080/",
-        "message_id": "1524438037159739514",
-        "channel_id": "592534544708796474",
-        "source_type": "steam_free",
-        "posted_at": "2026-07-08T15:32:31.459388+00:00",
-        "description": "Immerse yourself in the WAKFU universe with this free to play MMORPG. Select your class, travel the world, meet adventurers to challenge powerful monsters in epic turn-based battles.Participate in the kingdom’s economy and politics and create your own legend!"
-      },
-      {
-        "item_key": "386a83670cc2949d",
-        "section": "paid",
-        "title": "Super Battle Golf",
-        "url": "https://store.steampowered.com/app/4069520/",
-        "message_id": "1524438053874040852",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-07-08T15:32:35.108601+00:00",
-        "description": "An online 1-8 player golf game where everyone plays at the same time. Swing, shoot, sabotage, and finish first by any means necessary in a free-for-all rush to the hole."
-      },
-      {
-        "item_key": "0b2cd79257d29d06",
-        "section": "paid",
-        "title": "Pratfall",
-        "url": "https://store.steampowered.com/app/4244510/",
-        "message_id": "1524438060782321776",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-07-08T15:32:36.883451+00:00",
-        "description": "A co-op game for 1-6+ players where you fall, dig, and explode your way down a dangerous cave system to find your lost dog. Catch your friends and watch your step on this journey full of traps, hazards, and the most deadly force of all: gravity. Will you jump into the unknown to rescue your dog?"
-      },
-      {
-        "item_key": "050a182498b86046",
-        "section": "paid",
-        "title": "MONSTER HUNTER RISE",
-        "url": "https://store.steampowered.com/app/1446780/",
-        "message_id": "1524438068382269781",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-07-08T15:32:38.535799+00:00",
-        "description": "Rise to the challenge and join the hunt! In Monster Hunter Rise, the latest installment in the award-winning and top-selling Monster Hunter series, you’ll become a hunter, explore brand new maps and use a variety of weapons to take down fearsome monsters as part of an all-new storyline."
-      },
-      {
-        "item_key": "356215af07bbed65",
-        "section": "paid",
-        "title": "V Rising",
-        "url": "https://store.steampowered.com/app/1604030/",
-        "message_id": "1524438075231436872",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-07-08T15:32:40.272516+00:00",
-        "description": "Awaken as a Vampire. Hunt for blood in nearby settlements to regain your strength and evade the scorching sun to survive. Raise your castle and thrive in an ever-changing, open world full of mystery. Gain allies online and conquer the land of the living."
-      },
-      {
-        "item_key": "f8b545abb1757657",
-        "section": "paid",
-        "title": "SnowRunner",
-        "url": "https://store.steampowered.com/app/1465360/",
-        "message_id": "1524438082684977233",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-07-08T15:32:42.028234+00:00",
-        "description": "Get ready for the next-generation off-road experience! Drive powerful vehicles and overcome extreme open environments to complete dozens of challenging missions solo or with up to 3 friends!"
-      },
-      {
-        "item_key": "dab23f381e293568",
-        "section": "instagram",
-        "title": "@sharedxp_official",
-        "url": "https://www.instagram.com/p/DaV73CcMj_n/",
-        "message_id": "1524438096417001623",
-        "channel_id": "592534544708796474",
-        "source_type": "instagram",
-        "posted_at": "2026-07-08T15:32:45.349188+00:00",
-        "description": "Anime Shop Simulator (AD)   Build your dream ANIME shop  ✅ Online Co-op ❌ Split-Screen Not Confirmed ✅ Up to 4 Player..."
-      },
-      {
-        "item_key": "1d5d35b7bbc4c8f5",
-        "section": "instagram",
-        "title": "@mildsoss_official",
-        "url": "https://www.instagram.com/p/DagFiiuITaZ/",
-        "message_id": "1524438103882858517",
-        "channel_id": "592534544708796474",
-        "source_type": "instagram",
-        "posted_at": "2026-07-08T15:32:47.107530+00:00",
-        "description": "Echo Point Nova is the definition of a hidden gem. You need to try it out  #gaming #coopgames #steamgames #fpsgames #..."
-      },
-      {
-        "item_key": "e20e5620c97a39cb",
-        "section": "instagram",
-        "title": "@sharedxp_official",
-        "url": "https://www.instagram.com/p/DagUV-usQ92/",
-        "message_id": "1524438111327879199",
-        "channel_id": "592534544708796474",
-        "source_type": "instagram",
-        "posted_at": "2026-07-08T15:32:48.862696+00:00",
-        "description": "Hela is a cosy co-op adventure where you play as tiny mouse familiars exploring a Scandinavian-inspired world, using ..."
-      }
-    ]
-  },
   "2026-07-09": {
     "run_state": {
       "section_headers": {
@@ -5261,6 +5082,147 @@
         "source_type": "paid_under_20",
         "posted_at": "2026-10-23T17:55:51.966569+00:00",
         "description": "DRAGON BALL XENOVERSE 2 builds upon the highly popular DRAGON BALL XENOVERSE with enhanced graphics that will further immerse players into the largest and most detailed Dragon Ball world ever developed."
+      }
+    ]
+  },
+  "2026-10-24": {
+    "run_state": {
+      "section_headers": {
+        "free": {
+          "message_id": "1563593678965051557",
+          "channel_id": "592534544708796474",
+          "posted_at_utc": "2026-10-24T16:43:03.474170+00:00"
+        },
+        "paid": {
+          "message_id": "1563593725631012865",
+          "channel_id": "592534544708796474",
+          "posted_at_utc": "2026-10-24T16:43:14.719042+00:00"
+        }
+      },
+      "last_attempt_at_utc": "2026-10-24T16:42:59.962056+00:00",
+      "intro": {
+        "message_id": "1563593666201784501",
+        "channel_id": "592534544708796474",
+        "posted_at_utc": "2026-10-24T16:43:01.839045+00:00"
+      },
+      "footer": {
+        "message_id": "1563593772258959382",
+        "channel_id": "592534544708796474",
+        "posted_at_utc": "2026-10-24T16:43:26.043549+00:00"
+      },
+      "completed": true,
+      "completed_at_utc": "2026-10-24T16:43:27.249654+00:00"
+    },
+    "items": [
+      {
+        "item_key": "06dcc6804b1a0b34",
+        "section": "free",
+        "title": "Totally Accurate Battlegrounds",
+        "url": "https://store.steampowered.com/app/823130/",
+        "message_id": "1563593685839384606",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-10-24T16:43:05.554756+00:00",
+        "description": "Grab your balloon crossbow and trusty inflatable hammer, because things are about to get wobbly! Be the last weirdo standing in the world-leading physics-based Battle Royale game."
+      },
+      {
+        "item_key": "90039f17c31caa39",
+        "section": "free",
+        "title": "Soul Dossier",
+        "url": "https://store.steampowered.com/app/1520470/",
+        "message_id": "1563593694098235533",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-10-24T16:43:07.312032+00:00",
+        "description": "Soul Dossier is a multiplayer game based on Oriental culture (5vS1). The game is based on a variety of traditional Oriental cultures, including five elements, eight diagrams and folklore."
+      },
+      {
+        "item_key": "b6910706cbf47ec0",
+        "section": "free",
+        "title": "Idol Party 2 - Love Vibe",
+        "url": "https://store.steampowered.com/app/3798230/",
+        "message_id": "1563593701870014474",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-10-24T16:43:09.133119+00:00",
+        "description": "Step into a dreamy journey in Idol Party 2! Enjoy rhythm gameplay, fashion dress-up, face customization, social interaction, romantic marriage, fishing, and ranked battles—all in one vibrant world. Join now and start your exclusive singing and dancing adventur!"
+      },
+      {
+        "item_key": "b5af5604704bda00",
+        "section": "free",
+        "title": "Fate War",
+        "url": "https://store.steampowered.com/app/3581600/",
+        "message_id": "1563593709608509591",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-10-24T16:43:11.013474+00:00",
+        "description": "2025's latest epic strategy simulation game! Lead your Tribe in a vast world with dynamic seasons. Survive using your wit and uncover the secrets of a lost god."
+      },
+      {
+        "item_key": "28f48d0f24928ff1",
+        "section": "free",
+        "title": "Milky Way Idle",
+        "url": "https://store.steampowered.com/app/3224420/",
+        "message_id": "1563593717372297336",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-10-24T16:43:12.944288+00:00",
+        "description": "Milky Way Idle: A multiplayer idle RPG where automation replaces grinding. Level up skills, gather resources, craft powerful items, and battle monsters—all while AFK. Trade in the marketplace, join a guild, team up for party combat, and socialize in chat as you progress effortlessly."
+      },
+      {
+        "item_key": "093ac4dabf2cba7f",
+        "section": "paid",
+        "title": "Lethal Company",
+        "url": "https://store.steampowered.com/app/1966720/",
+        "message_id": "1563593732597485690",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-10-24T16:43:16.552265+00:00",
+        "description": "A co-op horror about scavenging at abandoned moons to sell scrap to the Company."
+      },
+      {
+        "item_key": "f3aa470bb2fa04b6",
+        "section": "paid",
+        "title": "Among Us",
+        "url": "https://store.steampowered.com/app/945360/",
+        "message_id": "1563593740449349653",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-10-24T16:43:18.342260+00:00",
+        "description": "An online and local party game of teamwork and betrayal for 4-15 players...in space!"
+      },
+      {
+        "item_key": "c92e8d4d65b2d835",
+        "section": "paid",
+        "title": "GTFO",
+        "url": "https://store.steampowered.com/app/493520/",
+        "message_id": "1563593747973804035",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-10-24T16:43:20.038522+00:00",
+        "description": "GTFO is a hardcore cooperative horror shooter that throws you from gripping suspense to explosive action in a heartbeat. Stealth, strategy, and teamwork are necessary to survive in your deadly, underground prison. Work together or die together."
+      },
+      {
+        "item_key": "3de2f752cefeb15c",
+        "section": "paid",
+        "title": "the cabin game",
+        "url": "https://store.steampowered.com/app/4406280/",
+        "message_id": "1563593755284480101",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-10-24T16:43:22.054822+00:00",
+        "description": "the cabin game is a 1-4 player, chaotic horror game where you are trapped inside a cabin and the only way out is through a game of cards. Just beware, as the cards you play have a surprising twist on this humble abode..."
+      },
+      {
+        "item_key": "0f1e409befc2afe0",
+        "section": "paid",
+        "title": "OPERATOR",
+        "url": "https://store.steampowered.com/app/1913370/",
+        "message_id": "1563593763828400258",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-10-24T16:43:23.824298+00:00",
+        "description": "In OPERATOR, you will play as an elite Tier 1 operator undergoing dangerous clandestine operations all over the globe. With a strategic, measured, and unforgiving style of gameplay. You are the tactical advantage, Good luck."
       }
     ]
   }
