@@ -1,193 +1,4 @@
 {
-  "2026-07-09": {
-    "run_state": {
-      "section_headers": {
-        "demo_playtest": {
-          "message_id": "1524810879005233374",
-          "channel_id": "592534544708796474",
-          "posted_at_utc": "2026-07-09T16:14:03.534157+00:00"
-        },
-        "free": {
-          "message_id": "1524810894037483673",
-          "channel_id": "592534544708796474",
-          "posted_at_utc": "2026-07-09T16:14:07.042738+00:00"
-        },
-        "paid": {
-          "message_id": "1524810938081869888",
-          "channel_id": "592534544708796474",
-          "posted_at_utc": "2026-07-09T16:14:17.620121+00:00"
-        },
-        "instagram": {
-          "message_id": "1524810984416612402",
-          "channel_id": "592534544708796474",
-          "posted_at_utc": "2026-07-09T16:14:28.645160+00:00"
-        }
-      },
-      "last_attempt_at_utc": "2026-07-09T16:14:01.247104+00:00",
-      "intro": {
-        "message_id": "1524810871551819916",
-        "channel_id": "592534544708796474",
-        "posted_at_utc": "2026-07-09T16:14:01.838757+00:00"
-      },
-      "footer": {
-        "message_id": "1524811007191548066",
-        "channel_id": "592534544708796474",
-        "posted_at_utc": "2026-07-09T16:14:34.125481+00:00"
-      },
-      "completed": true,
-      "completed_at_utc": "2026-07-09T16:14:35.332862+00:00"
-    },
-    "items": [
-      {
-        "item_key": "c9e78491c63a3d45",
-        "section": "demo_playtest",
-        "title": "Sghetti Fighter Demo",
-        "url": "https://store.steampowered.com/app/4448390/",
-        "message_id": "1524810886131220581",
-        "channel_id": "592534544708796474",
-        "source_type": "steam_demo_playtest",
-        "posted_at": "2026-07-09T16:14:05.498605+00:00",
-        "description": "A traditional 1v1 indie fighter that takes place in the Sghetti Universe. Play as characters from The Sauce Monsters, and Freddy Sghetti, with more characters coming soon! Combos, air fighting, and special moves make this a fun, strategic game. Play online with friends too!"
-      },
-      {
-        "item_key": "f60eae9251b69c17",
-        "section": "free",
-        "title": "Combat Arms: the Classic",
-        "url": "https://store.steampowered.com/app/1263550/",
-        "message_id": "1524810900635258941",
-        "channel_id": "592534544708796474",
-        "source_type": "steam_free",
-        "posted_at": "2026-07-09T16:14:08.792946+00:00",
-        "description": "Combat Arms: the Classic is a multiplayer game, free-to-play modern first-person shooter. The game is a relaunch of Combat Arms in its glory days delivering gamers a nostalgic high-quality FPS with an extensive arsenal of weapons."
-      },
-      {
-        "item_key": "d368d0ab0443fed7",
-        "section": "free",
-        "title": "Farm RPG",
-        "url": "https://store.steampowered.com/app/2287550/",
-        "message_id": "1524810908231274688",
-        "channel_id": "592534544708796474",
-        "source_type": "steam_free",
-        "posted_at": "2026-07-09T16:14:10.648489+00:00",
-        "description": "Farm RPG is a menu based farming RPG/MMO. Build your farm, grow crops, fish, craft, and explore. Unlock a variety of exciting daily activities as you progress. Engage with helpful townsfolk and collaborate with fellow players in a vibrant community for trading and teamwork."
-      },
-      {
-        "item_key": "28e68ab9b5609c38",
-        "section": "free",
-        "title": "America's Army: Proving Grounds",
-        "url": "https://store.steampowered.com/app/203290/",
-        "message_id": "1524810915935944805",
-        "channel_id": "592534544708796474",
-        "source_type": "steam_free",
-        "posted_at": "2026-07-09T16:14:12.351807+00:00",
-        "description": "America’s Army: Proving Grounds is the official game of the U.S. Army and part of the highly acclaimed America’s Army game series. This free military game focuses on small unit tactical maneuvers and puts you to the test in a wide variety of new America’s Army maps and AA fan favorites."
-      },
-      {
-        "item_key": "f9e145ab23830f6c",
-        "section": "free",
-        "title": "BLOCKADE",
-        "url": "https://store.steampowered.com/app/1049800/",
-        "message_id": "1524810922827186279",
-        "channel_id": "592534544708796474",
-        "source_type": "steam_free",
-        "posted_at": "2026-07-09T16:14:14.098489+00:00",
-        "description": "BLOCKADE Classic! First Person Shooter in an editable procedural cubic world. A large arsenal of weapons, 4 teams at the same time and up to 32 players on one map. A large number of game modes!"
-      },
-      {
-        "item_key": "9fc0ab1b6e4803d5",
-        "section": "free",
-        "title": "Winds of Valen",
-        "url": "https://store.steampowered.com/app/4135880/",
-        "message_id": "1524810930473402509",
-        "channel_id": "592534544708796474",
-        "source_type": "steam_free",
-        "posted_at": "2026-07-09T16:14:15.983310+00:00",
-        "description": "Winds of Valen is a free fantasy sandbox MMORPG. Experience old-school progression where every level, skill, and drop is earned through effort. Train your combat, mining, and smithing skills, and hunt for rare and unique items in a seamless open world filled with danger and discovery."
-      },
-      {
-        "item_key": "cd12988bfcc6bd39",
-        "section": "paid",
-        "title": "Romestead",
-        "url": "https://store.steampowered.com/app/1805320/",
-        "message_id": "1524810945246003273",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-07-09T16:14:19.630624+00:00",
-        "description": "Rome has fallen! Rebuild civilization in this action-adventure survival game for 1-8 players. Fight hordes of the walking dead, build settlements, restore the Roman gods... or kick back and farm with friends."
-      },
-      {
-        "item_key": "4887c0147ece771c",
-        "section": "paid",
-        "title": "Roadside Research",
-        "url": "https://store.steampowered.com/app/3643170/",
-        "message_id": "1524810953567506472",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-07-09T16:14:21.318901+00:00",
-        "description": "Roadside Research is a 1 to 4 player co-op gas station simulator. Except you’re aliens. And undercover. Do very human things like restocking shelves while preparing for the invasion. Just don’t get caught."
-      },
-      {
-        "item_key": "c92e8d4d65b2d835",
-        "section": "paid",
-        "title": "GTFO",
-        "url": "https://store.steampowered.com/app/493520/",
-        "message_id": "1524810960886562846",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-07-09T16:14:23.171396+00:00",
-        "description": "GTFO is a hardcore cooperative horror shooter that throws you from gripping suspense to explosive action in a heartbeat. Stealth, strategy, and teamwork are necessary to survive in your deadly, underground prison. Work together or die together."
-      },
-      {
-        "item_key": "21cd21780355d74f",
-        "section": "paid",
-        "title": "WARNO",
-        "url": "https://store.steampowered.com/app/1611600/",
-        "message_id": "1524810968494768298",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-07-09T16:14:25.020348+00:00",
-        "description": "Realistic, immersive, breathtaking. WARNO is the ultimate World War III battle simulator from the masters of strategy, Eugen Systems. A Cold War turns decisively hot as you command hundreds of units on a beautiful and brutal battlefield. Outsmart, outfight, and lead your forces to total victory."
-      },
-      {
-        "item_key": "bc949172a440e9dd",
-        "section": "paid",
-        "title": "Sackboy™: A Big Adventure",
-        "url": "https://store.steampowered.com/app/1599660/",
-        "message_id": "1524810976216616982",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-07-09T16:14:26.928590+00:00",
-        "description": "PERFECTLY CRAFTED FOR PC. PlayStation® icon Sackboy bursts into action on PC in a huge 3D multiplayer platforming adventure. An epic journey stuffed with platforming challenges. Deeply immersive controls. Collaborative, chaotic and joyful multiplayer fun."
-      },
-      {
-        "item_key": "dfad55ce4c8374d1",
-        "section": "instagram",
-        "title": "@sharedxp_official",
-        "url": "https://www.instagram.com/p/DaVrm7XMBOj/",
-        "message_id": "1524810991408381963",
-        "channel_id": "592534544708796474",
-        "source_type": "instagram",
-        "posted_at": "2026-07-09T16:14:30.354537+00:00",
-        "description": "Moonshiner Simulator (Build a booze empire)  ✅ Co-op for Up to 8 Players (online) ❌ Split-Screen Not Confirmed ✅ STEA..."
-      },
-      {
-        "item_key": "c6bfab1d685ad9ab",
-        "section": "instagram",
-        "title": "@biffmatictv",
-        "url": "https://www.instagram.com/p/DakhEe1ttqQ/",
-        "message_id": "1524810998869917796",
-        "channel_id": "592534544708796474",
-        "source_type": "instagram",
-        "posted_at": "2026-07-09T16:14:32.240051+00:00",
-        "description": "Every viral game gets copied.. (ad)  Ore Factory Squad!   #gaming #newgame #factorysim #coop #gamingwithfriends"
-      }
-    ],
-    "winners_state": {
-      "status": "skipped",
-      "skipped_reason": "no_eligible_winners",
-      "updated_at_utc": "2026-07-10T00:02:08.820755+00:00"
-    }
-  },
   "2026-07-10": {
     "run_state": {
       "section_headers": {
@@ -5223,6 +5034,147 @@
         "source_type": "paid_under_20",
         "posted_at": "2026-10-24T16:43:23.824298+00:00",
         "description": "In OPERATOR, you will play as an elite Tier 1 operator undergoing dangerous clandestine operations all over the globe. With a strategic, measured, and unforgiving style of gameplay. You are the tactical advantage, Good luck."
+      }
+    ]
+  },
+  "2026-10-25": {
+    "run_state": {
+      "section_headers": {
+        "free": {
+          "message_id": "1563964057227104351",
+          "channel_id": "592534544708796474",
+          "posted_at_utc": "2026-10-25T17:14:48.594632+00:00"
+        },
+        "paid": {
+          "message_id": "1563964106447388723",
+          "channel_id": "592534544708796474",
+          "posted_at_utc": "2026-10-25T17:15:00.209408+00:00"
+        }
+      },
+      "last_attempt_at_utc": "2026-10-25T17:14:45.154700+00:00",
+      "intro": {
+        "message_id": "1563964044631736402",
+        "channel_id": "592534544708796474",
+        "posted_at_utc": "2026-10-25T17:14:47.048029+00:00"
+      },
+      "footer": {
+        "message_id": "1563964157571895430",
+        "channel_id": "592534544708796474",
+        "posted_at_utc": "2026-10-25T17:15:12.595027+00:00"
+      },
+      "completed": true,
+      "completed_at_utc": "2026-10-25T17:15:13.802114+00:00"
+    },
+    "items": [
+      {
+        "item_key": "62d1e036a5cd91a0",
+        "section": "free",
+        "title": "Battle Tanks: World War II",
+        "url": "https://store.steampowered.com/app/782670/",
+        "message_id": "1563964064143773699",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-10-25T17:14:50.997345+00:00",
+        "description": "Are you ready to fight? Download this incredibly addictive tank game right now! Choose a tank and fight with your friends in dynamic real-time battles.Meet the legendary tank shooter Battle Tanks! Show the whole world who's in charge here!"
+      },
+      {
+        "item_key": "ecf3067de06f2fd5",
+        "section": "free",
+        "title": "DARKEST DAYS",
+        "url": "https://store.steampowered.com/app/1548520/",
+        "message_id": "1563964074126086144",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-10-25T17:14:52.730346+00:00",
+        "description": "DARKEST DAYS is a zombie shooting RPG set in a post-apocalyptic world devastated by a sudden zombie outbreak. Explore a dark yet captivating open world, build a sanctuary with fellow survivors, grow stronger, and fight for survival."
+      },
+      {
+        "item_key": "215024575597e491",
+        "section": "free",
+        "title": "Digimon Masters Online",
+        "url": "https://store.steampowered.com/app/537180/",
+        "message_id": "1563964081856057344",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-10-25T17:14:55.157568+00:00",
+        "description": "DMO is MMO featuring the ever-popular Digimon franchise. This long awaited game will feature a deeper RPG experience, enhanced graphics and adrenaline-pumping real-time combat. Both new and long-time Digimon fans can now immerse themselves into this new epic adventure with their very own Digimons."
+      },
+      {
+        "item_key": "2965d5caf4c589eb",
+        "section": "free",
+        "title": "Jono",
+        "url": "https://store.steampowered.com/app/5257200/",
+        "message_id": "1563964091259686934",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-10-25T17:14:57.006954+00:00",
+        "description": "Work together to complete one million levels, one player at a time. Continue where the previous left off. Chat with others while you wait for your turn. How long will it take?"
+      },
+      {
+        "item_key": "dcfb1af7202023a9",
+        "section": "free",
+        "title": "Tanki Online",
+        "url": "https://store.steampowered.com/app/562010/",
+        "message_id": "1563964099308683385",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-10-25T17:14:58.715505+00:00",
+        "description": "Tanki Online is the free-to-play MMO-shooter with real-time PvP-battles. Throw yourself into furious tank battles shoulder to shoulder with other living players and master your skills – destroy enemy tanks, customize your futuristic armored vehicle and compete with tankers from all over the world."
+      },
+      {
+        "item_key": "dd8ebba758ac4f49",
+        "section": "paid",
+        "title": "Sephiria",
+        "url": "https://store.steampowered.com/app/2436940/",
+        "message_id": "1563964112705421362",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-10-25T17:15:01.901017+00:00",
+        "description": "Save Bunnyville from a doomed fate: a top-down action/RPG roguelite from the makers of Dungreed. Explore the depths of the tower, collect and upgrade artifacts, and defeat hordes of demons to keep your village safe."
+      },
+      {
+        "item_key": "73266fa75a67805c",
+        "section": "paid",
+        "title": "NARUTO TO BORUTO: SHINOBI STRIKER",
+        "url": "https://store.steampowered.com/app/633230/",
+        "message_id": "1563964120032743698",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-10-25T17:15:03.898208+00:00",
+        "description": "Battle as a team of 4 to compete against other teams online! Graphically, SHINOBI STRIKER is also built from the ground up in a completely new graphic style. Lead your team and fight online to see who the best ninjas are!"
+      },
+      {
+        "item_key": "c56be906a8d72675",
+        "section": "paid",
+        "title": "Ore Factory Squad ⛏️",
+        "url": "https://store.steampowered.com/app/4210580/",
+        "message_id": "1563964128442196048",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-10-25T17:15:05.942866+00:00",
+        "description": "Ore Factory Squad is a co-op mining and factory-building game with procedural mining and fun at its core! Play alone or with friends, buy properties, dig deep for valuable resources, complete contracts, upgrade and automate production lines and grow your factory from zero to industry!"
+      },
+      {
+        "item_key": "bd8a2c50eebfcccb",
+        "section": "paid",
+        "title": "Easy Red 2",
+        "url": "https://store.steampowered.com/app/1324780/",
+        "message_id": "1563964136885326054",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-10-25T17:15:08.162925+00:00",
+        "description": "Experience massive battles with infantry, tanks, artillery, and aircraft on large destructible open-world maps. Equip yourself, coordinate with your squad, and fight through World War II in singleplayer, co-op, or multiplayer!"
+      },
+      {
+        "item_key": "f7fd64aca305da94",
+        "section": "paid",
+        "title": "Birb",
+        "url": "https://store.steampowered.com/app/4364930/",
+        "message_id": "1563964146062458900",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-10-25T17:15:10.671628+00:00",
+        "description": "Start as a humble birb, eat popcorn, and evolve into a cosmic force of nature! Birb blends addictive idle mechanics with active roguelite expeditions. Build your nest, catch rare fish, challenge bosses, and compete on the global leaderboard. How many pecks will it take to rule the world?"
       }
     ]
   }
