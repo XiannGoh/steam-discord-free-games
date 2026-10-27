@@ -1,5 +1,5 @@
 {
-  "run_at": "2026-10-26T19:17:00Z",
+  "run_at": "2026-10-27T18:48:14Z",
   "total_creators": 8,
   "creators_with_posts": 0,
   "total_posts_collected": 0,
@@ -23,7 +23,7 @@
       "skipped_age": 0,
       "skipped_caption": 0,
       "failed": true,
-      "failure_reason": "302 Found when accessing https://www.instagram.com/gemgamingnetwork/"
+      "failure_reason": "Redirected to login page. You've been logged out, please wait some time, recreate the session and try again"
     },
     "cloudual": {
       "fetched": 0,
@@ -32,7 +32,7 @@
       "skipped_age": 0,
       "skipped_caption": 0,
       "failed": true,
-      "failure_reason": "302 Found when accessing https://www.instagram.com/cloudual/"
+      "failure_reason": "Redirected to login page. You've been logged out, please wait some time, recreate the session and try again"
     },
     "mildsoss_official": {
       "fetched": 0,
@@ -41,7 +41,7 @@
       "skipped_age": 0,
       "skipped_caption": 0,
       "failed": true,
-      "failure_reason": "302 Found when accessing https://www.instagram.com/mildsoss_official/"
+      "failure_reason": "Redirected to login page. You've been logged out, please wait some time, recreate the session and try again"
     },
     "sharedxp_official": {
       "fetched": 0,
@@ -50,7 +50,7 @@
       "skipped_age": 0,
       "skipped_caption": 0,
       "failed": true,
-      "failure_reason": "302 Found when accessing https://www.instagram.com/sharedxp_official/"
+      "failure_reason": "Redirected to login page. You've been logged out, please wait some time, recreate the session and try again"
     },
     "wilfratgaming": {
       "fetched": 0,
@@ -59,7 +59,7 @@
       "skipped_age": 0,
       "skipped_caption": 0,
       "failed": true,
-      "failure_reason": "302 Found when accessing https://www.instagram.com/wilfratgaming/"
+      "failure_reason": "Redirected to login page. You've been logged out, please wait some time, recreate the session and try again"
     },
     "indiegamespotlights": {
       "fetched": 0,
@@ -68,7 +68,7 @@
       "skipped_age": 0,
       "skipped_caption": 0,
       "failed": true,
-      "failure_reason": "302 Found when accessing https://www.instagram.com/indiegamespotlights/"
+      "failure_reason": "Redirected to login page. You've been logged out, please wait some time, recreate the session and try again"
     },
     "biffmatictv": {
       "fetched": 0,
@@ -77,7 +77,7 @@
       "skipped_age": 0,
       "skipped_caption": 0,
       "failed": true,
-      "failure_reason": "302 Found when accessing https://www.instagram.com/biffmatictv/"
+      "failure_reason": "Redirected to login page. You've been logged out, please wait some time, recreate the session and try again"
     },
     "itzjaysasa": {
       "fetched": 0,
@@ -86,7 +86,7 @@
       "skipped_age": 0,
       "skipped_caption": 0,
       "failed": true,
-      "failure_reason": "302 Found when accessing https://www.instagram.com/itzjaysasa/"
+      "failure_reason": "Redirected to login page. You've been logged out, please wait some time, recreate the session and try again"
     }
   }
 }
