@@ -1,226 +1,4 @@
 {
-  "2026-07-10": {
-    "run_state": {
-      "section_headers": {
-        "demo_playtest": {
-          "message_id": "1525166506068017281",
-          "channel_id": "592534544708796474",
-          "posted_at_utc": "2026-07-10T15:47:11.791962+00:00"
-        },
-        "free": {
-          "message_id": "1525166521327026288",
-          "channel_id": "592534544708796474",
-          "posted_at_utc": "2026-07-10T15:47:15.316888+00:00"
-        },
-        "paid": {
-          "message_id": "1525166566982025266",
-          "channel_id": "592534544708796474",
-          "posted_at_utc": "2026-07-10T15:47:26.199511+00:00"
-        },
-        "instagram": {
-          "message_id": "1525166609814261841",
-          "channel_id": "592534544708796474",
-          "posted_at_utc": "2026-07-10T15:47:36.264055+00:00"
-        }
-      },
-      "last_attempt_at_utc": "2026-07-10T15:47:08.413874+00:00",
-      "intro": {
-        "message_id": "1525166494588207134",
-        "channel_id": "592534544708796474",
-        "posted_at_utc": "2026-07-10T15:47:09.916806+00:00"
-      },
-      "footer": {
-        "message_id": "1525166656211390654",
-        "channel_id": "592534544708796474",
-        "posted_at_utc": "2026-07-10T15:47:47.311840+00:00"
-      },
-      "completed": true,
-      "completed_at_utc": "2026-07-10T15:47:48.519191+00:00"
-    },
-    "items": [
-      {
-        "item_key": "f6511edc2ddc0308",
-        "section": "demo_playtest",
-        "title": "Miniature Legends",
-        "url": "https://store.steampowered.com/app/3824640/",
-        "message_id": "1525166513781215393",
-        "channel_id": "592534544708796474",
-        "source_type": "steam_demo_playtest",
-        "posted_at": "2026-07-10T15:47:13.585294+00:00",
-        "description": "Survive in tiny lands—alone or with friends in online co-op! Battle endless waves of creatures in small arenas, collect and upgrade powerful abilities, unlock charming characters, and become a legend in this chaotic roguelike board-battler."
-      },
-      {
-        "item_key": "992218c63c675154",
-        "section": "free",
-        "title": "Born Again",
-        "url": "https://store.steampowered.com/app/2332210/",
-        "message_id": "1525166528562200658",
-        "channel_id": "592534544708796474",
-        "source_type": "steam_free",
-        "posted_at": "2026-07-10T15:47:17.004476+00:00",
-        "description": "Hack-n-slash your way through the evil brewing in the Outer Realm! Stop the ominous Overlords in their tracks, but tread lightly, for every corner hosts a monster in waiting!"
-      },
-      {
-        "item_key": "b13bdbe2bfd52174",
-        "section": "free",
-        "title": "Mini World: CREATA",
-        "url": "https://store.steampowered.com/app/814480/",
-        "message_id": "1525166535692255312",
-        "channel_id": "592534544708796474",
-        "source_type": "steam_free",
-        "posted_at": "2026-07-10T15:47:18.702500+00:00",
-        "description": "Mini World is a 3D free sandbox game about adventure, exploration, and creating your dream worlds. There is no grinding or leveling up. No IAP gate that locks features from free to play players. Everyone can enjoy the game’s full features with great freedom"
-      },
-      {
-        "item_key": "ab3ca91055660117",
-        "section": "free",
-        "title": "Emporea: Realms of War and Magic",
-        "url": "https://store.steampowered.com/app/416450/",
-        "message_id": "1525166543095201852",
-        "channel_id": "592534544708796474",
-        "source_type": "steam_free",
-        "posted_at": "2026-07-10T15:47:20.810390+00:00",
-        "description": "Emporea is an oldschool fantasy strategy game, where cooperation with other players is necessary to achieve victory. Only the best alliance can win! Multiple realms available, with new ones starting every two weeks."
-      },
-      {
-        "item_key": "b9d5d7beb36faa1d",
-        "section": "free",
-        "title": "Escape Room - Der kranke Kollege",
-        "url": "https://store.steampowered.com/app/1301720/",
-        "message_id": "1525166551601516728",
-        "channel_id": "592534544708796474",
-        "source_type": "steam_free",
-        "posted_at": "2026-07-10T15:47:22.733664+00:00",
-        "description": "You only wanted to make a visit to your sick colleague, but what you encounter is beyond your imagination. Discover the secrets of your colleague and find a way to escape the trap."
-      },
-      {
-        "item_key": "19d29711af410717",
-        "section": "free",
-        "title": "Frontline 1942: Battles of the World War 2",
-        "url": "https://store.steampowered.com/app/2564660/",
-        "message_id": "1525166559746588702",
-        "channel_id": "592534544708796474",
-        "source_type": "steam_free",
-        "posted_at": "2026-07-10T15:47:24.424241+00:00",
-        "description": "Immerse yourself in the times of the Second World War II and become a real hero! Shoot, capture, win – the path to glory is paved with shells!"
-      },
-      {
-        "item_key": "f5f7dde96cab53a9",
-        "section": "paid",
-        "title": "Total War: ATTILA",
-        "url": "https://store.steampowered.com/app/325610/",
-        "message_id": "1525166573898432584",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-07-10T15:47:27.912170+00:00",
-        "description": "Against a darkening background of famine, disease and war, a new power is rising in the great steppes of the East. With a million horsemen at his back, the ultimate warrior king approaches, and his sights are set on Rome… The next instalment in the multi award-winning PC series that combines turn-based strategy with real-time tactics,..."
-      },
-      {
-        "item_key": "3c5bf2dcc05240d7",
-        "section": "paid",
-        "title": "ONE PIECE: PIRATE WARRIORS 4",
-        "url": "https://store.steampowered.com/app/1089090/",
-        "message_id": "1525166581385007104",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-07-10T15:47:29.620984+00:00",
-        "description": "ONE PIECE: PIRATE WARRIORS 4 is the latest evolution of PIRATE WARRIORS action! Based on the concept of \"experiencing a real ONE PIECE battlefield,\" buildings will come crashing down during the action and attacks will throw up smoke and dust, placing you in the thick of the ONE PIECE world!"
-      },
-      {
-        "item_key": "e13aa1d838650155",
-        "section": "paid",
-        "title": "Ultimate Chicken Horse",
-        "url": "https://store.steampowered.com/app/386940/",
-        "message_id": "1525166588565786664",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-07-10T15:47:31.313943+00:00",
-        "description": "Ultimate Chicken Horse is a party platformer game where you build the level as you play, placing traps and hazards to screw your friends over, but trying not to screw yourself."
-      },
-      {
-        "item_key": "fa1138bddb222469",
-        "section": "paid",
-        "title": "Total War: SHOGUN 2",
-        "url": "https://store.steampowered.com/app/201270/",
-        "message_id": "1525166595742367764",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-07-10T15:47:33.070037+00:00",
-        "description": "Total War: SHOGUN 2 is the perfect mix of real-time and turn-based strategy gaming for newcomers and veterans alike."
-      },
-      {
-        "item_key": "55f6fe5331ee14f0",
-        "section": "paid",
-        "title": "Brotato",
-        "url": "https://store.steampowered.com/app/1942280/",
-        "message_id": "1525166603052777634",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-07-10T15:47:34.765518+00:00",
-        "description": "Brotato is a top-down arena shooter roguelite where you play a potato wielding up to 6 weapons at a time to fight off hordes of aliens. Choose from a variety of traits and items to create unique builds and survive until help arrives."
-      },
-      {
-        "item_key": "a18de5e47102ea71",
-        "section": "instagram",
-        "title": "@sharedxp_official",
-        "url": "https://www.instagram.com/p/DalBo8XsFSy/",
-        "message_id": "1525166616432607322",
-        "channel_id": "592534544708796474",
-        "source_type": "instagram",
-        "posted_at": "2026-07-10T15:47:38.053063+00:00",
-        "description": "Cat Mail Co. (AD)  is a cosy postal sim where you restore a forgotten cat post office, sort parcels, serve customers,..."
-      },
-      {
-        "item_key": "fb101e5daf8b514e",
-        "section": "instagram",
-        "title": "@mildsoss_official",
-        "url": "https://www.instagram.com/p/Dalr8j1I8IG/",
-        "message_id": "1525166623961382922",
-        "channel_id": "592534544708796474",
-        "source_type": "instagram",
-        "posted_at": "2026-07-10T15:47:39.845062+00:00",
-        "description": "Once Human is coming to consoles on August 25th with 4K graphics and crossplay. You and your friends are not going to..."
-      },
-      {
-        "item_key": "51595a91942e38a1",
-        "section": "instagram",
-        "title": "@sharedxp_official",
-        "url": "https://www.instagram.com/p/DaneSFQMUOp/",
-        "message_id": "1525166631838416966",
-        "channel_id": "592534544708796474",
-        "source_type": "instagram",
-        "posted_at": "2026-07-10T15:47:41.862976+00:00",
-        "description": "Sponge Break   is a funny 1–4 player co-op game where you play as sponges escaping the kitchen sink on a collapsing r..."
-      },
-      {
-        "item_key": "a918b7717f8cc272",
-        "section": "instagram",
-        "title": "@wilfratgaming",
-        "url": "https://www.instagram.com/p/DaneQngtTXs/",
-        "message_id": "1525166640030028056",
-        "channel_id": "592534544708796474",
-        "source_type": "instagram",
-        "posted_at": "2026-07-10T15:47:43.783677+00:00",
-        "description": "#ad Step into Ormod Directive, a fast-paced co-op extraction shooter where every mission is high-risk, high-reward.  ..."
-      },
-      {
-        "item_key": "9ae942801d2999a3",
-        "section": "instagram",
-        "title": "@wilfratgaming",
-        "url": "https://www.instagram.com/p/DalXqSVN0Xf/",
-        "message_id": "1525166647730503865",
-        "channel_id": "592534544708796474",
-        "source_type": "instagram",
-        "posted_at": "2026-07-10T15:47:45.604802+00:00",
-        "description": "||AD|| CAT MAIL CO. Deliver mail as an adorable cat while exploring a cozy island full of charming characters and rel..."
-      }
-    ],
-    "winners_state": {
-      "status": "skipped",
-      "skipped_reason": "no_eligible_winners",
-      "updated_at_utc": "2026-07-10T23:56:44.932104+00:00"
-    }
-  },
   "2026-07-11": {
     "run_state": {
       "section_headers": {
@@ -5175,6 +4953,147 @@
         "source_type": "paid_under_20",
         "posted_at": "2026-10-25T17:15:10.671628+00:00",
         "description": "Start as a humble birb, eat popcorn, and evolve into a cosmic force of nature! Birb blends addictive idle mechanics with active roguelite expeditions. Build your nest, catch rare fish, challenge bosses, and compete on the global leaderboard. How many pecks will it take to rule the world?"
+      }
+    ]
+  },
+  "2026-10-26": {
+    "run_state": {
+      "section_headers": {
+        "free": {
+          "message_id": "1564357222677479567",
+          "channel_id": "592534544708796474",
+          "posted_at_utc": "2026-10-26T19:17:06.962398+00:00"
+        },
+        "paid": {
+          "message_id": "1564357273407721503",
+          "channel_id": "592534544708796474",
+          "posted_at_utc": "2026-10-26T19:17:18.556727+00:00"
+        }
+      },
+      "last_attempt_at_utc": "2026-10-26T19:17:00.306496+00:00",
+      "intro": {
+        "message_id": "1564357198673617008",
+        "channel_id": "592534544708796474",
+        "posted_at_utc": "2026-10-26T19:17:04.846071+00:00"
+      },
+      "footer": {
+        "message_id": "1564357320711086081",
+        "channel_id": "592534544708796474",
+        "posted_at_utc": "2026-10-26T19:17:29.784942+00:00"
+      },
+      "completed": true,
+      "completed_at_utc": "2026-10-26T19:17:30.992046+00:00"
+    },
+    "items": [
+      {
+        "item_key": "f60eae9251b69c17",
+        "section": "free",
+        "title": "Combat Arms: the Classic",
+        "url": "https://store.steampowered.com/app/1263550/",
+        "message_id": "1564357231498236076",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-10-26T19:17:08.887019+00:00",
+        "description": "Combat Arms: the Classic is a multiplayer game, free-to-play modern first-person shooter. The game is a relaunch of Combat Arms in its glory days delivering gamers a nostalgic high-quality FPS with an extensive arsenal of weapons."
+      },
+      {
+        "item_key": "dd1e09011e9909bb",
+        "section": "free",
+        "title": "Dungeon Fighter Online",
+        "url": "https://store.steampowered.com/app/495910/",
+        "message_id": "1564357239450370198",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-10-26T19:17:10.597220+00:00",
+        "description": "Get ready for the ultimate brawl! Dungeon Fighter Online is a classic beat-em up 2D action game with an epic storyline and RPG elements! Choose from 17 diverse classes, and unravel ancient mysteries as you punch, slash, shoot, or summon your way to victory!"
+      },
+      {
+        "item_key": "64cb69ed70eb3312",
+        "section": "free",
+        "title": "Chicken Invaders Universe",
+        "url": "https://store.steampowered.com/app/1510460/",
+        "message_id": "1564357247193321485",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-10-26T19:17:13.055823+00:00",
+        "description": "A deliciously addictive core of finger-blistering shooting action, surrounded by delectable morsels of galactic exploration, spacecraft customization, and community competitions."
+      },
+      {
+        "item_key": "f998ea55f45aa832",
+        "section": "free",
+        "title": "CRSED: Cuisine Royale",
+        "url": "https://store.steampowered.com/app/884660/",
+        "message_id": "1564357256873775188",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-10-26T19:17:15.042699+00:00",
+        "description": "CRSED: Cuisine Royale – is a brutal MMO last-man-standing shooter with realistic weaponry, elements of lethal mystic forces and incredible superpowers!"
+      },
+      {
+        "item_key": "3c8026c927cc11c2",
+        "section": "free",
+        "title": "CosmicBreak Universal",
+        "url": "https://store.steampowered.com/app/1140620/",
+        "message_id": "1564357265413251274",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-10-26T19:17:16.938336+00:00",
+        "description": "CosmicBreak Universal is an MMO action game that lets you play massive battles of up to 30 vs 30 players using customizable robots and humanoids! Create your own original character and aim for victory with your allies!"
+      },
+      {
+        "item_key": "ca89cca97129ba78",
+        "section": "paid",
+        "title": "DeadPoly",
+        "url": "https://store.steampowered.com/app/1621070/",
+        "message_id": "1564357280055566448",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-10-26T19:17:20.787171+00:00",
+        "description": "DeadPoly is a polygon arcade zombie survival looter shooter with base building, crafting, scavenging, leveling, questing, and more, but your only goal is survival, everything else is optional."
+      },
+      {
+        "item_key": "88a8ba06dff98f50",
+        "section": "paid",
+        "title": "Sker Ritual",
+        "url": "https://store.steampowered.com/app/1492070/",
+        "message_id": "1564357289408864338",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-10-26T19:17:22.654481+00:00",
+        "description": "Tear through endless waves of supernatural enemies in this co-op horror horde shooter. Play solo or with up to 4 players, unleash god-like Miracle powers, supercharge your arsenal, and survive devastating boss encounters on Sker Island."
+      },
+      {
+        "item_key": "aff72c9e3ffe8efe",
+        "section": "paid",
+        "title": "Across the Obelisk",
+        "url": "https://store.steampowered.com/app/1385380/",
+        "message_id": "1564357297650540764",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-10-26T19:17:24.580593+00:00",
+        "description": "Set forth in a co-op roguelite deckbuilder where every choice matters! Craft decks of breathtaking power. Journey alone or with up to three friends. Plot your party’s path to glory and face powerful enemies in deep tactical combat on your quest to save the kingdom of Senenthia in Across the Obelisk!"
+      },
+      {
+        "item_key": "d947a91b2e8a95d2",
+        "section": "paid",
+        "title": "BIGFOOT",
+        "url": "https://store.steampowered.com/app/509980/",
+        "message_id": "1564357304961470485",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-10-26T19:17:26.286717+00:00",
+        "description": "You are a Bigfoot hunter with an important mission: to put an end to rumours once and for all and prove to yourself that Bigfoot is not just a myth or an invention of the mind..."
+      },
+      {
+        "item_key": "0b2cd79257d29d06",
+        "section": "paid",
+        "title": "Pratfall",
+        "url": "https://store.steampowered.com/app/4244510/",
+        "message_id": "1564357312318152747",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-10-26T19:17:28.041999+00:00",
+        "description": "A co-op game for 1-6+ players where you fall, dig, and explode your way down a dangerous cave system to find your lost dog. Catch your friends and watch your step on this journey full of traps, hazards, and the most deadly force of all: gravity. Will you jump into the unknown to rescue your dog?"
       }
     ]
   }
