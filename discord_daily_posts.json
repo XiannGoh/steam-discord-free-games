@@ -1,188 +1,4 @@
 {
-  "2026-07-11": {
-    "run_state": {
-      "section_headers": {
-        "free": {
-          "message_id": "1525512131775299594",
-          "channel_id": "592534544708796474",
-          "posted_at_utc": "2026-07-11T14:40:35.184941+00:00"
-        },
-        "paid": {
-          "message_id": "1525512178877075608",
-          "channel_id": "592534544708796474",
-          "posted_at_utc": "2026-07-11T14:40:46.483778+00:00"
-        },
-        "instagram": {
-          "message_id": "1525512224322490408",
-          "channel_id": "592534544708796474",
-          "posted_at_utc": "2026-07-11T14:40:57.129075+00:00"
-        }
-      },
-      "last_attempt_at_utc": "2026-07-11T14:40:32.651450+00:00",
-      "intro": {
-        "message_id": "1525512123105415428",
-        "channel_id": "592534544708796474",
-        "posted_at_utc": "2026-07-11T14:40:33.532998+00:00"
-      },
-      "footer": {
-        "message_id": "1525512256845123694",
-        "channel_id": "592534544708796474",
-        "posted_at_utc": "2026-07-11T14:41:05.113185+00:00"
-      },
-      "completed": true,
-      "completed_at_utc": "2026-07-11T14:41:06.320336+00:00"
-    },
-    "items": [
-      {
-        "item_key": "50aee74db95f6af3",
-        "section": "free",
-        "title": "Navy War: Battleship Games",
-        "url": "https://store.steampowered.com/app/1991850/",
-        "message_id": "1525512138733650090",
-        "channel_id": "592534544708796474",
-        "source_type": "steam_free",
-        "posted_at": "2026-07-11T14:40:37.248806+00:00",
-        "description": "War & battle ships simulator PvP game with friends. Craft your modern ship fleet"
-      },
-      {
-        "item_key": "47b9695f3f72f0a5",
-        "section": "free",
-        "title": "Anarchy Online",
-        "url": "https://store.steampowered.com/app/396280/",
-        "message_id": "1525512147289768128",
-        "channel_id": "592534544708796474",
-        "source_type": "steam_free",
-        "posted_at": "2026-07-11T14:40:38.999214+00:00",
-        "description": "Anarchy Online – the first ever science fiction MMO – is now on Steam! Compete and cooperate with thousands of players simultaneously on a vast, alien world. Join humanity nearly 30,000 years in the future in a world of perpetual conflict and scientific marvel."
-      },
-      {
-        "item_key": "2d73e8db0227f3b0",
-        "section": "free",
-        "title": "Tank Team",
-        "url": "https://store.steampowered.com/app/2587450/",
-        "message_id": "1525512156626288640",
-        "channel_id": "592534544708796474",
-        "source_type": "steam_free",
-        "posted_at": "2026-07-11T14:40:41.384887+00:00",
-        "description": "A team based PVP game where groups of up to 8 players must work together to operate a tank!"
-      },
-      {
-        "item_key": "40d9e5f3ba62ec44",
-        "section": "free",
-        "title": "Tobacco Shop Simulator: Prologue",
-        "url": "https://store.steampowered.com/app/3211690/",
-        "message_id": "1525512164654317649",
-        "channel_id": "592534544708796474",
-        "source_type": "steam_free",
-        "posted_at": "2026-07-11T14:40:43.115308+00:00",
-        "description": "Run your tobacco shop in this free prologue version of the game. Sign contracts with leading brands, order products, and meet customer needs. Play with friends or go solo, and enjoy the growth of your shop."
-      },
-      {
-        "item_key": "decc0ede01fbe397",
-        "section": "free",
-        "title": "Florensia",
-        "url": "https://store.steampowered.com/app/384030/",
-        "message_id": "1525512171902206035",
-        "channel_id": "592534544708796474",
-        "source_type": "steam_free",
-        "posted_at": "2026-07-11T14:40:44.790659+00:00",
-        "description": "Florensia is a Free-to-Play MMORPG and shows you its legendary worlds ashore and at sea with its 3D anime style. Mysterious islands, the great ocean, dungeons, picturesque pirates and dangerous monsters are waiting to be discovered."
-      },
-      {
-        "item_key": "ee6129cd548c42c7",
-        "section": "paid",
-        "title": "Sitting Ducks",
-        "url": "https://store.steampowered.com/app/4397060/",
-        "message_id": "1525512186145931455",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-07-11T14:40:48.193403+00:00",
-        "description": "A chaotic co-op armageddon game where you build ridiculous structures to survive world-ending disasters with sticky hands, physics chaos & friends who probably won’t save you. Don´t be a Sitting Duck!"
-      },
-      {
-        "item_key": "6f708f09fc0827e6",
-        "section": "paid",
-        "title": "Make Way",
-        "url": "https://store.steampowered.com/app/1445790/",
-        "message_id": "1525512192953159703",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-07-11T14:40:49.991894+00:00",
-        "description": "Speed around loops, dart through train crossings, drift around helter skelters, and unleash wacky weaponry in this modern take on classic top-down multiplayer racing games such as Micro Machines and Mashed. The twist? You build the track."
-      },
-      {
-        "item_key": "6560c520629e5d9c",
-        "section": "paid",
-        "title": "CluDoku",
-        "url": "https://store.steampowered.com/app/4860070/",
-        "message_id": "1525512201123795035",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-07-11T14:40:52.088788+00:00",
-        "description": "A murder mystery blended with sudoku-style logic. Explore suspicious rooms, examine weapon evidence, and piece together clues through sharp deduction to reveal the killer. Play alone or work online with up to 4 detectives to solve the case together."
-      },
-      {
-        "item_key": "997362ca9b49062e",
-        "section": "paid",
-        "title": "NO BACKUP",
-        "url": "https://store.steampowered.com/app/3894440/",
-        "message_id": "1525512209340432528",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-07-11T14:40:53.867472+00:00",
-        "description": "Escape together or die alone. A relentless creature is hunting you in this intense co-op bodycam horror experience. Communicate. Stay quiet. Survive. Every move matters. Every sound could be your last. Made by one developer."
-      },
-      {
-        "item_key": "ebdeea4856c9d610",
-        "section": "paid",
-        "title": "Ember Knights",
-        "url": "https://store.steampowered.com/app/1135230/",
-        "message_id": "1525512217095831773",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-07-11T14:40:55.612804+00:00",
-        "description": "Ember Knights is an action rogue-lite for 1-4 players where you play as legendary knights, the last spark of hope against the mad sorcerer Praxis and his hordes of unwavering fiends. Wield weapons & skills, build synergies with game-changing relics and free the universe of Praxis’ corruption."
-      },
-      {
-        "item_key": "83d7dba6601eabc4",
-        "section": "instagram",
-        "title": "@sharedxp_official",
-        "url": "https://www.instagram.com/p/Dan70eRMDlM/",
-        "message_id": "1525512230760747038",
-        "channel_id": "592534544708796474",
-        "source_type": "instagram",
-        "posted_at": "2026-07-11T14:40:59.006265+00:00",
-        "description": "Shady Job is a physics-based co-op adventure where you and your mates drag a definitely-not-suspicious package up a s..."
-      },
-      {
-        "item_key": "255a1ae630930d3a",
-        "section": "instagram",
-        "title": "@wilfratgaming",
-        "url": "https://www.instagram.com/p/Dan5kuRNPFd/",
-        "message_id": "1525512238650097845",
-        "channel_id": "592534544708796474",
-        "source_type": "instagram",
-        "posted_at": "2026-07-11T14:41:01.338095+00:00",
-        "description": "AD - The Outlast Trials Project Boneyard is out on July 14th!   - 😱 1–4 Player Co-op Horror - 🖥️ Available on PC, Pla..."
-      },
-      {
-        "item_key": "55fc1c97e38e4fe8",
-        "section": "instagram",
-        "title": "@biffmatictv",
-        "url": "https://www.instagram.com/p/Dao5loYohHL/",
-        "message_id": "1525512248423088208",
-        "channel_id": "592534544708796474",
-        "source_type": "instagram",
-        "posted_at": "2026-07-11T14:41:03.136596+00:00",
-        "description": "Can this game live up to Star Wars Battlefront 2 space battles?  Angels Fall First  #gaming #newgames #spacegame #spa..."
-      }
-    ],
-    "winners_state": {
-      "status": "skipped",
-      "skipped_reason": "no_eligible_winners",
-      "updated_at_utc": "2026-07-11T23:51:42.637271+00:00"
-    }
-  },
   "2026-07-12": {
     "run_state": {
       "section_headers": {
@@ -5094,6 +4910,147 @@
         "source_type": "paid_under_20",
         "posted_at": "2026-10-26T19:17:28.041999+00:00",
         "description": "A co-op game for 1-6+ players where you fall, dig, and explode your way down a dangerous cave system to find your lost dog. Catch your friends and watch your step on this journey full of traps, hazards, and the most deadly force of all: gravity. Will you jump into the unknown to rescue your dog?"
+      }
+    ]
+  },
+  "2026-10-27": {
+    "run_state": {
+      "section_headers": {
+        "free": {
+          "message_id": "1564712362727047280",
+          "channel_id": "592534544708796474",
+          "posted_at_utc": "2026-10-27T18:48:18.447957+00:00"
+        },
+        "paid": {
+          "message_id": "1564712413880778988",
+          "channel_id": "592534544708796474",
+          "posted_at_utc": "2026-10-27T18:48:30.682568+00:00"
+        }
+      },
+      "last_attempt_at_utc": "2026-10-27T18:48:14.273781+00:00",
+      "intro": {
+        "message_id": "1564712347187150911",
+        "channel_id": "592534544708796474",
+        "posted_at_utc": "2026-10-27T18:48:16.681651+00:00"
+      },
+      "footer": {
+        "message_id": "1564712464099184672",
+        "channel_id": "592534544708796474",
+        "posted_at_utc": "2026-10-27T18:48:42.542893+00:00"
+      },
+      "completed": true,
+      "completed_at_utc": "2026-10-27T18:48:43.748846+00:00"
+    },
+    "items": [
+      {
+        "item_key": "19dfe233c1f0b1b6",
+        "section": "free",
+        "title": "Darza's Dominion",
+        "url": "https://store.steampowered.com/app/1895130/",
+        "message_id": "1564712369286815765",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-10-27T18:48:21.171822+00:00",
+        "description": "The Dominion takes no prisoners! Fight for your survival in the unforgiving terrains that surround you, strengthen your hero through slaying dangerous creatures, gather a group of allies and bring the battle to Darza in this fast-paced roguelike cooperative bullet-hell MMO!"
+      },
+      {
+        "item_key": "15d94962f28fe1b6",
+        "section": "free",
+        "title": "[2.0.3] MEH 🖥️",
+        "url": "https://store.steampowered.com/app/3065090/",
+        "message_id": "1564712380938846238",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-10-27T18:48:23.013560+00:00",
+        "description": "Meh is a game where you click on a computer to earn random computers from time to time. Collect them all!"
+      },
+      {
+        "item_key": "27aa756894abc3cb",
+        "section": "free",
+        "title": "Military Tanks",
+        "url": "https://store.steampowered.com/app/2342030/",
+        "message_id": "1564712388627005522",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-10-27T18:48:25.395505+00:00",
+        "description": "Do you like tanks game? Are you ready to feel the full power of a tank games?"
+      },
+      {
+        "item_key": "2ff7701b63b7b2c5",
+        "section": "free",
+        "title": "Combat Arms: Reloaded",
+        "url": "https://store.steampowered.com/app/905640/",
+        "message_id": "1564712398156333148",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-10-27T18:48:27.345670+00:00",
+        "description": "Combat Arms is a multiplayer game, free-to-play modern first-person shooter. The game enlists players into various battlefields across the globe to face-off against other ambitious soldiers of fortune, delivering gamers a high-quality FPS with an extensive arsenal of weapons."
+      },
+      {
+        "item_key": "ca575b2d4ebb9cfa",
+        "section": "free",
+        "title": "Galaxy Control: 3D Strategy",
+        "url": "https://store.steampowered.com/app/435440/",
+        "message_id": "1564712406263931056",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-10-27T18:48:29.136479+00:00",
+        "description": "Build your base and battle with other players to control the galaxy! Galaxy Control is an ultimate space combat strategy game with fast-paced combats! Gather minerals and extract uranium, defend your base with laser towers, missile turrets, cannons, walls and mines."
+      },
+      {
+        "item_key": "1e87664bd51eb528",
+        "section": "paid",
+        "title": "Project: Mist",
+        "url": "https://store.steampowered.com/app/2383130/",
+        "message_id": "1564712420570562691",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-10-27T18:48:32.299464+00:00",
+        "description": "Explore a strange island in this open-world survival horror. Use the Gravity Gun to manipulate objects and enemies, build a moving train base, fight giant creatures, catch critters, upgrade your gear, and uncover the dark secrets hidden within its abandoned facilities. Play alone or with friends."
+      },
+      {
+        "item_key": "128a3b188c25d291",
+        "section": "paid",
+        "title": "Goblin Cleanup",
+        "url": "https://store.steampowered.com/app/2748340/",
+        "message_id": "1564712427298234448",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-10-27T18:48:34.454949+00:00",
+        "description": "A co-op cleaning game where you have to clean and rearrange a dungeon before the next adventurers come to complete it again."
+      },
+      {
+        "item_key": "c337f37ffeecee78",
+        "section": "paid",
+        "title": "Wand & Order: Tidy up the magic shop!",
+        "url": "https://store.steampowered.com/app/4981570/",
+        "message_id": "1564712436089491549",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-10-27T18:48:36.226073+00:00",
+        "description": "Cozy first person co-op organizing and cleaning simulator! Sort wands, tarot decks and potions. Tidy up the shop to earn points and unlock powerful spells that help you restore order before the Alchemist returns!"
+      },
+      {
+        "item_key": "7ed061294f04aa2b",
+        "section": "paid",
+        "title": "The Spell Brigade",
+        "url": "https://store.steampowered.com/app/2904000/",
+        "message_id": "1564712444037828669",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-10-27T18:48:38.572971+00:00",
+        "description": "Survivors-like with ONLINE CO-OP for 1-4 players. Team up with your wizard friends to slay hordes of dark creatures. Complete team-based objectives, unlock new upgrades and create overpowered spell synergies. Friend nor foe is safe in this friendly fire bullet hell!"
+      },
+      {
+        "item_key": "7f1028253efd839c",
+        "section": "paid",
+        "title": "The Headliners",
+        "url": "https://store.steampowered.com/app/3059070/",
+        "message_id": "1564712453399519354",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-10-27T18:48:40.398657+00:00",
+        "description": "Co-op horror game where you play in teams of 1 to 8 reckless journalists, ready to explore a city overrun by deadly creatures to snap spectacular footage. Your only goal: make the headlines without becoming one."
       }
     ]
   }
