@@ -1,188 +1,4 @@
 {
-  "2026-07-13": {
-    "run_state": {
-      "section_headers": {
-        "free": {
-          "message_id": "1526257687095152680",
-          "channel_id": "592534544708796474",
-          "posted_at_utc": "2026-07-13T16:03:09.488249+00:00"
-        },
-        "paid": {
-          "message_id": "1526257737707688046",
-          "channel_id": "592534544708796474",
-          "posted_at_utc": "2026-07-13T16:03:21.585764+00:00"
-        },
-        "instagram": {
-          "message_id": "1526257781945008138",
-          "channel_id": "592534544708796474",
-          "posted_at_utc": "2026-07-13T16:03:31.999950+00:00"
-        }
-      },
-      "last_attempt_at_utc": "2026-07-13T16:03:06.160949+00:00",
-      "intro": {
-        "message_id": "1526257675371937925",
-        "channel_id": "592534544708796474",
-        "posted_at_utc": "2026-07-13T16:03:07.687308+00:00"
-      },
-      "footer": {
-        "message_id": "1526257812416499842",
-        "channel_id": "592534544708796474",
-        "posted_at_utc": "2026-07-13T16:03:39.222395+00:00"
-      },
-      "completed": true,
-      "completed_at_utc": "2026-07-13T16:03:40.430024+00:00"
-    },
-    "items": [
-      {
-        "item_key": "34e59783073defe9",
-        "section": "free",
-        "title": "POLYGON",
-        "url": "https://store.steampowered.com/app/1241100/",
-        "message_id": "1526257694472667206",
-        "channel_id": "592534544708796474",
-        "source_type": "steam_free",
-        "posted_at": "2026-07-13T16:03:11.613249+00:00",
-        "description": "POLYGON is a tactical multiplayer team 1st person shooter. Using various weapons, you will battle with up to 32 players on large-scale maps. Properly managing your arsenal and skills, you will lead your team to victory!"
-      },
-      {
-        "item_key": "cd908e700ec513ce",
-        "section": "free",
-        "title": "SAS: Zombie Assault 4",
-        "url": "https://store.steampowered.com/app/678800/",
-        "message_id": "1526257703280967882",
-        "channel_id": "592534544708796474",
-        "source_type": "steam_free",
-        "posted_at": "2026-07-13T16:03:13.566039+00:00",
-        "description": "Purge the undead! Intense action-shooter with deep rpg elements, including upgradeable guns and armor, unique class skills, and class special abilities. Entire game can be played single player or as a 4-player online co-op game, including PvP events like Last Man Standing."
-      },
-      {
-        "item_key": "6d4cf87fb35c6aa4",
-        "section": "free",
-        "title": "AdventureQuest 3D",
-        "url": "https://store.steampowered.com/app/429790/",
-        "message_id": "1526257711904198719",
-        "channel_id": "592534544708796474",
-        "source_type": "steam_free",
-        "posted_at": "2026-07-13T16:03:16.058028+00:00",
-        "description": "The Void King is raising an army in secret. Death has chosen you as his champion to bring him down. Adventure & quest alongside your friends in this bizarre cross-platform MMORPG from the creators of the original, and comically-redundantly named... AdventureQuest! Weekly releases!"
-      },
-      {
-        "item_key": "559af6fdab9918bb",
-        "section": "free",
-        "title": "Vegas Casino & Slots: Slottist",
-        "url": "https://store.steampowered.com/app/3673150/",
-        "message_id": "1526257722071187546",
-        "channel_id": "592534544708796474",
-        "source_type": "steam_free",
-        "posted_at": "2026-07-13T16:03:17.857508+00:00",
-        "description": "Discover the world's best Casino Slots Games! Play slots with unique game mechanics, explore amazing mini-games and master your casino skills!"
-      },
-      {
-        "item_key": "ae86d368049003ec",
-        "section": "free",
-        "title": "Modern Warships",
-        "url": "https://store.steampowered.com/app/3144230/",
-        "message_id": "1526257729864466474",
-        "channel_id": "592534544708796474",
-        "source_type": "steam_free",
-        "posted_at": "2026-07-13T16:03:19.762274+00:00",
-        "description": "Modern Warships is an online action game about contemporary military vehicles. Join now and detect the enemy with recon aircraft, launch volleys of guided missiles from cruisers, sneak up to surface vessels with submarines, and provide cover to the allied fleet with jet fighters and helicopters."
-      },
-      {
-        "item_key": "749d344db1a47ff9",
-        "section": "paid",
-        "title": "Left 4 Dead 2",
-        "url": "https://store.steampowered.com/app/550/",
-        "message_id": "1526257744871686276",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-07-13T16:03:23.455373+00:00",
-        "description": "Set in the zombie apocalypse, Left 4 Dead 2 is a co-operative action horror FPS takes you and your friends through the cities, swamps and cemeteries of the Deep South, from Savannah to New Orleans across five expansive campaigns."
-      },
-      {
-        "item_key": "093ac4dabf2cba7f",
-        "section": "paid",
-        "title": "Lethal Company",
-        "url": "https://store.steampowered.com/app/1966720/",
-        "message_id": "1526257752966566091",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-07-13T16:03:25.200383+00:00",
-        "description": "A co-op horror about scavenging at abandoned moons to sell scrap to the Company."
-      },
-      {
-        "item_key": "267e1cf9e482c1ea",
-        "section": "paid",
-        "title": "Cursed Companions",
-        "url": "https://store.steampowered.com/app/3265230/",
-        "message_id": "1526257760025710755",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-07-13T16:03:26.913055+00:00",
-        "description": "If we say the wrong words... WE DIE! This game kills you with your own voices! Online co-op where everyone gets a forbidden word, say it and you kill your friends. Explore spooky dungeons, cast spells and defeat monsters with your voices. 8-player Co-op Mode. 16-player Traitor Mode"
-      },
-      {
-        "item_key": "4f8ecd505e129d5a",
-        "section": "paid",
-        "title": "The Other Side",
-        "url": "https://store.steampowered.com/app/2764750/",
-        "message_id": "1526257767353155656",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-07-13T16:03:28.625706+00:00",
-        "description": "The Other Side is a co-op psychological thriller for up to 6 players. Your goal is to investigate haunted locations using modern ghost hunting equipment, gather evidence, identify entities, and cleanse them from the location. Customize your character, headquarters, and more."
-      },
-      {
-        "item_key": "e9650158f9c790c8",
-        "section": "paid",
-        "title": "Party Animals",
-        "url": "https://store.steampowered.com/app/1260320/",
-        "message_id": "1526257774428684380",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-07-13T16:03:30.372211+00:00",
-        "description": "Fight your friends as puppies, kittens and other fuzzy creatures in PARTY ANIMALS! Paw it out with your friends remotely, or huddle together for chaotic fun on the same screen. Interact with the world under our realistic physics engine. Did I mention PUPPIES?"
-      },
-      {
-        "item_key": "3999bf68cc7721ec",
-        "section": "instagram",
-        "title": "@mildsoss_official",
-        "url": "https://www.instagram.com/p/DavN1p6Ic08/",
-        "message_id": "1526257788592979970",
-        "channel_id": "592534544708796474",
-        "source_type": "instagram",
-        "posted_at": "2026-07-13T16:03:33.837754+00:00",
-        "description": "This free extraction shooter takes place in the Chernobyl Exclusion Zone. A new player event is live right now. Use t..."
-      },
-      {
-        "item_key": "63a320680a6cbafa",
-        "section": "instagram",
-        "title": "@wilfratgaming",
-        "url": "https://www.instagram.com/p/Das6QAXtsR6/",
-        "message_id": "1526257796335534111",
-        "channel_id": "592534544708796474",
-        "source_type": "instagram",
-        "posted_at": "2026-07-13T16:03:35.693965+00:00",
-        "description": "Instead of defending a base, your base is a school bus that you and your crew must keep running as you drive through ..."
-      },
-      {
-        "item_key": "cd666c9459ed65c1",
-        "section": "instagram",
-        "title": "@biffmatictv",
-        "url": "https://www.instagram.com/p/DavA_73NLx0/",
-        "message_id": "1526257804271288340",
-        "channel_id": "592534544708796474",
-        "source_type": "instagram",
-        "posted_at": "2026-07-13T16:03:37.508316+00:00",
-        "description": "AD - Masters of Mayhem enters Open Beta today! Free to play social deduction game!   @mastersofmayhemgame   #gaming #..."
-      }
-    ],
-    "winners_state": {
-      "status": "skipped",
-      "skipped_reason": "no_eligible_winners",
-      "updated_at_utc": "2026-07-13T23:51:55.078276+00:00"
-    }
-  },
   "2026-07-14": {
     "run_state": {
       "section_headers": {
@@ -5030,6 +4846,147 @@
         "source_type": "paid_under_20",
         "posted_at": "2026-10-28T18:55:27.972891+00:00",
         "description": "Red Barrels invites you to experience mind-numbing terror, this time with friends. Whether you go through the trials alone or in teams, if you survive long enough and complete the therapy, Murkoff will happily let you leave… but will you be the same?"
+      }
+    ]
+  },
+  "2026-10-29": {
+    "run_state": {
+      "section_headers": {
+        "free": {
+          "message_id": "1565441150687383656",
+          "channel_id": "592534544708796474",
+          "posted_at_utc": "2026-10-29T19:04:15.161660+00:00"
+        },
+        "paid": {
+          "message_id": "1565441201417490453",
+          "channel_id": "592534544708796474",
+          "posted_at_utc": "2026-10-29T19:04:27.438713+00:00"
+        }
+      },
+      "last_attempt_at_utc": "2026-10-29T19:04:12.099510+00:00",
+      "intro": {
+        "message_id": "1565441140071596127",
+        "channel_id": "592534544708796474",
+        "posted_at_utc": "2026-10-29T19:04:13.450774+00:00"
+      },
+      "footer": {
+        "message_id": "1565441255293587549",
+        "channel_id": "592534544708796474",
+        "posted_at_utc": "2026-10-29T19:04:40.414212+00:00"
+      },
+      "completed": true,
+      "completed_at_utc": "2026-10-29T19:04:41.619102+00:00"
+    },
+    "items": [
+      {
+        "item_key": "639965f044516bb7",
+        "section": "free",
+        "title": "Marbles on Stream",
+        "url": "https://store.steampowered.com/app/1170970/",
+        "message_id": "1565441157775757450",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-10-29T19:04:17.123390+00:00",
+        "description": "The marble racing game your chat plays with you. Viewers type !play to drop in as their own marble, then race, battle, tilt and survive across dozens of tracks and modes. Stream it to your community, race on your own, or team up with friends. Free to play. Let's roll!"
+      },
+      {
+        "item_key": "97d163a3892a14c2",
+        "section": "free",
+        "title": "Poker Master - Texas Hold'em, Roulette, Blackjack, Baccarat, Omaha, Slots, Teen Patti, Mahjong, Landlord, Showhand, Bullfighting, Chinese poker",
+        "url": "https://store.steampowered.com/app/994910/",
+        "message_id": "1565441165761708225",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-10-29T19:04:18.983280+00:00",
+        "description": "Free chips!Including Texas Hold'em, Slots, Blackjack, Teen Patti, Omaha, Baccarat, Roulette, Mahjong, Landlord and more poker games."
+      },
+      {
+        "item_key": "88465a6d5ff5c917",
+        "section": "free",
+        "title": "WAKFU",
+        "url": "https://store.steampowered.com/app/215080/",
+        "message_id": "1565441173911244914",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-10-29T19:04:20.935030+00:00",
+        "description": "Immerse yourself in the WAKFU universe with this free to play MMORPG. Select your class, travel the world, meet adventurers to challenge powerful monsters in epic turn-based battles.Participate in the kingdom’s economy and politics and create your own legend!"
+      },
+      {
+        "item_key": "ad87be601591caf7",
+        "section": "free",
+        "title": "Idle Clans",
+        "url": "https://store.steampowered.com/app/2103530/",
+        "message_id": "1565441181867970672",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-10-29T19:04:23.476522+00:00",
+        "description": "Idle Clans offers the classic MMORPG grind and experience we all know and love, but in a way that respects your time. Dozens of skills, clans, a player-driven economy, quests, bosses, raids and more. Frequently updated and shaped by the community."
+      },
+      {
+        "item_key": "f9d2fea77b1c976f",
+        "section": "free",
+        "title": "Champions Online",
+        "url": "https://store.steampowered.com/app/9880/",
+        "message_id": "1565441192689274981",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-10-29T19:04:25.494275+00:00",
+        "description": "Grab your cape and defend Millennium City in this comic book-style action MMORPG! Design your hero and costume from thousands of costume pieces, face super-villains like Dr. Destroyer, and create your own unique nemesis."
+      },
+      {
+        "item_key": "34759c5b9757946c",
+        "section": "paid",
+        "title": "Gunfire Reborn",
+        "url": "https://store.steampowered.com/app/1217060/",
+        "message_id": "1565441209256771694",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-10-29T19:04:29.275725+00:00",
+        "description": "Gunfire Reborn is a level-based adventure game featuring FPS, Roguelite and RPG. Players can control heroes with various abilities to experience diverse Build gameplay, use various weapons to explore procedurally-generated levels. You can play the game alone, or join 4-player coop."
+      },
+      {
+        "item_key": "3dfbd7d7c138a06e",
+        "section": "paid",
+        "title": "Funnel Runners",
+        "url": "https://store.steampowered.com/app/3712080/",
+        "message_id": "1565441216987009236",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-10-29T19:04:31.305238+00:00",
+        "description": "Trapped in a doomed city, you and up to 7 friends must scavenge parts, fix your van, and escape the brutal tornado that approaches. A first-person co-op survival game with escalating disasters and total environmental destruction."
+      },
+      {
+        "item_key": "3cc326090564e109",
+        "section": "paid",
+        "title": "Machine Party",
+        "url": "https://store.steampowered.com/app/4108000/",
+        "message_id": "1565441225904095322",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-10-29T19:04:33.595152+00:00",
+        "description": "Machine Party is a collection of violent party games where failure is lethal. Gather your friends and endure high stakes situations to prove your life is worth more than theirs. Survival is unlikely."
+      },
+      {
+        "item_key": "194c5df3c112d740",
+        "section": "paid",
+        "title": "Deep Rock Galactic",
+        "url": "https://store.steampowered.com/app/548430/",
+        "message_id": "1565441235601330330",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-10-29T19:04:35.991450+00:00",
+        "description": "Deep Rock Galactic is a 1-4 player co-op FPS featuring dwarven space miners, procedurally-generated destructible environments, and endless hordes of alien monsters. Explore cave systems, mine for minerals, and work together to survive!"
+      },
+      {
+        "item_key": "2510430facc87c1f",
+        "section": "paid",
+        "title": "Cat Mail Co.",
+        "url": "https://store.steampowered.com/app/4380490/",
+        "message_id": "1565441245050835087",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-10-29T19:04:38.078174+00:00",
+        "description": "Run a cozy cat post office. Sort and deliver parcels from the daily boat, organizing everything your way. At night, the moon reveals hidden truths about packages. Clear a strange backlog, help locals, and unlock new abilities and destinations."
       }
     ]
   }
