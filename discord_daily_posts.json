@@ -1,188 +1,4 @@
 {
-  "2026-07-14": {
-    "run_state": {
-      "section_headers": {
-        "free": {
-          "message_id": "1526605331482939466",
-          "channel_id": "592534544708796474",
-          "posted_at_utc": "2026-07-14T15:04:34.503020+00:00"
-        },
-        "paid": {
-          "message_id": "1526605374894112971",
-          "channel_id": "592534544708796474",
-          "posted_at_utc": "2026-07-14T15:04:44.585251+00:00"
-        },
-        "instagram": {
-          "message_id": "1526605419370381491",
-          "channel_id": "592534544708796474",
-          "posted_at_utc": "2026-07-14T15:04:55.177570+00:00"
-        }
-      },
-      "last_attempt_at_utc": "2026-07-14T15:04:30.817691+00:00",
-      "intro": {
-        "message_id": "1526605318958612551",
-        "channel_id": "592534544708796474",
-        "posted_at_utc": "2026-07-14T15:04:32.754274+00:00"
-      },
-      "footer": {
-        "message_id": "1526605452895322122",
-        "channel_id": "592534544708796474",
-        "posted_at_utc": "2026-07-14T15:05:03.693113+00:00"
-      },
-      "completed": true,
-      "completed_at_utc": "2026-07-14T15:05:04.902201+00:00"
-    },
-    "items": [
-      {
-        "item_key": "3daf6efde8a71830",
-        "section": "free",
-        "title": "Ragnarok X: Next Generation",
-        "url": "https://store.steampowered.com/app/4007140/",
-        "message_id": "1526605339565359235",
-        "channel_id": "592534544708796474",
-        "source_type": "steam_free",
-        "posted_at": "2026-07-14T15:04:36.338757+00:00",
-        "description": "ROX is the official next-gen evolution of the classic Ragnarok Online MMORPG. With enhanced visuals, strategic combat, and diverse gameplay, ROX stays true to its roots while offering Fair Loot, Free Trading, and True Adventures. Your legend begins now— Are you ready?"
-      },
-      {
-        "item_key": "5a9891a252b8d794",
-        "section": "free",
-        "title": "Dungeon Crusher: Soul Hunters",
-        "url": "https://store.steampowered.com/app/842980/",
-        "message_id": "1526605346846540051",
-        "channel_id": "592534544708796474",
-        "source_type": "steam_free",
-        "posted_at": "2026-07-14T15:04:38.057511+00:00",
-        "description": "A social multiplayer incremental idle rpg with clans, PvP arenas, a wonderful 3d fantasy world with a story/missions and much more."
-      },
-      {
-        "item_key": "258b8b0c0b54348a",
-        "section": "free",
-        "title": "Sniper Fury",
-        "url": "https://store.steampowered.com/app/591740/",
-        "message_id": "1526605354102952057",
-        "channel_id": "592534544708796474",
-        "source_type": "steam_free",
-        "posted_at": "2026-07-14T15:04:39.755342+00:00",
-        "description": "Sniper Fury is an action-sharpshooting game set in a world threatened by violence. Neutralize threats using an ever-growing arsenal of modern firepower. Customize everything: weapons, gear sets, bullets! Join other snipers in Clan Wars, challenge them in PvP mode, & try events for extra surprises."
-      },
-      {
-        "item_key": "f998ea55f45aa832",
-        "section": "free",
-        "title": "CRSED: Cuisine Royale",
-        "url": "https://store.steampowered.com/app/884660/",
-        "message_id": "1526605360763506873",
-        "channel_id": "592534544708796474",
-        "source_type": "steam_free",
-        "posted_at": "2026-07-14T15:04:41.342756+00:00",
-        "description": "CRSED: Cuisine Royale – is a brutal MMO last-man-standing shooter with realistic weaponry, elements of lethal mystic forces and incredible superpowers!"
-      },
-      {
-        "item_key": "dfcc22790e765813",
-        "section": "free",
-        "title": "Top Heroes",
-        "url": "https://store.steampowered.com/app/4007740/",
-        "message_id": "1526605367835099256",
-        "channel_id": "592534544708796474",
-        "source_type": "steam_free",
-        "posted_at": "2026-07-14T15:04:43.039278+00:00",
-        "description": "◆ Embark on an Adventure Explore unknown lands, unlock ancient ruins, and brave dangerous dungeons! ◆ Build Your Kingdom Create a thriving realm from scratch and turn your dream city into reality! ◆ Achieve Glory with Your Guild Form powerful alliances with players worldwide, and conquer the world!"
-      },
-      {
-        "item_key": "763903c5b1237b94",
-        "section": "paid",
-        "title": "Farever",
-        "url": "https://store.steampowered.com/app/3672400/",
-        "message_id": "1526605381307076629",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-07-14T15:04:46.429368+00:00",
-        "description": "Forge your legend in a forgotten realm! Farever is an online multiplayer action RPG set in a vast fantasy open world. Alone or with friends, embark on an epic journey together! Explore wild lands and dangerous dungeons, craft powerful gear, and carve your path through dynamic combat and platforming."
-      },
-      {
-        "item_key": "34759c5b9757946c",
-        "section": "paid",
-        "title": "Gunfire Reborn",
-        "url": "https://store.steampowered.com/app/1217060/",
-        "message_id": "1526605389339164772",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-07-14T15:04:48.154044+00:00",
-        "description": "Gunfire Reborn is a level-based adventure game featuring FPS, Roguelite and RPG. Players can control heroes with various abilities to experience diverse Build gameplay, use various weapons to explore procedurally-generated levels. You can play the game alone, or join 4-player coop."
-      },
-      {
-        "item_key": "8d1960dd4bae162e",
-        "section": "paid",
-        "title": "Phantom Tower",
-        "url": "https://store.steampowered.com/app/3988410/",
-        "message_id": "1526605396951826463",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-07-14T15:04:50.250626+00:00",
-        "description": "Phantom Tower is an Action RPG inspired by the hack and slash genre. Explore an immense tower that hides treasures and dangers: slay monsters, forge your equipment, and grow stronger."
-      },
-      {
-        "item_key": "bb99a4e40aed45c1",
-        "section": "paid",
-        "title": "Kingdom Two Crowns",
-        "url": "https://store.steampowered.com/app/701160/",
-        "message_id": "1526605405235712020",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-07-14T15:04:51.925602+00:00",
-        "description": "Gather coins, build defenses and reclaim your fallen Kingdom. Explore and uncover secrets, unlock new technologies and protect your crown versus waves of Greed monsters that come at night. Kingdom is a solo or co-op micro-strategy and tower defense game set in an atmospheric pixel world."
-      },
-      {
-        "item_key": "e90aadb249870b3c",
-        "section": "paid",
-        "title": "Dune: Spice Wars",
-        "url": "https://store.steampowered.com/app/1605220/",
-        "message_id": "1526605412135211070",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-07-14T15:04:53.608682+00:00",
-        "description": "A 4X real-time strategy game from the developers of the critically acclaimed Northgard. Set in Frank Herbert’s groundbreaking Dune universe, you must lead your faction and battle for control and dominance over the harsh desert planet of Arrakis."
-      },
-      {
-        "item_key": "58cc04b1464ce88d",
-        "section": "instagram",
-        "title": "@sharedxp_official",
-        "url": "https://www.instagram.com/p/Dav3z62sxS0/",
-        "message_id": "1526605426316283955",
-        "channel_id": "592534544708796474",
-        "source_type": "instagram",
-        "posted_at": "2026-07-14T15:04:57.261532+00:00",
-        "description": "Data Breach (AD) steal what you can, then sprint for the train before your battery dies.  ✅ Online co-op (1-4 players..."
-      },
-      {
-        "item_key": "7272c1d4ce8a032e",
-        "section": "instagram",
-        "title": "@mildsoss_official",
-        "url": "https://www.instagram.com/p/DawDioUoy2h/",
-        "message_id": "1526605434671071332",
-        "channel_id": "592534544708796474",
-        "source_type": "instagram",
-        "posted_at": "2026-07-14T15:04:59.275108+00:00",
-        "description": "Manage a bunker full of survivors with your dog in this zombie survival game! Pale Tide!  #gaming #newgame #survivalgame"
-      },
-      {
-        "item_key": "8f9907aef55e8736",
-        "section": "instagram",
-        "title": "@wilfratgaming",
-        "url": "https://www.instagram.com/p/DaveB2wNsaG/",
-        "message_id": "1526605443047362743",
-        "channel_id": "592534544708796474",
-        "source_type": "instagram",
-        "posted_at": "2026-07-14T15:05:01.391270+00:00",
-        "description": "#ad Partnered with @11bitstudios to check out The Alters: Last Variable — a new 20-hour expansion with underground ba..."
-      }
-    ],
-    "winners_state": {
-      "status": "skipped",
-      "skipped_reason": "no_eligible_winners",
-      "updated_at_utc": "2026-07-14T23:50:32.514818+00:00"
-    }
-  },
   "2026-07-15": {
     "run_state": {
       "section_headers": {
@@ -4987,6 +4803,147 @@
         "source_type": "paid_under_20",
         "posted_at": "2026-10-29T19:04:38.078174+00:00",
         "description": "Run a cozy cat post office. Sort and deliver parcels from the daily boat, organizing everything your way. At night, the moon reveals hidden truths about packages. Clear a strange backlog, help locals, and unlock new abilities and destinations."
+      }
+    ]
+  },
+  "2026-10-30": {
+    "run_state": {
+      "section_headers": {
+        "free": {
+          "message_id": "1565797340705726590",
+          "channel_id": "592534544708796474",
+          "posted_at_utc": "2026-10-30T18:39:37.707822+00:00"
+        },
+        "paid": {
+          "message_id": "1565797394501607585",
+          "channel_id": "592534544708796474",
+          "posted_at_utc": "2026-10-30T18:39:50.183299+00:00"
+        }
+      },
+      "last_attempt_at_utc": "2026-10-30T18:39:35.080615+00:00",
+      "intro": {
+        "message_id": "1565797332627488820",
+        "channel_id": "592534544708796474",
+        "posted_at_utc": "2026-10-30T18:39:35.729681+00:00"
+      },
+      "footer": {
+        "message_id": "1565797443650457681",
+        "channel_id": "592534544708796474",
+        "posted_at_utc": "2026-10-30T18:40:01.942794+00:00"
+      },
+      "completed": true,
+      "completed_at_utc": "2026-10-30T18:40:03.147621+00:00"
+    },
+    "items": [
+      {
+        "item_key": "df8ba87011407b3a",
+        "section": "free",
+        "title": "Soulworker",
+        "url": "https://store.steampowered.com/app/1377580/",
+        "message_id": "1565797349190803539",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-10-30T18:39:40.388893+00:00",
+        "description": "Fierce emotions help fuel SoulWorkers to save the world from the devastated scene of a post-apocalyptic world. In a world where only dark devastation reigns – you are the only SoulWorker to come to the rescue."
+      },
+      {
+        "item_key": "af1ad76bff5b73bf",
+        "section": "free",
+        "title": "Wurm Online",
+        "url": "https://store.steampowered.com/app/1179680/",
+        "message_id": "1565797360037273790",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-10-30T18:39:42.796819+00:00",
+        "description": "A sandbox MMORPG that has pushed the boundaries on what it means to be open world and stood the test of time. Dig, mine, shape the world around you and make your lasting mark!"
+      },
+      {
+        "item_key": "cadc257b39432194",
+        "section": "free",
+        "title": "War Planet Online: Global Conquest",
+        "url": "https://store.steampowered.com/app/719640/",
+        "message_id": "1565797369797419041",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-10-30T18:39:44.994514+00:00",
+        "description": "Build your army, dominate your region and lead your alliance to conquer the globe!"
+      },
+      {
+        "item_key": "7db9c3356cee2d5c",
+        "section": "free",
+        "title": "Alien Swarm: Reactive Drop",
+        "url": "https://store.steampowered.com/app/563560/",
+        "message_id": "1565797379322417232",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-10-30T18:39:46.821232+00:00",
+        "description": "Co-operative top-down shooter game available for free. An epic bug hunt featuring a unique blend of co-op play and squad-level tactics."
+      },
+      {
+        "item_key": "daf051a30c11f8df",
+        "section": "free",
+        "title": "SWORD OF JUSTICE",
+        "url": "https://store.steampowered.com/app/2782500/",
+        "message_id": "1565797387027480576",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-10-30T18:39:48.593708+00:00",
+        "description": "“Sword of Justice” is sparking a rebellion against outdated RPG builds! This groundbreaking Open World MMO defies tradition with stunning visuals and an immersive, lifelike atmosphere that deeply influences the game world. Step into \"The Pulsing Martial World\" and experience its breath-taking allure"
+      },
+      {
+        "item_key": "0a3131c82bf3b292",
+        "section": "paid",
+        "title": "Catch Meow If You Can",
+        "url": "https://store.steampowered.com/app/4306070/",
+        "message_id": "1565797401082593400",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-10-30T18:39:52.013857+00:00",
+        "description": "An online co-op survival game for up to 4 players. Play as a famous, award-winning cat. While the owner is away, different types of burglars invade the mansion. Explore dark rooms, solve puzzles, outsmart intruders, fight back, and escape without getting caught."
+      },
+      {
+        "item_key": "3b5bdd4b5b3f4523",
+        "section": "paid",
+        "title": "Punch Upon a Time",
+        "url": "https://store.steampowered.com/app/4485570/",
+        "message_id": "1565797408796057690",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-10-30T18:39:53.955926+00:00",
+        "description": "Punch Upon a Time is a team-based party fighter inspired by Smash Bros where you take on rounds of modes, mini-games, and combat alongside your friends. Assemble a squad of the biggest fairy tale names to punch, dunk, fly, score, and sumo your way to victory as the LAST TEAM STANDING."
+      },
+      {
+        "item_key": "631233dcdbffe64c",
+        "section": "paid",
+        "title": "MIMESIS",
+        "url": "https://store.steampowered.com/app/2827200/",
+        "message_id": "1565797416987533415",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-10-30T18:39:55.922231+00:00",
+        "description": "A 4-player online co-op survival horror game. Avoid the contaminated rain, gather scrap and get back to the tram. Monsters that copy your friends' voices and behavior, and many other threats, stand in your way. Gear up and stick together to survive."
+      },
+      {
+        "item_key": "b67184607615fae4",
+        "section": "paid",
+        "title": "Benny's Backrooms",
+        "url": "https://store.steampowered.com/app/2562390/",
+        "message_id": "1565797425547841756",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-10-30T18:39:58.327151+00:00",
+        "description": "A co-op horror where you and your friends (if applicable) explore a seemingly infinite expanse of eerie creature-infested liminal spaces, armed only with a glorified vacuum and specialized equipment to help you locate and extract a rare substance in the name of science."
+      },
+      {
+        "item_key": "eb3bc8b84efbea79",
+        "section": "paid",
+        "title": "Burglin' Gnomes",
+        "url": "https://store.steampowered.com/app/3844970/",
+        "message_id": "1565797435178098839",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-10-30T18:40:00.158992+00:00",
+        "description": "An online Co-op game about breaking into houses and causing havoc as a tiny gnome. Avoid danger, repurpose stolen household items, and complete tasks to meet the High-Gnome’s demands. Craft equipment and upgrade your home to make your missions easier and more successful."
       }
     ]
   }
