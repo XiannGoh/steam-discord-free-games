@@ -1,221 +1,4 @@
 {
-  "2026-07-16": {
-    "run_state": {
-      "section_headers": {
-        "free": {
-          "message_id": "1527332901400613057",
-          "channel_id": "592534544708796474",
-          "posted_at_utc": "2026-07-16T15:15:40.391731+00:00"
-        },
-        "paid": {
-          "message_id": "1527332950612639924",
-          "channel_id": "592534544708796474",
-          "posted_at_utc": "2026-07-16T15:15:52.121221+00:00"
-        },
-        "instagram": {
-          "message_id": "1527332993893404682",
-          "channel_id": "592534544708796474",
-          "posted_at_utc": "2026-07-16T15:16:02.406462+00:00"
-        }
-      },
-      "last_attempt_at_utc": "2026-07-16T15:15:38.437235+00:00",
-      "intro": {
-        "message_id": "1527332894669013022",
-        "channel_id": "592534544708796474",
-        "posted_at_utc": "2026-07-16T15:15:38.830760+00:00"
-      },
-      "footer": {
-        "message_id": "1527333044745404559",
-        "channel_id": "592534544708796474",
-        "posted_at_utc": "2026-07-16T15:16:14.713628+00:00"
-      },
-      "completed": true,
-      "completed_at_utc": "2026-07-16T15:16:15.922002+00:00"
-    },
-    "items": [
-      {
-        "item_key": "831e80a80857b652",
-        "section": "free",
-        "title": "Dead Maze",
-        "url": "https://store.steampowered.com/app/667890/",
-        "message_id": "1527332907843190926",
-        "channel_id": "592534544708796474",
-        "source_type": "steam_free",
-        "posted_at": "2026-07-16T15:15:42.167128+00:00",
-        "description": "Dead Maze is a 2D MMO game set in a destroyed contemporary world, filled with zombies. Explore the world, scavenge and craft as many items as possible, to survive the hostile environment and upgrade your gear and camp as you go."
-      },
-      {
-        "item_key": "34e36ca6b990b017",
-        "section": "free",
-        "title": "XERA: Survival",
-        "url": "https://store.steampowered.com/app/625340/",
-        "message_id": "1527332915266977824",
-        "channel_id": "592534544708796474",
-        "source_type": "steam_free",
-        "posted_at": "2026-07-16T15:15:43.887775+00:00",
-        "description": "Action-focused, open world survival shooter, PvPvE against fellow mercenaries and lethal XOIDS. Raid for resources alone or with team-mates, build and defend your base, stash your gear and survive against the odds. You are the hunters. You are the hunted. And the robots never sleep…"
-      },
-      {
-        "item_key": "70284b80978d9bc8",
-        "section": "free",
-        "title": "Warborne Above Ashes",
-        "url": "https://store.steampowered.com/app/3142050/",
-        "message_id": "1527332922137510121",
-        "channel_id": "592534544708796474",
-        "source_type": "steam_free",
-        "posted_at": "2026-07-16T15:15:45.491932+00:00",
-        "description": "Warborne is a top-down PvP loot-and-extract MMO. Every choice in the Abyss is a high-stakes gamble. Pick your gear wisely, employ cunning tactics, and plunder every treasure you can from a battlefield teeming with deception. And pray you make it out alive. Trade your spoils to grow your might."
-      },
-      {
-        "item_key": "042f5780bfb9ef4a",
-        "section": "free",
-        "title": "Heroes Of The Dark",
-        "url": "https://store.steampowered.com/app/1851330/",
-        "message_id": "1527332929087213740",
-        "channel_id": "592534544708796474",
-        "source_type": "steam_free",
-        "posted_at": "2026-07-16T15:15:47.301433+00:00",
-        "description": "Battle Vampires, Werewolves and Humans in a dark Imperial Age strategy game! Collect and upgrade Heroes for 5v5 action, forge alliances, and restore world order."
-      },
-      {
-        "item_key": "2fb5c98374843165",
-        "section": "free",
-        "title": "PANZERKAMPF®",
-        "url": "https://store.steampowered.com/app/2771910/",
-        "message_id": "1527332936922173490",
-        "channel_id": "592534544708796474",
-        "source_type": "steam_free",
-        "posted_at": "2026-07-16T15:15:48.992787+00:00",
-        "description": "World war of tanks rages on. Join the battle in one of our real-world tanks! Upgrade your vehicles and destroy the enemy! Play with friends and dominate the war! Play for free, in intuitive and easy to grasp UI, with state-of-the-art graphics, particle effects and authentic sound!"
-      },
-      {
-        "item_key": "7523582aa8ebde73",
-        "section": "paid",
-        "title": "Cosmoteer: Starship Architect & Commander",
-        "url": "https://store.steampowered.com/app/799600/",
-        "message_id": "1527332957617131691",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-07-16T15:15:54.067278+00:00",
-        "description": "Design and simulate the starships of your dreams! Command your ship or fleet in epic battles and manage your crew while exploring a dangerous galaxy. Play alone or with friends, test your ships in online PvP, and let your imagination reach for the stars!"
-      },
-      {
-        "item_key": "d947a91b2e8a95d2",
-        "section": "paid",
-        "title": "BIGFOOT",
-        "url": "https://store.steampowered.com/app/509980/",
-        "message_id": "1527332965183393945",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-07-16T15:15:55.695124+00:00",
-        "description": "You are a Bigfoot hunter with an important mission: to put an end to rumours once and for all and prove to yourself that Bigfoot is not just a myth or an invention of the mind..."
-      },
-      {
-        "item_key": "8611b392fb36bd0f",
-        "section": "paid",
-        "title": "Rhythia",
-        "url": "https://store.steampowered.com/app/2250500/",
-        "message_id": "1527332972024565991",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-07-16T15:15:57.529634+00:00",
-        "description": "Rhythia is a game about aiming and hitting musical beats with precision timing, within a dynamic 3x3 grid system. Use your reflexes to target flying blocks, combine accurate aim with perfect rhythm, and finally master the leaderboards against players who challenge your precision skills."
-      },
-      {
-        "item_key": "16278fbbb7d18432",
-        "section": "paid",
-        "title": "Raiders of Blackveil",
-        "url": "https://store.steampowered.com/app/3352240/",
-        "message_id": "1527332979435765791",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-07-16T15:15:59.213642+00:00",
-        "description": "Join the rebellion against the evil corporation Blackveil in this action-packed roguelite for 1-3 players. Select your MOBA-like champion, collect RPG-style loot and infiltrate Blackveil’s massive factory. Wreak havoc, and smuggle out loot to get INSANELY powerful!"
-      },
-      {
-        "item_key": "de93b3543b4a5e9a",
-        "section": "paid",
-        "title": "Scam Line",
-        "url": "https://store.steampowered.com/app/2794590/",
-        "message_id": "1527332986775670936",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-07-16T15:16:00.904638+00:00",
-        "description": "Scam Line is a 4–8 player social deception game where your party will face different challenges. Become a liar, a manipulator, a cheater, or find your own path to victory"
-      },
-      {
-        "item_key": "fde4909b77457447",
-        "section": "instagram",
-        "title": "@sharedxp_official",
-        "url": "https://www.instagram.com/p/Da2su34MGmd/",
-        "message_id": "1527333000172539976",
-        "channel_id": "592534544708796474",
-        "source_type": "instagram",
-        "posted_at": "2026-07-16T15:16:04.074035+00:00",
-        "description": "Join Us (AD)  Franchise your own doomsday cult recruit followers, build a belief system, and defend your compound as ..."
-      },
-      {
-        "item_key": "8eefdf93336a6abc",
-        "section": "instagram",
-        "title": "@mildsoss_official",
-        "url": "https://www.instagram.com/p/Da16WJRI9Ft/",
-        "message_id": "1527333007227093033",
-        "channel_id": "592534544708796474",
-        "source_type": "instagram",
-        "posted_at": "2026-07-16T15:16:05.851700+00:00",
-        "description": "Wanna start a secret society with your friends?  🎮 Join Us 🗓️ March 2027 👥 1-4 Players 🖥️ PC, Xbox, PlayStation  #gam..."
-      },
-      {
-        "item_key": "6ef2606f610adb64",
-        "section": "instagram",
-        "title": "@mildsoss_official",
-        "url": "https://www.instagram.com/p/Da1BJaHoYiN/",
-        "message_id": "1527333014370123869",
-        "channel_id": "592534544708796474",
-        "source_type": "instagram",
-        "posted_at": "2026-07-16T15:16:07.448703+00:00",
-        "description": "Cameras are OP in this game  🎮 Data Breach 🗓️ July 21, 2026 👥 1-4 Players 🖥️ PC (Steam)  #gaming #newgame #coop #horr..."
-      },
-      {
-        "item_key": "43c2e43252f25bc6",
-        "section": "instagram",
-        "title": "@sharedxp_official",
-        "url": "https://www.instagram.com/p/Da0uebFsOK5/",
-        "message_id": "1527333021374484511",
-        "channel_id": "592534544708796474",
-        "source_type": "instagram",
-        "posted_at": "2026-07-16T15:16:09.107927+00:00",
-        "description": "My Cannibal Family  Build a beautiful theme park, lure guests in by day, then hunt them once night falls to feed your..."
-      },
-      {
-        "item_key": "21be255cd7d15f38",
-        "section": "instagram",
-        "title": "@wilfratgaming",
-        "url": "https://www.instagram.com/p/Da20s1FNRvy/",
-        "message_id": "1527333028316053745",
-        "channel_id": "592534544708796474",
-        "source_type": "instagram",
-        "posted_at": "2026-07-16T15:16:10.743692+00:00",
-        "description": "Strikers Club strips football back to pure skill by putting you in control of just one player, where every pass, tack..."
-      },
-      {
-        "item_key": "c2207420931bbec2",
-        "section": "instagram",
-        "title": "@biffmatictv",
-        "url": "https://www.instagram.com/p/Da0rvmPtpQS/",
-        "message_id": "1527333035408621740",
-        "channel_id": "592534544708796474",
-        "source_type": "instagram",
-        "posted_at": "2026-07-16T15:16:13.029120+00:00",
-        "description": "All roads lead to Source…  Codename Cure 2   #gaming #newgames #zombiegame #gamingwithfriends #mods"
-      }
-    ],
-    "winners_state": {
-      "status": "skipped",
-      "skipped_reason": "no_eligible_winners",
-      "updated_at_utc": "2026-07-16T23:56:33.240659+00:00"
-    }
-  },
   "2026-07-17": {
     "run_state": {
       "section_headers": {
@@ -4868,6 +4651,103 @@
         "source_type": "paid_under_20",
         "posted_at": "2026-10-31T17:45:48.670828+00:00",
         "description": "Step into the world of One Piece like never before in Pirate Warriors 4! Unleash devastating attacks against massive enemy armies and relive iconic anime arcs in an action-packed adventure. With stunning visuals, fast-paced combat, and fan-favorite characters, experience a One Piece power fantasy."
+      }
+    ]
+  },
+  "2026-11-01": {
+    "run_state": {
+      "section_headers": {
+        "free": {
+          "message_id": "1566520216572403863",
+          "channel_id": "592534544708796474",
+          "posted_at_utc": "2026-11-01T18:32:04.482522+00:00"
+        },
+        "paid": {
+          "message_id": "1566520232330141818",
+          "channel_id": "592534544708796474",
+          "posted_at_utc": "2026-11-01T18:32:08.197067+00:00"
+        }
+      },
+      "last_attempt_at_utc": "2026-11-01T18:31:56.818133+00:00",
+      "intro": {
+        "message_id": "1566520187396816927",
+        "channel_id": "592534544708796474",
+        "posted_at_utc": "2026-11-01T18:32:02.843421+00:00"
+      },
+      "footer": {
+        "message_id": "1566520278551502961",
+        "channel_id": "592534544708796474",
+        "posted_at_utc": "2026-11-01T18:32:19.366577+00:00"
+      },
+      "completed": true,
+      "completed_at_utc": "2026-11-01T18:32:20.573708+00:00"
+    },
+    "items": [
+      {
+        "item_key": "1a32bec1d0e4c322",
+        "section": "free",
+        "title": "KUBOOM",
+        "url": "https://store.steampowered.com/app/513000/",
+        "message_id": "1566520223576887457",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-11-01T18:32:06.585007+00:00",
+        "description": "Cross-platform hurricane online 3D Shooter"
+      },
+      {
+        "item_key": "40dbcffc230eb516",
+        "section": "paid",
+        "title": "ShipShaper",
+        "url": "https://store.steampowered.com/app/4339280/",
+        "message_id": "1566520238634434671",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-11-01T18:32:10.080823+00:00",
+        "description": "Drag and pull your hull into any naval shape. Launch it and see if it floats. Weight, sails and waves matter, you can end up top heavy and roll over. No worries, add some diving rudders and it’s a submarine. Multiplayer comes November 19 (broadsides, torpedoes, racing and combat in PvP arenas)"
+      },
+      {
+        "item_key": "832802806cf43ac7",
+        "section": "paid",
+        "title": "Put Your Toys Away Together!",
+        "url": "https://store.steampowered.com/app/5041530/",
+        "message_id": "1566520246808871108",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-11-01T18:32:11.867641+00:00",
+        "description": "A cozy co-op game about turning the toy store of your dreams into a perfectly organized world. Sort all 20,000 toys, find the right home for every doll, dinosaur and train, and watch the shelves spring back to life – on your own or with up to 8 friends."
+      },
+      {
+        "item_key": "d46c051a2c4e05d4",
+        "section": "paid",
+        "title": "SurrounDead",
+        "url": "https://store.steampowered.com/app/1645820/",
+        "message_id": "1566520254492839977",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-11-01T18:32:13.699954+00:00",
+        "description": "SurrounDead is an open world survival game. Taking place in a world ravaged by an apocalyptic catastrophe. The dead reign free and will stop at nothing to kill you."
+      },
+      {
+        "item_key": "cb1ea9b47607e5f5",
+        "section": "paid",
+        "title": "Bookshop Simulator",
+        "url": "https://store.steampowered.com/app/3467040/",
+        "message_id": "1566520262227136643",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-11-01T18:32:15.404775+00:00",
+        "description": "Open your own bookshop! Order books, stock your shelves, and earn revenue. Use your profits to decorate, expand, and hire staff. Collect rare books that give powerful abilities. Adopt a cat to keep you and your customers company along the way!"
+      },
+      {
+        "item_key": "87520c3f28063632",
+        "section": "paid",
+        "title": "Crosshair X",
+        "url": "https://store.steampowered.com/app/1366800/",
+        "message_id": "1566520269227561030",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-11-01T18:32:17.489659+00:00",
+        "description": "Improve your aim and accuracy in every shooter you play. Crosshair X overlays a custom crosshair on top of any game, even games that do not include one. Choose from thousands of community designs or build your own with the designer."
       }
     ]
   }
