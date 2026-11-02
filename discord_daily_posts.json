@@ -1,210 +1,4 @@
 {
-  "2026-07-17": {
-    "run_state": {
-      "section_headers": {
-        "free": {
-          "message_id": "1527688339606605875",
-          "channel_id": "592534544708796474",
-          "posted_at_utc": "2026-07-17T14:48:03.827873+00:00"
-        },
-        "paid": {
-          "message_id": "1527688401145430067",
-          "channel_id": "592534544708796474",
-          "posted_at_utc": "2026-07-17T14:48:18.215083+00:00"
-        },
-        "instagram": {
-          "message_id": "1527688450202013746",
-          "channel_id": "592534544708796474",
-          "posted_at_utc": "2026-07-17T14:48:29.860663+00:00"
-        }
-      },
-      "last_attempt_at_utc": "2026-07-17T14:47:59.236184+00:00",
-      "intro": {
-        "message_id": "1527688323475443783",
-        "channel_id": "592534544708796474",
-        "posted_at_utc": "2026-07-17T14:48:01.853238+00:00"
-      },
-      "footer": {
-        "message_id": "1527688499158061109",
-        "channel_id": "592534544708796474",
-        "posted_at_utc": "2026-07-17T14:48:41.558554+00:00"
-      },
-      "completed": true,
-      "completed_at_utc": "2026-07-17T14:48:42.765226+00:00"
-    },
-    "items": [
-      {
-        "item_key": "cbb19f06a72d2f9f",
-        "section": "free",
-        "title": "Mecha BREAK",
-        "url": "https://store.steampowered.com/app/2452280/",
-        "message_id": "1527688347743420589",
-        "channel_id": "592534544708796474",
-        "source_type": "steam_free",
-        "posted_at": "2026-07-17T14:48:05.686330+00:00",
-        "description": "Squad up in Mecha BREAK, a multiplayer third-person shooter offering three intense game modes filled with ground and aerial combat. Pilot your Striker into the breach and neutralize enemies. Are you ready for the ultimate showdown?"
-      },
-      {
-        "item_key": "4e1afa8cfe14d47c",
-        "section": "free",
-        "title": "Pixel Worlds: MMO Sandbox",
-        "url": "https://store.steampowered.com/app/636040/",
-        "message_id": "1527688356362977564",
-        "channel_id": "592534544708796474",
-        "source_type": "steam_free",
-        "posted_at": "2026-07-17T14:48:07.999414+00:00",
-        "description": "Pixel Worlds is a free-to-play sandbox MMO where players build worlds, craft items, explore dungeons, farm resources, and trade in a player-driven economy, all within a shared online universe rebuilt as a fresh start for a fair and stable long-term experience."
-      },
-      {
-        "item_key": "a0c1fdeec14345a2",
-        "section": "free",
-        "title": "Dead Frontier 2",
-        "url": "https://store.steampowered.com/app/744900/",
-        "message_id": "1527688365569343508",
-        "channel_id": "592534544708796474",
-        "source_type": "steam_free",
-        "posted_at": "2026-07-17T14:48:09.928095+00:00",
-        "description": "Survival horror MMO. As one of the few survivors of the outbreak, you must scratch a living out of the decaying ruins of society. Scavenge for supplies, improve your skills, and trade with other players. All the while, keeping your eyes peeled for the infected lurking around every corner."
-      },
-      {
-        "item_key": "dafad9bfeff042d1",
-        "section": "free",
-        "title": "Neverwinter",
-        "url": "https://store.steampowered.com/app/109600/",
-        "message_id": "1527688373462892698",
-        "channel_id": "592534544708796474",
-        "source_type": "steam_free",
-        "posted_at": "2026-07-17T14:48:14.098291+00:00",
-        "description": "Neverwinter is a free, action MMORPG based on the acclaimed Dungeons & Dragons fantasy roleplaying game. Epic stories, action combat and classic roleplaying await those heroes courageous enough to enter the fantastic world of Neverwinter!"
-      },
-      {
-        "item_key": "a14c7658259ec305",
-        "section": "free",
-        "title": "Guild Wars 2®",
-        "url": "https://store.steampowered.com/app/1284210/",
-        "message_id": "1527688391510986965",
-        "channel_id": "592534544708796474",
-        "source_type": "steam_free",
-        "posted_at": "2026-07-17T14:48:16.586015+00:00",
-        "description": "Guild Wars 2 is an award-winning online roleplaying game with fast-paced action combat, deep character customization, and no subscription fee required. Choose from an arsenal of professions and weapons, explore a vast open world, compete in PVP modes and more. Join over 16 million players now!"
-      },
-      {
-        "item_key": "c56be906a8d72675",
-        "section": "paid",
-        "title": "Ore Factory Squad ⛏️",
-        "url": "https://store.steampowered.com/app/4210580/",
-        "message_id": "1527688408049389578",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-07-17T14:48:19.994061+00:00",
-        "description": "Ore Factory Squad is a co-op mining and factory-building game with procedural mining and fun at its core! Play alone or with friends, buy properties, dig deep for valuable resources, complete contracts, upgrade and automate production lines and grow your factory from zero to industry!"
-      },
-      {
-        "item_key": "511ade524ea600f0",
-        "section": "paid",
-        "title": "Solarpunk™",
-        "url": "https://store.steampowered.com/app/1805110/",
-        "message_id": "1527688415695470682",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-07-17T14:48:21.846232+00:00",
-        "description": "Solarpunk is a survival game in a technologically advanced world of floating islands. Alone or together with your friends, you can construct buildings, grow food, craft gadgets and hop on your airship to explore distant islands in the sky."
-      },
-      {
-        "item_key": "7034c09c00b453f8",
-        "section": "paid",
-        "title": "SpiritVale",
-        "url": "https://store.steampowered.com/app/3767850/",
-        "message_id": "1527688423304069330",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-07-17T14:48:23.880536+00:00",
-        "description": "A class-based action MMO inspired by classic RPGs. Explore a fractured world of monsters and ruins, build your own playstyle, and fight alongside friends in real-time, cooperative combat."
-      },
-      {
-        "item_key": "bd8a2c50eebfcccb",
-        "section": "paid",
-        "title": "Easy Red 2",
-        "url": "https://store.steampowered.com/app/1324780/",
-        "message_id": "1527688432057585775",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-07-17T14:48:26.110230+00:00",
-        "description": "Experience massive battles with infantry, tanks, artillery, and aircraft on large destructible open-world maps. Equip yourself, coordinate with your squad, and fight through World War II in singleplayer, co-op, or multiplayer!"
-      },
-      {
-        "item_key": "eb3bc8b84efbea79",
-        "section": "paid",
-        "title": "Burglin' Gnomes",
-        "url": "https://store.steampowered.com/app/3844970/",
-        "message_id": "1527688441180061849",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-07-17T14:48:28.231794+00:00",
-        "description": "An online Co-op game about breaking into houses and causing havoc as a tiny gnome. Avoid danger, repurpose stolen household items, and complete tasks to meet the High-Gnome’s demands. Craft equipment and upgrade your home to make your missions easier and more successful."
-      },
-      {
-        "item_key": "1ea29db8ae3422b5",
-        "section": "instagram",
-        "title": "@sharedxp_official",
-        "url": "https://www.instagram.com/p/Da3F96_M6mt/",
-        "message_id": "1527688456598323261",
-        "channel_id": "592534544708796474",
-        "source_type": "instagram",
-        "posted_at": "2026-07-17T14:48:31.856875+00:00",
-        "description": "Happy's Humble Burger Cult (AD) (OUT TODAY)  The co-op successor to Happy's Humble Burger Farm — grill, serve, hit qu..."
-      },
-      {
-        "item_key": "242a1f517f210e76",
-        "section": "instagram",
-        "title": "@mildsoss_official",
-        "url": "https://www.instagram.com/p/Da3X_pShYt_/",
-        "message_id": "1527688465259561113",
-        "channel_id": "592534544708796474",
-        "source_type": "instagram",
-        "posted_at": "2026-07-17T14:48:33.599115+00:00",
-        "description": "Be careful what you say in this game  🎮 Happy’s Humble Burger Cult 🗓️ Available Now 👥 1-4 Players 🖥️ PC (Steam)  #gam..."
-      },
-      {
-        "item_key": "dc9d55e2387bd12a",
-        "section": "instagram",
-        "title": "@mildsoss_official",
-        "url": "https://www.instagram.com/p/DayVRtzhaFd/",
-        "message_id": "1527688472691740844",
-        "channel_id": "592534544708796474",
-        "source_type": "instagram",
-        "posted_at": "2026-07-17T14:48:35.516241+00:00",
-        "description": "Good luck against all these Tornadoes  🎮 Funnel Runners 🗓️ July 16, 2026 👥 1-8 Players 🖥️ PC (Steam)  #gaming #newgam..."
-      },
-      {
-        "item_key": "1e349572d7572678",
-        "section": "instagram",
-        "title": "@wilfratgaming",
-        "url": "https://www.instagram.com/p/Da5RAh4N9VM/",
-        "message_id": "1527688480728154254",
-        "channel_id": "592534544708796474",
-        "source_type": "instagram",
-        "posted_at": "2026-07-17T14:48:37.215187+00:00",
-        "description": "DayZ: Badlands drops survivors into a brutal new desert map where water is scarce, the heat is relentless, and every ..."
-      },
-      {
-        "item_key": "9777938edca4af3b",
-        "section": "instagram",
-        "title": "@biffmatictv",
-        "url": "https://www.instagram.com/p/Da5aNXrNYqK/",
-        "message_id": "1527688488277770341",
-        "channel_id": "592534544708796474",
-        "source_type": "instagram",
-        "posted_at": "2026-07-17T14:48:39.766098+00:00",
-        "description": "AD - Finally this game is releasing..  Low Budget Repairs   #gaming #newgames #simulator #repairsim #handymansim"
-      }
-    ],
-    "winners_state": {
-      "status": "skipped",
-      "skipped_reason": "no_eligible_winners",
-      "updated_at_utc": "2026-07-17T23:49:36.740990+00:00"
-    }
-  },
   "2026-07-18": {
     "run_state": {
       "section_headers": {
@@ -4748,6 +4542,147 @@
         "source_type": "paid_under_20",
         "posted_at": "2026-11-01T18:32:17.489659+00:00",
         "description": "Improve your aim and accuracy in every shooter you play. Crosshair X overlays a custom crosshair on top of any game, even games that do not include one. Choose from thousands of community designs or build your own with the designer."
+      }
+    ]
+  },
+  "2026-11-02": {
+    "run_state": {
+      "section_headers": {
+        "free": {
+          "message_id": "1566940287899672658",
+          "channel_id": "592534544708796474",
+          "posted_at_utc": "2026-11-02T22:21:17.741803+00:00"
+        },
+        "paid": {
+          "message_id": "1566940338902532239",
+          "channel_id": "592534544708796474",
+          "posted_at_utc": "2026-11-02T22:21:29.575809+00:00"
+        }
+      },
+      "last_attempt_at_utc": "2026-11-02T22:21:11.493696+00:00",
+      "intro": {
+        "message_id": "1566940265644556371",
+        "channel_id": "592534544708796474",
+        "posted_at_utc": "2026-11-02T22:21:15.601455+00:00"
+      },
+      "footer": {
+        "message_id": "1566940390806921217",
+        "channel_id": "592534544708796474",
+        "posted_at_utc": "2026-11-02T22:21:41.778247+00:00"
+      },
+      "completed": true,
+      "completed_at_utc": "2026-11-02T22:21:42.984796+00:00"
+    },
+    "items": [
+      {
+        "item_key": "c4efb8b6ef2537ef",
+        "section": "free",
+        "title": "Star Trek Online",
+        "url": "https://store.steampowered.com/app/9900/",
+        "message_id": "1566940296695259207",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-11-02T22:21:20.061696+00:00",
+        "description": "In Star Trek Online, the Star Trek universe appears for the first time on a truly massive scale. Players take the captain's chair as they command their own starship and crew. Explore strange new worlds, seek out new life and new civilizations, and boldly go where no one has gone before."
+      },
+      {
+        "item_key": "b41cc9c75cf9e972",
+        "section": "free",
+        "title": "Fishing Planet",
+        "url": "https://store.steampowered.com/app/380600/",
+        "message_id": "1566940306589352007",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-11-02T22:21:21.862980+00:00",
+        "description": "Fishing Planet® is a highly realistic first-person online multiplayer fishing simulator. Developed by avid fishing enthusiasts to bring you the full thrill of actual angling on your PC. Free-to-Play and just a download away!"
+      },
+      {
+        "item_key": "641caeaae7bc0892",
+        "section": "free",
+        "title": "Paladins®",
+        "url": "https://store.steampowered.com/app/444090/",
+        "message_id": "1566940314084712458",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-11-02T22:21:23.587519+00:00",
+        "description": "Paladins is the ultimate fantasy team-based shooter experience, with over 50 customizable Champions fighting in 5v5 action across a diverse Realm of modes and maps!"
+      },
+      {
+        "item_key": "a96f5baf72930166",
+        "section": "free",
+        "title": "Dragonheir: Silent Gods",
+        "url": "https://store.steampowered.com/app/2203070/",
+        "message_id": "1566940321554636820",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-11-02T22:21:25.671036+00:00",
+        "description": "Ultimate Rewards Await! Enter the Chaos Carnival! Brand-new SP Hero \"Child of Chaos\" arrives, full-server Faction War erupts, 100 free summons up for grabs, and the limited-edition Dark Lady figure makes its debut. This year's biggest update is here—now is the perfect time to join."
+      },
+      {
+        "item_key": "b936ee5ca6338fca",
+        "section": "free",
+        "title": "World of Warships: Legends",
+        "url": "https://store.steampowered.com/app/2964090/",
+        "message_id": "1566940330425712730",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-11-02T22:21:27.717592+00:00",
+        "description": "Join this free-to-play PvP online naval shooter with fast-paced combat, easy-to-learn gameplay, intuitive controls, and cross-platform play on Steam, console, and mobile. Choose from 600+ warships and 150+ Commanders, and master tactics on diverse maps. Play now and become a legend!"
+      },
+      {
+        "item_key": "e9888422d860ba95",
+        "section": "paid",
+        "title": "GRAVHOUNDS",
+        "url": "https://store.steampowered.com/app/2440760/",
+        "message_id": "1566940346506805399",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-11-02T22:21:31.465836+00:00",
+        "description": "GRAVHOUNDS is a 1–4 player co-op action builder. Drop into hostile planets as a pack, build and defend your base in physics-driven mayhem, and extract with everything you can carry before you become alien chow! The longer you stay, the greater the danger... and the rewards."
+      },
+      {
+        "item_key": "d6427250986fa08f",
+        "section": "paid",
+        "title": "S.O.N.A.R. - Submarine Operators Not Actually Ready",
+        "url": "https://store.steampowered.com/app/4096830/",
+        "message_id": "1566940354345697451",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-11-02T22:21:33.283485+00:00",
+        "description": "S.O.N.A.R. (Submarine Operators Not Actually Ready) is a 1–6 player co-op submarine sim where teamwork is essential, panic is inevitable, and sinking is always one wrong button away. Use sonar, pilot, fight, repair, and pray your friends know what to do."
+      },
+      {
+        "item_key": "88c4bdf410d9f4c5",
+        "section": "paid",
+        "title": "Teardown",
+        "url": "https://store.steampowered.com/app/1167630/",
+        "message_id": "1566940362314883203",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-11-02T22:21:35.684081+00:00",
+        "description": "Prepare the perfect heist in a fully destructible, simulated voxel world. Tear down walls with vehicles or use explosives to create your own shortcuts. Shape the environment to your advantage in the most creative ways you can imagine. Play solo or with up to 12 players in multiplayer."
+      },
+      {
+        "item_key": "fec5ed044eac73d0",
+        "section": "paid",
+        "title": "Rat Game",
+        "url": "https://store.steampowered.com/app/3347910/",
+        "message_id": "1566940372041465878",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-11-02T22:21:38.121671+00:00",
+        "description": "Asymmetrical horror comedy co-op for up to 8 players. Play either a pack of Rats trying to sabotage a restaurant, or the Chef determined to stop them."
+      },
+      {
+        "item_key": "e3d79f929dc6cce7",
+        "section": "paid",
+        "title": "How to Fish",
+        "url": "https://store.steampowered.com/app/4001890/",
+        "message_id": "1566940382254862368",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-11-02T22:21:40.009065+00:00",
+        "description": "A 1-4 player physics based fishing simulator. While drinking and boating you suddenly crash into a small island. To work your way back home you have to learn How to Fish."
       }
     ]
   }
