@@ -1,188 +1,4 @@
 {
-  "2026-07-19": {
-    "run_state": {
-      "section_headers": {
-        "free": {
-          "message_id": "1528411565479432222",
-          "channel_id": "592534544708796474",
-          "posted_at_utc": "2026-07-19T14:41:54.006204+00:00"
-        },
-        "paid": {
-          "message_id": "1528411612711489546",
-          "channel_id": "592534544708796474",
-          "posted_at_utc": "2026-07-19T14:42:05.302213+00:00"
-        },
-        "instagram": {
-          "message_id": "1528411656835829850",
-          "channel_id": "592534544708796474",
-          "posted_at_utc": "2026-07-19T14:42:15.719556+00:00"
-        }
-      },
-      "last_attempt_at_utc": "2026-07-19T14:41:50.428519+00:00",
-      "intro": {
-        "message_id": "1528411552405917717",
-        "channel_id": "592534544708796474",
-        "posted_at_utc": "2026-07-19T14:41:52.404516+00:00"
-      },
-      "footer": {
-        "message_id": "1528411687026167949",
-        "channel_id": "592534544708796474",
-        "posted_at_utc": "2026-07-19T14:42:22.918798+00:00"
-      },
-      "completed": true,
-      "completed_at_utc": "2026-07-19T14:42:24.126510+00:00"
-    },
-    "items": [
-      {
-        "item_key": "9c2bde7b16a027c8",
-        "section": "free",
-        "title": "Fistful of Frags",
-        "url": "https://store.steampowered.com/app/265630/",
-        "message_id": "1528411572307755059",
-        "channel_id": "592534544708796474",
-        "source_type": "steam_free",
-        "posted_at": "2026-07-19T14:41:56.016654+00:00",
-        "description": "Multiplayer based, first person enabled, action packed and skill demanding shooter set in the Wild West times. A unique combination of non stop action and slow but powerful weaponry."
-      },
-      {
-        "item_key": "5e5e784a5002716e",
-        "section": "free",
-        "title": "Hero Zero - Multiplayer RPG",
-        "url": "https://store.steampowered.com/app/482920/",
-        "message_id": "1528411580650360982",
-        "channel_id": "592534544708796474",
-        "source_type": "steam_free",
-        "posted_at": "2026-07-19T14:41:57.694494+00:00",
-        "description": "Become a hero, build your own Hide-Out and start by saving your neighbourhood. Level up your skills, collect incredibly weird superhero gadgets, and join a superhero team to save the world!"
-      },
-      {
-        "item_key": "9f68107e115ac58a",
-        "section": "free",
-        "title": "Thunder Tier One",
-        "url": "https://store.steampowered.com/app/377300/",
-        "message_id": "1528411587541729322",
-        "channel_id": "592534544708796474",
-        "source_type": "steam_free",
-        "posted_at": "2026-07-19T14:41:59.625031+00:00",
-        "description": "Thunder Tier One is a realistic top-down shooter where you join an elite special operations team tasked with stopping a dangerous terrorist organization wreaking havoc across the fictional Eastern European country of Salobia."
-      },
-      {
-        "item_key": "dfaebf39616a3342",
-        "section": "free",
-        "title": "WonderKing",
-        "url": "https://store.steampowered.com/app/3825780/",
-        "message_id": "1528411595183493262",
-        "channel_id": "592534544708796474",
-        "source_type": "steam_free",
-        "posted_at": "2026-07-19T14:42:01.407130+00:00",
-        "description": "The return of classic 2D side-scrolling action! WonderKing is a free-to-play MMORPG packed with flashy combat and deep progression. Advance through diverse classes, master unique combos, and party up with friends for epic boss raids. Start your adventure today!"
-      },
-      {
-        "item_key": "794406c592444e9f",
-        "section": "free",
-        "title": "Force of Warships: Battleship Games",
-        "url": "https://store.steampowered.com/app/1991860/",
-        "message_id": "1528411603773554689",
-        "channel_id": "592534544708796474",
-        "source_type": "steam_free",
-        "posted_at": "2026-07-19T14:42:03.633828+00:00",
-        "description": "Direct your battleship to glorious victory! Online battle under your leadership!"
-      },
-      {
-        "item_key": "58dde40746164ada",
-        "section": "paid",
-        "title": "Dark Hours",
-        "url": "https://store.steampowered.com/app/2208570/",
-        "message_id": "1528411619246211083",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-07-19T14:42:07.001307+00:00",
-        "description": "Dark Hours is a co-op survival horror game for 1-4 players. Your heist has been disrupted by a supernatural event, and your team of robbers is now trapped with an evil entity. Forget your plan, your mission is to survive. Explore and cooperate to find a way out."
-      },
-      {
-        "item_key": "315917c19d6c3206",
-        "section": "paid",
-        "title": "Don't Starve Together",
-        "url": "https://store.steampowered.com/app/322330/",
-        "message_id": "1528411626754146454",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-07-19T14:42:08.800661+00:00",
-        "description": "Fight, Farm, Build and Explore Together in the standalone multiplayer expansion to the uncompromising wilderness survival game, Don't Starve."
-      },
-      {
-        "item_key": "2c25d103f74ec41d",
-        "section": "paid",
-        "title": "GONE Fishing",
-        "url": "https://store.steampowered.com/app/3645890/",
-        "message_id": "1528411634266144808",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-07-19T14:42:10.486459+00:00",
-        "description": "GONE Fishing is a 1-8 player survival horror game where you and your friends must work together to stay alive, by fishing. The only way to survive is to keep feeding the lake’s insatiable hunger before it feeds on you. Can you satisfy the hunger... or will you become the next offering?"
-      },
-      {
-        "item_key": "7f31d9b79ee5acc6",
-        "section": "paid",
-        "title": "Golf With Your Friends",
-        "url": "https://store.steampowered.com/app/431240/",
-        "message_id": "1528411641291477093",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-07-19T14:42:12.308920+00:00",
-        "description": "Why have friends if not to play Golf... With Your Friends! Nothing is out of bounds as you take on courses filled with fast paced, exciting, simultaneous mini golf for up to 12 players!"
-      },
-      {
-        "item_key": "632d55b415b03495",
-        "section": "paid",
-        "title": "Motor Town: Behind The Wheel",
-        "url": "https://store.steampowered.com/app/1369670/",
-        "message_id": "1528411649109790780",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-07-19T14:42:14.194224+00:00",
-        "description": "Enjoy realistic driving in the open world. Relaxing cargo deliveries or driving buses and taxis will give you enough money to buy new cars and parts. You can test your driving skills at the race track. It's all about pure driving pleasure!"
-      },
-      {
-        "item_key": "19688d857b2e2efd",
-        "section": "instagram",
-        "title": "@mildsoss_official",
-        "url": "https://www.instagram.com/p/Da8RpkiOFVs/",
-        "message_id": "1528411663286665308",
-        "channel_id": "592534544708796474",
-        "source_type": "instagram",
-        "posted_at": "2026-07-19T14:42:17.464960+00:00",
-        "description": "Gotta go angel mode on them  🎮 Crimson Moon 🗓️ September 2026 👥 1-2 Players 🖥️ PC, Xbox, PlayStation  #gaming #newgam..."
-      },
-      {
-        "item_key": "5417056745b4fd49",
-        "section": "instagram",
-        "title": "@sharedxp_official",
-        "url": "https://www.instagram.com/p/DavT_qCMZOd/",
-        "message_id": "1528411670521577564",
-        "channel_id": "592534544708796474",
-        "source_type": "instagram",
-        "posted_at": "2026-07-19T14:42:19.262471+00:00",
-        "description": "Sineus Arena Survivors [A][D] build your base mid-fight while defending the one flame keeping your team alive.  ✅ Onl..."
-      },
-      {
-        "item_key": "63dd494ead089642",
-        "section": "instagram",
-        "title": "@wilfratgaming",
-        "url": "https://www.instagram.com/p/Da-gDbWt-UE/",
-        "message_id": "1528411678197415966",
-        "channel_id": "592534544708796474",
-        "source_type": "instagram",
-        "posted_at": "2026-07-19T14:42:21.139450+00:00",
-        "description": "Streetdog BMX brings fast-paced arcade BMX action with huge trick combos, stylish lines, and maps built for creative ..."
-      }
-    ],
-    "winners_state": {
-      "status": "skipped",
-      "skipped_reason": "no_eligible_winners",
-      "updated_at_utc": "2026-07-19T23:54:58.975734+00:00"
-    }
-  },
   "2026-07-20": {
     "run_state": {
       "section_headers": {
@@ -4607,6 +4423,147 @@
         "source_type": "paid_under_20",
         "posted_at": "2026-11-03T20:15:06.159480+00:00",
         "description": "Explore an alien logographic writing system with over 1,000 glyphs, from their number system to their culture and thought."
+      }
+    ]
+  },
+  "2026-11-04": {
+    "run_state": {
+      "section_headers": {
+        "free": {
+          "message_id": "1567636614316818523",
+          "channel_id": "592534544708796474",
+          "posted_at_utc": "2026-11-04T20:28:14.311673+00:00"
+        },
+        "paid": {
+          "message_id": "1567636675285352610",
+          "channel_id": "592534544708796474",
+          "posted_at_utc": "2026-11-04T20:28:28.905961+00:00"
+        }
+      },
+      "last_attempt_at_utc": "2026-11-04T20:28:08.898698+00:00",
+      "intro": {
+        "message_id": "1567636593127194688",
+        "channel_id": "592534544708796474",
+        "posted_at_utc": "2026-11-04T20:28:12.790792+00:00"
+      },
+      "footer": {
+        "message_id": "1567636725042380922",
+        "channel_id": "592534544708796474",
+        "posted_at_utc": "2026-11-04T20:28:40.868423+00:00"
+      },
+      "completed": true,
+      "completed_at_utc": "2026-11-04T20:28:42.073865+00:00"
+    },
+    "items": [
+      {
+        "item_key": "110910710d59b3ef",
+        "section": "free",
+        "title": "Eterspire",
+        "url": "https://store.steampowered.com/app/2144600/",
+        "message_id": "1567636620788633611",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-11-04T20:28:16.169357+00:00",
+        "description": "Eterspire is a cozy old-school MMORPG where skill and dedication define your progression. Grind for gear, explore the vibrant world of Aetera, discover new content every two weeks, and join a growing, welcoming community in a free-to-play MMO with PC and mobile crossplay."
+      },
+      {
+        "item_key": "e8d225b8edac067d",
+        "section": "free",
+        "title": "ROB RUN",
+        "url": "https://store.steampowered.com/app/4262460/",
+        "message_id": "1567636628858605588",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-11-04T20:28:20.480328+00:00",
+        "description": "ROB RUN is a brutal crime sandbox featuring thousands of players. Rise above everyone through the grit, the grime, and the struggle. Break free and take yourself from squalor by any means."
+      },
+      {
+        "item_key": "e9a15403d2a56e3c",
+        "section": "free",
+        "title": "Drakensang Online",
+        "url": "https://store.steampowered.com/app/2067850/",
+        "message_id": "1567636646982324256",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-11-04T20:28:22.741333+00:00",
+        "description": "Explore a world of magic and intrigue, filled with terrifying monsters and ferocious enemies! Discover the mysteries of Dracania, battle against the forces of evil and become a hero in Drakensang Online, the award-winning action RPG."
+      },
+      {
+        "item_key": "bc465f58df2d3bb8",
+        "section": "free",
+        "title": "Off The Grid",
+        "url": "https://store.steampowered.com/app/3659280/",
+        "message_id": "1567636657149321247",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-11-04T20:28:25.183691+00:00",
+        "description": "Welcome to Off The Grid, the next-gen free to play Battle Royale from visionary director Neill Blomkamp. Set in a near-future world where contestants are cybernetically augmented and dropped into televised bloodsport. Death is temporary, but fame is forever."
+      },
+      {
+        "item_key": "911ece2b5d05fe09",
+        "section": "free",
+        "title": "NosTale - Anime MMORPG",
+        "url": "https://store.steampowered.com/app/550470/",
+        "message_id": "1567636666431185019",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-11-04T20:28:27.297988+00:00",
+        "description": "NosTale is a free-to-play anime action MMORPG which takes you on an exciting journey through a world full of mystery with your friends. More than 30 specialist classes and tons of loyal pets provide plenty of excitement and variety in PvP, PvE and raids"
+      },
+      {
+        "item_key": "ff09b2ac5df2eee4",
+        "section": "paid",
+        "title": "Totally Safe Moon Project",
+        "url": "https://store.steampowered.com/app/4339680/",
+        "message_id": "1567636682130456718",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-11-04T20:28:30.952529+00:00",
+        "description": "BREAKING NEWS! A giant asteroid is about to wipe out Earth, and your only escape is the Moon! Grab anything you can find, stack it high, and build your way to safety, solo or with up to 3 friends! Think Only Up, but YOU'RE the architect. What could possibly go wrong?"
+      },
+      {
+        "item_key": "ccdb505496a5835d",
+        "section": "paid",
+        "title": "Boomerang Fu",
+        "url": "https://store.steampowered.com/app/965680/",
+        "message_id": "1567636690858811532",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-11-04T20:28:32.933065+00:00",
+        "description": "Slice and dice your friends with boomerangs in this frantic physics party game. Join a crew of your favorite foods as you grill, chill and spill your enemies. Discover ridiculous power-ups and stack them together in deadly combinations."
+      },
+      {
+        "item_key": "819f45c7a9d812ab",
+        "section": "paid",
+        "title": "Castle Crashers®",
+        "url": "https://store.steampowered.com/app/204360/",
+        "message_id": "1567636699196948490",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-11-04T20:28:35.051160+00:00",
+        "description": "Hack, slash, and smash your way to victory in this award winning 2D arcade adventure from The Behemoth!"
+      },
+      {
+        "item_key": "d0379c8698b0a997",
+        "section": "paid",
+        "title": "Hell Let Loose",
+        "url": "https://store.steampowered.com/app/686810/",
+        "message_id": "1567636707958853722",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-11-04T20:28:37.093570+00:00",
+        "description": "Join the ever expanding experience of Hell Let Loose - a hardcore World War Two first person shooter with epic battles of 100 players with infantry, tanks, artillery, a dynamically shifting front line and a unique resource based RTS-inspired meta-game."
+      },
+      {
+        "item_key": "1d3c660d31a052d2",
+        "section": "paid",
+        "title": "Eslabong",
+        "url": "https://store.steampowered.com/app/4560660/",
+        "message_id": "1567636716410376396",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-11-04T20:28:38.899485+00:00",
+        "description": "Arena combat meets mercenary club management. Recruit from a dynamic market, build your squad, and compete season after season in leagues and cups."
       }
     ]
   }
