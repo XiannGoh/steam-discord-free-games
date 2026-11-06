@@ -1,193 +1,4 @@
 {
-  "2026-07-20": {
-    "run_state": {
-      "section_headers": {
-        "demo_playtest": {
-          "message_id": "1528784903846760460",
-          "channel_id": "592534544708796474",
-          "posted_at_utc": "2026-07-20T15:25:24.852318+00:00"
-        },
-        "free": {
-          "message_id": "1528784918568632581",
-          "channel_id": "592534544708796474",
-          "posted_at_utc": "2026-07-20T15:25:28.411191+00:00"
-        },
-        "paid": {
-          "message_id": "1528784964814901249",
-          "channel_id": "592534544708796474",
-          "posted_at_utc": "2026-07-20T15:25:39.482480+00:00"
-        },
-        "instagram": {
-          "message_id": "1528785010348527779",
-          "channel_id": "592534544708796474",
-          "posted_at_utc": "2026-07-20T15:25:50.363457+00:00"
-        }
-      },
-      "last_attempt_at_utc": "2026-07-20T15:25:21.172199+00:00",
-      "intro": {
-        "message_id": "1528784890303348779",
-        "channel_id": "592534544708796474",
-        "posted_at_utc": "2026-07-20T15:25:23.264186+00:00"
-      },
-      "footer": {
-        "message_id": "1528785033413001257",
-        "channel_id": "592534544708796474",
-        "posted_at_utc": "2026-07-20T15:25:55.635353+00:00"
-      },
-      "completed": true,
-      "completed_at_utc": "2026-07-20T15:25:56.843225+00:00"
-    },
-    "items": [
-      {
-        "item_key": "42d016051409c7b7",
-        "section": "demo_playtest",
-        "title": "Scapewatch: Idle MMO Demo",
-        "url": "https://store.steampowered.com/app/4750660/",
-        "message_id": "1528784910876283050",
-        "channel_id": "592534544708796474",
-        "source_type": "steam_demo_playtest",
-        "posted_at": "2026-07-20T15:25:26.662042+00:00",
-        "description": "30 skills. Three combat styles. Clans, raids, hiscores, pets, capes. Set up your queue, close the tab, come back richer. Scapewatch is the idle MMO for people who actually like the grind."
-      },
-      {
-        "item_key": "2cfa6e0d711965ea",
-        "section": "free",
-        "title": "Pax Dei",
-        "url": "https://store.steampowered.com/app/1995520/",
-        "message_id": "1528784925556346891",
-        "channel_id": "592534544708796474",
-        "source_type": "steam_free",
-        "posted_at": "2026-07-20T15:25:30.115602+00:00",
-        "description": "Welcome to a vast, social sandbox MMO inspired by the legends of the medieval era. Here, myths are real, ghosts exist, and magic is unquestioned. Join thousands of players as you explore the land, build your home, forge your reputation, and craft your own stories. What world will you make?"
-      },
-      {
-        "item_key": "5750921a0f2f8cac",
-        "section": "free",
-        "title": "Pixel Strike 3D",
-        "url": "https://store.steampowered.com/app/915320/",
-        "message_id": "1528784933005426698",
-        "channel_id": "592534544708796474",
-        "source_type": "steam_free",
-        "posted_at": "2026-07-20T15:25:31.791339+00:00",
-        "description": "Pixel Strike 3D is a Multiplayer First-Person Shooter that features fast-paced gameplay and a wide variety of player customization. Battle friends and foes from all around the world in over 20 unique game modes, with over 70 available weapons."
-      },
-      {
-        "item_key": "36031786c8d40617",
-        "section": "free",
-        "title": "BLOCKPOST LEGACY",
-        "url": "https://store.steampowered.com/app/706990/",
-        "message_id": "1528784939934416919",
-        "channel_id": "592534544708796474",
-        "source_type": "steam_free",
-        "posted_at": "2026-07-20T15:25:33.727379+00:00",
-        "description": "Procedural cubic 3D-shooter in the best traditions of the genre. The game is a rich cocktail consisting of the most popular and functional gaming solutions. Customization of characters, opening cases and improving the existing arsenal — all this is available in the game now!"
-      },
-      {
-        "item_key": "cc11aa6f098818b7",
-        "section": "free",
-        "title": "Casino Roulette: Roulettist",
-        "url": "https://store.steampowered.com/app/3601420/",
-        "message_id": "1528784948021035062",
-        "channel_id": "592534544708796474",
-        "source_type": "steam_free",
-        "posted_at": "2026-07-20T15:25:35.598918+00:00",
-        "description": "Test your luck! Play casino roulette with stunning, realistic 3D graphics! Feel the risk as you dive into the casino atmosphere and hit the big time!"
-      },
-      {
-        "item_key": "d5a7c40177d58cd1",
-        "section": "free",
-        "title": "Mesozoic Dawn",
-        "url": "https://store.steampowered.com/app/4334840/",
-        "message_id": "1528784956363641034",
-        "channel_id": "592534544708796474",
-        "source_type": "steam_free",
-        "posted_at": "2026-07-20T15:25:37.717451+00:00",
-        "description": "Mesozoic Dawn is a multiplayer online dinosaur survival game. Starting as a vulnerable juvenile dinosaur, you must navigate the perils of the prehistoric wilderness, utilizing the core \"Growth + Nesting = Evolution\" system to achieve leapfrog species iteration and evolution."
-      },
-      {
-        "item_key": "87961c7356af09f8",
-        "section": "paid",
-        "title": "Granvir",
-        "url": "https://store.steampowered.com/app/2743460/",
-        "message_id": "1528784972389941309",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-07-20T15:25:41.296965+00:00",
-        "description": "Granvir is a 3rd person action roguelite mech-builder with co-op multiplayer. Scavenge the battlefield for parts to replace and upgrade your Granvir and weaponry. PIlot your Granvir and manage your campaign between battles to find the best equipment and stay supplied while fighting a guerilla war."
-      },
-      {
-        "item_key": "c852b130b932ef6c",
-        "section": "paid",
-        "title": "Left 4 Dead",
-        "url": "https://store.steampowered.com/app/500/",
-        "message_id": "1528784979960660050",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-07-20T15:25:43.217346+00:00",
-        "description": "From Valve (the creators of Counter-Strike, Half-Life and more) comes Left 4 Dead, a co-op action horror game for the PC and Xbox 360 that casts up to four players in an epic struggle for survival against swarming zombie hordes and terrifying mutant monsters."
-      },
-      {
-        "item_key": "3cc61548ff1af133",
-        "section": "paid",
-        "title": "Goofy Gorillas",
-        "url": "https://store.steampowered.com/app/2627570/",
-        "message_id": "1528784987984498879",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-07-20T15:25:44.976210+00:00",
-        "description": "Relive your childhood nostalgia at Goofy Gorillas, the largest virtual jungle gym! Battle it out with your friends in a wide range of casual but intense PvP gamemodes, or chill out and take part in some extra activities around the venue! Make the Goofy experience your own!"
-      },
-      {
-        "item_key": "9cc8c353d8f9ea4d",
-        "section": "paid",
-        "title": "Voyagers of Nera",
-        "url": "https://store.steampowered.com/app/2686630/",
-        "message_id": "1528784995114553437",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-07-20T15:25:46.685884+00:00",
-        "description": "Voyagers of Nera is a cooperative survival-crafting game where you must survive a magical ocean world brimming with lost spirits and deadly monsters. Sail to distant islands, build beautiful villages and surf across the waves with up to 10 players."
-      },
-      {
-        "item_key": "a7a29c6286a060ca",
-        "section": "paid",
-        "title": "Clue/Cluedo",
-        "url": "https://store.steampowered.com/app/2506480/",
-        "message_id": "1528785002417098813",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-07-20T15:25:48.441782+00:00",
-        "description": "Experience a fresh take on the classic crime-solving board game. Step into new mysteries and use your skills of deduction to find out whodunit, with what weapon and where."
-      },
-      {
-        "item_key": "5bb248936281d6e1",
-        "section": "instagram",
-        "title": "@wilfratgaming",
-        "url": "https://www.instagram.com/p/Da_SwHvtFgR/",
-        "message_id": "1528785017738891415",
-        "channel_id": "592534544708796474",
-        "source_type": "instagram",
-        "posted_at": "2026-07-20T15:25:52.183883+00:00",
-        "description": "DATA BREACH is a co-op horror game where you play as disposable robots stealing data before your battery dies... and ..."
-      },
-      {
-        "item_key": "0748bdf3a3fb6c9b",
-        "section": "instagram",
-        "title": "@biffmatictv",
-        "url": "https://www.instagram.com/p/Da_dJl5N1gn/",
-        "message_id": "1528785025573585026",
-        "channel_id": "592534544708796474",
-        "source_type": "instagram",
-        "posted_at": "2026-07-20T15:25:53.961300+00:00",
-        "description": "Outer Wilds but on one PLANET! Flux Empyrean   #gaming #outerwilds #explorationgame #newgame #openworld"
-      }
-    ],
-    "winners_state": {
-      "status": "skipped",
-      "skipped_reason": "no_eligible_winners",
-      "updated_at_utc": "2026-07-20T23:55:39.830842+00:00"
-    }
-  },
   "2026-07-21": {
     "run_state": {
       "section_headers": {
@@ -4564,6 +4375,147 @@
         "source_type": "paid_under_20",
         "posted_at": "2026-11-04T20:28:38.899485+00:00",
         "description": "Arena combat meets mercenary club management. Recruit from a dynamic market, build your squad, and compete season after season in leagues and cups."
+      }
+    ]
+  },
+  "2026-11-05": {
+    "run_state": {
+      "section_headers": {
+        "free": {
+          "message_id": "1568002983726288947",
+          "channel_id": "592534544708796474",
+          "posted_at_utc": "2026-11-05T20:44:03.718582+00:00"
+        },
+        "paid": {
+          "message_id": "1568003039887892673",
+          "channel_id": "592534544708796474",
+          "posted_at_utc": "2026-11-05T20:44:17.071372+00:00"
+        }
+      },
+      "last_attempt_at_utc": "2026-11-05T20:44:01.266398+00:00",
+      "intro": {
+        "message_id": "1568002975434023023",
+        "channel_id": "592534544708796474",
+        "posted_at_utc": "2026-11-05T20:44:02.079651+00:00"
+      },
+      "footer": {
+        "message_id": "1568003095533846713",
+        "channel_id": "592534544708796474",
+        "posted_at_utc": "2026-11-05T20:44:30.291608+00:00"
+      },
+      "completed": true,
+      "completed_at_utc": "2026-11-05T20:44:31.497870+00:00"
+    },
+    "items": [
+      {
+        "item_key": "cc37ba1d6fa83e79",
+        "section": "free",
+        "title": "Entropia Universe",
+        "url": "https://store.steampowered.com/app/3642750/",
+        "message_id": "1568002991053611039",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-11-05T20:44:05.944496+00:00",
+        "description": "Entropia Universe is a unique massively multiplayer online game (MMO) where virtual assets hold real-world value and players can participate in a thriving virtual sandbox economy."
+      },
+      {
+        "item_key": "258b8b0c0b54348a",
+        "section": "free",
+        "title": "Sniper Fury",
+        "url": "https://store.steampowered.com/app/591740/",
+        "message_id": "1568002999622566040",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-11-05T20:44:07.752302+00:00",
+        "description": "Sniper Fury is an action-sharpshooting game set in a world threatened by violence. Neutralize threats using an ever-growing arsenal of modern firepower. Customize everything: weapons, gear sets, bullets! Join other snipers in Clan Wars, challenge them in PvP mode, & try events for extra surprises."
+      },
+      {
+        "item_key": "c35ea6a9dae18954",
+        "section": "free",
+        "title": "GraalOnline Era",
+        "url": "https://store.steampowered.com/app/2358050/",
+        "message_id": "1568003007436689526",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-11-05T20:44:10.755880+00:00",
+        "description": "Era is a modern 2D action MMO RPG. Purchase weapons and work with a gang to compete in activities such as special events, base capturing and PvP battles in the Spar Complex, or start your own gang and chart your own path!"
+      },
+      {
+        "item_key": "6a4fd304e459d77d",
+        "section": "free",
+        "title": "Speedway Challenge 2026",
+        "url": "https://store.steampowered.com/app/4321720/",
+        "message_id": "1568003020170469396",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-11-05T20:44:12.398644+00:00",
+        "description": "A dynamic speedway game offering a realistic driving model, exciting competition, and multiple game modes. Develop your rider career, race on authentic tracks, and fight for victory in single-player and multiplayer modes. Experience the true thrill of speedway and prove your dominance on the track."
+      },
+      {
+        "item_key": "19d29711af410717",
+        "section": "free",
+        "title": "Frontline 1942: Battles of the World War 2",
+        "url": "https://store.steampowered.com/app/2564660/",
+        "message_id": "1568003028789887016",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-11-05T20:44:15.477450+00:00",
+        "description": "Immerse yourself in the times of the Second World War II and become a real hero! Shoot, capture, win – the path to glory is paved with shells!"
+      },
+      {
+        "item_key": "de7594f1ad87f365",
+        "section": "paid",
+        "title": "PIT OF GOBLIN",
+        "url": "https://store.steampowered.com/app/3253530/",
+        "message_id": "1568003046540320890",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-11-05T20:44:18.904783+00:00",
+        "description": "In this online horror co-op, you play as a scrappy goblin, scavenging dungeons, dodging traps, and fleeing monsters to feed the Goblin King-Queen. Team up with goblin pals, or go rogue, as you dive deep and cause chaos! Fail to feed them, and you might be the next meal!"
+      },
+      {
+        "item_key": "e9b250a4ec02238f",
+        "section": "paid",
+        "title": "Wobbly Life",
+        "url": "https://store.steampowered.com/app/1211020/",
+        "message_id": "1568003054391926956",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-11-05T20:44:21.033486+00:00",
+        "description": "Wobbly Life is a vibrant open-world physics sandbox. Play with your friends online or in local co-op, with exciting jobs, mini games and wacky story missions. Earn cash to spend in the world on clothes, vehicles and houses. There is a whole Wobbly World out there to explore!"
+      },
+      {
+        "item_key": "7e48bf7d40ceab6d",
+        "section": "paid",
+        "title": "9 Kings",
+        "url": "https://store.steampowered.com/app/2784470/",
+        "message_id": "1568003063233380372",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-11-05T20:44:22.749966+00:00",
+        "description": "A fast-paced roguelike kingdom builder. Grow your empire and fight massive battles against powerful rival kings. Break the game with thousands of insane builds to become the King of Kings."
+      },
+      {
+        "item_key": "63abcab8bbe397d4",
+        "section": "paid",
+        "title": "For The King",
+        "url": "https://store.steampowered.com/app/527230/",
+        "message_id": "1568003070040870974",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-11-05T20:44:24.373671+00:00",
+        "description": "For The King is a strategic RPG that blends tabletop and roguelike elements in a challenging adventure that spans the realms. Set off on a single player experience or play cooperatively both online and locally."
+      },
+      {
+        "item_key": "57a5cd5e49e401af",
+        "section": "paid",
+        "title": "Avorion",
+        "url": "https://store.steampowered.com/app/445220/",
+        "message_id": "1568003077011935273",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-11-05T20:44:26.183308+00:00",
+        "description": "A procedural co-op space sandbox where players can build their own space ships out of dynamically scalable blocks. Fight epic space battles, explore, mine, trade, wage wars and build your own empire to save your galaxy from being torn apart by an unknown enemy."
       }
     ]
   }
