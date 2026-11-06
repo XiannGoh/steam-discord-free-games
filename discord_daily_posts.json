@@ -1,188 +1,4 @@
 {
-  "2026-07-21": {
-    "run_state": {
-      "section_headers": {
-        "free": {
-          "message_id": "1529145493006057544",
-          "channel_id": "592534544708796474",
-          "posted_at_utc": "2026-07-21T15:18:16.100909+00:00"
-        },
-        "paid": {
-          "message_id": "1529145541357736116",
-          "channel_id": "592534544708796474",
-          "posted_at_utc": "2026-07-21T15:18:27.577441+00:00"
-        },
-        "instagram": {
-          "message_id": "1529145587960778892",
-          "channel_id": "592534544708796474",
-          "posted_at_utc": "2026-07-21T15:18:38.546024+00:00"
-        }
-      },
-      "last_attempt_at_utc": "2026-07-21T15:18:13.124462+00:00",
-      "intro": {
-        "message_id": "1529145482578759751",
-        "channel_id": "592534544708796474",
-        "posted_at_utc": "2026-07-21T15:18:14.372559+00:00"
-      },
-      "footer": {
-        "message_id": "1529145618659016906",
-        "channel_id": "592534544708796474",
-        "posted_at_utc": "2026-07-21T15:18:46.010907+00:00"
-      },
-      "completed": true,
-      "completed_at_utc": "2026-07-21T15:18:47.218623+00:00"
-    },
-    "items": [
-      {
-        "item_key": "14ebbba28775a8f0",
-        "section": "free",
-        "title": "Grand Fantasia : ORIGIN",
-        "url": "https://store.steampowered.com/app/3010230/",
-        "message_id": "1529145500266139813",
-        "channel_id": "592534544708796474",
-        "source_type": "steam_free",
-        "posted_at": "2026-07-21T15:18:18.334385+00:00",
-        "description": "New engine, New gameplay, New adventure, the classic MMORPG 《Grand Fantasia：ORIGIN》technological innovation, reigniting the heart of adventure, and composing a new chapter of the fantasy World with Sprites."
-      },
-      {
-        "item_key": "3e622801d55d3565",
-        "section": "free",
-        "title": "FreestyleFootball R",
-        "url": "https://store.steampowered.com/app/1826980/",
-        "message_id": "1529145509791400048",
-        "channel_id": "592534544708796474",
-        "source_type": "steam_free",
-        "posted_at": "2026-07-21T15:18:20.199017+00:00",
-        "description": "《FreestyleFootball》 is a street hip-hop animation style soccer ACG game created by JCE and published by HOGA. In the game, you will collect and play as different characters in PVP team Competition. The game mode includes 4v4 team competition and club league."
-      },
-      {
-        "item_key": "fdc99bb0f6144ec2",
-        "section": "free",
-        "title": "Prime World: Classic",
-        "url": "https://store.steampowered.com/app/3684820/",
-        "message_id": "1529145517655986256",
-        "channel_id": "592534544708796474",
-        "source_type": "steam_free",
-        "posted_at": "2026-07-21T15:18:22.010413+00:00",
-        "description": "Prime World Classic is a game recreated by fans of the original Prime World. The product is under development. The game combines two genres at once - RPG and MOBA. Control the castle, collect the strongest builds for your heroes and win on the battlefields!"
-      },
-      {
-        "item_key": "1900c3d5d4b91cd0",
-        "section": "free",
-        "title": "Kingdom Heroes M",
-        "url": "https://store.steampowered.com/app/2321430/",
-        "message_id": "1529145525193019533",
-        "channel_id": "592534544708796474",
-        "source_type": "steam_free",
-        "posted_at": "2026-07-21T15:18:23.883318+00:00",
-        "description": "歷經20年的感動，給你最原汁原味的《三國群英傳M》"
-      },
-      {
-        "item_key": "e188714550640a4b",
-        "section": "free",
-        "title": "Alien Swarm",
-        "url": "https://store.steampowered.com/app/630/",
-        "message_id": "1529145532994294005",
-        "channel_id": "592534544708796474",
-        "source_type": "steam_free",
-        "posted_at": "2026-07-21T15:18:25.816469+00:00",
-        "description": "Co-operative multiplayer game and complete code base available for free."
-      },
-      {
-        "item_key": "318e32de877df775",
-        "section": "paid",
-        "title": "Airport Security Sucks!",
-        "url": "https://store.steampowered.com/app/4285690/",
-        "message_id": "1529145548538646709",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-07-21T15:18:29.531732+00:00",
-        "description": "Embody your inner power-tripping TSA agent and hunt down other players attempting to blend in and smuggle contraband past you. Control the crowd and your problematic K9 with authoritative voice commands, and use \"compliance devices\" to apprehend smugglers making mischief or hiding in plain sight."
-      },
-      {
-        "item_key": "d307868883e1679b",
-        "section": "paid",
-        "title": "Demonologist",
-        "url": "https://store.steampowered.com/app/1929610/",
-        "message_id": "1529145556939837622",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-07-21T15:18:31.394633+00:00",
-        "description": "Demonologist is a Co-Op horror game that can be played with at least 1 and up to 4 players. Your goal is to identify the type of evil spirit in cursed places and exorcise it using your equipment, either alone or with your team."
-      },
-      {
-        "item_key": "3e5b113ddaca45c1",
-        "section": "paid",
-        "title": "Fast Food Simulator",
-        "url": "https://store.steampowered.com/app/2916430/",
-        "message_id": "1529145564330201301",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-07-21T15:18:33.168247+00:00",
-        "description": "Welcome to the world's most chaotic place! Play solo or co-op with up to 6 players. Run a fast-food restaurant, and work with your friends to expand your business. Take orders, make burgers, and increase your earnings by dealing with customers."
-      },
-      {
-        "item_key": "e1a65d0b9db699a0",
-        "section": "paid",
-        "title": "Nuclear Nightmare",
-        "url": "https://store.steampowered.com/app/2909110/",
-        "message_id": "1529145572077080786",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-07-21T15:18:34.943935+00:00",
-        "description": "Venture forth as part of a specialized team of fellow players tasked with retrieving classified materials, evading the black goo virus, and the nightmarish entities it has spawned. With time running out before the US government initiates a devastating nuclear strike to contain the spreading menace."
-      },
-      {
-        "item_key": "87520c3f28063632",
-        "section": "paid",
-        "title": "Crosshair X",
-        "url": "https://store.steampowered.com/app/1366800/",
-        "message_id": "1529145579593273385",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-07-21T15:18:36.947390+00:00",
-        "description": "Improve your aim and accuracy in every shooter you play. Crosshair X overlays a custom crosshair on top of any game, even games that do not include one. Choose from thousands of community designs or build your own with the designer."
-      },
-      {
-        "item_key": "0fe0f395cdbbef9f",
-        "section": "instagram",
-        "title": "@wilfratgaming",
-        "url": "https://www.instagram.com/p/DbBnqBzt2f-/",
-        "message_id": "1529145594227195966",
-        "channel_id": "592534544708796474",
-        "source_type": "instagram",
-        "posted_at": "2026-07-21T15:18:40.324706+00:00",
-        "description": "|AD| STALZONE is a free-to-play extraction MMO where you keep your long-term progress, making every expedition feel r..."
-      },
-      {
-        "item_key": "0830c78bb847d609",
-        "section": "instagram",
-        "title": "@mildsoss_official",
-        "url": "https://www.instagram.com/p/DbBeA9dxfjG/",
-        "message_id": "1529145602007629985",
-        "channel_id": "592534544708796474",
-        "source_type": "instagram",
-        "posted_at": "2026-07-21T15:18:42.140663+00:00",
-        "description": "Escape poverty in a televised deathmatch  🎮 Meta Ghost: Breaking Show 🗓️ Available Now 👥 1-3 Players 🖥️ PC (Steam)  #..."
-      },
-      {
-        "item_key": "84f2875d97f913f0",
-        "section": "instagram",
-        "title": "@wilfratgaming",
-        "url": "https://www.instagram.com/p/DbBY5ojtAeT/",
-        "message_id": "1529145609418969355",
-        "channel_id": "592534544708796474",
-        "source_type": "instagram",
-        "posted_at": "2026-07-21T15:18:44.128935+00:00",
-        "description": "|AD| Railborn is a survival game where your train isn't just transport—it's your home, your farm, and your only chanc..."
-      }
-    ],
-    "winners_state": {
-      "status": "skipped",
-      "skipped_reason": "no_eligible_winners",
-      "updated_at_utc": "2026-07-21T23:54:41.506291+00:00"
-    }
-  },
   "2026-07-22": {
     "run_state": {
       "section_headers": {
@@ -4516,6 +4332,147 @@
         "source_type": "paid_under_20",
         "posted_at": "2026-11-05T20:44:26.183308+00:00",
         "description": "A procedural co-op space sandbox where players can build their own space ships out of dynamically scalable blocks. Fight epic space battles, explore, mine, trade, wage wars and build your own empire to save your galaxy from being torn apart by an unknown enemy."
+      }
+    ]
+  },
+  "2026-11-06": {
+    "run_state": {
+      "section_headers": {
+        "free": {
+          "message_id": "1568355938426032293",
+          "channel_id": "592534544708796474",
+          "posted_at_utc": "2026-11-06T20:06:34.880924+00:00"
+        },
+        "paid": {
+          "message_id": "1568355986769453187",
+          "channel_id": "592534544708796474",
+          "posted_at_utc": "2026-11-06T20:06:46.194124+00:00"
+        }
+      },
+      "last_attempt_at_utc": "2026-11-06T20:06:30.848593+00:00",
+      "intro": {
+        "message_id": "1568355923972333703",
+        "channel_id": "592534544708796474",
+        "posted_at_utc": "2026-11-06T20:06:33.035068+00:00"
+      },
+      "footer": {
+        "message_id": "1568356036593586257",
+        "channel_id": "592534544708796474",
+        "posted_at_utc": "2026-11-06T20:06:58.202066+00:00"
+      },
+      "completed": true,
+      "completed_at_utc": "2026-11-06T20:06:59.406499+00:00"
+    },
+    "items": [
+      {
+        "item_key": "68d8c46af4117d9b",
+        "section": "free",
+        "title": "Villagers and Heroes",
+        "url": "https://store.steampowered.com/app/263540/",
+        "message_id": "1568355946042757205",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-11-06T20:06:36.969843+00:00",
+        "description": "The Cozy MMO where adventure and home share the same world. Explore a vast fantasy realm, battle monsters, master crafting and gathering, build a home, and grow a village with friends old and new—free to play."
+      },
+      {
+        "item_key": "d5a7c40177d58cd1",
+        "section": "free",
+        "title": "Mesozoic Dawn",
+        "url": "https://store.steampowered.com/app/4334840/",
+        "message_id": "1568355955085803651",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-11-06T20:06:38.886174+00:00",
+        "description": "Mesozoic Dawn is a multiplayer online dinosaur survival game. Starting as a vulnerable juvenile dinosaur, you must navigate the perils of the prehistoric wilderness, utilizing the core \"Growth + Nesting = Evolution\" system to achieve leapfrog species iteration and evolution."
+      },
+      {
+        "item_key": "c88ae3286bbaaff2",
+        "section": "free",
+        "title": "The Expendabros",
+        "url": "https://store.steampowered.com/app/312990/",
+        "message_id": "1568355963017232540",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-11-06T20:06:40.756804+00:00",
+        "description": "The Expendabros have assembled and set their sights on the forces of ruthless arms dealer Conrad Stonebanks in the forests of Eastern Europe."
+      },
+      {
+        "item_key": "929e1ea46294e25f",
+        "section": "free",
+        "title": "Urban Rivals",
+        "url": "https://store.steampowered.com/app/715310/",
+        "message_id": "1568355970298679480",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-11-06T20:06:42.498907+00:00",
+        "description": "Build your gang from thousands of characters and challenge players from around the world. Collect and trade cards, manage your Pillz and master the art of bluffing in fast-paced battles where every decision can turn the tide."
+      },
+      {
+        "item_key": "0e60c97c732e51d5",
+        "section": "free",
+        "title": "Holyday City: Reloaded",
+        "url": "https://store.steampowered.com/app/728730/",
+        "message_id": "1568355978376777788",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-11-06T20:06:44.449316+00:00",
+        "description": "Build, manage & grow your city in Holyday City: Reloaded! An idle clicker game where you're the business tycoon, expanding your metropolis. Master resource & time management to upgrade businesses and thrive. Experience the ultimate town builder adventure with Holyday City."
+      },
+      {
+        "item_key": "c1dc83b83fe0e544",
+        "section": "paid",
+        "title": "SCROLLS: Tidy up the Library of Olympus!",
+        "url": "https://store.steampowered.com/app/5329940/",
+        "message_id": "1568355993971200131",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-11-06T20:06:48.474956+00:00",
+        "description": "Restore order to a divine library by sorting 3,048 scattered scrolls, reuniting ancient collections, and unlocking powers worthy of Olympus. Read the markings, gather the volumes, and give the wisdom of the gods its rightful place in solo or with up to 8 players!"
+      },
+      {
+        "item_key": "cf5422159d10568e",
+        "section": "paid",
+        "title": "Just Dying",
+        "url": "https://store.steampowered.com/app/4646190/",
+        "message_id": "1568356003223838720",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-11-06T20:06:50.258914+00:00",
+        "description": "A Roguelite survivor starring streamers. Rescue your followers to stay off the unemployment line, unlock unique characters, stack powerful runes, and become a wrecking ball of total chaos. Learn. Die. Repeat."
+      },
+      {
+        "item_key": "dd2dc846a0a82c8c",
+        "section": "paid",
+        "title": "Sunkenland",
+        "url": "https://store.steampowered.com/app/2080690/",
+        "message_id": "1568356011050409984",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-11-06T20:06:52.277711+00:00",
+        "description": "Get ready for a Waterworld-themed survival game with modular base building, sunken city scavenging, crafting, base defense, and invasions of NPC clans for resources and territory. Ready for the water apocalypse?"
+      },
+      {
+        "item_key": "23fec529028c8323",
+        "section": "paid",
+        "title": "BloomKeeper",
+        "url": "https://store.steampowered.com/app/3034650/",
+        "message_id": "1568356019191681105",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-11-06T20:06:54.336508+00:00",
+        "description": "Bring life back to a world in ashes by guiding the Pouics, solo or in co-op, through a real-time tactical adventure where every region you save must be protected from falling back into the embers."
+      },
+      {
+        "item_key": "4b5ed7e772aaaf0c",
+        "section": "paid",
+        "title": "Flashing Lights - Police, Firefighting, Emergency Services (EMS) Simulator",
+        "url": "https://store.steampowered.com/app/605740/",
+        "message_id": "1568356027508990024",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-11-06T20:06:56.212973+00:00",
+        "description": "Play solo or in up to 10-player multiplayer co-op! Flashing Lights is an open world police, firefighting and EMS simulator game with plenty of opportunity for role-play or more relaxed fun with friends. Become the law or save lives! Discover leagues of player-created mods!"
       }
     ]
   }
