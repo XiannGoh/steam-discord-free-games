@@ -1,188 +1,4 @@
 {
-  "2026-07-23": {
-    "run_state": {
-      "section_headers": {
-        "free": {
-          "message_id": "1529871924245565481",
-          "channel_id": "592534544708796474",
-          "posted_at_utc": "2026-07-23T15:24:50.598418+00:00"
-        },
-        "paid": {
-          "message_id": "1529871969175081043",
-          "channel_id": "592534544708796474",
-          "posted_at_utc": "2026-07-23T15:25:01.827302+00:00"
-        },
-        "instagram": {
-          "message_id": "1529872023256301640",
-          "channel_id": "592534544708796474",
-          "posted_at_utc": "2026-07-23T15:25:14.376591+00:00"
-        }
-      },
-      "last_attempt_at_utc": "2026-07-23T15:24:48.666743+00:00",
-      "intro": {
-        "message_id": "1529871917484478536",
-        "channel_id": "592534544708796474",
-        "posted_at_utc": "2026-07-23T15:24:49.082762+00:00"
-      },
-      "footer": {
-        "message_id": "1529872055514956056",
-        "channel_id": "592534544708796474",
-        "posted_at_utc": "2026-07-23T15:25:21.983070+00:00"
-      },
-      "completed": true,
-      "completed_at_utc": "2026-07-23T15:25:23.190394+00:00"
-    },
-    "items": [
-      {
-        "item_key": "0dfc4061cdf7030a",
-        "section": "free",
-        "title": "SCP: Containment Breach 2",
-        "url": "https://store.steampowered.com/app/3257000/",
-        "message_id": "1529871930667044905",
-        "channel_id": "592534544708796474",
-        "source_type": "steam_free",
-        "posted_at": "2026-07-23T15:24:52.593493+00:00",
-        "description": "Survive the chaos of SCP Foundation! Step into a thrilling SCP horror experience with story-driven co-op, intense PvP Breach mode, and randomized maps. Play as Class-D, scientist, SCPs, and more, each role bringing unique challenges in an unpredictable, immersive facility."
-      },
-      {
-        "item_key": "97d163a3892a14c2",
-        "section": "free",
-        "title": "Poker Master - Texas Hold'em, Roulette, Blackjack, Baccarat, Omaha, Slots, Teen Patti, Mahjong, Landlord, Showhand, Bullfighting, Chinese poker",
-        "url": "https://store.steampowered.com/app/994910/",
-        "message_id": "1529871938917236869",
-        "channel_id": "592534544708796474",
-        "source_type": "steam_free",
-        "posted_at": "2026-07-23T15:24:54.235288+00:00",
-        "description": "Free chips!Including Texas Hold'em, Slots, Blackjack, Teen Patti, Omaha, Baccarat, Roulette, Mahjong, Landlord and more poker games."
-      },
-      {
-        "item_key": "eddd844cc61dc574",
-        "section": "free",
-        "title": "Galaxy Life",
-        "url": "https://store.steampowered.com/app/1927780/",
-        "message_id": "1529871945926054059",
-        "channel_id": "592534544708796474",
-        "source_type": "steam_free",
-        "posted_at": "2026-07-23T15:24:56.067136+00:00",
-        "description": "The universe is full of Starlings, tiny orange aliens that want to take over the galaxy. Create your own space colony, fight epic battles and discover new planets. Train your soldiers, develop your technology and create unimaginable gadgets. Enjoy this huge social game with friends!"
-      },
-      {
-        "item_key": "f9d2fea77b1c976f",
-        "section": "free",
-        "title": "Champions Online",
-        "url": "https://store.steampowered.com/app/9880/",
-        "message_id": "1529871953505026048",
-        "channel_id": "592534544708796474",
-        "source_type": "steam_free",
-        "posted_at": "2026-07-23T15:24:57.669672+00:00",
-        "description": "Grab your cape and defend Millennium City in this comic book-style action MMORPG! Design your hero and costume from thousands of costume pieces, face super-villains like Dr. Destroyer, and create your own unique nemesis."
-      },
-      {
-        "item_key": "126ac95bb547d9d8",
-        "section": "free",
-        "title": "Cheese Rolling",
-        "url": "https://store.steampowered.com/app/3809440/",
-        "message_id": "1529871960153260157",
-        "channel_id": "592534544708796474",
-        "source_type": "steam_free",
-        "posted_at": "2026-07-23T15:24:59.674195+00:00",
-        "description": "Chase a cheese wheel down a steep hill! Tumble with friends in this ragdoll recreation of an English tradition."
-      },
-      {
-        "item_key": "6a0d1ebd072bea72",
-        "section": "paid",
-        "title": "Content Warning",
-        "url": "https://store.steampowered.com/app/2881650/",
-        "message_id": "1529871977702232094",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-07-23T15:25:03.492955+00:00",
-        "description": "Film your friends doing scary things to become SpöökTube famous! (strongly advised to not go alone)"
-      },
-      {
-        "item_key": "d4d767af035b2878",
-        "section": "paid",
-        "title": "Happy's Humble Burger Cult",
-        "url": "https://store.steampowered.com/app/3453910/",
-        "message_id": "1529871993330208980",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-07-23T15:25:07.366910+00:00",
-        "description": "The original cooking horror returns in an unhinged co-op experience for 1-4 players. Grill burgers, serve customers, and hit your quota before the kitchen turns into a nightmare. When Asset Joy begins her hunt, try to escape alive and extract your hard-earned cash to survive another shift."
-      },
-      {
-        "item_key": "c955371e17f5cd45",
-        "section": "paid",
-        "title": "Wonderia",
-        "url": "https://store.steampowered.com/app/2593340/",
-        "message_id": "1529872001093861600",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-07-23T15:25:09.099079+00:00",
-        "description": "Wonderia's an open-world, manga-art adventure just waiting to be explored. It's got sci-fi sim elements, deep dungeons, and you can even morph into alien form! Grab up to 7 friends to mine, craft, battle, and level—or farm and fish the day away, if that's more your tempo. There's so much to do!"
-      },
-      {
-        "item_key": "73266fa75a67805c",
-        "section": "paid",
-        "title": "NARUTO TO BORUTO: SHINOBI STRIKER",
-        "url": "https://store.steampowered.com/app/633230/",
-        "message_id": "1529872008379109547",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-07-23T15:25:11.047923+00:00",
-        "description": "Battle as a team of 4 to compete against other teams online! Graphically, SHINOBI STRIKER is also built from the ground up in a completely new graphic style. Lead your team and fight online to see who the best ninjas are!"
-      },
-      {
-        "item_key": "9121000d2c1eb5fa",
-        "section": "paid",
-        "title": "Backrooms: Escape Together",
-        "url": "https://store.steampowered.com/app/2141730/",
-        "message_id": "1529872016033710253",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-07-23T15:25:12.712893+00:00",
-        "description": "A visually lifelike co-op horror game for 1-6 people. Journey through 11 procedurally generated levels, using what's available to survive and progress deeper into the Backrooms."
-      },
-      {
-        "item_key": "ce9c9de0c66dc0f0",
-        "section": "instagram",
-        "title": "@mildsoss_official",
-        "url": "https://www.instagram.com/p/DbHRxcEo-vg/",
-        "message_id": "1529872030755717121",
-        "channel_id": "592534544708796474",
-        "source_type": "instagram",
-        "posted_at": "2026-07-23T15:25:16.675054+00:00",
-        "description": "Build a waterpark with your friends  🎮 Aquapark Tycoon 🗓️ Available Now 👥 1-4 Players 🖥️ PC (Steam)  #gaming #newgame..."
-      },
-      {
-        "item_key": "481d13ecc3412752",
-        "section": "instagram",
-        "title": "@wilfratgaming",
-        "url": "https://www.instagram.com/p/DbIvYJMt9-T/",
-        "message_id": "1529872039907692706",
-        "channel_id": "592534544708796474",
-        "source_type": "instagram",
-        "posted_at": "2026-07-23T15:25:18.624614+00:00",
-        "description": "Totally Safe Moon Project is a chaotic co-op game where you stack everyday objects into a tower to reach the Moon bef..."
-      },
-      {
-        "item_key": "b319bf7a9a6afecd",
-        "section": "instagram",
-        "title": "@wilfratgaming",
-        "url": "https://www.instagram.com/p/DbG4LPjJn5n/",
-        "message_id": "1529872048187510884",
-        "channel_id": "592534544708796474",
-        "source_type": "instagram",
-        "posted_at": "2026-07-23T15:25:20.259308+00:00",
-        "description": "The Spotter: Dig or Die mixes mining with tower defense as you dig underground by day and defend your gas station fro..."
-      }
-    ],
-    "winners_state": {
-      "status": "skipped",
-      "skipped_reason": "no_eligible_winners",
-      "updated_at_utc": "2026-07-23T23:57:50.141610+00:00"
-    }
-  },
   "2026-07-24": {
     "run_state": {
       "section_headers": {
@@ -4403,6 +4219,147 @@
         "source_type": "paid_under_20",
         "posted_at": "2026-11-07T18:12:56.796853+00:00",
         "description": "Design, build, and pilot fully modular spaceships in first person, solo or with up to 4 players. Explore 15 unique planets, complete challenging missions, face the dangers of space, and unlock new components to improve or completely rethink your ship."
+      }
+    ]
+  },
+  "2026-11-08": {
+    "run_state": {
+      "section_headers": {
+        "free": {
+          "message_id": "1569056230197035029",
+          "channel_id": "592534544708796474",
+          "posted_at_utc": "2026-11-08T18:29:17.385333+00:00"
+        },
+        "paid": {
+          "message_id": "1569056278163103787",
+          "channel_id": "592534544708796474",
+          "posted_at_utc": "2026-11-08T18:29:28.687583+00:00"
+        }
+      },
+      "last_attempt_at_utc": "2026-11-08T18:29:13.024583+00:00",
+      "intro": {
+        "message_id": "1569056214308884652",
+        "channel_id": "592534544708796474",
+        "posted_at_utc": "2026-11-08T18:29:15.543380+00:00"
+      },
+      "footer": {
+        "message_id": "1569056324333867173",
+        "channel_id": "592534544708796474",
+        "posted_at_utc": "2026-11-08T18:29:39.696352+00:00"
+      },
+      "completed": true,
+      "completed_at_utc": "2026-11-08T18:29:40.901390+00:00"
+    },
+    "items": [
+      {
+        "item_key": "3f3e235c86055f1b",
+        "section": "free",
+        "title": "Foundation: Galactic Frontier",
+        "url": "https://store.steampowered.com/app/4223760/",
+        "message_id": "1569056237679812628",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-11-08T18:29:19.330846+00:00",
+        "description": "Command Asimov's OFFICIAL Foundation universe! Live the life as an interstellar trader to exploit your trade routes! Build your starship home, crush enemies in explosive shootouts & outsmart rivals with fleet strategies in epic space wars - with new content expanding your saga!"
+      },
+      {
+        "item_key": "7b020dbec34cb3b9",
+        "section": "free",
+        "title": "Global Strike",
+        "url": "https://store.steampowered.com/app/2322660/",
+        "message_id": "1569056245900517556",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-11-08T18:29:21.294402+00:00",
+        "description": "Global Strike is a free FPS game which has more than 300 million faithful players in China. Now the battle is on, there are various modes and weapons for you to explore! Call your friends and join us,get into the battle field now!"
+      },
+      {
+        "item_key": "15d0e1ced46d8127",
+        "section": "free",
+        "title": "Doomsday: Last Survivors",
+        "url": "https://store.steampowered.com/app/2439510/",
+        "message_id": "1569056254121484388",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-11-08T18:29:23.063674+00:00",
+        "description": "Z-Virus Adventure upgrade! Defend the survivors' last shelter from the zombies!"
+      },
+      {
+        "item_key": "dc8ee5414a02bb9d",
+        "section": "free",
+        "title": "Brighter Shores",
+        "url": "https://store.steampowered.com/app/2791440/",
+        "message_id": "1569056261545140375",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-11-08T18:29:25.127690+00:00",
+        "description": "Brighter Shores is an all new adventure from award winning MMORPG designer Andrew Gower. It is an enchanting point-and-click style RPG with hundreds of hours of gameplay, set in a land of magic and mysteries, with a huge number of professions to try, and something new to find around every corner."
+      },
+      {
+        "item_key": "33987a2ac0bb9d12",
+        "section": "free",
+        "title": "Warspear Online",
+        "url": "https://store.steampowered.com/app/326360/",
+        "message_id": "1569056270231670994",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-11-08T18:29:27.027287+00:00",
+        "description": "Create your hero and dive into an epic 2D MMORPG! Explore a vast open world, conquer castles, battle in free-for-all PvP, team up in guilds, join Alliance wars, explore dungeons, and celebrate with fun in-game events!"
+      },
+      {
+        "item_key": "122d5cd5f545d6d0",
+        "section": "paid",
+        "title": "Overcooked! 2",
+        "url": "https://store.steampowered.com/app/728880/",
+        "message_id": "1569056284916064381",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-11-08T18:29:30.627211+00:00",
+        "description": "Overcooked returns with a brand-new helping of chaotic cooking action! Journey back to the Onion Kingdom and assemble your team of chefs in classic couch co-op or online play for up to four players. Hold onto your aprons… it’s time to save the world again!"
+      },
+      {
+        "item_key": "39a73d874ec7688b",
+        "section": "paid",
+        "title": "Trash Day",
+        "url": "https://store.steampowered.com/app/3314580/",
+        "message_id": "1569056293262594169",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-11-08T18:29:32.470655+00:00",
+        "description": "Team up with your raccoon squad in this physics-based co-op adventure for up to 6 players. Scavenge trash, fill your stolen wagon, and haul it to Raccoon Paradise. Live your best raccoon life."
+      },
+      {
+        "item_key": "77bcd54c506ea476",
+        "section": "paid",
+        "title": "Mycopunk",
+        "url": "https://store.steampowered.com/app/3247750/",
+        "message_id": "1569056300594372729",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-11-08T18:29:34.242779+00:00",
+        "description": "Cut through fungal aliens in this hyper-customizable, mission based looter shooter. Hundreds of hand-crafted upgrades, 4-player co-op, and a little roach man. What’s not to love?"
+      },
+      {
+        "item_key": "1d618bcc397d669f",
+        "section": "paid",
+        "title": "Absolum",
+        "url": "https://store.steampowered.com/app/1904480/",
+        "message_id": "1569056308445970603",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-11-08T18:29:36.143301+00:00",
+        "description": "Fight as the outcast heroes of Talamh in a fierce battle to retake magic from Sun King Azra’s grasp in Absolum, an original roguelite beat ‘em up by Dotemu."
+      },
+      {
+        "item_key": "5251ea1e076b8b10",
+        "section": "paid",
+        "title": "DRAGON BALL FighterZ",
+        "url": "https://store.steampowered.com/app/678950/",
+        "message_id": "1569056316394045591",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-11-08T18:29:37.987189+00:00",
+        "description": "DRAGON BALL FighterZ is born from what makes the DRAGON BALL series so loved and famous: endless spectacular fights with its all-powerful fighters."
       }
     ]
   }
