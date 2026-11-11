@@ -1,199 +1,4 @@
 {
-  "2026-07-25": {
-    "run_state": {
-      "section_headers": {
-        "free": {
-          "message_id": "1530587595984080927",
-          "channel_id": "592534544708796474",
-          "posted_at_utc": "2026-07-25T14:48:40.144604+00:00"
-        },
-        "paid": {
-          "message_id": "1530587641320571021",
-          "channel_id": "592534544708796474",
-          "posted_at_utc": "2026-07-25T14:48:51.008984+00:00"
-        },
-        "instagram": {
-          "message_id": "1530587686866256003",
-          "channel_id": "592534544708796474",
-          "posted_at_utc": "2026-07-25T14:49:01.821998+00:00"
-        }
-      },
-      "last_attempt_at_utc": "2026-07-25T14:48:36.674938+00:00",
-      "intro": {
-        "message_id": "1530587583275602011",
-        "channel_id": "592534544708796474",
-        "posted_at_utc": "2026-07-25T14:48:38.456466+00:00"
-      },
-      "footer": {
-        "message_id": "1530587722283225322",
-        "channel_id": "592534544708796474",
-        "posted_at_utc": "2026-07-25T14:49:10.211415+00:00"
-      },
-      "completed": true,
-      "completed_at_utc": "2026-07-25T14:49:11.419206+00:00"
-    },
-    "items": [
-      {
-        "item_key": "016e82147d0b491e",
-        "section": "free",
-        "title": "Bro Falls",
-        "url": "https://store.steampowered.com/app/1590320/",
-        "message_id": "1530587602959466700",
-        "channel_id": "592534544708796474",
-        "source_type": "steam_free",
-        "posted_at": "2026-07-25T14:48:42.000578+00:00",
-        "description": "Bro Falls is an asymmetric massively multiplayer party game with chaotic elements, trap activations and big Falls. Up-to 60 online players in a showdown party and only one who can get the victory. Play as Brokkoli to activate the traps or avoid them as a juicy food and win the rounds."
-      },
-      {
-        "item_key": "904d097ee2b3ff33",
-        "section": "free",
-        "title": "King of Crabs",
-        "url": "https://store.steampowered.com/app/1273710/",
-        "message_id": "1530587611138097174",
-        "channel_id": "592534544708796474",
-        "source_type": "steam_free",
-        "posted_at": "2026-07-25T14:48:44.020188+00:00",
-        "description": "Battle Royale with crabs! Intense multiplayer action, with up to 100 players! Scrap, scavenge and slaughter your way to becoming the King of Crabs!"
-      },
-      {
-        "item_key": "5fabbdf33581454e",
-        "section": "free",
-        "title": "Lost Lives",
-        "url": "https://store.steampowered.com/app/1929230/",
-        "message_id": "1530587619430371378",
-        "channel_id": "592534544708796474",
-        "source_type": "steam_free",
-        "posted_at": "2026-07-25T14:48:45.801186+00:00",
-        "description": "Lost Lives is a multiplayer 2D shooter with RPG elements, in which you will find yourself in the conditions of post-Soviet devastation. As you play, you will have to fight other players and local factions, as well as find and sell loot. Choose your equipment wisely and defeat your enemies!"
-      },
-      {
-        "item_key": "f7df30a1b5b4e473",
-        "section": "free",
-        "title": "Killer Queen Black",
-        "url": "https://store.steampowered.com/app/663670/",
-        "message_id": "1530587626476798062",
-        "channel_id": "592534544708796474",
-        "source_type": "steam_free",
-        "posted_at": "2026-07-25T14:48:47.467188+00:00",
-        "description": "Killer Queen Black is a fast-paced, team-based action strategy game where two teams battle for victory in a frantic arcade arena. Coordinate with your queen and workers to outmaneuver the enemy, riding snails, collecting berries, and fighting for military dominance across multiple win conditions."
-      },
-      {
-        "item_key": "41ee53ad2d4579da",
-        "section": "free",
-        "title": "Mitos.is: The Game",
-        "url": "https://store.steampowered.com/app/389570/",
-        "message_id": "1530587633690869851",
-        "channel_id": "592534544708796474",
-        "source_type": "steam_free",
-        "posted_at": "2026-07-25T14:48:49.314082+00:00",
-        "description": "Step into the microscopic world of Mitos.is! Eat or be eaten—become the ultimate cell in a highly addictive multiplayer game. Diverse modes, daily tournaments, guilds, and gear await! The BEST game of 2015 is back!"
-      },
-      {
-        "item_key": "7ed061294f04aa2b",
-        "section": "paid",
-        "title": "The Spell Brigade",
-        "url": "https://store.steampowered.com/app/2904000/",
-        "message_id": "1530587648358350868",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-07-25T14:48:52.718919+00:00",
-        "description": "Survivors-like with ONLINE CO-OP for 1-4 players. Team up with your wizard friends to slay hordes of dark creatures. Complete team-based objectives, unlock new upgrades and create overpowered spell synergies. Friend nor foe is safe in this friendly fire bullet hell!"
-      },
-      {
-        "item_key": "9ce301d03bd49ea1",
-        "section": "paid",
-        "title": "Forest Doesn’t Care",
-        "url": "https://store.steampowered.com/app/3922100/",
-        "message_id": "1530587655518290001",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-07-25T14:48:54.357115+00:00",
-        "description": "A peaceful life in nature or a fight for survival? Explore a realistic forest, survive, discover abandoned places, and uncover why the forest refuses to let you leave."
-      },
-      {
-        "item_key": "514fc2bed0d21bdc",
-        "section": "paid",
-        "title": "OxyRail",
-        "url": "https://store.steampowered.com/app/3907790/",
-        "message_id": "1530587662463799519",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-07-25T14:48:56.695484+00:00",
-        "description": "Oxygen Train is an open-world survival train game. Wake up in a world lacking oxygen. Chop trees, mine, gather resources, upgrade your unique train. Survive by planting, fishing, farming, exploring, fighting. Build your train kingdom. Supports 1-8 online co-op."
-      },
-      {
-        "item_key": "404ccb3a120170bc",
-        "section": "paid",
-        "title": "PlateUp!",
-        "url": "https://store.steampowered.com/app/1599600/",
-        "message_id": "1530587672287117433",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-07-25T14:48:58.549443+00:00",
-        "description": "Cook and serve your dishes, design and decorate your restaurants, and expand your culinary kingdom with new unlocks, abilities and dishes in procedurally-generated locations. Classic cooking action with permanent roguelite progression. Hire your friends - or do it all yourself!"
-      },
-      {
-        "item_key": "c00ef523241c42f9",
-        "section": "paid",
-        "title": "Erenshor",
-        "url": "https://store.steampowered.com/app/2382520/",
-        "message_id": "1530587679966625942",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-07-25T14:49:00.190531+00:00",
-        "description": "Erenshor is a single player RPG with the soul of a classic MMO - built for players who miss the journey. Partner up with Erenshor's signature SimPlayers and explore an open world where every reward comes with a story. Discover thousands of items, quests, raids, and secrets - all at your own pace."
-      },
-      {
-        "item_key": "b573f46d11936dd1",
-        "section": "instagram",
-        "title": "@sharedxp_official",
-        "url": "https://www.instagram.com/p/DbNpO5EsODq/",
-        "message_id": "1530587693761957998",
-        "channel_id": "592534544708796474",
-        "source_type": "instagram",
-        "posted_at": "2026-07-25T14:49:03.465859+00:00",
-        "description": "Amazon Luna (AD)  Cloud gaming service that lets you and your partner play local co-op games together, even when you'..."
-      },
-      {
-        "item_key": "369d398feb84307b",
-        "section": "instagram",
-        "title": "@sharedxp_official",
-        "url": "https://www.instagram.com/p/DbL2FUgMcA4/",
-        "message_id": "1530587700560662650",
-        "channel_id": "592534544708796474",
-        "source_type": "instagram",
-        "posted_at": "2026-07-25T14:49:05.021471+00:00",
-        "description": "An Eggstremely Hard Game  Two geese, one fragile egg, zero guarantee your partner won't \"accidentally\" launch you off..."
-      },
-      {
-        "item_key": "71ff71264652dfc7",
-        "section": "instagram",
-        "title": "@wilfratgaming",
-        "url": "https://www.instagram.com/p/DbL3uD3trpB/",
-        "message_id": "1530587707187794061",
-        "channel_id": "592534544708796474",
-        "source_type": "instagram",
-        "posted_at": "2026-07-25T14:49:06.738621+00:00",
-        "description": "| A D | SKOS: 13.86 throws Chernobyl stalkers into the 14th century, where you'll raid modern-day Pripyat for weapons..."
-      },
-      {
-        "item_key": "2d56a8efb46f1d1e",
-        "section": "instagram",
-        "title": "@biffmatictv",
-        "url": "https://www.instagram.com/p/DbLxEpZNjEC/",
-        "message_id": "1530587714188083378",
-        "channel_id": "592534544708796474",
-        "source_type": "instagram",
-        "posted_at": "2026-07-25T14:49:08.464612+00:00",
-        "description": "KSP 2’s demise created this space factory sim!  Launch Window  #gaming #spacesim #factorygame #space #newgame"
-      }
-    ],
-    "winners_state": {
-      "status": "skipped",
-      "skipped_reason": "no_eligible_winners",
-      "updated_at_utc": "2026-07-25T23:57:43.579323+00:00"
-    }
-  },
   "2026-10-12": {
     "run_state": {
       "section_headers": {
@@ -4295,6 +4100,114 @@
         "source_type": "paid_under_20",
         "posted_at": "2026-11-09T23:09:38.716849+00:00",
         "description": "Claw your way across exotic islands combining fluid movement with fast paced combat to become a Crab Champion in this third person roguelike shooter."
+      }
+    ]
+  },
+  "2026-11-10": {
+    "run_state": {
+      "section_headers": {
+        "free": {
+          "message_id": "1569810165031637023",
+          "channel_id": "592534544708796474",
+          "posted_at_utc": "2026-11-10T20:25:09.231922+00:00"
+        },
+        "paid": {
+          "message_id": "1569810186141573243",
+          "channel_id": "592534544708796474",
+          "posted_at_utc": "2026-11-10T20:25:14.522823+00:00"
+        }
+      },
+      "last_attempt_at_utc": "2026-11-10T20:25:04.966690+00:00",
+      "intro": {
+        "message_id": "1569810148497825813",
+        "channel_id": "592534544708796474",
+        "posted_at_utc": "2026-11-10T20:25:07.696956+00:00"
+      },
+      "footer": {
+        "message_id": "1569810236095860837",
+        "channel_id": "592534544708796474",
+        "posted_at_utc": "2026-11-10T20:25:26.355470+00:00"
+      },
+      "completed": true,
+      "completed_at_utc": "2026-11-10T20:25:27.560613+00:00"
+    },
+    "items": [
+      {
+        "item_key": "cab22b7a437091bb",
+        "section": "free",
+        "title": "MONSTER CARDS",
+        "url": "https://store.steampowered.com/app/2010530/",
+        "message_id": "1569810171398721689",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-11-10T20:25:11.130167+00:00",
+        "description": "Bring your original deck of cards and play against everyone!"
+      },
+      {
+        "item_key": "43d98e264df42a63",
+        "section": "free",
+        "title": "Nexus Legacy",
+        "url": "https://store.steampowered.com/app/4661910/",
+        "message_id": "1569810179443138601",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-11-10T20:25:12.802157+00:00",
+        "description": "Rebuild civilization from a single planet in Nexus Legacy, a persistent sci-fi 4X MMO. Colonize worlds, manage resources, research technologies, command fleets, forge alliances, and fight for control of a living galaxy."
+      },
+      {
+        "item_key": "777e8fd167510e18",
+        "section": "paid",
+        "title": "Allumeria",
+        "url": "https://store.steampowered.com/app/3516590/",
+        "message_id": "1569810194006020288",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-11-10T20:25:16.746121+00:00",
+        "description": "A classic voxel sandbox combined with in-depth progression through exploration, dungeon crawling and boss battles. Spend every minute discovering new weapons, abilities, resources, enemies, structures, mechanics and tools. With a strong focus on discovery, variety and creativity, the world is yours."
+      },
+      {
+        "item_key": "c37ca1e760ed792b",
+        "section": "paid",
+        "title": "WARRIORS: Abyss",
+        "url": "https://store.steampowered.com/app/3178350/",
+        "message_id": "1569810202994151514",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-11-10T20:25:18.424359+00:00",
+        "description": "Through victory and defeat, traverse the merciless trials of hell."
+      },
+      {
+        "item_key": "d3b044efbe2af874",
+        "section": "paid",
+        "title": "Gladio Mori",
+        "url": "https://store.steampowered.com/app/2689120/",
+        "message_id": "1569810210350964796",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-11-10T20:25:20.208482+00:00",
+        "description": "Gladio Mori is a physics-driven gladiator fighting game with no health bars. Stab on arteries, pierce vital organs and cut off limbs. Build your own movesets, paint your fighter and battle friends online with cross-play."
+      },
+      {
+        "item_key": "d4d767af035b2878",
+        "section": "paid",
+        "title": "Happy's Humble Burger Cult",
+        "url": "https://store.steampowered.com/app/3453910/",
+        "message_id": "1569810217250721833",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-11-10T20:25:21.984261+00:00",
+        "description": "The original cooking horror returns in an unhinged co-op experience for 1-4 players. Grill burgers, serve customers, and hit your quota before the kitchen turns into a nightmare. When Asset Joy begins her hunt, try to escape alive and extract your hard-earned cash to survive another shift."
+      },
+      {
+        "item_key": "61264f42c4e89907",
+        "section": "paid",
+        "title": "Human Fall Flat",
+        "url": "https://store.steampowered.com/app/477160/",
+        "message_id": "1569810224771109019",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-11-10T20:25:24.457953+00:00",
+        "description": "Human Fall Flat is a hilarious, light-hearted platformer set in floating dreamscapes that can be played solo or with up to 8 players online. Free new levels keep its vibrant community rewarded."
       }
     ]
   }
