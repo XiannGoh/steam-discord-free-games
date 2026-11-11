@@ -1,172 +1,4 @@
 {
-  "2026-10-12": {
-    "run_state": {
-      "section_headers": {
-        "demo_playtest": {
-          "message_id": "1559322287004454973",
-          "channel_id": "592534544708796474",
-          "posted_at_utc": "2026-10-12T21:50:04.433120+00:00"
-        },
-        "free": {
-          "message_id": "1559322309062295556",
-          "channel_id": "592534544708796474",
-          "posted_at_utc": "2026-10-12T21:50:09.830280+00:00"
-        },
-        "paid": {
-          "message_id": "1559322374703292469",
-          "channel_id": "592534544708796474",
-          "posted_at_utc": "2026-10-12T21:50:25.529977+00:00"
-        }
-      },
-      "last_attempt_at_utc": "2026-10-12T21:50:00.329607+00:00",
-      "intro": {
-        "message_id": "1559322272005628006",
-        "channel_id": "592534544708796474",
-        "posted_at_utc": "2026-10-12T21:50:02.648476+00:00"
-      },
-      "footer": {
-        "message_id": "1559322422468022363",
-        "channel_id": "592534544708796474",
-        "posted_at_utc": "2026-10-12T21:50:36.604344+00:00"
-      },
-      "completed": true,
-      "completed_at_utc": "2026-10-12T21:50:37.811846+00:00"
-    },
-    "items": [
-      {
-        "item_key": "42d016051409c7b7",
-        "section": "demo_playtest",
-        "title": "Scapewatch: Idle MMO Demo",
-        "url": "https://store.steampowered.com/app/4750660/",
-        "message_id": "1559322294248017922",
-        "channel_id": "592534544708796474",
-        "source_type": "steam_demo_playtest",
-        "posted_at": "2026-10-12T21:50:06.316109+00:00",
-        "description": "30 skills. Three combat styles. Clans, raids, hiscores, pets, capes. Set up your queue, close the tab, come back richer. Scapewatch is the idle MMO for people who actually like the grind."
-      },
-      {
-        "item_key": "1bb833d6ec0a3321",
-        "section": "demo_playtest",
-        "title": "The Gate Must Stand",
-        "url": "https://store.steampowered.com/app/3975750/",
-        "message_id": "1559322302112604220",
-        "channel_id": "592534544708796474",
-        "source_type": "steam_demo_playtest",
-        "posted_at": "2026-10-12T21:50:08.043427+00:00",
-        "description": "Fend off brutal waves of demonic hordes in this epic fantasy tower defense survivors like! Hack and slash among the action or zoom to strategically control the battlefield. You are the city’s last line of defense, build your base, defend the gate!"
-      },
-      {
-        "item_key": "831e80a80857b652",
-        "section": "free",
-        "title": "Dead Maze",
-        "url": "https://store.steampowered.com/app/667890/",
-        "message_id": "1559322316436021341",
-        "channel_id": "592534544708796474",
-        "source_type": "steam_free",
-        "posted_at": "2026-10-12T21:50:11.541268+00:00",
-        "description": "Dead Maze is a 2D MMO game set in a destroyed contemporary world, filled with zombies. Explore the world, scavenge and craft as many items as possible, to survive the hostile environment and upgrade your gear and camp as you go."
-      },
-      {
-        "item_key": "35e27df4a18168df",
-        "section": "free",
-        "title": "Blade & Soul NEO",
-        "url": "https://store.steampowered.com/app/3669060/",
-        "message_id": "1559322324069650584",
-        "channel_id": "592534544708796474",
-        "source_type": "steam_free",
-        "posted_at": "2026-10-12T21:50:14.457974+00:00",
-        "description": "Relive an iconic tale with Blade & Soul NEO. Fully remastered where players reconnect with the original spirit of the free-to-play, open-world MMORPG. Experience a richer visually enhanced experience set in a world of Wuxia mythology where fast-paced combat collides with the stunning visual beauty."
-      },
-      {
-        "item_key": "e188714550640a4b",
-        "section": "free",
-        "title": "Alien Swarm",
-        "url": "https://store.steampowered.com/app/630/",
-        "message_id": "1559322336543645697",
-        "channel_id": "592534544708796474",
-        "source_type": "steam_free",
-        "posted_at": "2026-10-12T21:50:16.305020+00:00",
-        "description": "Co-operative multiplayer game and complete code base available for free."
-      },
-      {
-        "item_key": "41ee53ad2d4579da",
-        "section": "free",
-        "title": "Mitos.is: The Game",
-        "url": "https://store.steampowered.com/app/389570/",
-        "message_id": "1559322343854186679",
-        "channel_id": "592534544708796474",
-        "source_type": "steam_free",
-        "posted_at": "2026-10-12T21:50:21.454410+00:00",
-        "description": "Step into the microscopic world of Mitos.is! Eat or be eaten—become the ultimate cell in a highly addictive multiplayer game. Diverse modes, daily tournaments, guilds, and gear await! The BEST game of 2015 is back!"
-      },
-      {
-        "item_key": "dfaebf39616a3342",
-        "section": "free",
-        "title": "WonderKing",
-        "url": "https://store.steampowered.com/app/3825780/",
-        "message_id": "1559322365702307990",
-        "channel_id": "592534544708796474",
-        "source_type": "steam_free",
-        "posted_at": "2026-10-12T21:50:23.537883+00:00",
-        "description": "The return of classic 2D side-scrolling action! WonderKing is a free-to-play MMORPG packed with flashy combat and deep progression. Advance through diverse classes, master unique combos, and party up with friends for epic boss raids. Start your adventure today!"
-      },
-      {
-        "item_key": "c98b8d4b867f00eb",
-        "section": "paid",
-        "title": "Walk of Life",
-        "url": "https://store.steampowered.com/app/1910150/",
-        "message_id": "1559322382701830265",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-10-12T21:50:27.305385+00:00",
-        "description": "Walk of Life is a competitive life simulator for up to 6 players! Choose from a cast of unique roles and duke it out with your friends, bots, or by yourself, in this wacky and ever-surprising party game!"
-      },
-      {
-        "item_key": "1edd7298b1274d9d",
-        "section": "paid",
-        "title": "SCP: 5K",
-        "url": "https://store.steampowered.com/app/872670/",
-        "message_id": "1559322390197178609",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-10-12T21:50:29.058082+00:00",
-        "description": "SCP: 5K is a co-op or singleplayer tactical horror FPS project that puts players in the midst of a conspiracy where the SCP Foundation has turned on humanity. Enjoy Early Access as we continue to work towards a completed full release of the project!"
-      },
-      {
-        "item_key": "fc3303a67cab4f26",
-        "section": "paid",
-        "title": "Guild Wars® Reforged",
-        "url": "https://store.steampowered.com/app/29720/",
-        "message_id": "1559322397491073054",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-10-12T21:50:30.704168+00:00",
-        "description": "Step into Guild Wars Reforged, the award-winning online roleplaying game enjoyed by millions, now re-energized with system enhancements and Steam Deck verified. Experience the complete saga— from the fall of Ascalon to the desperate stand against Nightfall. Your adventure is just getting started!"
-      },
-      {
-        "item_key": "c4826bd48cb5b7ba",
-        "section": "paid",
-        "title": "MISERY",
-        "url": "https://store.steampowered.com/app/2119830/",
-        "message_id": "1559322404625453056",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-10-12T21:50:32.425088+00:00",
-        "description": "MISERY is a 1–10 player co-op survival game set in a nuclear disaster zone. Here, every day is a struggle: search radioactive ruins for resources, build your bunker, craft weapons, and explore a weird, procedurally-generated world with your friends. Beware of anomalies, monsters, and armed bandits."
-      },
-      {
-        "item_key": "f8669e32a3eb0f1b",
-        "section": "paid",
-        "title": "LORT",
-        "url": "https://store.steampowered.com/app/2956680/",
-        "message_id": "1559322411696918529",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-10-12T21:50:34.865398+00:00",
-        "description": "LORT is a 1–8 player co-op action roguelite. Team up with your friends to battle, loot, and stack ridiculous power-ups across a cursed fantasy world. Fight toward escape, revive your homies, and get absolutely chadded as you evolve from goblin tickler to god slapper."
-      }
-    ]
-  },
   "2026-10-13": {
     "run_state": {
       "section_headers": {
@@ -4208,6 +4040,136 @@
         "source_type": "paid_under_20",
         "posted_at": "2026-11-10T20:25:24.457953+00:00",
         "description": "Human Fall Flat is a hilarious, light-hearted platformer set in floating dreamscapes that can be played solo or with up to 8 players online. Free new levels keep its vibrant community rewarded."
+      }
+    ]
+  },
+  "2026-11-11": {
+    "run_state": {
+      "section_headers": {
+        "free": {
+          "message_id": "1570170081391149256",
+          "channel_id": "592534544708796474",
+          "posted_at_utc": "2026-11-11T20:15:20.137846+00:00"
+        },
+        "paid": {
+          "message_id": "1570170123552170144",
+          "channel_id": "592534544708796474",
+          "posted_at_utc": "2026-11-11T20:15:30.275890+00:00"
+        }
+      },
+      "last_attempt_at_utc": "2026-11-11T20:15:14.047785+00:00",
+      "intro": {
+        "message_id": "1570170058263629917",
+        "channel_id": "592534544708796474",
+        "posted_at_utc": "2026-11-11T20:15:18.391680+00:00"
+      },
+      "footer": {
+        "message_id": "1570170177063223480",
+        "channel_id": "592534544708796474",
+        "posted_at_utc": "2026-11-11T20:15:42.949863+00:00"
+      },
+      "completed": true,
+      "completed_at_utc": "2026-11-11T20:15:44.155020+00:00"
+    },
+    "items": [
+      {
+        "item_key": "996dd1fff34588e1",
+        "section": "free",
+        "title": "Freestyle 2: Street Basketball",
+        "url": "https://store.steampowered.com/app/339610/",
+        "message_id": "1570170088806416526",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-11-11T20:15:22.079942+00:00",
+        "description": "Freestyle 2: Street Basketball is a fast paced online arcade basketball game. Create your own unique player and compete in the online street league! Use variety of b-ball moves and customize your player! Team up with the best street ballers online and rise to the top!"
+      },
+      {
+        "item_key": "571664ded03b4870",
+        "section": "free",
+        "title": "Gunship Battle Total Warfare",
+        "url": "https://store.steampowered.com/app/3029540/",
+        "message_id": "1570170096524071054",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-11-11T20:15:24.372532+00:00",
+        "description": "In a post-apocalyptic world submerged by the sea, the wake of the enemy is apparent at every turn. From turning the tides of naval warfare to dominating the skies in break-neck aerial combat, every decision you make will change the outcome of the battle."
+      },
+      {
+        "item_key": "54f4f3b502e550a1",
+        "section": "free",
+        "title": "Mobile Dungeon",
+        "url": "https://store.steampowered.com/app/707710/",
+        "message_id": "1570170106519232532",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-11-11T20:15:26.219975+00:00",
+        "description": "From the universe of Shakes & Fidget, the NEW Team Battle RPG dungeon crawler!"
+      },
+      {
+        "item_key": "d9c363b33ee5acfc",
+        "section": "free",
+        "title": "Untamed Kingdom",
+        "url": "https://store.steampowered.com/app/2481980/",
+        "message_id": "1570170114152726599",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-11-11T20:15:28.411550+00:00",
+        "description": "Shadow Stalk Studios is an indie company creating Untamed Kingdom. We want to create a space for everyone to enjoy and explore with friends. Come join us as we adventure through the wilderness!"
+      },
+      {
+        "item_key": "2bd6a5b32b0afb82",
+        "section": "paid",
+        "title": "System Arrival",
+        "url": "https://store.steampowered.com/app/5019800/",
+        "message_id": "1570170131169153054",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-11-11T20:15:32.141139+00:00",
+        "description": "Top-down co-op survival action RPG for 1–4 players in a world the System turned into a game. Earn levels, quests and psychic powers, scavenge the ruins, fight zombies and build an underground bunker for survivors — then find out what the System really wants."
+      },
+      {
+        "item_key": "35f02635ea9bf463",
+        "section": "paid",
+        "title": "Salt 2: Shores of Gold",
+        "url": "https://store.steampowered.com/app/1574900/",
+        "message_id": "1570170138962034811",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-11-11T20:15:34.221586+00:00",
+        "description": "Salt 2 is a pirate-themed open world adventure focused on exploration, crafting, and survival. Play solo or with up to 5 friends, sailing the sea with your ship as a mobile base. Discover islands full of quests, towns, caves, and secrets. Level up, craft gear, hunt, fish, and customize your ship."
+      },
+      {
+        "item_key": "2f16d15f4a62144e",
+        "section": "paid",
+        "title": "Megastore: Tidy Up Together",
+        "url": "https://store.steampowered.com/app/5027520/",
+        "message_id": "1570170147875061771",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-11-11T20:15:36.833887+00:00",
+        "description": "Megastore: Tidy Up Together is a cozy sorting game for solo or online co-op play. Organize four stores of increasing scale: a Toy Store, an Electronics Store, a bustling Supermarket, and a massive two-story Megastore. Pick up, sort, and shelve thousands of items, and get ready to open!"
+      },
+      {
+        "item_key": "34ce8602a3f1a782",
+        "section": "paid",
+        "title": "Alchemy Factory",
+        "url": "https://store.steampowered.com/app/3669570/",
+        "message_id": "1570170159132315688",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-11-11T20:15:38.891282+00:00",
+        "description": "Start small, team up with friends, and automate production with conveyor belts, pipes, and magical devices. Stock your shop with potions, jewelry, and relics, complete commissions, and build an alchemy empire! Alchemy Factory 1.0 is out now with the Wagon Logistics System and revamped shopkeeping."
+      },
+      {
+        "item_key": "63c96828ed2fdb77",
+        "section": "paid",
+        "title": "Chained Together",
+        "url": "https://store.steampowered.com/app/2567870/",
+        "message_id": "1570170167374381301",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-11-11T20:15:41.002252+00:00",
+        "description": "Climb up from the depths of Hell. Scale various worlds solo or chained together with your friends in the 1-4 player platforming sensation."
       }
     ]
   }
