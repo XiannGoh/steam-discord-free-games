@@ -1,145 +1,4 @@
 {
-  "2026-10-14": {
-    "run_state": {
-      "section_headers": {
-        "free": {
-          "message_id": "1559989775212220497",
-          "channel_id": "592534544708796474",
-          "posted_at_utc": "2026-10-14T18:02:26.112940+00:00"
-        },
-        "paid": {
-          "message_id": "1559989825258651678",
-          "channel_id": "592534544708796474",
-          "posted_at_utc": "2026-10-14T18:02:37.899805+00:00"
-        }
-      },
-      "last_attempt_at_utc": "2026-10-14T18:02:21.411766+00:00",
-      "intro": {
-        "message_id": "1559989758577344653",
-        "channel_id": "592534544708796474",
-        "posted_at_utc": "2026-10-14T18:02:24.207410+00:00"
-      },
-      "footer": {
-        "message_id": "1559989873111343157",
-        "channel_id": "592534544708796474",
-        "posted_at_utc": "2026-10-14T18:02:49.311407+00:00"
-      },
-      "completed": true,
-      "completed_at_utc": "2026-10-14T18:02:50.518738+00:00"
-    },
-    "items": [
-      {
-        "item_key": "916b73b07eb4cf03",
-        "section": "free",
-        "title": "PlanetSide 2",
-        "url": "https://store.steampowered.com/app/218230/",
-        "message_id": "1559989783780917378",
-        "channel_id": "592534544708796474",
-        "source_type": "steam_free",
-        "posted_at": "2026-10-14T18:02:28.356611+00:00",
-        "description": "PlanetSide 2 is an all-out planetary war, where thousands of players battle as one across enormous continents. Utilize infantry, ground and air vehicles, and teamwork to destroy your enemies in this revolutionary first-person shooter on a massive scale."
-      },
-      {
-        "item_key": "cd908e700ec513ce",
-        "section": "free",
-        "title": "SAS: Zombie Assault 4",
-        "url": "https://store.steampowered.com/app/678800/",
-        "message_id": "1559989792455008298",
-        "channel_id": "592534544708796474",
-        "source_type": "steam_free",
-        "posted_at": "2026-10-14T18:02:30.426232+00:00",
-        "description": "Purge the undead! Intense action-shooter with deep rpg elements, including upgradeable guns and armor, unique class skills, and class special abilities. Entire game can be played single player or as a 4-player online co-op game, including PvP events like Last Man Standing."
-      },
-      {
-        "item_key": "6d4cf87fb35c6aa4",
-        "section": "free",
-        "title": "AdventureQuest 3D",
-        "url": "https://store.steampowered.com/app/429790/",
-        "message_id": "1559989801329889320",
-        "channel_id": "592534544708796474",
-        "source_type": "steam_free",
-        "posted_at": "2026-10-14T18:02:32.295436+00:00",
-        "description": "The Void King is raising an army in secret. Death has chosen you as his champion to bring him down. Adventure & quest alongside your friends in this bizarre cross-platform MMORPG from the creators of the original, and comically-redundantly named... AdventureQuest! Weekly releases!"
-      },
-      {
-        "item_key": "e83563e66619daf9",
-        "section": "free",
-        "title": "Undawn",
-        "url": "https://store.steampowered.com/app/1881700/",
-        "message_id": "1559989809194471556",
-        "channel_id": "592534544708796474",
-        "source_type": "steam_free",
-        "posted_at": "2026-10-14T18:02:34.258662+00:00",
-        "description": "Explore, adapt, and survive in Undawn, a free-to-play open-world survival RPG for mobile and PC developed by LightSpeed Studios and published by Level Infinite. Embark on an adventure with other survivors four years after a worldwide disaster where hordes of infected roam a shattered world."
-      },
-      {
-        "item_key": "98bf6c19e3b82ff4",
-        "section": "free",
-        "title": "Puzzle Pirates",
-        "url": "https://store.steampowered.com/app/99910/",
-        "message_id": "1559989817020776519",
-        "channel_id": "592534544708796474",
-        "source_type": "steam_free",
-        "posted_at": "2026-10-14T18:02:36.160939+00:00",
-        "description": "Every activity in Puzzle Pirates is a uniquely fun puzzle: be it sailing, gunning, or hauling treasure, your own puzzling skill determines your success!"
-      },
-      {
-        "item_key": "386a83670cc2949d",
-        "section": "paid",
-        "title": "Super Battle Golf",
-        "url": "https://store.steampowered.com/app/4069520/",
-        "message_id": "1559989832648884254",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-10-14T18:02:39.988184+00:00",
-        "description": "An online 1-8 player golf game where everyone plays at the same time. Swing, shoot, sabotage, and finish first by any means necessary in a free-for-all rush to the hole."
-      },
-      {
-        "item_key": "c56800ecc6a623fe",
-        "section": "paid",
-        "title": "Escape the Backrooms",
-        "url": "https://store.steampowered.com/app/1943950/",
-        "message_id": "1559989841335292015",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-10-14T18:02:41.848193+00:00",
-        "description": "Escape the Backrooms is a 1-4 player co-op horror exploration game. Traverse 30+ eerie backrooms levels while avoiding entities and other dangers. Try to escape but be warned: survival isn't guaranteed."
-      },
-      {
-        "item_key": "4bdd7dec1e05f34f",
-        "section": "paid",
-        "title": "World War Z",
-        "url": "https://store.steampowered.com/app/699130/",
-        "message_id": "1559989849015058562",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-10-14T18:02:43.611247+00:00",
-        "description": "World War Z is a heart-pounding coop third-person shooter for up to 4 players featuring massive swarms of hundreds of zombies, focused on fast-paced, gruesomely spectacular action."
-      },
-      {
-        "item_key": "29f7a49e9542f504",
-        "section": "paid",
-        "title": "Raft",
-        "url": "https://store.steampowered.com/app/648800/",
-        "message_id": "1559989856564813907",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-10-14T18:02:45.514210+00:00",
-        "description": "Raft™ throws you and your friends into an epic oceanic adventure! Alone or together, players battle to survive a perilous voyage across a vast sea! Gather debris, scavenge reefs and build your own floating home, but be wary of the man-eating sharks!"
-      },
-      {
-        "item_key": "511ade524ea600f0",
-        "section": "paid",
-        "title": "Solarpunk™",
-        "url": "https://store.steampowered.com/app/1805110/",
-        "message_id": "1559989864060035126",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-10-14T18:02:47.448013+00:00",
-        "description": "Solarpunk is a survival game in a technologically advanced world of floating islands. Alone or together with your friends, you can construct buildings, grow food, craft gadgets and hop on your airship to explore distant islands in the sky."
-      }
-    ]
-  },
   "2026-10-15": {
     "run_state": {
       "section_headers": {
@@ -4186,6 +4045,147 @@
         "source_type": "paid_under_20",
         "posted_at": "2026-11-12T20:52:48.248368+00:00",
         "description": "Mow lawns in first person on a beat-up riding mower, solo or online co-op up to 6 players. You're a grumpy old man who smokes, drinks cheap beer and doesn't care, but leaves perfect stripes. A picky neighbor, an abandoned golf course, an island wedding."
+      }
+    ]
+  },
+  "2026-11-13": {
+    "run_state": {
+      "section_headers": {
+        "free": {
+          "message_id": "1570898505592213722",
+          "channel_id": "592534544708796474",
+          "posted_at_utc": "2026-11-13T20:29:50.028868+00:00"
+        },
+        "paid": {
+          "message_id": "1570898553705074870",
+          "channel_id": "592534544708796474",
+          "posted_at_utc": "2026-11-13T20:30:01.541510+00:00"
+        }
+      },
+      "last_attempt_at_utc": "2026-11-13T20:29:45.894100+00:00",
+      "intro": {
+        "message_id": "1570898490547241031",
+        "channel_id": "592534544708796474",
+        "posted_at_utc": "2026-11-13T20:29:48.291900+00:00"
+      },
+      "footer": {
+        "message_id": "1570898604694966473",
+        "channel_id": "592534544708796474",
+        "posted_at_utc": "2026-11-13T20:30:13.523715+00:00"
+      },
+      "completed": true,
+      "completed_at_utc": "2026-11-13T20:30:14.727199+00:00"
+    },
+    "items": [
+      {
+        "item_key": "916b73b07eb4cf03",
+        "section": "free",
+        "title": "PlanetSide 2",
+        "url": "https://store.steampowered.com/app/218230/",
+        "message_id": "1570898513561129122",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-11-13T20:29:52.015818+00:00",
+        "description": "PlanetSide 2 is an all-out planetary war, where thousands of players battle as one across enormous continents. Utilize infantry, ground and air vehicles, and teamwork to destroy your enemies in this revolutionary first-person shooter on a massive scale."
+      },
+      {
+        "item_key": "cd908e700ec513ce",
+        "section": "free",
+        "title": "SAS: Zombie Assault 4",
+        "url": "https://store.steampowered.com/app/678800/",
+        "message_id": "1570898521509593289",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-11-13T20:29:53.964620+00:00",
+        "description": "Purge the undead! Intense action-shooter with deep rpg elements, including upgradeable guns and armor, unique class skills, and class special abilities. Entire game can be played single player or as a 4-player online co-op game, including PvP events like Last Man Standing."
+      },
+      {
+        "item_key": "6d4cf87fb35c6aa4",
+        "section": "free",
+        "title": "AdventureQuest 3D",
+        "url": "https://store.steampowered.com/app/429790/",
+        "message_id": "1570898529436704811",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-11-13T20:29:55.876036+00:00",
+        "description": "The Void King is raising an army in secret. Death has chosen you as his champion to bring him down. Adventure & quest alongside your friends in this bizarre cross-platform MMORPG from the creators of the original, and comically-redundantly named... AdventureQuest! Weekly releases!"
+      },
+      {
+        "item_key": "e83563e66619daf9",
+        "section": "free",
+        "title": "Undawn",
+        "url": "https://store.steampowered.com/app/1881700/",
+        "message_id": "1570898537682702500",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-11-13T20:29:57.925120+00:00",
+        "description": "Explore, adapt, and survive in Undawn, a free-to-play open-world survival RPG for mobile and PC developed by LightSpeed Studios and published by Level Infinite. Embark on an adventure with other survivors four years after a worldwide disaster where hordes of infected roam a shattered world."
+      },
+      {
+        "item_key": "98bf6c19e3b82ff4",
+        "section": "free",
+        "title": "Puzzle Pirates",
+        "url": "https://store.steampowered.com/app/99910/",
+        "message_id": "1570898546062925844",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-11-13T20:29:59.772397+00:00",
+        "description": "Every activity in Puzzle Pirates is a uniquely fun puzzle: be it sailing, gunning, or hauling treasure, your own puzzling skill determines your success!"
+      },
+      {
+        "item_key": "e02d05fd8ff778a5",
+        "section": "paid",
+        "title": "Invokyr",
+        "url": "https://store.steampowered.com/app/3883570/",
+        "message_id": "1570898561313284138",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-11-13T20:30:03.468227+00:00",
+        "description": "A co-op survival horror game about a cursed board game. Play in a group of 6 players. Roll the dice, survive the horrors that are summoned, and beat the Gamemaster to win your freedom."
+      },
+      {
+        "item_key": "81d58c71686d40af",
+        "section": "paid",
+        "title": "Engagement",
+        "url": "https://store.steampowered.com/app/5195200/",
+        "message_id": "1570898568997245121",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-11-13T20:30:05.589753+00:00",
+        "description": "Command a capital ship alone or up to 4 players co-op and hold the Belt of Ashes against the Hollow and more until relief arrives. Every upgrade is a turret bolted to a hardpoint you can see, your escorts you recruit keep their names and kills, and every fight has variety to make it new."
+      },
+      {
+        "item_key": "c56800ecc6a623fe",
+        "section": "paid",
+        "title": "Escape the Backrooms",
+        "url": "https://store.steampowered.com/app/1943950/",
+        "message_id": "1570898578275041400",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-11-13T20:30:07.493341+00:00",
+        "description": "Escape the Backrooms is a 1-4 player co-op horror exploration game. Traverse 30+ eerie backrooms levels while avoiding entities and other dangers. Try to escape but be warned: survival isn't guaranteed."
+      },
+      {
+        "item_key": "29f7a49e9542f504",
+        "section": "paid",
+        "title": "Raft",
+        "url": "https://store.steampowered.com/app/648800/",
+        "message_id": "1570898586231902529",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-11-13T20:30:09.699289+00:00",
+        "description": "Raft™ throws you and your friends into an epic oceanic adventure! Alone or together, players battle to survive a perilous voyage across a vast sea! Gather debris, scavenge reefs and build your own floating home, but be wary of the man-eating sharks!"
+      },
+      {
+        "item_key": "afae1e73632d94e7",
+        "section": "paid",
+        "title": "Go Next!",
+        "url": "https://store.steampowered.com/app/5064170/",
+        "message_id": "1570898595757031517",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-11-13T20:30:11.686722+00:00",
+        "description": "Your weapons fire on their own. Your job is to keep moving. Wall-run, dash and bunny-hop through hordes of monsters across 11 worlds, and turn 71 weapons and 131 items into an unstoppable build. Play solo or in online co-op for up to 4 players."
       }
     ]
   }
