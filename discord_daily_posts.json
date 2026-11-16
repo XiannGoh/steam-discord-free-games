@@ -1,145 +1,4 @@
 {
-  "2026-10-16": {
-    "run_state": {
-      "section_headers": {
-        "free": {
-          "message_id": "1560704944367992832",
-          "channel_id": "592534544708796474",
-          "posted_at_utc": "2026-10-16T17:24:15.529384+00:00"
-        },
-        "paid": {
-          "message_id": "1560704988764708976",
-          "channel_id": "592534544708796474",
-          "posted_at_utc": "2026-10-16T17:24:26.187055+00:00"
-        }
-      },
-      "last_attempt_at_utc": "2026-10-16T17:24:09.587472+00:00",
-      "intro": {
-        "message_id": "1560704921312170070",
-        "channel_id": "592534544708796474",
-        "posted_at_utc": "2026-10-16T17:24:13.876422+00:00"
-      },
-      "footer": {
-        "message_id": "1560705032792318143",
-        "channel_id": "592534544708796474",
-        "posted_at_utc": "2026-10-16T17:24:36.549397+00:00"
-      },
-      "completed": true,
-      "completed_at_utc": "2026-10-16T17:24:37.756790+00:00"
-    },
-    "items": [
-      {
-        "item_key": "7f2eef99465551f5",
-        "section": "free",
-        "title": "Star Conflict",
-        "url": "https://store.steampowered.com/app/212070/",
-        "message_id": "1560704951330799626",
-        "channel_id": "592534544708796474",
-        "source_type": "steam_free",
-        "posted_at": "2026-10-16T17:24:17.327038+00:00",
-        "description": "Star Conflict is a thrilling space action game that lets you take the helm of a combat starship and take part in large-scale battles. Build your own fleet and set out to explore the galaxy!"
-      },
-      {
-        "item_key": "f0db4ec3d1cfa079",
-        "section": "free",
-        "title": "Runes of Magic",
-        "url": "https://store.steampowered.com/app/808290/",
-        "message_id": "1560704958758789251",
-        "channel_id": "592534544708796474",
-        "source_type": "steam_free",
-        "posted_at": "2026-10-16T17:24:19.013658+00:00",
-        "description": "Start your heroic saga today in a world full of magic and excitement: Choose your race, build a home and discover the fantastic world of Taborea in the classic free-to-play MMO!"
-      },
-      {
-        "item_key": "cc11aa6f098818b7",
-        "section": "free",
-        "title": "Casino Roulette: Roulettist",
-        "url": "https://store.steampowered.com/app/3601420/",
-        "message_id": "1560704965947826277",
-        "channel_id": "592534544708796474",
-        "source_type": "steam_free",
-        "posted_at": "2026-10-16T17:24:20.800454+00:00",
-        "description": "Test your luck! Play casino roulette with stunning, realistic 3D graphics! Feel the risk as you dive into the casino atmosphere and hit the big time!"
-      },
-      {
-        "item_key": "365fb7fbba472536",
-        "section": "free",
-        "title": "Project Entropy",
-        "url": "https://store.steampowered.com/app/2806410/",
-        "message_id": "1560704973359292497",
-        "channel_id": "592534544708796474",
-        "source_type": "steam_free",
-        "posted_at": "2026-10-16T17:24:22.734385+00:00",
-        "description": "Welcome, commander, to Project Entropy- an ultimate Sci-Fi and role-playing game with battles in space. In this immersive MMO experience, you will command alien civilizations, conquer uncharted planets, and build Hero fleets."
-      },
-      {
-        "item_key": "83d1ebef4c82908e",
-        "section": "free",
-        "title": "Idle Hacking: An Inaction RPG",
-        "url": "https://store.steampowered.com/app/4453290/",
-        "message_id": "1560704981454159962",
-        "channel_id": "592534544708796474",
-        "source_type": "steam_free",
-        "posted_at": "2026-10-16T17:24:24.484601+00:00",
-        "description": "A persistent idle MMORPG, with a text-based hacking theme. Enjoy the \"Inaction RPG\" design philosophy by crafting equpiment using ARPG influenced prefix/suffix systems, build or join player managed syndicates, trade on the marketplace, and compete in community events."
-      },
-      {
-        "item_key": "0a22fc3f0beef7af",
-        "section": "paid",
-        "title": "Pummel Party",
-        "url": "https://store.steampowered.com/app/880940/",
-        "message_id": "1560704995521859700",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-10-16T17:24:27.825339+00:00",
-        "description": "Pummel Party is a 4-8 player online and local-multiplayer party game. Pummel friends or AI using a wide array of absurd items in the board mode and compete to destroy friendships in the unique collection of minigames."
-      },
-      {
-        "item_key": "cd12988bfcc6bd39",
-        "section": "paid",
-        "title": "Romestead",
-        "url": "https://store.steampowered.com/app/1805320/",
-        "message_id": "1560705002778005635",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-10-16T17:24:29.594811+00:00",
-        "description": "Rome has fallen! Rebuild civilization in this action-adventure survival game for 1-8 players. Fight hordes of the walking dead, build settlements, restore the Roman gods... or kick back and farm with friends."
-      },
-      {
-        "item_key": "4887c0147ece771c",
-        "section": "paid",
-        "title": "Roadside Research",
-        "url": "https://store.steampowered.com/app/3643170/",
-        "message_id": "1560705010298527855",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-10-16T17:24:31.485778+00:00",
-        "description": "Roadside Research is a 1 to 4 player co-op gas station simulator. Except you’re aliens. And undercover. Do very human things like restocking shelves while preparing for the invasion. Just don’t get caught."
-      },
-      {
-        "item_key": "cf1f1465468976bd",
-        "section": "paid",
-        "title": "Subsistence",
-        "url": "https://store.steampowered.com/app/418030/",
-        "message_id": "1560705018082885702",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-10-16T17:24:33.076254+00:00",
-        "description": "Subsistence is a sandbox, first person, solo or co-op, PvE open-world survival game. Struggle through changing seasons to build a base, develop technology and gear-up in the hostile environment. Defend yourself from wildlife, the elements and AI hunters (who also build bases in the world)."
-      },
-      {
-        "item_key": "759aa5871a6f3bb9",
-        "section": "paid",
-        "title": "GRAIN ROT",
-        "url": "https://store.steampowered.com/app/4450620/",
-        "message_id": "1560705024919863336",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-10-16T17:24:34.721819+00:00",
-        "description": "A horror co-op extraction builder set in a scorched wasteland where everything burns. Descend with your friends into shifting ruins, rip out furniture, and scavenge for loot before the Corrupted close in. Make it back alive, then rebuild the Outpost to better your chances for the next run."
-      }
-    ]
-  },
   "2026-10-17": {
     "run_state": {
       "section_headers": {
@@ -4186,6 +4045,147 @@
         "source_type": "paid_under_20",
         "posted_at": "2026-11-14T18:57:33.930016+00:00",
         "description": "Jump Space (formerly Jump Ship) is a mission based co-op PvE for 1-4 players, where you are the crew of a spaceship. Transition seamlessly from crewing the ship to on-foot exploration and space walks. Explore, upgrade, and survive intense encounters in deep space together."
+      }
+    ]
+  },
+  "2026-11-15": {
+    "run_state": {
+      "section_headers": {
+        "free": {
+          "message_id": "1571608210916384811",
+          "channel_id": "592534544708796474",
+          "posted_at_utc": "2026-11-15T19:29:56.872720+00:00"
+        },
+        "paid": {
+          "message_id": "1571608259469639801",
+          "channel_id": "592534544708796474",
+          "posted_at_utc": "2026-11-15T19:30:08.453210+00:00"
+        }
+      },
+      "last_attempt_at_utc": "2026-11-15T19:29:51.924963+00:00",
+      "intro": {
+        "message_id": "1571608192138477680",
+        "channel_id": "592534544708796474",
+        "posted_at_utc": "2026-11-15T19:29:55.260434+00:00"
+      },
+      "footer": {
+        "message_id": "1571608313810919557",
+        "channel_id": "592534544708796474",
+        "posted_at_utc": "2026-11-15T19:30:21.498385+00:00"
+      },
+      "completed": true,
+      "completed_at_utc": "2026-11-15T19:30:22.702936+00:00"
+    },
+    "items": [
+      {
+        "item_key": "365fb7fbba472536",
+        "section": "free",
+        "title": "Project Entropy",
+        "url": "https://store.steampowered.com/app/2806410/",
+        "message_id": "1571608217891377252",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-11-15T19:29:58.703524+00:00",
+        "description": "Welcome, commander, to Project Entropy- an ultimate Sci-Fi and role-playing game with battles in space. In this immersive MMO experience, you will command alien civilizations, conquer uncharted planets, and build Hero fleets."
+      },
+      {
+        "item_key": "f0db4ec3d1cfa079",
+        "section": "free",
+        "title": "Runes of Magic",
+        "url": "https://store.steampowered.com/app/808290/",
+        "message_id": "1571608225688584212",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-11-15T19:30:00.978276+00:00",
+        "description": "Start your heroic saga today in a world full of magic and excitement: Choose your race, build a home and discover the fantastic world of Taborea in the classic free-to-play MMO!"
+      },
+      {
+        "item_key": "b9d5d7beb36faa1d",
+        "section": "free",
+        "title": "Escape Room - Der kranke Kollege",
+        "url": "https://store.steampowered.com/app/1301720/",
+        "message_id": "1571608235205599262",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-11-15T19:30:02.783141+00:00",
+        "description": "You only wanted to make a visit to your sick colleague, but what you encounter is beyond your imagination. Discover the secrets of your colleague and find a way to escape the trap."
+      },
+      {
+        "item_key": "cc2814e7729cbb86",
+        "section": "free",
+        "title": "Goodgame Empire",
+        "url": "https://store.steampowered.com/app/3590360/",
+        "message_id": "1571608242407342161",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-11-15T19:30:04.752884+00:00",
+        "description": "Build your empire, wage wars, forge alliances, and claim glory in a vibrant medieval world. Over 200 million players have already joined the battle for power and influence — are you ready to make history?"
+      },
+      {
+        "item_key": "b947967295835992",
+        "section": "free",
+        "title": "Immortal Zenith: Idle to Ascension",
+        "url": "https://store.steampowered.com/app/4989520/",
+        "message_id": "1571608250770653438",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-11-15T19:30:06.778934+00:00",
+        "description": "An MMO idle cultivation RPG grounded in unique systems and intentional randomness. Your characters meditate, break through cultivation realms, explore, master powerful techniques, collect legendary treasures, and ascend from mortal to immortal."
+      },
+      {
+        "item_key": "46563912fe80d926",
+        "section": "paid",
+        "title": "Plains of Pain",
+        "url": "https://store.steampowered.com/app/2218970/",
+        "message_id": "1571608267002486895",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-11-15T19:30:10.653940+00:00",
+        "description": "Enter a living post-apocalyptic sandbox where the world doesn't wait for you. Build, craft, trade, earn the trust of factions, and forge your own path through a brutal procedural wasteland."
+      },
+      {
+        "item_key": "759aa5871a6f3bb9",
+        "section": "paid",
+        "title": "GRAIN ROT",
+        "url": "https://store.steampowered.com/app/4450620/",
+        "message_id": "1571608275789815828",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-11-15T19:30:12.576533+00:00",
+        "description": "A horror co-op extraction builder set in a scorched wasteland where everything burns. Descend with your friends into shifting ruins, rip out furniture, and scavenge for loot before the Corrupted close in. Make it back alive, then rebuild the Outpost to better your chances for the next run."
+      },
+      {
+        "item_key": "4c47ee9c5be26ebd",
+        "section": "paid",
+        "title": "Piano Glow",
+        "url": "https://store.steampowered.com/app/3499520/",
+        "message_id": "1571608283930689698",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-11-15T19:30:15.350544+00:00",
+        "description": "Piano in online multiplayer lobbies, with leaderboards, gamified training modes (ear, sheet, rhythm, 4K/7K and falling notes). Play any song using either a QWERTY computer/laptop keyboard or a piano. Convert any piano video or sheet music into falling notes tutorial/MIDI."
+      },
+      {
+        "item_key": "dd22e83f369d18ac",
+        "section": "paid",
+        "title": "Anime Shop Simulator ✨",
+        "url": "https://store.steampowered.com/app/3393280/",
+        "message_id": "1571608295809224786",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-11-15T19:30:17.723837+00:00",
+        "description": "Manage your own anime shop 🎌. Play solo or team up with friends 🤝 in 4-player co-op mode to grow your business 📈 Stock shelves with manga, figures, and collectible cards in this immersive first-person game 🕹️."
+      },
+      {
+        "item_key": "fdee25423e8b47fd",
+        "section": "paid",
+        "title": "The Classrooms",
+        "url": "https://store.steampowered.com/app/2099110/",
+        "message_id": "1571608305326100570",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-11-15T19:30:19.556856+00:00",
+        "description": "The Classrooms is a procedural, liminal-space, found-footage, survival horror game. Explore The Classrooms and discover the various anomalies it contains; from malicious entities, to harmless oddities. And remember, it's different every time you play, so your found footage is uniquely yours."
       }
     ]
   }
