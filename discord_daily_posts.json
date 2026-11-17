@@ -1,145 +1,4 @@
 {
-  "2026-10-18": {
-    "run_state": {
-      "section_headers": {
-        "free": {
-          "message_id": "1561416740313768058",
-          "channel_id": "592534544708796474",
-          "posted_at_utc": "2026-10-18T16:32:41.079944+00:00"
-        },
-        "paid": {
-          "message_id": "1561416793157931099",
-          "channel_id": "592534544708796474",
-          "posted_at_utc": "2026-10-18T16:32:53.345677+00:00"
-        }
-      },
-      "last_attempt_at_utc": "2026-10-18T16:32:34.850327+00:00",
-      "intro": {
-        "message_id": "1561416717056610375",
-        "channel_id": "592534544708796474",
-        "posted_at_utc": "2026-10-18T16:32:39.335167+00:00"
-      },
-      "footer": {
-        "message_id": "1561416838573719665",
-        "channel_id": "592534544708796474",
-        "posted_at_utc": "2026-10-18T16:33:04.290881+00:00"
-      },
-      "completed": true,
-      "completed_at_utc": "2026-10-18T16:33:05.498533+00:00"
-    },
-    "items": [
-      {
-        "item_key": "2652c6d6be820ba8",
-        "section": "free",
-        "title": "Stumble Guys",
-        "url": "https://store.steampowered.com/app/1677740/",
-        "message_id": "1561416747813314600",
-        "channel_id": "592534544708796474",
-        "source_type": "steam_free",
-        "posted_at": "2026-10-18T16:32:42.881972+00:00",
-        "description": "Ready for the chaos? Stumble Guys is a 32-player, fast-paced multiplayer party royale where players dash, jump, and fall across hilarious obstacle courses in a fun race to be the last one standing."
-      },
-      {
-        "item_key": "dde6564766a0a301",
-        "section": "free",
-        "title": "GrandChase",
-        "url": "https://store.steampowered.com/app/985810/",
-        "message_id": "1561416754989891678",
-        "channel_id": "592534544708796474",
-        "source_type": "steam_free",
-        "posted_at": "2026-10-18T16:32:44.890906+00:00",
-        "description": "Grand Chase is a free side-scrolling online action RPG with anime inspired graphics. Enjoy exciting adventures in dungeons and PvP with unique characters."
-      },
-      {
-        "item_key": "a6805e1571a18754",
-        "section": "free",
-        "title": "Transformice",
-        "url": "https://store.steampowered.com/app/335240/",
-        "message_id": "1561416763705655380",
-        "channel_id": "592534544708796474",
-        "source_type": "steam_free",
-        "posted_at": "2026-10-18T16:32:47.343812+00:00",
-        "description": "Transformice is an MMO platformer about dozens of mice running to bring back the cheese! Will the almighty Shaman help you or just ruin everything? Millions of levels, hectic physics, skill trees, and more importantly... hats!"
-      },
-      {
-        "item_key": "fbfb1e901978e20d",
-        "section": "free",
-        "title": "STALZONE",
-        "url": "https://store.steampowered.com/app/1818450/",
-        "message_id": "1561416774035972159",
-        "channel_id": "592534544708796474",
-        "source_type": "steam_free",
-        "posted_at": "2026-10-18T16:32:49.200779+00:00",
-        "description": "STALZONE is the PvPvE extraction shooter where you don't have to start over — and the only one with persistent world worth belonging to. You are invited to explore the Chernobyl Exclusion Zone twisted by anomalies and divided between rival factions whose territories shape the danger around you"
-      },
-      {
-        "item_key": "0b4aa1a487c0dde7",
-        "section": "free",
-        "title": "Destiny 2",
-        "url": "https://store.steampowered.com/app/1085660/",
-        "message_id": "1561416785259921570",
-        "channel_id": "592534544708796474",
-        "source_type": "steam_free",
-        "posted_at": "2026-10-18T16:32:51.875198+00:00",
-        "description": "Explore the mysteries of Sol and experience exhilirating first-person shooter combat in Destiny 2. Unlock powerful abilities and collect unique gear across story missions, co-op, and PvP modes."
-      },
-      {
-        "item_key": "347cc4d21236c756",
-        "section": "paid",
-        "title": "Chained Beasts",
-        "url": "https://store.steampowered.com/app/3569420/",
-        "message_id": "1561416799365369987",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-10-18T16:32:55.057161+00:00",
-        "description": "Chained Beasts is a 1-4 player co-op gladiator roguelike. Fight chaotic battles chained to your friends. Use your chains or the arena to beat up foes in creative ways and win over the bloodthirsty crowd. Endure physical and mental injuries to defeat fearsome bosses and survive the day."
-      },
-      {
-        "item_key": "aaabe8bc498dd077",
-        "section": "paid",
-        "title": "Scam With Your Friends",
-        "url": "https://store.steampowered.com/app/4954910/",
-        "message_id": "1561416806491627682",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-10-18T16:32:57.202878+00:00",
-        "description": "Run a scam call center with your friends. Use increasingly ridiculous schemes to trick AI callers out of their life savings. Hit your daily quota, cause chaos around the office, and survive a brutal performance review from your rageaholic boss."
-      },
-      {
-        "item_key": "56d5db5fba840f6b",
-        "section": "paid",
-        "title": "MECCHA CHAMELEON",
-        "url": "https://store.steampowered.com/app/4704690/",
-        "message_id": "1561416815765225513",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-10-18T16:32:58.986852+00:00",
-        "description": "Paint yourself to blend in! \"Meccha Chameleon\" is a new-sensation hide-and-seek game where you paint your white body to mimic the stage. Spot, pose, and \"artistic skill\" are keys to survival. Deceive Seekers with techniques that put chameleons to shame! Supports public matches and streaming."
-      },
-      {
-        "item_key": "09e9845cfe953ed4",
-        "section": "paid",
-        "title": "Brick by Brick: Tidy Up the Small Town!",
-        "url": "https://store.steampowered.com/app/5228920/",
-        "message_id": "1561416822815981601",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-10-18T16:33:00.992852+00:00",
-        "description": "Brick By Brick is a relaxing tidy-up game you can play solo or co-op with up to 5 players. Collect, sort, and place 18,490 bricks to rebuild a charming town. Unlock helpful abilities and watch scattered piles become finished buildings. One brick at a time!"
-      },
-      {
-        "item_key": "46879bf183b508ad",
-        "section": "paid",
-        "title": "LEGO® Harry Potter™ Collection",
-        "url": "https://store.steampowered.com/app/2950340/",
-        "message_id": "1561416831305130105",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-10-18T16:33:02.713959+00:00",
-        "description": "The LEGO® Harry Potter™: Collection brings LEGO® Harry Potter™: Years 1-4 and LEGO® Harry Potter™: Years 5-7 together in one game, now remastered with enhanced graphics."
-      }
-    ]
-  },
   "2026-10-19": {
     "run_state": {
       "section_headers": {
@@ -4186,6 +4045,163 @@
         "source_type": "paid_under_20",
         "posted_at": "2026-11-16T22:58:48.886209+00:00",
         "description": "An infinitely replayable multiplayer and single-player tower defense. Defend against waves of enemies and destroy the enemy's king before they destroy yours. Legion TD 2 is a one-of-a-kind game of tactics, teamwork, and prediction. Party as 1-8 players."
+      }
+    ]
+  },
+  "2026-11-17": {
+    "run_state": {
+      "section_headers": {
+        "demo_playtest": {
+          "message_id": "1572367192689872988",
+          "channel_id": "592534544708796474",
+          "posted_at_utc": "2026-11-17T21:45:52.230885+00:00"
+        },
+        "free": {
+          "message_id": "1572367207256694828",
+          "channel_id": "592534544708796474",
+          "posted_at_utc": "2026-11-17T21:45:56.291238+00:00"
+        },
+        "paid": {
+          "message_id": "1572367254526361744",
+          "channel_id": "592534544708796474",
+          "posted_at_utc": "2026-11-17T21:46:07.718531+00:00"
+        }
+      },
+      "last_attempt_at_utc": "2026-11-17T21:45:46.034323+00:00",
+      "intro": {
+        "message_id": "1572367169243713617",
+        "channel_id": "592534544708796474",
+        "posted_at_utc": "2026-11-17T21:45:50.588784+00:00"
+      },
+      "footer": {
+        "message_id": "1572367306653306983",
+        "channel_id": "592534544708796474",
+        "posted_at_utc": "2026-11-17T21:46:19.556006+00:00"
+      },
+      "completed": true,
+      "completed_at_utc": "2026-11-17T21:46:20.760010+00:00"
+    },
+    "items": [
+      {
+        "item_key": "a51c9d84fc05b6a1",
+        "section": "demo_playtest",
+        "title": "Chained Beasts",
+        "url": "https://store.steampowered.com/app/3569420/",
+        "message_id": "1572367199266406532",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_demo_playtest",
+        "posted_at": "2026-11-17T21:45:54.039793+00:00",
+        "description": "Chained Beasts is a 1-4 player co-op gladiator roguelike. Fight chaotic battles chained to your friends. Use your chains or the arena to beat up foes in creative ways and win over the bloodthirsty crowd. Endure physical and mental injuries to defeat fearsome bosses and survive the day."
+      },
+      {
+        "item_key": "2652c6d6be820ba8",
+        "section": "free",
+        "title": "Stumble Guys",
+        "url": "https://store.steampowered.com/app/1677740/",
+        "message_id": "1572367216878559252",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-11-17T21:45:58.034074+00:00",
+        "description": "Ready for the chaos? Stumble Guys is a 32-player, fast-paced multiplayer party royale where players dash, jump, and fall across hilarious obstacle courses in a fun race to be the last one standing."
+      },
+      {
+        "item_key": "dde6564766a0a301",
+        "section": "free",
+        "title": "GrandChase",
+        "url": "https://store.steampowered.com/app/985810/",
+        "message_id": "1572367224151343274",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-11-17T21:46:00.153849+00:00",
+        "description": "Grand Chase is a free side-scrolling online action RPG with anime inspired graphics. Enjoy exciting adventures in dungeons and PvP with unique characters."
+      },
+      {
+        "item_key": "a6805e1571a18754",
+        "section": "free",
+        "title": "Transformice",
+        "url": "https://store.steampowered.com/app/335240/",
+        "message_id": "1572367232577835231",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-11-17T21:46:01.877672+00:00",
+        "description": "Transformice is an MMO platformer about dozens of mice running to bring back the cheese! Will the almighty Shaman help you or just ruin everything? Millions of levels, hectic physics, skill trees, and more importantly... hats!"
+      },
+      {
+        "item_key": "fbfb1e901978e20d",
+        "section": "free",
+        "title": "STALZONE",
+        "url": "https://store.steampowered.com/app/1818450/",
+        "message_id": "1572367239577866442",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-11-17T21:46:03.615229+00:00",
+        "description": "STALZONE is the PvPvE extraction shooter where you don't have to start over — and the only one with persistent world worth belonging to. You are invited to explore the Chernobyl Exclusion Zone twisted by anomalies and divided between rival factions whose territories shape the danger around you"
+      },
+      {
+        "item_key": "0b4aa1a487c0dde7",
+        "section": "free",
+        "title": "Destiny 2",
+        "url": "https://store.steampowered.com/app/1085660/",
+        "message_id": "1572367247287123968",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-11-17T21:46:05.313570+00:00",
+        "description": "Explore the mysteries of Sol and experience exhilirating first-person shooter combat in Destiny 2. Unlock powerful abilities and collect unique gear across story missions, co-op, and PvP modes."
+      },
+      {
+        "item_key": "0eb54eea9087d183",
+        "section": "paid",
+        "title": "Dungeonbound",
+        "url": "https://store.steampowered.com/app/5200620/",
+        "message_id": "1572367264747888760",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-11-17T21:46:09.790032+00:00",
+        "description": "A roguelike autobattler where you manage your inventory, forge items together and craft the craziest build you can while battling the builds of other players."
+      },
+      {
+        "item_key": "69b7fc21b8039fc3",
+        "section": "paid",
+        "title": "just volleyball",
+        "url": "https://store.steampowered.com/app/5037200/",
+        "message_id": "1572367273157599334",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-11-17T21:46:11.494360+00:00",
+        "description": "just volleyball is an online and offline volleyball game with unique yet intuitive controls and deep player expression. take on others in anything from 1v1s & 2v2s to full team-based 6v6 matches. there's no right way to play, it's just volleyball!"
+      },
+      {
+        "item_key": "5d5b49a1542c14b1",
+        "section": "paid",
+        "title": "Conquest of Elysium 5",
+        "url": "https://store.steampowered.com/app/1606340/",
+        "message_id": "1572367280921124914",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-11-17T21:46:13.470153+00:00",
+        "description": "Conquest of Elysium 5 is a quick turn based fantasy strategy game with a touch of rogue-like. The game is full of depth, details and monsters. There are also a huge number of factions, each with its own unique gameplay and magic rituals."
+      },
+      {
+        "item_key": "3e7aa9833531aa80",
+        "section": "paid",
+        "title": "BOMBANANA!",
+        "url": "https://store.steampowered.com/app/4656000/",
+        "message_id": "1572367288278057084",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-11-17T21:46:15.665750+00:00",
+        "description": "Chaotic bomb disposal fun with friends & monkeys! Work together as a 3-player co-op team of blind, deaf, and mute monkeys. Each player has only part of the needed information. Communicate, solve puzzles, and race against the clock. Can you defuse the bombs before they explode?"
+      },
+      {
+        "item_key": "aaabe8bc498dd077",
+        "section": "paid",
+        "title": "Scam With Your Friends",
+        "url": "https://store.steampowered.com/app/4954910/",
+        "message_id": "1572367297925095535",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-11-17T21:46:17.594320+00:00",
+        "description": "Run a scam call center with your friends. Use increasingly ridiculous schemes to trick AI callers out of their life savings. Hit your daily quota, cause chaos around the office, and survive a brutal performance review from your rageaholic boss."
       }
     ]
   }
