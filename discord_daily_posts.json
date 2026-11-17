@@ -1,145 +1,4 @@
 {
-  "2026-10-17": {
-    "run_state": {
-      "section_headers": {
-        "free": {
-          "message_id": "1561051981056053317",
-          "channel_id": "592534544708796474",
-          "posted_at_utc": "2026-10-17T16:23:15.506825+00:00"
-        },
-        "paid": {
-          "message_id": "1561052031899410453",
-          "channel_id": "592534544708796474",
-          "posted_at_utc": "2026-10-17T16:23:27.642665+00:00"
-        }
-      },
-      "last_attempt_at_utc": "2026-10-17T16:23:11.694360+00:00",
-      "intro": {
-        "message_id": "1561051967185363005",
-        "channel_id": "592534544708796474",
-        "posted_at_utc": "2026-10-17T16:23:13.892414+00:00"
-      },
-      "footer": {
-        "message_id": "1561052080654000320",
-        "channel_id": "592534544708796474",
-        "posted_at_utc": "2026-10-17T16:23:39.366979+00:00"
-      },
-      "completed": true,
-      "completed_at_utc": "2026-10-17T16:23:40.573266+00:00"
-    },
-    "items": [
-      {
-        "item_key": "b13bdbe2bfd52174",
-        "section": "free",
-        "title": "Mini World: CREATA",
-        "url": "https://store.steampowered.com/app/814480/",
-        "message_id": "1561051988102479964",
-        "channel_id": "592534544708796474",
-        "source_type": "steam_free",
-        "posted_at": "2026-10-17T16:23:17.449719+00:00",
-        "description": "Mini World is a 3D free sandbox game about adventure, exploration, and creating your dream worlds. There is no grinding or leveling up. No IAP gate that locks features from free to play players. Everyone can enjoy the game’s full features with great freedom"
-      },
-      {
-        "item_key": "e6e2db2be1df3235",
-        "section": "free",
-        "title": "DarkOrbit Reloaded",
-        "url": "https://store.steampowered.com/app/4054110/",
-        "message_id": "1561051997006987304",
-        "channel_id": "592534544708796474",
-        "source_type": "steam_free",
-        "posted_at": "2026-10-17T16:23:19.409718+00:00",
-        "description": "Dark Orbit is a free-2-play space MMO where three companies battle for galactic domination. Customize ships, trade resources, fight aliens and uncover a grand conspiracy on your epic cosmic journey. Thrilling PvP and PvE missions await! Will you lead your faction beyond the final frontier?"
-      },
-      {
-        "item_key": "5c0b4831c80506d9",
-        "section": "free",
-        "title": "Dirty Bomb®",
-        "url": "https://store.steampowered.com/app/333930/",
-        "message_id": "1561052004791488553",
-        "channel_id": "592534544708796474",
-        "source_type": "steam_free",
-        "posted_at": "2026-10-17T16:23:21.423406+00:00",
-        "description": "Work together or die alone! Fight to restore peace to London or tear it down for profit in the most challenging team based shooter around."
-      },
-      {
-        "item_key": "cc5239aef1abeed5",
-        "section": "free",
-        "title": "Wheelchair Wizards",
-        "url": "https://store.steampowered.com/app/3832630/",
-        "message_id": "1561052012790161540",
-        "channel_id": "592534544708796474",
-        "source_type": "steam_free",
-        "posted_at": "2026-10-17T16:23:23.240557+00:00",
-        "description": "Wheelchair Wizards is a 2-8 player party game where you battle your friends while upgrading your wizard."
-      },
-      {
-        "item_key": "33fdce47595ecdad",
-        "section": "free",
-        "title": "Shadowbane: Resurgence",
-        "url": "https://store.steampowered.com/app/4371680/",
-        "message_id": "1561052021916958760",
-        "channel_id": "592534544708796474",
-        "source_type": "steam_free",
-        "posted_at": "2026-10-17T16:23:25.887774+00:00",
-        "description": "A classic dark fantasy open-world MMORPG with unrestricted global PVP & a player-driven dynamic world. 12 unique races, flexible 22+48 class system. Build fortresses, conquer kingdoms, reshape the continent. Steam version supports multi-systems, no pay-to-win, hardcore fair gameplay."
-      },
-      {
-        "item_key": "d15862fcc0449659",
-        "section": "paid",
-        "title": "Heroes of Hammerwatch II",
-        "url": "https://store.steampowered.com/app/619820/",
-        "message_id": "1561052039050563785",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-10-17T16:23:29.414197+00:00",
-        "description": "A rogue-lite action-rpg that offers extensive persistent progression. Build your town, upgrade and equip your heroes, before taking on the ever-changing Dark Citadel - either solo or with a team of friends."
-      },
-      {
-        "item_key": "a19664bcaf82b74d",
-        "section": "paid",
-        "title": "Gauntlet™ Slayer Edition",
-        "url": "https://store.steampowered.com/app/258970/",
-        "message_id": "1561052046617083925",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-10-17T16:23:31.182613+00:00",
-        "description": "The classic Gauntlet 4-player co-op action gameplay returns in a completely new experience! Battle the endless hordes of foes as you and your friends fight for treasure and glory via both local and online co-op multiplayer. Invade the Darkness!"
-      },
-      {
-        "item_key": "97904cb506b8ab29",
-        "section": "paid",
-        "title": "Supermarket Chaos",
-        "url": "https://store.steampowered.com/app/4800590/",
-        "message_id": "1561052054061850634",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-10-17T16:23:33.093788+00:00",
-        "description": "Supermarket Chaos is a cozy organizing simulator where you sort 4,668 products in a messy supermarket. Enjoy the satisfaction of stocking shelves in a calm, relaxing atmosphere."
-      },
-      {
-        "item_key": "b728c2963051a57f",
-        "section": "paid",
-        "title": "Astro Colony",
-        "url": "https://store.steampowered.com/app/1614550/",
-        "message_id": "1561052061737422877",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-10-17T16:23:34.902207+00:00",
-        "description": "Astro Colony throws you into an endless Universe of exploration, automation and survival! Build interconnected colonies, alone or with friends, and turn planets into thriving industrial hubs! Design conveyor systems and take care of your Astronauts as you expand your intergalactic empire!"
-      },
-      {
-        "item_key": "c852b130b932ef6c",
-        "section": "paid",
-        "title": "Left 4 Dead",
-        "url": "https://store.steampowered.com/app/500/",
-        "message_id": "1561052069689827459",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-10-17T16:23:37.351306+00:00",
-        "description": "From Valve (the creators of Counter-Strike, Half-Life and more) comes Left 4 Dead, a co-op action horror game for the PC and Xbox 360 that casts up to four players in an epic struggle for survival against swarming zombie hordes and terrifying mutant monsters."
-      }
-    ]
-  },
   "2026-10-18": {
     "run_state": {
       "section_headers": {
@@ -4186,6 +4045,147 @@
         "source_type": "paid_under_20",
         "posted_at": "2026-11-15T19:30:19.556856+00:00",
         "description": "The Classrooms is a procedural, liminal-space, found-footage, survival horror game. Explore The Classrooms and discover the various anomalies it contains; from malicious entities, to harmless oddities. And remember, it's different every time you play, so your found footage is uniquely yours."
+      }
+    ]
+  },
+  "2026-11-16": {
+    "run_state": {
+      "section_headers": {
+        "free": {
+          "message_id": "1572023069361307731",
+          "channel_id": "592534544708796474",
+          "posted_at_utc": "2026-11-16T22:58:26.984483+00:00"
+        },
+        "paid": {
+          "message_id": "1572023118455644242",
+          "channel_id": "592534544708796474",
+          "posted_at_utc": "2026-11-16T22:58:38.520207+00:00"
+        }
+      },
+      "last_attempt_at_utc": "2026-11-16T22:58:23.256343+00:00",
+      "intro": {
+        "message_id": "1572023056228950089",
+        "channel_id": "592534544708796474",
+        "posted_at_utc": "2026-11-16T22:58:25.214319+00:00"
+      },
+      "footer": {
+        "message_id": "1572023169521422437",
+        "channel_id": "592534544708796474",
+        "posted_at_utc": "2026-11-16T22:58:50.606286+00:00"
+      },
+      "completed": true,
+      "completed_at_utc": "2026-11-16T22:58:51.812490+00:00"
+    },
+    "items": [
+      {
+        "item_key": "35e27df4a18168df",
+        "section": "free",
+        "title": "Blade & Soul NEO",
+        "url": "https://store.steampowered.com/app/3669060/",
+        "message_id": "1572023077016178748",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-11-16T22:58:28.919562+00:00",
+        "description": "Relive an iconic tale with Blade & Soul NEO. Fully remastered where players reconnect with the original spirit of the free-to-play, open-world MMORPG. Experience a richer visually enhanced experience set in a world of Wuxia mythology where fast-paced combat collides with the stunning visual beauty."
+      },
+      {
+        "item_key": "6b3767ffc0665948",
+        "section": "free",
+        "title": "Elementys",
+        "url": "https://store.steampowered.com/app/5300300/",
+        "message_id": "1572023085056401408",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-11-16T22:58:30.704912+00:00",
+        "description": "Explore a vast pixel-art MMORPG where adventure, progression, crafting, trading, PvE, and ranked PvP shape your journey. Play alone or with others, master your class, conquer powerful bosses, and build your legacy in the world of Elementys."
+      },
+      {
+        "item_key": "e188714550640a4b",
+        "section": "free",
+        "title": "Alien Swarm",
+        "url": "https://store.steampowered.com/app/630/",
+        "message_id": "1572023092761465063",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-11-16T22:58:32.943802+00:00",
+        "description": "Co-operative multiplayer game and complete code base available for free."
+      },
+      {
+        "item_key": "5c0b4831c80506d9",
+        "section": "free",
+        "title": "Dirty Bomb®",
+        "url": "https://store.steampowered.com/app/333930/",
+        "message_id": "1572023102261563442",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-11-16T22:58:35.020691+00:00",
+        "description": "Work together or die alone! Fight to restore peace to London or tear it down for profit in the most challenging team based shooter around."
+      },
+      {
+        "item_key": "33fdce47595ecdad",
+        "section": "free",
+        "title": "Shadowbane: Resurgence",
+        "url": "https://store.steampowered.com/app/4371680/",
+        "message_id": "1572023110767611994",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-11-16T22:58:36.882762+00:00",
+        "description": "A classic dark fantasy open-world MMORPG with unrestricted global PVP & a player-driven dynamic world. 12 unique races, flexible 22+48 class system. Build fortresses, conquer kingdoms, reshape the continent. Steam version supports multi-systems, no pay-to-win, hardcore fair gameplay."
+      },
+      {
+        "item_key": "c98b8d4b867f00eb",
+        "section": "paid",
+        "title": "Walk of Life",
+        "url": "https://store.steampowered.com/app/1910150/",
+        "message_id": "1572023125539946496",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-11-16T22:58:40.624332+00:00",
+        "description": "Lead a better life than your friends in this competitive life simulator! Walk of Life offers unique roles and quirky playstyles to come out ahead! Duke it out with up to 6 players, or by yourself, in this hilarious party game!"
+      },
+      {
+        "item_key": "0a22fc3f0beef7af",
+        "section": "paid",
+        "title": "Pummel Party",
+        "url": "https://store.steampowered.com/app/880940/",
+        "message_id": "1572023134259912756",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-11-16T22:58:42.728643+00:00",
+        "description": "Pummel Party is a 4-8 player online and local-multiplayer party game. Pummel friends or AI using a wide array of absurd items in the board mode and compete to destroy friendships in the unique collection of minigames."
+      },
+      {
+        "item_key": "4887c0147ece771c",
+        "section": "paid",
+        "title": "Roadside Research",
+        "url": "https://store.steampowered.com/app/3643170/",
+        "message_id": "1572023143311089734",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-11-16T22:58:44.934568+00:00",
+        "description": "Roadside Research is a 1 to 4 player co-op gas station simulator. Except you’re aliens. And undercover. Do very human things like restocking shelves while preparing for the invasion. Just don’t get caught."
+      },
+      {
+        "item_key": "1b6ee581163c44e4",
+        "section": "paid",
+        "title": "Dungeon Defenders",
+        "url": "https://store.steampowered.com/app/65800/",
+        "message_id": "1572023152412721363",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-11-16T22:58:46.756304+00:00",
+        "description": "Create a hero from one of four classes to save Etheria in this 4-player coop Tower Defense Action-RPG. Includes Steam exclusive Portal gun & TF2 familiars!"
+      },
+      {
+        "item_key": "9bf8c236de6d7a6b",
+        "section": "paid",
+        "title": "Legion TD 2 - Multiplayer Tower Defense",
+        "url": "https://store.steampowered.com/app/469600/",
+        "message_id": "1572023160016998471",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-11-16T22:58:48.886209+00:00",
+        "description": "An infinitely replayable multiplayer and single-player tower defense. Defend against waves of enemies and destroy the enemy's king before they destroy yours. Legion TD 2 is a one-of-a-kind game of tactics, teamwork, and prediction. Party as 1-8 players."
       }
     ]
   }
