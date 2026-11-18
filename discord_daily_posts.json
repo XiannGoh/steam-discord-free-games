@@ -1,145 +1,4 @@
 {
-  "2026-10-19": {
-    "run_state": {
-      "section_headers": {
-        "free": {
-          "message_id": "1561819736134651935",
-          "channel_id": "592534544708796474",
-          "posted_at_utc": "2026-10-19T19:14:02.740496+00:00"
-        },
-        "paid": {
-          "message_id": "1561819791214510142",
-          "channel_id": "592534544708796474",
-          "posted_at_utc": "2026-10-19T19:14:15.875512+00:00"
-        }
-      },
-      "last_attempt_at_utc": "2026-10-19T19:13:57.988401+00:00",
-      "intro": {
-        "message_id": "1561819718892003399",
-        "channel_id": "592534544708796474",
-        "posted_at_utc": "2026-10-19T19:14:00.890455+00:00"
-      },
-      "footer": {
-        "message_id": "1561819840648318998",
-        "channel_id": "592534544708796474",
-        "posted_at_utc": "2026-10-19T19:14:27.434073+00:00"
-      },
-      "completed": true,
-      "completed_at_utc": "2026-10-19T19:14:28.641461+00:00"
-    },
-    "items": [
-      {
-        "item_key": "eddd844cc61dc574",
-        "section": "free",
-        "title": "Galaxy Life",
-        "url": "https://store.steampowered.com/app/1927780/",
-        "message_id": "1561819743437201532",
-        "channel_id": "592534544708796474",
-        "source_type": "steam_free",
-        "posted_at": "2026-10-19T19:14:06.485703+00:00",
-        "description": "The universe is full of Starlings, tiny orange aliens that want to take over the galaxy. Create your own space colony, fight epic battles and discover new planets. Train your soldiers, develop your technology and create unimaginable gadgets. Enjoy this huge social game with friends!"
-      },
-      {
-        "item_key": "e35ee2f5e45d992e",
-        "section": "free",
-        "title": "Blue Protocol: Star Resonance",
-        "url": "https://store.steampowered.com/app/3681810/",
-        "message_id": "1561819759136481382",
-        "channel_id": "592534544708796474",
-        "source_type": "steam_free",
-        "posted_at": "2026-10-19T19:14:08.257209+00:00",
-        "description": "Blue Protocol: Star Resonance expands the Blue Protocol universe with a vibrant MMORPG experience. Create your own hero, team up for strategic raids, or simply relax and have fun with friends fishing, crafting, and endless exploration. Adventure awaits!"
-      },
-      {
-        "item_key": "cf0f2664906f023b",
-        "section": "free",
-        "title": "UNDECEMBER: The Farside",
-        "url": "https://store.steampowered.com/app/1549250/",
-        "message_id": "1561819766891610232",
-        "channel_id": "592534544708796474",
-        "source_type": "steam_free",
-        "posted_at": "2026-10-19T19:14:10.037822+00:00",
-        "description": "UNDECEMBER is a Hack & Slash Action RPG in which players are able to surpass the conventional limits of skills by endlessly combining variety of Skill and Link Runes. Become a Rune Hunter and experience the joy of farming and growth!"
-      },
-      {
-        "item_key": "4e1afa8cfe14d47c",
-        "section": "free",
-        "title": "Pixel Worlds: MMO Sandbox",
-        "url": "https://store.steampowered.com/app/636040/",
-        "message_id": "1561819774684495892",
-        "channel_id": "592534544708796474",
-        "source_type": "steam_free",
-        "posted_at": "2026-10-19T19:14:12.184750+00:00",
-        "description": "Pixel Worlds is a free-to-play sandbox MMO where players build worlds, craft items, explore dungeons, farm resources, and trade in a player-driven economy, all within a shared online universe rebuilt as a fresh start for a fair and stable long-term experience."
-      },
-      {
-        "item_key": "1abc235a956fb47a",
-        "section": "free",
-        "title": "Tower of Fantasy",
-        "url": "https://store.steampowered.com/app/2064650/",
-        "message_id": "1561819783257784401",
-        "channel_id": "592534544708796474",
-        "source_type": "steam_free",
-        "posted_at": "2026-10-19T19:14:14.012367+00:00",
-        "description": "Embark together on your fantasy adventure! Set hundreds of years in the future on the distant planet of Aida, the shared open-world RPG, anime-infused sci-fi adventure Tower of Fantasy now is officially available on Steam."
-      },
-      {
-        "item_key": "3b8a6d6d027fa3f4",
-        "section": "paid",
-        "title": "Far Far West",
-        "url": "https://store.steampowered.com/app/3124540/",
-        "message_id": "1561819798948548749",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-10-19T19:14:17.741428+00:00",
-        "description": "Yee-haw, Cowboys! Team up in this chaotic 1-4 player co-op shooter. Journey to the Far Far West to blast monsters, sling spells, complete missions, and collect bounties. Work as a team to get in, get paid and get out (mostly) alive."
-      },
-      {
-        "item_key": "a16e49cbc785853c",
-        "section": "paid",
-        "title": "Dumb Ways to Build",
-        "url": "https://store.steampowered.com/app/4412320/",
-        "message_id": "1561819806817062972",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-10-19T19:14:19.814883+00:00",
-        "description": "Dumb Ways to Build is a chaotic, physics-based co-op game. Team up with friends to assemble your crew and take-on dangerous construction jobs. With all the gear and no idea, work together to build your path forward, or die trying!"
-      },
-      {
-        "item_key": "749d344db1a47ff9",
-        "section": "paid",
-        "title": "Left 4 Dead 2",
-        "url": "https://store.steampowered.com/app/550/",
-        "message_id": "1561819815318917313",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-10-19T19:14:21.669244+00:00",
-        "description": "Set in the zombie apocalypse, Left 4 Dead 2 is a co-operative action horror FPS takes you and your friends through the cities, swamps and cemeteries of the Deep South, from Savannah to New Orleans across five expansive campaigns."
-      },
-      {
-        "item_key": "9121000d2c1eb5fa",
-        "section": "paid",
-        "title": "Backrooms: Escape Together",
-        "url": "https://store.steampowered.com/app/2141730/",
-        "message_id": "1561819823305138286",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-10-19T19:14:23.537244+00:00",
-        "description": "A visually lifelike co-op horror game for 1-6 people. Journey through 11 procedurally generated levels, using what's available to survive and progress deeper into the Backrooms."
-      },
-      {
-        "item_key": "318e32de877df775",
-        "section": "paid",
-        "title": "Airport Security Sucks!",
-        "url": "https://store.steampowered.com/app/4285690/",
-        "message_id": "1561819831253205095",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-10-19T19:14:25.670796+00:00",
-        "description": "Embody your inner power-tripping TSA agent and hunt down other players attempting to blend in and smuggle contraband past you. Control the crowd and your problematic K9 with authoritative voice commands, and use \"compliance devices\" to apprehend smugglers making mischief or hiding in plain sight."
-      }
-    ]
-  },
   "2026-10-20": {
     "run_state": {
       "section_headers": {
@@ -4202,6 +4061,147 @@
         "source_type": "paid_under_20",
         "posted_at": "2026-11-17T21:46:17.594320+00:00",
         "description": "Run a scam call center with your friends. Use increasingly ridiculous schemes to trick AI callers out of their life savings. Hit your daily quota, cause chaos around the office, and survive a brutal performance review from your rageaholic boss."
+      }
+    ]
+  },
+  "2026-11-18": {
+    "run_state": {
+      "section_headers": {
+        "free": {
+          "message_id": "1572723293444640901",
+          "channel_id": "592534544708796474",
+          "posted_at_utc": "2026-11-18T21:20:53.340868+00:00"
+        },
+        "paid": {
+          "message_id": "1572723342933499915",
+          "channel_id": "592534544708796474",
+          "posted_at_utc": "2026-11-18T21:21:05.046904+00:00"
+        }
+      },
+      "last_attempt_at_utc": "2026-11-18T21:20:48.934852+00:00",
+      "intro": {
+        "message_id": "1572723277334581369",
+        "channel_id": "592534544708796474",
+        "posted_at_utc": "2026-11-18T21:20:51.590491+00:00"
+      },
+      "footer": {
+        "message_id": "1572723394426831000",
+        "channel_id": "592534544708796474",
+        "posted_at_utc": "2026-11-18T21:21:17.525224+00:00"
+      },
+      "completed": true,
+      "completed_at_utc": "2026-11-18T21:21:18.730985+00:00"
+    },
+    "items": [
+      {
+        "item_key": "eddd844cc61dc574",
+        "section": "free",
+        "title": "Galaxy Life",
+        "url": "https://store.steampowered.com/app/1927780/",
+        "message_id": "1572723300914958368",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-11-18T21:20:55.210729+00:00",
+        "description": "The universe is full of Starlings, tiny orange aliens that want to take over the galaxy. Create your own space colony, fight epic battles and discover new planets. Train your soldiers, develop your technology and create unimaginable gadgets. Enjoy this huge social game with friends!"
+      },
+      {
+        "item_key": "5517ddf35b1462d0",
+        "section": "free",
+        "title": "RIFT",
+        "url": "https://store.steampowered.com/app/39120/",
+        "message_id": "1572723308334686221",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-11-18T21:20:57.257511+00:00",
+        "description": "Dive into a world of epic adventure! Create your perfect hero thanks to a uniquely customizable class system. Collect, craft, and customize your gear. Go it alone or group up to challenge dungeons, raids, dynamic open-world content, and your fellow players."
+      },
+      {
+        "item_key": "e35ee2f5e45d992e",
+        "section": "free",
+        "title": "Blue Protocol: Star Resonance",
+        "url": "https://store.steampowered.com/app/3681810/",
+        "message_id": "1572723317255700621",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-11-18T21:20:59.346342+00:00",
+        "description": "Blue Protocol: Star Resonance expands the Blue Protocol universe with a vibrant MMORPG experience. Create your own hero, team up for strategic raids, or simply relax and have fun with friends fishing, crafting, and endless exploration. Adventure awaits!"
+      },
+      {
+        "item_key": "cf0f2664906f023b",
+        "section": "free",
+        "title": "UNDECEMBER: The Farside",
+        "url": "https://store.steampowered.com/app/1549250/",
+        "message_id": "1572723325912883332",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-11-18T21:21:01.364439+00:00",
+        "description": "UNDECEMBER is a Hack & Slash Action RPG in which players are able to surpass the conventional limits of skills by endlessly combining variety of Skill and Link Runes. Become a Rune Hunter and experience the joy of farming and growth!"
+      },
+      {
+        "item_key": "1abc235a956fb47a",
+        "section": "free",
+        "title": "Tower of Fantasy",
+        "url": "https://store.steampowered.com/app/2064650/",
+        "message_id": "1572723334515265677",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-11-18T21:21:03.392073+00:00",
+        "description": "Embark together on your fantasy adventure! Set hundreds of years in the future on the distant planet of Aida, the shared open-world RPG, anime-infused sci-fi adventure Tower of Fantasy now is officially available on Steam."
+      },
+      {
+        "item_key": "5f8af5a27ebc911b",
+        "section": "paid",
+        "title": "Amazing Frog?",
+        "url": "https://store.steampowered.com/app/332570/",
+        "message_id": "1572723349824610346",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-11-18T21:21:06.811423+00:00",
+        "description": "Amazing Frog? is an openworld, sandbox, physics game. Grand Frog Auto in Swindon, with farting ragdoll frogs."
+      },
+      {
+        "item_key": "749d344db1a47ff9",
+        "section": "paid",
+        "title": "Left 4 Dead 2",
+        "url": "https://store.steampowered.com/app/550/",
+        "message_id": "1572723357059784875",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-11-18T21:21:08.662426+00:00",
+        "description": "Set in the zombie apocalypse, Left 4 Dead 2 is a co-operative action horror FPS takes you and your friends through the cities, swamps and cemeteries of the Deep South, from Savannah to New Orleans across five expansive campaigns."
+      },
+      {
+        "item_key": "56d5db5fba840f6b",
+        "section": "paid",
+        "title": "MECCHA CHAMELEON",
+        "url": "https://store.steampowered.com/app/4704690/",
+        "message_id": "1572723365310103624",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-11-18T21:21:10.997713+00:00",
+        "description": "Paint yourself to blend in! \"Meccha Chameleon\" is a new-sensation hide-and-seek game where you paint your white body to mimic the stage. Spot, pose, and \"artistic skill\" are keys to survival. Deceive Seekers with techniques that put chameleons to shame! Supports public matches and streaming."
+      },
+      {
+        "item_key": "7bbe2c632632a92b",
+        "section": "paid",
+        "title": "SONIC PICO PARK",
+        "url": "https://store.steampowered.com/app/4304060/",
+        "message_id": "1572723375246418062",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-11-18T21:21:13.628690+00:00",
+        "description": "The co-op action puzzle game series PICO PARK is back... and this time, we're teaming up with SEGA's legendary Sonic the Hedgehog! This collaboration is packed with co-op gameplay that combines the flair of Sonic with the puzzle teamwork fun of PICO PARK! Play locally or online with 2 to 8 players!"
+      },
+      {
+        "item_key": "d943c4b62da4e1ef",
+        "section": "paid",
+        "title": "HARMA",
+        "url": "https://store.steampowered.com/app/2483700/",
+        "message_id": "1572723385828638821",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-11-18T21:21:15.449429+00:00",
+        "description": "HARMA is a retro dark fantasy roguelike deckbuilding game featuring a story-driven campaign. Uncover the truth behind the fallen knights, the burning kingdom, and your missing father. Harness the power of mighty artifacts to defeat demons and save a world on the brink of destruction."
       }
     ]
   }
