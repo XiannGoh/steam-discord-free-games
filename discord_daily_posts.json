@@ -1,145 +1,4 @@
 {
-  "2026-10-20": {
-    "run_state": {
-      "section_headers": {
-        "free": {
-          "message_id": "1562163180220842146",
-          "channel_id": "592534544708796474",
-          "posted_at_utc": "2026-10-20T17:58:46.218229+00:00"
-        },
-        "paid": {
-          "message_id": "1562163228379709472",
-          "channel_id": "592534544708796474",
-          "posted_at_utc": "2026-10-20T17:58:57.507374+00:00"
-        }
-      },
-      "last_attempt_at_utc": "2026-10-20T17:58:41.856920+00:00",
-      "intro": {
-        "message_id": "1562163164244615180",
-        "channel_id": "592534544708796474",
-        "posted_at_utc": "2026-10-20T17:58:44.353173+00:00"
-      },
-      "footer": {
-        "message_id": "1562163276362555403",
-        "channel_id": "592534544708796474",
-        "posted_at_utc": "2026-10-20T17:59:08.963555+00:00"
-      },
-      "completed": true,
-      "completed_at_utc": "2026-10-20T17:59:10.168288+00:00"
-    },
-    "items": [
-      {
-        "item_key": "5e5e784a5002716e",
-        "section": "free",
-        "title": "Hero Zero - Multiplayer RPG",
-        "url": "https://store.steampowered.com/app/482920/",
-        "message_id": "1562163187900489832",
-        "channel_id": "592534544708796474",
-        "source_type": "steam_free",
-        "posted_at": "2026-10-20T17:58:48.147245+00:00",
-        "description": "Become a hero, build your own Hide-Out and start by saving your neighbourhood. Level up your skills, collect incredibly weird superhero gadgets, and join a superhero team to save the world!"
-      },
-      {
-        "item_key": "13c1c3d289159f35",
-        "section": "free",
-        "title": "Sword Art Online: Integral Factor",
-        "url": "https://store.steampowered.com/app/2371630/",
-        "message_id": "1562163195844624507",
-        "channel_id": "592534544708796474",
-        "source_type": "steam_free",
-        "posted_at": "2026-10-20T17:58:49.934676+00:00",
-        "description": "Aim to conquer Aincrad with Kirito and Asuna"
-      },
-      {
-        "item_key": "3daf6efde8a71830",
-        "section": "free",
-        "title": "Ragnarok X: Next Generation",
-        "url": "https://store.steampowered.com/app/4007140/",
-        "message_id": "1562163203675258961",
-        "channel_id": "592534544708796474",
-        "source_type": "steam_free",
-        "posted_at": "2026-10-20T17:58:51.990217+00:00",
-        "description": "ROX is the official next-gen evolution of the classic Ragnarok Online MMORPG. With enhanced visuals, strategic combat, and diverse gameplay, ROX stays true to its roots while offering Fair Loot, Free Trading, and True Adventures. Your legend begins now— Are you ready?"
-      },
-      {
-        "item_key": "276d4e04f23771ce",
-        "section": "free",
-        "title": "Secret World Legends",
-        "url": "https://store.steampowered.com/app/215280/",
-        "message_id": "1562163212290629673",
-        "channel_id": "592534544708796474",
-        "source_type": "steam_free",
-        "posted_at": "2026-10-20T17:58:53.909753+00:00",
-        "description": "Secret World Legends is a story-driven, shared-world action RPG that plunges players into a shadowy war against the supernatural, where ancient myths and legends cross over into the modern day."
-      },
-      {
-        "item_key": "6d086f64a6fc3788",
-        "section": "free",
-        "title": "Godius Eternal War",
-        "url": "https://store.steampowered.com/app/4559140/",
-        "message_id": "1562163220293095586",
-        "channel_id": "592534544708796474",
-        "source_type": "steam_free",
-        "posted_at": "2026-10-20T17:58:55.829077+00:00",
-        "description": "A classic 2D pixel MMORPG inspired by the golden age of online RPGs. Join nation wars, explore an open multiplayer world, trade with players, battle in PvP, and experience a community-driven adventure that has continued since 1999."
-      },
-      {
-        "item_key": "677ed07f90860fbd",
-        "section": "paid",
-        "title": "CRYO",
-        "url": "https://store.steampowered.com/app/2564910/",
-        "message_id": "1562163235183009932",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-10-20T17:58:59.224439+00:00",
-        "description": "CRYO is a multiplayer co-op survival horror for 1-4 players. You have been deployed by your company to various locations around the Antarctic due to communication issues. What awaits you in these dark, remote regions is far more sinister than a technical fault..."
-      },
-      {
-        "item_key": "66a7d79dd0d186b6",
-        "section": "paid",
-        "title": "Species: Unknown",
-        "url": "https://store.steampowered.com/app/2747330/",
-        "message_id": "1562163242468380672",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-10-20T17:59:00.949681+00:00",
-        "description": "Species: Unknown is a 1 to 4 players co-op survival horror. Complete high-risk missions aboard an abandoned ship while being hunted by an unknown creature. Survive and upgrade your gear to face each new threat that lurks in the dark."
-      },
-      {
-        "item_key": "87961c7356af09f8",
-        "section": "paid",
-        "title": "Granvir",
-        "url": "https://store.steampowered.com/app/2743460/",
-        "message_id": "1562163250106208426",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-10-20T17:59:03.005732+00:00",
-        "description": "Granvir is a 3rd person action roguelite mech-builder with co-op multiplayer. Scavenge the battlefield for parts to replace and upgrade your Granvir and weaponry. PIlot your Granvir and manage your campaign between battles to find the best equipment and stay supplied while fighting a guerilla war."
-      },
-      {
-        "item_key": "315917c19d6c3206",
-        "section": "paid",
-        "title": "Don't Starve Together",
-        "url": "https://store.steampowered.com/app/322330/",
-        "message_id": "1562163258268323891",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-10-20T17:59:04.785632+00:00",
-        "description": "Fight, Farm, Build and Explore Together in the standalone multiplayer expansion to the uncompromising wilderness survival game, Don't Starve."
-      },
-      {
-        "item_key": "a54e931a5faaf2dd",
-        "section": "paid",
-        "title": "Oh Deer",
-        "url": "https://store.steampowered.com/app/2708450/",
-        "message_id": "1562163266011267242",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-10-20T17:59:07.153762+00:00",
-        "description": "One hunter & up to 9 friends disguised as deer. A game of hide-and-seek where every move could be your last. Will you blend in with the herd or stand out? Oh Deer..."
-      }
-    ]
-  },
   "2026-10-21": {
     "run_state": {
       "section_headers": {
@@ -4202,6 +4061,147 @@
         "source_type": "paid_under_20",
         "posted_at": "2026-11-18T21:21:15.449429+00:00",
         "description": "HARMA is a retro dark fantasy roguelike deckbuilding game featuring a story-driven campaign. Uncover the truth behind the fallen knights, the burning kingdom, and your missing father. Harness the power of mighty artifacts to defeat demons and save a world on the brink of destruction."
+      }
+    ]
+  },
+  "2026-11-19": {
+    "run_state": {
+      "section_headers": {
+        "free": {
+          "message_id": "1573087127191683095",
+          "channel_id": "592534544708796474",
+          "posted_at_utc": "2026-11-19T21:26:38.906887+00:00"
+        },
+        "paid": {
+          "message_id": "1573087178500612187",
+          "channel_id": "592534544708796474",
+          "posted_at_utc": "2026-11-19T21:26:50.285422+00:00"
+        }
+      },
+      "last_attempt_at_utc": "2026-11-19T21:26:32.154841+00:00",
+      "intro": {
+        "message_id": "1573087104748228629",
+        "channel_id": "592534544708796474",
+        "posted_at_utc": "2026-11-19T21:26:36.352110+00:00"
+      },
+      "footer": {
+        "message_id": "1573087235006402591",
+        "channel_id": "592534544708796474",
+        "posted_at_utc": "2026-11-19T21:27:03.768173+00:00"
+      },
+      "completed": true,
+      "completed_at_utc": "2026-11-19T21:27:04.974040+00:00"
+    },
+    "items": [
+      {
+        "item_key": "3daf6efde8a71830",
+        "section": "free",
+        "title": "Ragnarok X: Next Generation",
+        "url": "https://store.steampowered.com/app/4007140/",
+        "message_id": "1573087137996214317",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-11-19T21:26:41.107318+00:00",
+        "description": "ROX is the official next-gen evolution of the classic Ragnarok Online MMORPG. With enhanced visuals, strategic combat, and diverse gameplay, ROX stays true to its roots while offering Fair Loot, Free Trading, and True Adventures. Your legend begins now— Are you ready?"
+      },
+      {
+        "item_key": "13c1c3d289159f35",
+        "section": "free",
+        "title": "Sword Art Online: Integral Factor",
+        "url": "https://store.steampowered.com/app/2371630/",
+        "message_id": "1573087147244650526",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-11-19T21:26:42.903635+00:00",
+        "description": "Aim to conquer Aincrad with Kirito and Asuna"
+      },
+      {
+        "item_key": "1aebaefad310e01b",
+        "section": "free",
+        "title": "Star Hunter - Infinite Lagrange",
+        "url": "https://store.steampowered.com/app/1755920/",
+        "message_id": "1573087154656124951",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-11-19T21:26:44.800330+00:00",
+        "description": "In a remote corner of the Milky Way, you, a star hunter, will control a fleet, take on a wide variety of bounty contracts and missions, and venture into the vastness of space. You will hunt for mysterious items for your employers and explore specific targets in uncharted territory."
+      },
+      {
+        "item_key": "bba6d1d6237a6fe0",
+        "section": "free",
+        "title": "Bless Unleashed",
+        "url": "https://store.steampowered.com/app/1254120/",
+        "message_id": "1573087162805780691",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-11-19T21:26:46.584286+00:00",
+        "description": "Bless Unleashed is an open-world online game that can be enjoyed with your friends and countless others. Venture out to engage in intense combat while exploring vast regions and treacherous dungeons."
+      },
+      {
+        "item_key": "f5bf342d969da9ce",
+        "section": "free",
+        "title": "Order of Battle: World War II",
+        "url": "https://store.steampowered.com/app/312450/",
+        "message_id": "1573087170275844237",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-11-19T21:26:48.555103+00:00",
+        "description": "Order of Battle: World War II is a breath of fresh air for all strategy fans. It is a game that takes wargaming to a new level by upgrading every single game element and rebooting the genre for a new generation of players."
+      },
+      {
+        "item_key": "6c2135e6d005d2c8",
+        "section": "paid",
+        "title": "Returnal™",
+        "url": "https://store.steampowered.com/app/1649240/",
+        "message_id": "1573087185975115939",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-11-19T21:26:52.370931+00:00",
+        "description": "BREAK THE CYCLE Fight to survive as this award-winning third-person shooter brings Selene’s story to PC. Take on roguelike challenges. Engage enemies in bullet hell-fuelled clashes. Share your journey through Returnal™ with another player."
+      },
+      {
+        "item_key": "017b9b3acb90730f",
+        "section": "paid",
+        "title": "STAR WARS™ Battlefront™ II",
+        "url": "https://store.steampowered.com/app/1237950/",
+        "message_id": "1573087194409730250",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-11-19T21:26:54.260330+00:00",
+        "description": "Be the hero in the ultimate STAR WARS™ battle fantasy with STAR WARS™ Battlefront™ II: Celebration Edition!"
+      },
+      {
+        "item_key": "66a7d79dd0d186b6",
+        "section": "paid",
+        "title": "Species: Unknown",
+        "url": "https://store.steampowered.com/app/2747330/",
+        "message_id": "1573087202387173379",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-11-19T21:26:56.572782+00:00",
+        "description": "Species: Unknown is a 1 to 4 players co-op survival horror. Complete high-risk missions aboard an abandoned ship while being hunted by an unknown creature. Survive and upgrade your gear to face each new threat that lurks in the dark."
+      },
+      {
+        "item_key": "e3fbc204c0b8ebc3",
+        "section": "paid",
+        "title": "Crackheads",
+        "url": "https://store.steampowered.com/app/4450600/",
+        "message_id": "1573087212185194677",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-11-19T21:26:58.333388+00:00",
+        "description": "Explore the marvelous world of Crackheads alone or with up to 50 players. Team up, turn on your friends, make money, build your empire, scavenge trash for questionable meals, and stay high through all of it."
+      },
+      {
+        "item_key": "1b35e22b671eba22",
+        "section": "paid",
+        "title": "Riders Republic",
+        "url": "https://store.steampowered.com/app/2290180/",
+        "message_id": "1573087219948978381",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-11-19T21:27:01.832461+00:00",
+        "description": "Jump into a massive multiplayer playground! Bike, ski, snowboard, or wingsuit across an open world sports paradise where the rules are yours to make or break."
       }
     ]
   }
