@@ -1,161 +1,4 @@
 {
-  "2026-10-22": {
-    "run_state": {
-      "section_headers": {
-        "demo_playtest": {
-          "message_id": "1562889617898741831",
-          "channel_id": "592534544708796474",
-          "posted_at_utc": "2026-10-22T18:05:22.141244+00:00"
-        },
-        "free": {
-          "message_id": "1562889634336215113",
-          "channel_id": "592534544708796474",
-          "posted_at_utc": "2026-10-22T18:05:26.312950+00:00"
-        },
-        "paid": {
-          "message_id": "1562889680477753377",
-          "channel_id": "592534544708796474",
-          "posted_at_utc": "2026-10-22T18:05:37.095222+00:00"
-        }
-      },
-      "last_attempt_at_utc": "2026-10-22T18:05:18.809313+00:00",
-      "intro": {
-        "message_id": "1562889605811015821",
-        "channel_id": "592534544708796474",
-        "posted_at_utc": "2026-10-22T18:05:20.626404+00:00"
-      },
-      "footer": {
-        "message_id": "1562889728758648934",
-        "channel_id": "592534544708796474",
-        "posted_at_utc": "2026-10-22T18:05:48.761076+00:00"
-      },
-      "completed": true,
-      "completed_at_utc": "2026-10-22T18:05:49.968871+00:00"
-    },
-    "items": [
-      {
-        "item_key": "0c474883904cc39e",
-        "section": "demo_playtest",
-        "title": "Hawthorn Proof-of-Concept Demo",
-        "url": "https://store.steampowered.com/app/4787870/",
-        "message_id": "1562889624643174420",
-        "channel_id": "592534544708796474",
-        "source_type": "steam_demo_playtest",
-        "posted_at": "2026-10-22T18:05:24.555080+00:00",
-        "description": "Former developers from Bethesda, BioWare, and Naughty Dog bring you a sandbox RPG realm of anthropomorphic animals and fairy creatures. Play co-op or solo as you build a village of memorable NPCs, farm, craft, explore, and celebrate the seasons in an ever-changing world bigger than you."
-      },
-      {
-        "item_key": "71ba5815333f79aa",
-        "section": "free",
-        "title": "Angels Online Global",
-        "url": "https://store.steampowered.com/app/4018020/",
-        "message_id": "1562889641521189046",
-        "channel_id": "592534544708796474",
-        "source_type": "steam_free",
-        "posted_at": "2026-10-22T18:05:28.255200+00:00",
-        "description": "Angels Online Global is a charming 2D fantasy MMORPG featuring flexible builds, faction warfare, and deep customization. Enjoy 4× leveling, expanded inventory, real-time chat translation, and dungeon-earned outfits with fusion upgrades!"
-      },
-      {
-        "item_key": "016e82147d0b491e",
-        "section": "free",
-        "title": "Bro Falls",
-        "url": "https://store.steampowered.com/app/1590320/",
-        "message_id": "1562889650069053612",
-        "channel_id": "592534544708796474",
-        "source_type": "steam_free",
-        "posted_at": "2026-10-22T18:05:30.041625+00:00",
-        "description": "Bro Falls is an asymmetric massively multiplayer party game with chaotic elements, trap activations and big Falls. Up-to 60 online players in a showdown party and only one who can get the victory. Play as Brokkoli to activate the traps or avoid them as a juicy food and win the rounds."
-      },
-      {
-        "item_key": "b685a0450e71e9ef",
-        "section": "free",
-        "title": "Darwin Project",
-        "url": "https://store.steampowered.com/app/544920/",
-        "message_id": "1562889657405014136",
-        "channel_id": "592534544708796474",
-        "source_type": "steam_free",
-        "posted_at": "2026-10-22T18:05:31.772324+00:00",
-        "description": "In Darwin Project, ten inmates must survive the elements, track each other, fight, craft tools, and use their social skills to be the last one standing. It's a unique take on battle royale with a Show Director to influence the match and Spectator Interactions to create a one-of-a-kind game show."
-      },
-      {
-        "item_key": "eeb623a042e4108c",
-        "section": "free",
-        "title": "Deadswitch Combat",
-        "url": "https://store.steampowered.com/app/3408170/",
-        "message_id": "1562889664669417695",
-        "channel_id": "592534544708796474",
-        "source_type": "steam_free",
-        "posted_at": "2026-10-22T18:05:33.678625+00:00",
-        "description": "DEADSWITCH COMBAT is a fast-paced 2D multiplayer shooter. Experience action-packed combat with hundreds of weapons, vehicle combat, and plenty of team-based game modes."
-      },
-      {
-        "item_key": "f9e145ab23830f6c",
-        "section": "free",
-        "title": "BLOCKADE",
-        "url": "https://store.steampowered.com/app/1049800/",
-        "message_id": "1562889672294928427",
-        "channel_id": "592534544708796474",
-        "source_type": "steam_free",
-        "posted_at": "2026-10-22T18:05:35.518822+00:00",
-        "description": "BLOCKADE Classic! First Person Shooter in an editable procedural cubic world. A large arsenal of weapons, 4 teams at the same time and up to 32 players on one map. A large number of game modes!"
-      },
-      {
-        "item_key": "8f12c68f24631b0a",
-        "section": "paid",
-        "title": "The Lord of the Rings: War in the North™ - Legacy Edition",
-        "url": "https://store.steampowered.com/app/2523770/",
-        "message_id": "1562889686953889883",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-10-22T18:05:38.976727+00:00",
-        "description": "Step into a darker, grittier Middle-earth. The Lord of the Rings: War in the North™ - Legacy Edition expands Tolkien’s epic legendarium, delving into the brutal, untold story of Agandaûr, a Black Númenórean and servant of Sauron who has rallied an immense force in the ruins of Fornost."
-      },
-      {
-        "item_key": "1dd07d6916fa627b",
-        "section": "paid",
-        "title": "Folk-Tography",
-        "url": "https://store.steampowered.com/app/4941420/",
-        "message_id": "1562889694864211988",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-10-22T18:05:40.704249+00:00",
-        "description": "Folk-Tography is a 4-player co-op cryptid photography extraction game. Photograph legendary creatures, investigate paranormal anomalies, manage scarce resources, and survive various dangers to escape with the evidence before the valley consumes you."
-      },
-      {
-        "item_key": "51cfb5f2b7d1dc83",
-        "section": "paid",
-        "title": "Human Host",
-        "url": "https://store.steampowered.com/app/2393970/",
-        "message_id": "1562889701822566512",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-10-22T18:05:42.601432+00:00",
-        "description": "Human Host is an open-world zombie survival crafting game. In this endless procedurally generated world, terrain, buildings, trees, rocks—everything is destructible! Build massive mobile bases, dig deep underground, construct trap-filled fortresses, scavenge supplies, and survive as long as you can!"
-      },
-      {
-        "item_key": "d84949c5c3ef827c",
-        "section": "paid",
-        "title": "Nested Lands",
-        "url": "https://store.steampowered.com/app/2553040/",
-        "message_id": "1562889709812715532",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-10-22T18:05:44.325894+00:00",
-        "description": "Nested Lands is a ruthless medieval RPG game featuring in-depth village building, large-scale social management and combats. Gather survivors, build a settlement, craft, master your skills, survive, and endure alone or in online co-op."
-      },
-      {
-        "item_key": "ebdeea4856c9d610",
-        "section": "paid",
-        "title": "Ember Knights",
-        "url": "https://store.steampowered.com/app/1135230/",
-        "message_id": "1562889717635354705",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-10-22T18:05:46.500271+00:00",
-        "description": "Ember Knights is an action rogue-lite for 1-4 players where you play as legendary knights, the last spark of hope against the mad sorcerer Praxis and his hordes of unwavering fiends. Wield weapons & skills, build synergies with game-changing relics and free the universe of Praxis’ corruption."
-      }
-    ]
-  },
   "2026-10-23": {
     "run_state": {
       "section_headers": {
@@ -4202,6 +4045,147 @@
         "source_type": "paid_under_20",
         "posted_at": "2026-11-20T21:13:08.609995+00:00",
         "description": "A chaotic online co-op building game for 1–8 players. Make bricks, build a giant pyramid and turn a small operation into a massive automated production line. Work together, hire help and find increasingly ridiculous ways to get those bricks to the top."
+      }
+    ]
+  },
+  "2026-11-21": {
+    "run_state": {
+      "section_headers": {
+        "free": {
+          "message_id": "1573793077598884075",
+          "channel_id": "592534544708796474",
+          "posted_at_utc": "2026-11-21T20:11:49.652796+00:00"
+        },
+        "paid": {
+          "message_id": "1573793128303824897",
+          "channel_id": "592534544708796474",
+          "posted_at_utc": "2026-11-21T20:12:02.571368+00:00"
+        }
+      },
+      "last_attempt_at_utc": "2026-11-21T20:11:46.503039+00:00",
+      "intro": {
+        "message_id": "1573793066140172489",
+        "channel_id": "592534544708796474",
+        "posted_at_utc": "2026-11-21T20:11:48.030497+00:00"
+      },
+      "footer": {
+        "message_id": "1573793184641978399",
+        "channel_id": "592534544708796474",
+        "posted_at_utc": "2026-11-21T20:12:15.216994+00:00"
+      },
+      "completed": true,
+      "completed_at_utc": "2026-11-21T20:12:16.421958+00:00"
+    },
+    "items": [
+      {
+        "item_key": "831e80a80857b652",
+        "section": "free",
+        "title": "Dead Maze",
+        "url": "https://store.steampowered.com/app/667890/",
+        "message_id": "1573793084591046656",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-11-21T20:11:52.107197+00:00",
+        "description": "Dead Maze is a 2D MMO game set in a destroyed contemporary world, filled with zombies. Explore the world, scavenge and craft as many items as possible, to survive the hostile environment and upgrade your gear and camp as you go."
+      },
+      {
+        "item_key": "fdfd2bc2c0c34130",
+        "section": "free",
+        "title": "Pocket Pilots",
+        "url": "https://store.steampowered.com/app/5532770/",
+        "message_id": "1573793094875484403",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-11-21T20:11:54.116745+00:00",
+        "description": "The best-looking flight sim the 90s never had. Pick a job at a real airport, watch your plane fly it in real time, and get paid when it lands. A relaxed flight career over the real world, with live weather, thousands of airports and pilots from everywhere sharing one sky."
+      },
+      {
+        "item_key": "b685a0450e71e9ef",
+        "section": "free",
+        "title": "Darwin Project",
+        "url": "https://store.steampowered.com/app/544920/",
+        "message_id": "1573793103289122989",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-11-21T20:11:56.309738+00:00",
+        "description": "In Darwin Project, ten inmates must survive the elements, track each other, fight, craft tools, and use their social skills to be the last one standing. It's a unique take on battle royale with a Show Director to influence the match and Spectator Interactions to create a one-of-a-kind game show."
+      },
+      {
+        "item_key": "dfaebf39616a3342",
+        "section": "free",
+        "title": "WonderKing",
+        "url": "https://store.steampowered.com/app/3825780/",
+        "message_id": "1573793112365465680",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-11-21T20:11:58.107036+00:00",
+        "description": "Free-to-play 2D side-scrolling MMORPG on PC. Party up for boss raids, collect costumes and pets, and level through colorful worlds. New players get 10,000 Diamonds automatically at Lv.100. Auto-battle is built in for busy days."
+      },
+      {
+        "item_key": "eeb623a042e4108c",
+        "section": "free",
+        "title": "Deadswitch Combat",
+        "url": "https://store.steampowered.com/app/3408170/",
+        "message_id": "1573793120062152764",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-11-21T20:12:00.036964+00:00",
+        "description": "DEADSWITCH COMBAT is a fast-paced 2D multiplayer shooter. Experience action-packed combat with hundreds of weapons, vehicle combat, and plenty of team-based game modes."
+      },
+      {
+        "item_key": "1323e36c81f25152",
+        "section": "paid",
+        "title": "The Jackbox Party Pack",
+        "url": "https://store.steampowered.com/app/331670/",
+        "message_id": "1573793138622070945",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-11-21T20:12:05.065023+00:00",
+        "description": "The team behind YOU DON’T KNOW JACK presents FIVE guffaw-inducing party games in one pack! You’re gonna need more than one party for this. Your phones or tablets are your controllers! For 1-100 players!"
+      },
+      {
+        "item_key": "8f12c68f24631b0a",
+        "section": "paid",
+        "title": "The Lord of the Rings: War in the North™ - Legacy Edition",
+        "url": "https://store.steampowered.com/app/2523770/",
+        "message_id": "1573793149019619349",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-11-21T20:12:06.844727+00:00",
+        "description": "Step into a darker, grittier Middle-earth. The Lord of the Rings: War in the North™ - Legacy Edition expands Tolkien’s epic legendarium, delving into the brutal, untold story of Agandaûr, a Black Númenórean and servant of Sauron who has rallied an immense force in the ruins of Fornost."
+      },
+      {
+        "item_key": "44d285f9ab35126e",
+        "section": "paid",
+        "title": "HANDS OVER",
+        "url": "https://store.steampowered.com/app/4661070/",
+        "message_id": "1573793156221239448",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-11-21T20:12:08.760830+00:00",
+        "description": "HANDS OVER is a 5-player co-op horror game where harmless challenges become cruel tests of luck and nerve. Bluff, sabotage your friends, play dirty, and stay at the table longer than anyone else."
+      },
+      {
+        "item_key": "c6c0f302a99e2a82",
+        "section": "paid",
+        "title": "Haunted Heist",
+        "url": "https://store.steampowered.com/app/4024440/",
+        "message_id": "1573793164454793421",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-11-21T20:12:11.393020+00:00",
+        "description": "Haunted Heist is a 3-8 player round-based PvP horror party game where Heisters find and retrieve gems in a procedurally generated mansion, while Tricksters use chaotic abilities to distress, disrupt, and dispose of them to protect their home."
+      },
+      {
+        "item_key": "47cdde05b70f236a",
+        "section": "paid",
+        "title": "Ray Ray Zombies",
+        "url": "https://store.steampowered.com/app/5244680/",
+        "message_id": "1573793175624093748",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-11-21T20:12:13.416033+00:00",
+        "description": "Ray Ray Zombies is the new lightweight generation of zombie survival horror. Survive waves of undead and discover the elemental secrets of the Wonderplex Corporation with Ray Ray and his team."
       }
     ]
   }
