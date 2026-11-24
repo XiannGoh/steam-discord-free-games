@@ -1,145 +1,4 @@
 {
-  "2026-10-24": {
-    "run_state": {
-      "section_headers": {
-        "free": {
-          "message_id": "1563593678965051557",
-          "channel_id": "592534544708796474",
-          "posted_at_utc": "2026-10-24T16:43:03.474170+00:00"
-        },
-        "paid": {
-          "message_id": "1563593725631012865",
-          "channel_id": "592534544708796474",
-          "posted_at_utc": "2026-10-24T16:43:14.719042+00:00"
-        }
-      },
-      "last_attempt_at_utc": "2026-10-24T16:42:59.962056+00:00",
-      "intro": {
-        "message_id": "1563593666201784501",
-        "channel_id": "592534544708796474",
-        "posted_at_utc": "2026-10-24T16:43:01.839045+00:00"
-      },
-      "footer": {
-        "message_id": "1563593772258959382",
-        "channel_id": "592534544708796474",
-        "posted_at_utc": "2026-10-24T16:43:26.043549+00:00"
-      },
-      "completed": true,
-      "completed_at_utc": "2026-10-24T16:43:27.249654+00:00"
-    },
-    "items": [
-      {
-        "item_key": "06dcc6804b1a0b34",
-        "section": "free",
-        "title": "Totally Accurate Battlegrounds",
-        "url": "https://store.steampowered.com/app/823130/",
-        "message_id": "1563593685839384606",
-        "channel_id": "592534544708796474",
-        "source_type": "steam_free",
-        "posted_at": "2026-10-24T16:43:05.554756+00:00",
-        "description": "Grab your balloon crossbow and trusty inflatable hammer, because things are about to get wobbly! Be the last weirdo standing in the world-leading physics-based Battle Royale game."
-      },
-      {
-        "item_key": "90039f17c31caa39",
-        "section": "free",
-        "title": "Soul Dossier",
-        "url": "https://store.steampowered.com/app/1520470/",
-        "message_id": "1563593694098235533",
-        "channel_id": "592534544708796474",
-        "source_type": "steam_free",
-        "posted_at": "2026-10-24T16:43:07.312032+00:00",
-        "description": "Soul Dossier is a multiplayer game based on Oriental culture (5vS1). The game is based on a variety of traditional Oriental cultures, including five elements, eight diagrams and folklore."
-      },
-      {
-        "item_key": "b6910706cbf47ec0",
-        "section": "free",
-        "title": "Idol Party 2 - Love Vibe",
-        "url": "https://store.steampowered.com/app/3798230/",
-        "message_id": "1563593701870014474",
-        "channel_id": "592534544708796474",
-        "source_type": "steam_free",
-        "posted_at": "2026-10-24T16:43:09.133119+00:00",
-        "description": "Step into a dreamy journey in Idol Party 2! Enjoy rhythm gameplay, fashion dress-up, face customization, social interaction, romantic marriage, fishing, and ranked battles—all in one vibrant world. Join now and start your exclusive singing and dancing adventur!"
-      },
-      {
-        "item_key": "b5af5604704bda00",
-        "section": "free",
-        "title": "Fate War",
-        "url": "https://store.steampowered.com/app/3581600/",
-        "message_id": "1563593709608509591",
-        "channel_id": "592534544708796474",
-        "source_type": "steam_free",
-        "posted_at": "2026-10-24T16:43:11.013474+00:00",
-        "description": "2025's latest epic strategy simulation game! Lead your Tribe in a vast world with dynamic seasons. Survive using your wit and uncover the secrets of a lost god."
-      },
-      {
-        "item_key": "28f48d0f24928ff1",
-        "section": "free",
-        "title": "Milky Way Idle",
-        "url": "https://store.steampowered.com/app/3224420/",
-        "message_id": "1563593717372297336",
-        "channel_id": "592534544708796474",
-        "source_type": "steam_free",
-        "posted_at": "2026-10-24T16:43:12.944288+00:00",
-        "description": "Milky Way Idle: A multiplayer idle RPG where automation replaces grinding. Level up skills, gather resources, craft powerful items, and battle monsters—all while AFK. Trade in the marketplace, join a guild, team up for party combat, and socialize in chat as you progress effortlessly."
-      },
-      {
-        "item_key": "093ac4dabf2cba7f",
-        "section": "paid",
-        "title": "Lethal Company",
-        "url": "https://store.steampowered.com/app/1966720/",
-        "message_id": "1563593732597485690",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-10-24T16:43:16.552265+00:00",
-        "description": "A co-op horror about scavenging at abandoned moons to sell scrap to the Company."
-      },
-      {
-        "item_key": "f3aa470bb2fa04b6",
-        "section": "paid",
-        "title": "Among Us",
-        "url": "https://store.steampowered.com/app/945360/",
-        "message_id": "1563593740449349653",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-10-24T16:43:18.342260+00:00",
-        "description": "An online and local party game of teamwork and betrayal for 4-15 players...in space!"
-      },
-      {
-        "item_key": "c92e8d4d65b2d835",
-        "section": "paid",
-        "title": "GTFO",
-        "url": "https://store.steampowered.com/app/493520/",
-        "message_id": "1563593747973804035",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-10-24T16:43:20.038522+00:00",
-        "description": "GTFO is a hardcore cooperative horror shooter that throws you from gripping suspense to explosive action in a heartbeat. Stealth, strategy, and teamwork are necessary to survive in your deadly, underground prison. Work together or die together."
-      },
-      {
-        "item_key": "3de2f752cefeb15c",
-        "section": "paid",
-        "title": "the cabin game",
-        "url": "https://store.steampowered.com/app/4406280/",
-        "message_id": "1563593755284480101",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-10-24T16:43:22.054822+00:00",
-        "description": "the cabin game is a 1-4 player, chaotic horror game where you are trapped inside a cabin and the only way out is through a game of cards. Just beware, as the cards you play have a surprising twist on this humble abode..."
-      },
-      {
-        "item_key": "0f1e409befc2afe0",
-        "section": "paid",
-        "title": "OPERATOR",
-        "url": "https://store.steampowered.com/app/1913370/",
-        "message_id": "1563593763828400258",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-10-24T16:43:23.824298+00:00",
-        "description": "In OPERATOR, you will play as an elite Tier 1 operator undergoing dangerous clandestine operations all over the globe. With a strategic, measured, and unforgiving style of gameplay. You are the tactical advantage, Good luck."
-      }
-    ]
-  },
   "2026-10-25": {
     "run_state": {
       "section_headers": {
@@ -4188,5 +4047,151 @@
         "description": "From small-time dope pusher to kingpin - manufacture and distribute a range of drugs throughout the grungy city of Hyland Point. Expand your empire with properties, businesses, employees and more."
       }
     ]
+  },
+  "2026-11-24": {
+    "run_state": {
+      "section_headers": {
+        "free": {
+          "message_id": "1574588037843656795",
+          "channel_id": "592534544708796474",
+          "posted_at_utc": "2026-11-24T00:50:43.205322+00:00"
+        },
+        "paid": {
+          "message_id": "1574588087093428224",
+          "channel_id": "592534544708796474",
+          "posted_at_utc": "2026-11-24T00:50:54.875262+00:00"
+        }
+      },
+      "last_attempt_at_utc": "2026-11-24T00:50:38.947522+00:00",
+      "intro": {
+        "message_id": "1574588022379380840",
+        "channel_id": "592534544708796474",
+        "posted_at_utc": "2026-11-24T00:50:41.274246+00:00"
+      },
+      "footer": {
+        "message_id": "1574588135893901373",
+        "channel_id": "592534544708796474",
+        "posted_at_utc": "2026-11-24T00:51:07.589238+00:00"
+      },
+      "completed": true,
+      "completed_at_utc": "2026-11-24T00:51:08.793531+00:00"
+    },
+    "items": [
+      {
+        "item_key": "3e69cb38b0080764",
+        "section": "free",
+        "title": "ARES: THE IRON VANGUARD",
+        "url": "https://store.steampowered.com/app/5366290/",
+        "message_id": "1574588045909426318",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-11-24T00:50:45.192298+00:00",
+        "description": "▣ Stylish Sci-Fi Action RPG ▣ ■ Switch combat suits and classes in real time. ■ Master parries, perfect dodges, and powerful combos. ■ Battle massive enemies across vast battlefields with other Guardians."
+      },
+      {
+        "item_key": "4e1afa8cfe14d47c",
+        "section": "free",
+        "title": "Pixel Worlds: MMO Sandbox",
+        "url": "https://store.steampowered.com/app/636040/",
+        "message_id": "1574588053991854132",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-11-24T00:50:47.055396+00:00",
+        "description": "Pixel Worlds is a free-to-play sandbox MMO where players build worlds, craft items, explore dungeons, farm resources, and trade in a player-driven economy, all within a shared online universe rebuilt as a fresh start for a fair and stable long-term experience."
+      },
+      {
+        "item_key": "90039f17c31caa39",
+        "section": "free",
+        "title": "Soul Dossier",
+        "url": "https://store.steampowered.com/app/1520470/",
+        "message_id": "1574588061814095872",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-11-24T00:50:48.830574+00:00",
+        "description": "Soul Dossier is a multiplayer game based on Oriental culture (5vS1). The game is based on a variety of traditional Oriental cultures, including five elements, eight diagrams and folklore."
+      },
+      {
+        "item_key": "06dcc6804b1a0b34",
+        "section": "free",
+        "title": "Totally Accurate Battlegrounds",
+        "url": "https://store.steampowered.com/app/823130/",
+        "message_id": "1574588069326229575",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-11-24T00:50:51.011110+00:00",
+        "description": "Grab your balloon crossbow and trusty inflatable hammer, because things are about to get wobbly! Be the last weirdo standing in the world-leading physics-based Battle Royale game."
+      },
+      {
+        "item_key": "28f48d0f24928ff1",
+        "section": "free",
+        "title": "Milky Way Idle",
+        "url": "https://store.steampowered.com/app/3224420/",
+        "message_id": "1574588078595772463",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-11-24T00:50:52.923307+00:00",
+        "description": "Milky Way Idle: A multiplayer idle RPG where automation replaces grinding. Level up skills, gather resources, craft powerful items, and battle monsters—all while AFK. Trade in the marketplace, join a guild, team up for party combat, and socialize in chat as you progress effortlessly."
+      },
+      {
+        "item_key": "4bdd7dec1e05f34f",
+        "section": "paid",
+        "title": "World War Z",
+        "url": "https://store.steampowered.com/app/699130/",
+        "message_id": "1574588094642917570",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-11-24T00:50:56.605004+00:00",
+        "description": "World War Z is a heart-pounding co-op shooter for up to 4 players featuring massive swarms of hundreds of zombies, focused on fast-paced, gruesomely spectacular action and a new first-person mode."
+      },
+      {
+        "item_key": "679de5a832bf912e",
+        "section": "paid",
+        "title": "WE'RE ALL IN!",
+        "url": "https://store.steampowered.com/app/4183130/",
+        "message_id": "1574588101538488452",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-11-24T00:50:58.428785+00:00",
+        "description": "Experience minigame chaos in WE’RE ALL IN!, an online party game for 1-8 players where you win by betting on your friends in a series of fast-paced games and challenges."
+      },
+      {
+        "item_key": "8e021c55ae157a36",
+        "section": "paid",
+        "title": "Fraymakers",
+        "url": "https://store.steampowered.com/app/1420350/",
+        "message_id": "1574588109637558273",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-11-24T00:51:00.568782+00:00",
+        "description": "Fraymakers is the ultimate customizable platform fighting game, featuring a cast of some of indie gaming's biggest icons. Duke it out with up to 4 players and call on assists to help out in the heat of battle. Create and play custom characters, stages, modes, and more for infinite fun!"
+      },
+      {
+        "item_key": "093ac4dabf2cba7f",
+        "section": "paid",
+        "title": "Lethal Company",
+        "url": "https://store.steampowered.com/app/1966720/",
+        "message_id": "1574588118579806208",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-11-24T00:51:02.510410+00:00",
+        "description": "A co-op horror about scavenging at abandoned moons to sell scrap to the Company."
+      },
+      {
+        "item_key": "09e9845cfe953ed4",
+        "section": "paid",
+        "title": "Brick by Brick: Tidy Up the Small Town!",
+        "url": "https://store.steampowered.com/app/5228920/",
+        "message_id": "1574588126863818823",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-11-24T00:51:04.484892+00:00",
+        "description": "Brick By Brick is a relaxing tidy-up game you can play solo or co-op with up to 5 players. Collect, sort, and place 18,490 bricks to rebuild a charming town. Unlock helpful abilities and watch scattered piles become finished buildings. One brick at a time!"
+      }
+    ],
+    "winners_state": {
+      "status": "skipped",
+      "skipped_reason": "no_eligible_winners",
+      "updated_at_utc": "2026-11-24T06:42:35.794040+00:00"
+    }
   }
 }
