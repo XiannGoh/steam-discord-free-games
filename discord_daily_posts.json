@@ -1,145 +1,4 @@
 {
-  "2026-10-26": {
-    "run_state": {
-      "section_headers": {
-        "free": {
-          "message_id": "1564357222677479567",
-          "channel_id": "592534544708796474",
-          "posted_at_utc": "2026-10-26T19:17:06.962398+00:00"
-        },
-        "paid": {
-          "message_id": "1564357273407721503",
-          "channel_id": "592534544708796474",
-          "posted_at_utc": "2026-10-26T19:17:18.556727+00:00"
-        }
-      },
-      "last_attempt_at_utc": "2026-10-26T19:17:00.306496+00:00",
-      "intro": {
-        "message_id": "1564357198673617008",
-        "channel_id": "592534544708796474",
-        "posted_at_utc": "2026-10-26T19:17:04.846071+00:00"
-      },
-      "footer": {
-        "message_id": "1564357320711086081",
-        "channel_id": "592534544708796474",
-        "posted_at_utc": "2026-10-26T19:17:29.784942+00:00"
-      },
-      "completed": true,
-      "completed_at_utc": "2026-10-26T19:17:30.992046+00:00"
-    },
-    "items": [
-      {
-        "item_key": "f60eae9251b69c17",
-        "section": "free",
-        "title": "Combat Arms: the Classic",
-        "url": "https://store.steampowered.com/app/1263550/",
-        "message_id": "1564357231498236076",
-        "channel_id": "592534544708796474",
-        "source_type": "steam_free",
-        "posted_at": "2026-10-26T19:17:08.887019+00:00",
-        "description": "Combat Arms: the Classic is a multiplayer game, free-to-play modern first-person shooter. The game is a relaunch of Combat Arms in its glory days delivering gamers a nostalgic high-quality FPS with an extensive arsenal of weapons."
-      },
-      {
-        "item_key": "dd1e09011e9909bb",
-        "section": "free",
-        "title": "Dungeon Fighter Online",
-        "url": "https://store.steampowered.com/app/495910/",
-        "message_id": "1564357239450370198",
-        "channel_id": "592534544708796474",
-        "source_type": "steam_free",
-        "posted_at": "2026-10-26T19:17:10.597220+00:00",
-        "description": "Get ready for the ultimate brawl! Dungeon Fighter Online is a classic beat-em up 2D action game with an epic storyline and RPG elements! Choose from 17 diverse classes, and unravel ancient mysteries as you punch, slash, shoot, or summon your way to victory!"
-      },
-      {
-        "item_key": "64cb69ed70eb3312",
-        "section": "free",
-        "title": "Chicken Invaders Universe",
-        "url": "https://store.steampowered.com/app/1510460/",
-        "message_id": "1564357247193321485",
-        "channel_id": "592534544708796474",
-        "source_type": "steam_free",
-        "posted_at": "2026-10-26T19:17:13.055823+00:00",
-        "description": "A deliciously addictive core of finger-blistering shooting action, surrounded by delectable morsels of galactic exploration, spacecraft customization, and community competitions."
-      },
-      {
-        "item_key": "f998ea55f45aa832",
-        "section": "free",
-        "title": "CRSED: Cuisine Royale",
-        "url": "https://store.steampowered.com/app/884660/",
-        "message_id": "1564357256873775188",
-        "channel_id": "592534544708796474",
-        "source_type": "steam_free",
-        "posted_at": "2026-10-26T19:17:15.042699+00:00",
-        "description": "CRSED: Cuisine Royale – is a brutal MMO last-man-standing shooter with realistic weaponry, elements of lethal mystic forces and incredible superpowers!"
-      },
-      {
-        "item_key": "3c8026c927cc11c2",
-        "section": "free",
-        "title": "CosmicBreak Universal",
-        "url": "https://store.steampowered.com/app/1140620/",
-        "message_id": "1564357265413251274",
-        "channel_id": "592534544708796474",
-        "source_type": "steam_free",
-        "posted_at": "2026-10-26T19:17:16.938336+00:00",
-        "description": "CosmicBreak Universal is an MMO action game that lets you play massive battles of up to 30 vs 30 players using customizable robots and humanoids! Create your own original character and aim for victory with your allies!"
-      },
-      {
-        "item_key": "ca89cca97129ba78",
-        "section": "paid",
-        "title": "DeadPoly",
-        "url": "https://store.steampowered.com/app/1621070/",
-        "message_id": "1564357280055566448",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-10-26T19:17:20.787171+00:00",
-        "description": "DeadPoly is a polygon arcade zombie survival looter shooter with base building, crafting, scavenging, leveling, questing, and more, but your only goal is survival, everything else is optional."
-      },
-      {
-        "item_key": "88a8ba06dff98f50",
-        "section": "paid",
-        "title": "Sker Ritual",
-        "url": "https://store.steampowered.com/app/1492070/",
-        "message_id": "1564357289408864338",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-10-26T19:17:22.654481+00:00",
-        "description": "Tear through endless waves of supernatural enemies in this co-op horror horde shooter. Play solo or with up to 4 players, unleash god-like Miracle powers, supercharge your arsenal, and survive devastating boss encounters on Sker Island."
-      },
-      {
-        "item_key": "aff72c9e3ffe8efe",
-        "section": "paid",
-        "title": "Across the Obelisk",
-        "url": "https://store.steampowered.com/app/1385380/",
-        "message_id": "1564357297650540764",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-10-26T19:17:24.580593+00:00",
-        "description": "Set forth in a co-op roguelite deckbuilder where every choice matters! Craft decks of breathtaking power. Journey alone or with up to three friends. Plot your party’s path to glory and face powerful enemies in deep tactical combat on your quest to save the kingdom of Senenthia in Across the Obelisk!"
-      },
-      {
-        "item_key": "d947a91b2e8a95d2",
-        "section": "paid",
-        "title": "BIGFOOT",
-        "url": "https://store.steampowered.com/app/509980/",
-        "message_id": "1564357304961470485",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-10-26T19:17:26.286717+00:00",
-        "description": "You are a Bigfoot hunter with an important mission: to put an end to rumours once and for all and prove to yourself that Bigfoot is not just a myth or an invention of the mind..."
-      },
-      {
-        "item_key": "0b2cd79257d29d06",
-        "section": "paid",
-        "title": "Pratfall",
-        "url": "https://store.steampowered.com/app/4244510/",
-        "message_id": "1564357312318152747",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-10-26T19:17:28.041999+00:00",
-        "description": "A co-op game for 1-6+ players where you fall, dig, and explode your way down a dangerous cave system to find your lost dog. Catch your friends and watch your step on this journey full of traps, hazards, and the most deadly force of all: gravity. Will you jump into the unknown to rescue your dog?"
-      }
-    ]
-  },
   "2026-10-27": {
     "run_state": {
       "section_headers": {
@@ -4191,6 +4050,147 @@
         "source_type": "paid_under_20",
         "posted_at": "2026-11-25T22:22:41.412898+00:00",
         "description": "Command massive armies in this epic mech auto-battler. Draft your troops, customize your units, master your formations, and crush enemies in spectacular 3D battles. All strategy, no clickfest. Outsmart opponents in 1v1, 2v2, free-for-all, or Survival Mode."
+      }
+    ]
+  },
+  "2026-11-26": {
+    "run_state": {
+      "section_headers": {
+        "free": {
+          "message_id": "1575637141654995036",
+          "channel_id": "592534544708796474",
+          "posted_at_utc": "2026-11-26T22:19:28.992198+00:00"
+        },
+        "paid": {
+          "message_id": "1575637189625389201",
+          "channel_id": "592534544708796474",
+          "posted_at_utc": "2026-11-26T22:19:40.421189+00:00"
+        }
+      },
+      "last_attempt_at_utc": "2026-11-26T22:19:23.171782+00:00",
+      "intro": {
+        "message_id": "1575637119706341437",
+        "channel_id": "592534544708796474",
+        "posted_at_utc": "2026-11-26T22:19:27.209106+00:00"
+      },
+      "footer": {
+        "message_id": "1575637239151460443",
+        "channel_id": "592534544708796474",
+        "posted_at_utc": "2026-11-26T22:19:51.980152+00:00"
+      },
+      "completed": true,
+      "completed_at_utc": "2026-11-26T22:19:53.185956+00:00"
+    },
+    "items": [
+      {
+        "item_key": "9f68107e115ac58a",
+        "section": "free",
+        "title": "Thunder Tier One",
+        "url": "https://store.steampowered.com/app/377300/",
+        "message_id": "1575637149162676407",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-11-26T22:19:30.818141+00:00",
+        "description": "Thunder Tier One is a realistic top-down shooter where you join an elite special operations team tasked with stopping a dangerous terrorist organization wreaking havoc across the fictional Eastern European country of Salobia."
+      },
+      {
+        "item_key": "7f2eef99465551f5",
+        "section": "free",
+        "title": "Star Conflict",
+        "url": "https://store.steampowered.com/app/212070/",
+        "message_id": "1575637157404610722",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-11-26T22:19:33.182963+00:00",
+        "description": "Star Conflict is a thrilling space action game that lets you take the helm of a combat starship and take part in large-scale battles. Build your own fleet and set out to explore the galaxy!"
+      },
+      {
+        "item_key": "83d1ebef4c82908e",
+        "section": "free",
+        "title": "Idle Hacking: An Inaction RPG",
+        "url": "https://store.steampowered.com/app/4453290/",
+        "message_id": "1575637166460117115",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-11-26T22:19:35.033811+00:00",
+        "description": "A persistent idle MMORPG, with a text-based hacking theme. Enjoy the \"Inaction RPG\" design philosophy by crafting equpiment using ARPG influenced prefix/suffix systems, build or join player managed syndicates, trade on the marketplace, and compete in community events."
+      },
+      {
+        "item_key": "cc5239aef1abeed5",
+        "section": "free",
+        "title": "Wheelchair Wizards",
+        "url": "https://store.steampowered.com/app/3832630/",
+        "message_id": "1575637174903250994",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-11-26T22:19:37.013206+00:00",
+        "description": "Wheelchair Wizards is a 2-8 player party game where you battle your friends while upgrading your wizard."
+      },
+      {
+        "item_key": "2965d5caf4c589eb",
+        "section": "free",
+        "title": "Jono",
+        "url": "https://store.steampowered.com/app/5257200/",
+        "message_id": "1575637182759051264",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-11-26T22:19:38.683093+00:00",
+        "description": "Work together to complete one million levels, one player at a time. Continue where the previous left off. Chat with others while you wait for your turn. How long will it take?"
+      },
+      {
+        "item_key": "dd8ebba758ac4f49",
+        "section": "paid",
+        "title": "Sephiria",
+        "url": "https://store.steampowered.com/app/2436940/",
+        "message_id": "1575637196789256344",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-11-26T22:19:42.171998+00:00",
+        "description": "Save Bunnyville from a doomed fate: a top-down action/RPG roguelite from the makers of Dungreed. Explore the depths of the tower, collect and upgrade artifacts, and defeat hordes of demons to keep your village safe."
+      },
+      {
+        "item_key": "d15862fcc0449659",
+        "section": "paid",
+        "title": "Heroes of Hammerwatch II",
+        "url": "https://store.steampowered.com/app/619820/",
+        "message_id": "1575637204535873728",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-11-26T22:19:45.429218+00:00",
+        "description": "A rogue-lite action-rpg that offers extensive persistent progression. Build your town, upgrade and equip your heroes, before taking on the ever-changing Dark Citadel - either solo or with a team of friends."
+      },
+      {
+        "item_key": "9121000d2c1eb5fa",
+        "section": "paid",
+        "title": "Backrooms: Escape Together",
+        "url": "https://store.steampowered.com/app/2141730/",
+        "message_id": "1575637217743999139",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-11-26T22:19:47.092226+00:00",
+        "description": "A visually lifelike co-op horror game for 1-6 people. Journey through 11 procedurally generated levels, using what's available to survive and progress deeper into the Backrooms."
+      },
+      {
+        "item_key": "b4bce9738198b4a7",
+        "section": "paid",
+        "title": "Killer Bean",
+        "url": "https://store.steampowered.com/app/1597080/",
+        "message_id": "1575637225083773090",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-11-26T22:19:48.705951+00:00",
+        "description": "You are Killer Bean, a rogue assassin coffee bean, who takes out the trash in this world, one bullet at a time. This is a first person / third person action roguelike."
+      },
+      {
+        "item_key": "2df30b7e589bf56e",
+        "section": "paid",
+        "title": "The Jackbox Party Starter",
+        "url": "https://store.steampowered.com/app/1755580/",
+        "message_id": "1575637231866220584",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-11-26T22:19:50.374428+00:00",
+        "description": "Get the party started with The Jackbox Party Starter! Featuring three updated titles: Quiplash 3, Trivia Murder Party 2 and Tee K.O., this starter pack is sure to entertain!"
       }
     ]
   }
