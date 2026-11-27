@@ -1,145 +1,4 @@
 {
-  "2026-10-27": {
-    "run_state": {
-      "section_headers": {
-        "free": {
-          "message_id": "1564712362727047280",
-          "channel_id": "592534544708796474",
-          "posted_at_utc": "2026-10-27T18:48:18.447957+00:00"
-        },
-        "paid": {
-          "message_id": "1564712413880778988",
-          "channel_id": "592534544708796474",
-          "posted_at_utc": "2026-10-27T18:48:30.682568+00:00"
-        }
-      },
-      "last_attempt_at_utc": "2026-10-27T18:48:14.273781+00:00",
-      "intro": {
-        "message_id": "1564712347187150911",
-        "channel_id": "592534544708796474",
-        "posted_at_utc": "2026-10-27T18:48:16.681651+00:00"
-      },
-      "footer": {
-        "message_id": "1564712464099184672",
-        "channel_id": "592534544708796474",
-        "posted_at_utc": "2026-10-27T18:48:42.542893+00:00"
-      },
-      "completed": true,
-      "completed_at_utc": "2026-10-27T18:48:43.748846+00:00"
-    },
-    "items": [
-      {
-        "item_key": "19dfe233c1f0b1b6",
-        "section": "free",
-        "title": "Darza's Dominion",
-        "url": "https://store.steampowered.com/app/1895130/",
-        "message_id": "1564712369286815765",
-        "channel_id": "592534544708796474",
-        "source_type": "steam_free",
-        "posted_at": "2026-10-27T18:48:21.171822+00:00",
-        "description": "The Dominion takes no prisoners! Fight for your survival in the unforgiving terrains that surround you, strengthen your hero through slaying dangerous creatures, gather a group of allies and bring the battle to Darza in this fast-paced roguelike cooperative bullet-hell MMO!"
-      },
-      {
-        "item_key": "15d94962f28fe1b6",
-        "section": "free",
-        "title": "[2.0.3] MEH 🖥️",
-        "url": "https://store.steampowered.com/app/3065090/",
-        "message_id": "1564712380938846238",
-        "channel_id": "592534544708796474",
-        "source_type": "steam_free",
-        "posted_at": "2026-10-27T18:48:23.013560+00:00",
-        "description": "Meh is a game where you click on a computer to earn random computers from time to time. Collect them all!"
-      },
-      {
-        "item_key": "27aa756894abc3cb",
-        "section": "free",
-        "title": "Military Tanks",
-        "url": "https://store.steampowered.com/app/2342030/",
-        "message_id": "1564712388627005522",
-        "channel_id": "592534544708796474",
-        "source_type": "steam_free",
-        "posted_at": "2026-10-27T18:48:25.395505+00:00",
-        "description": "Do you like tanks game? Are you ready to feel the full power of a tank games?"
-      },
-      {
-        "item_key": "2ff7701b63b7b2c5",
-        "section": "free",
-        "title": "Combat Arms: Reloaded",
-        "url": "https://store.steampowered.com/app/905640/",
-        "message_id": "1564712398156333148",
-        "channel_id": "592534544708796474",
-        "source_type": "steam_free",
-        "posted_at": "2026-10-27T18:48:27.345670+00:00",
-        "description": "Combat Arms is a multiplayer game, free-to-play modern first-person shooter. The game enlists players into various battlefields across the globe to face-off against other ambitious soldiers of fortune, delivering gamers a high-quality FPS with an extensive arsenal of weapons."
-      },
-      {
-        "item_key": "ca575b2d4ebb9cfa",
-        "section": "free",
-        "title": "Galaxy Control: 3D Strategy",
-        "url": "https://store.steampowered.com/app/435440/",
-        "message_id": "1564712406263931056",
-        "channel_id": "592534544708796474",
-        "source_type": "steam_free",
-        "posted_at": "2026-10-27T18:48:29.136479+00:00",
-        "description": "Build your base and battle with other players to control the galaxy! Galaxy Control is an ultimate space combat strategy game with fast-paced combats! Gather minerals and extract uranium, defend your base with laser towers, missile turrets, cannons, walls and mines."
-      },
-      {
-        "item_key": "1e87664bd51eb528",
-        "section": "paid",
-        "title": "Project: Mist",
-        "url": "https://store.steampowered.com/app/2383130/",
-        "message_id": "1564712420570562691",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-10-27T18:48:32.299464+00:00",
-        "description": "Explore a strange island in this open-world survival horror. Use the Gravity Gun to manipulate objects and enemies, build a moving train base, fight giant creatures, catch critters, upgrade your gear, and uncover the dark secrets hidden within its abandoned facilities. Play alone or with friends."
-      },
-      {
-        "item_key": "128a3b188c25d291",
-        "section": "paid",
-        "title": "Goblin Cleanup",
-        "url": "https://store.steampowered.com/app/2748340/",
-        "message_id": "1564712427298234448",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-10-27T18:48:34.454949+00:00",
-        "description": "A co-op cleaning game where you have to clean and rearrange a dungeon before the next adventurers come to complete it again."
-      },
-      {
-        "item_key": "c337f37ffeecee78",
-        "section": "paid",
-        "title": "Wand & Order: Tidy up the magic shop!",
-        "url": "https://store.steampowered.com/app/4981570/",
-        "message_id": "1564712436089491549",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-10-27T18:48:36.226073+00:00",
-        "description": "Cozy first person co-op organizing and cleaning simulator! Sort wands, tarot decks and potions. Tidy up the shop to earn points and unlock powerful spells that help you restore order before the Alchemist returns!"
-      },
-      {
-        "item_key": "7ed061294f04aa2b",
-        "section": "paid",
-        "title": "The Spell Brigade",
-        "url": "https://store.steampowered.com/app/2904000/",
-        "message_id": "1564712444037828669",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-10-27T18:48:38.572971+00:00",
-        "description": "Survivors-like with ONLINE CO-OP for 1-4 players. Team up with your wizard friends to slay hordes of dark creatures. Complete team-based objectives, unlock new upgrades and create overpowered spell synergies. Friend nor foe is safe in this friendly fire bullet hell!"
-      },
-      {
-        "item_key": "7f1028253efd839c",
-        "section": "paid",
-        "title": "The Headliners",
-        "url": "https://store.steampowered.com/app/3059070/",
-        "message_id": "1564712453399519354",
-        "channel_id": "592534544708796474",
-        "source_type": "paid_under_20",
-        "posted_at": "2026-10-27T18:48:40.398657+00:00",
-        "description": "Co-op horror game where you play in teams of 1 to 8 reckless journalists, ready to explore a city overrun by deadly creatures to snap spectacular footage. Your only goal: make the headlines without becoming one."
-      }
-    ]
-  },
   "2026-10-28": {
     "run_state": {
       "section_headers": {
@@ -4191,6 +4050,147 @@
         "source_type": "paid_under_20",
         "posted_at": "2026-11-26T22:19:50.374428+00:00",
         "description": "Get the party started with The Jackbox Party Starter! Featuring three updated titles: Quiplash 3, Trivia Murder Party 2 and Tee K.O., this starter pack is sure to entertain!"
+      }
+    ]
+  },
+  "2026-11-27": {
+    "run_state": {
+      "section_headers": {
+        "free": {
+          "message_id": "1575996906683891825",
+          "channel_id": "592534544708796474",
+          "posted_at_utc": "2026-11-27T22:09:03.541675+00:00"
+        },
+        "paid": {
+          "message_id": "1575996961171964016",
+          "channel_id": "592534544708796474",
+          "posted_at_utc": "2026-11-27T22:09:16.697953+00:00"
+        }
+      },
+      "last_attempt_at_utc": "2026-11-27T22:08:58.819760+00:00",
+      "intro": {
+        "message_id": "1575996891412439102",
+        "channel_id": "592534544708796474",
+        "posted_at_utc": "2026-11-27T22:09:01.834452+00:00"
+      },
+      "footer": {
+        "message_id": "1575997054860402852",
+        "channel_id": "592534544708796474",
+        "posted_at_utc": "2026-11-27T22:09:41.037665+00:00"
+      },
+      "completed": true,
+      "completed_at_utc": "2026-11-27T22:09:42.243485+00:00"
+    },
+    "items": [
+      {
+        "item_key": "0af93b9f64b6af4c",
+        "section": "free",
+        "title": "Blood Strike",
+        "url": "https://store.steampowered.com/app/3199170/",
+        "message_id": "1575996913906618428",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-11-27T22:09:05.777715+00:00",
+        "description": "Gather your friends and dive into the action-packed Battle Royale, Squad Fight, or Hot Zone like there's no tomorrow! Blood Strike offers a wide range of playable Strikers, each with a unique active and passive ability letting you deploy drones, shield walls and everything in between."
+      },
+      {
+        "item_key": "7cbac6608de9d8af",
+        "section": "free",
+        "title": "Aniimo",
+        "url": "https://store.steampowered.com/app/4126040/",
+        "message_id": "1575996923209322496",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-11-27T22:09:07.549434+00:00",
+        "description": "Aniimo is a free-to-play, next-gen creature-catching open-world RPG. Explore the vast continent of Idyll, Twine with unique Aniimo, unlock new abilities. Travel to a sky-floating metropolis, meet other Pathfinders, and battle in exciting competitions. Choose your Aniimo and begin your epic journey!"
+      },
+      {
+        "item_key": "7a1724acb16da7c3",
+        "section": "free",
+        "title": "Unturned",
+        "url": "https://store.steampowered.com/app/304930/",
+        "message_id": "1575996930713063545",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-11-27T22:09:09.384987+00:00",
+        "description": "Unturned is an open-world zombie survival sandbox game. As one of the few not yet turned, you must fight to remain among the living."
+      },
+      {
+        "item_key": "403862495ee9c4f8",
+        "section": "free",
+        "title": "Path of Exile",
+        "url": "https://store.steampowered.com/app/238960/",
+        "message_id": "1575996938413801595",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-11-27T22:09:11.550536+00:00",
+        "description": "You are an Exile, struggling to survive on the dark continent of Wraeclast, as you fight to earn power that will allow you to exact your revenge against those who wronged you. Path of Exile is an online Action RPG set in a dark fantasy world. The game is completely free and will never be pay-to-win."
+      },
+      {
+        "item_key": "6b3fc02e8112cd09",
+        "section": "free",
+        "title": "Goose Goose Duck",
+        "url": "https://store.steampowered.com/app/1568590/",
+        "message_id": "1575996947574161640",
+        "channel_id": "592534544708796474",
+        "source_type": "steam_free",
+        "posted_at": "2026-11-27T22:09:14.761219+00:00",
+        "description": "Goose Goose Duck is a game of social deduction for up to 16 players. Players are separated into different groups that are each assigned a different objective. Complete your team’s objective to win!"
+      },
+      {
+        "item_key": "e1dff6efdeb289dd",
+        "section": "paid",
+        "title": "Conan Exiles Enhanced",
+        "url": "https://store.steampowered.com/app/440900/",
+        "message_id": "1575996969149665451",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-11-27T22:09:19.630094+00:00",
+        "description": "Conan Exiles Enhanced is an open world survival game set in the mythical lands of Hyboria, now fully upgraded to Unreal Engine 5 with stunning visuals and improved performance. SURVIVE, BUILD, and DOMINATE alone or with friends in a world brimming with adventure!"
+      },
+      {
+        "item_key": "6648359df71a90b6",
+        "section": "paid",
+        "title": "No Asteroids",
+        "url": "https://store.steampowered.com/app/5527800/",
+        "message_id": "1575996983951368403",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-11-27T22:09:25.220882+00:00",
+        "description": "An asteroid will hit Earth in 90 days. The government held a tender, and one miner came with his own pickaxe. He asked for no money and said the asteroid would pay for itself. Dig 5,000,000 m³ in first person, solo or in online co-op for up to 8. Sell the ore and buy ship guns that fire as you dig."
+      },
+      {
+        "item_key": "bdcbd99a05120d17",
+        "section": "paid",
+        "title": "The Isle",
+        "url": "https://store.steampowered.com/app/376210/",
+        "message_id": "1575997004981608468",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-11-27T22:09:27.668254+00:00",
+        "description": "Experience fierce open world survival gameplay as you attempt to stay alive on an unforgiving island inhabited by dinosaurs! Hunt. Grow. Survive."
+      },
+      {
+        "item_key": "6aee59dfae72d574",
+        "section": "paid",
+        "title": "PC Store Together",
+        "url": "https://store.steampowered.com/app/4990940/",
+        "message_id": "1575997014804664552",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-11-27T22:09:34.943218+00:00",
+        "description": "Run your own PC shop with friends! Build and repair computers, diagnose faulty parts, stock shelves, set prices, sell hardware and custom PCs, serve customers, manage orders, upgrade your store, unlock new components and grow your business together."
+      },
+      {
+        "item_key": "4b3a7ee77479bfa3",
+        "section": "paid",
+        "title": "SHRED A BILLION",
+        "url": "https://store.steampowered.com/app/5472080/",
+        "message_id": "1575997045779726457",
+        "channel_id": "592534544708796474",
+        "source_type": "paid_under_20",
+        "posted_at": "2026-11-27T22:09:36.880516+00:00",
+        "description": "SHRED A BILLION is a first-person incremental game about a mountain of money! Grab bills by hand, scoop them with a bucket, level up and feed a billion dollars to the shredder. Only 999,999,999 bills left to go!"
       }
     ]
   }
